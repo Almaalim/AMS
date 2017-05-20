@@ -1,0 +1,360 @@
+﻿.buttons a, .buttons button
+{
+	display: block;
+	float: left;
+	margin: 0 7px 0 0;
+	background-color: #f5f5f5;
+	border: 1px solid #dedede;
+	border-top: 1px solid #eee;
+	border-left: 1px solid #eee;
+	font-family: "Lucida Grande" , Tahoma, Arial, Verdana, sans-serif;
+	font-size: 12px;
+	line-height: 130%;
+	text-decoration: none;
+	font-weight: bold;
+	color: #565656;
+	cursor: pointer;
+	padding: 5px 10px 6px 7px; /* Links */
+}
+.buttons button
+{
+	width: auto;
+	overflow: visible;
+	padding: 4px 10px 3px 7px; /* IE6 */
+}
+.buttons button[type]
+{
+	padding: 5px 10px 5px 7px; /* Firefox */
+	line-height: 17px; /* Safari */
+}
+*:first-child + html button[type]
+{
+	padding: 4px 10px 3px 7px; /* IE7 */
+}
+.buttons button img, .buttons a img
+{
+	margin: 0 3px -3px 0 !important;
+	padding: 0;
+	border: none;
+	width: 16px;
+	height: 16px;
+}
+
+/* STANDARD */
+
+button:hover, .buttons a:hover
+{
+	background-color: #dff4ff;
+	border: 1px solid #c2e1ef;
+	color: #336699;
+}
+.buttons a:active
+{
+	background-color: #6299c5;
+	border: 1px solid #6299c5;
+	color: #fff;
+}
+
+/* POSITIVE */
+
+button.positive, .buttons a.positive
+{
+	color: #529214;
+}
+.buttons a.positive:hover, button.positive:hover
+{
+	background-color: #E6EFC2;
+	border: 1px solid #C6D880;
+	color: #529214;
+}
+.buttons a.positive:active
+{
+	background-color: #529214;
+	border: 1px solid #529214;
+	color: #fff;
+}
+
+/* NEGATIVE */
+
+.buttons a.negative, button.negative
+{
+	color: #d12f19;
+}
+.buttons a.negative:hover, button.negative:hover
+{
+	background: #fbe3e4;
+	border: 1px solid #fbc2c4;
+	color: #d12f19;
+}
+.buttons a.negative:active
+{
+	background-color: #d12f19;
+	border: 1px solid #d12f19;
+	color: #fff;
+}
+
+/* REGULAR */
+
+button.regular, .buttons a.regular
+{
+	color: #336699;
+}
+.buttons a.regular:hover, button.regular:hover
+{
+	background-color: #dff4ff;
+	border: 1px solid #c2e1ef;
+	color: #336699;
+}
+.buttons a.regular:active
+{
+	background-color: #6299c5;
+	border: 1px solid #6299c5;
+	color: #fff;
+}
+
+/*color:#10428C;*/
+
+
+.positive
+{
+	color: #529214;
+	display: block;
+	float: left;
+	margin: 0 7px 0 0;
+	background-color: #f5f5f5;
+	border: 1px solid #dedede;
+	border-top: 1px solid #eee;
+	border-left: 1px solid #eee;
+	font-family: "Lucida Grande" , Tahoma, Arial, Verdana, sans-serif;
+	font-size: 12px;
+	line-height: 130%;
+	text-decoration: none;
+	text-align: inherit;
+	font-weight: bold;
+	cursor: pointer;
+	padding: 5px 10px 6px 7px; /* Links */ /*background-image:url(images/14.png); */
+}
+.positive:hover
+{
+	background-color: #E6EFC2;
+	border: 1px solid #C6D880;
+	color: #529214;
+}
+
+.positive img
+{
+	margin: 0 3px -3px 0 !important;
+	padding: 0;
+	border: none;
+	width: 16px;
+	height: 16px;
+}
+
+.buttonRed
+{
+	color: #d12f19;
+	display: block;
+	float: left;
+	margin: 0 7px 0 0;
+	background-color: #f5f5f5;
+	border: 1px solid #dedede;
+	border-top: 1px solid #eee;
+	border-left: 1px solid #eee;
+	font-family: "Lucida Grande" , Tahoma, Arial, Verdana, sans-serif;
+	font-size: 12px;
+	line-height: 130%;
+	text-decoration: none;
+	text-align: inherit;
+	font-weight: bold;
+	cursor: pointer;
+	padding: 5px 10px 6px 7px; /* Links */ /*background-image:url(images/14.png); */
+}
+.buttonRed:hover
+{
+	background: #fbe3e4;
+	border: 1px solid #fbc2c4;
+	color: #d12f19;
+}
+
+.buttonRed img
+{
+	margin: 0 3px -3px 0 !important;
+	padding: 0;
+	border: none;
+	width: 16px;
+	height: 16px;
+}
+
+.buttonBlue
+{
+	/*color:#10428C;*/ /*color:#6C8695;*/
+	display: block;
+	float: left;
+	margin: 0 7px 0 0;
+	background-color: #CCDCD2; /*background-color:#f5f5f5;*/ /*border:1px solid #dedede;     border-top:1px solid #eee;     border-left:1px solid #eee;*/
+	font-family: "Lucida Grande" , Tahoma, Arial, Verdana, sans-serif;
+	font-size: 12px; /*line-height:130%;*/
+	text-decoration: none;
+	text-align: inherit;
+	font-weight: bold;
+	cursor: pointer;
+	padding: 5px 10px 6px 7px; /* Links */
+	background-image: url(../images/MasterPage_Images/BackgroundButton.gif);
+}
+/*.buttonBlue:hover{
+    background-color:#dff4ff;
+    border:1px solid #c2e1ef;
+    color:#10428C;
+}*/
+
+.buttonBlue img
+{
+	margin: 0 3px -3px 0 !important;
+	padding: 0;
+	border: none;
+	width: 16px;
+	height: 16px;
+}
+
+
+/*.buttonBlue:hover{
+    background-color:#dff4ff;
+    border:1px solid #c2e1ef;
+    color:#10428C;
+}*/
+
+.GenButton
+{
+	display: block;
+	float: left;
+	margin: 0 7px 0 0;
+	background-color: #CCDCD2;
+	color: #6C8695;
+	font-family: "Lucida Grande" , Tahoma, Arial, Verdana, sans-serif;
+	font-size: 14px; /*line-height:130%;*/
+	text-decoration: none;
+	text-align: inherit;
+	font-weight: bold;
+	cursor: pointer;
+	padding: 5px 10px 6px 7px; /* Links */
+	background-image: url(../images/MasterPage_Images/BackgroundButton.gif);
+}
+
+.GenButton120
+{
+	display: block;
+	float: left;
+	margin: 0 7px 0 0;
+	background-color: #CCDCD2;
+	color: #6C8695;
+	font-family: "Lucida Grande" , Tahoma, Arial, Verdana, sans-serif;
+	font-size: 14px; /*line-height:130%;*/
+	text-decoration: none;
+	text-align: inherit;
+	font-weight: bold;
+	cursor: pointer;
+	padding: 5px 10px 6px 7px; /* Links */
+	background-image: url(../images/MasterPage_Images/BackgroundButton120.gif);
+}
+
+.GenButton170
+{
+	display: block;
+	float: left;
+	margin: 0 7px 0 0;
+	background-color: #CCDCD2;
+	color: #6C8695;
+	font-family: "Lucida Grande" , Tahoma, Arial, Verdana, sans-serif;
+	font-size: 14px; /*line-height:130%;*/
+	text-decoration: none;
+	text-align: inherit;
+	font-weight: bold;
+	cursor: pointer;
+	padding: 5px 10px 6px 7px; /* Links */
+	background-image: url(../images/MasterPage_Images/BackgroundButton170.gif);
+}
+
+.GenButton200
+{
+	display: block;
+	float: left;
+	margin: 0 7px 0 0;
+	background-color: #CCDCD2;
+	color: #6C8695;
+	font-family: "Lucida Grande" , Tahoma, Arial, Verdana, sans-serif;
+	font-size: 14px; /*line-height:130%;*/
+	text-decoration: none;
+	text-align: inherit;
+	font-weight: bold;
+	cursor: pointer;
+	padding: 5px 10px 6px 7px; /* Links */
+	background-image: url(../images/MasterPage_Images/BackgroundButton200.gif);
+}
+
+.GenButton[disabled]
+{
+	color: #9a9797;
+	text-decoration: none;
+	cursor: default;
+	-webkit-appearance: nonene;
+}
+
+.GenButton120[disabled]
+{
+	color: #9a9797;
+	text-decoration: none;
+	cursor: default;
+	-webkit-appearance: nonene;
+}
+
+.GenButton170[disabled]
+{
+	color: #9a9797;
+	text-decoration: none;
+	cursor: default;
+	-webkit-appearance: nonene;
+}
+
+.GenButton200[disabled]
+{
+	color: #9a9797;
+	text-decoration: none;
+	cursor: default;
+	-webkit-appearance: nonene;
+}
+
+.flyOutDiv
+{
+	width: 0px;
+	height: 0px;
+	display: none;
+	position: absolute;
+	z-index: 3;
+	opacity: 0;
+	filter: (progid:DXImageTransform.Microsoft.Alpha(opacity=0));
+	font-size: 14px;
+	border: solid 1px #CCCCCC;
+	background-color: #FFFFFF;
+	padding: 5px;
+	background-color: #FFFFEE;
+}
+
+.flyOutDivCloseX
+{
+	background-color: #666666;
+	color: #FFFFFF;
+	text-align: center;
+	font-weight: bold;
+	text-decoration: none;
+	border: outset thin #FFFFFF;
+	padding: 5px;
+}
+
+.Animation1
+{ 
+position: absolute;
+padding:3px;
+border: solid 1px #000;
+}
+
+

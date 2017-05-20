@@ -1,0 +1,148 @@
+﻿.GridTable, .dataTable {
+    width: 100%;
+    border: 0;
+    /*box-sizing: border-box;*/
+    margin: 10px 0;
+    border-bottom: 2px solid #dddddd;
+    font-size: 14px;
+    -webkit-box-shadow: 2px 2px 9px 2px rgba(206,220,223,0.68);
+-moz-box-shadow: 2px 2px 9px 2px rgba(206,220,223,0.68);
+box-shadow: 2px 2px 9px 2px rgba(206,220,223,0.68);
+}
+
+    .GridHeaderStyle, .dataTable > thead > tr , .GridTable>tbody>tr.GridHeaderStyle>td {
+        border: 0;
+        background-color: #005683;
+        color: #fff;
+        font-size: 14px;
+        font-weight: normal;
+        border-bottom:4px solid #b9b9b9;
+    }
+
+        .GridHeaderStyle th, .dataTable th {
+            line-height: 30px !important;
+            text-align: center;
+                border-left: 1px solid #3a6e8a;
+                font-weight: normal;
+            /*border-left:1px solid #b9b9b9;
+            border-right:1px solid #b9b9b9;*/
+        }
+        .GridHeaderStyle th a, .dataTable th a
+        {
+            color:#b8e8f7;
+        }
+
+.GridRowStyle {
+    border: 0;
+    background-color: #f9f9f9 !important;
+    border-bottom: 1px solid #fff;
+}
+
+.dataTable > tbody > tr, .table-striped > tbody > tr:nth-of-type(odd) {
+    border: 0;
+    background-color: #fff !important;
+}
+
+.GridAlterNative, .table-striped > tbody > tr:nth-of-type(even) {
+    background-color: #eaeaea !important;
+    border-bottom: 1px solid #fff;
+}
+
+.GridPagerStyle > td {
+    width: 100%;
+}
+
+
+.GridPagerStyle table tr td a {
+    background-color: #1f355d;
+    cursor: pointer;
+    color: #fff;
+    padding: 5px 15px;
+    border-bottom: 2px solid #9e9e9e;
+}
+
+.GridPagerStyle table tr td select {
+    background-color: #fff;
+    width: 43px;
+    float: right;
+    height: 19px;
+    margin: 0 5px;
+}
+
+.GridPagerStyle table tr td input {
+    display: block;
+    height: auto;
+    width: auto;
+    margin: 0 10px;
+}
+
+    .GridPagerStyle table tr td input[type="submit"] {
+        width: auto;
+        background-color: #1f355d;
+        cursor: pointer;
+        color: #fff;
+    }
+
+        .GridPagerStyle table tr td input[type="submit"]:hover, .GridPagerStyle table tr td a:hover {
+            opacity: 0.7;
+        }
+
+.GridTable tr td {
+        text-align: center;
+    line-height: 28px;
+    color: #666666;
+    font-size: 14px;
+    padding: 0 7px;
+}
+
+    .GridTable tr td input[type=image] {
+        width: auto;
+        height: 14px;
+        display: block;
+        background: transparent;
+    }
+
+.GridSelectRowStyle {
+    background-color: #009ad7;
+}
+
+    .GridSelectRowStyle td {
+        background-color: #009dc7 !important;
+        color: #fff !important;
+        font-weight: normal;
+    }
+
+.GridPagerStyle table tr td {
+    color: #333;
+    font-size: 11px;
+    margin-bottom: 0px;
+    font-weight: bold;
+    line-height: 15px;
+}
+
+tr.GridPagerStyle table {
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+.ChackBoxlist, input[type=checkbox], .RadioButtonList, input[type=radio] {
+    width: 12px;
+    height: 12px;
+    margin: 0 10px;
+    -webkit-box-shadow: 2px 2px 9px 2px rgba(206,220,223,0);
+-moz-box-shadow: 2px 2px 9px 2px rgba(206,220,223,0);
+box-shadow: 2px 2px 9px 2px rgba(206,220,223,0);
+}
+
+.RadioButtonList {
+    width: 100%;
+}
+.TreeViewStyle
+{
+    background-color:#005683;
+    padding:30px;
+}
+.TreeViewStyle a , .TreeViewStyle span
+{
+    color:#f9f9f9 !important;
+}

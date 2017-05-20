@@ -1,0 +1,61 @@
+﻿.menu
+{
+	height:25px;
+	margin:0px 5px;	
+    float :left;
+	border-style:none; 
+	padding:0px 0px 0px 0px; 
+}
+.mnstatic
+{
+	
+}
+.mnstaticitem
+{
+	font-size:14px; 
+	font-weight:bold;
+	color:#10428C;
+	text-decoration:none; 
+	padding:7px 25px 7px 25px;
+	background-image:url(images/Img/RootItemBkg.gif); background-repeat:repeat-x;
+	border:1px solid #9900CC;
+	
+}
+.mnstaticitemhove
+{ 
+	background:#FFD59A url(Img/RootItemFocusedBkg.gif) left top repeat-x;
+	border:1px solid #002D96;
+	
+}
+
+.mndynamicitem
+{ 
+	text-align:left; 
+	text-decoration:none; 
+	padding:5px 1px 5px 1px;
+	border:1px dotted #356595; 
+	z-index : 100;
+}
+.mndynamicitem A
+{
+	text-align:center;
+	padding-right:46px;
+	z-index : 100;
+}
+.mndynamicitem A IMG
+{
+	padding-right:4px;
+	padding-left:0px;
+	width: 20px;
+	z-index : 100;
+}
+.mndynamicitemhove
+{
+
+	padding:4px 1px 4px 1px;
+	border-bottom:1px solid #002D96;
+	border-top:1px solid #002D96;
+	background:#FFD59A url(Img/RootItemFocusedBkg.gif) left top repeat-x;
+	z-index : 100;
+	
+}

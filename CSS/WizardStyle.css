@@ -1,0 +1,210 @@
+﻿ /*File Created: October 2, 2012 */
+#wizHeaderEN li .prevStep
+{
+    background-color:  #6C8695;
+}
+#wizHeaderEN li .prevStep:after
+{
+    border-left-color:  #6C8695 !important;
+}
+#wizHeaderEN li .currentStep
+{
+    background-color: #009ad7;
+    color:#fff !important;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+#wizHeaderEN li .currentStep:after
+{
+    border-left-color: #FE5A34 !important;
+}
+#wizHeaderEN li .nextStep
+{
+    background-color:transparent !important;
+}
+#wizHeaderEN li .nextStep:after
+{
+    border-left-color: #C2C2C2 !important;
+}
+
+#wizHeaderEN
+{
+    list-style: none;
+    overflow: hidden;
+    font-family: "Segoe UI", arial, sans-serif;
+    margin: 0px;
+    padding: 0px;
+    background-color:#f1f1f1 !important;
+    border-bottom: 2px solid #b9b9b9;
+    padding: 3px 0;
+}
+#wizHeaderEN li
+{
+    float: left;
+        margin: 0px 10px;
+}
+#wizHeaderEN li a
+{
+    color: #808080;
+    text-decoration: none;
+    padding: 15px 25px 15px 25px;
+    background: brown; /* fallback color */
+    background: hsla(34,85%,35%,1);
+    /* position: relative; */
+    display: block;
+    /*float: left;*/
+}
+#wizHeaderEN li a:after
+{
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 50px solid transparent; /* Go big on the size, and let overflow hide */
+    border-bottom: 50px solid transparent;
+    border-left: 30px solid hsla(34,85%,35%,1);
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+    left: 100%;
+    z-index: 2;
+}
+#wizHeaderEN li a:before
+{
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 50px solid transparent;
+    border-bottom: 50px solid transparent;
+    border-left: 30px solid white;
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+    margin-left: 1px;
+    left: 100%;
+    z-index: 1;
+}
+#wizHeaderEN li:first-child a
+{
+    padding-left: 10px;
+}
+#wizHeaderEN li:last-child
+{
+    padding-right: 50px;
+}
+/*#wizHeader li a:hover
+{
+    background: #FE9400;
+}
+#wizHeader li a:hover:after
+{
+    border-left-color: #FE9400 !important;
+}*/
+.content
+{
+    width: 100%;
+    background-color: #DCE7E1;
+    color:#6C8695;
+}
+
+content122
+{
+    height: 150px;
+    padding-top: 75px;
+    text-align: center;
+    background-color: #F9F9F9;
+    font-size: 48px;
+}
+
+#wizHeaderAR li .prevStep
+{
+    background-color:  #6C8695;
+}
+#wizHeaderAR li .prevStep:after
+{
+    border-right-color:  #6C8695 !important;
+}
+#wizHeaderAR li .currentStep
+{
+    background-color: #009ad7;
+}
+#wizHeaderAR li .currentStep:after
+{
+    border-right-color: #FE5A34 !important;
+}
+#wizHeaderAR li .nextStep
+{
+    background-color: #C2C2C2;
+}
+#wizHeaderAR li .nextStep:after
+{
+    border-right-color: #C2C2C2 !important;
+}
+
+#wizHeaderAR
+{
+    list-style: none;
+    overflow: hidden;
+    font: 18px Helvetica, Arial, Sans-Serif;
+    margin: 0px;
+    padding: 0px;
+    background-color:transparent !important;
+}
+#wizHeaderAR li
+{
+    float: right;
+        margin: 0px 10px;
+}
+#wizHeaderAR li a
+{
+    color: white;
+    text-decoration: none;
+    padding: 5px 25px 5px 5px;
+    background: brown; /* fallback color */
+    background: hsla(34,85%,35%,1);
+    /* position: relative; */
+    display: block;
+    /*float: left;*/
+}
+#wizHeaderAR li a:after
+{
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 50px solid transparent; /* Go big on the size, and let overflow hide */
+    border-bottom: 50px solid transparent;
+    border-right: 30px solid hsla(34,85%,35%,1);
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+    right: 100%;
+    z-index: 2;
+}
+#wizHeaderAR li a:before
+{
+    content: " ";
+    display: block;
+    width: 0;
+    height: 0;
+    border-top: 50px solid transparent;
+    border-bottom: 50px solid transparent;
+    border-right: 30px solid white;
+    position: absolute;
+    top: 50%;
+    margin-top: -50px;
+    margin-right: 1px;
+    left: 100%;
+    z-index: 1;
+}
+#wizHeaderAR li:first-child a
+{
+    padding-right: 10px;
+}
+#wizHeaderAR li:last-child
+{
+    padding-left: 50px;
+}
+

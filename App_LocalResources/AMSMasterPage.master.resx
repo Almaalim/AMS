@@ -1,0 +1,621 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btnAttendanceListResource1.Text" xml:space="preserve">
+    <value>Attendance List</value>
+  </data>
+  <data name="btnAttendanceListResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnEmployeeRequestResource1.Text" xml:space="preserve">
+    <value>Employee Request</value>
+  </data>
+  <data name="btnEmployeeRequestResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnEmployeeVacationDaysResource1.Text" xml:space="preserve">
+    <value>Employee Vacation Days</value>
+  </data>
+  <data name="btnEmployeeVacationDaysResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnExcuseRequestResource1.Text" xml:space="preserve">
+    <value>Excuse Request</value>
+  </data>
+  <data name="btnExcuseRequestResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnLogoHomeResource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnLogoHomeResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnShiftExcuseRequestResource1.Text" xml:space="preserve">
+    <value>Shift Excuse Request</value>
+  </data>
+  <data name="btnShiftExcuseRequestResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnShiftSwapEmployeeApprovalResource1.Text" xml:space="preserve">
+    <value>Shift Swap Employee Approval</value>
+  </data>
+  <data name="btnShiftSwapEmployeeApprovalResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnShiftSwapRequestResource1.Text" xml:space="preserve">
+    <value>Shift Swap Request</value>
+  </data>
+  <data name="btnShiftSwapRequestResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnVacationRequestResource1.Text" xml:space="preserve">
+    <value>Vacation Request</value>
+  </data>
+  <data name="btnVacationRequestResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="dlFavPageResource1.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="dlFavPageResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="dlFavReportResource1.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="dlFavReportResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Image1Resource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Image1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Image1Resource2.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Image1Resource2.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="imgFPDeleteResource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="imgFPDeleteResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="imgFRDeleteResource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="imgFRDeleteResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label1Resource1.Text" xml:space="preserve">
+    <value>Requests</value>
+  </data>
+  <data name="Label1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblActualWorkDurationResource1.Text" xml:space="preserve">
+    <value>Actual Work Duration</value>
+  </data>
+  <data name="lblActualWorkDurationResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblActualWorkDurationValueResource1.Text" xml:space="preserve">
+    <value>00:00:00</value>
+  </data>
+  <data name="lblActualWorkDurationValueResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblBeginLateResource1.Text" xml:space="preserve">
+    <value>Begin Late</value>
+  </data>
+  <data name="lblBeginLateResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblBeginLateValueResource1.Text" xml:space="preserve">
+    <value>00:00:00</value>
+  </data>
+  <data name="lblBeginLateValueResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblcopyrightsResource1.Text" xml:space="preserve">
+    <value>copyrights Almaalim 2005-</value>
+  </data>
+  <data name="lblcopyrightsResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblcurrentYearResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblcurrentYearResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDaysAbsentResource1.Text" xml:space="preserve">
+    <value>Days Absent</value>
+  </data>
+  <data name="lblDaysAbsentResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDaysAbsentValueResource1.Text" xml:space="preserve">
+    <value>0 Day(s)</value>
+  </data>
+  <data name="lblDaysAbsentValueResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDaysAbsentWithoutExcuseResource1.Text" xml:space="preserve">
+    <value>Days Absent Without Excuse</value>
+  </data>
+  <data name="lblDaysAbsentWithoutExcuseResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDaysAbsentWithoutExcuseValueResource1.Text" xml:space="preserve">
+    <value>0 Day(s)</value>
+  </data>
+  <data name="lblDaysAbsentWithoutExcuseValueResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDaysAbsentWithPaidExcuseResource1.Text" xml:space="preserve">
+    <value>Days Absent Paid Excuse</value>
+  </data>
+  <data name="lblDaysAbsentWithPaidExcuseResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDaysAbsentWithPaidExcuseValueResource1.Text" xml:space="preserve">
+    <value>0 Day(s)</value>
+  </data>
+  <data name="lblDaysAbsentWithPaidExcuseValueResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDaysAbsentWithUnpaidExcuseResource1.Text" xml:space="preserve">
+    <value>Days Absent Unpaid Excuse</value>
+  </data>
+  <data name="lblDaysAbsentWithUnpaidExcuseResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDaysAbsentWithUnpaidExcuseValueResource1.Text" xml:space="preserve">
+    <value>0 Day(s)</value>
+  </data>
+  <data name="lblDaysAbsentWithUnpaidExcuseValueResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDaysPresentResource1.Text" xml:space="preserve">
+    <value>Days Present</value>
+  </data>
+  <data name="lblDaysPresentResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDaysPresentValueResource1.Text" xml:space="preserve">
+    <value>0 Day(s)</value>
+  </data>
+  <data name="lblDaysPresentValueResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblErsTitelResource1.Text" xml:space="preserve">
+    <value>ERS</value>
+  </data>
+  <data name="lblErsTitelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblFavPageResource1.Text" xml:space="preserve">
+    <value>Quick Links</value>
+  </data>
+  <data name="lblFavPageResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblFavReportResource1.Text" xml:space="preserve">
+    <value>Favorite Reports</value>
+  </data>
+  <data name="lblFavReportResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblGapWithoutExcuseResource1.Text" xml:space="preserve">
+    <value>Gap Without Excuse</value>
+  </data>
+  <data name="lblGapWithoutExcuseResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblGapWithoutExcuseValueResource1.Text" xml:space="preserve">
+    <value>00:00:00</value>
+  </data>
+  <data name="lblGapWithoutExcuseValueResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblGapWithPaidExcuseResource1.Text" xml:space="preserve">
+    <value>Gap Paid Excuse</value>
+  </data>
+  <data name="lblGapWithPaidExcuseResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblGapWithPaidExcuseValueResource1.Text" xml:space="preserve">
+    <value>00:00:00</value>
+  </data>
+  <data name="lblGapWithPaidExcuseValueResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblGapWithUnpaidExcuseResource1.Text" xml:space="preserve">
+    <value>Gap Unpaid Excuse</value>
+  </data>
+  <data name="lblGapWithUnpaidExcuseResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblGapWithUnpaidExcuseValueResource1.Text" xml:space="preserve">
+    <value>00:00:00</value>
+  </data>
+  <data name="lblGapWithUnpaidExcuseValueResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblMonthSummaryResource1.Text" xml:space="preserve">
+    <value>Month Summary</value>
+  </data>
+  <data name="lblMonthSummaryResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblOutEarlyResource1.Text" xml:space="preserve">
+    <value>Out Early</value>
+  </data>
+  <data name="lblOutEarlyResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblOutEarlyValueResource1.Text" xml:space="preserve">
+    <value>00:00:00</value>
+  </data>
+  <data name="lblOutEarlyValueResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblPageTitelResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblPageTitelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblRightsResource1.Text" xml:space="preserve">
+    <value>. All Rights Reserved.</value>
+  </data>
+  <data name="lblRightsResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShiftAbsentWithoutExcuseResource1.Text" xml:space="preserve">
+    <value>Shift Absent Without Excuse</value>
+  </data>
+  <data name="lblShiftAbsentWithoutExcuseResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShiftAbsentWithoutExcuseValueResource1.Text" xml:space="preserve">
+    <value>0 Shift(s)</value>
+  </data>
+  <data name="lblShiftAbsentWithoutExcuseValueResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShiftAbsentWithPaidExcuseResource1.Text" xml:space="preserve">
+    <value>Shift Absent Paid Excuse</value>
+  </data>
+  <data name="lblShiftAbsentWithPaidExcuseResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShiftAbsentWithPaidExcuseValueResource1.Text" xml:space="preserve">
+    <value>0 Shift(s)</value>
+  </data>
+  <data name="lblShiftAbsentWithPaidExcuseValueResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShiftAbsentWithUnpaidExcuseResource1.Text" xml:space="preserve">
+    <value>Shift Absent Unpaid Excuse</value>
+  </data>
+  <data name="lblShiftAbsentWithUnpaidExcuseResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShiftAbsentWithUnpaidExcuseValueResource1.Text" xml:space="preserve">
+    <value>0 Shift(s)</value>
+  </data>
+  <data name="lblShiftAbsentWithUnpaidExcuseValueResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShiftsAbsentResource1.Text" xml:space="preserve">
+    <value>Shifts Absent</value>
+  </data>
+  <data name="lblShiftsAbsentResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShiftsAbsentValueResource1.Text" xml:space="preserve">
+    <value>0 Shift(s)</value>
+  </data>
+  <data name="lblShiftsAbsentValueResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblTotalOverTimeResource1.Text" xml:space="preserve">
+    <value>Total Overtime</value>
+  </data>
+  <data name="lblTotalOverTimeResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblTotalOverTimeValueResource1.Text" xml:space="preserve">
+    <value>00:00:00</value>
+  </data>
+  <data name="lblTotalOverTimeValueResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblUserNameResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblUserNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblWelcomeResource1.Text" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
+  <data name="lblWelcomeResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblWorkDurationResource1.Text" xml:space="preserve">
+    <value>Work Duration</value>
+  </data>
+  <data name="lblWorkDurationResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblWorkDurationValueResource1.Text" xml:space="preserve">
+    <value>00:00:00</value>
+  </data>
+  <data name="lblWorkDurationValueResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblWorkingDaysResource1.Text" xml:space="preserve">
+    <value>Working Days</value>
+  </data>
+  <data name="lblWorkingDaysResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblWorkingDaysValueResource1.Text" xml:space="preserve">
+    <value>0 Day(s)</value>
+  </data>
+  <data name="lblWorkingDaysValueResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lnkAboutUsResource1.Text" xml:space="preserve">
+    <value>About us</value>
+  </data>
+  <data name="lnkAboutUsResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lnkBtnArResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lnkBtnEnResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lnkContactUsResource1.Text" xml:space="preserve">
+    <value>Contact us</value>
+  </data>
+  <data name="lnkContactUsResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lnkERSResource1.Text" xml:space="preserve">
+    <value>ERS</value>
+  </data>
+  <data name="lnkERSResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lnkFPArResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lnkFPEnResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LnkHomeResource1.Text" xml:space="preserve">
+    <value>Home Page</value>
+  </data>
+  <data name="LnkHomeResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lnkLanguageResource1.Text" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="lnkLanguageResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LnkLogoutResource1.Text" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="LnkLogoutResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lnkRequestResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lnkRequestResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lnkShortcutResource1.Text" xml:space="preserve">
+    <value>Add Quick Link</value>
+  </data>
+  <data name="lnkShortcutResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Menu1Resource1.ScrollDownText" xml:space="preserve">
+    <value>Scroll down</value>
+  </data>
+  <data name="Menu1Resource1.ScrollUpText" xml:space="preserve">
+    <value>Scroll up</value>
+  </data>
+  <data name="Menu1Resource1.SkipLinkText" xml:space="preserve">
+    <value>Skip Navigation Links</value>
+  </data>
+  <data name="Menu1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MenuItemBindingResource1.FormatString" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MenuItemBindingResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MenuItemBindingResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MenuItemBindingResource1.Value" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MenuItemResource1.Text" xml:space="preserve">
+    <value>New Item</value>
+  </data>
+  <data name="MenuItemResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MenuItemResource1.Value" xml:space="preserve">
+    <value>New Item</value>
+  </data>
+  <data name="LnkChangePasswordResource11.Text" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="lnkHelpResource1.Text" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="btnEmployeeGapResource1.Text" xml:space="preserve">
+    <value>Employee Gaps</value>
+  </data>
+  <data name="lblDepNameResource1.Text" xml:space="preserve">
+    <value>Department :</value>
+  </data>
+  <data name="lblEmpInfoResource1.Text" xml:space="preserve">
+    <value>Employee Info</value>
+  </data>
+  <data name="lblEmpNameResource1.Text" xml:space="preserve">
+    <value>Name :</value>
+  </data>
+  <data name="btnCommissionRequestResource1.Text" xml:space="preserve">
+    <value>Commission Request</value>
+  </data>
+  <data name="btnJobAssignmentRequestResource1.Text" xml:space="preserve">
+    <value>Job Assignment Request</value>
+  </data>
+  <data name="lnkPolicyResource1.Text" xml:space="preserve">
+    <value>Policies and Procedures</value>
+  </data>
+  <data name="lnkPolicyResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnTodayTransactionResource1.Text" xml:space="preserve">
+    <value>Today Transaction</value>
+  </data>
+  <data name="btnAdministrativeLicensesRequestResource1.Text" xml:space="preserve">
+    <value>Administrative Licenses Request</value>
+  </data>
+</root>

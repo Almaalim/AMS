@@ -1,0 +1,10 @@
+﻿/*==============================================================================================*/
+/*aling control*/
+/*==============================================================================================*/
+.PageDir     { direction:  rtl;   }
+.PageDir2    { direction:  rtl;   }
+.td1Allalign { text-align: left;  vertical-align:middle; }
+.td2Allalign { text-align: right; vertical-align:middle; }
+.td1align    { text-align: left;  }
+.td2align    { text-align: right; }
+/*==============================================================================================*/

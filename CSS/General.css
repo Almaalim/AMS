@@ -1,0 +1,281 @@
+﻿        .Body_BG
+{
+	padding:0px;
+	background-color:#ffffff;
+}
+        
+	.buttonBG
+{
+	background-color:#6394CE;
+	color:#ffffff;
+	border:1px solid #5A5A5A;
+	text-align:center;	
+	font-family:Tahoma;
+}
+
+.highlight {text-decoration: none;color:black;background:yellow;}
+
+
+.popupControl
+{
+	background-color : #AAD4FF;
+	position : absolute;
+	visibility : hidden;
+	border-style : solid;
+	border-color : Black;
+	border-width : 2px;
+	
+	
+	}
+
+	  .demo
+        {
+            padding:1px; 
+            border:solid 1px #333333; 
+            width:160px;
+        }      
+	body, html
+	{
+		height:100%;
+		margin: 0px auto;
+	}
+	body
+	{
+		margin: 0px;
+		text-align: left;
+		font-family: Tahoma, Arial, Helvetica, sans-serif;
+		font-size: 11px;
+		min-width:980px;
+		background-image :url('images/background.gif'); background-repeat:repeat;
+		
+	}
+	
+	.header
+	{
+		
+		border:solid 1px #6394CE;
+		color :Black;
+	    background-image :url('images/Header4.bmp'); background-repeat:repeat;
+	}
+	
+	
+	
+	.header div
+	{
+		float:right;
+		padding:5px 5px 0px 5px;	
+	}
+	
+	.subHeader
+	{
+		background-image:url('images/subheader_bg.png'); background-repeat:repeat-x;
+		height:27px;
+	}
+	.subHeader div
+	{
+		padding:5px;
+		font-size:14px;
+		font-weight:bold;
+		color:#10428C;
+	}
+	#subHeaderRight
+	{
+		background-image:url('images/subheader_bg.png'); background-repeat:repeat-x;
+		height:27px;
+		padding:0px;
+		font-size:14px;
+		font-weight:bold;
+		color:#10428C;
+	}
+	.clear
+	{
+		clear:both;
+		float:none;
+		height:0px;
+	}
+	.title
+	{
+		font-size:18px;
+		font-weight:bold;
+		padding:0px 5px;
+	}
+	
+	
+	
+	
+	.navigation
+	{
+		width:95%;
+		height:100%;
+		margin: 5px 5px 0px 5px;
+		background-image :url('images/background.gif'); background-repeat:repeat;
+		border:solid 1px #6394CE;
+		background-color:#ffffff;
+		float:left;
+		vertical-align:bottom;
+		position:relative;
+	}
+	.navPanel
+	{
+		
+		padding:10px;
+	
+	}
+	.navPanel a, .navPanel a:visited
+	{
+		padding:5px 5px;
+		display:block;
+		color:#000000;
+		border:solid 1px #ffffff;
+		text-decoration:none;
+	}
+	.navPanel a:hover
+	{
+		background-color:#FFE88C;
+		border:solid 1px #D69C00;
+	}
+	.navSeparator
+	{
+		height:10px;
+		background-image:url('images/nav_separator.png'); background-repeat:repeat-x; background-position:center;
+	}
+	.navSelect{
+		position:absolute;
+		bottom:0px;
+		width:100%;
+	}
+	.navSelect a{
+		height:22px;
+		display:block;
+		padding:5px;
+		background-image:url('images/nav_link.png'); background-repeat:repeat-x;
+		font-weight:bold;
+		text-decoration:none;
+		color:#000000;
+	}
+	.navSelect a:hover{
+		background-image:url('images/nav_link_hover.png'); background-repeat:repeat-x;
+	}
+	/* CONTENT */
+	.content
+	{
+		
+	}
+	.contentPanel
+	{
+		padding:10px;
+		
+	}
+	
+	.content1
+	{
+		width:99%;
+		height:100%;
+	   
+		margin: 5px 5px 0px 0px;
+		background-color:#ffffff;
+		border:solid 1px #6394CE;
+		vertical-align:top;
+		float:left;
+		overflow:auto;
+		background-image :url('images/background.gif'); background-repeat:repeat;
+	}
+	
+	#contentPanel
+{
+        width:100%;
+		height:100%;
+		margin: 5px 5px 0px 0px;
+		background-color:#ffffff;
+		border:solid 1px #6394CE;
+		vertical-align:top;
+		float:left;
+}
+
+
+	/* COMMON */
+	
+	.buttonBG
+{
+	background-color:#6394CE;
+	color:#ffffff;
+	border:1px solid #5A5A5A;
+	text-align:center;	
+	font-family:Tahoma;
+	height: 24px;
+}
+
+.menu
+{
+	height:25px;
+	margin:0px 5px;	
+    float :left;
+	border-style:none; 
+	padding:0px 0px 0px 0px; 
+}
+.mnstatic
+{
+	
+}
+.mnstaticitem
+{
+	font-size:14px; 
+	font-weight:bold;
+	color:#10428C;
+	text-decoration:none; 
+	padding:7px 25px 7px 25px;
+	background-image:url(images/Img/RootItemBkg.gif); background-repeat:repeat-x;
+	border:1px solid #9900CC;
+	
+}
+.mnstaticitemhove
+{ 
+	background:#FFD59A url(images/Img/RootItemFocusedBkg.gif) left top repeat-x;
+	border:1px solid #002D96;
+	
+}
+.mndynamic
+{
+	background: #F6F6F6 url(images/Img/GroupBkg.gif) repeat-y;
+	border:.5px #356595; 
+	padding:5px 0px 0px 0px;
+	font-family: Verdana;
+	font-size:11px; 
+	font-weight:normal; 
+	z-index : 100;
+}
+.mndynamicitem
+{ 
+	text-align:left; 
+	text-decoration:none; 
+	padding:5px 1px 5px 1px;
+	border:1px dotted #356595; 
+	z-index : 100;
+}
+.mndynamicitem A
+{
+	text-align:center;
+	padding-right:46px;
+	z-index : 100;
+}
+.mndynamicitem A IMG
+{
+	padding-right:4px;
+	padding-left:0px;
+	width: 20px;
+	z-index : 100;
+}
+.mndynamicitemhove
+{
+
+	padding:4px 1px 4px 1px;
+	border-bottom:1px solid #002D96;
+	border-top:1px solid #002D96;
+	background:#FFD59A url(images/Img/RootItemFocusedBkg.gif) left top repeat-x;
+	z-index : 100;
+	
+}
+
+	
+
+	 

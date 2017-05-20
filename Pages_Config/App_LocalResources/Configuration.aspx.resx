@@ -1,0 +1,598 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btnAddResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Button_Icons/button_add.png" /&gt; Add</value>
+  </data>
+  <data name="btnAddResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnCancelResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Button_Icons/button_Cancel.png" /&gt; Cancel</value>
+  </data>
+  <data name="btnCancelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnModifyResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Button_Icons/button_edit.png" /&gt; Modify</value>
+  </data>
+  <data name="btnModifyResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSaveResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Button_Icons/button_storage.png" /&gt; Save</value>
+  </data>
+  <data name="btnSaveResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cblFormRequestResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkActiveDirectoryValidationEmployeeResource1.Text" xml:space="preserve">
+    <value>Active Directory Validation Employee</value>
+  </data>
+  <data name="chkActiveDirectoryValidationEmployeeResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkActiveDirectoryValidationUserResource1.Text" xml:space="preserve">
+    <value>Active Directory Validation User</value>
+  </data>
+  <data name="chkActiveDirectoryValidationUserResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkAutoInResource1.Text" xml:space="preserve">
+    <value>Auto In</value>
+  </data>
+  <data name="chkAutoInResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkAutoOutResource1.Text" xml:space="preserve">
+    <value>Auto Out</value>
+  </data>
+  <data name="chkAutoOutResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkExcFormReqResource1.Text" xml:space="preserve">
+    <value>Excuse Form Request</value>
+  </data>
+  <data name="chkExcFormReqResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkInquiryFormReqResource1.Text" xml:space="preserve">
+    <value>Inquiry Form Request</value>
+  </data>
+  <data name="chkInquiryFormReqResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkIsTakeAutoInResource1.Text" xml:space="preserve">
+    <value>Auto In Priority</value>
+  </data>
+  <data name="chkIsTakeAutoInResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkIsTakeAutoOutResource1.Text" xml:space="preserve">
+    <value>Auto Out Priority</value>
+  </data>
+  <data name="chkIsTakeAutoOutResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkOTBeginEarlyFlagResource1.Text" xml:space="preserve">
+    <value>Begin Early overtime</value>
+  </data>
+  <data name="chkOTBeginEarlyFlagResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkOTNoShiftFlagResource1.Text" xml:space="preserve">
+    <value>No Shift overtime</value>
+  </data>
+  <data name="chkOTNoShiftFlagResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkOTOutLateFlagResource1.Text" xml:space="preserve">
+    <value>Out Late overtime</value>
+  </data>
+  <data name="chkOTOutLateFlagResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkOTOutOfShiftFlagResource1.Text" xml:space="preserve">
+    <value>Out Of Shift overtime</value>
+  </data>
+  <data name="chkOTOutOfShiftFlagResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkVacFormReqResource1.Text" xml:space="preserve">
+    <value>Vaction Form Request</value>
+  </data>
+  <data name="chkVacFormReqResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvCalVacResetDateEmptyResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvCalVacResetDateEmptyResource1.Text" xml:space="preserve">
+    <value>&lt;img src='images/Exclamation.gif' title='Start Date is required!' /&gt;</value>
+  </data>
+  <data name="cvCalVacResetDateEmptyResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvDepLevelResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvDepLevelResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvDepLevelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlRedundantInSelectionResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlRedundantOutSelectionResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label12Resource1.Text" xml:space="preserve">
+    <value>Vacation Reset Date :</value>
+  </data>
+  <data name="Label12Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label1Resource1.Text" xml:space="preserve">
+    <value> % </value>
+  </data>
+  <data name="Label1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label2Resource1.Text" xml:space="preserve">
+    <value>Overtime Setting</value>
+  </data>
+  <data name="Label2Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label3Resource1.Text" xml:space="preserve">
+    <value>Form Request :</value>
+  </data>
+  <data name="Label3Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label4Resource1.Text" xml:space="preserve">
+    <value>Request Setting</value>
+  </data>
+  <data name="Label4Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label5Resource1.Text" xml:space="preserve">
+    <value>General Setting</value>
+  </data>
+  <data name="Label5Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label6Resource1.Text" xml:space="preserve">
+    <value>Required Data Language :</value>
+  </data>
+  <data name="Label6Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDepartmentLevelsResource1.Text" xml:space="preserve">
+    <value>Department Levels :</value>
+  </data>
+  <data name="lblDepartmentLevelsResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblICApprovalPercentResource1.Text" xml:space="preserve">
+    <value>incomplete Approval Percent :</value>
+  </data>
+  <data name="lblICApprovalPercentResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblMaxPercOTResource1.Text" xml:space="preserve">
+    <value>Overtime Interval (Max/Day) :</value>
+  </data>
+  <data name="lblMaxPercOTResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblMiddleGapCountResource1.Text" xml:space="preserve">
+    <value>Middle Gap (No) :</value>
+  </data>
+  <data name="lblMiddleGapCountResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblOTBeginEarlyIntervalResource1.Text" xml:space="preserve">
+    <value>Begin Early Interval :</value>
+  </data>
+  <data name="lblOTBeginEarlyIntervalResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblOTNoShiftIntervalResource1.Text" xml:space="preserve">
+    <value>No Shift Interval :</value>
+  </data>
+  <data name="lblOTNoShiftIntervalResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblOTOutLateIntervalResource1.Text" xml:space="preserve">
+    <value>Out Late Interval :</value>
+  </data>
+  <data name="lblOTOutLateIntervalResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblOTOutOfShiftIntervalResource1.Text" xml:space="preserve">
+    <value>Out Of Shift Interval :</value>
+  </data>
+  <data name="lblOTOutOfShiftIntervalResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblRedundantInSelectionResource1.Text" xml:space="preserve">
+    <value>Redundant In Selection :</value>
+  </data>
+  <data name="lblRedundantInSelectionResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblRedundantOutSelectionResource1.Text" xml:space="preserve">
+    <value>Redundant Out Selection :</value>
+  </data>
+  <data name="lblRedundantOutSelectionResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblSessionDurationResource1.Text" xml:space="preserve">
+    <value>Session timeout :</value>
+  </data>
+  <data name="lblSessionDurationResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblWorkTimeSettingResource1.Text" xml:space="preserve">
+    <value>Shift Setting</value>
+  </data>
+  <data name="lblWorkTimeSettingResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ListItemResource1.Text" xml:space="preserve">
+    <value>First</value>
+  </data>
+  <data name="ListItemResource2.Text" xml:space="preserve">
+    <value>Last</value>
+  </data>
+  <data name="ListItemResource3.Text" xml:space="preserve">
+    <value>First</value>
+  </data>
+  <data name="ListItemResource4.Text" xml:space="preserve">
+    <value>Last</value>
+  </data>
+  <data name="ListItemResource5.Text" xml:space="preserve">
+    <value>Arabic - English</value>
+  </data>
+  <data name="ListItemResource6.Text" xml:space="preserve">
+    <value>Arabic</value>
+  </data>
+  <data name="ListItemResource7.Text" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="PageResource1.Title" xml:space="preserve">
+    <value>General Configuration</value>
+  </data>
+  <data name="rdlDataLangResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RegularExpressionValidator1Resource1.ErrorMessage" xml:space="preserve">
+    <value> Enter Only Numbers</value>
+  </data>
+  <data name="RegularExpressionValidator1Resource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Exclamation.gif" title="Enter Only Numbers!" /&gt;
+                                    </value>
+  </data>
+  <data name="RegularExpressionValidator1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RegularExpressionValidator3Resource1.ErrorMessage" xml:space="preserve">
+    <value> Enter Only Numbers</value>
+  </data>
+  <data name="RegularExpressionValidator3Resource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Exclamation.gif" 
+                                    title="Enter Only Numbers!" /&gt;</value>
+  </data>
+  <data name="RegularExpressionValidator3Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RegularExpressionValidator9Resource1.ErrorMessage" xml:space="preserve">
+    <value> Enter Only Numbers</value>
+  </data>
+  <data name="RegularExpressionValidator9Resource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Exclamation.gif" 
+                                    title="Enter Only Numbers!" /&gt;</value>
+  </data>
+  <data name="RegularExpressionValidator9Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reqBranchManager1Resource1.ErrorMessage" xml:space="preserve">
+    <value>Middle Gap Period is required!</value>
+  </data>
+  <data name="reqBranchManager1Resource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='Middle Gap Period is required!' /&gt;</value>
+  </data>
+  <data name="reqBranchManager1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RequiredFieldValidator1Resource1.ErrorMessage" xml:space="preserve">
+    <value>incomplete Approval Percent is required!</value>
+  </data>
+  <data name="RequiredFieldValidator1Resource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='incomplete Approval Percent is required!' /&gt;</value>
+  </data>
+  <data name="RequiredFieldValidator1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDepartmentLevelsResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDepartmentLevelsResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtICApprovalPercentResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtICApprovalPercentResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <assembly alias="TextTimeServerControl" name="TextTimeServerControl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+  <data name="txtMaxPercOTResource1.FormatTime" type="TextTimeServerControl.TextTime+FormatTimeEnum, TextTimeServerControl">
+    <value>hhmm</value>
+  </data>
+  <data name="txtMaxPercOTResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtMiddleGapCountResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtMiddleGapCountResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtOTBeginEarlyIntervalResource1.FormatTime" type="TextTimeServerControl.TextTime+FormatTimeEnum, TextTimeServerControl">
+    <value>mm</value>
+  </data>
+  <data name="txtOTBeginEarlyIntervalResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtOTNoShiftIntervalResource1.FormatTime" type="TextTimeServerControl.TextTime+FormatTimeEnum, TextTimeServerControl">
+    <value>mm</value>
+  </data>
+  <data name="txtOTNoShiftIntervalResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtOTOutLateIntervalResource1.FormatTime" type="TextTimeServerControl.TextTime+FormatTimeEnum, TextTimeServerControl">
+    <value>mm</value>
+  </data>
+  <data name="txtOTOutLateIntervalResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtOTOutOfShiftIntervalResource1.FormatTime" type="TextTimeServerControl.TextTime+FormatTimeEnum, TextTimeServerControl">
+    <value>mm</value>
+  </data>
+  <data name="txtOTOutOfShiftIntervalResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtSessionDurationResource1.FormatTime" type="TextTimeServerControl.TextTime+FormatTimeEnum, TextTimeServerControl">
+    <value>mm</value>
+  </data>
+  <data name="txtSessionDurationResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="vsumAllResource1.HeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="vsumAllResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblMiddleGapExcIDResource1.Text" xml:space="preserve">
+    <value>Excuse Type (Middle Gap) :</value>
+  </data>
+  <data name="lblHint10Resource.Text" xml:space="preserve">
+    <value>Less duration can be calculated as overtime early attendance and who is after this period.</value>
+  </data>
+  <data name="lblHint1Resource.Text" xml:space="preserve">
+    <value>This option determines whether this feature can be selected on the Employee page or not, it means the ability to add movement automatic entry automatically</value>
+  </data>
+  <data name="lblHint2Resource.Text" xml:space="preserve">
+    <value>Identify priority choice between regular entry movement, if any, automatic login movement at treatment, when selecting priority will be given to automatic login movement.</value>
+  </data>
+  <data name="lblHint3Resource.Text" xml:space="preserve">
+    <value>This option determines whether this feature can be selected on the employee page or not, it means the ability to add automatic movement out automatically.</value>
+  </data>
+  <data name="lblHint4Resource.Text" xml:space="preserve">
+    <value>Identify priority choice between regular exit transaction, if any, and automatic exit transaction at treatment, when selecting priority will be given to automatic exit transaction.</value>
+  </data>
+  <data name="lblHint5Resource.Text" xml:space="preserve">
+    <value>The number of gaps allowed in shift the grace which duration is specified in the page working times.</value>
+  </data>
+  <data name="lblHint6Resource.Text" xml:space="preserve">
+    <value>This property specifies the percentage allowed for incomplete movement, when you choose 50%, for example, then you can not close the movement completed only a period equal to or less than half the duration of the Shift.</value>
+  </data>
+  <data name="lblHint7Resource.Text" xml:space="preserve">
+    <value>This option determines access movement, which will be processed (first or last) in the case of more of the entry in a row and ignore the other movements.</value>
+  </data>
+  <data name="lblHint8Resource.Text" xml:space="preserve">
+    <value>Limit the time allowed a maximum of overtime a day, which the employee can not provide additional job applications when crossed.</value>
+  </data>
+  <data name="lblHint9Resource.Text" xml:space="preserve">
+    <value>When selected early attendance is calculated as overtime for employees</value>
+  </data>
+  <data name="lblHint11Resource.Text" xml:space="preserve">
+    <value>The date on which he has been re-calculating vacation days that are of the types of vacations that are re-calculated.</value>
+  </data>
+  <data name="lblHint12Resource.Text" xml:space="preserve">
+    <value>This option specifies the form you will be asked to type the request is compulsory or not, and choose the types of applications required form.</value>
+  </data>
+  <data name="lblHint13Resource.Text" xml:space="preserve">
+    <value>Specify the language of the input data required and can not be conservation without entered.</value>
+  </data>
+  <data name="chkAutoTransResource1.Text" xml:space="preserve">
+    <value>Make Transaction as first In second Out</value>
+  </data>
+  <data name="lblcfgApprovalsMonthCountResource1.Text" xml:space="preserve">
+    <value>Approvals Per Month Count for (Report) :</value>
+  </data>
+  <data name="lblcfgTransInDaysCountResource1.Text" xml:space="preserve">
+    <value>Transaction Per Day Count (Report) :</value>
+  </data>
+  <data name="lblDaysLimitReqVacResource1.Text" xml:space="preserve">
+    <value>Days limit to Request Vacation :</value>
+  </data>
+  <data name="lblDaysLimitReqVacResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDayType.Text" xml:space="preserve">
+    <value>Days</value>
+  </data>
+  <data name="lblDayType.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblHint14Resource.Text" xml:space="preserve">
+    <value>This property specifies the Count Days Limit allowe for employee to request vacation for absent, when you left Text zero No limit for Days Request, but if you entrie write any number the Employee can't Request vacation after passing days limit.</value>
+  </data>
+  <data name="txtDaysLimitReqVacResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDaysLimitReqVacResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkOTVacationFlagResource1.Text" xml:space="preserve">
+    <value>Vacation overtime</value>
+  </data>
+  <data name="chkOTVacationFlagResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddllblcfgOrderTransTypeResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblcfgOrderTransTypeResource1.Text" xml:space="preserve">
+    <value>Order Trans Type :</value>
+  </data>
+  <data name="lblOTVacationIntervalResource1.Text" xml:space="preserve">
+    <value>Vacation Interval :</value>
+  </data>
+  <data name="ListItemResource10.Text" xml:space="preserve">
+    <value>First IN Last OUT</value>
+  </data>
+  <data name="ListItemResource8.Text" xml:space="preserve">
+    <value>Machine Type</value>
+  </data>
+  <data name="ListItemResource9.Text" xml:space="preserve">
+    <value>First IN Second OUT</value>
+  </data>
+  <data name="txtOTVacationIntervalResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+</root>

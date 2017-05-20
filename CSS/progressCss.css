@@ -1,0 +1,24 @@
+﻿.divWaiting{  
+    position: absolute;
+    background-color: #FAFAFA;
+    z-index: 2147483647 !important;
+
+    filter:alpha(opacity=80); 
+    -moz-opacity:.8; 
+    opacity:.8;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=80)";
+
+    overflow: hidden;
+    text-align: center; top: 0; left: 0;
+    height: 95%;
+    width: 86%;
+    padding-top:20%;
+    left:7%; 
+} 
+
+.imgWaiting{  
+    height: 128px;
+    width: 128px;
+    content:url("../images/Progress/Progress128.gif");
+    background-image : url("../images/Progress/Progress128.gif");
+} 

@@ -1,0 +1,942 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BoundFieldResource1.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource1.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource1.HeaderText" xml:space="preserve">
+    <value>Name (Ar)</value>
+  </data>
+  <data name="BoundFieldResource2.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource2.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource2.HeaderText" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="BoundFieldResource3.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource3.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource3.HeaderText" xml:space="preserve">
+    <value>Name (En)</value>
+  </data>
+  <data name="BoundFieldResource4.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource4.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource4.HeaderText" xml:space="preserve">
+    <value>Work Type (Ar)</value>
+  </data>
+  <data name="BoundFieldResource5.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource5.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource5.HeaderText" xml:space="preserve">
+    <value>Work Type (En)</value>
+  </data>
+  <data name="btnAddResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Button_Icons/button_add.png" /&gt; Add</value>
+  </data>
+  <data name="btnAddResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnCalShift1DurationResource1.Text" xml:space="preserve">
+    <value>Calculater Duration</value>
+  </data>
+  <data name="btnCalShift1DurationResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnCalShift2DurationResource1.Text" xml:space="preserve">
+    <value>Calculater Duration</value>
+  </data>
+  <data name="btnCalShift2DurationResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnCalShift3DurationResource1.Text" xml:space="preserve">
+    <value>Calculater Duration</value>
+  </data>
+  <data name="btnCalShift3DurationResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnCancelResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Button_Icons/button_Cancel.png" /&gt; Cancel</value>
+  </data>
+  <data name="btnCancelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnFilterResource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnFilterResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnModifyResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Button_Icons/button_edit.png" /&gt; Modify</value>
+  </data>
+  <data name="btnModifyResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSaveResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Button_Icons/button_storage.png" /&gt; Save</value>
+  </data>
+  <data name="btnSaveResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkShift2SettingResource1.Text" xml:space="preserve">
+    <value>Shift2</value>
+  </data>
+  <data name="chkShift2SettingResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkShift3SettingResource1.Text" xml:space="preserve">
+    <value>Shift3</value>
+  </data>
+  <data name="chkShift3SettingResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkWktShift1IsOptionalResource1.Text" xml:space="preserve">
+    <value>Optional</value>
+  </data>
+  <data name="chkWktShift1IsOptionalResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkWktShift1IsOverNightResource1.Text" xml:space="preserve">
+    <value>OverNight</value>
+  </data>
+  <data name="chkWktShift1IsOverNightResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkWktShift2IsOptionalResource1.Text" xml:space="preserve">
+    <value>Optional</value>
+  </data>
+  <data name="chkWktShift2IsOptionalResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkWktShift2IsOverNightResource1.Text" xml:space="preserve">
+    <value>OverNight</value>
+  </data>
+  <data name="chkWktShift2IsOverNightResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkWktShift3IsOptionalResource1.Text" xml:space="preserve">
+    <value>Optional</value>
+  </data>
+  <data name="chkWktShift3IsOptionalResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkWktShift3IsOverNightResource1.Text" xml:space="preserve">
+    <value>OverNight</value>
+  </data>
+  <data name="chkWktShift3IsOverNightResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkWrtStatusResource1.Text" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="chkWrtStatusResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvArShift1NameResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvArShift1NameResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='Shift 1 Name Arabic is required!' /&gt;</value>
+  </data>
+  <data name="cvArShift1NameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvArShift2NameResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvArShift2NameResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='Shift 2 Name Arabic is required!' /&gt;</value>
+  </data>
+  <data name="cvArShift2NameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvArShift3NameResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvArShift3NameResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='Shift 3 Name Arabic is required!' /&gt;</value>
+  </data>
+  <data name="cvArShift3NameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvArWorkTimeNameResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvArWorkTimeNameResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='Work Type is required!' /&gt;</value>
+  </data>
+  <data name="cvArWorkTimeNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvEnShift1NameResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvEnShift1NameResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='Shift 1 Name English is required!' /&gt;</value>
+  </data>
+  <data name="cvEnShift1NameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvEnShift2NameResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvEnShift2NameResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='Shift 2 Name English is required!' /&gt;</value>
+  </data>
+  <data name="cvEnShift2NameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvEnShift3NameResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvEnShift3NameResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='Shift 3 Name English is required!' /&gt;</value>
+  </data>
+  <data name="cvEnShift3NameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvEnWorkTimeNameResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvEnWorkTimeNameResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='Work Type is required!' /&gt;</value>
+  </data>
+  <data name="cvEnWorkTimeNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvIsModifyResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvIsModifyResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvIsModifyResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvShift1DurationResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvShift1DurationResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='Shift 1 Duration is required!' /&gt;</value>
+  </data>
+  <data name="cvShift1DurationResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvShift1TimeResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvShift1TimeResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/message_exclamation.png' title='Enter correct Shift 1 Time' /&gt;</value>
+  </data>
+  <data name="cvShift1TimeResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvShift2DurationResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvShift2DurationResource1.Text" xml:space="preserve">
+    <value>&lt;img src='images/Exclamation.gif' title='Shift 2 Duration is required!' /&gt;</value>
+  </data>
+  <data name="cvShift2DurationResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvShift2TimeResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvShift2TimeResource1.Text" xml:space="preserve">
+    <value>&lt;img src='images/message_exclamation.png' title='Enter correct Shift 2 Time' /&gt;</value>
+  </data>
+  <data name="cvShift2TimeResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvShift3DurationResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvShift3DurationResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='Shift 3 Duration is required!' /&gt;</value>
+  </data>
+  <data name="cvShift3DurationResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvShift3TimeResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvShift3TimeResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/message_exclamation.png' title='Enter correct Shift 3 Time' /&gt;</value>
+  </data>
+  <data name="cvShift3TimeResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlFilterResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlWtpIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="grdDataResource1.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="grdDataResource1.EmptyDataText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="grdDataResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="imgbtnDeleteResource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="imgbtnDeleteResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label11Resource1.Text" xml:space="preserve">
+    <value>Shift 2 Setting</value>
+  </data>
+  <data name="Label11Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label13Resource1.Text" xml:space="preserve">
+    <value>Shift 3 Setting</value>
+  </data>
+  <data name="Label13Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label19Resource1.Text" xml:space="preserve">
+    <value>Work Type :</value>
+  </data>
+  <data name="Label19Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label20Resource1.Text" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="Label20Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label2Resource1.Text" xml:space="preserve">
+    <value>Shift 1 Setting</value>
+  </data>
+  <data name="Label2Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label3Resource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label3Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label5Resource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label5Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label7Resource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label7Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label9Resource1.Text" xml:space="preserve">
+    <value>Overtime Interval (Max/Day) :</value>
+  </data>
+  <data name="Label9Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblArShift1NameResource1.Text" xml:space="preserve">
+    <value>Name (Ar):</value>
+  </data>
+  <data name="lblArShift1NameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblArShift2NameResource1.Text" xml:space="preserve">
+    <value>Name (Ar):</value>
+  </data>
+  <data name="lblArShift2NameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblArShift3NameResource1.Text" xml:space="preserve">
+    <value>Name (Ar):</value>
+  </data>
+  <data name="lblArShift3NameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblArWorkTimeNameResource1.Text" xml:space="preserve">
+    <value>Name (Ar):</value>
+  </data>
+  <data name="lblArWorkTimeNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblEnWorkTimeNameResource1.Text" xml:space="preserve">
+    <value>Name (En) :</value>
+  </data>
+  <data name="lblEnWorkTimeNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblIDFilterResource1.Text" xml:space="preserve">
+    <value>Search By:</value>
+  </data>
+  <data name="lblIDFilterResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShift1DurationResource1.Text" xml:space="preserve">
+    <value>Duration :</value>
+  </data>
+  <data name="lblShift1DurationResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShift1EndGraceResource1.Text" xml:space="preserve">
+    <value>Out Grace :</value>
+  </data>
+  <data name="lblShift1EndGraceResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShift1FromResource1.Text" xml:space="preserve">
+    <value>From :</value>
+  </data>
+  <data name="lblShift1FromResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShift1GraceResource1.Text" xml:space="preserve">
+    <value>In Grace :</value>
+  </data>
+  <data name="lblShift1GraceResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShift1MiddleGraceResource1.Text" xml:space="preserve">
+    <value>Middle Grace :</value>
+  </data>
+  <data name="lblShift1MiddleGraceResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShift1NameResource1.Text" xml:space="preserve">
+    <value>Name (En) :</value>
+  </data>
+  <data name="lblShift1NameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShift1ToResource1.Text" xml:space="preserve">
+    <value>To :</value>
+  </data>
+  <data name="lblShift1ToResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShift2DurationResource1.Text" xml:space="preserve">
+    <value>Duration :</value>
+  </data>
+  <data name="lblShift2DurationResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShift2EndGraceResource1.Text" xml:space="preserve">
+    <value>Out Grace :</value>
+  </data>
+  <data name="lblShift2EndGraceResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShift2FromResource1.Text" xml:space="preserve">
+    <value>From :</value>
+  </data>
+  <data name="lblShift2FromResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShift2GraceResource1.Text" xml:space="preserve">
+    <value>In Grace :</value>
+  </data>
+  <data name="lblShift2GraceResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShift2MiddleGraceResource1.Text" xml:space="preserve">
+    <value>Middle Grace :</value>
+  </data>
+  <data name="lblShift2MiddleGraceResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShift2NameResource1.Text" xml:space="preserve">
+    <value> Name (En) :</value>
+  </data>
+  <data name="lblShift2NameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShift2ToResource1.Text" xml:space="preserve">
+    <value>To :</value>
+  </data>
+  <data name="lblShift2ToResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShift3DurationResource1.Text" xml:space="preserve">
+    <value>Duratoin :</value>
+  </data>
+  <data name="lblShift3DurationResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShift3EndGraceResource1.Text" xml:space="preserve">
+    <value>Out Grace :</value>
+  </data>
+  <data name="lblShift3EndGraceResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShift3FromResource1.Text" xml:space="preserve">
+    <value>From :</value>
+  </data>
+  <data name="lblShift3FromResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShift3GraceResource1.Text" xml:space="preserve">
+    <value>In Grace :</value>
+  </data>
+  <data name="lblShift3GraceResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShift3MidGraceResource1.Text" xml:space="preserve">
+    <value> Middle Grace :</value>
+  </data>
+  <data name="lblShift3MidGraceResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShift3NameResource1.Text" xml:space="preserve">
+    <value>Name (En) :</value>
+  </data>
+  <data name="lblShift3NameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblShift3ToResource1.Text" xml:space="preserve">
+    <value>To :</value>
+  </data>
+  <data name="lblShift3ToResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblWorkTimeDescResource1.Text" xml:space="preserve">
+    <value>Description :</value>
+  </data>
+  <data name="lblWorkTimeDescResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblWorkTimeSettingResource1.Text" xml:space="preserve">
+    <value>WorkTime Setting</value>
+  </data>
+  <data name="lblWorkTimeSettingResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ListItemResource1.Text" xml:space="preserve">
+    <value>[None]</value>
+  </data>
+  <data name="ListItemResource2.Text" xml:space="preserve">
+    <value>Work Time Name (Ar)</value>
+  </data>
+  <data name="ListItemResource3.Text" xml:space="preserve">
+    <value>Work Time Name (En)</value>
+  </data>
+  <data name="ListItemResource4.Text" xml:space="preserve">
+    <value>Work Type Name (Ar)</value>
+  </data>
+  <data name="ListItemResource5.Text" xml:space="preserve">
+    <value>Work Type Name (En)</value>
+  </data>
+  <data name="PageResource1.Title" xml:space="preserve">
+    <value>Worktime Page</value>
+  </data>
+  <data name="RegularExpressionValidator14Resource1.ErrorMessage" xml:space="preserve">
+    <value> Enter Only Numbers</value>
+  </data>
+  <data name="RegularExpressionValidator14Resource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Exclamation.gif" title="Enter Only Numbers!" /&gt;
+                                                </value>
+  </data>
+  <data name="RegularExpressionValidator14Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvWtpIDResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvWtpIDResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='Work Type is required!' /&gt;</value>
+  </data>
+  <data name="rfvWtpIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource1.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource1.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource1.HeaderText" xml:space="preserve">
+    <value>           </value>
+  </data>
+  <assembly alias="TimePickerServerControl" name="TimePickerServerControl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+  <data name="tpShift1FromResource1.FormatTime" type="TimePickerServerControl.TimePicker+FormatTimeEnum, TimePickerServerControl">
+    <value>HHmm</value>
+  </data>
+  <data name="tpShift1FromResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tpShift1ToResource1.FormatTime" type="TimePickerServerControl.TimePicker+FormatTimeEnum, TimePickerServerControl">
+    <value>HHmm</value>
+  </data>
+  <data name="tpShift1ToResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tpShift2FromResource1.FormatTime" type="TimePickerServerControl.TimePicker+FormatTimeEnum, TimePickerServerControl">
+    <value>HHmm</value>
+  </data>
+  <data name="tpShift2FromResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tpShift2ToResource1.FormatTime" type="TimePickerServerControl.TimePicker+FormatTimeEnum, TimePickerServerControl">
+    <value>HHmm</value>
+  </data>
+  <data name="tpShift2ToResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tpShift3FromResource1.FormatTime" type="TimePickerServerControl.TimePicker+FormatTimeEnum, TimePickerServerControl">
+    <value>HHmm</value>
+  </data>
+  <data name="tpShift3FromResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="tpShift3ToResource1.FormatTime" type="TimePickerServerControl.TimePicker+FormatTimeEnum, TimePickerServerControl">
+    <value>HHmm</value>
+  </data>
+  <data name="tpShift3ToResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtAddPercentResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtAddPercentResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtArShift1NameResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtArShift1NameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtArShift2NameResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtArShift2NameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtArShift3NameResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtArShift3NameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtArWorkTimeNameResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtArWorkTimeNameResource1.ToolTip" xml:space="preserve">
+    <value>Work Time Name</value>
+  </data>
+  <data name="txtEnShift1NameResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEnShift1NameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEnShift2NameResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEnShift2NameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEnShift3NameResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEnShift3NameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEnWorkTimeNameResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEnWorkTimeNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtFilterResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtFilterResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <assembly alias="TextTimeServerControl" name="TextTimeServerControl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+  <data name="txtShift1DurationResource1.FormatTime" type="TextTimeServerControl.TextTime+FormatTimeEnum, TextTimeServerControl">
+    <value>hhmm</value>
+  </data>
+  <data name="txtShift1DurationResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtShift1EndGraceResource1.FormatTime" type="TextTimeServerControl.TextTime+FormatTimeEnum, TextTimeServerControl">
+    <value>mm</value>
+  </data>
+  <data name="txtShift1EndGraceResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtShift1GraceMinResource1.FormatTime" type="TextTimeServerControl.TextTime+FormatTimeEnum, TextTimeServerControl">
+    <value>mm</value>
+  </data>
+  <data name="txtShift1GraceMinResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtShift1MidGraceMinResource1.FormatTime" type="TextTimeServerControl.TextTime+FormatTimeEnum, TextTimeServerControl">
+    <value>mm</value>
+  </data>
+  <data name="txtShift1MidGraceMinResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtShift2DurationResource1.FormatTime" type="TextTimeServerControl.TextTime+FormatTimeEnum, TextTimeServerControl">
+    <value>hhmm</value>
+  </data>
+  <data name="txtShift2DurationResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtShift2EndGraceResource1.FormatTime" type="TextTimeServerControl.TextTime+FormatTimeEnum, TextTimeServerControl">
+    <value>mm</value>
+  </data>
+  <data name="txtShift2EndGraceResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtShift2GraceMinResource1.FormatTime" type="TextTimeServerControl.TextTime+FormatTimeEnum, TextTimeServerControl">
+    <value>mm</value>
+  </data>
+  <data name="txtShift2GraceMinResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtShift2MidGraceMinResource1.FormatTime" type="TextTimeServerControl.TextTime+FormatTimeEnum, TextTimeServerControl">
+    <value>mm</value>
+  </data>
+  <data name="txtShift2MidGraceMinResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtShift3DurationResource1.FormatTime" type="TextTimeServerControl.TextTime+FormatTimeEnum, TextTimeServerControl">
+    <value>hhmm</value>
+  </data>
+  <data name="txtShift3DurationResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtShift3EndGraceResource1.FormatTime" type="TextTimeServerControl.TextTime+FormatTimeEnum, TextTimeServerControl">
+    <value>mm</value>
+  </data>
+  <data name="txtShift3EndGraceResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtShift3GraceMinResource1.FormatTime" type="TextTimeServerControl.TextTime+FormatTimeEnum, TextTimeServerControl">
+    <value>mm</value>
+  </data>
+  <data name="txtShift3GraceMinResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtShift3MidGraceMinResource1.FormatTime" type="TextTimeServerControl.TextTime+FormatTimeEnum, TextTimeServerControl">
+    <value>mm</value>
+  </data>
+  <data name="txtShift3MidGraceMinResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtWorkTimeDescResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtWorkTimeDescResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="vsumAllResource1.HeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="vsumAllResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="vsWarningResource1.HeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="vsWarningResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblHint1Resource.Text" xml:space="preserve">
+    <value>The number of hours allowed calculated as overtime a day.</value>
+  </data>
+  <data name="lblHint2Resource.Text" xml:space="preserve">
+    <value>The establishment of a Shift period of normal time and flexible and clicking on the button &lt;img src='images/Button_Icons/button_calculator.png'/&gt; for the calculation of the period after the introduction period times, and in the case of time clocks is determined by the number of hours required in this shift.</value>
+  </data>
+  <data name="lblHint3Resource.Text" xml:space="preserve">
+    <value>Shift is that start before midnight (Twelfth Night) and ends at the dawn of the next day.</value>
+  </data>
+  <data name="lblHint4Resource.Text" xml:space="preserve">
+    <value>Is Shift optional not be calculated gaps or absences.</value>
+  </data>
+  <data name="cvWktShift1FTHoursResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='Flexible Time Hours is required' /&gt;</value>
+  </data>
+  <data name="cvWktShift2FTHoursResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='Flexible Time Hours is required' /&gt;</value>
+  </data>
+  <data name="cvWktShift3FTHoursResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='Flexible Time Hours is required' /&gt;</value>
+  </data>
+  <data name="lblWktShift1FTHoursResource1.Text" xml:space="preserve">
+    <value>Flexible Time Hours :</value>
+  </data>
+  <data name="lblWktShift2FTHoursResource1.Text" xml:space="preserve">
+    <value>Flexible Time Hours :</value>
+  </data>
+  <data name="lblWktShift3FTHoursResource1.Text" xml:space="preserve">
+    <value>Flexible Time Hours :</value>
+  </data>
+  <data name="cvOrderShfit2Resource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvOrderShfit2Resource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/message_exclamation.png' title='Shifts must be ordered by time' /&gt;</value>
+  </data>
+  <data name="cvOrderShfit2Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvOrderShfit3Resource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvOrderShfit3Resource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/message_exclamation.png' title='Shifts must be ordered by time' /&gt;</value>
+  </data>
+  <data name="cvOrderShfit3Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvShift1OvernightResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvShift1OvernightResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/message_exclamation.png' title='shift 1 must not be Overnight' /&gt;</value>
+  </data>
+  <data name="cvShift1OvernightResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+</root>

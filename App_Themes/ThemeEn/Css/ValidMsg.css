@@ -1,0 +1,63 @@
+﻿/*==============================================================================================*/
+/*Msg Css*/
+/*==============================================================================================*/
+.MsgInfo, .MsgSuccess, .MsgWarning, .MsgError, .MsgValidation {
+    border: 1px solid;
+    /*margin: 10px 0px;*/
+    margin: 15px 0px 15px 0px ;
+    /*padding:15px 10px 15px 50px;*/
+    padding-left: 20px;
+    background-repeat: no-repeat;
+    /*background-position: 10px center;*/
+    background-position: left center;
+}
+
+
+.MsgInfo {
+    color: #00529B;
+    border-color: #00529B;
+    background-color: #BDE5F8;
+    background-image: url("../Images/Validation/info32.png");
+}
+
+.MsgSuccess 
+{
+    color: #4F8A10;
+    border-color: #4F8A10;
+    background-color: #DFF2BF;
+    background-image:url("../Images/Validation/success32.png");
+}
+
+.MsgWarning {
+    color: #9F6000;
+    border-color: #9F6000;
+    background-color: #FEEFB3;
+    background-image: url("../Images/Validation/warning32.png");
+}
+
+.MsgError {
+    color: #D8000C;
+    border-color: #D8000C;
+    background-color: #FFBABA;
+    background-image: url("../Images/Validation/error32.png");
+}
+
+.MsgValidation {
+    color: #D63301;
+    border-color: #D63301;
+    background-color: #FFCCBA;
+    background-image: url("../Images/Validation/validation32.png");
+    
+    /*border: 1px solid #D63301;
+    padding-left:20px;
+    background-color: #FFCCBA;
+    background-position:  left  center;
+    background-repeat: no-repeat;
+    margin: 15px 0px 15px 0px ;*/
+}
+/*==============================================================================================*/
+
+.RequiredField
+{
+    color: #FE5A34;
+}

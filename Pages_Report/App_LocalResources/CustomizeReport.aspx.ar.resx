@@ -1,0 +1,600 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="accCategoryResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="accDateFromToResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="accDateResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="accDepartmentResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="accMachineResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AccordionCtrlResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="accUserResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="accWorkTimeResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnCustRepResource1.Text" xml:space="preserve">
+    <value>عرض التقرير</value>
+  </data>
+  <data name="btnCustRepResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnEditReportResource1.Text" xml:space="preserve">
+    <value>تعديل التقرير</value>
+  </data>
+  <data name="btnEditReportResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnExportRecordResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Button_Icons/page_export.png" /&gt; تصدير</value>
+  </data>
+  <data name="btnExportRecordResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnImportRecordResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Button_Icons/page_import.png" /&gt; استيراد</value>
+  </data>
+  <data name="btnImportRecordResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSetAsDefaultResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Button_Icons/page_refresh.png" /&gt; الإفتراضي</value>
+  </data>
+  <data name="btnSetAsDefaultResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnUploadReportResource1.Text" xml:space="preserve">
+    <value>رفع التقرير</value>
+  </data>
+  <data name="btnUploadReportResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="condTapResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvCalDateEmptyResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvCalDateEmptyResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='حقل التاريخ اجباري !' /&gt;</value>
+  </data>
+  <data name="cvCalDateEmptyResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvCalEndDateEmptyResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvCalEndDateEmptyResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='حقل تاريخ الإنتهاء اجباري !' /&gt;</value>
+  </data>
+  <data name="cvCalEndDateEmptyResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvCalStartDateEmptyResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvCalStartDateEmptyResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='حقل تاريخ البدء اجباري !' /&gt;</value>
+  </data>
+  <data name="cvCalStartDateEmptyResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvCategoryResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvCategoryResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='يجب تعبئة قيمة حقل واحد على الأقل في التصنيف' /&gt;</value>
+  </data>
+  <data name="cvCategoryResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvCompareDatesResource1.ErrorMessage" xml:space="preserve">
+    <value>تاريخ البدء أكبر من تاريخ الإنتهاء</value>
+  </data>
+  <data name="cvCompareDatesResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/message_exclamation.png' title='تاريخ البدء أكبر من تاريخ الإنتهاء !' /&gt;</value>
+  </data>
+  <data name="cvCompareDatesResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvDepartmentResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvDepartmentResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='يجب تعبئة قيمة حقل واحد على الأقل في الأقسام !' /&gt;</value>
+  </data>
+  <data name="cvDepartmentResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvEmployeeResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvEmployeeResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title=يجب اختيار موظف واحد على الأقل !' /&gt;</value>
+  </data>
+  <data name="cvEmployeeResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvMachineResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvMachineResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='يجب تعبئة قيمة حقل واحد على الأقل في المكائن !' /&gt;</value>
+  </data>
+  <data name="cvMachineResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvUserResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvUserResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='يجب تعبئة حقل المستخدمين !' /&gt;</value>
+  </data>
+  <data name="cvUserResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvWorkTimeResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvWorkTimeResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='يجب تعبئة حقل واحد على الأقل في وقت العمل !' /&gt;</value>
+  </data>
+  <data name="cvWorkTimeResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DataList1Resource1.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DataList1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlArCatNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlArDepNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlBrcParentNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlDepManagerIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlEnCatNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlEnDepNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlLocationResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlMacTypeResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlUserNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlWtpIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="EmpTapResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="fileUploadResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Image1Resource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Image1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Image2Resource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Image2Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Image3Resource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Image3Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Image4Resource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Image4Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Image5Resource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Image5Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Image6Resource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Image6Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Image7Resource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Image7Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Image8Resource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Image8Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label19Resource1.Text" xml:space="preserve">
+    <value>اسم نوع العمل :</value>
+  </data>
+  <data name="Label19Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label1Resource1.Text" xml:space="preserve">
+    <value>التاريخ من : إلى</value>
+  </data>
+  <data name="Label1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label4Resource1.Text" xml:space="preserve">
+    <value>النوع :</value>
+  </data>
+  <data name="Label4Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblArWorkTimeNameResource1.Text" xml:space="preserve">
+    <value>الاسم (ع) :</value>
+  </data>
+  <data name="lblArWorkTimeNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblCatArNameResource1.Text" xml:space="preserve">
+    <value>الاسم (E) :</value>
+  </data>
+  <data name="lblCatArNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblCategoryPnlResource1.Text" xml:space="preserve">
+    <value>التصنيف</value>
+  </data>
+  <data name="lblCategoryPnlResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblCatEnNameResource1.Text" xml:space="preserve">
+    <value>الاسم (E) :</value>
+  </data>
+  <data name="lblCatEnNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDateFromResource1.Text" xml:space="preserve">
+    <value>تاريخ البدء :</value>
+  </data>
+  <data name="lblDateFromResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDatePnlResource1.Text" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="lblDatePnlResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDateResource1.Text" xml:space="preserve">
+    <value>التاريخ :</value>
+  </data>
+  <data name="lblDateResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDateToResource1.Text" xml:space="preserve">
+    <value>تاريخ الإنتهاء :</value>
+  </data>
+  <data name="lblDateToResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDepArNameResource1.Text" xml:space="preserve">
+    <value>الاسم (ع) :</value>
+  </data>
+  <data name="lblDepArNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDepartmentPnlResource1.Text" xml:space="preserve">
+    <value>الأقسام</value>
+  </data>
+  <data name="lblDepartmentPnlResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDepEnNameResource1.Text" xml:space="preserve">
+    <value>الاسم (E) :</value>
+  </data>
+  <data name="lblDepEnNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDepMangerIDResource1.Text" xml:space="preserve">
+    <value>اسم المدير :</value>
+  </data>
+  <data name="lblDepMangerIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDepParentIDResource1.Text" xml:space="preserve">
+    <value>اسم الفرع الرئيسي :</value>
+  </data>
+  <data name="lblDepParentIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblEnWorkTimeNameResource1.Text" xml:space="preserve">
+    <value>الاسم (E) :</value>
+  </data>
+  <data name="lblEnWorkTimeNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblFavPageResource1.Text" xml:space="preserve">
+    <value>التقارير</value>
+  </data>
+  <data name="lblFavPageResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblMachineLocation1Resource1.Text" xml:space="preserve">
+    <value>الموقع :</value>
+  </data>
+  <data name="lblMachineLocation1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblMachinePnlResource1.Text" xml:space="preserve">
+    <value>المكينة</value>
+  </data>
+  <data name="lblMachinePnlResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblTitleReportResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblTitleReportResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblUsernameResource1.Text" xml:space="preserve">
+    <value>اسم المستخدم :</value>
+  </data>
+  <data name="lblUsernameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblUserPnlResource1.Text" xml:space="preserve">
+    <value>المستخدم</value>
+  </data>
+  <data name="lblUserPnlResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblWorktimePnlResource1.Text" xml:space="preserve">
+    <value>أوقات العمل</value>
+  </data>
+  <data name="lblWorktimePnlResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lnkBtnArResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lnkBtnEnResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PageResource2.Title" xml:space="preserve">
+    <value>التقارير المفضلة</value>
+  </data>
+  <data name="panelDateResource1.GroupingText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="panelDateResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pnlCategoryResource1.GroupingText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pnlCategoryResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pnlDateFromToResource1.GroupingText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pnlDateFromToResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pnlDepartmnetsResource1.GroupingText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pnlDepartmnetsResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pnlMachineResource1.GroupingText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pnlMachineResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pnlUsersResource1.GroupingText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pnlUsersResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pnlWorkTimeResource1.GroupingText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pnlWorkTimeResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="StiWebDesigner1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TabContainer1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtArWorkTimeNameResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtArWorkTimeNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtCvWktResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDescReportResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDescReportResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEnWorkTimeNameResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEnWorkTimeNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="vsumAllResource1.HeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="vsumAllResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnFilterResource1.Text" xml:space="preserve">
+    <value>حفظ كتقرير مفضل</value>
+  </data>
+  <data name="condTapResource1.HeaderText" xml:space="preserve">
+    <value>الشروط</value>
+  </data>
+  <data name="EmpTapResource1.HeaderText" xml:space="preserve">
+    <value>اختر موظفين</value>
+  </data>
+</root>

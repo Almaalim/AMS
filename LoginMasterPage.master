@@ -1,0 +1,130 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="LoginMasterPage.master.cs" Inherits="LoginMasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Untitled Page</title>
+    
+      
+        <%--Style--%>
+        <%--<link href="CSS/General.css" rel="stylesheet" type="text/css" />--%>
+       
+        <link href="CSS/VSStyle.css" rel="stylesheet" type="text/css" />
+        <link href="CSS/MasterPageStyle.css" rel="stylesheet" type="text/css" />
+        <link href="CSS/buttonStyle.css" rel="stylesheet" type="text/css" />
+        <link href="CSS/validationStyle.css" rel="stylesheet" type="text/css" />
+
+      <style type="text/css">
+
+        .LoginButton
+        {
+    
+        background-image:url(../images/LoginButton.gif);
+        
+        }
+
+    .ResetButton{
+    display:block;
+    float:left;
+    margin:0 7px 0 0;
+    background-color:#CCDCD2;
+    font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
+    font-size:14px;
+    /*line-height:130%;*/
+    text-decoration:none;
+    text-align: inherit;
+    font-weight:bold;
+    cursor:pointer;
+    padding:5px 10px 6px 7px; /* Links */
+    background-image:url(images/ResetButton.gif);
+    }
+    
+    .ResetButtonAr {
+    display:block;
+    float:right;
+    margin:0 7px 0 0;
+    background-color:#CCDCD2;
+    font-family:"Lucida Grande", Tahoma, Arial, Verdana, sans-serif;
+    font-size:14px;
+    /*line-height:130%;*/
+    text-decoration:none;
+    text-align: inherit;
+    font-weight:bold;
+    cursor:pointer;
+    padding:5px 0px 6px 7px; /* Links */
+    background-image:url(~/images/ResetButton.gif);
+}
+       
+        </style>  
+        <%--/Style--%>
+</head>
+<body>
+    <form id="form1" runat="server" >
+        <div>
+             <div id="main_block">
+                 <div id="innerblock">
+             
+                    <asp:contentplaceholder id="ContentPlaceHolder1" runat="server"></asp:contentplaceholder>
+                    <div id="ft_padd">
+			            <center>
+                            <table class="ft_links1">
+                                    <tr>
+                                        <td>
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        <asp:LinkButton ID="LnkHome" runat="server" OnClick="LnkHome_Click" 
+                                                            CssClass="ft_home" meta:resourcekey="LnkHomeResource1">Home Page</asp:LinkButton>
+                                                    </td>
+                                                    <td>
+                                                        <img src="images/MasterPage_Images/ft_bar.gif" width="1" height="11" alt="" class="ft_bar" />
+                                                    </td>
+                                                    <td>
+                                                        <asp:LinkButton ID="lnkAboutUs" runat="server" CssClass="ft_abt" 
+                                                            meta:resourcekey="lnkAboutUsResource1">About us</asp:LinkButton>
+                                                    </td>
+                                                    <td>
+                                                        <img src="images/MasterPage_Images/ft_bar.gif" width="1" height="11" alt="" class="ft_bar" />
+                                                    </td>
+                                                    <td>
+                                                        <asp:LinkButton ID="lnkPolicy" runat="server" CssClass="ft_cnt" 
+                                                            onclick="lnkPolicy_Click" meta:resourcekey="lnkPolicyResource1">Policies and Procedures</asp:LinkButton>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr class="ft_cpy">
+                                        <td>
+                                            <table>
+                                                <tr>
+                                                    <td>
+                                                        &copy;
+                                                    </td>
+                                                    <td>
+                                                        <asp:Label ID="lblcopyrights" runat="server" Text="copyrights Almaalim 2005-" 
+                                                            meta:resourcekey="lblcopyrightsResource1"/>
+                                                    </td>
+                                                    <td>
+                                                        <asp:Label ID="lblcurrentYear" runat="server" 
+                                                            meta:resourcekey="lblcurrentYearResource1"/>
+                                                    </td>
+                                                    <td>
+                                                        <asp:Label ID="lblRights" runat="server" Text=". All Rights Reserved." 
+                                                            meta:resourcekey="lblRightsResource1"/>
+                                                    </td>
+                                                    <td>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                        </center>
+	                </div>
+	           </div>     
+            </div>
+        </div>
+    </form>
+</body>
+</html>

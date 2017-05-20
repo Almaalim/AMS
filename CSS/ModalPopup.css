@@ -1,0 +1,26 @@
+﻿/* File Created: September 25, 2012 */
+body
+{
+    margin-top: 3px;
+    margin-left: 3px;
+    padding: 3px;
+    margin-right: 5px;
+    background:#4E6877;
+    /*background-image: url(../images/background.gif);*/
+    background-repeat: repeat;
+}
+
+.subHeader
+ {
+    background-image:  url('../images/subheader_bg.png');
+    background-repeat: repeat-x;
+    height: 27px;
+ }
+
+.subHeader div
+{
+    padding: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #10428C;
+}

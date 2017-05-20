@@ -1,0 +1,114 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPageAdmin.master.cs"
+    Inherits="MasterPageAdmin" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Untitled Page</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <%--Style--%>
+    <%--<link href="CSS/General.css" rel="stylesheet" type="text/css" />--%>
+    <link type="text/css" href="CSS/_assets/css/grid1.css" rel="stylesheet" />
+    <link type="text/css" href="CSS/_assets/css/grid.css" rel="stylesheet" />
+    <link type="text/css" href="CSS/_assets/css/round.css" rel="stylesheet" />
+    <link type="text/css" href="CSS/_assets/css/core.css" rel="stylesheet" />
+    <link href="CSS/VSStyle.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/MasterPageStyle.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/buttonStyle.css" rel="stylesheet" type="text/css" />
+    <link href="CSS/validationStyle.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <div id="main_block">
+            <div id="innerblock">
+                <div class="tp_Link">
+                    <asp:Label ID="lblWelcome" runat="server" Text="Welcome  "></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Text=" "></asp:Label>
+                    <asp:Label ID="lblUserName" runat="server" Text="  admin"></asp:Label>
+                    | <a href="ChangePassword.aspx" id="LnkChangePassword" runat="server" style="color: #C3D8D5;
+                        text-decoration: none;">Change Password</a> | <a href="#" id="linkLanguage" runat="server"
+                            style="color: #C3D8D5; text-decoration: none;">Language</a> | |
+                    <%--<a href="#" style="color:#C3D8D5;">Help</a>--%>
+                    <asp:LinkButton ID="LnkLogout" runat="server" OnClick="LnkLogout_Click" Style="color: #C3D8D5;
+                        text-decoration: none;">Logout</asp:LinkButton>
+                </div>
+                <table>
+                    <tr>
+                        <td>
+                            <asp:LinkButton ID="lbtnErrors" runat="server" OnClick="lbtnErrors_Click" Font-Bold="True"
+                                Font-Size="Medium" ForeColor="White">Asp.Net errors</asp:LinkButton>
+                        </td>
+                        <td width="30px">
+                        </td>
+                        <td>
+                            <asp:LinkButton ID="lbtnSperrors" runat="server" OnClick="lbtnSperrors_Click" Font-Bold="True"
+                                Font-Size="Medium" ForeColor="White">Stored Procedure Errors</asp:LinkButton>
+                        </td>
+                        <td width="30px">
+                        </td>
+                        <td>
+                            <asp:LinkButton ID="lbtnMenuBuilder" runat="server" OnClick="lbtnMenuBuilder_Click"
+                                Font-Bold="True" Font-Size="Medium" ForeColor="White">Menu Builder</asp:LinkButton>
+                        </td>
+                        <td width="30px">
+                        </td>
+                        <td>
+                            <asp:LinkButton ID="lbtnMenuOrder" runat="server" OnClick="lbtnMenuOrder_Click" Font-Bold="True"
+                                Font-Size="Medium" ForeColor="White">Menu Order</asp:LinkButton>
+                        </td>
+                        <td width="30px">
+                        </td>
+                        <td>
+                            <asp:LinkButton ID="lbtnMachineErrorLog" runat="server" OnClick="lbtnMachineErrorLog_Click"
+                                Font-Bold="True" Font-Size="Medium" ForeColor="White">Machine Error Log</asp:LinkButton>
+                        </td>
+                        <td width="30px">
+                        </td>
+                        <td>
+                            <asp:LinkButton ID="lbtnDepLevels" runat="server" OnClick="lbtnDepLevels_Click" Font-Bold="True"
+                                Font-Size="Medium" ForeColor="White">Department Levels</asp:LinkButton>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:LinkButton ID="lbtnReportManager" runat="server" Font-Bold="True" Font-Size="Medium"
+                                ForeColor="White" OnClick="lbtnReportManager_Click">ReportManager</asp:LinkButton>
+                        </td>
+                        <td width="30px">
+                        </td>
+                        <td>
+                            <asp:LinkButton ID="lbtnPermissionRequest" runat="server" Font-Bold="True" Font-Size="Medium"
+                                ForeColor="White" OnClick="lbtnPermissionRequest_Click">Permission Request</asp:LinkButton>
+                        </td>
+                    </tr>
+                </table>
+                <asp:ScriptManager ID="ScriptManager1" runat="server">
+                </asp:ScriptManager>
+                <div id="lp_padd">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+                <div id="ft_padd">
+                    <center>
+                        <span class="ft_links1"><a href="Home.aspx" class="ft_home">Home Page</a>
+                            <img src="images/MasterPage_Images/ft_bar.gif" width="1" height="11" alt="" class="ft_bar" />
+                            <a href="#" class="ft_abt">About us</a>
+                            <img src="images/MasterPage_Images/ft_bar.gif" width="1" height="11" alt="" class="ft_bar" />
+                            <a href="#" class="ft_cnt">Contact us</a> </span>
+                        <br />
+                        <span class="ft_cpy">&copy;copyrights Almaalim 2012-<asp:Label ID="lblcurrentYear"
+                            runat="server" />. All Rights Reserved.</span>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

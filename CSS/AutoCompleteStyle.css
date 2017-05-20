@@ -1,0 +1,26 @@
+﻿.AutoExtender
+{
+    font-family: Verdana, Helvetica, sans-serif;
+    font-size: .8em;
+
+    font-weight: normal;
+    border:solid 1px #006699;
+
+    line-height:20px;
+    padding:2px;
+    background-color:White;
+}
+
+.AutoExtenderList
+{
+    border-bottom:dotted 1px #006699;
+    cursor:pointer;
+    color:Maroon
+}
+
+.AutoExtenderHighlight
+{
+    color:White;
+    background-color:#006699;
+    cursor:pointer;
+}

@@ -1,0 +1,689 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BoundFieldResource1.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource1.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource1.HeaderText" xml:space="preserve">
+    <value>الرقم</value>
+  </data>
+  <data name="BoundFieldResource2.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource2.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource2.HeaderText" xml:space="preserve">
+    <value>الإسم (ع)</value>
+  </data>
+  <data name="BoundFieldResource3.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource3.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource3.HeaderText" xml:space="preserve">
+    <value>الإسم (E)</value>
+  </data>
+  <data name="BoundFieldResource4.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource4.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource4.HeaderText" xml:space="preserve">
+    <value>رقم البطاقة</value>
+  </data>
+  <data name="BoundFieldResource5.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource5.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource5.HeaderText" xml:space="preserve">
+    <value>القسم (ع)</value>
+  </data>
+  <data name="BoundFieldResource6.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource6.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource6.HeaderText" xml:space="preserve">
+    <value>القسم (E)</value>
+  </data>
+  <data name="btnAddResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Button_Icons/button_add.png" /&gt; إضافة</value>
+  </data>
+  <data name="btnAddResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnCancelResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Button_Icons/button_Cancel.png" /&gt; إلغاء</value>
+  </data>
+  <data name="btnCancelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnFetchDataResource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnFetchDataResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnModifyResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Button_Icons/button_edit.png" /&gt; تعديل</value>
+  </data>
+  <data name="btnModifyResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnResetPasswordResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Button_Icons/button_reset_Password.png" /&gt; إعادة كلمة المرور الإفتراضية</value>
+  </data>
+  <data name="btnResetPasswordResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnSaveResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Button_Icons/button_storage.png" /&gt; حفظ</value>
+  </data>
+  <data name="btnSaveResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnVacSetResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Button_Icons/button_reset_Password.png" /&gt; تخصيص إجازة</value>
+  </data>
+  <data name="btnVacSetResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkAutoINResource1.Text" xml:space="preserve">
+    <value>دخول تلقائي</value>
+  </data>
+  <data name="chkAutoINResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkAutoOutResource1.Text" xml:space="preserve">
+    <value>خروج تلقائي</value>
+  </data>
+  <data name="chkAutoOutResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkSendEmailAlertResource1.Text" xml:space="preserve">
+    <value>إرسال تنبيه للبريد الإلكتروني</value>
+  </data>
+  <data name="chkSendEmailAlertResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkSendSMSAlertResource1.Text" xml:space="preserve">
+    <value>إرسال تنبيه للجوال</value>
+  </data>
+  <data name="chkSendSMSAlertResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkStatusResource1.Text" xml:space="preserve">
+    <value>فعال</value>
+  </data>
+  <data name="chkStatusResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvCalJoinDateEmptyResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvCalJoinDateEmptyResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='حقل تاريخ الإنضمام إجباري!' /&gt;</value>
+  </data>
+  <data name="cvCalJoinDateEmptyResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvCalLeaveDateEmptyResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvCalLeaveDateEmptyResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='حقل تاريخ المغادرة إجباري!' /&gt;</value>
+  </data>
+  <data name="cvCalLeaveDateEmptyResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvCompareDatesResource1.ErrorMessage" xml:space="preserve">
+    <value>حقل تاريخ الإنضمام أكبر من تاريخ المغادرة!</value>
+  </data>
+  <data name="cvCompareDatesResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/message_exclamation.png' title='حقل تاريخ الإنضمام أكبر من تاريخ المغادرة!' /&gt;</value>
+  </data>
+  <data name="cvCompareDatesResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvEmpNameArResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvEmpNameArResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='حقل إسم الموظف (عربي) إجباري!' /&gt;</value>
+  </data>
+  <data name="cvEmpNameArResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvEmpNameEnResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvEmpNameEnResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='حقل إسم الموظف (إنجليزي) إجباري!' /&gt;</value>
+  </data>
+  <data name="cvEmpNameEnResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlAttenRuleResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlBloodResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlCategoryResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlDepartmentResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlEmpTypeIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlLanguageResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlNationalityResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlSearchByResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="grdDataResource1.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="grdDataResource1.EmptyDataText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="grdDataResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="imgbtnDeleteResource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="imgbtnDeleteResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Label1Resource1.Text" xml:space="preserve">
+    <value>اللغة المفضلة :</value>
+  </data>
+  <data name="Label1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblAttenRuleResource1.Text" xml:space="preserve">
+    <value>مجموعة ظوابط الحضور :</value>
+  </data>
+  <data name="lblAttenRuleResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblBloodResource1.Text" xml:space="preserve">
+    <value>فصيلة الدم :</value>
+  </data>
+  <data name="lblBloodResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblCardIDResource1.Text" xml:space="preserve">
+    <value>رقم البطاقة :</value>
+  </data>
+  <data name="lblCardIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblCategoryResource1.Text" xml:space="preserve">
+    <value>تصنيف العمل :</value>
+  </data>
+  <data name="lblCategoryResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDepartmentResource1.Text" xml:space="preserve">
+    <value>القسم :</value>
+  </data>
+  <data name="lblDepartmentResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblDomainUsernameResource1.Text" xml:space="preserve">
+    <value>اسم المستخدم للشبكة:</value>
+    <comment>Domain Username:</comment>
+  </data>
+  <data name="lblDomainUsernameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblEmailResource1.Text" xml:space="preserve">
+    <value>البريد الإلكتروني :</value>
+  </data>
+  <data name="lblEmailResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblEmpDescriptionResource1.Text" xml:space="preserve">
+    <value>وصف الموظف :</value>
+  </data>
+  <data name="lblEmpDescriptionResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblEmpNameArResource1.Text" xml:space="preserve">
+    <value>إسم الموظف (ع) :</value>
+  </data>
+  <data name="lblEmpNameArResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblEmpNameEnResource1.Text" xml:space="preserve">
+    <value>إسم الموظف (E) :</value>
+  </data>
+  <data name="lblEmpNameEnResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblEmpTypeIDResource1.Text" xml:space="preserve">
+    <value>نوع الموظف :</value>
+  </data>
+  <data name="lblEmpTypeIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblGenderResource1.Text" xml:space="preserve">
+    <value>الجنس :</value>
+  </data>
+  <data name="lblGenderResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblJobTitleArResource1.Text" xml:space="preserve">
+    <value>المهنة (ع) :</value>
+  </data>
+  <data name="lblJobTitleArResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblJobTitleEnResource1.Text" xml:space="preserve">
+    <value>المهنة (E) :</value>
+  </data>
+  <data name="lblJobTitleEnResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblJoinDateResource1.Text" xml:space="preserve">
+    <value>تاريخ الإنضمام :</value>
+  </data>
+  <data name="lblJoinDateResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblLeaveDateResource1.Text" xml:space="preserve">
+    <value>تاريخ المغادرة :</value>
+  </data>
+  <data name="lblLeaveDateResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblMaxOverTimePercentResource1.Text" xml:space="preserve">
+    <value>نسبة ساعات العمل الإضافية :</value>
+  </data>
+  <data name="lblMaxOverTimePercentResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblMobileNoResource1.Text" xml:space="preserve">
+    <value>رقم الجوال :</value>
+  </data>
+  <data name="lblMobileNoResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblNationalIDResource1.Text" xml:space="preserve">
+    <value>رقم الهوية :</value>
+  </data>
+  <data name="lblNationalIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblNationalityResource1.Text" xml:space="preserve">
+    <value>الجنسية :</value>
+  </data>
+  <data name="lblNationalityResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblSearchByResource1.Text" xml:space="preserve">
+    <value>بحث بواسطة :</value>
+  </data>
+  <data name="lblSearchByResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ListItemResource1.Text" xml:space="preserve">
+    <value>[غير محدد]</value>
+  </data>
+  <data name="ListItemResource10.Text" xml:space="preserve">
+    <value>B+</value>
+  </data>
+  <data name="ListItemResource11.Text" xml:space="preserve">
+    <value>B-</value>
+  </data>
+  <data name="ListItemResource12.Text" xml:space="preserve">
+    <value>AB+</value>
+  </data>
+  <data name="ListItemResource13.Text" xml:space="preserve">
+    <value>AB-</value>
+  </data>
+  <data name="ListItemResource14.Text" xml:space="preserve">
+    <value>O+</value>
+  </data>
+  <data name="ListItemResource15.Text" xml:space="preserve">
+    <value>O-</value>
+  </data>
+  <data name="ListItemResource16.Text" xml:space="preserve">
+    <value>ذكر</value>
+  </data>
+  <data name="ListItemResource17.Text" xml:space="preserve">
+    <value>إنثى</value>
+  </data>
+  <data name="ListItemResource18.Text" xml:space="preserve">
+    <value>-إختر اللغة المفضلة-</value>
+  </data>
+  <data name="ListItemResource19.Text" xml:space="preserve">
+    <value>العربية</value>
+  </data>
+  <data name="ListItemResource2.Text" xml:space="preserve">
+    <value>رقم الموظف</value>
+  </data>
+  <data name="ListItemResource20.Text" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="ListItemResource3.Text" xml:space="preserve">
+    <value>إسم الموظف (ع) </value>
+  </data>
+  <data name="ListItemResource4.Text" xml:space="preserve">
+    <value>إسم الموظف (E)</value>
+  </data>
+  <data name="ListItemResource5.Text" xml:space="preserve">
+    <value>إسم القسم (ع)</value>
+  </data>
+  <data name="ListItemResource6.Text" xml:space="preserve">
+    <value>إسم القسم (E)</value>
+  </data>
+  <data name="ListItemResource7.Text" xml:space="preserve">
+    <value>-إختر فصيلة الدم-</value>
+  </data>
+  <data name="ListItemResource8.Text" xml:space="preserve">
+    <value>A+</value>
+  </data>
+  <data name="ListItemResource9.Text" xml:space="preserve">
+    <value>A-</value>
+  </data>
+  <data name="PageResource1.Title" xml:space="preserve">
+    <value>الموظفون</value>
+  </data>
+  <data name="rblGenderResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvddlDepResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvddlDepResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='إسم القسم إجباري!' /&gt;</value>
+  </data>
+  <data name="rfvddlDepResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvddlNationalityResource1.ErrorMessage" xml:space="preserve">
+    <value>Nationality is required!</value>
+  </data>
+  <data name="rfvddlNationalityResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='إختيار الجنسية إجباري!' /&gt;</value>
+  </data>
+  <data name="rfvddlNationalityResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rvfNationalIDResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rvfNationalIDResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='حقل رقم الهوية إجباري!' /&gt;</value>
+  </data>
+  <data name="rvfNationalIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource1.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource1.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource1.HeaderText" xml:space="preserve">
+    <value>           </value>
+  </data>
+  <data name="txtCardIDResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtCardIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDomainUsernameResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDomainUsernameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEmailResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEmailResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEmpDescResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEmpDescResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEmployeeIDResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEmployeeIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEmpNameArResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEmpNameArResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEmpNameEnResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEmpNameEnResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtJobTitleARResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtJobTitleARResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtJobTitleEnResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtJobTitleEnResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <assembly alias="TextTimeServerControl" name="TextTimeServerControl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+  <data name="txtMaxPercentOTResource1.FormatTime" type="TextTimeServerControl.TextTime+FormatTimeEnum, TextTimeServerControl">
+    <value>hhmm</value>
+  </data>
+  <data name="txtMaxPercentOTResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtMobileNoResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtMobileNoResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtNationalIDResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtNationalIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtSearchResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtSearchResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="vsumAllResource1.HeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="vsumAllResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblHint1Resource1.Text" xml:space="preserve">
+    <value>تحديد ساعات العمل الإضافي المسموح في اليوم</value>
+  </data>
+  <data name="lblHint2Resource1.Text" xml:space="preserve">
+    <value>يمكن إدخال اسم مستخدم الجهاز على الشبكة للدخول التلقائي للبرنامج</value>
+  </data>
+  <data name="lblHint3Resource1.Text" xml:space="preserve">
+    <value>تحديد قواعد الحضور و العقوبات للموظف</value>
+  </data>
+  <data name="lblHint4Resource1.Text" xml:space="preserve">
+    <value>هذه الخاصية تسمح بإضافة حركة خروج تلقائية للموظف من دون حضور </value>
+  </data>
+  <data name="lblHint5Resource1.Text" xml:space="preserve">
+    <value>تخصيص العدد الأقصى للأيام لكل إجازة، هذه الخاصية لموظف محدد يمكن تخصيص لمجموعة موظفين من شاشة الإعدادات</value>
+  </data>
+  <data name="lblHint6Resource1.Text" xml:space="preserve">
+    <value>هذه الخاصية تسمح بإضافة حركة دخول تلقائية للموظف من دون حضور</value>
+  </data>
+  <data name="cvGenderResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='الجنس مطلوب' /&gt;</value>
+  </data>
+  <data name="cvEmployeeIDLenResource1.ErrorMessage" xml:space="preserve">
+    <value>يجب أن يتكون رقم الهوية من 10 خانات</value>
+  </data>
+  <data name="lblEmpRankDescResource1.Text" xml:space="preserve">
+    <value>وصف الرتبة :</value>
+  </data>
+  <data name="lblEmpRankTitelResource1.Text" xml:space="preserve">
+    <value>الرتبة :</value>
+  </data>
+  <data name="lblEmpADUserResource1.Text" xml:space="preserve">
+    <value>مستخدم Active Directory :</value>
+  </data>
+  <data name="chkHasFingerPrintResource1.Text" xml:space="preserve">
+    <value>لديه بصمة</value>
+  </data>
+  <data name="chkHasFingerPrintResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+</root>

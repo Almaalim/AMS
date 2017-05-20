@@ -1,0 +1,114 @@
+﻿.gridl 
+{ 
+	width:100%; 
+	font-family:Tahoma;
+}
+.gridl H2 
+{ 
+	margin:0; padding:0; 
+	color:#ffffff;
+	height:20px;
+	line-height:20px;
+	font-size:14px;
+	margin:10px 0pt 15px;
+	font-size: 8pt;
+	width: 100%;
+	text-align: left;
+}
+.gridl .mid
+{
+	padding:3px 0px 0px 0px;
+}
+.gridl .datatablel
+{
+	width:100%;
+	color:#666;
+	direction: ltr;
+}        
+.gridl .datatablel TH
+{
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:0px;
+    text-align:left;
+    padding:2px 4px;
+    color:#333333;
+    border-bottom:solid 2px #bbd9ee;
+}
+.gridl .datatablel TH A
+{ 
+	text-decoration:none;
+	padding-right:18px; 
+	color:#0066cc;
+}
+
+.gridl .datatablel TH.sortasc A { background:url(../img/asc.gif) right center no-repeat; }
+.gridl .datatablel TH.sortdesc A { background:url(../img/desc.gif) right center no-repeat; }
+.gridl .datatablel .row TD
+{
+    font-size:11px;
+    text-align:left;
+    padding:1px 4px;
+    border-bottom:solid 1px #bbd9ee;
+}      
+.gridl .datatablel .row:hover
+{
+	background-color:#fffacd;
+	color:#000;
+}
+.gridl .datatablel .row TD.first { padding-left:10px; }
+.gridl .datatablel TH.first { padding-left:10px; }
+.gridl .datatablel .row:hover .first
+{
+    background-repeat:no-repeat;   
+	background-image:url(../img/bullet.gif);
+}  
+/* Data Pager Styles */
+.gridl TR.pager-row TD
+{
+    border-top:solid 2px #bbd9ee;
+}
+.gridl .pager
+{
+    font-family:arial,sans-serif;
+    text-align:center;
+    padding:6px;	
+    font-size:18px;
+} 
+.gridl .pager SPAN.command,        
+.gridl .pager SPAN.current,        
+.gridl .pager A.command,
+.gridl TR.pager-row TD A
+{
+    color:#5a90ce;
+    padding:0px 5px;
+    text-decoration:none;
+    border:none;
+}
+.gridl .pager A.command:hover,
+.gridl TR.pager-row TD A:hover
+{
+    border:solid 2px #408BB6;
+    background-color:#59A5D1;
+    color:#fff;
+    padding:0px 3px;
+    text-decoration:none;
+}        
+.gridl .pager SPAN.current,
+.gridl TR.pager-row TD SPAN
+{
+	border:none;
+    font-weight:bold;
+    color:#3e3e3e;
+    padding:0px 6px;
+}
+.gridl TR.pager-row TD
+{
+	border-top:none;
+	text-align:center;
+}
+.gridl TR.pager-row TABLE
+{
+	height:35px;
+	margin:0 auto 0 auto;
+}

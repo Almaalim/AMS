@@ -1,0 +1,1174 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="AMSMasterPage.master.cs"
+    Inherits="AMSMasterPage" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head id="Head1" runat="server">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Untitled Page</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <script type="text/javascript" src="../Script/jquery-1.7.1.min.js"></script>
+
+    <script type="text/javascript" src="../Script/jquery-ui-1.8.17.custom.min.js"></script>
+    <script type="text/javascript" src="../Script/SessionScript.js"></script>
+    <script src="../Script/jquery.mousewheel.js"></script>
+    <link href="CSS/Metro/Metro.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        function PostbackFunction() {
+
+
+            MobileListResize();
+        }
+        function MobileListResize() {
+            if ($(".GridTable").width() > $(".row").width()) {
+                //                $(".GridTable").prepend("<thead></thead>");
+                //                var GridHead = $(".GridHeaderStyle");
+                //                $(".GridTable thead").append(GridHead);
+                $(".GridTable").parent().addClass("GridDiv");
+
+                $('.sub-list>li>a').each(function () {
+                    var widthMenu = $(this).width();
+                    //alert(widthMenu);
+                    $(this).height(widthMenu);
+
+                });
+                
+                $("a").each(function (index) {
+                    if ($(this).is('[disabled=disabled]')) {
+                        $(this).addClass("disabled");
+                        
+                    }
+                    
+                });
+            }
+
+            $("div[class*='col']").each(function () {
+                var $this = $(this);
+
+                $this.html($this.html().replace(/&nbsp;/g, ''));
+            });
+            var colors = ["009ad7", "ffaa31", "68af27", "c22439", "005683", "622695", "d13f2a"];
+
+            $('.rp_servlnk2').each(function (i) {
+                $(this).css('background-color', '#' + colors[i % colors.length]);
+            });
+            $("a.SideMenuItem").each(function (i) {
+                $(this).css('background-color', '#' + colors[i % colors.length]);
+            });
+            $(".apps li a").each(function (i) {
+                $(this).addClass('color' + colors[i % colors.length]);
+            });
+            $(".ReportBtns").each(function (i) {
+                $(this).css('background-color', '#' + colors[i % colors.length]);
+            });
+            $('[data-popup-close]').on('click', function (e) {
+                var targeted_popup_class = jQuery(this).attr('data-popup-close');
+                $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
+
+                e.preventDefault();
+            });
+        }
+        $(document).ready(function () {
+            
+            $("a.level2.dynamic").each(function (index) {
+                var str1 = $(this).attr('title');
+
+                str1 = str1.replace(/\s/g, '').replace(/[_\W]+/g, "");
+
+                $(this).addClass(str1);
+
+
+            });
+            $("a.SideMenuItem").each(function (index) {
+                var str1 = $(this).attr('title');
+
+                str1 = str1.replace(/\s/g, '').replace(/[_\W]+/g, "");
+
+                $(this).addClass(str1);
+
+
+            });
+            
+            //$(".headerExpand").click(function () {
+
+            //    $header = $(this);
+            //    //getting the next element
+            //    $content = $header.next();
+            //    //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
+            //    $content.slideToggle(200);
+
+            //});
+            $(function ($) {
+                var num_cols = 15,
+                    container = $(".taptap-contents-wrapper>ul>li>ul"),
+                    listItem = "li",
+                    listClass = "sub-list";
+                container.each(function () {
+                    var items_per_col = new Array(),
+                        items = $(this).find(listItem),
+                        min_items_per_col = Math.floor(items.length / num_cols),
+                        difference = items.length - min_items_per_col * num_cols;
+                    for (var i = 0; i < num_cols; i++) {
+                        if (i < difference) {
+                            items_per_col[i] = min_items_per_col + 1;
+                        } else {
+                            items_per_col[i] = min_items_per_col;
+                        }
+                    }
+                    for (var i = 0; i < num_cols; i++) {
+                        $(this).append($("<div ></div>").addClass(listClass));
+                        for (var j = 0; j < items_per_col[i]; j++) {
+                            var pointer = 0;
+                            for (var k = 0; k < i; k++) {
+                                pointer += items_per_col[k];
+                            }
+                            $(this).find("." + listClass).last().append(items[j + pointer]);
+
+                        }
+                    }
+                });
+
+            });
+
+
+
+            //var menuDoc = $("#ctl00_Menu1").html();
+            //$(".taptap-contents-wrapper").append(menuDoc);
+
+            $("a.level1.static").each(function (index) {
+                var str = $(this).attr("title");
+                str = str.replace('/', '');
+
+                $(this).addClass(str);
+                $(this).parent().addClass(str + "list")
+
+            });
+            $("a").each(function (index) {
+                if ($(this).is('[disabled=disabled]')) {
+                    $(this).addClass("disabled");
+                }
+            });
+            
+
+            jQuery(".taptap-menu-button-wrapper").on('click', function (e) {
+
+
+                if ($(this).hasClass("taptap-menu-active")) {
+                    $(this).removeClass("taptap-menu-active");
+                    $(".taptap-main-wrapper").removeClass("taptap-main-wrapper-active");
+                    $("body").css("overflow", "auto");
+
+                }
+                else {
+                    $(this).addClass("taptap-menu-active");
+                    $(".taptap-main-wrapper").addClass("taptap-main-wrapper-active");
+                    $("body").css("overflow", "hidden");
+
+
+                }
+
+            })
+           
+            //$(function () {
+
+            //    $(".taptap-main-inner").mousewheel(function (event, delta) {
+
+            //        this.scrollLeft -= (delta * 100);
+
+            //        event.preventDefault();
+
+            //    });
+
+            //});
+
+
+
+        });
+        $(document).ready(MobileListResize);
+        $(window).resize(MobileListResize);
+    </script>
+    <script type="text/javascript">
+        // Set timeout variables.
+        var timoutWarning = 600000; // Display warning in 1sec = 1000.
+        var timeout = 660000
+        //         var timoutWarning = 60000; // Display warning in 1Mins.
+        //         var timeout = 120000
+        //<%# Session.Timeout %>; // Timeout in 2 mins.
+        var timoutNow = 20 * 60000; // Timeout in 2 mins.
+        var logoutUrl = 'SessionExpireEvent.aspx?SessionExpire=True';
+
+        var warningTimer;
+        var timeoutTimer;
+
+        // Start timers.
+        function StartTimers() {
+            warningTimer = setTimeout("IdleWarning()", timoutWarning);
+            timeoutTimer = setTimeout("IdleTimeout()", timeout);
+        }
+
+        // Reset timers.
+        function ResetTimers() {
+            clearTimeout(warningTimer);
+            clearTimeout(timeoutTimer);
+            StartTimers();
+            $("#LocalDialogModal").dialog('close');
+        }
+
+        // Show idle timeout warning dialog.
+        function IdleWarning() {
+            $("#LocalDialogModal").dialog("open");
+        }
+
+        // Logout the user.
+        function IdleTimeout() {
+            window.location = logoutUrl;
+        }
+    </script>
+    <script language="javascript" type="text/javascript">
+
+        var oldgridSelectedColor;
+        function setMouseOverColor(element) {
+
+            oldgridSelectedColor = element.style.backgroundColor;
+            element.style.backgroundColor = 'yellow';
+            element.style.cursor = 'hand';
+            element.style.textDecoration = 'underline';
+        }
+
+        function setMouseOutColor(element) {
+
+            element.style.backgroundColor = oldgridSelectedColor;
+            element.style.textDecoration = 'none';
+        }
+
+    </script>
+    <script type="text/javascript">
+
+        function resizeWindow() {
+
+
+            var windowHeight = getWindowHeight();
+
+            //                     document.getElementById("content").style.height = (windowHeight - 110) + "px";
+            //                     document.getElementById("contentPanel").style.height = (windowHeight - 160) + "px";
+            document.getElementById("navigation").style.height = (windowHeight - 110) + "px";
+
+            //          LoadContextMenu();
+        }
+
+        function getWindowHeight() {
+
+
+            var windowHeight = 0;
+            if (typeof (window.innerHeight) == 'number') {
+                windowHeight = window.innerHeight;
+            }
+            else {
+                if (document.documentElement && document.documentElement.clientHeight) {
+                    windowHeight = document.documentElement.clientHeight;
+                }
+                else {
+                    if (document.body && document.body.clientHeight) {
+                        windowHeight = document.body.clientHeight;
+                    }
+                }
+            }
+
+
+
+            return windowHeight;
+        }
+    </script>
+    <script type="text/javascript">
+
+        function hideunhide_leftpanel(imgid) {
+            var ele = document.getElementById('tdleft_panel');
+            ele.style.display = (ele.style.display == "none" ? "" : "none");
+            //alert(imgid);
+            if (imgid == "close") {
+                document.getElementById("open").style.display = "";
+                document.getElementById("close").style.display = "none";
+            }
+            else {
+                document.getElementById("open").style.display = "none";
+                document.getElementById("close").style.display = "";
+            }
+            //leftpanel_img
+
+        }
+
+
+
+    </script>
+    <script language="javascript" type="text/javascript">
+        function Browser_Close() { }
+    </script>
+    <script language="javascript" type="text/javascript">
+        var isClose = false;
+
+        document.onkeydown = checkKeycode
+        function checkKeycode(e) {
+            var keycode;
+            if (window.event)
+                keycode = window.event.keyCode;
+            else if (e)
+                keycode = e.which;
+            if (keycode == 116) {
+                isClose = true;
+            }
+        }
+        function somefunction() {
+            isClose = true;
+        }
+
+        function doUnload() {
+            if (!isClose) {
+                //alert('AMSWEB is closing');
+                PageMethods.BrowserCloseMethod();
+            }
+        }
+    </script>
+    <script type="text/javascript">
+
+        var clicked = false;
+        function CheckBrowser() {
+            if (clicked == false) {
+                //Browser closed   
+            } else {
+                //redirected
+                clicked = false;
+            }
+        }
+
+        function bodyUnload() {
+            if (clicked == false)//browser is closed  
+            {
+                var request = GetRequest();
+                request.open("GET", "./LogOut.aspx", true);
+                request.send();
+            }
+        }
+
+        function GetRequest() {
+            var xmlHttp = null;
+            try {
+                // Firefox, Opera 8.0+, Safari
+                xmlHttp = new XMLHttpRequest();
+            }
+            catch (e) {
+                //Internet Explorer
+                try {
+                    xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+                }
+                catch (e) {
+                    xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+            }
+            return xmlHttp;
+        }
+
+    </script>
+    <script type="text/javascript">
+        function ShowHelp(Url) { window.open(Url, 'AMSHELP'); }
+    </script>
+    <%--/Script--%>
+</head>
+<body>
+    <%--onload="StartTimers();" onmousemove="ResetTimers();"--%>
+    <%--onunload="bodyUnload();"--%>
+    <form id="form1" runat="server">
+        <%--side Menu--%>
+        <div class="taptap-main-wrapper">
+            <div class="taptap-main-inner">
+                <div class="taptap-main">
+                    <div class="taptap-main-inner-inner">
+                        <div class="taptap-contents-wrapper">
+                            <div class="UserDetails">
+                                <asp:Image ID="UserImg" runat="server" ImageUrl="~/CSS/Metro/Images/UserImg.png" CssClass="UserImg" />
+                                <asp:Label ID="lblWelcome" runat="server" Text="Welcome" meta:resourcekey="lblWelcomeResource1"></asp:Label>
+
+                                <asp:Label ID="lblUserName" runat="server" meta:resourcekey="lblUserNameResource1"></asp:Label>
+
+                                <div class="clearfix"></div>
+
+                                <asp:LinkButton ID="lnkSetting" runat="server" CssClass="SettingBtn"></asp:LinkButton>
+                                <asp:Label ID="Label2" runat="server" Text="Label" CssClass="menu-subtitle">QuickLinks</asp:Label>
+
+                                <%--Menu Left Shortcuts--%>
+                                <ul class="apps">
+
+                                    <li>
+                                        <asp:LinkButton ID="LinkButton1" runat="server" CssClass="folder">
+
+                                            <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
+                                        </asp:LinkButton></li>
+                                    <li>
+                                        <asp:LinkButton ID="LinkButton2" runat="server" CssClass="home">
+
+                                            <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
+                                        </asp:LinkButton></li>
+                                    <li>
+                                        <asp:LinkButton ID="LinkButton3" runat="server" CssClass="folder">
+
+                                            <asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
+                                        </asp:LinkButton></li>
+                                    <li>
+                                        <asp:LinkButton ID="LinkButton4" runat="server" CssClass="home">
+
+                                            <asp:Label ID="Label6" runat="server" Text="Label"></asp:Label>
+                                        </asp:LinkButton></li>
+                                    <li>
+                                        <asp:LinkButton ID="LinkButton5" runat="server" CssClass="folder">
+
+                                            <asp:Label ID="Label7" runat="server" Text="Label"></asp:Label>
+                                        </asp:LinkButton></li>
+                                    <li>
+                                        <asp:LinkButton ID="LinkButton6" runat="server" CssClass="home">
+
+                                            <asp:Label ID="Label8" runat="server" Text="Label"></asp:Label>
+                                        </asp:LinkButton></li>
+                                </ul>
+                                <%--Menu Left Shortcuts--%>
+                            </div>
+                            <div class="menu-grid">
+                                <%--Menu Main Item--%>
+                                <asp:Label ID="Label9" runat="server" Text="User" CssClass="menu-subtitle"></asp:Label>
+                                <%--Menu Main Item--%>
+
+                                <div class="squares">
+                                    <div class="square-big">
+                                        <%--menu Sub item--%>  <a title="Permission Group" class="SideMenuItem" href="../Pages_User/PermissionGroups.aspx">Permission Group</a><%--menu Sub item--%>
+                                    </div>
+                                    <div class="square-mult">
+                                        <div class="sub-square">
+                                            <%--menu Sub item--%>       <a title="Application User" class="SideMenuItem" href="../Pages_User/ApplicationUsers.aspx">Application User</a><%--menu Sub item--%>
+                                        </div>
+                                        <div class="sub-square">
+                                            <%--menu Sub item--%>  <a title="User’s Department Relation " class="SideMenuItem" href="../Pages_User/UserDepartments.aspx">User’s Department Relation </a><%--menu Sub item--%>
+                                        </div>
+                                        <div class="sub-square">
+                                            <%--menu Sub item--%>  <a title="Active Directory Users" class="SideMenuItem" href="../Pages_User/ADUsers.aspx">Active Directory Users</a><%--menu Sub item--%>
+                                        </div>
+                                        <div class="sub-square">
+
+                                            <%--menu Sub item--%>  <a title="Current User" class="SideMenuItem" href="../Pages_User/CurrentUsers.aspx">Current User</a><%--menu Sub item--%>
+                                        </div>
+                                    </div>
+                                    <div class="square-big">
+                                        <%--menu Sub item--%>     <a title="Permission Group" class="SideMenuItem" href="../Pages_User/PermissionGroups.aspx">Permission Group</a><%--menu Sub item--%>
+                                    </div>
+                                    <div class="square-mult">
+                                        <div class="sub-square">
+                                            <%--menu Sub item--%>  <a title="Application User" class="SideMenuItem" href="../Pages_User/ApplicationUsers.aspx">Application User</a><%--menu Sub item--%>
+                                        </div>
+                                        <div class="sub-square">
+                                            <%--menu Sub item--%>  <a title="User’s Department Relation " class="SideMenuItem" href="../Pages_User/UserDepartments.aspx">User’s Department Relation </a><%--menu Sub item--%>
+                                        </div>
+                                        <div class="sub-square">
+                                            <%--menu Sub item--%>  <a title="Active Directory Users" class="SideMenuItem" href="../Pages_User/ADUsers.aspx">Active Directory Users</a><%--menu Sub item--%>
+                                        </div>
+                                        <div class="sub-square">
+
+                                            <%--menu Sub item--%>  <a title="Current User" class="SideMenuItem" href="../Pages_User/CurrentUsers.aspx">Current User</a><%--menu Sub item--%>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <%--side Menu--%>
+        <iframe id="Defib" src="~/Pages_Mix/KeepSessionAlive.aspx"
+            width="0" height="0" runat="server" frameborder="0" visible="True" style="display: none"></iframe>
+        <asp:ScriptManager ID="Scriptmanager1" runat="server">
+            <Services>
+                <asp:ServiceReference Path="~/Service/AutoComplete.asmx" />
+            </Services>
+        </asp:ScriptManager>
+        <div class="wrapper">
+            <div id="cp_padd<%=Session["Language"]%>">
+
+                <div id="rp_padd<%=Session["Language"]%>">
+                    <div class="Header">
+                        <div id="divCustLogo" runat="server" class="Logo">
+
+
+                            <asp:Image ID="imgLogo" runat="server" />
+                            <div class="wrap-title">
+                                <div class="icon">
+                                    <span class="ico-arrow-right"></span>
+                                </div>
+                                <h1>Attendance Management System</h1>
+                            </div>
+                            <%--ImageUrl="~/images/MasterPage_Images/InsertLogo.JPG"--%>
+                        </div>
+
+
+                        <div id="divMenu" runat="server">
+
+                            <asp:Menu ID="Menu1" DataSourceID="xmlDataSource" runat="server" Orientation="Horizontal"
+                                StaticEnableDefaultPopOutImage="False" DynamicEnableDefaultPopOutImage="False"
+                                DynamicVerticalOffset="0" meta:resourcekey="Menu1Resource1" onmenuitemdatabound="Menu1_MenuItemDataBound"
+                                StaticSubMenuIndent="" RenderingMode="List">
+                                <DataBindings>
+                                    <asp:MenuItemBinding DataMember="MenuItem" NavigateUrlField="NavigateUrl" TextField="Text"
+                                        ToolTipField="ToolTip" meta:resourcekey="MenuItemBindingResource1" />
+                                </DataBindings>
+                                <%--<StaticSelectedStyle CssClass="tp_hmebg" />--%>
+
+                                <%-- <DynamicSelectedStyle CssClass="mndynamicitem2" />--%>
+
+                                <%--<StaticHoverStyle CssClass="tp_hmebg" />--%>
+                                <Items>
+                                    <asp:MenuItem Text="New Item" Value="New Item" meta:resourcekey="MenuItemResource1"></asp:MenuItem>
+                                </Items>
+                            </asp:Menu>
+
+                            <asp:XmlDataSource ID="xmlDataSource" TransformFile="~/XSL/TransformXSLT.xsl" XPath="MenuItems/MenuItem"
+                                runat="server" EnableCaching="False" EnableViewState="False" />
+                        </div>
+                        <div class="taptap-menu-button-wrapper">
+                            <div class="taptap-main-menu-button">
+                                <div class="taptap-main-menu-button-middle"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+
+                    </div>
+
+                    <div id="divLogo" runat="server" class="breadcrumb">
+
+
+                        <div class="Utility<%=Session["Language"]%>">
+
+                            <div class="breadcrumb glyphicon glyphicon-home">
+
+                                <asp:SiteMapPath ID="SiteMapPath1" runat="server"></asp:SiteMapPath>
+                            </div>
+
+                            <div class="UtilityLinks">
+                                <asp:LinkButton ID="lnkHomeTop" runat="server" Style="color: #C3D8D5; text-decoration: none;"
+                                    OnClick="LnkHome_Click" meta:resourcekey="lnkHomeResource1">Home</asp:LinkButton>
+
+                                <asp:LinkButton ID="LnkChangePassword" runat="server" Style="color: #C3D8D5; text-decoration: none;"
+                                    OnClick="LnkChangePassword_Click" meta:resourcekey="LnkChangePasswordResource11">Change Password</asp:LinkButton>
+
+                                <asp:LinkButton ID="lnkShortcut" runat="server" OnClick="LnkShortcut_Click" Style="color: #C3D8D5; text-decoration: none;"
+                                    meta:resourcekey="lnkShortcutResource1">Add Quick Link</asp:LinkButton>
+
+                                <%-- OnClick="lnkERS_Click" --%>
+
+                                <asp:LinkButton ID="lnkERS" runat="server" OnClick="lnkERS_Click" Style="color: #C3D8D5; text-decoration: none;">ERS</asp:LinkButton>
+
+                                <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                            <ContentTemplate>--%>
+                                <asp:LinkButton ID="lnkHelp" runat="server" OnClick="lnkHelp_Click" Style="color: #C3D8D5; text-decoration: none;"
+                                    meta:resourcekey="lnkHelpResource1">Help</asp:LinkButton>
+                                <%--</ContentTemplate>
+                                        </asp:UpdatePanel>--%>
+
+                                <asp:LinkButton ID="LnkLogout" runat="server" OnClick="LnkLogout_Click" Style="color: #C3D8D5; text-decoration: none;"
+                                    meta:resourcekey="LnkLogoutResource1">Logout</asp:LinkButton>
+
+                                <asp:LinkButton ID="lnkLanguage" runat="server" Style="color: #C3D8D5; text-decoration: none;"
+                                    OnClick="lnkLanguage_Click" meta:resourcekey="lnkLanguageResource1">Language</asp:LinkButton>
+
+                            </div>
+
+                        </div>
+                        <hr class="Sep" />
+                    </div>
+
+
+
+
+                    <div class="container">
+
+
+                        <h1 class="pageTitle">
+                            <asp:Label ID="lblPageTitel" runat="server" CssClass="lp_servit" meta:resourcekey="lblPageTitelResource1"></asp:Label>
+
+
+
+                        </h1>
+                        <div >
+                            <div id="divEmpInfo" runat="server" visible="False" class="DarkGrey">
+                                <div id="divEmpInfo2" runat="server" class="rp_realpad">
+
+                                    <span class="rp_realtitbg headerExpand">
+
+                                        <asp:Label ID="lblEmpInfo" runat="server" Text="Employee Info" CssClass="Titel_DivLeftPanel"
+                                            meta:resourcekey="lblEmpInfoResource1"></asp:Label>
+                                    </span>
+                                    <div class="contentExpand">
+                                        <asp:Label ID="lblEmpName" runat="server" Text="Name :"
+                                            CssClass="label_DivLeftPanel" meta:resourcekey="lblEmpNameResource1"></asp:Label>
+
+                                        <asp:Label ID="lblEmpNameVal" runat="server" Text="------" CssClass="label_DivLeftPanel"
+                                            meta:resourcekey="lblEmpNameValResource1"></asp:Label>
+
+                                        <asp:Label ID="lblDepName" runat="server" Text="Department :" CssClass="label_DivLeftPanel"
+                                            meta:resourcekey="lblDepNameResource1"></asp:Label>
+
+                                        <asp:Label ID="lblDepNameVal" runat="server" Text="------" CssClass="label_DivLeftPanel"
+                                            meta:resourcekey="lblDepNameValResource1"></asp:Label>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div style="display: none">
+                                <asp:UpdatePanel ID="upFavPage" runat="server" ChildrenAsTriggers="False" UpdateMode="Conditional">
+                                    <ContentTemplate>
+                                        <div id="divFavPage" runat="server" visible="False">
+                                            <div id="divFavPage2" runat="server" class="rp_realpad">
+
+                                                <span class="rp_realtitbg">
+
+                                                    <asp:Label ID="lblFavPage" runat="server" Text="Quick Links" CssClass="Titel_DivLeftPanel"
+                                                        meta:resourcekey="lblFavPageResource1"></asp:Label>
+                                                </span>
+                                                <br />
+                                                <br />
+                                                <asp:DataList ID="dlFavPage" runat="server" CaptionAlign="Top" RepeatColumns="4"
+                                                    HorizontalAlign="Left" OnItemCommand="dlFavPage_ItemCommand" Width="95%" BorderColor="Black"
+                                                    OnItemDataBound="dlFavPage_ItemDataBound" meta:resourcekey="dlFavPageResource1">
+                                                    <SelectedItemStyle HorizontalAlign="Left" BackColor="Red" Font-Bold="True" />
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="Smaller" ForeColor="#813D2D" />
+                                                    <ItemTemplate>
+                                                        <tr style="padding-left: 10px">
+                                                            <td style="padding-left: 10px" valign="middle">
+                                                                <asp:Image ID="Image1" runat="server" Height="16px" ImageUrl="images/MasterPage_Images/Page_Icon.png"
+                                                                    Width="16px" meta:resourcekey="Image1Resource1" />
+                                                                <asp:LinkButton ID="lnkFP" CommandArgument='<%# DataBinder.Eval(Container,"dataitem.PageUrl") %>'
+                                                                    ForeColor="#813D2D" Text='<%# DataBinder.Eval(Container,"dataitem.PageName") %>'
+                                                                    runat="server" CommandName="GoFavPage"></asp:LinkButton>
+                                                            </td>
+                                                            <td align="right">
+                                                                <asp:ImageButton ID="imgFPDelete" CommandName="DeletePage" CommandArgument='<%# DataBinder.Eval(Container,"dataitem.FavID") %>'
+                                                                    runat="server" ImageUrl="images/cross.png" Width="10px" Height="10px" meta:resourcekey="imgFPDeleteResource1" />
+                                                            </td>
+                                                        </tr>
+                                                    </ItemTemplate>
+                                                </asp:DataList>
+                                            </div>
+
+                                            <br />
+                                        </div>
+                                    </ContentTemplate>
+                                    <Triggers>
+                                        <asp:AsyncPostBackTrigger ControlID="lnkShortcut" />
+                                    </Triggers>
+                                </asp:UpdatePanel>
+
+                                <asp:UpdatePanel ID="upFavReport" runat="server" ChildrenAsTriggers="False" UpdateMode="Conditional">
+                                    <ContentTemplate>
+                                        <div id="divFavReport" runat="server" visible="False">
+                                            <div class="rp_realpad">
+
+                                                <span class="rp_realtitbg">
+
+                                                    <asp:Label ID="lblFavReport" runat="server" Text="Favorite Reports" CssClass="Titel_DivLeftPanel"
+                                                        meta:resourcekey="lblFavReportResource1"></asp:Label>
+                                                </span>
+                                                <br />
+                                                <br />
+                                                <asp:DataList ID="dlFavReport" runat="server" CaptionAlign="Top" RepeatColumns="4"
+                                                        HorizontalAlign="Left" OnItemCommand="dlFavReport_ItemCommand" Width="95%" OnItemDataBound="dlFavReport_ItemDataBound"
+                                                        BorderColor="Black" meta:resourcekey="dlFavReportResource1">
+                                                        <SelectedItemStyle HorizontalAlign="Center" BackColor="Red" Font-Bold="True" Font-Italic="False"
+                                                            Font-Overline="False" Font-Strikeout="False" Font-Underline="False" VerticalAlign="Middle" />
+                                                        <AlternatingItemStyle Font-Bold="False" Font-Italic="False" Font-Overline="False"
+                                                            Font-Strikeout="False" Font-Underline="False" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                        <EditItemStyle Font-Bold="False" Font-Italic="False" Font-Overline="False" Font-Strikeout="False"
+                                                            Font-Underline="False" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                        <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Font-Size="Smaller" />
+                                                        <ItemTemplate>
+                                                            <tr style="padding-left: 10px">
+                                                                <td style="padding-left: 10px" valign="middle">
+                                                                    <asp:Image ID="Image1" runat="server" Height="16px" ImageUrl="~/images/reports-icon.png"
+                                                                        Width="16px" meta:resourcekey="Image1Resource2" />
+                                                                    <asp:LinkButton ID="lnkFR" CommandArgument='<%# DataBinder.Eval(Container,"dataitem.FavID") + "," + DataBinder.Eval(Container,"dataitem.RepID") %>'
+                                                                        ForeColor="#813D2D" Text='<%# DataBinder.Eval(Container,"dataitem.RepName") %>'
+                                                                        runat="server" CommandName="GoFavReport" meta:resourcekey="lnkBtnEnResource1"></asp:LinkButton>
+                                                                </td>
+                                                                <td align="right" valign="middle">
+                                                                    <asp:ImageButton ID="imgFRDelete" CommandName="DeleteReport" CommandArgument='<%# DataBinder.Eval(Container,"dataitem.FavID") %>'
+                                                                        runat="server" ImageUrl="images/cross.png" Width="10px" Height="10px" meta:resourcekey="imgFRDeleteResource1" />
+                                                                </td>
+                                                            </tr>
+                                                        </ItemTemplate>
+                                                    </asp:DataList>
+                                            </div>
+
+                                            <br />
+                                        </div>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+
+                                <asp:UpdatePanel ID="upRequest" runat="server" ChildrenAsTriggers="False" UpdateMode="Conditional">
+                                    <ContentTemplate>
+                                        <div id="divRequest" runat="server" visible="False">
+                                            <div class="rp_realpad">
+
+                                                <span class="rp_realtitbg">
+
+                                                    <asp:Label ID="Label1" runat="server" Text="Requests" CssClass="Titel_DivLeftPanel"
+                                                        meta:resourcekey="Label1Resource1"></asp:Label>
+                                                </span>
+                                                <img src="../images/MasterPage_Images/rp_intarre<%=Session["Language"]%>.jpg" width="8"
+                                                    height="5" alt="" class="rp_arres<%=Session["Language"]%>" />
+                                                <asp:LinkButton ID="lnkRequest" runat="server" CssClass="rp_servlnk1" OnClick="lnkRequest_Click"
+                                                    meta:resourcekey="lnkRequestResource1"></asp:LinkButton>
+                                            </div>
+
+                                        </div>
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+                            </div>
+                            <div style="display:none">
+                            <div id="divERS" runat="server" visible="false">
+                                <div class="rp_realpad">
+
+                                    <span class="rp_realtitbg headerExpand">
+
+                                        <asp:Label ID="lblErsTitel" runat="server" Text="ERS" CssClass="Titel_DivLeftPanel"
+                                            meta:resourcekey="lblErsTitelResource1"></asp:Label>
+                                    </span>
+                                    <div class="contentExpand">
+                                        <img src="../images/MasterPage_Images/rp_intarre<%=Session["Language"]%>.jpg" width="8"
+                                            height="5" alt="" class="rp_arres<%=Session["Language"]%>" />
+                                        <asp:LinkButton ID="btnAttendanceList" runat="server" CssClass="rp_servlnk1" OnClick="btnERS_Click"
+                                            Text="Attendance List" meta:resourcekey="btnAttendanceListResource1"></asp:LinkButton>
+                                        <br />
+                                        <div id="divErsPage" runat="server">
+                                            <img src="../images/MasterPage_Images/rp_intarre<%=Session["Language"]%>.jpg" width="8"
+                                                height="5" alt="" class="rp_arres1<%=Session["Language"]%>" />
+                                            <asp:LinkButton ID="btnTodayTransaction" runat="server" CssClass="rp_servlnk2" OnClick="btnERS_Click"
+                                                Text="Today Transaction" meta:resourcekey="btnTodayTransactionResource1"></asp:LinkButton>
+                                            <br />
+
+
+
+
+                                            <img src="../images/MasterPage_Images/rp_intarre<%=Session["Language"]%>.jpg" width="8"
+                                                height="5" alt="" class="rp_arres1<%=Session["Language"]%>" />
+                                            <asp:LinkButton ID="btnEmployeeGap" runat="server" CssClass="rp_servlnk2" OnClick="btnERS_Click"
+                                                Text="Employee Gap" meta:resourcekey="btnEmployeeGapResource1"></asp:LinkButton>
+                                            <br />
+
+                                            <img src="../images/MasterPage_Images/rp_intarre<%=Session["Language"]%>.jpg" width="8"
+                                                height="5" alt="" class="rp_arres1<%=Session["Language"]%>" />
+                                            <asp:LinkButton ID="btnEmployeeRequest" runat="server" CssClass="rp_servlnk2" OnClick="btnERS_Click"
+                                                Text="Employee Request" meta:resourcekey="btnEmployeeRequestResource1"></asp:LinkButton>
+                                            <br />
+                                            <div id="divEmployeeVacationDays" runat="server">
+                                                <img src="../images/MasterPage_Images/rp_intarre<%=Session["Language"]%>.jpg" width="8"
+                                                    height="5" alt="" class="rp_arres1<%=Session["Language"]%>" />
+                                                <asp:LinkButton ID="btnEmployeeVacationDays" runat="server" CssClass="rp_servlnk2"
+                                                    OnClick="btnERS_Click" Text="Employee Vacation Days" meta:resourcekey="btnEmployeeVacationDaysResource1"></asp:LinkButton>
+                                                <br />
+                                            </div>
+                                            <div id="divVacReq" runat="server">
+                                                <img src="../images/MasterPage_Images/rp_intarre<%=Session["Language"]%>.jpg" width="8"
+                                                    height="5" alt="" class="rp_arres1<%=Session["Language"]%>" />
+                                                <asp:LinkButton ID="btnVacationRequest" runat="server" CssClass="rp_servlnk2" OnClick="btnERS_Click"
+                                                    Text="Vacation Request" meta:resourcekey="btnVacationRequestResource1"></asp:LinkButton>
+                                                <br />
+                                            </div>
+                                            <div id="divComReq" runat="server">
+                                                <img src="../images/MasterPage_Images/rp_intarre<%=Session["Language"]%>.jpg" width="8"
+                                                    height="5" alt="" class="rp_arres1<%=Session["Language"]%>" />
+                                                <asp:LinkButton ID="btnCommissionRequest" runat="server" CssClass="rp_servlnk2" OnClick="btnERS_Click"
+                                                    Text="Commission Request" meta:resourcekey="btnCommissionRequestResource1"></asp:LinkButton>
+                                                <br />
+                                            </div>
+                                            <div id="divJobReq" runat="server">
+                                                <img src="../images/MasterPage_Images/rp_intarre<%=Session["Language"]%>.jpg" width="8"
+                                                    height="5" alt="" class="rp_arres1<%=Session["Language"]%>" />
+                                                <asp:LinkButton ID="btnJobAssignmentRequest" runat="server" CssClass="rp_servlnk2" OnClick="btnERS_Click"
+                                                    Text="Job Assignment Request" meta:resourcekey="btnJobAssignmentRequestResource1"></asp:LinkButton>
+                                                <br />
+                                            </div>
+                                            <div id="divLicReq" runat="server">
+                                                <img src="../images/MasterPage_Images/rp_intarre<%=Session["Language"]%>.jpg" width="8"
+                                                    height="5" alt="" class="rp_arres1<%=Session["Language"]%>" />
+                                                <asp:LinkButton ID="btnAdministrativeLicensesRequest" runat="server" CssClass="rp_servlnk2" OnClick="btnERS_Click"
+                                                    Text="Administrative Licenses Request" meta:resourcekey="btnAdministrativeLicensesRequestResource1"></asp:LinkButton>
+                                                <br />
+                                            </div>
+                                            <div id="divExcReq" runat="server">
+                                                <img src="../images/MasterPage_Images/rp_intarre<%=Session["Language"]%>.jpg" width="8"
+                                                    height="5" alt="" class="rp_arres1<%=Session["Language"]%>" />
+                                                <asp:LinkButton ID="btnExcuseRequest" runat="server" CssClass="rp_servlnk2" OnClick="btnERS_Click"
+                                                    Text="Excuse Request" meta:resourcekey="btnExcuseRequestResource1"></asp:LinkButton>
+                                                <br />
+                                            </div>
+                                            <div id="divESHReq" runat="server">
+                                                <img src="../images/MasterPage_Images/rp_intarre<%=Session["Language"]%>.jpg" width="8"
+                                                    height="5" alt="" class="rp_arres1<%=Session["Language"]%>" />
+                                                <asp:LinkButton ID="btnShiftExcuseRequest" runat="server" CssClass="rp_servlnk2"
+                                                    OnClick="btnERS_Click" Text="Shift Excuse Request" meta:resourcekey="btnShiftExcuseRequestResource1"></asp:LinkButton>
+                                                <br />
+                                            </div>
+                                        </div>
+                                        <div id="divERSSwap" runat="server">
+                                            <img src="../images/MasterPage_Images/rp_intarre<%=Session["Language"]%>.jpg" width="8"
+                                                height="5" alt="" class="rp_arres1<%=Session["Language"]%>" />
+                                            <asp:LinkButton ID="btnShiftSwapRequest" runat="server" CssClass="rp_servlnk2" OnClick="btnERS_Click"
+                                                Text="Shift Swap Request" meta:resourcekey="btnShiftSwapRequestResource1"></asp:LinkButton>
+                                            <br />
+                                            <img src="../images/MasterPage_Images/rp_intarre<%=Session["Language"]%>.jpg" width="8"
+                                                height="5" alt="" class="rp_arres1<%=Session["Language"]%>" />
+                                            <asp:LinkButton ID="btnShiftSwapEmployeeApproval" runat="server" CssClass="rp_servlnk2"
+                                                OnClick="btnERS_Click" Text="Shift Swap Employee Approval" meta:resourcekey="btnShiftSwapEmployeeApprovalResource1"></asp:LinkButton>
+                                            <br />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div id="divAdmin" runat="server" visible="false">
+                                <div class="rp_realpad">
+
+                                    <span class="rp_realtitbg headerExpand">
+
+                                        <asp:Label ID="lblAdminTitel" runat="server" Text="Admin" CssClass="Titel_DivLeftPanel"
+                                            meta:resourcekey="lblAdminTitelResource1"></asp:Label>
+                                    </span>
+                                    <%--class="rp_arres<%#Session["Language"]%>"--%>
+                                    <div class="contentExpand">
+                                        <%--<asp:Image ID="Image2" runat="server" ImageUrl="~/images/MasterPage_Images/rp_intarreEN.jpg" class="rp_arres<%# Session["Language"].ToString() %>" />--%>
+                                        <img src="./images/MasterPage_Images/rp_intarre<%=Session["Language"]%>.jpg" width="8"
+                                            height="5" alt="" class="rp_arres<%=Session["Language"]%>" />
+                                        <asp:LinkButton ID="btnConnString" runat="server" CssClass="rp_servlnk1" OnClick="btnAdmin_Click"
+                                            Text="Connection string" meta:resourcekey="btnConnStringResource1"></asp:LinkButton>
+                                        <br />
+
+
+
+                                        <img src="./images/MasterPage_Images/rp_intarre<%=Session["Language"]%>.jpg" width="8"
+                                            height="5" alt="" class="rp_arres1<%=Session["Language"]%>" />
+                                        <asp:LinkButton ID="btnDepartmentLevel" runat="server" CssClass="rp_servlnk2" OnClick="btnAdmin_Click"
+                                            Text="Department Level" meta:resourcekey="btnDepartmentLevelResource1"></asp:LinkButton>
+                                        <br />
+
+                                        <img src="images/MasterPage_Images/rp_intarre<%=Session["Language"]%>.jpg" width="8"
+                                            height="5" alt="" class="rp_arres1<%=Session["Language"]%>" />
+                                        <asp:LinkButton ID="btnADSetting" runat="server" CssClass="rp_servlnk2" OnClick="btnAdmin_Click"
+                                            Text="Active Directory Setting" meta:resourcekey="btnADSettingResource1"></asp:LinkButton>
+                                        <br />
+
+                                        <img src="../images/MasterPage_Images/rp_intarre<%=Session["Language"]%>.jpg" width="8"
+                                            height="5" alt="" class="rp_arres1<%=Session["Language"]%>" />
+                                        <asp:LinkButton ID="btnEmailSetting" runat="server" CssClass="rp_servlnk2" OnClick="btnAdmin_Click"
+                                            Text="Email Setting" meta:resourcekey="btnEmailSettingResource1"></asp:LinkButton>
+                                        <br />
+
+                                        <img src="../images/MasterPage_Images/rp_intarre<%=Session["Language"]%>.jpg" width="8"
+                                            height="5" alt="" class="rp_arres1<%=Session["Language"]%>" />
+                                        <asp:LinkButton ID="btnSpErrors" runat="server" CssClass="rp_servlnk2" OnClick="btnAdmin_Click"
+                                            Text="Procedure Errors" meta:resourcekey="btnSpErrorsResource1">
+                                        </asp:LinkButton>
+                                        <br />
+
+                                        <img src="../images/MasterPage_Images/rp_intarre<%=Session["Language"]%>.jpg" width="8"
+                                            height="5" alt="" class="rp_arres1<%=Session["Language"]%>" />
+                                        <asp:LinkButton ID="btnAspErrors" runat="server" CssClass="rp_servlnk2"
+                                            OnClick="btnAdmin_Click" Text="ASP.NET Errors" meta:resourcekey="btnAspErrorsResource1"></asp:LinkButton>
+                                        <br />
+
+                                        <img src="../images/MasterPage_Images/rp_intarre<%=Session["Language"]%>.jpg" width="8"
+                                            height="5" alt="" class="rp_arres1<%=Session["Language"]%>" />
+                                        <asp:LinkButton ID="btnMacErrors" runat="server" CssClass="rp_servlnk2"
+                                            OnClick="btnAdmin_Click" Text="Machine Errors" meta:resourcekey="btnMacErrorsResource1"></asp:LinkButton>
+                                        <br />
+
+                                        <img src="../images/MasterPage_Images/rp_intarre<%=Session["Language"]%>.jpg" width="8"
+                                            height="5" alt="" class="rp_arres1<%=Session["Language"]%>" />
+                                        <asp:LinkButton ID="btnReqEnabled" runat="server" CssClass="rp_servlnk2"
+                                            OnClick="btnAdmin_Click" Text="Requests Enabled" meta:resourcekey="btnReqEnabledResource1"></asp:LinkButton>
+                                        <br />
+                                    </div>
+
+                                </div>
+
+                                <br />
+                            </div>
+                            <asp:UpdatePanel ID="upMonthSummary" runat="server">
+                                <ContentTemplate>
+                                    <div id="divMonthSummary" runat="server" visible="False">
+                                        <div class="rp_realpad">
+
+                                            <span class="rp_realtitbg headerExpand">
+
+                                                <asp:Label ID="lblMonthSummary" runat="server" Text="Month Summary" CssClass="Titel_DivLeftPanel2"
+                                                    meta:resourcekey="lblMonthSummaryResource1"></asp:Label>
+                                            </span>
+                                            <div class="contentExpand">
+                                                <table class="DivLeftPanel<%=Session["Language"]%>">
+                                                    <tr id="trActualWorkDuration" runat="server">
+                                                        <td>
+                                                            <asp:Label ID="lblActualWorkDuration" runat="server" Text="Actual Work Duration"
+                                                                CssClass="label_DivLeftPanel" meta:resourcekey="lblActualWorkDurationResource1"></asp:Label>
+                                                        </td>
+                                                        <td>
+                                                            <asp:Label ID="lblActualWorkDurationValue" runat="server" Text="00:00:00" CssClass="label_DivLeftPanel"
+                                                                meta:resourcekey="lblActualWorkDurationValueResource1"></asp:Label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="trWorkDuration" runat="server">
+                                                        <td>
+                                                            <asp:Label ID="lblWorkDuration" runat="server" Text="Work Duration" CssClass="label_DivLeftPanel"
+                                                                meta:resourcekey="lblWorkDurationResource1"></asp:Label>
+                                                        </td>
+                                                        <td>
+                                                            <asp:Label ID="lblWorkDurationValue" runat="server" Text="00:00:00" CssClass="label_DivLeftPanel"
+                                                                meta:resourcekey="lblWorkDurationValueResource1"></asp:Label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="trWorkingDays" runat="server">
+                                                        <td>
+                                                            <asp:Label ID="lblWorkingDays" runat="server" Text="Working Days" CssClass="label_DivLeftPanel"
+                                                                meta:resourcekey="lblWorkingDaysResource1"></asp:Label>
+                                                        </td>
+                                                        <td>
+                                                            <asp:Label ID="lblWorkingDaysValue" runat="server" Text="0 Day(s)" CssClass="label_DivLeftPanel"
+                                                                meta:resourcekey="lblWorkingDaysValueResource1"></asp:Label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="trDaysPresent" runat="server">
+                                                        <td>
+                                                            <asp:Label ID="lblDaysPresent" runat="server" Text="Days Present" CssClass="label_DivLeftPanel"
+                                                                meta:resourcekey="lblDaysPresentResource1"></asp:Label>
+                                                        </td>
+                                                        <td>
+                                                            <asp:Label ID="lblDaysPresentValue" runat="server" Text="0 Day(s)" CssClass="label_DivLeftPanel"
+                                                                meta:resourcekey="lblDaysPresentValueResource1"></asp:Label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="trDaysAbsent" runat="server">
+                                                        <td>
+                                                            <asp:Label ID="lblDaysAbsent" runat="server" Text="Days Absent" CssClass="label_DivLeftPanel"
+                                                                meta:resourcekey="lblDaysAbsentResource1"></asp:Label>
+                                                        </td>
+                                                        <td>
+                                                            <asp:Label ID="lblDaysAbsentValue" runat="server" Text="0 Day(s)" CssClass="label_DivLeftPanel"
+                                                                meta:resourcekey="lblDaysAbsentValueResource1"></asp:Label>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr id="trShiftsAbsent" runat="server">
+                                                        <td>
+                                                            <asp:Label ID="lblShiftsAbsent" runat="server" Text="Shifts Absent" CssClass="label_DivLeftPanel"
+                                                                meta:resourcekey="lblShiftsAbsentResource1"></asp:Label>
+                                                        </td>
+                                                        <td>
+                                                            <asp:Label ID="lblShiftsAbsentValue" runat="server" Text="0 Shift(s)" CssClass="label_DivLeftPanel"
+                                                                meta:resourcekey="lblShiftsAbsentValueResource1"></asp:Label>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr id="trBeginLate" runat="server">
+                                                        <td>
+                                                            <asp:Label ID="lblBeginLate" runat="server" Text="Begin Late" CssClass="label_DivLeftPanel"
+                                                                meta:resourcekey="lblBeginLateResource1"></asp:Label>
+                                                        </td>
+                                                        <td>
+                                                            <asp:Label ID="lblBeginLateValue" runat="server" Text="00:00:00" CssClass="label_DivLeftPanel"
+                                                                meta:resourcekey="lblBeginLateValueResource1"></asp:Label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="trOutEarly" runat="server">
+                                                        <td>
+                                                            <asp:Label ID="lblOutEarly" runat="server" Text="Out Early" CssClass="label_DivLeftPanel"
+                                                                meta:resourcekey="lblOutEarlyResource1"></asp:Label>
+                                                        </td>
+                                                        <td>
+                                                            <asp:Label ID="lblOutEarlyValue" runat="server" Text="00:00:00" CssClass="label_DivLeftPanel"
+                                                                meta:resourcekey="lblOutEarlyValueResource1"></asp:Label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="trGapWithoutExcuse" runat="server">
+                                                        <td>
+                                                            <asp:Label ID="lblGapWithoutExcuse" runat="server" Text="Gap Without Excuse" CssClass="label_DivLeftPanel"
+                                                                meta:resourcekey="lblGapWithoutExcuseResource1"></asp:Label>
+                                                        </td>
+                                                        <td>
+                                                            <asp:Label ID="lblGapWithoutExcuseValue" runat="server" Text="00:00:00" CssClass="label_DivLeftPanel"
+                                                                meta:resourcekey="lblGapWithoutExcuseValueResource1"></asp:Label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="trGapWithUnpaidExcuse" runat="server">
+                                                        <td>
+                                                            <asp:Label ID="lblGapWithUnpaidExcuse" runat="server" Text="Gap Unpaid Excuse" CssClass="label_DivLeftPanel"
+                                                                meta:resourcekey="lblGapWithUnpaidExcuseResource1"></asp:Label>
+                                                        </td>
+                                                        <td>
+                                                            <asp:Label ID="lblGapWithUnpaidExcuseValue" runat="server" Text="00:00:00" CssClass="label_DivLeftPanel"
+                                                                meta:resourcekey="lblGapWithUnpaidExcuseValueResource1"></asp:Label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="trGapWithPaidExcuse" runat="server">
+                                                        <td>
+                                                            <asp:Label ID="lblGapWithPaidExcuse" runat="server" Text="Gap Paid Excuse" CssClass="label_DivLeftPanel"
+                                                                meta:resourcekey="lblGapWithPaidExcuseResource1"></asp:Label>
+                                                        </td>
+                                                        <td>
+                                                            <asp:Label ID="lblGapWithPaidExcuseValue" runat="server" Text="00:00:00" CssClass="label_DivLeftPanel"
+                                                                meta:resourcekey="lblGapWithPaidExcuseValueResource1"></asp:Label>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr id="trShiftAbsentWithoutExcuse" runat="server">
+                                                        <td>
+                                                            <asp:Label ID="lblShiftAbsentWithoutExcuse" runat="server" Text="Shift Absent Without Excuse"
+                                                                CssClass="label_DivLeftPanel" meta:resourcekey="lblShiftAbsentWithoutExcuseResource1"></asp:Label>
+                                                        </td>
+                                                        <td>
+                                                            <asp:Label ID="lblShiftAbsentWithoutExcuseValue" runat="server" Text="0 Shift(s)"
+                                                                CssClass="label_DivLeftPanel" meta:resourcekey="lblShiftAbsentWithoutExcuseValueResource1"></asp:Label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="trShiftAbsentWithUnpaidExcuse" runat="server">
+                                                        <td>
+                                                            <asp:Label ID="lblShiftAbsentWithUnpaidExcuse" runat="server" Text="Shift Absent Unpaid Excuse"
+                                                                CssClass="label_DivLeftPanel" meta:resourcekey="lblShiftAbsentWithUnpaidExcuseResource1"></asp:Label>
+                                                        </td>
+                                                        <td>
+                                                            <asp:Label ID="lblShiftAbsentWithUnpaidExcuseValue" runat="server" Text="0 Shift(s)"
+                                                                CssClass="label_DivLeftPanel" meta:resourcekey="lblShiftAbsentWithUnpaidExcuseValueResource1"></asp:Label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="trShiftAbsentWithPaidExcuse" runat="server">
+                                                        <td>
+                                                            <asp:Label ID="lblShiftAbsentWithPaidExcuse" runat="server" Text="Shift Absent Paid Excuse"
+                                                                CssClass="label_DivLeftPanel" meta:resourcekey="lblShiftAbsentWithPaidExcuseResource1"></asp:Label>
+                                                        </td>
+                                                        <td>
+                                                            <asp:Label ID="lblShiftAbsentWithPaidExcuseValue" runat="server" Text="0 Shift(s)"
+                                                                CssClass="label_DivLeftPanel" meta:resourcekey="lblShiftAbsentWithPaidExcuseValueResource1"></asp:Label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="trDaysAbsentWithoutExcuse" runat="server">
+                                                        <td>
+                                                            <asp:Label ID="lblDaysAbsentWithoutExcuse" runat="server" Text="Days Absent Without Excuse"
+                                                                CssClass="label_DivLeftPanel" meta:resourcekey="lblDaysAbsentWithoutExcuseResource1"></asp:Label>
+                                                        </td>
+                                                        <td>
+                                                            <asp:Label ID="lblDaysAbsentWithoutExcuseValue" runat="server" Text="0 Day(s)" CssClass="label_DivLeftPanel"
+                                                                meta:resourcekey="lblDaysAbsentWithoutExcuseValueResource1"></asp:Label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="trDaysAbsentWithUnpaidExcuse" runat="server">
+                                                        <td>
+                                                            <asp:Label ID="lblDaysAbsentWithUnpaidExcuse" runat="server" Text="Days Absent Unpaid Excuse"
+                                                                CssClass="label_DivLeftPanel" meta:resourcekey="lblDaysAbsentWithUnpaidExcuseResource1"></asp:Label>
+                                                        </td>
+                                                        <td>
+                                                            <asp:Label ID="lblDaysAbsentWithUnpaidExcuseValue" runat="server" Text="0 Day(s)"
+                                                                CssClass="label_DivLeftPanel" meta:resourcekey="lblDaysAbsentWithUnpaidExcuseValueResource1"></asp:Label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="trDaysAbsentWithPaidExcuse" runat="server">
+                                                        <td>
+                                                            <asp:Label ID="lblDaysAbsentWithPaidExcuse" runat="server" Text="Days Absent Paid Excuse"
+                                                                CssClass="label_DivLeftPanel" meta:resourcekey="lblDaysAbsentWithPaidExcuseResource1"></asp:Label>
+                                                        </td>
+                                                        <td>
+                                                            <asp:Label ID="lblDaysAbsentWithPaidExcuseValue" runat="server" Text="0 Day(s)" CssClass="label_DivLeftPanel"
+                                                                meta:resourcekey="lblDaysAbsentWithPaidExcuseValueResource1"></asp:Label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr id="trTotalOverTime" runat="server">
+                                                        <td>
+                                                            <asp:Label ID="lblTotalOverTime" runat="server" Text="Total Overtime" CssClass="label_DivLeftPanel"
+                                                                meta:resourcekey="lblTotalOverTimeResource1"></asp:Label>
+                                                        </td>
+                                                        <td>
+                                                            <asp:Label ID="lblTotalOverTimeValue" runat="server" Text="00:00:00" CssClass="label_DivLeftPanel"
+                                                                meta:resourcekey="lblTotalOverTimeValueResource1"></asp:Label>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </ContentTemplate>
+                            </asp:UpdatePanel>
+                        </div>
+                            </div>
+
+                        <div id="lp_padd">
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div id='LocalDialogModal' style="display: none">
+                <h1>Session About To Timeout - AMSWEB </h1>
+                <center>
+                <h1>مهلة الخروج من النظام</h1>
+            </center>
+                <center>
+
+                <p>
+                    You will be automatically logged out in 1 minute.<br />
+                    To remain logged in move your mouse over this window.
+                </p>
+            </center>
+                <br />
+                <center>
+                <p>
+                    سوف يتم تسجيل الخروج تلقائيا خلال دقيقة واحدة
+                    <br />
+                    <br />
+                    لتبقى مسجلا قم بتحريك الماوس في هذه النافذة
+        
+                </p>
+            </center>
+            </div>
+
+        </div>
+        <div id="ft_padd" class="footer">
+
+            <asp:LinkButton ID="LnkHome" runat="server" OnClick="LnkHome_Click" CssClass="ft_home"
+                meta:resourcekey="LnkHomeResource1">Home Page</asp:LinkButton>
+
+
+
+            <asp:LinkButton ID="lnkAboutUs" runat="server" CssClass="ft_abt" meta:resourcekey="lnkAboutUsResource1">About us</asp:LinkButton>
+
+
+
+            <asp:LinkButton ID="lnkPolicy" runat="server" CssClass="ft_cnt"
+                meta:resourcekey="lnkPolicyResource1" OnClick="lnkPolicy_Click">Policies and Procedures</asp:LinkButton>
+
+            <div class="clearfix"></div>
+            <asp:Label ID="lblcopyrights" runat="server" Text="copyrights Almaalim 2005-" meta:resourcekey="lblcopyrightsResource1" />
+
+            <asp:Label ID="lblcurrentYear" runat="server" meta:resourcekey="lblcurrentYearResource1" />
+
+            <asp:Label ID="lblRights" runat="server" Text=". All Rights Reserved." meta:resourcekey="lblRightsResource1" />
+
+        </div>
+
+    </form>
+</body>
+<%--<body onresize="resizeWindow()" onload="resizeWindow()" onbeforeunload="doUnload();" >  <%--onbeforeunload="doUnload()"  onmousedown="somefunction()"</body>--%>
+</html>
