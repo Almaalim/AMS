@@ -45,7 +45,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
             //Session.SessionID
             //try {// Response.AppendHeader("Refresh", Convert.ToString((Session.Timeout * 60) + 10) + "; URL=Login.aspx"); }
             //catch (Exception ex) { }
-
+             
             if (!IsPostBack)
             {
                 ChangeLogo();
@@ -59,8 +59,10 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
 
                 if (pgCs.LoginType == "USR")
                 {
-                    FillFavPage();
-                    FillFavReport();
+                    //FillFavPage();
+                    //FillFavReport();
+                    //FillFavForm();
+                    FillFavForm();
                     ShowIsExistingRequest(ERSLic);
                     lnkShortcut.Enabled  = true;
                 }
@@ -419,7 +421,10 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
 
             if (!string.IsNullOrEmpty(QMuen.ToString())) { QMuen.Append(" ORDER BY MnuOrder"); }
 
+            ViewState["QMuen"] = QMuen.ToString();
+
             FillMenu(QMuen.ToString());
+            FillSideMenu(QMuen.ToString());
         }
         catch (Exception ex) { }
     }
@@ -457,7 +462,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
         StringBuilder QMuen = new StringBuilder();
 
         string lang     = (pgCs.Lang == "AR") ? "Ar" : "En";
-        string DescCol  = (pgCs.Lang == "AR") ? "MnuArabicDescription" : "MnuDescription";
+        string DescCol  = (pgCs.Lang == "AR") ? "MnuDescription" : "MnuDescription";
         string listPage = "'ERS_MainMenu','ERS_SubMenu'";
             
         Hashtable Reqht = pgCs.GetAllRequestPerm();
@@ -483,7 +488,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
         StringBuilder QMuen = new StringBuilder();
 
         string lang     = (pgCs.Lang == "AR") ? "Ar" : "En";
-        string DescCol  = (pgCs.Lang == "AR") ? "MnuArabicDescription" : "MnuDescription";
+        string DescCol  = (pgCs.Lang == "AR") ? "MnuDescription" : "MnuDescription";
         string listPage = "'AD_MainMenu','AD_SubMenu'";
             
         QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText," + DescCol + " as MnuDescription,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder ");
@@ -499,6 +504,75 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
         MuenDS = DBCs.FetchMenuData(QMuen.ToString());
         xmlDataSource.Data = MuenDS.GetXml();
     }  
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void FillSideMenu(string QMuen)
+    {
+        bool isFirst = true; 
+        string FirstItem = "";
+        string SMultiItem = "<div class='square-mult'>";
+        string EMultiItem = "</div>";
+        string MultiItem = "";
+        int iMultiItem = 0;
+
+        DataTable DT = DBCs.FetchData(new SqlCommand(QMuen));
+        if (!DBCs.IsNullOrEmpty(DT))
+        { 
+            DataRow[] DRs = DT.Select("MnuParentID = 0");
+
+            foreach(DataRow DR in DRs)
+            {
+                DataRow[] SDRs = DT.Select("MnuParentID = " + DR["MnuNumber"].ToString() + "");
+                if (SDRs.Length > 0)
+                { 
+                    Label _lbl = new Label();
+                    _lbl.ID    = "lbl_" + DR["MnuNumber"].ToString();
+                    _lbl.Text  = DR["MnuText"].ToString();
+                    _lbl.CssClass = "menu-subtitle";
+                    divSideMenu.Controls.Add(_lbl);              
+                }
+
+                isFirst = true;
+                FirstItem = "";
+                MultiItem = "";
+                iMultiItem = 0;
+                foreach (DataRow SDR in SDRs)
+                {
+                    if (isFirst)
+                    {
+                        FirstItem = "<div class='square-big'>";
+                        FirstItem += "<a title='" + SDR["MnuText"].ToString() + "' class='SideMenuItem' href='" + SDR["MnuURL"].ToString().Replace("~", "..") + "'>" + SDR["MnuText"].ToString() + "</a>";
+                        FirstItem += "</div>";
+                        isFirst = false;
+                    }
+                    else
+                    {
+                        if (iMultiItem >= 4)  { iMultiItem = 0; }
+                        iMultiItem += 1;
+                        if (iMultiItem == 1) { MultiItem += SMultiItem; }
+
+                        MultiItem += "<div class='sub-square'>";
+                        MultiItem += "<a title='" + SDR["MnuText"].ToString() + "' class='SideMenuItem' href='" + SDR["MnuURL"].ToString().Replace("~", "..") + "'>" + SDR["MnuText"].ToString() + "</a>";
+                        MultiItem += "</div>";
+
+                        if (iMultiItem == 4) { MultiItem += EMultiItem; }
+                    }
+                }
+                if (!string.IsNullOrEmpty(MultiItem) && iMultiItem < 4) {  MultiItem += EMultiItem; }
+
+
+                if (!string.IsNullOrEmpty(FirstItem)) { divSideMenu.Controls.Add(new LiteralControl("<div class='squares'>")); }               
+                if (!string.IsNullOrEmpty(FirstItem)) { divSideMenu.Controls.Add(new LiteralControl(FirstItem)); }
+                if (!string.IsNullOrEmpty(MultiItem)) 
+                { 
+                    //divSideMenu.Controls.Add(new LiteralControl(SMultiItem)); 
+                    divSideMenu.Controls.Add(new LiteralControl(MultiItem)); 
+                    //divSideMenu.Controls.Add(new LiteralControl(EMultiItem)); 
+                }
+                if (!string.IsNullOrEmpty(FirstItem)) { divSideMenu.Controls.Add(new LiteralControl("</div>")); }
+            }
+        }
+    }  
 
     #endregion
     /*******************************************************************************************************************************/
@@ -509,7 +583,37 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
 
     /*******************************************************************************************************************************/
     /*******************************************************************************************************************************/
-    #region FavReport Events
+    #region FavForm Events
+
+    public void FillFavForm()
+    {
+        try
+        {
+            DataTable DT = DBCs.FetchData(" SELECT * FROM FavoriteFormsView WHERE FavUsrName = @P1 ORDER BY FavType ", new string[] { pgCs.LoginID });
+            foreach(DataRow DR in DT.Rows)
+            {
+                FavForm.Controls.Add(new LiteralControl("<li>"));
+                
+                LinkButton _lnk = new LinkButton();
+                _lnk.ID       = "lnk_GoFavForm_" + DR["FavID"].ToString();
+                _lnk.CssClass = "folder"; //CssClass="home"
+
+                if (DR["FavType"].ToString() == "P") { _lnk.PostBackUrl = DR["FormUrl"].ToString(); }
+                else if (DR["FavType"].ToString() == "R") { _lnk.PostBackUrl = "~/Pages_Report/ReportViewer.aspx?ID=" + DR["FavID"].ToString() + "_" + DR["FavFormID"].ToString(); }
+
+                Label _lbl = new Label();
+                _lbl.ID    = "lbl_" + DR["FavID"].ToString();
+                _lbl.Text  = DR[General.Msg("FormNameEn","FormNameAr")].ToString();
+                _lnk.Controls.Add(_lbl);              
+                FavForm.Controls.Add(_lnk); 
+
+                FavForm.Controls.Add(new LiteralControl("</li>"));
+            }
+        }
+        catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
+    }
+
+
 
     public void FillFavReport()
     {

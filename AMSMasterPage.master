@@ -46,11 +46,15 @@
                     
                 });
             }
-
+            
             $("div[class*='col']").each(function () {
+                if ($(this).children(".RequiredField").length > 0) {
+                    $(this).addClass("RequiredFieldDiv");
+                }
                 var $this = $(this);
 
                 $this.html($this.html().replace(/&nbsp;/g, ''));
+                
             });
             var colors = ["009ad7", "ffaa31", "68af27", "c22439", "005683", "622695", "d13f2a"];
 
@@ -400,86 +404,13 @@
                                 <asp:Label ID="Label2" runat="server" Text="Label" CssClass="menu-subtitle">QuickLinks</asp:Label>
 
                                 <%--Menu Left Shortcuts--%>
-                                <ul class="apps">
-
-                                    <li>
-                                        <asp:LinkButton ID="LinkButton1" runat="server" CssClass="folder">
-
-                                            <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
-                                        </asp:LinkButton></li>
-                                    <li>
-                                        <asp:LinkButton ID="LinkButton2" runat="server" CssClass="home">
-
-                                            <asp:Label ID="Label4" runat="server" Text="Label"></asp:Label>
-                                        </asp:LinkButton></li>
-                                    <li>
-                                        <asp:LinkButton ID="LinkButton3" runat="server" CssClass="folder">
-
-                                            <asp:Label ID="Label5" runat="server" Text="Label"></asp:Label>
-                                        </asp:LinkButton></li>
-                                    <li>
-                                        <asp:LinkButton ID="LinkButton4" runat="server" CssClass="home">
-
-                                            <asp:Label ID="Label6" runat="server" Text="Label"></asp:Label>
-                                        </asp:LinkButton></li>
-                                    <li>
-                                        <asp:LinkButton ID="LinkButton5" runat="server" CssClass="folder">
-
-                                            <asp:Label ID="Label7" runat="server" Text="Label"></asp:Label>
-                                        </asp:LinkButton></li>
-                                    <li>
-                                        <asp:LinkButton ID="LinkButton6" runat="server" CssClass="home">
-
-                                            <asp:Label ID="Label8" runat="server" Text="Label"></asp:Label>
-                                        </asp:LinkButton></li>
+                                <ul id="FavForm" runat="server" class="apps">
                                 </ul>
                                 <%--Menu Left Shortcuts--%>
                             </div>
-                            <div class="menu-grid">
-                                <%--Menu Main Item--%>
-                                <asp:Label ID="Label9" runat="server" Text="User" CssClass="menu-subtitle"></asp:Label>
-                                <%--Menu Main Item--%>
-
-                                <div class="squares">
-                                    <div class="square-big">
-                                        <%--menu Sub item--%>  <a title="Permission Group" class="SideMenuItem" href="../Pages_User/PermissionGroups.aspx">Permission Group</a><%--menu Sub item--%>
-                                    </div>
-                                    <div class="square-mult">
-                                        <div class="sub-square">
-                                            <%--menu Sub item--%>       <a title="Application User" class="SideMenuItem" href="../Pages_User/ApplicationUsers.aspx">Application User</a><%--menu Sub item--%>
-                                        </div>
-                                        <div class="sub-square">
-                                            <%--menu Sub item--%>  <a title="User’s Department Relation " class="SideMenuItem" href="../Pages_User/UserDepartments.aspx">User’s Department Relation </a><%--menu Sub item--%>
-                                        </div>
-                                        <div class="sub-square">
-                                            <%--menu Sub item--%>  <a title="Active Directory Users" class="SideMenuItem" href="../Pages_User/ADUsers.aspx">Active Directory Users</a><%--menu Sub item--%>
-                                        </div>
-                                        <div class="sub-square">
-
-                                            <%--menu Sub item--%>  <a title="Current User" class="SideMenuItem" href="../Pages_User/CurrentUsers.aspx">Current User</a><%--menu Sub item--%>
-                                        </div>
-                                    </div>
-                                    <div class="square-big">
-                                        <%--menu Sub item--%>     <a title="Permission Group" class="SideMenuItem" href="../Pages_User/PermissionGroups.aspx">Permission Group</a><%--menu Sub item--%>
-                                    </div>
-                                    <div class="square-mult">
-                                        <div class="sub-square">
-                                            <%--menu Sub item--%>  <a title="Application User" class="SideMenuItem" href="../Pages_User/ApplicationUsers.aspx">Application User</a><%--menu Sub item--%>
-                                        </div>
-                                        <div class="sub-square">
-                                            <%--menu Sub item--%>  <a title="User’s Department Relation " class="SideMenuItem" href="../Pages_User/UserDepartments.aspx">User’s Department Relation </a><%--menu Sub item--%>
-                                        </div>
-                                        <div class="sub-square">
-                                            <%--menu Sub item--%>  <a title="Active Directory Users" class="SideMenuItem" href="../Pages_User/ADUsers.aspx">Active Directory Users</a><%--menu Sub item--%>
-                                        </div>
-                                        <div class="sub-square">
-
-                                            <%--menu Sub item--%>  <a title="Current User" class="SideMenuItem" href="../Pages_User/CurrentUsers.aspx">Current User</a><%--menu Sub item--%>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-
+                            <div id="divSideMenu" runat="server" class="menu-grid">
+                               
+                                  
                             </div>
                         </div>
                     </div>

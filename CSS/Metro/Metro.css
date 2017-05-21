@@ -106,11 +106,13 @@ body {
 .Logo {
     float: left;
     width: auto;
-    height: 95px;
+    height: 82px;
+    width:393px;
+    background: top right url(../../images/Logo.png) no-repeat;
 }
 
     .Logo > img {
-        height: 50px;
+        display:none
     }
 
 .UserDetails, #ctl00_divMenu {
@@ -149,6 +151,7 @@ li.static {
     float: left;
     margin-bottom: 5px;
     width: 100%;
+    display:none;
 }
 
     .wrap-title .icon {
@@ -328,8 +331,13 @@ ul.level2 > li {
 }
 
 .reportsicon {
-    width: 23% !important;
+    width: 105px !important;
+    height: 105px !important;
+    font-size:10px !important;
+    text-align:left !important;
+    text-shadow: 1px 1px 0px rgba(0, 0, 10, 0.5);
 }
+
 
 .UtilityLinks a {
     color: #333333 !important;
@@ -479,6 +487,36 @@ ul.level2 > li {
     margin-right: 5px;
     font-size: 0px !important;
 }
+.RequiredFieldDiv:after
+{
+    border-bottom:1px solid #d13f2a;
+    display:block;
+    clear:both;
+    float:none;
+    content:" ";
+    
+    
+}
+.RequiredFieldDiv:before
+{
+    color: #d13f2a;
+    display:block;
+    clear:both;
+    float:none;
+    content:"*";
+    position:absolute;
+    right:15px;
+    font-size:25px;
+    top:5px;
+    animation: 2s changeColor ease infinite;
+    
+}
+@keyframes changeColor {
+  to {
+   text-shadow: 0px 0px 4px #d13f2a;
+  }
+   
+}
 
 .daysChk {
     display: inline-block;
@@ -509,7 +547,7 @@ a:active {
     padding: 10px 2px;
     border: 1px solid #fff;
     margin: 20px 5px;
-    width: 75px;
+    width: 78px;
     text-align: center;
     -moz-box-shadow: inset 0px 1px 0px 0px #54a3f7;
     -webkit-box-shadow: inset 0px 1px 0px 0px #54a3f7;
@@ -531,26 +569,27 @@ a:active {
 }
 
 .ReportBtns {
-    display: inline-block !important;
+   
     font-size: 13px;
+    
     color: #fff;
-    padding: 10px 2px;
+    padding: 10px 3px;
     border: 1px solid #fff;
     margin: 20px 5px;
-    width: 100%;
-    text-align: center;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    border-radius: 3px;
-    -webkit-box-shadow: 0px 0px 7px 1px rgba(2, 2, 2, 0.34);
-    -moz-box-shadow: 0px 0px 7px 1px rgba(2, 2, 2, 0.34);
-    box-shadow: 0px 0px 7px 1px rgba(2, 2, 2, 0.34);
+    
 }
 
-    .GenButton:before, .ReportBtns:before {
+    .GenButton:before {
         font-size: 22px;
         display: block;
         margin: 5px 13px;
+    }
+    .ReportBtns:before
+    {
+        font-size: 32px;
+    display: block;
+    margin: 10px 13px;
+    text-align:center !important;
     }
 
 .GenButton.disabled, .GenButton[disabled="disabled"], *[disabled="disabled"] {
@@ -3522,7 +3561,19 @@ a.level2.dynamic.JobCategory:before {
         height: 60px;
         font-size: 9px;
     }
-
+    .Logo
+    {
+        width:293px;
+        height:61px;
+        background-size:cover;
+    }
+    li.static {
+    height: 60px;
+}
+    a.level2.dynamic
+    {
+        font-size:10px;
+    }
         a.static:before {
             width: 30px;
             height: 30px;

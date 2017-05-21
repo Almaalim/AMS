@@ -633,29 +633,34 @@
                         </div>
 
                         <div class="row">
-                           <div class="col8">
-                                <asp:LinkButton ID="btnAddFavorite" runat="server" CssClass="GenButton" Height="18px" OnClick="btnAddFavorite_Click"
-                                    Text="&lt;img src=&quot;../images/Button_Icons/page_show.png&quot; /&gt; Add Favorite Report" Width="165px"
-                                    ValidationGroup="vgFav" meta:resourcekey="btnAddFavoriteResource1"></asp:LinkButton>
-
+                          
+                            <div class="col2">
                                 <span id="spnFavNameEn" runat="server" class="RequiredField">*</span>
                                 <asp:Label ID="lblFavNameEn" runat="server" Text="Name (En) :"></asp:Label>
-                                &nbsp;
-                                &nbsp;
-                                <asp:TextBox ID="txtFavNameEn" runat="server" AutoCompleteType="Disabled" Enabled="False" Width="175px"></asp:TextBox>
-                                
+                                  </div>
+                            <div class="col2">
+                                <asp:TextBox ID="txtFavNameEn" runat="server" AutoCompleteType="Disabled" Enabled="False" ></asp:TextBox>
+                                  </div>
+                            <div class="col2">
                                 <span id="spnFavNameAr" runat="server" class="RequiredField">*</span>
                                 <asp:Label ID="lblFavNameAr" runat="server" Text="Name (Ar) :"></asp:Label>
-                                &nbsp;
-                                &nbsp;
-                                <asp:TextBox ID="txtFavNameAr" runat="server" AutoCompleteType="Disabled" Enabled="False" Width="175px"></asp:TextBox>
-                               
-                                <asp:LinkButton ID="btnFavSave" runat="server" ValidationGroup="vgShow" CssClass="GenButton" OnClick="btnFavSave_Click" 
-                                Width="70px" Height="18px" Text="&lt;img src=&quot;../images/Button_Icons/button_storage.png&quot; /&gt; Save"></asp:LinkButton>
+                                 </div>
+                            <div class="col2">
+                                <asp:TextBox ID="txtFavNameAr" runat="server" AutoCompleteType="Disabled" Enabled="False" ></asp:TextBox>
+                                 </div>
+                            </div>
+
+                        <div class="row">
+                            <div class="col8">
+                                <asp:LinkButton ID="btnAddFavorite" runat="server" CssClass="GenButton glyphicon glyphicon-star"   OnClick="btnAddFavorite_Click"
+                                    Text="&lt;img src=&quot;../images/Button_Icons/page_show.png&quot; /&gt; Add Favorite Report"  
+                                    ValidationGroup="vgFav" meta:resourcekey="btnAddFavoriteResource1"></asp:LinkButton>
+                                <asp:LinkButton ID="btnFavSave" runat="server" ValidationGroup="vgShow" CssClass="GenButton glyphicon glyphicon-floppy-disk" OnClick="btnFavSave_Click" 
+                                Text="&lt;img src=&quot;../images/Button_Icons/button_storage.png&quot; /&gt; Save"></asp:LinkButton>
                            
-                                &nbsp;
-                                <asp:LinkButton ID="btnFavCancel" runat="server" CssClass="GenButton" OnClick="btnFavCancel_Click"
-                                    Width="70px" Height="18px" Text="&lt;img src=&quot;../images/Button_Icons/button_Cancel.png&quot; /&gt; Cancel"></asp:LinkButton>
+                                
+                                <asp:LinkButton ID="btnFavCancel" runat="server" CssClass="GenButton glyphicon glyphicon-remove-circle" OnClick="btnFavCancel_Click"
+                                     Text="&lt;img src=&quot;../images/Button_Icons/button_Cancel.png&quot; /&gt; Cancel"></asp:LinkButton>
                             </div>
                         </div>
 

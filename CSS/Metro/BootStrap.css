@@ -1669,6 +1669,7 @@ font-family: FontAwesome;
 color:#c22439;
 font-size:17px;
     content: "\f006";
+    display:none;
     }
 #reqUsername:before, #Fullname:before, #cvEmpID:before, #rfvLanguage:before, #Password:before, #cvEmail:before, #cdvMobileNo:before, #cvADUser:before, #cvShowMsg:before, .CustomValidator:before, .DateExp:before  {
     font-family: 'Glyphicons Halflings';

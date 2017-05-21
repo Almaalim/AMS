@@ -18,47 +18,67 @@
         <Triggers>
             <asp:PostBackTrigger ControlID="btnChartsFilter" />
         </Triggers>
-        
+
         <ContentTemplate>
-             <div id="DivList" class="row" runat="server">
-                <div class="col8">
-                    <asp:Label ID="lblDepChartsFilter" runat="server" Text=" Department:" Width="120px"></asp:Label>
-                    <asp:DropDownList ID="ddlDepChartsFilter" runat="server" Width="250px" onselectedindexchanged="ddlDepChartsFilter_SelectedIndexChanged" AutoPostBack="True">
+            <div id="DivList" class="row" runat="server">
+                <div class="col2">
+                    <asp:Label ID="lblDepChartsFilter" runat="server" Text=" Department:"></asp:Label>
+                </div>
+                <div class="col4">
+                    <asp:DropDownList ID="ddlDepChartsFilter" runat="server" OnSelectedIndexChanged="ddlDepChartsFilter_SelectedIndexChanged" AutoPostBack="True">
                     </asp:DropDownList>
-                    <asp:Label ID="lblEmpChartsFilter" runat="server" Text=" Employee:" Width="120px"></asp:Label>
-                    <asp:DropDownList ID="ddlEmpChartsFilter" runat="server" Width="250px"></asp:DropDownList>
+                </div>
+                <div class="col2">
+                    <asp:Label ID="lblEmpChartsFilter" runat="server" Text=" Employee:"></asp:Label>
+                </div>
+                <div class="col4">
+                    <asp:DropDownList ID="ddlEmpChartsFilter" runat="server"></asp:DropDownList>
                 </div>
             </div>
-            
+
             <div class="row" runat="server">
-                <div class="col8">
-                   <asp:Label ID="lblTypeChartsFilter" runat="server" Text=" Type:" Width="120px"></asp:Label>
-                   <asp:DropDownList ID="ddlTypeChartsFilter" runat="server" Width="250px" onselectedindexchanged="ddlTypeChartsFilter_SelectedIndexChanged" AutoPostBack="True">
+                <div class="col2">
+                    <asp:Label ID="lblTypeChartsFilter" runat="server" Text=" Type:"></asp:Label>
+                </div>
+                <div class="col4">
+                    <asp:DropDownList ID="ddlTypeChartsFilter" runat="server" OnSelectedIndexChanged="ddlTypeChartsFilter_SelectedIndexChanged" AutoPostBack="True">
                         <asp:ListItem Value="M" Text="Monthly"></asp:ListItem>
                         <asp:ListItem Value="D" Text="Daily"></asp:ListItem>
                     </asp:DropDownList>
-                    <div id="DivMonth" runat="server" class="col8">
-                        <asp:Label ID="lblMonth" runat="server" Text="Month:"></asp:Label>
-                        &nbsp;
-                        <asp:DropDownList ID="ddlMonth" runat="server" Width="150px"></asp:DropDownList>
-                        &nbsp;
-                        <asp:Label ID="lblYear" runat="server" Text="Year:"></asp:Label>
-                        &nbsp;
-                        <asp:DropDownList ID="ddlYear" runat="server" Width="80px"></asp:DropDownList>
-                    </div>
-                    <div id="DivDay" runat="server" class="col8">
-                        <asp:Label ID="lblDate"  runat="server" Text="Date:"></asp:Label>   
-                        &nbsp;
-                        <Cal:Calendar2 ID="calDate" runat="server" CalendarType="System" ValidationGroup="" InitialValue="true" />
-                    </div>
                 </div>
             </div>
-            
+
+            <div id="DivMonth" runat="server" class="row">
+                
+                <div class="col2">
+                    <asp:Label ID="lblMonth" runat="server" Text="Month:"></asp:Label>
+                </div>
+            <div class="col4">
+                <asp:DropDownList ID="ddlMonth" runat="server"></asp:DropDownList>
+            </div>
+            <div class="col2">
+                <asp:Label ID="lblYear" runat="server" Text="Year:"></asp:Label>
+            </div>
+            <div class="col4">
+                <asp:DropDownList ID="ddlYear" runat="server"></asp:DropDownList>
+            </div>
+            </div>
+                    <div id="DivDay" runat="server" class="row">
+
+                        <div class="col2">
+                            <asp:Label ID="lblDate" runat="server" Text="Date:"></asp:Label>
+                        </div>
+                        <div class="col4">
+                            <Cal:Calendar2 ID="calDate" runat="server" CalendarType="System" ValidationGroup="" InitialValue="true" />
+                        </div>
+
+                    </div>
+
             <div class="row" runat="server">
                 <div class="col8">
-                    <asp:LinkButton ID="btnChartsFilter" runat="server" CssClass="GenButton  glyphicon glyphicon-plus-sign" 
-                        OnClick="btnChartsFilter_Click" 
-                        Text="&lt;img src=&quot;../images/Button_Icons/button_magnify.png&quot; /&gt; Search" ></asp:LinkButton>
+                    <asp:LinkButton ID="btnChartsFilter" runat="server" CssClass="GenButton  glyphicon glyphicon-plus-sign"
+                        OnClick="btnChartsFilter_Click"
+                        Text="&lt;img src=&quot;../images/Button_Icons/button_magnify.png&quot; /&gt; Search"></asp:LinkButton>
                 </div>
             </div>
 
@@ -80,18 +100,16 @@
                 </div>
             </div>
             <div class="row">
-                
-            <div class="col4">
-                
 
-            </div>
+                <div class="col4">
+                </div>
             </div>
             <div class="row" runat="server">
-               <div class="col6 ChartRed">
-                        <asp:Literal ID="LitChartAbsentDays" runat="server"></asp:Literal>
-                    </div>
+                <div class="col6 ChartRed">
+                    <asp:Literal ID="LitChartAbsentDays" runat="server"></asp:Literal>
+                </div>
                 <div class="col6 chartPurple">
-                   <asp:Literal ID="LitChartDurations" runat="server"></asp:Literal>
+                    <asp:Literal ID="LitChartDurations" runat="server"></asp:Literal>
                 </div>
             </div>
 
