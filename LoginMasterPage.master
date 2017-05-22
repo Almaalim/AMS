@@ -3,11 +3,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <link href="CSS/Metro/Metro.css" rel="stylesheet" />
     <title>Untitled Page</title>
     
       
         <%--Style--%>
-        <%--<link href="CSS/General.css" rel="stylesheet" type="text/css" />--%>
+        <%--<link href="CSS/General.css" rel="stylesheet" type="text/css" />
        
         <link href="CSS/VSStyle.css" rel="stylesheet" type="text/css" />
         <link href="CSS/MasterPageStyle.css" rel="stylesheet" type="text/css" />
@@ -56,16 +59,18 @@
 }
        
         </style>  
-        <%--/Style--%>
+        /Style--%>
 </head>
-<body>
+<body class="loginBody">
     <form id="form1" runat="server" >
         <div>
              <div id="main_block">
-                 <div id="innerblock">
+                 <div id="innerblock" class="LoginWrap">
              
                     <asp:contentplaceholder id="ContentPlaceHolder1" runat="server"></asp:contentplaceholder>
-                    <div id="ft_padd">
+                    
+	           </div>     
+                 <div id="ft_padd">
 			            <center>
                             <table class="ft_links1">
                                     <tr>
@@ -122,7 +127,6 @@
                                 </table>
                         </center>
 	                </div>
-	           </div>     
             </div>
         </div>
     </form>

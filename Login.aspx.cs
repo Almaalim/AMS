@@ -81,8 +81,8 @@ public partial class Login : BasePage
 
         if (!IsPostBack)
         {
-            if (ActiveVersion == "BorderGuard") { divLogo.Visible = false; tdLogo.Width = "150px"; }
-            else { divLogo.Visible = true; ShowLogo(); tdLogo.Width = "250px";}
+            //if (ActiveVersion == "BorderGuard") { divLogo.Visible = false; tdLogo.Width = "150px"; }
+            //else { divLogo.Visible = true; ShowLogo(); tdLogo.Width = "250px";}
 
 
             ViewState["DateType"]   = GenCs.GetCalendarType();
