@@ -1660,7 +1660,7 @@ input[type=submit].btn-block, input[type=reset].btn-block, input[type=button].bt
     }
     a.level2.dynamic:before
      {
-        font-family: 'Glyphicons Halflings' !important;
+        font-family: 'Glyphicons Halflings';
         margin-right:7px;
     }
     .RequiredField:before
@@ -2012,7 +2012,7 @@ font-size:17px;
     content: "\e079";
 }
 
-.glyphicon-chevron-right:before , a.level2.dynamic:before {
+.glyphicon-chevron-right:before  {
     content: "\e080";
 }
 

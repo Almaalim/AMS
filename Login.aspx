@@ -16,13 +16,19 @@
             <div class="h2">
                 Login
             </div>
-            <div class="row">
+            <div class="LoginLeft">
+                 <div class="row">
                 <div class="col12">
-                    <asp:Image ID="Image1" runat="server" CssClass="loginLogo"
+                    <asp:Image ID="Image1" runat="server" CssClass="loginLogoS"
                         ImageUrl="~/images/Logo.png" meta:resourcekey="imgLogoResource1" />
+                    <asp:Image ID="Image2" runat="server" CssClass="loginLogoM"
+                        ImageUrl="~/images/LoginLogo.png" meta:resourcekey="imgLogoResource1" />
 
                 </div>
             </div>
+                </div>
+            <div class="LoginRight">
+           
             <div class="row">
                 <div class="col4">
                     <asp:Label ID="Label2" runat="server" Text="User Name :" meta:resourcekey="Label2Resource1"></asp:Label>
@@ -79,6 +85,8 @@
                         meta:resourcekey="cvShowMsgResource1"></asp:CustomValidator>
                 </div>
             </div>
+            
+                </div>
             <div class="row">
                 <div class="col12">
                     <asp:ValidationSummary runat="server" ID="vsShowMsg" ValidationGroup="ShowMsg"

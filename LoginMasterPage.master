@@ -3,14 +3,23 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <link href="CSS/Metro/Metro.css" rel="stylesheet" />
     <title>Untitled Page</title>
-    
-      
-        <%--Style--%>
-        <%--<link href="CSS/General.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../Script/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("div[class*='col']").each(function () {
+                var $this = $(this);
+                $this.html($this.html().replace(/&nbsp;/g, ''));
+            });
+        });
+
+    </script>
+    <%--Style--%>
+    <%--<link href="CSS/General.css" rel="stylesheet" type="text/css" />
        
         <link href="CSS/VSStyle.css" rel="stylesheet" type="text/css" />
         <link href="CSS/MasterPageStyle.css" rel="stylesheet" type="text/css" />
@@ -62,71 +71,47 @@
         /Style--%>
 </head>
 <body class="loginBody">
-    <form id="form1" runat="server" >
+    <form id="form1" runat="server">
         <div>
-             <div id="main_block">
-                 <div id="innerblock" class="LoginWrap">
-             
-                    <asp:contentplaceholder id="ContentPlaceHolder1" runat="server"></asp:contentplaceholder>
-                    
-	           </div>     
-                 <div id="ft_padd">
-			            <center>
-                            <table class="ft_links1">
-                                    <tr>
-                                        <td>
-                                            <table>
-                                                <tr>
-                                                    <td>
-                                                        <asp:LinkButton ID="LnkHome" runat="server" OnClick="LnkHome_Click" 
-                                                            CssClass="ft_home" meta:resourcekey="LnkHomeResource1">Home Page</asp:LinkButton>
-                                                    </td>
-                                                    <td>
-                                                        <img src="images/MasterPage_Images/ft_bar.gif" width="1" height="11" alt="" class="ft_bar" />
-                                                    </td>
-                                                    <td>
-                                                        <asp:LinkButton ID="lnkAboutUs" runat="server" CssClass="ft_abt" 
-                                                            meta:resourcekey="lnkAboutUsResource1">About us</asp:LinkButton>
-                                                    </td>
-                                                    <td>
-                                                        <img src="images/MasterPage_Images/ft_bar.gif" width="1" height="11" alt="" class="ft_bar" />
-                                                    </td>
-                                                    <td>
-                                                        <asp:LinkButton ID="lnkPolicy" runat="server" CssClass="ft_cnt" 
-                                                            onclick="lnkPolicy_Click" meta:resourcekey="lnkPolicyResource1">Policies and Procedures</asp:LinkButton>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                    <tr class="ft_cpy">
-                                        <td>
-                                            <table>
-                                                <tr>
-                                                    <td>
-                                                        &copy;
-                                                    </td>
-                                                    <td>
-                                                        <asp:Label ID="lblcopyrights" runat="server" Text="copyrights Almaalim 2005-" 
-                                                            meta:resourcekey="lblcopyrightsResource1"/>
-                                                    </td>
-                                                    <td>
-                                                        <asp:Label ID="lblcurrentYear" runat="server" 
-                                                            meta:resourcekey="lblcurrentYearResource1"/>
-                                                    </td>
-                                                    <td>
-                                                        <asp:Label ID="lblRights" runat="server" Text=". All Rights Reserved." 
-                                                            meta:resourcekey="lblRightsResource1"/>
-                                                    </td>
-                                                    <td>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </table>
-                        </center>
-	                </div>
+            <div id="main_block">
+                <div id="innerblock" class="LoginWrap">
+
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+
+                </div>
+                <div id="ft_padd">
+                    <div class="row">
+                        <div class="col12 LoginFooterLink">
+                            <asp:LinkButton ID="LnkHome" runat="server" OnClick="LnkHome_Click"
+                                CssClass="ft_home" meta:resourcekey="LnkHomeResource1">Home Page</asp:LinkButton>
+
+                            <img src="images/MasterPage_Images/ft_bar.gif" width="1" height="11" alt="" class="ft_bar" />
+
+                            <asp:LinkButton ID="lnkAboutUs" runat="server" CssClass="ft_abt"
+                                meta:resourcekey="lnkAboutUsResource1">About us</asp:LinkButton>
+
+                            <img src="images/MasterPage_Images/ft_bar.gif" width="1" height="11" alt="" class="ft_bar" />
+
+                            <asp:LinkButton ID="lnkPolicy" runat="server" CssClass="ft_cnt"
+                                OnClick="lnkPolicy_Click" meta:resourcekey="lnkPolicyResource1">Policies and Procedures</asp:LinkButton>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col12 LoginFooterLink">
+                            &copy;
+                                                     
+                                                        <asp:Label ID="lblcopyrights" runat="server" Text="copyrights Almaalim 2005-"
+                                                            meta:resourcekey="lblcopyrightsResource1" />
+
+                            <asp:Label ID="lblcurrentYear" runat="server"
+                                meta:resourcekey="lblcurrentYearResource1" />
+
+                            <asp:Label ID="lblRights" runat="server" Text=". All Rights Reserved."
+                                meta:resourcekey="lblRightsResource1" />
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </form>
