@@ -185,7 +185,7 @@
                     $(this).addClass("taptap-menu-active");
                     $(".taptap-main-wrapper").addClass("taptap-main-wrapper-active");
                     $("body").css("overflow", "hidden");
-                    $("body").addClass("OpenMenu")
+                    
                     
 
 
