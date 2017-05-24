@@ -12,23 +12,23 @@ public class CtrlFun : DataLayerBase
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     General GenCs = new General();
-    DBFun   DBCs  = new DBFun();
+    DBFun DBCs = new DBFun();
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	public CtrlFun() { }
+    public CtrlFun() { }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void Clean(Control PCtrl)
     {
         foreach (Control ctrl in PCtrl.Controls)
         {
-            if (ctrl is TextBox) 
+            if (ctrl is TextBox)
             {
                 if (((TextBox)ctrl).TextMode == TextBoxMode.Password) { ((TextBox)ctrl).Attributes["value"] = ""; } else { ((TextBox)ctrl).Text = String.Empty; }
             }
-            if (ctrl is DropDownList)    { ((DropDownList)ctrl).SelectedIndex = -1; }
+            if (ctrl is DropDownList) { ((DropDownList)ctrl).SelectedIndex = -1; }
             if (ctrl is RadioButtonList) { ((RadioButtonList)ctrl).SelectedIndex = -1; }
-            if (ctrl is CheckBox)        { ((CheckBox)ctrl).Checked = false; }
+            if (ctrl is CheckBox) { ((CheckBox)ctrl).Checked = false; }
             //if (ctrl is Image)           
             //{ 
             //    ((Image)ctrl).ImageUrl  = "~/Images/Logo/noImage.jpg"; 
@@ -38,7 +38,7 @@ public class CtrlFun : DataLayerBase
             //    ((GridView)ctrl).DataBind();
             //}
 
-            if (ctrl is UserControl) {  } else { if (ctrl.Controls.Count > 0) { Clean(ctrl); } }
+            if (ctrl is UserControl) { } else { if (ctrl.Controls.Count > 0) { Clean(ctrl); } }
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -51,7 +51,7 @@ public class CtrlFun : DataLayerBase
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
     #region List
@@ -70,8 +70,8 @@ public class CtrlFun : DataLayerBase
                 ListItem ls = new ListItem(dt.Rows[i][Text].ToString(), dt.Rows[i][Value].ToString());
                 ddl.Items.Add(ls);
             }
-            
-            ListItem lsMsg = new ListItem(Msg,Msg);
+
+            ListItem lsMsg = new ListItem(Msg, Msg);
             ddl.Items.Insert(0, lsMsg);
 
             return true;
@@ -87,15 +87,15 @@ public class CtrlFun : DataLayerBase
             if (DBCs.IsNullOrEmpty(dt)) { return false; }
 
             ddl.DataSource = null;
-            ddl.Items.Clear();        
+            ddl.Items.Clear();
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                ListItem ls = new ListItem(dt.Rows[i][Text1].ToString() + "-" + dt.Rows[i][Text2].ToString() , dt.Rows[i][Value].ToString());
+                ListItem ls = new ListItem(dt.Rows[i][Text1].ToString() + "-" + dt.Rows[i][Text2].ToString(), dt.Rows[i][Value].ToString());
                 ddl.Items.Add(ls);
             }
 
-            ListItem lsMsg = new ListItem(Msg,Msg);
+            ListItem lsMsg = new ListItem(Msg, Msg);
             ddl.Items.Insert(0, lsMsg);
             return true;
         }
@@ -179,9 +179,9 @@ public class CtrlFun : DataLayerBase
     public void PopulateDepartmenCheckList(ref CheckBoxList _cbl, string DepList, string Version)
     {
         DataTable DT = PopulateDepartment(DepList, Version);
-        if (!DBCs.IsNullOrEmpty(DT)) 
-        {  
-            PopulateCBL(_cbl, DT, General.Msg("FullNameEn", "FullNameAr"), "DepID", General.Msg("-Select Department-", "-اختر القسم-")); 
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            PopulateCBL(_cbl, DT, General.Msg("FullNameEn", "FullNameAr"), "DepID", General.Msg("-Select Department-", "-اختر القسم-"));
         }
     }
 
@@ -199,7 +199,7 @@ public class CtrlFun : DataLayerBase
     //CtrlCs.FillExcuseTypeList(ref ddlExcType, rfvddlExcType, false, true);
     //CtrlCs.FillVacationTypeList(ref ddlVacType, rfvddlVacType, false, true, "VAC");
     //CtrlCs.FillWorkingTimeList(ref ddlWktID, rfvddlWktID, false, true);
-    
+
 
     public void FillExcuseTypeList(ref DropDownList _ddl, RequiredFieldValidator _rv, bool isClear, bool isAll)
     {
@@ -207,9 +207,9 @@ public class CtrlFun : DataLayerBase
 
         string All = (isAll) ? "A" : "N";
         DataTable DT = DBCs.FetchData(" SELECT ExcID, ExcNameAr, ExcNameEn FROM ExcuseType WHERE ISNULL(ExcDeleted,0) = 0 AND ExcStatus = (CASE WHEN @P1 = 'A' THEN ExcStatus ELSE 'True' END) AND ExcCategory IS NULL ", new string[] { All });
-        if (!DBCs.IsNullOrEmpty(DT)) 
-        { 
-            PopulateDDL(_ddl, DT, General.Msg("ExcNameAr","ExcNameAr"), "ExcID", General.Msg("-Select Excuse Type-","-اختر نوع الإستئذان-"));
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            PopulateDDL(_ddl, DT, General.Msg("ExcNameAr", "ExcNameAr"), "ExcID", General.Msg("-Select Excuse Type-", "-اختر نوع الإستئذان-"));
             if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
         }
     }
@@ -221,9 +221,9 @@ public class CtrlFun : DataLayerBase
 
         string All = (isAll) ? "A" : "N";
         DataTable DT = DBCs.FetchData(" SELECT VtpID, VtpNameAr, VtpNameEn FROM VacationType WHERE ISNULL(VtpDeleted,0) = 0 AND VtpCategory = (CASE WHEN @P1 = 'ALL' THEN VtpCategory ELSE @P1 END) AND VtpStatus = (CASE WHEN @P2 = 'A' THEN VtpStatus ELSE 'True' END) ", new string[] { Category, All });
-        if (!DBCs.IsNullOrEmpty(DT)) 
-        { 
-            PopulateDDL(_ddl, DT, General.Msg("VtpNameEn", "VtpNameAr"), "VtpID", General.Msg("-Select Vacation type-","-اختر نوع الإجازة-")); 
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            PopulateDDL(_ddl, DT, General.Msg("VtpNameEn", "VtpNameAr"), "VtpID", General.Msg("-Select Vacation type-", "-اختر نوع الإجازة-"));
             if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
         }
     }
@@ -234,11 +234,11 @@ public class CtrlFun : DataLayerBase
         if (isClear) { _ddl.Items.Clear(); }
 
         string All = (isAll) ? "A" : "N";
-        
+
         DataTable DT = DBCs.FetchData(" SELECT WktID, WktNameAr, WktNameEn FROM WorkingTime WHERE ISNULL(WktDeleted,0) = 0 AND WtpID IN (SELECT WtpID FROM WorkType WHERE WtpInitial !='RO') AND WktIsActive = (CASE WHEN @P1 = 'A' THEN WktIsActive ELSE 'True' END) ", new string[] { All });
-        if (!DBCs.IsNullOrEmpty(DT)) 
-        { 
-            PopulateDDL(_ddl, DT, General.Msg("WktNameEn","WktNameAr"), "WktID", General.Msg("- Select Worktime -","- اختر جدول العمل-")); 
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            PopulateDDL(_ddl, DT, General.Msg("WktNameEn", "WktNameAr"), "WktID", General.Msg("- Select Worktime -", "- اختر جدول العمل-"));
             if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
         }
     }
@@ -249,9 +249,9 @@ public class CtrlFun : DataLayerBase
         if (isClear) { _ddl.Items.Clear(); }
 
         DataTable DT = DBCs.FetchData(new SqlCommand(" SELECT CatID, CatNameAr, CatNameEn FROM Category WHERE ISNULL(CatDeleted,0) = 0 "));
-        if (!DBCs.IsNullOrEmpty(DT)) 
-        { 
-            PopulateDDL(_ddl, DT, General.Msg("CatNameEn","CatNameAr"), "CatID", General.Msg("-Select Category-", "-أختر التصنيف-"));
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            PopulateDDL(_ddl, DT, General.Msg("CatNameEn", "CatNameAr"), "CatID", General.Msg("-Select Category-", "-أختر التصنيف-"));
             if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
         }
     }
@@ -262,9 +262,9 @@ public class CtrlFun : DataLayerBase
         if (isClear) { _ddl.Items.Clear(); }
 
         DataTable DT = DBCs.FetchData(new SqlCommand(" SELECT NatID, NatNameAr, NatNameEn FROM Nationality WHERE ISNULL(NatDeleted,0) = 0 "));
-        if (!DBCs.IsNullOrEmpty(DT)) 
-        { 
-            PopulateDDL(_ddl, DT, General.Msg("NatNameEn", "NatNameAr"), "NatID", General.Msg("-Select Nationnality-", "-اختر الجنسية-")); 
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            PopulateDDL(_ddl, DT, General.Msg("NatNameEn", "NatNameAr"), "NatID", General.Msg("-Select Nationnality-", "-اختر الجنسية-"));
             if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
         }
     }
@@ -275,8 +275,8 @@ public class CtrlFun : DataLayerBase
         if (isClear) { _ddl.Items.Clear(); }
 
         DataTable DT = DBCs.FetchData(new SqlCommand(" SELECT EtpID, EtpNameAr, EtpNameEn FROM EmploymentType WHERE ISNULL(EtpDeleted,0) = 0 "));
-        if (!DBCs.IsNullOrEmpty(DT)) 
-        { 
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
             PopulateDDL(_ddl, DT, General.Msg("EtpNameEn", "EtpNameAr"), "EtpID", General.Msg("-Select Employee type-", "-اختر نوع الموظف-"));
             if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
         }
@@ -288,8 +288,8 @@ public class CtrlFun : DataLayerBase
         if (isClear) { _ddl.Items.Clear(); }
 
         DataTable DT = DBCs.FetchData(new SqlCommand(" SELECT RlsID, RlsNameAr, RlsNameEn FROM RuleSet WHERE ISNULL(RlsDeleted,0) = 0  "));
-        if (!DBCs.IsNullOrEmpty(DT)) 
-        { 
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
             PopulateDDL(_ddl, DT, General.Msg("RlsNameEn", "RlsNameAr"), "RlsID", General.Msg("-Select Attendance Rules Set-", "-اختر مجموعة قواعد الحضور-"));
             if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
         }
@@ -301,8 +301,8 @@ public class CtrlFun : DataLayerBase
         if (isClear) { _ddl.Items.Clear(); }
 
         DataTable DT = DBCs.FetchData(new SqlCommand(" SELECT rnk_code, rnk_name FROM Ranks "));
-        if (!DBCs.IsNullOrEmpty(DT)) 
-        { 
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
             PopulateDDL(_ddl, DT, "rnk_name", "rnk_code", General.Msg("-Select Rank-", "-اختر الرتبة-"));
             if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
         }
@@ -315,9 +315,9 @@ public class CtrlFun : DataLayerBase
 
         string All = (isAll) ? "A" : "N";
         DataTable DT = DBCs.FetchData(" SELECT MacID, MacLocationEn, MacLocationAr FROM Machine WHERE ISNULL(MacDeleted,0) = 0 AND MacStatus = (CASE WHEN @P1 = 'A' THEN MacStatus ELSE 'True' END) AND (MacInOutType = (CASE WHEN @P2 = 'I' THEN 'True' WHEN @P1 = 'O' THEN 'False' ELSE MacInOutType END) OR MacInOutType IS NULL) ", new string[] { All, Type });
-        if (!DBCs.IsNullOrEmpty(DT)) 
-        { 
-            PopulateDDL(_ddl, DT, General.Msg("MacLocationEn","MacLocationAr"), "MacID", General.Msg("-Select Location-","-اختر الموقع-"));
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            PopulateDDL(_ddl, DT, General.Msg("MacLocationEn", "MacLocationAr"), "MacID", General.Msg("-Select Location-", "-اختر الموقع-"));
             if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
         }
     }
@@ -328,9 +328,9 @@ public class CtrlFun : DataLayerBase
         if (isClear) { _ddl.Items.Clear(); }
 
         DataTable DT = DBCs.FetchData(new SqlCommand(" SELECT * FROM Branch WHERE ISNULL(BrcDeleted,0) = 0 "));
-        if (!DBCs.IsNullOrEmpty(DT)) 
-        { 
-            PopulateDDL(_ddl, DT, General.Msg("BrcNameEn","BrcNameAr"), "BrcID", General.Msg("-Select Branch-","-اختر الفرع-"));
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            PopulateDDL(_ddl, DT, General.Msg("BrcNameEn", "BrcNameAr"), "BrcID", General.Msg("-Select Branch-", "-اختر الفرع-"));
             if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
         }
     }
@@ -341,9 +341,9 @@ public class CtrlFun : DataLayerBase
         if (isClear) { _ddl.Items.Clear(); }
 
         DataTable DT = DBCs.FetchData(new SqlCommand(" SELECT * FROM WorkType WHERE WtpInitial != 'RO' "));
-        if (!DBCs.IsNullOrEmpty(DT)) 
-        { 
-            PopulateDDL(_ddl, DT, General.Msg("WtpNameEn","WtpNameAr"), "WtpID", General.Msg("-Select Work Type-","-اختر نوع العمل-"));
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            PopulateDDL(_ddl, DT, General.Msg("WtpNameEn", "WtpNameAr"), "WtpID", General.Msg("-Select Work Type-", "-اختر نوع العمل-"));
             if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
         }
     }
@@ -354,9 +354,9 @@ public class CtrlFun : DataLayerBase
         if (isClear) { _ddl.Items.Clear(); }
 
         DataTable DT = DBCs.FetchData(" SELECT * FROM PermissionGroup WHERE GrpType = @P1 AND ISNULL(GrpDeleted,0) = 0 ", new string[] { Type });
-        if (!DBCs.IsNullOrEmpty(DT)) 
-        { 
-            PopulateDDL(_ddl, DT, General.Msg("GrpNameEn","GrpNameAr"), "GrpID", General.Msg("-Select Group-","-اختر مجموعة-"));
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            PopulateDDL(_ddl, DT, General.Msg("GrpNameEn", "GrpNameAr"), "GrpID", General.Msg("-Select Group-", "-اختر مجموعة-"));
             if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
         }
     }
@@ -367,9 +367,9 @@ public class CtrlFun : DataLayerBase
         if (isClear) { _ddl.Items.Clear(); }
 
         DataTable DT = DBCs.FetchData(new SqlCommand(" SELECT UsrName FROM AppUser WHERE ISNULL(UsrDeleted,0) = 0 AND UsrStatus = 'True' "));
-        if (!DBCs.IsNullOrEmpty(DT)) 
-        { 
-            PopulateDDL(_ddl, DT, "UsrName", "UsrName", General.Msg("-Select Manager Name-","-اختر مدير القسم-"));
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            PopulateDDL(_ddl, DT, "UsrName", "UsrName", General.Msg("-Select Manager Name-", "-اختر مدير القسم-"));
             if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
         }
     }
@@ -380,9 +380,9 @@ public class CtrlFun : DataLayerBase
         if (isClear) { _ddl.Items.Clear(); }
 
         DataTable DT = DBCs.FetchData(new SqlCommand(" SELECT * FROM Department WHERE ISNULL(DepDeleted,0) = 0 "));
-        if (!DBCs.IsNullOrEmpty(DT)) 
-        { 
-            PopulateDDL(_ddl, DT, General.Msg("DepNameEn","DepNameAr"), "DepID", General.Msg("-Select Department-","-اختر القسم-"));
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            PopulateDDL(_ddl, DT, General.Msg("DepNameEn", "DepNameAr"), "DepID", General.Msg("-Select Department-", "-اختر القسم-"));
             if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
         }
     }
@@ -422,14 +422,14 @@ public class CtrlFun : DataLayerBase
             grd.Rows[0].Cells.Clear();
             grd.Rows[0].Cells.Add(new TableCell());
             grd.Rows[0].Cells[0].ColumnSpan = totalcolums;
-            
+
             GridViewRow pagerRow = grd.BottomPagerRow;
             //TableCell tcc = pagerRow.Cells[0];
             if (pagerRow != null) { pagerRow.Cells.Clear(); }
             //pagerRow.Cells.Add(tcc);
             //pagerRow.Cells[0].ColumnSpan = totalcolums;
-            
-            grd.Rows[0].Cells[0].Text = General.Msg(MsgEn,MsgAr);
+
+            grd.Rows[0].Cells[0].Text = General.Msg(MsgEn, MsgAr);
             grd.Rows[0].Cells[0].HorizontalAlign = HorizontalAlign.Center;
             grd.Rows[0].Cells[0].VerticalAlign = VerticalAlign.Middle;
             grd.Rows[0].Cells[0].Height = HRow;
@@ -440,28 +440,28 @@ public class CtrlFun : DataLayerBase
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void FillGridEmpty(ref GridView grd,int HRow) { FillGridEmpty(ref grd, HRow, "No Data Found", "لا توجد بيانات"); }
+    public void FillGridEmpty(ref GridView grd, int HRow) { FillGridEmpty(ref grd, HRow, "No Data Found", "لا توجد بيانات"); }
     public void FillGridEmpty(ref GridView grd) { FillGridEmpty(ref grd, 50, "No Data Found", "لا توجد بيانات"); }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public string getTextRowEmpty() { return General.Msg("No Data Found","لا توجد بيانات"); }
+    public string getTextRowEmpty() { return General.Msg("No Data Found", "لا توجد بيانات"); }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public bool isGridEmpty(string pRowText)
     {
-        if (pRowText == "No Data Found" || pRowText == "لا توجد بيانات" || pRowText == "&nbsp;" || pRowText == "") { return true; } 
+        if (pRowText == "No Data Found" || pRowText == "لا توجد بيانات" || pRowText == "&nbsp;" || pRowText == "") { return true; }
         return false;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public bool isGridEmpty(string pRowText,string pMsg)
+    public bool isGridEmpty(string pRowText, string pMsg)
     {
-        if (pRowText == pMsg || pRowText == "&nbsp;" || pRowText == "") { return true; } 
+        if (pRowText == pMsg || pRowText == "&nbsp;" || pRowText == "") { return true; }
         return false;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void RefreshGridEmpty(ref GridView gv,int pHeight)
+    public void RefreshGridEmpty(ref GridView gv, int pHeight)
     {
         if (gv.Rows.Count > 0) { if (gv.Rows[0].Cells[0].Text == General.Msg("No Data Found", "لا توجد بيانات")) { FillGridEmpty(ref gv, pHeight); } }
     }
@@ -484,7 +484,7 @@ public class CtrlFun : DataLayerBase
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public DropDownList PagerList(GridView pGrid)
-	{
+    {
         DropDownList _ddlPagerList = new DropDownList();
         _ddlPagerList.ID = "ddlPagesize";
         _ddlPagerList.Items.Add("10");
@@ -495,7 +495,7 @@ public class CtrlFun : DataLayerBase
         ListItem li = _ddlPagerList.Items.FindByText(pGrid.PageSize.ToString());
         if (li != null) { _ddlPagerList.SelectedIndex = _ddlPagerList.Items.IndexOf(li); }
         return _ddlPagerList;
-	}
+    }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public TableCell PagerCell(DropDownList pList)
@@ -503,19 +503,19 @@ public class CtrlFun : DataLayerBase
         TableCell _PagerCell = new TableCell();
         _PagerCell.Style["padding-left"] = "15px";
         _PagerCell.Controls.Add(pList);
-        _PagerCell.Controls.Add(new LiteralControl(General.Msg(" Record\\Records", " سجل/سجلات"))); 
+        _PagerCell.Controls.Add(new LiteralControl(General.Msg(" Record\\Records", " سجل/سجلات")));
         return _PagerCell;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public Button ExportBtnPager(GridView pGrid)
-	{
+    {
         Button _ExportBtn = new Button();
-        _ExportBtn.ID   = "ExportBtn";
+        _ExportBtn.ID = "ExportBtn";
         _ExportBtn.Text = General.Msg("Export", "تصدير");
-        
+
         return _ExportBtn;
-	}
+    }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public TableCell ExportBtnPagerCell(Button pBtn)
@@ -549,7 +549,7 @@ public class CtrlFun : DataLayerBase
             string filePath = ServerMapPath("download/" + pFileName);
 
             if (File.Exists(filePath)) { File.Delete(filePath); }
-            
+
             System.IO.StreamWriter vw = new System.IO.StreamWriter(filePath, true);
             sw.ToString().Normalize();
             vw.Write(sw.ToString());
@@ -568,12 +568,12 @@ public class CtrlFun : DataLayerBase
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public string ServerMapPath(string path) 
-    { 
-        string m = HttpContext.Current.Server.MapPath(path); 
-        string P = m.Replace(@"\Pages","");
-        return P; 
-    
+    public string ServerMapPath(string path)
+    {
+        string m = HttpContext.Current.Server.MapPath(path);
+        string P = m.Replace(@"\Pages", "");
+        return P;
+
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -587,16 +587,16 @@ public class CtrlFun : DataLayerBase
         Response.ContentType = FileType;
 
         string c = Response.Charset;
-        
+
         Response.Write(content);  // to Write Stream Writer string
-        //Response.WriteFile(content); // to Write File by path
-      
+                                  //Response.WriteFile(content); // to Write File by path
+
         Response.End();
 
         //Response.TransmitFile(content);
         //Response.Charset = "";
     }
-    
+
     #endregion
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
@@ -611,79 +611,79 @@ public class CtrlFun : DataLayerBase
     public enum TypeMsg { Info, Success, Warning, Error, Validation };
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void ValidMsg(Page pg, ref CustomValidator cv,bool isShow, string pMsg) 
-    { 
-        if (isShow) 
-        { 
-            cv.ErrorMessage = pMsg; 
-            cv.Text = pg.Server.HtmlDecode("&lt;img src='../App_Themes/ThemeEn/Images/Validation/message_exclamation.png' title='" + pMsg + "' /&gt;"); 
-        } 
-        else 
-        { 
-            cv.ErrorMessage = ""; 
-            cv.Text = pg.Server.HtmlDecode("&lt;img src='../App_Themes/ThemeEn/Images/Validation/Exclamation.gif' title='" + pMsg + "' /&gt;"); 
+    public void ValidMsg(Page pg, ref CustomValidator cv, bool isShow, string pMsg)
+    {
+        if (isShow)
+        {
+            cv.ErrorMessage = pMsg;
+            cv.Text = pg.Server.HtmlDecode("&lt;img src='../App_Themes/ThemeEn/Images/Validation/message_exclamation.png' title='" + pMsg + "' /&gt;");
+        }
+        else
+        {
+            cv.ErrorMessage = "";
+            cv.Text = pg.Server.HtmlDecode("&lt;img src='../App_Themes/ThemeEn/Images/Validation/Exclamation.gif' title='" + pMsg + "' /&gt;");
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void ValidMsg(Page pg, ref RequiredFieldValidator rv, string pMsg) 
-    { 
-        rv.ErrorMessage = ""; 
-        rv.Text = pg.Server.HtmlDecode("&lt;img src='../App_Themes/ThemeEn/Images/Validation/Exclamation.gif' title='" + pMsg + "' /&gt;"); 
+    public void ValidMsg(Page pg, ref RequiredFieldValidator rv, string pMsg)
+    {
+        rv.ErrorMessage = "";
+        rv.Text = pg.Server.HtmlDecode("&lt;img src='../App_Themes/ThemeEn/Images/Validation/Exclamation.gif' title='" + pMsg + "' /&gt;");
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void FalseValidMsg(Page pg, ref CustomValidator cv,ref ServerValidateEventArgs e, bool isShow, string pMsg) 
+    public void FalseValidMsg(Page pg, ref CustomValidator cv, ref ServerValidateEventArgs e, bool isShow, string pMsg)
     {
         ValidMsg(pg, ref cv, isShow, pMsg);
         e.IsValid = false;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void ShowMsg(Page pg, ValidationSummary vs, CustomValidator cv, TypeMsg Type,string VG, string pMsg) 
+    public void ShowMsg(Page pg, ValidationSummary vs, CustomValidator cv, TypeMsg Type, string VG, string pMsg)
     {
         vs.ValidationGroup = VG;
-        cv.ErrorMessage    = pMsg;
+        cv.ErrorMessage = pMsg;
         cv.ValidationGroup = VG;
 
-        if      (Type == TypeMsg.Info)       { vs.CssClass = "MsgInfo";       /****/ vs.ForeColor = ColorTranslator.FromHtml("#00529B"); }
-        else if (Type == TypeMsg.Success)    { vs.CssClass = "MsgSuccess ";   /****/ vs.ForeColor = ColorTranslator.FromHtml("#4F8A10"); } 
-        else if (Type == TypeMsg.Warning)    { vs.CssClass = "MsgWarning";    /****/ vs.ForeColor = ColorTranslator.FromHtml("#9F6000"); }
-        else if (Type == TypeMsg.Error)      { vs.CssClass = "MsgError";      /****/ vs.ForeColor = ColorTranslator.FromHtml("#D8000C"); }
+        if (Type == TypeMsg.Info) { vs.CssClass = "MsgInfo";       /****/ vs.ForeColor = ColorTranslator.FromHtml("#00529B"); }
+        else if (Type == TypeMsg.Success) { vs.CssClass = "MsgSuccess ";   /****/ vs.ForeColor = ColorTranslator.FromHtml("#4F8A10"); }
+        else if (Type == TypeMsg.Warning) { vs.CssClass = "MsgWarning";    /****/ vs.ForeColor = ColorTranslator.FromHtml("#9F6000"); }
+        else if (Type == TypeMsg.Error) { vs.CssClass = "MsgError";      /****/ vs.ForeColor = ColorTranslator.FromHtml("#D8000C"); }
         else if (Type == TypeMsg.Validation) { vs.CssClass = "MsgValidation"; /****/ vs.ForeColor = ColorTranslator.FromHtml("#D63301"); }
-        
-        
+
+
         pg.Validate(VG);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void ShowMsg(Page pg, TypeMsg Type, string pMsg) 
+    public void ShowMsg(Page pg, TypeMsg Type, string pMsg)
     {
         string VG = "vgShowMsg";
-        ValidationSummary vs = pg.Master.FindControl("ContentPlaceHolder1").FindControl("vsShowMsg") as ValidationSummary; 
-        CustomValidator   cv = pg.Master.FindControl("ContentPlaceHolder1").FindControl("cvShowMsg") as CustomValidator;
+        ValidationSummary vs = pg.Master.FindControl("ContentPlaceHolder1").FindControl("vsShowMsg") as ValidationSummary;
+        CustomValidator cv = pg.Master.FindControl("ContentPlaceHolder1").FindControl("cvShowMsg") as CustomValidator;
 
         ShowMsg(pg, vs, cv, Type, VG, pMsg);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void ShowSaveMsg(Page pg) 
+    public void ShowSaveMsg(Page pg)
     {
         string VG = "vgShowMsg";
-        ValidationSummary vs = pg.Master.FindControl("ContentPlaceHolder1").FindControl("vsShowMsg") as ValidationSummary; 
-        CustomValidator   cv = pg.Master.FindControl("ContentPlaceHolder1").FindControl("cvShowMsg") as CustomValidator;
+        ValidationSummary vs = pg.Master.FindControl("ContentPlaceHolder1").FindControl("vsShowMsg") as ValidationSummary;
+        CustomValidator cv = pg.Master.FindControl("ContentPlaceHolder1").FindControl("cvShowMsg") as CustomValidator;
 
-        string msg = General.Msg("Saved data successfully","تم الحفظ البيانات بنجاح");
+        string msg = General.Msg("Saved data successfully", "تم الحفظ البيانات بنجاح");
 
         ShowMsg(pg, vs, cv, TypeMsg.Success, VG, msg);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void ShowDelMsg(Page pg, bool isDel) 
+    public void ShowDelMsg(Page pg, bool isDel)
     {
         string VG = "vgShowMsg";
-        ValidationSummary vs = pg.Master.FindControl("ContentPlaceHolder1").FindControl("vsShowMsg") as ValidationSummary; 
-        CustomValidator   cv = pg.Master.FindControl("ContentPlaceHolder1").FindControl("cvShowMsg") as CustomValidator;
+        ValidationSummary vs = pg.Master.FindControl("ContentPlaceHolder1").FindControl("vsShowMsg") as ValidationSummary;
+        CustomValidator cv = pg.Master.FindControl("ContentPlaceHolder1").FindControl("cvShowMsg") as CustomValidator;
 
         string msg = "";
 
@@ -693,13 +693,13 @@ public class CtrlFun : DataLayerBase
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void ShowAdminMsg(Page pg, ValidationSummary vs, CustomValidator cv,string VG, string pMsg, string pEx) 
+    public void ShowAdminMsg(Page pg, ValidationSummary vs, CustomValidator cv, string VG, string pMsg, string pEx)
     {
-        string DMsg = General.Msg("<a style=\"color:Blue\" href='#' onclick=\"alert('" + pEx.Replace("'","") + "');\">To find out the error details Click here </a> ","<a style=\"color:Blue\" href='#' onclick=\"alert('" + pEx.Replace("'","") + "');\">لمعرفة تفاصيل الخطأ اضغط هنا </a> ");
-        
+        string DMsg = General.Msg("<a style=\"color:Blue\" href='#' onclick=\"alert('" + pEx.Replace("'", "") + "');\">To find out the error details Click here </a> ", "<a style=\"color:Blue\" href='#' onclick=\"alert('" + pEx.Replace("'", "") + "');\">لمعرفة تفاصيل الخطأ اضغط هنا </a> ");
+
         vs.ValidationGroup = VG;
-        pEx = pEx.Replace("'"," ");
-        cv.ErrorMessage    = pMsg + DMsg;
+        pEx = pEx.Replace("'", " ");
+        cv.ErrorMessage = pMsg + DMsg;
         cv.ValidationGroup = VG;
         vs.CssClass = "MsgError";
         vs.ForeColor = ColorTranslator.FromHtml("#D8000C");
@@ -707,13 +707,13 @@ public class CtrlFun : DataLayerBase
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void ShowAdminMsg(Page pg, string pEx) 
+    public void ShowAdminMsg(Page pg, string pEx)
     {
-        string MMsg = General.Msg("Transaction failed to commit please contact your administrator. ","النظام غير قادر على حفظ البيانات, الرجاء الاتصال بمدير النظام. ");
-        
+        string MMsg = General.Msg("Transaction failed to commit please contact your administrator. ", "النظام غير قادر على حفظ البيانات, الرجاء الاتصال بمدير النظام. ");
+
         string VG = "vgShowMsg";
-        ValidationSummary vs = pg.Master.FindControl("ContentPlaceHolder1").FindControl("vsShowMsg") as ValidationSummary; 
-        CustomValidator   cv = pg.Master.FindControl("ContentPlaceHolder1").FindControl("cvShowMsg") as CustomValidator;
+        ValidationSummary vs = pg.Master.FindControl("ContentPlaceHolder1").FindControl("vsShowMsg") as ValidationSummary;
+        CustomValidator cv = pg.Master.FindControl("ContentPlaceHolder1").FindControl("cvShowMsg") as CustomValidator;
 
         ShowAdminMsg(pg, vs, cv, VG, MMsg, pEx);
     }
@@ -776,8 +776,8 @@ public class CtrlFun : DataLayerBase
                             + "<Parallel AnimationTarget='pnlInfo" + pID + "' Duration='.2' Fps='25'>"
                                 + "<Move Horizontal='" + Horizontal + "' Vertical='" + Vertical + "' />"
                                 + "<Resize Height='150%' Width='250%' />"
-                              //+"<Move Horizontal='150' Vertical='-50' />"
-                              //+"<Resize Height='260' Width='280' />"
+                                //+"<Move Horizontal='150' Vertical='-50' />"
+                                //+"<Resize Height='260' Width='280' />"
 
                                 + "<FadeIn />"
                             + "</Parallel>"
@@ -809,8 +809,8 @@ public class CtrlFun : DataLayerBase
                             + "<EnableAction AnimationTarget='lnkShow" + pID + "' Enabled='true' />"
                         + "</Sequence>"
                      + "</OnClick>";
-    }  
-    
+    }
+
     #endregion
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
@@ -843,7 +843,7 @@ public class CtrlFun : DataLayerBase
     {
         DataSet ds = new DataSet();
         SqlDataAdapter da = new SqlDataAdapter(query, MainConnection);
-        
+
         da.Fill(ds);
         da.Dispose();
         ds.DataSetName = "Departments";
@@ -859,7 +859,7 @@ public class CtrlFun : DataLayerBase
     {
         DataSet ds = new DataSet();
         SqlDataAdapter da = new SqlDataAdapter(query, MainConnection);
-        
+
         da.Fill(ds);
         da.Dispose();
         ds.DataSetName = "Menus";
@@ -875,7 +875,7 @@ public class CtrlFun : DataLayerBase
     {
         DataSet ds = new DataSet();
         SqlDataAdapter da = new SqlDataAdapter(query, MainConnection);
-        
+
         da.Fill(ds);
         da.Dispose();
 
@@ -895,11 +895,11 @@ public class CtrlFun : DataLayerBase
         string DQ = "";
         if (ActiveVersion == "BorderGuard")
         {
-            DQ = " SELECT DISTINCT DepID,DepParentID,DepName" + General.Msg("En","Ar") + " AS DepNameEn FROM Department WHERE BrcID= " + pBrcID + "";
+            DQ = " SELECT DISTINCT DepID,DepParentID,DepName" + General.Msg("En", "Ar") + " AS DepNameEn FROM Department WHERE BrcID= " + pBrcID + "";
         }
         else // (ActiveVersion == "General")
         {
-           DQ = " SELECT DISTINCT DepID,DepParentID,FullName" + General.Msg("En","Ar") + " AS DepNameEn FROM DepartmentLevelView WHERE BrcID= " + pBrcID + "";
+            DQ = " SELECT DISTINCT DepID,DepParentID,FullName" + General.Msg("En", "Ar") + " AS DepNameEn FROM DepartmentLevelView WHERE BrcID= " + pBrcID + "";
         }
 
         DataSet ds = new DataSet();
@@ -909,18 +909,18 @@ public class CtrlFun : DataLayerBase
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public DataSet FillDepTreeDS(string pBrcID, string ActiveVersion,string loginUserName)
+    public DataSet FillDepTreeDS(string pBrcID, string ActiveVersion, string loginUserName)
     {
         string sql;
 
         string DQ = "";
         if (ActiveVersion == "BorderGuard")
         {
-            DQ = " SELECT DISTINCT DepID,DepParentID,DepName" + General.Msg("En","Ar") + " AS DepNameEn,dbo.GetDepPerm(DepID,'" + loginUserName + "') AS DepCheck FROM Department WHERE BrcID= " + pBrcID + "";
+            DQ = " SELECT DISTINCT DepID,DepParentID,DepName" + General.Msg("En", "Ar") + " AS DepNameEn,dbo.GetDepPerm(DepID,'" + loginUserName + "') AS DepCheck FROM Department WHERE BrcID= " + pBrcID + "";
         }
         else // (ActiveVersion == "General")
         {
-           DQ = " SELECT DISTINCT DepID,DepParentID,FullName" + General.Msg("En","Ar") + " AS DepNameEn,dbo.GetDepPerm(DepID,'" + loginUserName + "') AS DepCheck FROM DepartmentLevelView WHERE BrcID= " + pBrcID + "";
+            DQ = " SELECT DISTINCT DepID,DepParentID,FullName" + General.Msg("En", "Ar") + " AS DepNameEn,dbo.GetDepPerm(DepID,'" + loginUserName + "') AS DepCheck FROM DepartmentLevelView WHERE BrcID= " + pBrcID + "";
         }
 
         DataSet ds = new DataSet();
@@ -930,18 +930,18 @@ public class CtrlFun : DataLayerBase
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public DataSet FillDepTreeDS(string pBrcID, string ActiveVersion,string loginUserName,string DepList)
+    public DataSet FillDepTreeDS(string pBrcID, string ActiveVersion, string loginUserName, string DepList)
     {
         string sql;
 
         string DQ = "";
         if (ActiveVersion == "BorderGuard")
         {
-            DQ = " SELECT DISTINCT DepID,DepParentID,DepName" + General.Msg("En","Ar")  + " AS DepNameEn,dbo.GetDepPerm(DepID,'" + loginUserName + "') AS DepCheck FROM Department WHERE BrcID = " + pBrcID + " AND DepID IN (" + DepList + ") ";
+            DQ = " SELECT DISTINCT DepID,DepParentID,DepName" + General.Msg("En", "Ar") + " AS DepNameEn,dbo.GetDepPerm(DepID,'" + loginUserName + "') AS DepCheck FROM Department WHERE BrcID = " + pBrcID + " AND DepID IN (" + DepList + ") ";
         }
         else // (ActiveVersion == "General")
         {
-           DQ = " SELECT DISTINCT DepID,DepParentID,FullName" + General.Msg("En","Ar")  + " AS DepNameEn,dbo.GetDepPerm(DepID,'" + loginUserName + "') AS DepCheck FROM DepartmentLevelView WHERE BrcID = " + pBrcID + " AND DepID IN (" + DepList + ") ";
+            DQ = " SELECT DISTINCT DepID,DepParentID,FullName" + General.Msg("En", "Ar") + " AS DepNameEn,dbo.GetDepPerm(DepID,'" + loginUserName + "') AS DepCheck FROM DepartmentLevelView WHERE BrcID = " + pBrcID + " AND DepID IN (" + DepList + ") ";
         }
 
         DataSet ds = new DataSet();
@@ -958,11 +958,11 @@ public class CtrlFun : DataLayerBase
         string DQ = "";
         if (ActiveVersion == "BorderGuard")
         {
-            DQ = " SELECT DISTINCT DepID,DepParentID,DepName" + General.Msg("En","Ar") + " AS DepNameEn FROM Department ";
+            DQ = " SELECT DISTINCT DepID,DepParentID,DepName" + General.Msg("En", "Ar") + " AS DepNameEn FROM Department ";
         }
         else // (ActiveVersion == "General")
         {
-           DQ = " SELECT DISTINCT DepID,DepParentID,FullName" + General.Msg("En","Ar") + " AS DepNameEn FROM DepartmentWithBranchLevelView ";
+            DQ = " SELECT DISTINCT DepID,DepParentID,FullName" + General.Msg("En", "Ar") + " AS DepNameEn FROM DepartmentWithBranchLevelView ";
         }
 
         DataSet ds = new DataSet();

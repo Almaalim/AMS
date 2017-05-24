@@ -15,8 +15,7 @@
     <%--script--%>
     <script type="text/javascript" src="../Script/GridEvent.js"></script>
     <script type="text/javascript" src="../Script/CheckKey.js"></script>
-    <script type="text/javascript" src="../Script/TabContainer.js"></script>
-    <%-- <link href="../CSS/buttonStyle.css" rel="stylesheet" type="text/css" />--%>
+    <script type="text/javascript" src="../Script/TabContainer.js"></script>    
     <link href="../CSS/WizardStyle.css" rel="stylesheet" type="text/css" />
     <script language="javascript" type="text/javascript">
         //************************** Treeview Parent-Child check behaviour ****************************//  
@@ -283,7 +282,6 @@
             }
         }
     </script>
-    
     <script type="text/javascript">
         function showPopup(dev1, dev2, dev3, devShow) {
             hidePopup('', dev2, dev3);
@@ -291,15 +289,14 @@
             document.getElementById(dev1).style.visibility = 'visible'; document.getElementById(dev1).style.display = 'block';
         }
 
-        function hidePopup(dev1, dev2, dev3) {
-            if (dev1 != '') { document.getElementById(dev1).style.visibility = 'hidden'; document.getElementById(dev1).style.display = 'none'; }
-            if (dev2 != '') { document.getElementById(dev2).style.visibility = 'hidden'; document.getElementById(dev2).style.display = 'none'; }
-            if (dev3 != '') { document.getElementById(dev3).style.visibility = 'hidden'; document.getElementById(dev3).style.display = 'none'; }
-        }
+    function hidePopup(dev1, dev2, dev3) {
+        if (dev1 != '') { document.getElementById(dev1).style.visibility = 'hidden'; document.getElementById(dev1).style.display = 'none'; }
+        if (dev2 != '') { document.getElementById(dev2).style.visibility = 'hidden'; document.getElementById(dev2).style.display = 'none'; }
+        if (dev3 != '') { document.getElementById(dev3).style.visibility = 'hidden'; document.getElementById(dev3).style.display = 'none'; }
+    }
 
     </script>
-    
-    
+
     <asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Conditional">
         <Triggers>
             <asp:PostBackTrigger ControlID="btnEditReport" />
@@ -402,6 +399,7 @@
                             </div>
                         </asp:Panel>
                         <asp:Panel ID="pnlDateFromTo" runat="server" meta:resourcekey="pnlDateFromToResource1" Width="100%">
+                        <%--<div ID="pnlDateFromTo" runat="server"> --%>
                             <div class="row">
                                 <div class="col2">
                                     <asp:Label ID="lblDateFrom" runat="server" Font-Size="Small" meta:resourcekey="lblDateFromResource1"
@@ -418,6 +416,7 @@
                                     <Cal:Calendar2 ID="calEndDate" runat="server" CalendarType="System" ValidationRequired="true" ValidationGroup="vgShow" />
                                 </div>
                             </div>
+                        <%--</div>--%>
                         </asp:Panel>
                         <asp:Panel ID="pnlDaysCount" runat="server" meta:resourcekey="pnlDaysCountResource1">
                             <div class="row">
@@ -647,7 +646,7 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                       <div class="row">
                           
                             <div class="col2">
                                 <span id="spnFavNameEn" runat="server" class="RequiredField">*</span>

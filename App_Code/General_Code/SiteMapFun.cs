@@ -39,7 +39,10 @@ public class SiteMapFun : StaticSiteMapProvider
 
                 DataRow[] DRs = DT.Select("MnuURL ='Home.aspx'");
                 string DisName = (DRs.Length == 0) ? "Home" : DRs[0][General.Msg("MnuTextEn", "MnuTextAr")].ToString();
-                parentNode = new SiteMapNode(this, HttpRuntime.AppDomainAppVirtualPath, HttpRuntime.AppDomainAppVirtualPath + "/Pages_Mix/Home.aspx", DisName);
+
+                string AppDomain = HttpRuntime.AppDomainAppVirtualPath;
+                if (AppDomain == "/") { AppDomain = "~"; }
+                parentNode = new SiteMapNode(this, AppDomain, AppDomain + "/Pages_Mix/Home.aspx", DisName);
 
                 AddNode(parentNode);
                 AddFiles(parentNode, DT);
@@ -102,6 +105,8 @@ public class SiteMapFun : StaticSiteMapProvider
             {
                 DataRow[] DRs = DT.Select("MnuURL ='" + item.FileName + "'");
                 string DisName = (DRs.Length == 0) ? item.FileName : DRs[0][General.Msg("MnuTextEn", "MnuTextAr")].ToString();
+
+                string ss = folderNode.Key;
 
                 SiteMapNode fileNode = new SiteMapNode(this, item.FileName, folderNode.Key + "/" + item.FileName, DisName);
                 AddNode(fileNode, folderNode);
