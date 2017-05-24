@@ -1013,8 +1013,7 @@ span.glyphicon.CalenderIco {
     background: white;
     border-radius: 3px;
     position: relative;
-    background-image: url(../../Images/LoginPanelBG.png);
-    background-size: cover;
+    
 }
 
 .LoginFooterLink {
@@ -1065,19 +1064,60 @@ span.glyphicon.CalenderIco {
 }
 
 .tp_logoin .h2 {
-    line-height: 55px;
+    
     font-size: 24px;
     font-weight: bold;
     font-family: 'Open Sans', sans-serif;
     text-transform: uppercase;
-    color: #fff;
-    margin-bottom: 0;
+    color: #0061a7;
+    margin:20px 0;
     text-align: center;
-    background: #009ad7;
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px;
+    
 }
-
+.tp_logoin .h3 {
+    margin:10px 0;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+    text-transform: uppercase;
+    color: #007dc1;
+    
+    text-align: center;
+    
+}
+.tp_logoin input:not([type=image])
+{
+    height: 47px;
+    font-size:16px;
+    padding-left:52px;
+}
+.UserName:before , .PassWord:before
+{
+    display:block;
+    position:absolute;
+    content:"";
+    width:47px;
+    height:47px;
+    background-color:#0061a7;
+    text-align: center;
+    font-size: 32px;
+    line-height: 47px;
+    color:#fff;
+    font-family:FontAwesome;
+}
+.UserName:before
+{
+    
+        content: "\f007";
+}
+.PassWord:before
+{
+        content: "\f023";
+}
+.tp_logoin span
+{
+    font-weight:bold;
+}
 .MsgValidation {
     background-color: #ba2c1d;
     word-break: break-word;
@@ -1107,10 +1147,10 @@ span.glyphicon.CalenderIco {
 .LoginBTN {
     width: 100%;
     text-align: center;
-    font-size: 12px;
+    font-size: 14px;
     font-family: 'Open Sans',sans-serif;
     font-weight: bold;
-    padding: 5px 0;
+    padding: 15px 0;
     letter-spacing: 0;
     box-shadow: inset 0px 0px 0px 0px #1abc9c;
     color: #fff;
@@ -2839,13 +2879,16 @@ a.Requests:before {
     float: right;
     width: 50%;
     padding-right: 20px;
-    margin-top: 150px;
+    margin-top: 40px;
     display: table;
 }
 
 .LoginLeft {
     float: left;
-    width: 50%;
+    width: 48%;
+    background-image: url(../../Images/LoginPanelBG.png);
+    background-size: cover;
+        height: 500px;
 }
 
 .clearfix, .clearfix:after, .container:after, .container-fluid:after, .row:after, .form-horizontal .form-group:after, .btn-toolbar:after, .btn-group-vertical > .btn-group:after, .nav:after, .navbar:after, .navbar-header:after, .navbar-collapse:after, .pager:after, .panel-body:after, .modal-footer:after {

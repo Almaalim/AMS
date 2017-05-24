@@ -11,29 +11,40 @@
             <asp:Image ID="imgLogo" runat="server" Height="150px" Width="150px"
                 ImageUrl="~/images/Logo.png" meta:resourcekey="imgLogoResource1" />
         </div>
-        <div id="loginTD" runat="server" >
+        <div id="loginTD" runat="server">
 
-            <div class="h2">
+
+            <div class="LoginLeft">
+                <div class="row">
+                    <div class="col12">
+                        <asp:Image ID="Image1" runat="server" CssClass="loginLogoS"
+                            ImageUrl="~/images/Logo.png" meta:resourcekey="imgLogoResource1" />
+                        <asp:Image ID="Image2" runat="server" CssClass="loginLogoM"
+                            ImageUrl="~/images/LoginLogo.png" meta:resourcekey="imgLogoResource1" />
+
+                    </div>
+                </div>
+            </div>
+            <div class="LoginRight">
+           <div class="row">
+               <div class="col12 h2">
                 Login
             </div>
-            <div class="LoginLeft">
-                 <div class="row">
-                <div class="col12">
-                    <asp:Image ID="Image1" runat="server" CssClass="loginLogoS"
-                        ImageUrl="~/images/Logo.png" meta:resourcekey="imgLogoResource1" />
-                    <asp:Image ID="Image2" runat="server" CssClass="loginLogoM"
-                        ImageUrl="~/images/LoginLogo.png" meta:resourcekey="imgLogoResource1" />
 
-                </div>
+           </div>
+                <div class="row">
+               <div class="col12 h3">
+                Attendance System
             </div>
-                </div>
-            <div class="LoginRight">
-           
-            <div class="row">
-                <div class="col4">
+
+           </div>
+         <div class="row" style="display:none">
+                <div class="col12">
                     <asp:Label ID="Label2" runat="server" Text="User Name :" meta:resourcekey="Label2Resource1"></asp:Label>
                 </div>
-                <div class="col8">
+                </div>
+                <div class="row">
+                <div class="col12 UserName">
                     <asp:TextBox ID="txtname" runat="server"
                         AutoCompleteType="Disabled" meta:resourcekey="txtnameResource1"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rvName" runat="server"
@@ -41,13 +52,14 @@
                         Text="&lt;img src='images/Exclamation.gif' title='User Name is required!' /&gt;"
                         ValidationGroup="Login" meta:resourcekey="rvNameResource1"></asp:RequiredFieldValidator>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col4">
+        </div>
+        <div class="row" style="display:none">
+                <div class="col12">
                     <asp:Label ID="Label3" runat="server" Text="Password :"  meta:resourcekey="Label3Resource1"></asp:Label>
-
+</div>
                 </div>
-                <div class="col8">
+                <div class="row">
+                <div class="col12 PassWord">
                     <asp:TextBox ID="txtpass" runat="server" AutoCompleteType="Disabled" TextMode="Password"
                         meta:resourcekey="txtpassResource1"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rvPass" runat="server" CssClass="CustomValidator"
@@ -57,9 +69,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col4">
-                </div>
-                <div class="col8">
+                <div class="col12">
+                
                     <asp:Label ID="lblDomain" runat="server" Text="Log on to :"  Visible="False"
                         meta:resourcekey="lblDomainResource1"></asp:Label>
                     <asp:Label ID="lblDomainName" runat="server"    Visible="False"
@@ -67,9 +78,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col4">
-                </div>
-                <div class="col8">
+                 <div class="col12">
                     <asp:LinkButton ID="btnLogin" runat="server" CssClass="LoginBTN"
                          OnClick="btnLogin_Click" 
                         Text="Login" ValidationGroup="Login" meta:resourcekey="btnLoginResource1"></asp:LinkButton>
