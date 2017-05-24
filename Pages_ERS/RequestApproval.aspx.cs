@@ -507,7 +507,7 @@ public partial class RequestApproval : BasePage
                         SqlCs.ApprovalOrRejected(ProCs);
                         
                         btnFilter_Click(null,null);
-                        master.FoundRequest();
+                        master.ShowIsExistingRequest();
                         
                         break;
 
@@ -516,7 +516,7 @@ public partial class RequestApproval : BasePage
                         SqlCs.ApprovalOrRejected(ProCs);
 
                         btnFilter_Click(null,null);
-                        master.FoundRequest();
+                        master.ShowIsExistingRequest();
                         
                         break;
                 }

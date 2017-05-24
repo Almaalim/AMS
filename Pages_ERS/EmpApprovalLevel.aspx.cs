@@ -252,7 +252,7 @@ public partial class EmpApprovalLevel : BasePage
                 ProCs.EalLevelIDs = levelIDs;
                 SqlCs.Insert(ProCs);
                     
-                master.FoundRequest();
+                master.ShowIsExistingRequest();
             }
 
             if (sucess)

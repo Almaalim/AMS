@@ -26,13 +26,13 @@
         else { document.getElementById(div).style.display = "none"; }
     }
 
-    function Clear(div, Gtxt, Htxt) {
+    function Clear(div, Gtxt, Htxt, GD, HD) {
         document.getElementById(div).style.display = "none";
-        document.getElementById(Gtxt).value = "";
-        document.getElementById(Htxt).value = "";
+        document.getElementById(Gtxt).value = GD;
+        document.getElementById(Htxt).value = HD;
     }
 
-    document.onclick = function (e) {
+    <%--document.onclick = function (e) {
         e = e || event
         var target = e.target || e.srcElement
 
@@ -49,7 +49,7 @@
         while (target)
         // Click was outside the box, hide it.
         box.style.display = "none"
-    }
+    }--%>
 </script>
 
 

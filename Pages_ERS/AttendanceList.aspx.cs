@@ -201,8 +201,6 @@ public partial class AttendanceList : BasePage
             Session["MonthDT"] = (DataTable)MonthDT;
             grdData.DataSource = (DataTable)MonthDT;
             grdData.DataBind();
-
-            (this.Master as AMSMasterPage).FillMonthSummary();
         }
         catch (Exception e1)
         {

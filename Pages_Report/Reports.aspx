@@ -283,6 +283,23 @@
             }
         }
     </script>
+    
+    <script type="text/javascript">
+        function showPopup(dev1, dev2, dev3, devShow) {
+            hidePopup('', dev2, dev3);
+            document.getElementById(devShow).style.visibility = 'visible'; document.getElementById(devShow).style.display = 'block';
+            document.getElementById(dev1).style.visibility = 'visible'; document.getElementById(dev1).style.display = 'block';
+        }
+
+        function hidePopup(dev1, dev2, dev3) {
+            if (dev1 != '') { document.getElementById(dev1).style.visibility = 'hidden'; document.getElementById(dev1).style.display = 'none'; }
+            if (dev2 != '') { document.getElementById(dev2).style.visibility = 'hidden'; document.getElementById(dev2).style.display = 'none'; }
+            if (dev3 != '') { document.getElementById(dev3).style.visibility = 'hidden'; document.getElementById(dev3).style.display = 'none'; }
+        }
+
+    </script>
+    
+    
     <asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Conditional">
         <Triggers>
             <asp:PostBackTrigger ControlID="btnEditReport" />
@@ -324,11 +341,9 @@
                 </div>
             </div>
             <%--Popup--%>
-            <div class="popup" data-popup="popup-1">
-                
-                     
+            <div id="DivPopup" class="popup" data-popup="popup-1" runat="server">  
                 <div class="popup-inner">
-                    <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
+                    <a class="popup-close" data-popup-close="popup-1" href="#" onclick="hidePopup('ctl00_ContentPlaceHolder1_DivPopup','','')">x</a>
                     <div class="popup-wrap">
                     <div class="row">
                         <div class="col12">

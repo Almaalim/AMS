@@ -37,8 +37,20 @@ public partial class ReportViewer : BasePage
         try
         {
             /*** Fill Session ************************************/
-            pgCs.FillSession(); 
+            pgCs.FillSession();
             /*** Fill Session ************************************/
+            if (Request.QueryString["ID"] != null)
+            {
+                string ID = Request.QueryString["ID"].ToString();
+                if (!string.IsNullOrEmpty(ID))
+                {
+                    string[] IDs = ID.Split('_');
+                    string FavID = IDs[0];
+                    string RepID = IDs[1];
+                    RepParametersPro RepProCs = RepCs.FillFavReportParam(FavID, RepID, pgCs.LoginID, pgCs.Lang, pgCs.DateType);
+                    Session["RepProCs"] = RepProCs;
+                }
+            }
 
             if (Session["RepProCs"] == null) { Response.Redirect(@"~/Pages_Report/Reports.aspx"); }
             ShowReport();

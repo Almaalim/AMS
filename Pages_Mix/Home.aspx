@@ -9,10 +9,19 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <%--script--%>
-    <script type="text/javascript" src="../Script/GridEvent.js"></script>
-    <script type="text/javascript" src="../Script/CheckKey.js"></script>
-    <script type="text/javascript" src="../Script/TabContainer.js"></script>
-    <script type="text/javascript" src="../FusionCharts/FusionCharts.js" language="Javascript"></script>
+    <script type="text/javascript">
+        function showPopup(devName) { 
+            document.getElementById(devName).style.display = 'block';
+            document.getElementById(devName).style.visibility = 'visible';
+        }
+
+        function hidePopup(devName) {
+            document.getElementById(devName).style.visibility = 'hidden';
+            document.getElementById(devName).style.display = 'none';
+        }
+     </script>
+
+    <script type="text/javascript" src="../FusionCharts/FusionCharts.js"></script>
     <%--script--%>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <Triggers>

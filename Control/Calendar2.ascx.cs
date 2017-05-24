@@ -12,7 +12,7 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     GregorianCalendar Grn = new GregorianCalendar();
-    UmAlQuraCalendar  Umq = new UmAlQuraCalendar();
+    UmAlQuraCalendar Umq = new UmAlQuraCalendar();
 
     private CultureInfo HCulture = new CultureInfo("ar-SA");
     private CultureInfo GCulture = new CultureInfo("en-US");
@@ -39,7 +39,7 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
     }
 
     public enum DefaultCalendarCultureEnum { Gregorian, Hijri }
-    public DefaultCalendarCultureEnum  DefaultCalendarCulture
+    public DefaultCalendarCultureEnum DefaultCalendarCulture
     {
         get { return ((ViewState["DefaultCalendarCulture"] == null) ? DefaultCalendarCultureEnum.Gregorian : (DefaultCalendarCultureEnum)ViewState["DefaultCalendarCulture"]); }
         set { ViewState["DefaultCalendarCulture"] = value; }
@@ -56,7 +56,7 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
     private bool _ValidationRequired = false;
     public bool ValidationRequired
     {
-       get { return _ValidationRequired; }
+        get { return _ValidationRequired; }
         set { if (_ValidationRequired != value) { _ValidationRequired = value; } }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -78,32 +78,32 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void Page_Load(object sender, System.EventArgs e)
-    {   
+    {
         CalendarEnum CalendarType;
-        try { CalendarType = (CalendarEnum)ViewState["CalendarType"]; } catch { CalendarType = CalendarEnum.Both;}
+        try { CalendarType = (CalendarEnum)ViewState["CalendarType"]; } catch { CalendarType = CalendarEnum.Both; }
 
-        if      (CalendarType == CalendarEnum.Gregorian) { txtHDate.Visible = tdHCal.Visible = false; ddlLocaleChoice.Enabled = false; } 
-        else if (CalendarType == CalendarEnum.Hijri)     { txtGDate.Visible = tdGCal.Visible = false; ddlLocaleChoice.Enabled = false; }
-        else if (CalendarType == CalendarEnum.Both)      { ddlLocaleChoice.Enabled = true; }
-        else if (CalendarType == CalendarEnum.System)    {  }
-        
-         DefaultCalendarCulture = DefaultCalendarCultureEnum.Gregorian;
+        if (CalendarType == CalendarEnum.Gregorian) { txtHDate.Visible = tdHCal.Visible = false; ddlLocaleChoice.Enabled = false; }
+        else if (CalendarType == CalendarEnum.Hijri) { txtGDate.Visible = tdGCal.Visible = false; ddlLocaleChoice.Enabled = false; }
+        else if (CalendarType == CalendarEnum.Both) { ddlLocaleChoice.Enabled = true; }
+        else if (CalendarType == CalendarEnum.System) { }
 
-         if (DefaultCalendarCulture == DefaultCalendarCultureEnum.Gregorian)
-         {
-             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US"); 
-         }
-         else if (DefaultCalendarCulture == DefaultCalendarCultureEnum.Hijri)
-         {
-             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ar-SA"); 
-         }
+        DefaultCalendarCulture = DefaultCalendarCultureEnum.Gregorian;
 
-        if (!Page.IsPostBack) 
+        if (DefaultCalendarCulture == DefaultCalendarCultureEnum.Gregorian)
+        {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+        }
+        else if (DefaultCalendarCulture == DefaultCalendarCultureEnum.Hijri)
+        {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ar-SA");
+        }
+
+        if (!Page.IsPostBack)
         {
             //txtGDate.Text = string.Empty;
             //txtHDate.Text = string.Empty;
-            
-            try 
+
+            try
             {
                 if (!string.IsNullOrEmpty(ViewState["vg"].ToString()) && ValidationRequired)
                 {
@@ -113,22 +113,22 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
                     rvDate.ValidationGroup = ViewState["vg"].ToString();
                     rvDate.Enabled = true;
                 }
-            } 
+            }
             catch { }
 
-            try 
-            { 
+            try
+            {
                 if (!string.IsNullOrEmpty(CalTo) && !string.IsNullOrEmpty(ViewState["vg"].ToString()))
                 {
-                    cvCompareDates.ValidationGroup = ViewState["vg"].ToString(); 
+                    cvCompareDates.ValidationGroup = ViewState["vg"].ToString();
                     cvCompareDates.Enabled = true;
                 }
             }
             catch { }
-           
+
             if (DefaultCalendarCulture == DefaultCalendarCultureEnum.Gregorian)
             {
-                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(GCulture.Name); 
+                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(GCulture.Name);
                 ddlLocaleChoice.SelectedValue = GCulture.Name;
                 ddlYears.Items.Clear();
                 ddlMonths.Items.Clear();
@@ -138,7 +138,7 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
             }
             else
             {
-                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(HCulture.Name); 
+                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(HCulture.Name);
                 ddlLocaleChoice.SelectedValue = HCulture.Name;
                 ddlYears.Items.Clear();
                 ddlMonths.Items.Clear();
@@ -229,30 +229,30 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void CalDate_SelectionChanged(object sender, System.EventArgs e)
     {
-        if (ddlLocaleChoice.SelectedValue == HCulture.Name) 
-        { 
-            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(ddlLocaleChoice.SelectedValue); 
+        if (ddlLocaleChoice.SelectedValue == HCulture.Name)
+        {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(ddlLocaleChoice.SelectedValue);
             this.txtHDate.Text = CalDate.SelectedDate.ToString("dd/MM/yyyy");
-            this.txtGDate.Text = DTCs.HijriToGreg(this.txtHDate.Text,"dd/MM/yyyy");
+            this.txtGDate.Text = DTCs.HijriToGreg(this.txtHDate.Text, "dd/MM/yyyy");
             CalDate.SelectedDates.Clear();
         }
-        else if (ddlLocaleChoice.SelectedValue == GCulture.Name) 
-        { 
-            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(ddlLocaleChoice.SelectedValue); 
+        else if (ddlLocaleChoice.SelectedValue == GCulture.Name)
+        {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(ddlLocaleChoice.SelectedValue);
             this.txtGDate.Text = CalDate.SelectedDate.ToString("dd/MM/yyyy");
-            this.txtHDate.Text = DTCs.GregToHijri(this.txtGDate.Text,"dd/MM/yyyy");
+            this.txtHDate.Text = DTCs.GregToHijri(this.txtGDate.Text, "dd/MM/yyyy");
             CalDate.SelectedDates.Clear();
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void ddlYears_SelectedIndexChanged(object sender, EventArgs e) 
-    { 
+    protected void ddlYears_SelectedIndexChanged(object sender, EventArgs e)
+    {
         if (ddlLocaleChoice.SelectedValue == HCulture.Name) { Changedate("H"); } else if (ddlLocaleChoice.SelectedValue == GCulture.Name) { Changedate("G"); }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void ddlMonths_SelectedIndexChanged(object sender, EventArgs e) 
+    protected void ddlMonths_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (ddlLocaleChoice.SelectedValue == HCulture.Name) { Changedate("H"); } else if (ddlLocaleChoice.SelectedValue == GCulture.Name) { Changedate("G"); }
     }
@@ -265,16 +265,16 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
             //string[] ss = new string[5];
             //txtGDate.Attributes.Keys.CopyTo(ss,0);
             //string vv = txtGDate.Attributes["value"].ToString();
-            
+
             if (DTType == "G")
             {
-                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(ddlLocaleChoice.SelectedValue); 
+                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(ddlLocaleChoice.SelectedValue);
                 CalDate.TodaysDate = new DateTime(Convert.ToInt32(ddlYears.SelectedValue), Convert.ToInt32(ddlMonths.SelectedValue), 1);
                 //CalDate.SelectedDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
             }
             else if (DTType == "H")
             {
-                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(ddlLocaleChoice.SelectedValue); 
+                System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(ddlLocaleChoice.SelectedValue);
                 CalDate.TodaysDate = new DateTime(Convert.ToInt32(ddlYears.SelectedValue), Convert.ToInt32(ddlMonths.SelectedValue), 1, Umq);
                 //CalDate.SelectedDate =new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, Umq);
             }
@@ -302,10 +302,10 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void imgbtnClear_Click(object sender, ImageClickEventArgs e) 
-    {  
+    protected void imgbtnClear_Click(object sender, ImageClickEventArgs e)
+    {
         ScriptManager.RegisterStartupScript(CalendarUpdatePanel, typeof(string), "ShowPopup" + this.DivCal.ClientID, "document.getElementById('" + this.DivCal.ClientID + "').style.display = 'none';", true);
-        this.txtGDate.Text = this.txtHDate.Text = "";   
+        this.txtGDate.Text = this.txtHDate.Text = "";
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -313,7 +313,7 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
     #region public Events
-    
+
     public void SetVisible(bool Status)
     {
         lblCalendar.Visible = Status;
@@ -329,9 +329,9 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
             imgG.Attributes.Add("onclick", "showHide('" + this.DivCal.ClientID + "');");
             imgH.Attributes.Add("onclick", "showHide('" + this.DivCal.ClientID + "');");
             imgCal.Attributes.Add("onclick", "showHide('" + this.DivCal.ClientID + "');");
-            
+
             string GDate = (InitialValue) ? DTCs.GDateNow("dd/MM/yyyy") : "";
-            string HDate = (InitialValue) ? DTCs.GregToHijri(GDate,"dd/MM/yyyy") : "";
+            string HDate = (InitialValue) ? DTCs.GregToHijri(GDate, "dd/MM/yyyy") : "";
 
             imgClear.Attributes.Add("onclick", "Clear('" + this.DivCal.ClientID + "','" + this.txtGDate.ClientID + "','" + this.txtHDate.ClientID + "','" + GDate + "','" + HDate + "');");
         }
@@ -352,7 +352,7 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void SetValidationEnabled(bool Status)
     {
-        this.rvDate.Enabled         = Status;
+        this.rvDate.Enabled = Status;
         this.cvCompareDates.Enabled = Status;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -367,10 +367,10 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
     public void SetGDate(string Date)
     {
         if (string.IsNullOrEmpty(Date)) { ClearDate(); }
-        else 
+        else
         {
             this.txtGDate.Text = Date;
-            this.txtHDate.Text = DTCs.GregToHijri(this.txtGDate.Text,"dd/MM/yyyy");
+            this.txtHDate.Text = DTCs.GregToHijri(this.txtGDate.Text, "dd/MM/yyyy");
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -378,12 +378,12 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
     public void SetGDate(object Date, string format)
     {
         System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-        if (Date != DBNull.Value) 
-        { 
+        if (Date != DBNull.Value)
+        {
             DateTime DT = (DateTime)Date;
-            this.txtGDate.Text = DTCs.FormatGreg(DT.ToString("dd/MM/yyyy"), format); 
+            this.txtGDate.Text = DTCs.FormatGreg(DT.ToString("dd/MM/yyyy"), format);
             this.txtHDate.Text = DTCs.GregToHijri(this.txtGDate.Text, format);
-        } 
+        }
         else { ClearDate(); }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -391,10 +391,10 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
     public void SetHDate(string Date)
     {
         if (string.IsNullOrEmpty(Date)) { ClearDate(); }
-        else 
+        else
         {
             this.txtHDate.Text = Date;
-            this.txtGDate.Text = DTCs.HijriToGreg(this.txtHDate.Text,"dd/MM/yyyy");
+            this.txtGDate.Text = DTCs.HijriToGreg(this.txtHDate.Text, "dd/MM/yyyy");
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -405,7 +405,7 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             this.txtGDate.Text = DTCs.GDateNow("dd/MM/yyyy");
-            this.txtHDate.Text = DTCs.GregToHijri(this.txtGDate.Text,"dd/MM/yyyy");
+            this.txtHDate.Text = DTCs.GregToHijri(this.txtGDate.Text, "dd/MM/yyyy");
         }
         catch (Exception ex) { ClearDate(); }
     }
@@ -414,8 +414,8 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
     public string getGDate() { return this.txtGDate.Text; }
     public string getHDate() { return this.txtHDate.Text; }
 
-    public string getGDateDefFormat() { return DTCs.ToDefFormat(this.txtGDate.Text, "Gregorian"); } 
-    public string getGDateDBFormat()  { return DTCs.ToDBFormat(this.txtGDate.Text, "Gregorian"); } 
+    public string getGDateDefFormat() { return DTCs.ToDefFormat(this.txtGDate.Text, "Gregorian"); }
+    public string getGDateDBFormat() { return DTCs.ToDBFormat(this.txtGDate.Text, "Gregorian"); }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
     public int GetIntGDate()
@@ -449,23 +449,23 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
         {
             if (source.Equals(cvCompareDates))
             {
-               string DateTo = ((TextBox)this.Parent.Parent.FindControl(CalTo).FindControl("lblCalendar").FindControl("txtGDate")).Text;
+                string DateTo = ((TextBox)this.Parent.Parent.FindControl(CalTo).FindControl("lblCalendar").FindControl("txtGDate")).Text;
 
                 if (!string.IsNullOrEmpty(txtGDate.Text) && !string.IsNullOrEmpty(DateTo))
                 {
                     string msg = General.Msg("Start date more than End date", "تاريخ البداية اكبر من تاريخ الإنتهاء");
-                    cvCompareDates.ErrorMessage = msg; 
-                    cvCompareDates.Text = this.Server.HtmlDecode("&lt;img src='App_Themes/ThemeEn/Images/Validation/message_exclamation.png' title='" + msg + "' /&gt;"); 
-                    
+                    cvCompareDates.ErrorMessage = msg;
+                    cvCompareDates.Text = this.Server.HtmlDecode("&lt;img src='App_Themes/ThemeEn/Images/Validation/message_exclamation.png' title='" + msg + "' /&gt;");
+
                     int iStartDate = DTCs.ConvertDateTimeToInt(txtGDate.Text, "Gregorian");
-                    int iEndDate   = DTCs.ConvertDateTimeToInt(DateTo,"Gregorian");
+                    int iEndDate = DTCs.ConvertDateTimeToInt(DateTo, "Gregorian");
                     if (iStartDate > iEndDate) { e.IsValid = false; }
                 }
             }
         }
         catch { e.IsValid = false; }
     }
-    
+
     #endregion
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/

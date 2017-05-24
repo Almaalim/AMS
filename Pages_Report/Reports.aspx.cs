@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Text;
@@ -18,11 +19,11 @@ public partial class Reports : BasePage
     ReportPro ProCs = new ReportPro();
     ReportSql SqlCs = new ReportSql();
 
-    PageFun pgCs   = new PageFun();
-    General GenCs  = new General();
-    DBFun   DBCs   = new DBFun();
+    PageFun pgCs = new PageFun();
+    General GenCs = new General();
+    DBFun DBCs = new DBFun();
     CtrlFun CtrlCs = new CtrlFun();
-    DTFun   DTCs   = new DTFun();
+    DTFun DTCs = new DTFun();
     ReportFun RepCs = new ReportFun();
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -61,16 +62,19 @@ public partial class Reports : BasePage
         try
         {
             /*** Fill Session ************************************/
-            pgCs.FillSession(); 
+            pgCs.FillSession();
             /*** Fill Session ************************************/
-            
+
             if (!IsPostBack)
             {
                 /*** Common Code ************************************/
-                /*** Check AMS License ***/ pgCs.CheckAMSLicense();  
+                /*** Check AMS License ***/
+                pgCs.CheckAMSLicense();
                 string QS = "";
                 if (Request.QueryString.Count != 0) { QS = "?" + Request.QueryString.ToString(); }
-                /*** get Permission    ***/ ViewState["ht"] = pgCs.getPerm(Request.Url.AbsolutePath + QS);  
+                /*** get Permission    ***/
+                ViewState["ht"] = pgCs.getPerm(Request.Url.AbsolutePath + QS);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "hidePopup('" + DivPopup.ClientID + "','" + pnlDate.ClientID + "','" + pnlDateFromTo.ClientID + "');", true);
                 FillList();
                 /*** Common Code ************************************/
 
@@ -79,16 +83,16 @@ public partial class Reports : BasePage
 
                 if (ViewState["grpRep"].ToString() == "F") { }
 
-
                 FillReport();
 
                 btnEventsEnable(false);
                 dltReport.RepeatColumns = 4;
                 ShowPanels();
 
-                calDate.SetEnabled(true);
-                calStartDate.SetEnabled(true);
-                calEndDate.SetEnabled(true);
+                //calDate.SetEnabled(true);
+                //calStartDate.SetEnabled(true);
+                //calEndDate.SetEnabled(true);
+
             }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
@@ -110,10 +114,10 @@ public partial class Reports : BasePage
             CtrlCs.FillVacationTypeList(ref ddlVacType, null, false, true, "ALL");
 
             FillTree("0");
-              
+
             ddlUserName.Items.Clear();
             DataTable PDT = DBCs.FetchData(new SqlCommand("SELECT * FROM ViewAppUser_PermissionGroup WHERE ISNULL(GrpDeleted,0) = 0 AND UsrStatus = 'True'"));
-            if (!DBCs.IsNullOrEmpty(PDT)) { CtrlCs.PopulateDDL(ddlUserName, PDT, General.Msg("UsrName","UsrName"), "UsrName", General.Msg("-Select User Name -","-اختر اسم المستخدم-")); }      
+            if (!DBCs.IsNullOrEmpty(PDT)) { CtrlCs.PopulateDDL(ddlUserName, PDT, General.Msg("UsrName", "UsrName"), "UsrName", General.Msg("-Select User Name -", "-اختر اسم المستخدم-")); }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
@@ -137,18 +141,16 @@ public partial class Reports : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void ShowPanels()
     {
-        pnlDate.Visible        = false;
-        pnlMonth.Visible       = false;
-        pnlDateFromTo.Visible  = false;
-        pnlWorkTime.Visible    = false;
-        pnlMachine.Visible     = false;
-        pnlCategory.Visible    = false;
-        pnlUsers.Visible       = false;
-        pnlVacType.Visible     = false;
-        pnlExcType.Visible     = false;
+        pnlMonth.Visible = false;
+        pnlWorkTime.Visible = false;
+        pnlMachine.Visible = false;
+        pnlCategory.Visible = false;
+        pnlUsers.Visible = false;
+        pnlVacType.Visible = false;
+        pnlExcType.Visible = false;
         pnlDepartmnets.Visible = false;
-        pnlEmployee.Visible    = false;
-        pnlDaysCount.Visible   = false;
+        pnlEmployee.Visible = false;
+        pnlDaysCount.Visible = false;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -201,39 +203,59 @@ public partial class Reports : BasePage
         System.Web.UI.WebControls.Image imgCurrRef = (System.Web.UI.WebControls.Image)e.Item.FindControl("Image1");
         lnkCurrRef.Font.Bold = true;
         /////////////////
-
+        string pnlshow = "";
         Clear();
-        calDate.SetEnabled(true);
-        calStartDate.SetEnabled(true);
-        calEndDate.SetEnabled(true);
+        calDate.SetValidationEnabled(false);
+        calStartDate.SetValidationEnabled(false);
+        calEndDate.SetValidationEnabled(false);
 
         ddlMonth.SelectedIndex = ddlMonth.Items.IndexOf(ddlMonth.Items.FindByValue(DTCs.FindCurrentMonth()));
-        ddlYear.SelectedIndex  = ddlYear.Items.IndexOf(ddlYear.Items.FindByValue(DTCs.FindCurrentYear()));
+        ddlYear.SelectedIndex = ddlYear.Items.IndexOf(ddlYear.Items.FindByValue(DTCs.FindCurrentYear()));
 
         RepParametersPro RepProCs = new RepParametersPro();
-        RepProCs.RepID   = RepID;
-        RepProCs.RepLang = pgCs.Lang; 
+        RepProCs.RepID = RepID;
+        RepProCs.RepLang = pgCs.Lang;
         RepProCs = RepCs.GetReportInfo(RepProCs);
 
         lblTitleReport.Text = RepProCs.RepName;
-        txtDescReport.Text  = RepProCs.RepDesc;
+        txtDescReport.Text = RepProCs.RepDesc;
 
         int RepPanels = Convert.ToInt32(RepProCs.RepPanels);
-        pnlDate.Visible        = CheckBitWise(RepPanels, 1);
-        pnlDateFromTo.Visible  = CheckBitWise(RepPanels, 2);
-        pnlWorkTime.Visible    = CheckBitWise(RepPanels, 4);
-        pnlMachine.Visible     = CheckBitWise(RepPanels, 8);
-        pnlEmployee.Visible    = CheckBitWise(RepPanels, 16);
-        pnlDepartmnets.Visible = CheckBitWise(RepPanels, 32); /**/ if (pnlDepartmnets.Visible) { FillTree("0"); }   
-        pnlCategory.Visible    = CheckBitWise(RepPanels, 64);
-        pnlUsers.Visible       = CheckBitWise(RepPanels, 128);
-        pnlMonth.Visible       = CheckBitWise(RepPanels, 256);
-        if (CheckBitWise(RepPanels, 512)) { pnlDate.Visible = true; /**/ calDate.SetEnabled(false); /**/ calDate.SetTodayDate(); }
-        pnlVacType.Visible     = CheckBitWise(RepPanels, 1024);
-        pnlExcType.Visible     = CheckBitWise(RepPanels, 2048);
-        pnlDaysCount.Visible   = CheckBitWise(RepPanels, 4096);
+
+        if (CheckBitWise(RepPanels, 1))
+        {
+            pnlshow = pnlDate.ClientID;
+            calDate.SetValidationEnabled(true);
+        }
+
+        if (CheckBitWise(RepPanels, 2))
+        {
+            pnlshow = pnlDateFromTo.ClientID;
+            calStartDate.SetValidationEnabled(true);
+            calEndDate.SetValidationEnabled(true);
+        }
+
+        pnlWorkTime.Visible = CheckBitWise(RepPanels, 4);
+        pnlMachine.Visible = CheckBitWise(RepPanels, 8);
+        pnlEmployee.Visible = CheckBitWise(RepPanels, 16);
+        pnlDepartmnets.Visible = CheckBitWise(RepPanels, 32); /**/ if (pnlDepartmnets.Visible) { FillTree("0"); }
+        pnlCategory.Visible = CheckBitWise(RepPanels, 64);
+        pnlUsers.Visible = CheckBitWise(RepPanels, 128);
+        pnlMonth.Visible = CheckBitWise(RepPanels, 256);
+        if (CheckBitWise(RepPanels, 512))
+        {
+            pnlshow = pnlDate.ClientID;
+            calDate.SetEnabled(false);
+            calDate.SetValidationEnabled(true);
+            calDate.SetTodayDate();
+        }
+        pnlVacType.Visible = CheckBitWise(RepPanels, 1024);
+        pnlExcType.Visible = CheckBitWise(RepPanels, 2048);
+        pnlDaysCount.Visible = CheckBitWise(RepPanels, 4096);
 
         btnEventsEnable(true);
+
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "showPopup('" + DivPopup.ClientID + "','" + pnlDate.ClientID + "','" + pnlDateFromTo.ClientID + "','" + pnlshow + "');", true);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -246,16 +268,16 @@ public partial class Reports : BasePage
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected string getRepName() { return General.Msg("dataitem.RepNameEn","dataitem.RepNameAr"); }
+    protected string getRepName() { return General.Msg("dataitem.RepNameEn", "dataitem.RepNameAr"); }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void btnEventsEnable(bool status)
     {
         btnSetAsDefault.Enabled = status;
-        btnShow.Enabled         = status;
-        btnAddFavorite.Enabled  = status;
+        btnShow.Enabled = status;
+        btnAddFavorite.Enabled = status;
         btnExportRecord.Enabled = status;
-        btnEditReport.Enabled   = status;
+        btnEditReport.Enabled = status;
         //btnExport.Enabled = status;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -263,7 +285,7 @@ public partial class Reports : BasePage
     protected string WorkTime()
     {
         ViewState["WorkTimeParam"] = "";
-        
+
         if (txtEnWorkTimeName.Text.Trim() == "" && txtArWorkTimeName.Text.Trim() == "" && ddlWtpID.SelectedIndex < 1) { return ""; }
 
         SqlCommand cmd = new SqlCommand();
@@ -277,7 +299,7 @@ public partial class Reports : BasePage
         cmd.CommandText = FQ.ToString();
 
         DataTable DT = DBCs.FetchData(cmd);
-        
+
         ViewState["WorkTimeParam"] = GenCs.CreateIDsNumber("WktID", DT);
 
         return ViewState["WorkTimeParam"].ToString();
@@ -305,7 +327,7 @@ public partial class Reports : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected string Employee()
     {
-        DataTable EmployeeInsertdt = ucEmployeeSelected.getEmpSelected();      
+        DataTable EmployeeInsertdt = ucEmployeeSelected.getEmpSelected();
         return GenCs.CreateIDsNumber("EmpID", EmployeeInsertdt);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -313,7 +335,7 @@ public partial class Reports : BasePage
     protected string Department()
     {
         ViewState["DepartmentParam"] = "";
-        
+
         string depID = "";
         if (trvDept.CheckedNodes.Count > 0)
         {
@@ -349,13 +371,13 @@ public partial class Reports : BasePage
 
         SqlCommand cmd = new SqlCommand();
         StringBuilder FQ = new StringBuilder();
-        FQ.Append(" SELECT GrpPermissions FROM ViewAppUser_PermissionGroup WHERE UsrName = @UsrName AND ISNULL(GrpDeleted,0) = 0"); 
-        
+        FQ.Append(" SELECT GrpPermissions FROM ViewAppUser_PermissionGroup WHERE UsrName = @UsrName AND ISNULL(GrpDeleted,0) = 0");
+
         cmd.Parameters.AddWithValue("@UsrName", ddlUserName.SelectedValue);
         cmd.CommandText = FQ.ToString();
 
         DataTable DT = DBCs.FetchData(cmd);
-        if (!DBCs.IsNullOrEmpty(DT)) 
+        if (!DBCs.IsNullOrEmpty(DT))
         {
             string cipherText;
             cipherText = DT.Rows[0].ToString();
@@ -404,45 +426,45 @@ public partial class Reports : BasePage
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
     #region Report Events
-    
+
     protected void FillParameter(string RepID)
     {
         ViewState["RepProCs"] = "";
-        
+
         RepParametersPro RepProCs = new RepParametersPro();
-        RepProCs.RepID    = RepID;
-        RepProCs.RepUser  = pgCs.LoginID;
+        RepProCs.RepID = RepID;
+        RepProCs.RepUser = pgCs.LoginID;
         RepProCs.DateType = pgCs.DateType;
-        RepProCs.RepLang  = pgCs.Lang;
+        RepProCs.RepLang = pgCs.Lang;
 
         RepProCs = RepCs.GetReportInfo(RepProCs);
 
-        if (pnlDate.Visible       && !string.IsNullOrEmpty(calDate.getGDate()))      { RepProCs.Date     = calDate.getGDateDefFormat(); }
+        if (pnlDate.Visible && !string.IsNullOrEmpty(calDate.getGDate())) { RepProCs.Date = calDate.getGDateDefFormat(); }
         if (pnlDateFromTo.Visible && !string.IsNullOrEmpty(calStartDate.getGDate())) { RepProCs.DateFrom = calStartDate.getGDateDefFormat(); }
-        if (pnlDateFromTo.Visible && !string.IsNullOrEmpty(calEndDate.getGDate()))   { RepProCs.DateTo   = calEndDate.getGDateDefFormat(); }
+        if (pnlDateFromTo.Visible && !string.IsNullOrEmpty(calEndDate.getGDate())) { RepProCs.DateTo = calEndDate.getGDateDefFormat(); }
 
         if (pnlMonth.Visible && ddlMonth.SelectedIndex >= 0)
         {
-                DateTime SDate = DateTime.Now;
-                DateTime EDate = DateTime.Now;
-                DTCs.FindMonthDates(ddlYear.SelectedValue, ddlMonth.SelectedValue, out SDate, out EDate);
+            DateTime SDate = DateTime.Now;
+            DateTime EDate = DateTime.Now;
+            DTCs.FindMonthDates(ddlYear.SelectedValue, ddlMonth.SelectedValue, out SDate, out EDate);
 
-                RepProCs.DateFrom = SDate.ToString("dd/MM/yyyy");
-                RepProCs.DateTo   = EDate.ToString("dd/MM/yyyy");
+            RepProCs.DateFrom = SDate.ToString("dd/MM/yyyy");
+            RepProCs.DateTo = EDate.ToString("dd/MM/yyyy");
 
-                RepProCs.MonthDate = ddlMonth.SelectedValue;
-                RepProCs.YearDate  = ddlYear.SelectedValue;
+            RepProCs.MonthDate = ddlMonth.SelectedValue;
+            RepProCs.YearDate = ddlYear.SelectedValue;
         }
 
-        if (pnlWorkTime.Visible)    { RepProCs.WktID     = ViewState["WorkTimeParam"].ToString(); }
-        if (pnlMachine.Visible)     { RepProCs.MacID     = ViewState["MachineParam"].ToString(); }
-        if (pnlEmployee.Visible)    { RepProCs.EmpID     = Employee(); }
-        if (pnlDepartmnets.Visible) { RepProCs.DepID     = ViewState["DepartmentParam"].ToString(); }
-        if (pnlCategory.Visible)    { RepProCs.CatID     = ViewState["CategoryParam"].ToString(); }
-        if (pnlUsers.Visible)       { RepProCs.UsrName   = ddlUserName.SelectedValue.ToString(); RepProCs.Permissions = Permission(); }
-        if (pnlVacType.Visible)     { RepProCs.VtpID     = ViewState["VacationParam"].ToString(); }
-        if (pnlExcType.Visible)     { RepProCs.ExcID     = ViewState["ExcuseParam"].ToString(); }
-        if (pnlDaysCount.Visible)   { RepProCs.DaysCount = txtDaysCount.Text; }
+        if (pnlWorkTime.Visible) { RepProCs.WktID = ViewState["WorkTimeParam"].ToString(); }
+        if (pnlMachine.Visible) { RepProCs.MacID = ViewState["MachineParam"].ToString(); }
+        if (pnlEmployee.Visible) { RepProCs.EmpID = Employee(); }
+        if (pnlDepartmnets.Visible) { RepProCs.DepID = ViewState["DepartmentParam"].ToString(); }
+        if (pnlCategory.Visible) { RepProCs.CatID = ViewState["CategoryParam"].ToString(); }
+        if (pnlUsers.Visible) { RepProCs.UsrName = ddlUserName.SelectedValue.ToString(); RepProCs.Permissions = Permission(); }
+        if (pnlVacType.Visible) { RepProCs.VtpID = ViewState["VacationParam"].ToString(); }
+        if (pnlExcType.Visible) { RepProCs.ExcID = ViewState["ExcuseParam"].ToString(); }
+        if (pnlDaysCount.Visible) { RepProCs.DaysCount = txtDaysCount.Text; }
 
         ViewState["RepProCs"] = RepProCs;
     }
@@ -458,7 +480,7 @@ public partial class Reports : BasePage
 
             Session["RepProCs"] = ViewState["RepProCs"];
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
             CtrlCs.ShowAdminMsg(this, ex.ToString());
@@ -475,16 +497,16 @@ public partial class Reports : BasePage
             if (!CtrlCs.PageIsValid(this, vsShow)) { return; }
 
             FillParameter(ViewState["RepID"].ToString());
- 
+
             RepParametersPro RepProCs = new RepParametersPro();
             RepProCs = (RepParametersPro)ViewState["RepProCs"];
 
             StiReport Rep = RepCs.CreateReport(RepProCs);
             //Rep.Print(false,System.Drawing.Printing.PrinterSettings.);
         }
-        catch (Exception ex) 
-        { 
-            ErrorSignal.FromCurrentContext().Raise(ex); 
+        catch (Exception ex)
+        {
+            ErrorSignal.FromCurrentContext().Raise(ex);
             CtrlCs.ShowAdminMsg(this, ex.ToString());
         }
     }
@@ -500,7 +522,7 @@ public partial class Reports : BasePage
             string RepTemp = "";
 
             DataTable DT = DBCs.FetchData("SELECT * FROM Report WHERE RepID = @P1 ", new string[] { RepID });
-            if (!DBCs.IsNullOrEmpty(DT)) { RepTemp = General.Msg(DT.Rows[0]["RepTempEn"].ToString(),DT.Rows[0]["RepTempAr"].ToString()); }
+            if (!DBCs.IsNullOrEmpty(DT)) { RepTemp = General.Msg(DT.Rows[0]["RepTempEn"].ToString(), DT.Rows[0]["RepTempAr"].ToString()); }
 
             if (string.IsNullOrEmpty(RepTemp)) { return; }
 
@@ -513,9 +535,9 @@ public partial class Reports : BasePage
 
             StiWebDesigner1.Design(Rep);
         }
-        catch (Exception ex) 
-        { 
-            ErrorSignal.FromCurrentContext().Raise(ex); 
+        catch (Exception ex)
+        {
+            ErrorSignal.FromCurrentContext().Raise(ex);
             CtrlCs.ShowAdminMsg(this, ex.ToString());
         }
     }
@@ -526,14 +548,14 @@ public partial class Reports : BasePage
         try
         {
             if (GenCs.IsNullOrEmpty(ViewState["RepID"])) { CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Validation, General.Msg("Please Select Report to edit it", "رجاء حدد تقرير للتعديل")); return; }
-        
+
             string RepID = ViewState["RepID"].ToString();
-            string RepTemp = ""; 
+            string RepTemp = "";
 
             DataTable DT = DBCs.FetchData("SELECT * FROM Report WHERE RepID = @P1 ", new string[] { RepID });
             if (!DBCs.IsNullOrEmpty(DT)) { RepTemp = General.Msg(DT.Rows[0]["RepTempDefEn"].ToString(), DT.Rows[0]["RepTempDefAr"].ToString()); }
 
-            ProCs.RepID   = RepID;
+            ProCs.RepID = RepID;
             ProCs.RepTemp = RepTemp;
             ProCs.RepLang = pgCs.Lang;
             ProCs.TransactionBy = pgCs.LoginID;
@@ -541,29 +563,29 @@ public partial class Reports : BasePage
             SqlCs.Report_Update_DefTemplate(ProCs);
             CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Success, General.Msg("Report Updated Successfully", "تم تحديث التقرير بنجاح"));
         }
-        catch (Exception ex) 
-        { 
-            ErrorSignal.FromCurrentContext().Raise(ex); 
+        catch (Exception ex)
+        {
+            ErrorSignal.FromCurrentContext().Raise(ex);
             CtrlCs.ShowAdminMsg(this, ex.ToString());
         }
     }
-    
-     #endregion
+
+    #endregion
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
     #region Viewer Events
 
-    protected void StiWebDesigner1_PreInit(object sender, StiWebDesigner.StiPreInitEventArgs e) 
+    protected void StiWebDesigner1_PreInit(object sender, StiWebDesigner.StiPreInitEventArgs e)
     {
         pgCs.FillLangSession();
         e.WebDesigner.LocalizationDirectory = "Localization";
-        e.WebDesigner.Localization = pgCs.Lang.ToLower(); 
+        e.WebDesigner.Localization = pgCs.Lang.ToLower();
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -572,7 +594,7 @@ public partial class Reports : BasePage
         StiReport Rep = e.Report;
         string RepTemp = e.Report.SaveToString().ToString();
 
-        ProCs.RepID   = Session["RepID"].ToString();
+        ProCs.RepID = Session["RepID"].ToString();
         ProCs.RepTemp = RepTemp;
         ProCs.RepLang = pgCs.Lang;
         ProCs.TransactionBy = pgCs.LoginID;
@@ -582,20 +604,20 @@ public partial class Reports : BasePage
             SqlCs.Report_Update_Template(ProCs);
             CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Success, General.Msg("Report Updated Successfully", "تم تحديث التقرير بنجاح"));
         }
-        catch (Exception ex) 
-        { 
-            ErrorSignal.FromCurrentContext().Raise(ex); 
+        catch (Exception ex)
+        {
+            ErrorSignal.FromCurrentContext().Raise(ex);
             CtrlCs.ShowAdminMsg(this, ex.ToString());
         }
     }
-    
+
     #endregion
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
-    
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
     #region Import-Upload Events
@@ -618,7 +640,7 @@ public partial class Reports : BasePage
         string DirRepPath = Server.MapPath("TempFiles\\Reports\\Import\\");
         string DirRepName = Server.MapPath("TempFiles\\Reports\\Import\\") + reportName;
 
-        string location   = DirRepPath + fileUpload.FileName;
+        string location = DirRepPath + fileUpload.FileName;
         fileUpload.SaveAs(location);
         /////////////////////////////////////////////////////////////
         using (ZipFile zip = Ionic.Zip.ZipFile.Read(location))
@@ -635,37 +657,37 @@ public partial class Reports : BasePage
             foreach (XmlNode LoadedNode in Node)
             {
                 if (!string.IsNullOrEmpty(LoadedNode.InnerText.ToString()))
-                { 
-                    if (LoadedNode.Name == "RepID")             { ProCs.RepID             = LoadedNode.InnerText.ToString(); }
-                    if (LoadedNode.Name == "RgpID")             { ProCs.RgpID             = LoadedNode.InnerText.ToString(); }                       
-                    if (LoadedNode.Name == "RepNameAr")         { ProCs.RepNameAr         = LoadedNode.InnerText.ToString(); }
-                    if (LoadedNode.Name == "RepNameEn")         { ProCs.RepNameEn         = LoadedNode.InnerText.ToString(); }                  
-                    if (LoadedNode.Name == "RepForSchedule")    { if (!string.IsNullOrEmpty(LoadedNode.InnerText.ToString())) { ProCs.RepForSchedule = Convert.ToBoolean(LoadedNode.InnerText.ToString()); } else { ProCs.RepForSchedule = false; } }
-                    if (LoadedNode.Name == "RepDescAr")         { ProCs.RepDescAr         = LoadedNode.InnerText.ToString(); }           
-                    if (LoadedNode.Name == "RepDescEn")         { ProCs.RepDescEn         = LoadedNode.InnerText.ToString(); }
-                    if (LoadedNode.Name == "RepPanels")         { if (!string.IsNullOrEmpty(LoadedNode.InnerText.ToString())) {ProCs.RepPanels = LoadedNode.InnerText.ToString(); } else { ProCs.RepPanels = "0"; } }
-                    if (LoadedNode.Name == "RepProcedureName")  { ProCs.RepProcedureName  = LoadedNode.InnerText.ToString(); }
+                {
+                    if (LoadedNode.Name == "RepID") { ProCs.RepID = LoadedNode.InnerText.ToString(); }
+                    if (LoadedNode.Name == "RgpID") { ProCs.RgpID = LoadedNode.InnerText.ToString(); }
+                    if (LoadedNode.Name == "RepNameAr") { ProCs.RepNameAr = LoadedNode.InnerText.ToString(); }
+                    if (LoadedNode.Name == "RepNameEn") { ProCs.RepNameEn = LoadedNode.InnerText.ToString(); }
+                    if (LoadedNode.Name == "RepForSchedule") { if (!string.IsNullOrEmpty(LoadedNode.InnerText.ToString())) { ProCs.RepForSchedule = Convert.ToBoolean(LoadedNode.InnerText.ToString()); } else { ProCs.RepForSchedule = false; } }
+                    if (LoadedNode.Name == "RepDescAr") { ProCs.RepDescAr = LoadedNode.InnerText.ToString(); }
+                    if (LoadedNode.Name == "RepDescEn") { ProCs.RepDescEn = LoadedNode.InnerText.ToString(); }
+                    if (LoadedNode.Name == "RepPanels") { if (!string.IsNullOrEmpty(LoadedNode.InnerText.ToString())) { ProCs.RepPanels = LoadedNode.InnerText.ToString(); } else { ProCs.RepPanels = "0"; } }
+                    if (LoadedNode.Name == "RepProcedureName") { ProCs.RepProcedureName = LoadedNode.InnerText.ToString(); }
                     if (LoadedNode.Name == "RepParametersProc") { ProCs.RepParametersProc = LoadedNode.InnerText.ToString(); }
 
-                    if (LoadedNode.Name == "RepVisible")        { if (!string.IsNullOrEmpty(LoadedNode.InnerText.ToString())) { ProCs.RepVisible = Convert.ToBoolean(LoadedNode.InnerText.ToString()); } else { ProCs.RepVisible = false; } }
-                    if (LoadedNode.Name == "RepType")           { ProCs.RepType           = LoadedNode.InnerText.ToString(); }
-                    if (LoadedNode.Name == "RepOrientation")    { ProCs.RepOrientation    = LoadedNode.InnerText.ToString(); }
-                    if (LoadedNode.Name == "VerID")             { ProCs.VerID             = LoadedNode.InnerText.ToString(); }
-                    if (LoadedNode.Name == "RepGeneralID")      { ProCs.RepGeneralID      = LoadedNode.InnerText.ToString(); }
+                    if (LoadedNode.Name == "RepVisible") { if (!string.IsNullOrEmpty(LoadedNode.InnerText.ToString())) { ProCs.RepVisible = Convert.ToBoolean(LoadedNode.InnerText.ToString()); } else { ProCs.RepVisible = false; } }
+                    if (LoadedNode.Name == "RepType") { ProCs.RepType = LoadedNode.InnerText.ToString(); }
+                    if (LoadedNode.Name == "RepOrientation") { ProCs.RepOrientation = LoadedNode.InnerText.ToString(); }
+                    if (LoadedNode.Name == "VerID") { ProCs.VerID = LoadedNode.InnerText.ToString(); }
+                    if (LoadedNode.Name == "RepGeneralID") { ProCs.RepGeneralID = LoadedNode.InnerText.ToString(); }
                 }
             }
         }
 
-        ProCs.RepTempEn    = CretaeRepString(DirRepName + "\\En.mrt");
+        ProCs.RepTempEn = CretaeRepString(DirRepName + "\\En.mrt");
         ProCs.RepTempDefEn = CretaeRepString(DirRepName + "\\DefEn.mrt");
-        ProCs.RepTempAr    = CretaeRepString(DirRepName + "\\Ar.mrt");
+        ProCs.RepTempAr = CretaeRepString(DirRepName + "\\Ar.mrt");
         ProCs.RepTempDefAr = CretaeRepString(DirRepName + "\\DefAr.mrt");
-        
+
         ProCs.TransactionBy = pgCs.LoginID;
 
         try
         {
-             DataTable DT = DBCs.FetchData("SELECT * FROM Report WHERE RepID = @P1 ", new string[] { ProCs.RepID });
+            DataTable DT = DBCs.FetchData("SELECT * FROM Report WHERE RepID = @P1 ", new string[] { ProCs.RepID });
             if (!DBCs.IsNullOrEmpty(DT)) { SqlCs.Rep_Update(ProCs); } else { SqlCs.Rep_Insert(ProCs); }
 
             FillReport();
@@ -674,9 +696,9 @@ public partial class Reports : BasePage
 
             CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Success, General.Msg("Report Uploaded Successfully", "تم رفع التقرير بنجاح"));
         }
-        catch (Exception ex) 
-        { 
-            ErrorSignal.FromCurrentContext().Raise(ex); 
+        catch (Exception ex)
+        {
+            ErrorSignal.FromCurrentContext().Raise(ex);
             CtrlCs.ShowAdminMsg(this, ex.ToString());
         }
     }
@@ -706,7 +728,7 @@ public partial class Reports : BasePage
             {
                 DataTable DT = DBCs.FetchData("SELECT * FROM Report WHERE RepID = @P1 ", new string[] { ViewState["RepID"].ToString() });
                 if (!DBCs.IsNullOrEmpty(DT))
-                { 
+                {
                     if (Directory.Exists(DirRepName)) { Directory.Delete(DirRepName, true); }
                     Directory.CreateDirectory(DirRepName);
                     //////////////////////
@@ -724,14 +746,14 @@ public partial class Reports : BasePage
                                                         , /*04*/  { "RepForSchedule"    , DT.Rows[0]["RepForSchedule"].ToString() }
                                                         , /*05*/  { "RepDescAr"         , DT.Rows[0]["RepDescAr"].ToString() }
                                                         , /*06*/  { "RepDescEn"         , DT.Rows[0]["RepDescEn"].ToString() }
-                                                        , /*07*/  { "RepPanels"         , DT.Rows[0]["RepPanels"].ToString() } 
-                                                        , /*08*/  { "RepProcedureName"  , DT.Rows[0]["RepProcedureName"].ToString() } 
-                                                        , /*09*/  { "RepParametersProc" , DT.Rows[0]["RepParametersProc"].ToString() } 
-                                                        , /*10*/  { "RepVisible"        , DT.Rows[0]["RepVisible"].ToString() } 
-                                                        , /*11*/  { "RepType"           , DT.Rows[0]["RepType"].ToString() } 
-                                                        , /*12*/  { "RepOrientation"    , DT.Rows[0]["RepOrientation"].ToString() } 
-                                                        , /*13*/  { "VerID"             , DT.Rows[0]["VerID"].ToString() } 
-                                                        , /*14*/  { "RepGeneralID"      , DT.Rows[0]["RepGeneralID"].ToString() } 
+                                                        , /*07*/  { "RepPanels"         , DT.Rows[0]["RepPanels"].ToString() }
+                                                        , /*08*/  { "RepProcedureName"  , DT.Rows[0]["RepProcedureName"].ToString() }
+                                                        , /*09*/  { "RepParametersProc" , DT.Rows[0]["RepParametersProc"].ToString() }
+                                                        , /*10*/  { "RepVisible"        , DT.Rows[0]["RepVisible"].ToString() }
+                                                        , /*11*/  { "RepType"           , DT.Rows[0]["RepType"].ToString() }
+                                                        , /*12*/  { "RepOrientation"    , DT.Rows[0]["RepOrientation"].ToString() }
+                                                        , /*13*/  { "VerID"             , DT.Rows[0]["VerID"].ToString() }
+                                                        , /*14*/  { "RepGeneralID"      , DT.Rows[0]["RepGeneralID"].ToString() }
                     };
 
                     for (int k = 0; k < 15; k++)
@@ -740,35 +762,35 @@ public partial class Reports : BasePage
                         Node.AppendChild(XMLDoc.CreateTextNode(sName[k, 1]));
                         SettingNode.AppendChild(Node);
                     }
-                
+
                     XMLDoc.Save(SettingPathFile);
 
 
                     RepName = DT.Rows[0]["RepNameEn"].ToString() + "_Export.ams";
-                    if (File.Exists(RepName)) { File.Delete(RepName); } 
+                    if (File.Exists(RepName)) { File.Delete(RepName); }
 
                     string RepEnPath = DirRepName + "\\En.mrt";
-                    WriteFile(DT.Rows[0]["RepTempEn"].ToString(),RepEnPath);
+                    WriteFile(DT.Rows[0]["RepTempEn"].ToString(), RepEnPath);
 
                     string RepArPath = DirRepName + "\\Ar.mrt";
-                    WriteFile(DT.Rows[0]["RepTempAr"].ToString(),RepArPath);
+                    WriteFile(DT.Rows[0]["RepTempAr"].ToString(), RepArPath);
 
                     string RepDefEnPath = DirRepName + "\\DefEn.mrt";
-                    WriteFile(DT.Rows[0]["RepTempDefEn"].ToString(),RepDefEnPath);
+                    WriteFile(DT.Rows[0]["RepTempDefEn"].ToString(), RepDefEnPath);
 
                     string RepDefArPath = DirRepName + "\\DefAr.mrt";
-                    WriteFile(DT.Rows[0]["RepTempDefAr"].ToString(),RepDefArPath);
-                    ZipFiles.Zip(DirRepPath + RepName,SettingPathFile, RepArPath, RepEnPath, RepDefArPath, RepDefEnPath);
+                    WriteFile(DT.Rows[0]["RepTempDefAr"].ToString(), RepDefArPath);
+                    ZipFiles.Zip(DirRepPath + RepName, SettingPathFile, RepArPath, RepEnPath, RepDefArPath, RepDefEnPath);
                     if (Directory.Exists(DirRepName)) { Directory.Delete(DirRepName, true); }
                 }
             }
-            catch (Exception ex) 
-            { 
-                ErrorSignal.FromCurrentContext().Raise(ex); 
+            catch (Exception ex)
+            {
+                ErrorSignal.FromCurrentContext().Raise(ex);
                 CtrlCs.ShowAdminMsg(this, ex.ToString());
             }
 
-                
+
             string Source = Server.MapPath(@"TempFiles\Reports\Export\" + RepName);
             string Destination = "attachment; filename=" + RepName;
             //Response.ContentType = "text/plain";
@@ -795,12 +817,12 @@ public partial class Reports : BasePage
             //using (fs = File.Create(fileLoc)) { };
 
             //DataTable_ExportImport.ExportDataTabletoFile(dt, "$&", true, fileLoc);
-            
+
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public static void WriteFile(string pMassege,string pPath)
+    public static void WriteFile(string pMassege, string pPath)
     {
         System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
         //if (!File.Exists(pPath)) { }
@@ -836,9 +858,9 @@ public partial class Reports : BasePage
             ///we move this code to inside FillRepObject
             //repSql.Insert(rep);
         }
-        catch (Exception ex) 
-        { 
-            ErrorSignal.FromCurrentContext().Raise(ex); 
+        catch (Exception ex)
+        {
+            ErrorSignal.FromCurrentContext().Raise(ex);
             CtrlCs.ShowAdminMsg(this, ex.ToString());
         }
     }
@@ -849,38 +871,38 @@ public partial class Reports : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     void FillRepObject(DataTable RDT)
     {
-        ProCs.RepID     = RDT.Rows[0]["RepID"].ToString();
-        ProCs.RgpID     = RDT.Rows[0]["RgpID"].ToString();
+        ProCs.RepID = RDT.Rows[0]["RepID"].ToString();
+        ProCs.RgpID = RDT.Rows[0]["RgpID"].ToString();
         ProCs.RepNameAr = RDT.Rows[0]["RepNameAr"].ToString();
         ProCs.RepNameEn = RDT.Rows[0]["RepNameEn"].ToString();
         ProCs.RepDescAr = RDT.Rows[0]["RepDescAr"].ToString();
         ProCs.RepDescEn = RDT.Rows[0]["RepDescEn"].ToString();
-        
-        if (!string.IsNullOrEmpty(RDT.Rows[0]["RepPanels"].ToString()))      { ProCs.RepPanels      = RDT.Rows[0]["RepPanels"].ToString(); }
+
+        if (!string.IsNullOrEmpty(RDT.Rows[0]["RepPanels"].ToString())) { ProCs.RepPanels = RDT.Rows[0]["RepPanels"].ToString(); }
         if (!string.IsNullOrEmpty(RDT.Rows[0]["RepForSchedule"].ToString())) { ProCs.RepForSchedule = Convert.ToBoolean(RDT.Rows[0]["RepForSchedule"].ToString()); }
-        if (!string.IsNullOrEmpty(RDT.Rows[0]["RepVisible"].ToString()))     { ProCs.RepVisible     = Convert.ToBoolean(RDT.Rows[0]["RepVisible"].ToString()); }
-   
-        ProCs.RepTempAr    = RDT.Rows[0]["RepTempAr"].ToString();
-        ProCs.RepTempEn    = RDT.Rows[0]["RepTempEn"].ToString();
+        if (!string.IsNullOrEmpty(RDT.Rows[0]["RepVisible"].ToString())) { ProCs.RepVisible = Convert.ToBoolean(RDT.Rows[0]["RepVisible"].ToString()); }
+
+        ProCs.RepTempAr = RDT.Rows[0]["RepTempAr"].ToString();
+        ProCs.RepTempEn = RDT.Rows[0]["RepTempEn"].ToString();
         ProCs.RepTempDefAr = RDT.Rows[0]["RepTempDefAr"].ToString();
         ProCs.RepTempDefEn = RDT.Rows[0]["RepTempDefEn"].ToString();
 
-        ProCs.RepProcedureName  = RDT.Rows[0]["RepProcedureName"].ToString();
+        ProCs.RepProcedureName = RDT.Rows[0]["RepProcedureName"].ToString();
         ProCs.RepParametersProc = RDT.Rows[0]["RepParametersProc"].ToString();
 
         ProCs.TransactionBy = pgCs.LoginID;
 
-        DataTable DT = DBCs.FetchData("SELECT * FROM Report WHERE RepID = @P1 ", new string[] {  RDT.Rows[0]["RepID"].ToString() });
+        DataTable DT = DBCs.FetchData("SELECT * FROM Report WHERE RepID = @P1 ", new string[] { RDT.Rows[0]["RepID"].ToString() });
         if (!DBCs.IsNullOrEmpty(DT)) { SqlCs.Rep_Update(ProCs); } else { SqlCs.Rep_Insert(ProCs); }
     }
-    
+
     #endregion
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
-    
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
     #region TreeView Events
@@ -902,8 +924,8 @@ public partial class Reports : BasePage
     protected void trvDept_SelectedNodeChanged(object sender, EventArgs e) { }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void trvDept_DataBound(object sender, EventArgs e) 
-    { 
+    protected void trvDept_DataBound(object sender, EventArgs e)
+    {
         //trvDept_TreeNodeDataBound(null, null); 
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -925,7 +947,7 @@ public partial class Reports : BasePage
     protected void FillTree(string pBrcID)
     {
         DataSet ds = new DataSet();
-        CtrlCs.FillDepTreeDS(pBrcID, pgCs.Version,pgCs.LoginID,(Session["DepartmentList"] != null ? pgCs.DepList :"0"));
+        CtrlCs.FillDepTreeDS(pBrcID, pgCs.Version, pgCs.LoginID, (Session["DepartmentList"] != null ? pgCs.DepList : "0"));
         xmlDataSource2.Data = ds.GetXml();
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -947,12 +969,12 @@ public partial class Reports : BasePage
                 node.Text = node.Text.Replace(@"<font color='Red'>", @"");
                 node.Text = node.Text.Replace(@"<font color='#4E6877'>", @"");
                 node.Text = node.Text.Replace(@"</font>", @"");
-                
+
                 //if (Names[Names.Length - 1].ToLower().StartsWith(txtSearchByDep.Text.ToLower())) { node.Text = String.Format(" <font color='Red'>{0}</font>", node.Text); }
                 //else { node.Text = String.Format(" <font color='#4E6877'>{0}</font>", node.Text);  }
 
                 if (Names[Names.Length - 1].ToLower().Contains(txtSearchByDep.Text.ToLower())) { node.Text = String.Format(" <font color='Red'>{0}</font>", node.Text); }
-                else { node.Text = String.Format(" <font color='#4E6877'>{0}</font>", node.Text);  }
+                else { node.Text = String.Format(" <font color='#4E6877'>{0}</font>", node.Text); }
             }
         }
     }
@@ -963,7 +985,7 @@ public partial class Reports : BasePage
         try
         {
             if (string.IsNullOrEmpty(txtSearchByDep.Text)) { return; }
-            SearchTree(trvDept.Nodes);   
+            SearchTree(trvDept.Nodes);
         }
         catch (Exception ex)
         {
@@ -1013,16 +1035,16 @@ public partial class Reports : BasePage
             }
 
             FillParameter(ViewState["RepID"].ToString());
-            Session["RepProCs"] = ViewState["RepProCs"];          
-            RepCs.FavReportInsert(ViewState["RepID"].ToString(),pgCs.LoginID, txtFavNameEn.Text, txtFavNameAr.Text, (RepParametersPro)ViewState["RepProCs"]);
+            Session["RepProCs"] = ViewState["RepProCs"];
+            RepCs.FavReportInsert(ViewState["RepID"].ToString(), pgCs.LoginID, txtFavNameEn.Text, txtFavNameAr.Text, (RepParametersPro)ViewState["RepProCs"]);
 
             FavClear();
             CtrlCs.ShowSaveMsg(this);
 
             AMSMasterPage master = (AMSMasterPage)this.Master;
-            master.FillFavReport();
+            master.FillFavForm();
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
             CtrlCs.ShowAdminMsg(this, ex.ToString());
@@ -1036,7 +1058,7 @@ public partial class Reports : BasePage
         txtFavNameEn.Enabled = txtFavNameAr.Enabled = false;
         btnFavSave.Enabled = btnFavCancel.Enabled = false;
     }
-    
+
     #endregion
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
@@ -1051,16 +1073,16 @@ public partial class Reports : BasePage
     protected void Validate_ServerValidate(object source, ServerValidateEventArgs e)
     {
         if (source.Equals(cvMonthList)) { if (pnlMonth.Visible) { } }
-        
+
         if (source.Equals(cvWorkTime))
         {
             if (pnlWorkTime.Visible && WorkTime() == "")
             {
                 CtrlCs.ValidMsg(this, ref cvWorkTime, true, General.Msg("Fill at least one field in WorkTime filters!", "يجب ملء حقل واحد على الأقل في حقول وقت العمل"));
-                e.IsValid = false;   
+                e.IsValid = false;
             }
         }
-        
+
         if (source.Equals(cvMachine))
         {
             if (pnlMachine.Visible && Machine() == "")
@@ -1069,7 +1091,7 @@ public partial class Reports : BasePage
                 e.IsValid = false;
             }
         }
-        
+
         if (source.Equals(cvDepartment))
         {
             if (pnlDepartmnets.Visible && Department() == "")
@@ -1078,7 +1100,7 @@ public partial class Reports : BasePage
                 e.IsValid = false;
             }
         }
-        
+
         if (source.Equals(cvCategory))
         {
             if (pnlCategory.Visible && Category() == "")
@@ -1087,7 +1109,7 @@ public partial class Reports : BasePage
                 e.IsValid = false;
             }
         }
-        
+
         if (source.Equals(cvUser))
         {
             if (pnlUsers.Visible) //&& AppUsers() == ""
@@ -1096,7 +1118,7 @@ public partial class Reports : BasePage
                 //e.IsValid = false;
             }
         }
-        
+
         if (source.Equals(cvVacType))
         {
             if (pnlVacType.Visible && VacationType() == "")
@@ -1105,7 +1127,7 @@ public partial class Reports : BasePage
                 e.IsValid = false;
             }
         }
-        
+
         if (source.Equals(cvExcType))
         {
             if (pnlMachine.Visible && ExcuseType() == "")
@@ -1114,7 +1136,7 @@ public partial class Reports : BasePage
                 e.IsValid = false;
             }
         }
-        
+
         if (source.Equals(cvDaysCount))
         {
             if (pnlDaysCount.Visible)

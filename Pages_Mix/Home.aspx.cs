@@ -12,11 +12,11 @@ public partial class Home : BasePage
 {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    PageFun pgCs   = new PageFun();
-    General GenCs  = new General();
-    DBFun   DBCs   = new DBFun();
+    PageFun pgCs = new PageFun();
+    General GenCs = new General();
+    DBFun DBCs = new DBFun();
     CtrlFun CtrlCs = new CtrlFun();
-    DTFun   DTCs   = new DTFun();
+    DTFun DTCs = new DTFun();
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void Page_Load(object sender, EventArgs e)
@@ -24,10 +24,9 @@ public partial class Home : BasePage
         try
         {
             /*** Fill Session ************************************/
-            pgCs.FillSession(); 
+            pgCs.FillSession();
             /*** Fill Session ************************************/
-            calDate.SetEnabled(true);
-            
+
             if (!IsPostBack)
             {
                 //string url  = HttpContext.Current.Request.Url.AbsoluteUri;
@@ -35,33 +34,34 @@ public partial class Home : BasePage
                 //string host = HttpContext.Current.Request.Url.Host;
 
                 /*** Common Code ************************************/
-                /*** Check AMS License ***/ pgCs.CheckAMSLicense();  
+                /*** Check AMS License ***/
+                pgCs.CheckAMSLicense();
                 /*** Common Code ************************************/
-                
+
                 /*** Charts *****************************************/
                 string DepList = "";
-                if (pgCs.LoginType == "USR") 
-                { 
-                    DepList = pgCs.DepList; 
+                if (pgCs.LoginType == "USR")
+                {
+                    DepList = pgCs.DepList;
                 }
-                else if (pgCs.LoginType == "EMP") 
-                { 
+                else if (pgCs.LoginType == "EMP")
+                {
                     DataTable DT = DBCs.FetchData(" SELECT DepID FROM Employee WHERE EmpID = @P1 ", new string[] { pgCs.LoginEmpID });
-                    if (!DBCs.IsNullOrEmpty(DT)) { DepList = DT.Rows[0]["DepID"].ToString(); } 
+                    if (!DBCs.IsNullOrEmpty(DT)) { DepList = DT.Rows[0]["DepID"].ToString(); }
                 }
-                
+
                 CtrlCs.PopulateDepartmentList(ref ddlDepChartsFilter, DepList, pgCs.Version, General.Msg("All", "الكل"));
                 FillEmployeeList("0", DepList);
-                if (pgCs.LoginType == "EMP") 
-                { 
+                if (pgCs.LoginType == "EMP")
+                {
                     ddlEmpChartsFilter.SelectedIndex = ddlEmpChartsFilter.Items.IndexOf(ddlEmpChartsFilter.Items.FindByValue(pgCs.LoginEmpID));
                     DivList.Visible = false;
                 }
-                
+
                 UIChartsTypeShow("M");
                 DTCs.YearPopulateList(ref ddlYear);
-                DTCs.MonthPopulateList(ref ddlMonth);               
-                btnChartsFilter_Click(null,null);
+                DTCs.MonthPopulateList(ref ddlMonth);
+                btnChartsFilter_Click(null, null);
                 /*** Charts *****************************************/
             }
         }
@@ -77,9 +77,9 @@ public partial class Home : BasePage
         if (DepID == "0" || DepID == "All") { Condition = "WHERE DepID IN (" + DepList + ")"; }
 
         DataTable DT = DBCs.FetchData(new SqlCommand(" SELECT * FROM spActiveEmployeeView " + Condition));
-        if (!DBCs.IsNullOrEmpty(DT)) 
-        { 
-            CtrlCs.PopulateDDL(ddlEmpChartsFilter, DT, General.Msg("EmpNameEn","EmpNameAr"), "EmpID", General.Msg("All", "الكل"));
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            CtrlCs.PopulateDDL(ddlEmpChartsFilter, DT, General.Msg("EmpNameEn", "EmpNameAr"), "EmpID", General.Msg("All", "الكل"));
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -98,8 +98,17 @@ public partial class Home : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void UIChartsTypeShow(string TypeID)
     {
-        if (TypeID == "D") { DivMonth.Visible = false; /**/ DivDay.Visible = true; /**/ calDate.SetEnabled(true); } 
-        else               { DivMonth.Visible = true;  /**/ DivDay.Visible = false; }
+        if (TypeID == "D")
+        {
+            DivMonth.Visible = false;
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "showPopup('" + DivDay.ClientID + "');", true);
+            calDate.SetEnabled(true);
+        }
+        else
+        {
+            DivMonth.Visible = true;
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "hidePopup('" + DivDay.ClientID + "');", true);
+        }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -107,10 +116,10 @@ public partial class Home : BasePage
     {
         string DepID = ddlDepChartsFilter.SelectedValue;
         string EmpID = ddlEmpChartsFilter.SelectedValue;
-        string Type  = ddlTypeChartsFilter.SelectedValue;
-        string Date  = calDate.getGDateDBFormat();
+        string Type = ddlTypeChartsFilter.SelectedValue;
+        string Date = calDate.getGDateDBFormat();
         string Month = ddlMonth.SelectedValue;
-        string Year  = ddlYear.SelectedValue;
+        string Year = ddlYear.SelectedValue;
         string CALENDAR_TYPE = (pgCs.DateType == "Hijri") ? "H" : "G";
 
         DateTime SDATE = new DateTime();
@@ -129,20 +138,20 @@ public partial class Home : BasePage
         }
         else if (Type == "D")
         {
-            CQ.Append(" SELECT SUM(DsmShiftDuration) SumShiftDuration, SUM(DsmWorkDuration) SumWorkDuration, SUM(DsmBeginLate) SumBeginLateDuration ");           
+            CQ.Append(" SELECT SUM(DsmShiftDuration) SumShiftDuration, SUM(DsmWorkDuration) SumWorkDuration, SUM(DsmBeginLate) SumBeginLateDuration ");
             CQ.Append(" , COUNT(CASE WHEN DsmStatus IN ('P','PE','UE','A','CM','JB') THEN DsmStatus ELSE NULL END) SumWorkDays ");
             CQ.Append(" , COUNT(CASE WHEN DsmStatus IN ('A') THEN DsmStatus ELSE NULL END) SumAbsentDays ");
             CQ.Append(" , SUM(DsmGapDur_WithoutExc) SumGapsDuration ");
             CQ.Append(" FROM DaySummary WHERE ");
         }
-            
+
         if (EmpID != "All") { CQ.Append(" EmpID = @EmpID"); cmd.Parameters.AddWithValue("@EmpID", EmpID); }
         else
         {
             if (DepID == "All") { CQ.Append(" EmpID IN (SELECT EmpID FROM spActiveEmployeeView WHERE DepID IN (" + pgCs.DepList + "))"); }
             else { CQ.Append(" EmpID IN (SELECT EmpID FROM spActiveEmployeeView WHERE DepID = @DepID"); cmd.Parameters.AddWithValue("@DepID", DepID); }
-        }    
-            
+        }
+
         if (Type == "M")
         {
             CQ.Append(" AND MsmCalendar = @MsmCalendar AND CONVERT(VARCHAR(10),MsmStartDate,101) = CONVERT(VARCHAR(10),@MsmStartDate,101) AND CONVERT(VARCHAR(10),MsmEndDate,101) = CONVERT(VARCHAR(10),@MsmEndDate,101) ");
@@ -154,7 +163,7 @@ public partial class Home : BasePage
         {
             CQ.Append(" AND CONVERT(VARCHAR(10),DsmDate,101) = CONVERT(VARCHAR(10),@DsmDate,101) ");
             cmd.Parameters.AddWithValue("@DsmDate", Date);
-        }    
+        }
 
         cmd.CommandText = CQ.ToString();
 
@@ -173,16 +182,16 @@ public partial class Home : BasePage
     {
         litChartWorkDurtion.Text = General.Msg("No data as required", "لا يوجد بيانات حسب الخيارات المطلوبة");
         string xmlChart = "";
-        string xmlData  = "";
-        string titel    = "";
+        string xmlData = "";
+        string titel = "";
         string xmlStyle = "";
 
-        object SumShiftDuration   = "0";
-        object SumWorkDuration    = "0";
+        object SumShiftDuration = "0";
+        object SumWorkDuration = "0";
         string SumNotWorkDuration = "1";
 
-        object ShowSumShiftDuration   = "0";
-        object ShowSumWorkDuration    = "0";
+        object ShowSumShiftDuration = "0";
+        object ShowSumWorkDuration = "0";
         string ShowSumNotWorkDuration = "0";
 
         if (!DBCs.IsNullOrEmpty(DT))
@@ -192,20 +201,20 @@ public partial class Home : BasePage
             if (!GenCs.IsNullOrEmptyDB(DR["SumShiftDuration"]) && !GenCs.IsNullOrEmptyDB(DR["SumWorkDuration"]))
             {
                 SumShiftDuration = ShowSumShiftDuration = DR["SumShiftDuration"];
-                SumWorkDuration  = ShowSumWorkDuration  = DR["SumWorkDuration"];
+                SumWorkDuration = ShowSumWorkDuration = DR["SumWorkDuration"];
                 SumNotWorkDuration = ShowSumNotWorkDuration = (Convert.ToInt32(SumShiftDuration) - Convert.ToInt32(SumWorkDuration)).ToString();
             }
         }
-                
+
         xmlData += "<set label='" + General.Msg("Total actual working hours", "مجموع ساعات العمل الفعلية") + " " + DisplayFun.GrdDisplayDuration(ShowSumWorkDuration) + "' value='" + SumWorkDuration.ToString() + "' />";
         xmlData += "<set label='" + General.Msg("Total hours of non - working", "مجموع ساعات عدم العمل") + " " + DisplayFun.GrdDisplayDuration(ShowSumNotWorkDuration) + "' value='" + SumNotWorkDuration + "' isSliced ='1'/>";
 
         xmlStyle = " <styles> "
                 + " <definition> "
                 + "  <style name='CaptionAnim'  type='animation' param='_y' easing='Bounce' start='0' duration='2' /> "
-                + "  <style name='CaptionFont'  type='font' isHTML='1' font='Segoe UI' size='18' color='666666' bold='1' underline='0' /> "
-                + "  <style name='AxisNameFont' type='font' isHTML='1' font='Segoe UI' size='14' color='666666' bold='1' /> "
-                + "  <style name='DataFont'     type='font' isHTML='1' font='Segoe UI' size='12' color='666666' /> "
+                + "  <style name='CaptionFont'  type='font' isHTML='1' font='GE SS Two Light' size='18' color='666666' bold='1' underline='0' /> "
+                + "  <style name='AxisNameFont' type='font' isHTML='1' font='GE SS Two Light' size='14' color='666666' bold='1' /> "
+                + "  <style name='DataFont'     type='font' isHTML='1' font='GE SS Two Light' size='12' color='666666' /> "
                 + " </definition> "
                 + " <application> "
                 + " <apply toObject='TOOLTIP'     styles='AxisNameFont' /> "
@@ -221,7 +230,7 @@ public partial class Home : BasePage
         titel = General.Msg("Total work hours required", "مجموع ساعات العمل المطلوبة") + " " + DisplayFun.GrdDisplayDuration(ShowSumShiftDuration);
         xmlChart = " <chart palette='4' caption='" + titel + "' rotateYAxisName='0' showValues='0' decimals='0' formatNumberScale='0' showborder='0' showZeroPies='1'> ";
         xmlChart += xmlData + xmlStyle + "</chart>";
-        
+
         litChartWorkDurtion.Text = FusionCharts.RenderChart("../FusionCharts/Pie2D.swf", "", xmlChart, "ChartWorkDurtion", "100%", "350", false, false);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -230,26 +239,26 @@ public partial class Home : BasePage
     {
         litChartBeginLateDurtion.Text = General.Msg("No data as required", "لا يوجد بيانات حسب الخيارات المطلوبة");
         string xmlChart = "";
-        string xmlData  = "";
-        string titel    = "";
+        string xmlData = "";
+        string titel = "";
         string xmlStyle = "";
 
-        object SumWorkDuration      = "0";
+        object SumWorkDuration = "0";
         object SumBeginLateDuration = "0";
-        string SumNotDuration       = "1";
+        string SumNotDuration = "1";
 
-        object ShowSumWorkDuration      = "0";
+        object ShowSumWorkDuration = "0";
         object ShowSumBeginLateDuration = "0";
-        string ShowSumNotDuration       = "0";
+        string ShowSumNotDuration = "0";
 
         if (!DBCs.IsNullOrEmpty(DT))
         {
             DataRow DR = DT.Rows[0];
             if (!GenCs.IsNullOrEmptyDB(DR["SumWorkDuration"]) && !GenCs.IsNullOrEmptyDB(DR["SumBeginLateDuration"]))
             {
-                SumWorkDuration      = ShowSumWorkDuration      = DR["SumWorkDuration"];
+                SumWorkDuration = ShowSumWorkDuration = DR["SumWorkDuration"];
                 SumBeginLateDuration = ShowSumBeginLateDuration = DR["SumBeginLateDuration"];
-                
+
                 SumNotDuration = ShowSumNotDuration = (Convert.ToInt32(SumWorkDuration) - Convert.ToInt32(SumBeginLateDuration)).ToString();
             }
         }
@@ -260,9 +269,9 @@ public partial class Home : BasePage
         xmlStyle = " <styles> "
                 + " <definition> "
                 + "  <style name='CaptionAnim'  type='animation' param='_y' easing='Bounce' start='0' duration='2' /> "
-                + "  <style name='CaptionFont'  type='font' isHTML='1' font='Segoe UI' size='18' color='666666' bold='1' underline='0' /> "
-                + "  <style name='AxisNameFont' type='font' isHTML='1' font='Segoe UI' size='14' color='666666' bold='1' /> "
-                + "  <style name='DataFont'     type='font' isHTML='1' font='Segoe UI' size='12' color='666666' /> "
+                + "  <style name='CaptionFont'  type='font' isHTML='1' font='GE SS Two Light' size='18' color='666666' bold='1' underline='0' /> "
+                + "  <style name='AxisNameFont' type='font' isHTML='1' font='GE SS Two Light' size='14' color='666666' bold='1' /> "
+                + "  <style name='DataFont'     type='font' isHTML='1' font='GE SS Two Light' size='12' color='666666' /> "
                 + " </definition> "
                 + " <application> "
                 + " <apply toObject='TOOLTIP'     styles='AxisNameFont' /> "
@@ -287,17 +296,17 @@ public partial class Home : BasePage
     {
         LitChartAbsentDays.Text = General.Msg("No data as required", "لا يوجد بيانات حسب الخيارات المطلوبة");
         string xmlChart = "";
-        string xmlData  = "";
-        string titel    = "";
+        string xmlData = "";
+        string titel = "";
         string xmlStyle = "";
 
-        object SumWorkDays    = "0";
-        object SumAbsentDays  = "1";
-        object DsmStatus      = "N";
+        object SumWorkDays = "0";
+        object SumAbsentDays = "1";
+        object DsmStatus = "N";
         string SumNotDuration = "0";
 
-        object ShowSumWorkDays    = "0";
-        object ShowSumAbsentDays  = "0";
+        object ShowSumWorkDays = "0";
+        object ShowSumAbsentDays = "0";
         string ShowSumNotDuration = "0";
 
         DataTable CDT = new DataTable();
@@ -309,7 +318,7 @@ public partial class Home : BasePage
             DQ.Append(" , (CASE WHEN DsmStatus IN ('P','PE','UE','A','CM','JB','WE','H') THEN 1 ELSE 0 END) SumWorkDays ");
             DQ.Append(" , (CASE WHEN DsmStatus IN ('A') THEN 1 ELSE 0 END) SumAbsentDays ");
             DQ.Append(" FROM DaySummary WHERE EmpID = @P1 AND CONVERT(VARCHAR(10),DsmDate,101) = CONVERT(VARCHAR(10),@P2,101) ");
-            CDT = DBCs.FetchData(DQ.ToString(), new string[] { EmpID, Date } );
+            CDT = DBCs.FetchData(DQ.ToString(), new string[] { EmpID, Date });
         }
 
         if (!DBCs.IsNullOrEmpty(CDT))
@@ -319,15 +328,15 @@ public partial class Home : BasePage
             {
                 if (!EmpDay)
                 {
-                    SumWorkDays    = ShowSumWorkDays    = DR["SumWorkDays"];
-                    SumAbsentDays  = ShowSumAbsentDays  = DR["SumAbsentDays"];
+                    SumWorkDays = ShowSumWorkDays = DR["SumWorkDays"];
+                    SumAbsentDays = ShowSumAbsentDays = DR["SumAbsentDays"];
                     SumNotDuration = ShowSumNotDuration = (Convert.ToInt32(SumWorkDays) - Convert.ToInt32(SumAbsentDays)).ToString();
                 }
                 else
                 {
-                    SumWorkDays    = ShowSumWorkDays    = DR["SumWorkDays"];
-                    SumAbsentDays  = ShowSumAbsentDays  = DR["SumAbsentDays"];
-                    DsmStatus      = DR["DsmStatus"];
+                    SumWorkDays = ShowSumWorkDays = DR["SumWorkDays"];
+                    SumAbsentDays = ShowSumAbsentDays = DR["SumAbsentDays"];
+                    DsmStatus = DR["DsmStatus"];
                 }
             }
         }
@@ -340,15 +349,15 @@ public partial class Home : BasePage
         else
         {
             xmlData += "<set label='" + DisplayFun.GrdDisplayDayStatus(DsmStatus, pgCs.Version) + "' value='" + SumAbsentDays + "' isSliced ='1' color='e6ff1e'/>";
-            xmlData += "<set label='" + DisplayFun.GrdDisplayDayStatus(DsmStatus, pgCs.Version) + "' value='" + SumWorkDays   + "' color='b0e0e6' />";
+            xmlData += "<set label='" + DisplayFun.GrdDisplayDayStatus(DsmStatus, pgCs.Version) + "' value='" + SumWorkDays + "' color='b0e0e6' />";
         }
 
         xmlStyle = " <styles> "
                 + " <definition> "
                 + "  <style name='CaptionAnim'  type='animation' param='_y' easing='Bounce' start='0' duration='2' /> "
-                + "  <style name='CaptionFont'  type='font' isHTML='1' font='Segoe UI' size='18' color='666666' bold='1' underline='0' /> "
-                + "  <style name='AxisNameFont' type='font' isHTML='1' font='Segoe UI' size='14' color='666666' bold='1' /> "
-                + "  <style name='DataFont'     type='font' isHTML='1' font='Segoe UI' size='12' color='666666' /> "
+                + "  <style name='CaptionFont'  type='font' isHTML='1' font='GE SS Two Light' size='18' color='666666' bold='1' underline='0' /> "
+                + "  <style name='AxisNameFont' type='font' isHTML='1' font='GE SS Two Light' size='14' color='666666' bold='1' /> "
+                + "  <style name='DataFont'     type='font' isHTML='1' font='GE SS Two Light' size='12' color='666666' /> "
                 + " </definition> "
                 + " <application> "
                 + " <apply toObject='TOOLTIP'     styles='AxisNameFont' /> "
@@ -362,10 +371,10 @@ public partial class Home : BasePage
                 + " </styles> ";
 
         if (!EmpDay) { titel = General.Msg("Total working days required", "مجموع أيام العمل المطلوبة") + " " + SumWorkDays; }
-        else         { titel = General.Msg("Status of the day", "حالة اليوم"); }
-        xmlChart = " <chart palette='4' caption='" + titel + "' rotateYAxisName='0' showValues='0' decimals='0' formatNumberScale='0' showborder='0' showZeroPies='" + (!EmpDay ? "1": "0") + "'> ";
+        else { titel = General.Msg("Status of the day", "حالة اليوم"); }
+        xmlChart = " <chart palette='4' caption='" + titel + "' rotateYAxisName='0' showValues='0' decimals='0' formatNumberScale='0' showborder='0' showZeroPies='" + (!EmpDay ? "1" : "0") + "'> ";
         xmlChart += xmlData + xmlStyle + "</chart>";
-                
+
         LitChartAbsentDays.Text = FusionCharts.RenderChart("../FusionCharts/Pie2D.swf", "", xmlChart, "ChartAbsentDays", "100%", "350", false, false);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -374,17 +383,17 @@ public partial class Home : BasePage
     {
         LitChartDurations.Text = General.Msg("No data as required", "لا يوجد بيانات حسب الخيارات المطلوبة");
         string xmlChart = "";
-        string xmlData  = "";
-        string titel    = "";
+        string xmlData = "";
+        string titel = "";
         string xmlStyle = "";
 
         object SumShiftDuration = "0";
-        object SumWorkDuration  = "0";
-        object SumGapsDuration  = "0";
+        object SumWorkDuration = "0";
+        object SumGapsDuration = "0";
 
         object ShowSumShiftDuration = "0";
-        object ShowSumWorkDuration  = "0";
-        object ShowSumGapsDuration  = "0";
+        object ShowSumWorkDuration = "0";
+        object ShowSumGapsDuration = "0";
 
         if (!DBCs.IsNullOrEmpty(DT))
         {
@@ -392,21 +401,21 @@ public partial class Home : BasePage
             if (!GenCs.IsNullOrEmptyDB(DR["SumShiftDuration"]) && !GenCs.IsNullOrEmptyDB(DR["SumWorkDuration"]) && !GenCs.IsNullOrEmptyDB(DR["SumGapsDuration"]))
             {
                 SumShiftDuration = ShowSumShiftDuration = DR["SumShiftDuration"];
-                SumWorkDuration  = ShowSumWorkDuration  = DR["SumWorkDuration"];
-                SumGapsDuration  = ShowSumGapsDuration  = DR["SumGapsDuration"];
+                SumWorkDuration = ShowSumWorkDuration = DR["SumWorkDuration"];
+                SumGapsDuration = ShowSumGapsDuration = DR["SumGapsDuration"];
             }
         }
 
-        xmlData += "<set label='" + General.Msg("work hours required", "ساعات العمل المطلوبة")                 + " " + DisplayFun.GrdDisplayDuration(ShowSumShiftDuration) + "' value='" + DisplayDuration(SumShiftDuration) + "' />";
-        xmlData += "<set label='" + General.Msg("actual hours required", "ساعات العمل الفعلية")                + " " + DisplayFun.GrdDisplayDuration(ShowSumWorkDuration) + "' value='" + DisplayDuration(SumWorkDuration)  + "' />";
-        xmlData += "<set label='" + General.Msg("hours of gaps without Excuse", "ساعات الثغرات بدون إستئذان") + " " + DisplayFun.GrdDisplayDuration(ShowSumGapsDuration) + "' value='" + DisplayDuration(SumGapsDuration)  + "' />";
+        xmlData += "<set label='" + General.Msg("work hours required", "ساعات العمل المطلوبة") + " " + DisplayFun.GrdDisplayDuration(ShowSumShiftDuration) + "' value='" + DisplayDuration(SumShiftDuration) + "' />";
+        xmlData += "<set label='" + General.Msg("actual hours required", "ساعات العمل الفعلية") + " " + DisplayFun.GrdDisplayDuration(ShowSumWorkDuration) + "' value='" + DisplayDuration(SumWorkDuration) + "' />";
+        xmlData += "<set label='" + General.Msg("hours of gaps without Excuse", "ساعات الثغرات بدون إستئذان") + " " + DisplayFun.GrdDisplayDuration(ShowSumGapsDuration) + "' value='" + DisplayDuration(SumGapsDuration) + "' />";
 
         xmlStyle = " <styles> "
-                + " <definition> "                       
+                + " <definition> "
                 + "  <style name='CaptionAnim'  type='animation' param='_y' easing='Bounce' start='0' duration='2' /> "
-                + "  <style name='CaptionFont'  type='font' isHTML='1' font='Segoe UI' size='18' color='666666' bold='1' underline='0' /> "
-                + "  <style name='AxisNameFont' type='font' isHTML='1' font='Segoe UI' size='14' color='666666' bold='1' /> "
-                + "  <style name='DataFont'     type='font' isHTML='1' font='Segoe UI' size='12' color='666666' /> "
+                + "  <style name='CaptionFont'  type='font' isHTML='1' font='GE SS Two Light' size='18' color='666666' bold='1' underline='0' /> "
+                + "  <style name='AxisNameFont' type='font' isHTML='1' font='GE SS Two Light' size='14' color='666666' bold='1' /> "
+                + "  <style name='DataFont'     type='font' isHTML='1' font='GE SS Two Light' size='12' color='666666' /> "
                 + " </definition> "
                 + " <application> "
                 + " <apply toObject='TOOLTIP'     styles='AxisNameFont' /> "
@@ -419,8 +428,8 @@ public partial class Home : BasePage
                 + " </styles> ";
 
         titel = General.Msg("Total working periods", "مجموع فترات العمل");
-                
-        xmlChart = " <chart palette='1' caption='" + titel + "' xAxisName='" + General.Msg("Total", "المجموع")  + "' "
+
+        xmlChart = " <chart palette='1' caption='" + titel + "' xAxisName='" + General.Msg("Total", "المجموع") + "' "
                 + " yAxisName='" + General.Msg("Hour", "ساعة") + "' rotateYAxisName='0' showValues='0' decimals='0' showborder='0' formatNumberScale='0' labelDisplay='Stagger' > ";
         xmlChart += xmlData + xmlStyle + "</chart>";
 
