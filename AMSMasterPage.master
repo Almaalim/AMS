@@ -81,7 +81,7 @@
                 e.preventDefault();
             });
         }
-        $(document).mouseup(function (e) {
+        $(document).click(function (e) {
             var container = $(".taptap-menu-active, .taptap-main-wrapper-active");
             if (!container.is(e.target) && container.has(e.target).length === 0) {
                 $(".taptap-menu-active").removeClass("taptap-menu-active");
