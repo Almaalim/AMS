@@ -642,7 +642,7 @@
         <script type="text/javascript">
             $(window).load(function () {
                 // Animate loader off screen
-                $(".LoadingWrapper").fadeOut("5000");;
+                $(".LoadingWrapper").fadeOut("100");;
             });
             $(document).ready(function () {
                 $('.sub-square>a').hover(function () {
