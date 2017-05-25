@@ -4272,7 +4272,14 @@ a.level2.dynamic.JobCategory:before {
         font-size: 20px;
     }
 }
-
+@media (max-width:1366px) {
+    .Logo {
+        width: 185px;
+        height: 50px;
+        background-size: cover;
+        margin-top:20px;
+    }
+}
 @media (max-width:1260px) {
     a.static {
         width: 65px;
@@ -4280,12 +4287,11 @@ a.level2.dynamic.JobCategory:before {
         font-size: 9px;
     }
 
-    .Logo {
-        width: 293px;
-        height: 61px;
-        background-size: cover;
+    
+    .Logo
+    {
+        margin-top:5px;
     }
-
     li.static {
         height: 60px;
     }
