@@ -70,12 +70,12 @@
         </style>  
         /Style--%>
 </head>
-<body class="loginBody">
+<body class="loginPage">
     <form id="form1" runat="server">
-        <div>
+       
             <div id="main_block">
-                <div id="innerblock" class="LoginWrap">
-
+                <div id="innerblock" class="loginWrapper">
+                    <asp:LinkButton ID="LinkButton1" runat="server" CssClass="LoginLanguageBtn">ع</asp:LinkButton>
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
 
                 </div>
@@ -113,7 +113,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+         
     </form>
 </body>
 </html>

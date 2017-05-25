@@ -75,20 +75,145 @@ body {
     margin: 0 6px;
     padding: 0;
 }
-.OpenMenu
-{
-   -webkit-touch-callout: none !important;
--webkit-user-select: none !important;
--khtml-user-select: none !important;
--ms-user-select: none !important;
--moz-user-select: none !important;
--user-select: none !important;
+
+.OpenMenu {
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -khtml-user-select: none !important;
+    -ms-user-select: none !important;
+    -moz-user-select: none !important;
+    -user-select: none !important;
 }
+
 .loginBody {
     background-color: #fff;
     background-image: url(Images/LoginBG.png);
     background-size: 100%;
 }
+
+.no-js #loader {
+    display: none;
+}
+
+.js #loader {
+    display: block;
+    position: absolute;
+    left: 100px;
+    top: 0;
+}
+
+.LoadingWrapper {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: rgba(255, 255, 255, 0.54);
+}
+
+.Loader {
+    position: absolute;
+    vertical-align: middle;
+    width: 167px;
+    height: 167px;
+    left: 50%;
+    top: 50%;
+    margin-left: -84px;
+    margin-top: -84px;
+}
+
+
+.Loader > div {
+    position: absolute;
+}
+
+.OuterCircle {
+    background-image: url(../../images/ExtL.png);
+    width: 166px;
+    height: 167px;
+    display: block;
+    top: 0;
+    left: 0;
+    animation: spin 3s linear infinite;
+}
+
+.MiddleCircle {
+    background-image: url(../../images/MiddleL.png);
+    width: 120px;
+    height: 120px;
+    display: block;
+    top: 22px;
+    left: 23px;
+    animation: spin1 2s linear infinite;
+}
+
+.InnerCircle {
+    background-image: url(../../images/CenterL.png);
+    width: 73px;
+    height: 73px;
+    display: block;
+    top: 48px;
+    left: 47px;
+    animation: spin2 2s linear infinite;
+}
+
+.MinHand {
+    background-image: url(../../images/MinL.png);
+    width: 9px;
+    height: 92px;
+    display: block;
+    top: 43px;
+    left: 79px;
+    animation: spin2 2s linear infinite;
+}
+
+.HourHand {
+    background-image: url(../../images/HourL.png);
+    width: 54px;
+    height: 8px;
+    display: block;
+    top: 81px;
+    left: 58px;
+    animation: spin2 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin1 {
+    0% {
+        transform: rotate(360deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes spin2 {
+    0% {
+        -webkit-transform: rotateY(0);
+        -ms-transform: rotateX(0);
+        -moz-transform: rotateY(0);
+        transform: rotateY(0);
+    }
+
+    100% {
+        -webkit-transform: rotateY(180deg);
+        -ms-transform: rotateX(360deg);
+        -moz-transform: rotateY(360deg);
+        transform: rotateY(360deg);
+    }
+}
+
 
 .wrapper {
     position: relative;
@@ -121,7 +246,7 @@ body {
     float: left;
     width: auto;
     height: 82px;
-    width: 393px;
+    width: 304px;
     background: top right url(../../images/Logo.png) no-repeat;
 }
 
@@ -992,54 +1117,25 @@ span.glyphicon.CalenderIco {
         margin: 0px 20px 10px;
     }
 
-#main_block {
-    width: 850px;
-    margin: 0 auto;
-}
 
-.LoginWrap {
-    display: table;
-    height: 90vH;
-    width: 100%;
-}
 
-.LoginPanel {
-    display: table-cell;
-    vertical-align: middle;
-}
 
-.tp_logoin {
-    height: 500px;
-    background: white;
-    border-radius: 3px;
-    position: relative;
-    
-}
+
+
+
 
 .LoginFooterLink {
     text-align: center;
+    margin-top: 20px;
+    margin-bottom: -10px;
 }
 
     .LoginFooterLink a, .LoginFooterLink img {
         display: inline-block;
     }
 
-.tp_logoin:before {
-    content: '';
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    bottom: -8px;
-    left: -8px;
-    z-index: -1;
-    background: rgba(0, 154, 215, 0.1);
-    border-radius: 4px;
-}
 
-.tp_logoin > .row {
-    width: 500px;
-    margin: 0 auto;
-}
+
 
 .loginLogoS {
     display: none;
@@ -1048,14 +1144,13 @@ span.glyphicon.CalenderIco {
     margin: 50px auto;
 }
 
+
 .loginLogoM {
-    position: absolute;
-    top: 50%;
     height: 100px;
-    margin-top: -133px;
-    width: 357px;
-    height: 243px;
-    margin-left: 20px;
+    margin: 6% auto;
+    display: block;
+    width: 307px;
+    height: 421px;
 }
 
 .LoginLeft .col12 {
@@ -1063,65 +1158,83 @@ span.glyphicon.CalenderIco {
     height: 452px;
 }
 
-.tp_logoin .h2 {
-    
-    font-size: 24px;
-    font-weight: bold;
-    font-family: 'Open Sans', sans-serif;
-    text-transform: uppercase;
-    color: #0061a7;
-    margin:20px 0;
-    text-align: center;
-    
+body.loginPage > #aspnetForm {
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: 98vw;
 }
-.tp_logoin .h3 {
-    margin:10px 0;
-    font-size: 20px;
-    font-weight: bold;
-    font-family: 'Open Sans', sans-serif;
-    text-transform: uppercase;
-    color: #007dc1;
-    
-    text-align: center;
-    
+
+.loginPage > #aspnetForm > #main_block {
+    display: table-cell;
+    vertical-align: middle;
 }
-.tp_logoin input:not([type=image])
-{
+
+.loginWrapper {
+    width: 1073px;
+    height: 509px;
+    margin: 0 auto;
+    background-color: #fff;
+    -moz-box-shadow: 0px 0px 5px #474747;
+    -webkit-box-shadow: 0px 0px 5px #474747;
+    box-shadow: 0px 0px 5px #474747;
+    position: relative;
+    background-repeat: no-repeat;
+    background-position: 50px center;
+}
+
+.LoginRight .h2 {
+    color: #f14131;
+    font-size: 20pt;
+}
+
+.LoginRight .h3, .LoginRight .h2 {
+    margin: 10px 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+.LoginRight .h3 {
+    color: #febd07;
+    font-size: 14pt;
+}
+
+.LoginRight input:not([type=image]) {
     height: 47px;
-    font-size:16px;
-    padding-left:52px;
+    font-size: 16px;
+    padding-left: 52px;
 }
-.UserName:before , .PassWord:before
-{
-    display:block;
-    position:absolute;
-    content:"";
-    width:47px;
-    height:47px;
-    background-color:#0061a7;
+
+.UserName:before, .PassWord:before {
+    display: block;
+    position: absolute;
+    content: "";
+    width: 47px;
+    height: 47px;
+    background-color: #0061a7;
     text-align: center;
     font-size: 32px;
     line-height: 47px;
-    color:#fff;
-    font-family:FontAwesome;
+    color: #fff;
+    font-family: FontAwesome;
 }
-.UserName:before
-{
-    
-        content: "\f007";
+
+.UserName:before {
+    content: "\f007";
 }
-.PassWord:before
-{
-        content: "\f023";
+
+.PassWord:before {
+    content: "\f023";
 }
-.tp_logoin span
-{
-    font-weight:bold;
+
+.tp_logoin span {
+    font-weight: bold;
 }
+
 .MsgValidation {
     background-color: #ba2c1d;
     word-break: break-word;
-    padding: 10px 30px 10px 60px;
+    padding: 10px 30px 10px 27px;
     color: #fff !important;
     position: relative;
 }
@@ -1142,6 +1255,37 @@ span.glyphicon.CalenderIco {
         content: "\f05a";
         font-size: 40px;
         line-height: 80px !important;
+    }
+
+.LoginLanguageBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: block;
+    background-color: #253F68;
+    border: 0;
+    width: 38PX;
+    font-size: 0;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -moz-box-shadow: 0px 0px 5px #474747;
+    -webkit-box-shadow: 0px 0px 5px #474747;
+    box-shadow: 0px 0px 5px #474747;
+    padding: 8px;
+    z-index: 990;
+}
+
+    .LoginLanguageBtn:hover {
+        background-color: #27aead;
+    }
+
+    .LoginLanguageBtn:after {
+        content: "ع";
+        display: block;
+        color: #fff;
+        font-size: 14px;
+        text-align: center;
     }
 
 .LoginBTN {
@@ -2876,19 +3020,16 @@ a.Requests:before {
     }
 
 .LoginRight {
+    margin: 50px 125px 0px 0px;
     float: right;
-    width: 50%;
-    padding-right: 20px;
-    margin-top: 40px;
-    display: table;
+    width: 309px;
 }
 
 .LoginLeft {
-    float: left;
-    width: 48%;
     background-image: url(../../Images/LoginPanelBG.png);
-    background-size: cover;
-        height: 500px;
+    width: 532px;
+    height: 509px;
+    float: left;
 }
 
 .clearfix, .clearfix:after, .container:after, .container-fluid:after, .row:after, .form-horizontal .form-group:after, .btn-toolbar:after, .btn-group-vertical > .btn-group:after, .nav:after, .navbar:after, .navbar-header:after, .navbar-collapse:after, .pager:after, .panel-body:after, .modal-footer:after {
@@ -3624,8 +3765,7 @@ a.colord13f2a:before {
     bottom: 0;
     padding-left: 1px;
     border: 3px solid rgba(255, 255, 255, 0);
-    -webkit-user-select: none !important; 
-     
+    -webkit-user-select: none !important;
 }
 
     .squares .square-big a:before, .squares .square-mult .sub-square a:before {
@@ -3924,124 +4064,144 @@ a.colord13f2a:before {
     content: "\f196";
     font-family: FontAwesome !important;
 }
+
 .PendingTransaction:before {
     content: "\f192";
     font-family: FontAwesome !important;
 }
+
 .RoundPatrolTransaction:before {
-        content: "\f1ce";
+    content: "\f1ce";
     font-family: FontAwesome !important;
 }
+
 .AddTransactionWizard:before {
-     content: "\f055";
+    content: "\f055";
     font-family: FontAwesome !important;
 }
+
 .WorkTimeWizard:before {
-        content: "\f251";
+    content: "\f251";
     font-family: FontAwesome !important;
 }
-.VacationWizard:before
-{
+
+.VacationWizard:before {
     content: "\f000";
     font-family: FontAwesome !important;
 }
-.ExcuseWizard:before
-{
-        content: "\f016";
+
+.ExcuseWizard:before {
+    content: "\f016";
     font-family: 'icomoon' !important;
 }
-.AutoInOutWizard:before
-{
-          content: "\f04b";
-     font-family: FontAwesome !important;
+
+.AutoInOutWizard:before {
+    content: "\f04b";
+    font-family: FontAwesome !important;
 }
-.RequestApprovalLevel:before
-{
-content: "\f061";
-font-family: FontAwesome !important;
+
+.RequestApprovalLevel:before {
+    content: "\f061";
+    font-family: FontAwesome !important;
 }
-.RequestApproval:before
-{
-content: "\f26c";
-font-family: FontAwesome !important;
+
+.RequestApproval:before {
+    content: "\f26c";
+    font-family: FontAwesome !important;
 }
-.EmployeeReport:before
-{
-content: "\f2be";
-font-family: FontAwesome !important;
+
+.EmployeeReport:before {
+    content: "\f2be";
+    font-family: FontAwesome !important;
 }
-.DepartmentReport:before
-{
+
+.DepartmentReport:before {
     content: "\f1ad";
-font-family: FontAwesome !important;
+    font-family: FontAwesome !important;
 }
-.MachineReport:before{
+
+.MachineReport:before {
     content: "\f013";
-font-family: FontAwesome !important;
+    font-family: FontAwesome !important;
 }
-.HeaderReport:before{
-        content: "\f003";
-font-family: FontAwesome !important;
+
+.HeaderReport:before {
+    content: "\f003";
+    font-family: FontAwesome !important;
 }
-.TodayReport:before{
-      content: "\f073";
-font-family: FontAwesome !important;
+
+.TodayReport:before {
+    content: "\f073";
+    font-family: FontAwesome !important;
 }
-.AdministrativeReport:before{
-content: "\f29a";
-font-family: FontAwesome !important;
+
+.AdministrativeReport:before {
+    content: "\f29a";
+    font-family: FontAwesome !important;
 }
-.ChartReport:before{
+
+.ChartReport:before {
     content: "\f1fe";
-font-family: FontAwesome !important;
+    font-family: FontAwesome !important;
 }
-.StatusSystem:before{
-        content: "\f201";
-font-family: FontAwesome !important;
+
+.StatusSystem:before {
+    content: "\f201";
+    font-family: FontAwesome !important;
 }
-.Connectionstring:before{
-   content: "\f0c1";
-font-family: FontAwesome !important;
+
+.Connectionstring:before {
+    content: "\f0c1";
+    font-family: FontAwesome !important;
 }
-.DepartmentsLevels:before{
-      content: "\f039";
-font-family: FontAwesome !important;
+
+.DepartmentsLevels:before {
+    content: "\f039";
+    font-family: FontAwesome !important;
 }
-.RequestsEnabled:before{
-      content: "\f02f";
-font-family: FontAwesome !important;
+
+.RequestsEnabled:before {
+    content: "\f02f";
+    font-family: FontAwesome !important;
 }
-.ProcedureErrors:before{
-      content: "\f071";
-font-family: FontAwesome !important;
+
+.ProcedureErrors:before {
+    content: "\f071";
+    font-family: FontAwesome !important;
 }
-.ActiveDirectorySetting:before{
-   content: "\f2ba";
-font-family: FontAwesome !important;
+
+.ActiveDirectorySetting:before {
+    content: "\f2ba";
+    font-family: FontAwesome !important;
 }
-.EmailSetting:before{
-   content: "\f2b6";
-font-family: FontAwesome !important;
+
+.EmailSetting:before {
+    content: "\f2b6";
+    font-family: FontAwesome !important;
 }
-.ASPNETErrors:before{
-       content: "\f121";
-font-family: FontAwesome !important;
+
+.ASPNETErrors:before {
+    content: "\f121";
+    font-family: FontAwesome !important;
 }
-.MachineErrors:before{
-         content: "\e107";
-font-family: 'Glyphicons Halflings' !important;
+
+.MachineErrors:before {
+    content: "\e107";
+    font-family: 'Glyphicons Halflings' !important;
 }
+
 .tooltipSmall {
-	display:none;
-	position:absolute;
-	border:1px solid #333;
-	background-color:#161616;
-	border-radius:5px;
-	padding:10px;
-	color:#fff;
-	z-index:999;
-    top:0;
+    display: none;
+    position: absolute;
+    border: 1px solid #333;
+    background-color: #161616;
+    border-radius: 5px;
+    padding: 10px;
+    color: #fff;
+    z-index: 999;
+    top: 0;
 }
+
 a.SideMenuItem.PermissionGroup:before, a.level2.dynamic.PermissionGroup:before {
     content: "\f0c0";
     font-family: 'icomoon' !important;

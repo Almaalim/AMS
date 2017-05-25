@@ -640,6 +640,10 @@
 
         </div>
         <script type="text/javascript">
+            $(window).load(function () {
+                // Animate loader off screen
+                $(".LoadingWrapper").fadeOut("5000");;
+            });
             $(document).ready(function () {
                 $('.sub-square>a').hover(function () {
                     // Hover over code
@@ -666,6 +670,17 @@
             });
         </script>
     </form>
+    <div class="LoadingWrapper">
+        <div class="Loader">
+            <div class="OuterCircle"></div>
+            <div class="MiddleCircle"></div>
+            <div class="InnerCircle"></div>
+            <div class="MinHand"></div>
+            <div class="HourHand"></div>
+
+        </div>
+
+    </div>
 </body>
 <%--<body onresize="resizeWindow()" onload="resizeWindow()" onbeforeunload="doUnload();" >  <%--onbeforeunload="doUnload()"  onmousedown="somefunction()"</body>--%>
 </html>
