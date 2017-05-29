@@ -376,7 +376,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
                     if (isFirst)
                     {
                         FirstItem = "<div class='square-big'>";
-                        FirstItem += "<a title='" + SDR["MnuText"].ToString() + "' class='SideMenuItem' href='" + SDR["MnuURL"].ToString().Replace("~", "..") + "'>" + SDR["MnuText"].ToString() + "</a>";
+                        FirstItem += "<a title='" + SDR["MnuText"].ToString() + "' class='SideMenuItem " + DR["MnuDescription"].ToString() + "' href='" + SDR["MnuURL"].ToString().Replace("~", "..") + "'>" + SDR["MnuText"].ToString() + "</a>";
                         FirstItem += "</div>";
                         isFirst = false;
                     }
