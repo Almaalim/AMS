@@ -679,6 +679,18 @@ public class CtrlFun : DataLayerBase
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void ShowSaveMsg2(Page pg)
+    {
+        string VG = "vgShowMsg2";
+        ValidationSummary vs = pg.Master.FindControl("ContentPlaceHolder1").FindControl("vsShowMsg2") as ValidationSummary;
+        CustomValidator cv = pg.Master.FindControl("ContentPlaceHolder1").FindControl("cvShowMsg2") as CustomValidator;
+
+        string msg = General.Msg("Saved data successfully", "تم الحفظ البيانات بنجاح");
+
+        ShowMsg(pg, vs, cv, TypeMsg.Success, VG, msg);
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void ShowDelMsg(Page pg, bool isDel)
     {
         string VG = "vgShowMsg";
@@ -714,6 +726,18 @@ public class CtrlFun : DataLayerBase
         string VG = "vgShowMsg";
         ValidationSummary vs = pg.Master.FindControl("ContentPlaceHolder1").FindControl("vsShowMsg") as ValidationSummary;
         CustomValidator cv = pg.Master.FindControl("ContentPlaceHolder1").FindControl("cvShowMsg") as CustomValidator;
+
+        ShowAdminMsg(pg, vs, cv, VG, MMsg, pEx);
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void ShowAdminMsg2(Page pg, string pEx)
+    {
+        string MMsg = General.Msg("Transaction failed to commit please contact your administrator. ", "النظام غير قادر على حفظ البيانات, الرجاء الاتصال بمدير النظام. ");
+
+        string VG = "vgShowMsg2";
+        ValidationSummary vs = pg.Master.FindControl("ContentPlaceHolder1").FindControl("vsShowMsg2") as ValidationSummary;
+        CustomValidator cv = pg.Master.FindControl("ContentPlaceHolder1").FindControl("cvShowMsg2") as CustomValidator;
 
         ShowAdminMsg(pg, vs, cv, VG, MMsg, pEx);
     }

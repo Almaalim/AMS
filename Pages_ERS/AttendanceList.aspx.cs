@@ -175,8 +175,8 @@ public partial class AttendanceList : BasePage
                 {
                     DataRow[] DRs = DT.Select("DsmDate = '" + GDateDT + "'");
                     MonthRow["SsmShift"]     = DRs[0]["SsmShift"].ToString();
-                    MonthRow["SsmPunchIn"]   = DRs[0]["SsmPunchIn"].ToString();
-                    MonthRow["SsmPunchOut"]  = DRs[0]["SsmPunchOut"].ToString();
+                    MonthRow["SsmPunchIn"]   = DisplayFun.GrdDisplayTime(DRs[0]["SsmPunchIn"]);
+                    MonthRow["SsmPunchOut"]  = DisplayFun.GrdDisplayTime(DRs[0]["SsmPunchOut"]);
                     MonthRow["SsmBeginLate"] = DRs[0]["SsmBeginLate"].ToString();
                     MonthRow["SsmOutEarly"]  = DRs[0]["SsmOutEarly"].ToString();
                     MonthRow["SsmGapDur_MG"] = DRs[0]["SsmGapDur_MG"].ToString();

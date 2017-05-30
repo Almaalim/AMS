@@ -47,6 +47,8 @@ public partial class ApplicationUsers : BasePage
             FillRepTree();
             /*** TreeView Code ***********************************/
 
+            //if (string.IsNullOrEmpty(hdnPopup.Value)) { ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "hidePopup('" + DivPopup.ClientID + "');", true); }
+
             if (!IsPostBack)
             {
                 /*** Common Code ************************************/
@@ -58,7 +60,7 @@ public partial class ApplicationUsers : BasePage
                 FillGrid(new SqlCommand(MainQuery));
                 FillList();
                 /*** Common Code ************************************/
-                
+
                 int ErsEnable   = Convert.ToInt32(LicDf.FetchLic("ER"));
                 int AlertEnable = Convert.ToInt32(LicDf.FetchLic("ES"));
 
@@ -436,14 +438,16 @@ public partial class ApplicationUsers : BasePage
         UIClear();
         BtnStatus("1000");
         UIEnabled(false);
-        btnActingUser.Enabled = true;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void btnActingUser_Click(object sender, EventArgs e)
     {
-        string url = "SetActingUser.aspx?UsrName=" + txtUsername.Text;
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "OpenChild1('" + url + "');", true);
+
+        ActPopulateUI(txtUsername.Text);
+        DivPopup.Visible = true;
+
+        //ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "showPopup('" + DivPopup.ClientID + "');", true);
     } 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -980,7 +984,208 @@ public partial class ApplicationUsers : BasePage
         {
             e.IsValid = false;
         }
-    }    
+    }
+
+    #endregion
+    /*#############################################################################################################################*/
+    /*#############################################################################################################################*/
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /*#############################################################################################################################*/
+    /*#############################################################################################################################*/
+    #region Acting
+
+    protected void ActPopulateUI(string User)
+    {
+        UIActClear();
+
+        DataTable DT = DBCs.FetchData(" SELECT * FROM AppUser WHERE UsrName = @P1 ", new string[] { User });
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            txtActID.Text = User;
+            txtActLoginName.Text = DT.Rows[0]["UsrActUserName"].ToString();
+            txtActPassword.Attributes["value"] = DT.Rows[0]["UsrActPwd"].ToString();
+            txtActEmpID.Text = DT.Rows[0]["UsrActEmpID"].ToString();
+            txtActEmailID.Text = DT.Rows[0]["UsrActEMailID"].ToString();
+            txtActADUser.Text = DT.Rows[0]["UsrADActUser"].ToString();
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    void ActFillPropeties()
+    {
+        try
+        {
+            ProCs.UsrName = txtActID.Text;
+            ProCs.UsrActingUser = true;
+            ProCs.UsrActUserName = txtActLoginName.Text.Trim();
+            ProCs.UsrActPwd = txtActPassword.Text.Trim();
+            if (!string.IsNullOrEmpty(txtActEmpID.Text))   { ProCs.UsrActEmpID   = txtActEmpID.Text.Trim(); }
+            if (!string.IsNullOrEmpty(txtActEmailID.Text)) { ProCs.UsrActEMailID = txtActEmailID.Text; }
+            if (!string.IsNullOrEmpty(txtActADUser.Text))  { ProCs.UsrADActUser  = txtActADUser.Text; }
+
+            ProCs.TransactionBy = pgCs.LoginID;
+        }
+        catch (Exception e1)
+        {
+            ErrorSignal.FromCurrentContext().Raise(e1);
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void btnActSave_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            if (!CtrlCs.PageIsValid(this, vsSave2)) { return; }
+
+            if (string.IsNullOrEmpty(txtActID.Text))
+            {
+                CtrlCs.ShowMsg(this, vsShowMsg2, cvShowMsg2, CtrlFun.TypeMsg.Validation, "vgShowMsg2", General.Msg("UsrName is empty", "اسم المستخدم فارغ"));
+                return;
+            }
+
+            ActFillPropeties();
+            SqlCs.AppUser_Update_Acting(ProCs);
+            //CtrlCs.ShowSaveMsg2(this);
+            UIActClear();
+            DivPopup.Visible = false;
+        }
+        catch (Exception ex)
+        {
+            ErrorSignal.FromCurrentContext().Raise(ex);
+            CtrlCs.ShowAdminMsg2(this, ex.ToString());
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void btnActCancel_Click(object sender, EventArgs e)
+    {
+        UIActClear();
+        DivPopup.Visible = false;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void btnActADUser_Click(object sender, ImageClickEventArgs e)
+    {
+        txtActADUser.Text = "";
+
+        UsersPro AD = ActiveDirectoryFun.FillAD(ActiveDirectoryFun.ADTypeEnum.USR, txtActEmpID.Text.Trim(), txtActEmpID.Text.Trim(), txtActEmailID.Text.Trim());
+        if (!AD.ADValid)      { CtrlCs.ShowMsg(this, vsShowMsg2, cvShowMsg2, CtrlFun.TypeMsg.Validation, "vgShowMsg2", AD.ADMsgValidation); return; }
+        if (!AD.ADValidation) { CtrlCs.ShowMsg(this, vsShowMsg2, cvShowMsg2, CtrlFun.TypeMsg.Validation, "vgShowMsg2", AD.ADMsgValidation); return; }
+
+        txtActADUser.Text = ActiveDirectoryFun.GetAD(AD);
+        if (string.IsNullOrEmpty(txtActADUser.Text)) { CtrlCs.ShowMsg(this, vsShowMsg2, cvShowMsg2, CtrlFun.TypeMsg.Validation, "vgShowMsg2", AD.ADMsgNotExists); }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    void UIActClear()
+    {
+        try
+        {
+            txtActID.Text = "";
+            txtActLoginName.Text = "";
+            txtActPassword.Text = "";
+            txtActEmpID.Text = "";
+            txtActEmailID.Text = "";
+            txtActADUser.Text = "";
+        }
+        catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    /*******************************************************************************************************************************/
+    /*******************************************************************************************************************************/
+    #region Custom Validate Events
+
+    protected void ActEmpID_ServerValidate(Object source, ServerValidateEventArgs e)
+    {
+        try
+        {
+            if (source.Equals(cvActEmpID))
+            {
+                if (string.IsNullOrEmpty(txtActEmpID.Text)) { e.IsValid = true; }
+                if (!string.IsNullOrEmpty(txtActEmpID.Text))
+                {
+                    CtrlCs.ValidMsg(this, ref cvActEmpID, true, General.Msg("Entered Employee ID does not exist already,Please enter another ID", "رقم الموظف غير موجود,أدخل رقما آخر"));
+
+                    DataTable DT = DBCs.FetchData(" SELECT * FROM Employee WHERE EmpID = @P1 AND ISNULL(EmpDeleted,0) = 0 ", new string[] { txtActEmpID.Text });
+                    if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
+                }
+            }
+        }
+        catch
+        {
+            e.IsValid = false;
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void ActEmail_ServerValidate(Object source, ServerValidateEventArgs e)
+    {
+        try
+        {
+            if (source.Equals(cvActEmailID))
+            {
+                if (string.IsNullOrEmpty(txtActEmailID.Text))
+                {
+                    //int ErsEnable = Convert.ToInt32(LicDf.FetchLic("ER"));
+                    //int AlertEnable = Convert.ToInt32(LicDf.FetchLic("ES"));
+
+                    //if ((ErsEnable == 1) && (AlertEnable == 1)) { e.IsValid = false; } else { e.IsValid = true; }
+
+                    e.IsValid = true;
+                }
+                else
+                {
+                    string str = Convert.ToString(txtActEmailID.Text);
+                    if (str.IndexOf('@') < 0)
+                    {
+                        CtrlCs.ValidMsg(this, ref cvActEmailID, true, General.Msg("Please enter email in correct format", "البريد الالكتروني غير صحيح"));
+                        e.IsValid = false;
+                    }
+                }
+            }
+        }
+        catch
+        {
+            e.IsValid = false;
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void ActADUser_ServerValidate(Object source, ServerValidateEventArgs e)
+    {
+        try
+        {
+            string UQ = " AND UsrName != @P2 ";
+
+            if (source.Equals(cvActADUser))
+            {
+                if (!string.IsNullOrEmpty(txtActADUser.Text))
+                {
+                    CtrlCs.ValidMsg(this, ref cvActADUser, true, General.Msg("Active Directory Name already exists", "اسم مستخدم Active Directory موجود مسبقا"));
+                    DataTable DT = DBCs.FetchData(" SELECT * FROM AppUser WHERE ( UsrADUser = @P1 OR UsrADActUser = @P1 ) AND ISNULL(UsrDeleted,0) = 0 " + UQ, new string[] { cvActADUser.Text, txtActID.Text });
+                    if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
+                }
+            }
+        }
+        catch
+        {
+            e.IsValid = false;
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void ShowMsg2_ServerValidate(Object source, ServerValidateEventArgs e) { e.IsValid = false; }
+
+    #endregion
+    /*******************************************************************************************************************************/
+    /*******************************************************************************************************************************/
 
     #endregion
     /*#############################################################################################################################*/

@@ -35,6 +35,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
             lnkLanguage.Text = General.Msg("عربي", "English");
             SetPhotoUser();
             CreateMenu(pgCs.LoginType, pgCs.LoginEmpID, false);
+            FillFavForm();
             /*** Fill Session ************************************/
 
             //int ss = Session.Timeout;
@@ -54,7 +55,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
 
                 if (pgCs.LoginType == "USR")
                 {
-                    FillFavForm();
+                    //FillFavForm();
                     ShowIsExistingRequest();
                     lnkShortcut.Enabled = true;
                 }

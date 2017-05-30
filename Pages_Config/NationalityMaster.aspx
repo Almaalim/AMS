@@ -107,10 +107,10 @@
             <div class="GreySetion">
                 <div class="row">
                     <div class="col2">
-                                    <span id="spnNameAr" runat="server" visible="False" class="RequiredField">*</span>
-                                    <asp:Label ID="lblNameAr" runat="server" Text="Name (Ar)  :" 
-                                        meta:resourcekey="lblNatNameArResource1"></asp:Label>
-                                </div>
+                        <span id="spnNameAr" runat="server" visible="False" class="RequiredField">*</span>
+                        <asp:Label ID="lblNameAr" runat="server" Text="Name (Ar)  :" 
+                            meta:resourcekey="lblNatNameArResource1"></asp:Label>
+                    </div>
                     <div class="col4">
                                     <asp:TextBox ID="txtNameAr" runat="server" AutoCompleteType="Disabled" meta:resourcekey="txtNatArNameResource1"></asp:TextBox>
                                     <asp:CustomValidator ID="cvNameAr" runat="server" ControlToValidate="txtValid"
