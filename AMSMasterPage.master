@@ -20,7 +20,7 @@
 
     <script type="text/javascript">
         function PostbackFunction() {
-
+           
 
             MobileListResize();
         }
@@ -89,8 +89,12 @@
                 $("body").css("overflow", "auto");
             }
         });
+        $(window).ready(function () {
+            // Animate loader off screen
+            $(".LoadingWrapper").delay(800).fadeOut("slow", 0);
+        });
         $(document).ready(function () {
-
+           
             //$("a.level2.dynamic").each(function (index) {
             //    var str1 = $(this).attr('title');
 
@@ -640,10 +644,7 @@
 
         </div>
         <script type="text/javascript">
-            $(window).load(function () {
-                // Animate loader off screen
-                $(".LoadingWrapper").fadeOut("0");;
-            });
+            
             $(document).ready(function () {
                 $('.sub-square>a').hover(function () {
                     // Hover over code

@@ -8,6 +8,7 @@ using System.Text;
 using Elmah;
 using System.Web;
 using System.IO;
+using System.Text.RegularExpressions;
 
 public partial class AMSMasterPage : System.Web.UI.MasterPage
 {
@@ -374,21 +375,27 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
                 iMultiItem = 0;
                 foreach (DataRow SDR in SDRs)
                 {
+                    
+                    string menuCss = SDR["MnuDescription"].ToString();
+                    menuCss = menuCss.Replace(" ", "");
+                    menuCss = Regex.Replace(menuCss, @"[^0-9a-zA-Z]+", "");
                     if (isFirst)
                     {
+                        
                         FirstItem = "<div class='square-big'>";
-                        FirstItem += "<a title='" + SDR["MnuText"].ToString() + "' class='SideMenuItem " + DR["MnuDescription"].ToString() + "' href='" + SDR["MnuURL"].ToString().Replace("~", "..") + "'>" + SDR["MnuText"].ToString() + "</a>";
+                        FirstItem += "<a title='" + SDR["MnuText"].ToString() + "' class='SideMenuItem " + menuCss + "' href='" + SDR["MnuURL"].ToString().Replace("~", "..") + "'>" + SDR["MnuText"].ToString() + "</a>";
                         FirstItem += "</div>";
                         isFirst = false;
                     }
                     else
                     {
+                         
                         if (iMultiItem >= 4) { iMultiItem = 0; }
                         iMultiItem += 1;
                         if (iMultiItem == 1) { MultiItem += SMultiItem; }
 
                         MultiItem += "<div class='sub-square'>";
-                        MultiItem += "<a title='" + SDR["MnuText"].ToString() + "' class='SideMenuItem' href='" + SDR["MnuURL"].ToString().Replace("~", "..") + "'>" + SDR["MnuText"].ToString() + "</a>";
+                        MultiItem += "<a title='" + SDR["MnuText"].ToString() + "' class='SideMenuItem " + menuCss + "' href='" + SDR["MnuURL"].ToString().Replace("~", "..") + "'>" + SDR["MnuText"].ToString() + "</a>";
                         MultiItem += "</div>";
 
                         if (iMultiItem == 4) { MultiItem += EMultiItem; }
