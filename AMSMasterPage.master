@@ -91,7 +91,8 @@
         });
         $(window).ready(function () {
             // Animate loader off screen
-            $(".LoadingWrapper").delay(800).fadeOut("slow", 0);
+            $(".LoadingWrapper").delay(1500).fadeOut("slow", 0);
+
         });
         $(document).ready(function () {
            
