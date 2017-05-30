@@ -85,7 +85,7 @@
 
             <div class="row" runat="server">
                 <div class="col8">
-                    <asp:LinkButton ID="btnChartsFilter" runat="server" CssClass="GenButton  glyphicon glyphicon-plus-sign"
+                    <asp:LinkButton ID="btnChartsFilter" runat="server" CssClass="GenButton glyphicon glyphicon-search"
                         OnClick="btnChartsFilter_Click"
                         Text="&lt;img src=&quot;../images/Button_Icons/button_magnify.png&quot; /&gt; Search"></asp:LinkButton>
                 </div>

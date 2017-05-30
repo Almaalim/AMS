@@ -91,24 +91,24 @@
         });
         $(document).ready(function () {
 
-            $("a.level2.dynamic").each(function (index) {
-                var str1 = $(this).attr('title');
+            //$("a.level2.dynamic").each(function (index) {
+            //    var str1 = $(this).attr('title');
 
-                str1 = str1.replace(/\s/g, '').replace(/[_\W]+/g, "");
+            //    str1 = str1.replace(/\s/g, '').replace(/[_\W]+/g, "");
 
-                $(this).addClass(str1);
-
-
-            });
-            $("a.SideMenuItem").each(function (index) {
-                var str1 = $(this).attr('title');
-
-                str1 = str1.replace(/\s/g, '').replace(/[_\W]+/g, "");
-
-                $(this).addClass(str1);
+            //    $(this).addClass(str1);
 
 
-            });
+            //});
+            //$("a.SideMenuItem").each(function (index) {
+            //    var str1 = $(this).attr('title');
+
+            //    str1 = str1.replace(/\s/g, '').replace(/[_\W]+/g, "");
+
+            //    $(this).addClass(str1);
+
+
+            //});
 
             //$(".headerExpand").click(function () {
 
@@ -642,7 +642,7 @@
         <script type="text/javascript">
             $(window).load(function () {
                 // Animate loader off screen
-                $(".LoadingWrapper").fadeOut("100");;
+                $(".LoadingWrapper").fadeOut("0");;
             });
             $(document).ready(function () {
                 $('.sub-square>a').hover(function () {
