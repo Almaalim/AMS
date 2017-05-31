@@ -667,14 +667,12 @@
                     .css({ top: mousey, left: mousex })
                 });
                 if ("ontouchstart" in document.documentElement) {
-                    alert("It's a touch screen device.");
+                    document.addEventListener('contextmenu', function (e) {
+                        e.preventDefault();
+                    }, false);
                 }
-                else {
-                    alert("Others devices");
-                }
-                document.addEventListener('contextmenu', function (e) {
-                    e.preventDefault();
-                }, false);
+                
+                
             });
         </script>
     </form>
