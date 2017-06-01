@@ -1204,7 +1204,17 @@ body.loginPage > #aspnetForm {
     font-size: 16px;
     padding-left: 52px;
 }
-
+.LoginRight .CustomValidator
+{
+        width: 47px;
+    height: 47px;
+        text-align: center;
+    line-height: 40px;
+}
+.LoginRight .CustomValidator:before
+{
+    font-size:24px;
+}
 .UserName:before, .PassWord:before {
     display: block;
     position: absolute;
@@ -1232,11 +1242,13 @@ body.loginPage > #aspnetForm {
 }
 
 .MsgValidation {
-    background-color: #ba2c1d;
+        background-color: #ba2c1d;
     word-break: break-word;
-    padding: 10px 30px 10px 27px;
+    padding: 10px;
     color: #fff !important;
     position: relative;
+    font-size: 12px;
+    line-height: 16px;
 }
 
     .MsgValidation li {
@@ -1244,17 +1256,18 @@ body.loginPage > #aspnetForm {
     }
 
     .MsgValidation:before {
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: 50px;
-        color: rgba(255,255,255,.74);
-        text-align: center;
-        background-color: #ba2c1d;
-        content: "\f05a";
-        font-size: 40px;
-        line-height: 80px !important;
+         position: absolute;
+    left: 0;
+    top: 50%;
+    /* height: 100%; */
+    width: 41px;
+    color: rgba(255,255,255,.74);
+    text-align: center;
+    background-color: #ba2c1d;
+    content: "\f05a";
+    font-size: 30px;
+    /* line-height: 50px !important; */
+    margin-top: -15px;
     }
 
 .LoginLanguageBtn {

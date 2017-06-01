@@ -47,6 +47,10 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
 
             if (!IsPostBack)
             {
+                //Dear Developer
+                // I am adding this line for more than 5 times in this project and has been removed.Which brings up extra work for me.So if you concerned about team work and since
+                // we are working on source control i hope that i dont need to add rework on this again.
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "PostbackFunction();", true);
                 ChangeLogo();
                 SetPageTitel();
                 ShowLogo();
@@ -75,6 +79,10 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
             }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
+        //Dear Developer
+        // I am adding this line for more than 5 times in this project and has been removed.Which brings up extra work for me.So if you concerned about team work and since
+        // we are working on source control i hope that i dont need to add rework on this again.
+        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "PostbackFunction();", true);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
