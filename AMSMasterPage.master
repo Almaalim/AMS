@@ -30,6 +30,11 @@
             $('a.static').click(function (e) {
                 return false;
             });
+            $('img').each(function () {
+                if ($(this).attr("src") == '../images/Exclamation.gif') {
+                    $(this).parents("span:first").addClass('CustomValidator');
+                }
+            });
             if ($(".GridTable").width() > $(".row").width()) {
                 //                $(".GridTable").prepend("<thead></thead>");
                 //                var GridHead = $(".GridHeaderStyle");

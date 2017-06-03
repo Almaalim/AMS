@@ -124,9 +124,9 @@ body {
 }
 
 
-.Loader > div {
-    position: absolute;
-}
+    .Loader > div {
+        position: absolute;
+    }
 
 .OuterCircle {
     background-image: url(../../images/ExtL.png);
@@ -403,7 +403,7 @@ a.Admin, .Adminlist > ul > li {
 }
 
 a.Attendance, .Attendancelist > ul > li {
-    background-color: #009ad7;
+    background-color: #ffaa31;
 }
 
 a.Requests, .Requestslist > ul > li {
@@ -623,7 +623,6 @@ ul.level2 > li {
     float: left;
     font-weight: bold;
     display: inline-block;
-    margin-right: 5px;
     font-size: 0px !important;
 }
 
@@ -783,6 +782,9 @@ a:active {
     -webkit-box-shadow: 0px 0px 10px #c6c6c6;
     box-shadow: 0px 0px 10px #c6c6c6;
     display: none;
+    right: 0;
+    left: inherit !important;
+    top: 25px !important;
 }
 
 fieldset > legend > select, fieldset > legend {
@@ -991,8 +993,8 @@ span.glyphicon.CalenderIco {
     position: absolute;
     top: 0px;
     right: 10px;
-    width: 28px;
-    height: 28px;
+    width: 27px;
+    height: 27px;
 }
 
 .DateExp {
@@ -1204,17 +1206,18 @@ body.loginPage > #aspnetForm {
     font-size: 16px;
     padding-left: 52px;
 }
-.LoginRight .CustomValidator
-{
-        width: 47px;
+
+.LoginRight .CustomValidator {
+    width: 47px;
     height: 47px;
-        text-align: center;
+    text-align: center;
     line-height: 40px;
 }
-.LoginRight .CustomValidator:before
-{
-    font-size:24px;
-}
+
+    .LoginRight .CustomValidator:before {
+        font-size: 24px;
+    }
+
 .UserName:before, .PassWord:before {
     display: block;
     position: absolute;
@@ -1241,34 +1244,68 @@ body.loginPage > #aspnetForm {
     font-weight: bold;
 }
 
-.MsgValidation {
-        background-color: #ba2c1d;
+.MsgValidation, .MsgSuccess {
     word-break: break-word;
-    padding: 10px;
+    padding: 15px 7px;
     color: #fff !important;
     position: relative;
-    font-size: 12px;
     line-height: 16px;
+    display: table;
+    margin: 0 auto;
+        min-height: 40px;
+    -webkit-box-shadow: 2px 2px 9px 2px rgba(206,220,223,0.68);
+    -moz-box-shadow: 2px 2px 9px 2px rgba(206,220,223,0.68);
+    box-shadow: 2px 2px 9px 2px rgba(206,220,223,0.68);
+    width:100%;
 }
 
-    .MsgValidation li {
+.MsgSuccess {
+    background-color: #68af27;
+    font-size: 16px;
+}
+
+.MsgValidation {
+    background-color: #ba2c1d;
+    font-size: 12px;
+}
+
+    .MsgValidation li, .MsgSuccess li {
         list-style: none;
     }
 
-    .MsgValidation:before {
-         position: absolute;
-    left: 0;
-    top: 50%;
-    /* height: 100%; */
-    width: 41px;
-    color: rgba(255,255,255,.74);
-    text-align: center;
+    .MsgSuccess ul, .MsgValidation ul {
+        vertical-align: middle;
+        display: table-cell;
+        position: inherit;
+        -webkit-margin-before: 0;
+        -webkit-margin-after: 0;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        -webkit-padding-start: 0;
+        margin: 0;
+        Padding-right: 10px;
+    }
+
+    .MsgValidation:before, .MsgSuccess:before {
+        width: 45px;
+        color: rgba(255,255,255,1);
+        text-align: center;
+        font-size: 30px;
+        vertical-align: middle;
+        display: table-cell;
+        position: inherit;
+    }
+
+.MsgSuccess:before {
+    background-color: #68af27;
+    content: "\f00c";
+    font-family: FontAwesome;
+}
+
+.MsgValidation:before {
     background-color: #ba2c1d;
     content: "\f05a";
-    font-size: 30px;
-    /* line-height: 50px !important; */
-    margin-top: -15px;
-    }
+}
 
 .LoginLanguageBtn {
     position: absolute;
@@ -1325,7 +1362,7 @@ body.loginPage > #aspnetForm {
 
     .LoginBTN:hover {
         color: #fff;
-        box-shadow: inset 0px 46px 0px 0px #0061a7;
+        box-shadow: inset 0px 54px 0px 0px #0061a7;
         -webkit-animation: shadowFade 0.4s;
         -moz-animation: shadowFade 0.4s;
     }
@@ -3133,7 +3170,10 @@ input {
     box-shadow: 2px 2px 9px 2px rgba(206,220,223,0.68);
     background: rgba(206,220,223,0.68);
 }
-
+.form-inline
+{
+    display:inline-block;
+}
 .CalTextStyle {
     -webkit-box-shadow: 0px 0px 0px 0px rgba(255,255,255,0) !important;
     -moz-box-shadow: 0px 0px 0px 0px rgba(255,255,255,0) !important;
@@ -3225,7 +3265,14 @@ h2, .h2 {
 h3, .h3 {
     font-size: 24px;
 }
+.h4 {
+    display: block;
+    
+    padding: 10px;
+    background-color: #005683;
+    color: #f9f9f9;
 
+}
 h4, .h4 {
     font-size: 18px;
 }
@@ -4285,14 +4332,16 @@ a.level2.dynamic.JobCategory:before {
         font-size: 20px;
     }
 }
+
 @media (max-width:1366px) {
     .Logo {
         width: 185px;
         height: 50px;
         background-size: cover;
-        margin-top:20px;
+        margin-top: 20px;
     }
 }
+
 @media (max-width:1260px) {
     a.static {
         width: 65px;
@@ -4300,11 +4349,11 @@ a.level2.dynamic.JobCategory:before {
         font-size: 9px;
     }
 
-    
-    .Logo
-    {
-        margin-top:5px;
+
+    .Logo {
+        margin-top: 5px;
     }
+
     li.static {
         height: 60px;
     }

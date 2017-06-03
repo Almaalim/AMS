@@ -147,7 +147,7 @@
                     <div class="col4">
                         <asp:DropDownList ID="ddlMacType" runat="server" Enabled="False" meta:resourcekey="ddlMacTypeResource1">
                         </asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="rfvMacType" runat="server" ControlToValidate="ddlMacType"
+                        <asp:RequiredFieldValidator ID="rfvMacType" runat="server" ControlToValidate="ddlMacType" CssClass="CustomValidator"
                             EnableClientScript="False" Text="&lt;img src='../images/Exclamation.gif' title='Machine Type is required!' /&gt;"
                             ValidationGroup="vgSave" meta:resourcekey="rfvMacTypeResource1"></asp:RequiredFieldValidator>
                     </div>

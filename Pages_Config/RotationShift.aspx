@@ -212,27 +212,34 @@
                                 <asp:Label ID="Label1" runat="server" Text="Working days :"
                                     meta:resourcekey="Label1Resource1"></asp:Label>
                             </div>
-                            <div class="col10">
+                            <div class="col4">
                                 <asp:CheckBox ID="chkEwrSat" runat="server" Enabled="False" Text="Saturday"
                                     meta:resourcekey="chkEwrSatResource1" />
-                                &nbsp;&nbsp;
+                               
+                                                    <span class="form-inline">
                                                                         <asp:CheckBox ID="chkEwrSun" runat="server" Enabled="False" Text="Sunday"
                                                                             meta:resourcekey="chkEwrSunResource1" />
-                                &nbsp;&nbsp;
+                                 </span>
+                                                    <span class="form-inline">
                                                                         <asp:CheckBox ID="chkEwrMon" runat="server" Enabled="False" Text="Monday"
                                                                             meta:resourcekey="chkEwrMonResource1" />
-                                &nbsp;&nbsp;
+                                 </span>
+                                                    <span class="form-inline">
                                                                         <asp:CheckBox ID="chkEwrTue" runat="server" Enabled="False" Text="Tuesday"
                                                                             meta:resourcekey="chkEwrTueResource1" />
-                                &nbsp;&nbsp;
+                                 </span>
+                                                   <span class="form-inline">
                                                                         <asp:CheckBox ID="chkEwrWed" runat="server" Enabled="False" Text="Wednesday"
                                                                             meta:resourcekey="chkEwrWedResource1" />
-                                &nbsp;&nbsp;
+                               </span>
+                                                    <span class="form-inline">
                                                                         <asp:CheckBox ID="chkEwrThu" runat="server" Enabled="False" Text="Thursday"
                                                                             meta:resourcekey="chkEwrThuResource1" />
-                                &nbsp;&nbsp;
+                                </span>
+                                                    <span class="form-inline">
                                                                         <asp:CheckBox ID="chkEwrFri" runat="server" Enabled="False" Text="Friday"
-                                                                            meta:resourcekey="chkEwrFriResource1" />
+                                                                            meta:resourcekey="chkEwrFriResource1" /> </span>
+                                                   
                             </div>
                         </div>
 
@@ -295,7 +302,7 @@
                         <asp:UpdatePanel ID="UpdatePanel4" runat="server" RenderMode="block">
                             <ContentTemplate>
 
-                                <asp:Wizard ID="WizardData" runat="server" ActiveStepIndex="0"
+                                <asp:Wizard ID="WizardData" runat="server" ActiveStepIndex="3"
                                     DisplaySideBar="False" OnActiveStepChanged="WizardData_ActiveStepChanged"
                                     OnPreRender="WizardData_PreRender"
                                     meta:resourcekey="WizardDataResource1" Width="100%">
@@ -420,31 +427,37 @@
                                                     <asp:Label ID="lblWorkingdays" runat="server"
                                                         Text="Working days :" meta:resourcekey="lblWorkingdaysResource1"></asp:Label>
                                                 </div>
-                                                <div class="col12">
+                                                <div class="col4">
                                                     <asp:CheckBox ID="chkEwrSat_viw0" runat="server" Text="Saturday"
                                                         meta:resourcekey="chkEwrSat_viw0Resource1" />
-                                                    &nbsp;
+                                                     <span class="form-inline">
                                                                                         <asp:CheckBox ID="chkEwrSun_viw0" runat="server" Text="Sunday"
                                                                                             meta:resourcekey="chkEwrSun_viw0Resource1" />
-                                                    &nbsp;
+                                                   </span>
+                                                    <span class="form-inline">
                                                                                         <asp:CheckBox ID="chkEwrMon_viw0" runat="server" Text="Monday"
                                                                                             meta:resourcekey="chkEwrMon_viw0Resource1" />
-                                                    &nbsp;
+                                                     </span>
+                                                   <span class="form-inline">
                                                                                         <asp:CheckBox ID="chkEwrTue_viw0" runat="server" Text="Tuesday"
                                                                                             meta:resourcekey="chkEwrTue_viw0Resource1" />
-                                                    &nbsp;
+                                                     </span>
+                                                   <span class="form-inline">
                                                                                         <asp:CheckBox ID="chkEwrWed_viw0" runat="server" Text="Wednesday"
                                                                                             meta:resourcekey="chkEwrWed_viw0Resource1" />
-                                                    &nbsp;
+                                                     </span>
+                                                  <span class="form-inline">
                                                                                         <asp:CheckBox ID="chkEwrThu_viw0" runat="server" Text="Thursday"
                                                                                             meta:resourcekey="chkEwrThu_viw0Resource1" />
-                                                    &nbsp;
+                                                     </span>
+                                                   <span class="form-inline">
                                                                                         <asp:CheckBox ID="chkEwrFri_viw0" runat="server" Text="Friday"
                                                                                             meta:resourcekey="chkEwrFri_viw0Resource1" />
-                                                    &nbsp;
+                                                     </span>
+                                                    
                                                                                         <asp:CustomValidator ID="cvSelectWorkDays_viw0" runat="server"
                                                                                             ControlToValidate="txtCustomValidator" EnableClientScript="False"
-                                                                                            ErrorMessage="Select Work Days"
+                                                                                            ErrorMessage="Select Work Days" CssClass="CustomValidator"
                                                                                             OnServerValidate="SelectWorkDays_ServerValidate"
                                                                                             Text="&lt;img src='../images/message_exclamation.png' title='Select Work Days!' /&gt;"
                                                                                             ValidationGroup="VGStart" meta:resourcekey="cvSelectWorkDays_viw0Resource1"></asp:CustomValidator>
@@ -493,8 +506,31 @@
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>
+                                           
                                             <div class="row">
-                                                <div class="col12">
+                                                <div class="col2">
+                                                    
+                                                </div>
+                                                <div class="col4">
+                                                    <asp:ListBox ID="lstWorkTime_viw1" runat="server" Height="200px"
+                                                        meta:resourcekey="lstWorkTime_viw1Resource1"></asp:ListBox>
+                                                    <asp:CustomValidator ID="cvlstWorkTime_viw1" runat="server"
+                                                        ControlToValidate="txtCustomValidator" EnableClientScript="False"
+                                                        OnServerValidate="lstWorkTime_viw1_ServerValidate"
+                                                        Text="&lt;img src='../images/Exclamation.gif' title='Work Time is required!' /&gt;"
+                                                        ValidationGroup="VGStep1" meta:resourcekey="rfvlstWorkTime_viw1Resource1">
+                                                    </asp:CustomValidator>
+
+
+                                                    <%--<asp:RequiredFieldValidator ID="rfvlstWorkTime_viw1" runat="server" 
+                                                                                                        ControlToValidate="lstWorkTime_viw1" EnableClientScript="False" 
+                                                                                                        Text="&lt;img src='../images/Exclamation.gif' title='Work Time is required!' /&gt;" 
+                                                                                                        ValidationGroup="VGStep1" meta:resourcekey="rfvlstWorkTime_viw1Resource1" ></asp:RequiredFieldValidator>--%>
+                                                </div>
+                                            </div>
+                                             <div class="row">
+                                                <div class="col2"></div>
+                                                  <div class="col4">
                                                     <asp:ImageButton ID="btnAdd_viw1" runat="server" OnClick="btnAdd_viw1_Click"
                                                         ImageUrl="../images/Wizard_Image/add.png" ToolTip="Add"
                                                         meta:resourcekey="btnAdd_viw1Resource1" />
@@ -510,26 +546,6 @@
                                                     <asp:ImageButton ID="btnRemove_viw1" runat="server"
                                                         OnClick="btnRemove_viw1_Click" ImageUrl="../images/Wizard_Image/delete.png"
                                                         ToolTip="Remove" meta:resourcekey="btnRemove_viw1Resource1" />
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col2">
-                                                    <asp:ListBox ID="lstWorkTime_viw1" runat="server" Height="200px"
-                                                        meta:resourcekey="lstWorkTime_viw1Resource1"></asp:ListBox>
-                                                </div>
-                                                <div class="col4">
-                                                    <asp:CustomValidator ID="cvlstWorkTime_viw1" runat="server"
-                                                        ControlToValidate="txtCustomValidator" EnableClientScript="False"
-                                                        OnServerValidate="lstWorkTime_viw1_ServerValidate"
-                                                        Text="&lt;img src='../images/Exclamation.gif' title='Work Time is required!' /&gt;"
-                                                        ValidationGroup="VGStep1" meta:resourcekey="rfvlstWorkTime_viw1Resource1">
-                                                    </asp:CustomValidator>
-
-
-                                                    <%--<asp:RequiredFieldValidator ID="rfvlstWorkTime_viw1" runat="server" 
-                                                                                                        ControlToValidate="lstWorkTime_viw1" EnableClientScript="False" 
-                                                                                                        Text="&lt;img src='../images/Exclamation.gif' title='Work Time is required!' /&gt;" 
-                                                                                                        ValidationGroup="VGStep1" meta:resourcekey="rfvlstWorkTime_viw1Resource1" ></asp:RequiredFieldValidator>--%>
                                                 </div>
                                             </div>
                                         </asp:WizardStep>
@@ -553,9 +569,32 @@
                                                         meta:resourcekey="txtGrpName_viw2Resource1"></asp:TextBox>
                                                 </div>
                                             </div>
+                                            
                                             <div class="row">
-                                                <div class="col12">
+                                                 <div class="col2">
+                                                    </div>
+                                                <div class="col4">
+                                                    <asp:ListBox ID="lstRotationGroup_viw2" runat="server" Height="200px"
+                                                        meta:resourcekey="lstRotationGroup_viw2Resource1"></asp:ListBox>
+                                               
+                                                    <asp:CustomValidator ID="cvlstRotationGroup_viw2" runat="server"
+                                                        ControlToValidate="txtCustomValidator" EnableClientScript="False"
+                                                        OnServerValidate="lstRotationGroup_viw2_ServerValidate"
+                                                        Text="&lt;img src='../images/Exclamation.gif' title='Group is required!' /&gt;"
+                                                        ValidationGroup="VGStep2" meta:resourcekey="rfvlstRotationGroup_viw2Resource1">
+                                                    </asp:CustomValidator>
 
+                                                    <%--<asp:RequiredFieldValidator ID="rfvlstRotationGroup_viw2" runat="server" 
+                                                                                                        ControlToValidate="lstRotationGroup_viw2" EnableClientScript="False" 
+                                                                                                        Text="&lt;img src='../images/Exclamation.gif' title='Group is required!' /&gt;" 
+                                                                                                        ValidationGroup="VGStep2" 
+                                                                                                        meta:resourcekey="rfvlstRotationGroup_viw2Resource1"></asp:RequiredFieldValidator>--%>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col2">
+                                                    </div>
+                                                <div class="col4">
                                                     <asp:ImageButton ID="btnAdd_viw2" runat="server" OnClick="btnAdd_viw2_Click"
                                                         ImageUrl="../images/Wizard_Image/add.png" ToolTip="Add"
                                                         meta:resourcekey="btnAdd_viw2Resource1" />
@@ -573,27 +612,6 @@
                                                                                         ToolTip="Remove" meta:resourcekey="btnRemove_viw2Resource1" />
                                                 </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col2">
-                                                    <asp:ListBox ID="lstRotationGroup_viw2" runat="server" Height="200px"
-                                                        meta:resourcekey="lstRotationGroup_viw2Resource1"></asp:ListBox>
-                                                </div>
-                                                <div class="col4">
-                                                    <asp:CustomValidator ID="cvlstRotationGroup_viw2" runat="server"
-                                                        ControlToValidate="txtCustomValidator" EnableClientScript="False"
-                                                        OnServerValidate="lstRotationGroup_viw2_ServerValidate"
-                                                        Text="&lt;img src='../images/Exclamation.gif' title='Group is required!' /&gt;"
-                                                        ValidationGroup="VGStep2" meta:resourcekey="rfvlstRotationGroup_viw2Resource1">
-                                                    </asp:CustomValidator>
-
-                                                    <%--<asp:RequiredFieldValidator ID="rfvlstRotationGroup_viw2" runat="server" 
-                                                                                                        ControlToValidate="lstRotationGroup_viw2" EnableClientScript="False" 
-                                                                                                        Text="&lt;img src='../images/Exclamation.gif' title='Group is required!' /&gt;" 
-                                                                                                        ValidationGroup="VGStep2" 
-                                                                                                        meta:resourcekey="rfvlstRotationGroup_viw2Resource1"></asp:RequiredFieldValidator>--%>
-                                                </div>
-                                            </div>
-
                                         </asp:WizardStep>
                                         <asp:WizardStep ID="WizardStepFinish" runat="server" Title="4-Select Employee"
                                             meta:resourcekey="WizardStepFinishResource1">

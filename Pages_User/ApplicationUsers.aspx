@@ -313,8 +313,7 @@
                     &nbsp;
                     <asp:CustomValidator ID="cvShowMsg" runat="server" Display="None"
                         ValidationGroup="ShowMsg" OnServerValidate="ShowMsg_ServerValidate"
-                        EnableClientScript="False" ControlToValidate="txtValid">
-                    </asp:CustomValidator>
+                        EnableClientScript="False" ControlToValidate="txtValid" CssClass="CustomValidator"></asp:CustomValidator>
                 </div>
             </div>
             <div class="GreySetion">
@@ -328,12 +327,12 @@
 
                         <asp:TextBox ID="txtUsername" runat="server" AutoCompleteType="Disabled"
                             Enabled="False" meta:resourcekey="txtUsernameResource1"></asp:TextBox>
-                        <asp:RequiredFieldValidator runat="server" ID="reqUsername" ControlToValidate="txtUsername"
+                        <asp:RequiredFieldValidator runat="server" ID="reqUsername" ControlToValidate="txtUsername" CssClass="CustomValidator"
                             Text="<img src='../images/Exclamation.gif' title='Username is required!' />" ValidationGroup="vgSave"
                             EnableClientScript="False" Display="Dynamic" SetFocusOnError="True" meta:resourcekey="reqUsernameResource1"></asp:RequiredFieldValidator>
                         <asp:CustomValidator ID="cvUsrName" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='User Name already exists!' /&gt;"
                             ValidationGroup="vgSave" OnServerValidate="UsrName_ServerValidate" EnableClientScript="False"
-                            ControlToValidate="txtValid" meta:resourcekey="cvUsrNameResource1"></asp:CustomValidator>
+                            ControlToValidate="txtValid" meta:resourcekey="cvUsrNameResource1" CssClass="CustomValidator"></asp:CustomValidator>
                     </div>
                     <div class="col2">
                         <span class="RequiredField">*</span>
@@ -344,7 +343,7 @@
                             Enabled="False" meta:resourcekey="txtFullnameResource1"></asp:TextBox>
                         <asp:RequiredFieldValidator runat="server" ID="Fullname" ControlToValidate="txtFullname"
                             ValidationGroup="vgSave" EnableClientScript="False" Text="<img src='../images/Exclamation.gif' title='Fullname is required!' />"
-                            meta:resourcekey="FullnameResource2"></asp:RequiredFieldValidator>
+                            meta:resourcekey="FullnameResource2" CssClass="CustomValidator"></asp:RequiredFieldValidator>
                     </div>
                 </div>
                 <div class="row">
@@ -356,7 +355,7 @@
                             Enabled="False" meta:resourcekey="txtEmpIDResource1"></asp:TextBox>
                         <asp:CustomValidator ID="cvEmpID" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='EmpID do not exist!' /&gt;"
                             ValidationGroup="vgSave" OnServerValidate="EmpID_ServerValidate" EnableClientScript="False"
-                            ControlToValidate="txtValid" meta:resourcekey="cvArWorkTimeNameResource11"></asp:CustomValidator>
+                            ControlToValidate="txtValid" meta:resourcekey="cvArWorkTimeNameResource11" CssClass="CustomValidator"></asp:CustomValidator>
                     </div>
                     <div class="col2">
                         <span class="RequiredField">*</span>
@@ -371,7 +370,7 @@
                         </asp:DropDownList>
                         <asp:RequiredFieldValidator runat="server" ID="rfvLanguage" ControlToValidate="ddlLanguage"
                             InitialValue="Select Language" EnableClientScript="False" Text="<img src='../images/Exclamation.gif' title='Language is required!' />"
-                            ValidationGroup="vgSave" meta:resourcekey="rfvLanguageResource1"></asp:RequiredFieldValidator>
+                            ValidationGroup="vgSave" meta:resourcekey="rfvLanguageResource1" CssClass="CustomValidator"></asp:RequiredFieldValidator>
                     </div>
                 </div>
                 <div class="row">
@@ -462,7 +461,7 @@
                             Enabled="False" meta:resourcekey="txtPasswordResource1"></asp:TextBox>
                         <asp:RequiredFieldValidator runat="server" ID="Password" ControlToValidate="txtPassword"
                             Text="<img src='../images/Exclamation.gif' title='Password is required!' />" ValidationGroup="vgSave"
-                            EnableClientScript="False" meta:resourcekey="PasswordResource2"></asp:RequiredFieldValidator>
+                            EnableClientScript="False" meta:resourcekey="PasswordResource2" CssClass="CustomValidator"></asp:RequiredFieldValidator>
                     </div>
 
                     <div class="col2">
@@ -487,7 +486,7 @@
                             Enabled="False" meta:resourcekey="txtMobileNoResource1"></asp:TextBox>
                         <asp:CustomValidator ID="cdvMobileNo" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='Mobile No is required!' /&gt;"
                             ValidationGroup="vgSave" OnServerValidate="MobileNo_ServerValidate" EnableClientScript="False"
-                            ControlToValidate="txtValid" meta:resourcekey="cvMobileNoResource1"></asp:CustomValidator>
+                            ControlToValidate="txtValid" meta:resourcekey="cvMobileNoResource1" CssClass="CustomValidator"></asp:CustomValidator>
                     </div>
 
                     <div class="col2">
@@ -601,7 +600,7 @@
                                 <asp:TextBox ID="txtActLoginName" runat="server" AutoCompleteType="Disabled"></asp:TextBox>
                                 <asp:RequiredFieldValidator runat="server" ID="rvActLoginName" ControlToValidate="txtActLoginName"
                                     Text="<img src='../images/Exclamation.gif' title='Username is required' />" ValidationGroup="vgSave2"
-                                    EnableClientScript="False" Display="Dynamic" SetFocusOnError="True"></asp:RequiredFieldValidator>
+                                    EnableClientScript="False" Display="Dynamic" SetFocusOnError="True" CssClass="CustomValidator"></asp:RequiredFieldValidator>
                             </div>
                             <div class="col2">
                                 <span class="RequiredField">*</span>
@@ -622,7 +621,7 @@
                                 <asp:TextBox ID="txtActEmpID" runat="server" AutoCompleteType="Disabled"></asp:TextBox>
                                 <asp:CustomValidator ID="cvActEmpID" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='EmpID do not exist' /&gt;"
                                     ValidationGroup="vgSave2" OnServerValidate="ActEmpID_ServerValidate"
-                                    EnableClientScript="False" ControlToValidate="txtValid"></asp:CustomValidator>
+                                    EnableClientScript="False" ControlToValidate="txtValid" CssClass="CustomValidator"></asp:CustomValidator>
                             </div>
                             <div class="col2">
                                 <asp:Label ID="lblActEmailID" runat="server" Text="Email ID :"></asp:Label>
@@ -631,7 +630,7 @@
                                 <asp:TextBox ID="txtActEmailID" runat="server" AutoCompleteType="Disabled"></asp:TextBox>
                                 <asp:CustomValidator ID="cvActEmailID" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='Email ID is required' /&gt;"
                                     ValidationGroup="vgSave2" OnServerValidate="ActEmail_ServerValidate" EnableClientScript="False"
-                                    ControlToValidate="txtValid"></asp:CustomValidator>
+                                    ControlToValidate="txtValid" CssClass="CustomValidator"></asp:CustomValidator>
                             </div>
                         </div>
                         <div class="row">
@@ -643,7 +642,7 @@
                                 <asp:ImageButton ID="btnActADUser" runat="server" OnClick="btnActADUser_Click" ImageUrl="../images/Button_Icons/button_magnify.png" CssClass="LeftOverlay" />
                                 <asp:CustomValidator ID="cvActADUser" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='Active Directory User already exists!' /&gt;"
                                     ValidationGroup="vgSave2" OnServerValidate="ActADUser_ServerValidate" EnableClientScript="False"
-                                    ControlToValidate="txtValid"></asp:CustomValidator>
+                                    ControlToValidate="txtValid" CssClass="CustomValidator"></asp:CustomValidator>
                             </div>
                             <div class="col2">
                             </div>
