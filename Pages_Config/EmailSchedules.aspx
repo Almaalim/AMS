@@ -556,7 +556,7 @@
                         </ajaxToolkit:AnimationExtender>
                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose2" runat="server" TargetControlID="lnkClose2">
                         </ajaxToolkit:AnimationExtender>
-                        <span Class="LeftOverlay1">
+                        <span Class="LeftOverlay">
                         <asp:ImageButton ID="lnkShow2" runat="server" OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png"  />
                             </span>
                         <div id="pnlInfo2" class="flyOutDiv">

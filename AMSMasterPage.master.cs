@@ -383,7 +383,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
                 iMultiItem = 0;
                 foreach (DataRow SDR in SDRs)
                 {
-                    
+                    //muath dassan want to talk to the developer abut the select statament 
                     string menuCss = SDR["MnuDescription"].ToString();
                     menuCss = menuCss.Replace(" ", "");
                     menuCss = Regex.Replace(menuCss, @"[^0-9a-zA-Z]+", "");
