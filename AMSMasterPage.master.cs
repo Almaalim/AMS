@@ -46,14 +46,16 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
 
             if (!IsPostBack)
             {
-<<<<<<< HEAD
-=======
+
                 //Dear Developer
                 // I am adding this line for more than 5 times in this project and has been removed.Which brings up extra work for me.So if you concerned about team work and since
                 // we are working on source control i hope that i dont need to add rework on this again.
+
+                //Dear designer
+                //I have never seen this line and never deleted it, please make sure you have a problem before adding any comment
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "PostbackFunction();", true);
                 ChangeLogo();
->>>>>>> 7c040478558829c4e2c97713448e5c9cc5dfc8c7
+ 
                 SetPageTitel();
                 SetPhotoUser();
                 lblcurrentYear.Text = DateTime.Now.Year.ToString();
@@ -83,6 +85,9 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
         //Dear Developer
         // I am adding this line for more than 5 times in this project and has been removed.Which brings up extra work for me.So if you concerned about team work and since
         // we are working on source control i hope that i dont need to add rework on this again.
+
+        //Dear designer
+        //I have never seen this line and never deleted it, please make sure you have a problem before adding any comment
         ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "PostbackFunction();", true);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
