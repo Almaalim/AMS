@@ -1,0 +1,13 @@
+diff a/AMSMasterPage.master b/AMSMasterPage.master	(rejected hunks)
+@@ -20,9 +20,10 @@
+ 
+     <script type="text/javascript">
+         function PostbackFunction() {
+-           
++            
+ 
+             MobileListResize();
++
+         }
+         function MobileListResize() {
+ 
