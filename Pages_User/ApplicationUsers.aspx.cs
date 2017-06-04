@@ -222,7 +222,7 @@ public partial class ApplicationUsers : BasePage
         try
         {
             txtUsername.Text = "";
-            txtPassword.Text = "";
+            txtPassword.Attributes["value"] = "";
             txtEmpID.Text = "";
             ddlLanguage.ClearSelection();
             txtFullname.Text = "";
@@ -841,33 +841,24 @@ public partial class ApplicationUsers : BasePage
         {
             if (source.Equals(cvEmail))
             {
-
-                if (String.IsNullOrEmpty(txtEmailID.Text)) 
+                if (string.IsNullOrEmpty(txtEmailID.Text)) 
                 {
-                    int ErsEnable = Convert.ToInt32(LicDf.FetchLic("ER"));
+                    string ErsEnable   = LicDf.FetchLic("ER");
+                    string AlertEnable = LicDf.FetchLic("ES");
 
-                    int AlertEnable = Convert.ToInt32(LicDf.FetchLic("ES"));
-
-                    if ((ErsEnable == 1) && (AlertEnable == 1)) { e.IsValid = false; } else { e.IsValid = true; }                
-                }
-
-                string str = Convert.ToString(txtEmailID.Text);
-
-                if (str.IndexOf('@') < 0)
-                {
-                    CtrlCs.ValidMsg(this, ref cvEmail, true, General.Msg("Please enter email in correct format", "البريد الالكتروني غير صحيح")); 
-                    e.IsValid = false;
+                    if ((ErsEnable == "1") && (AlertEnable == "1")) { e.IsValid = false; }
                 }
                 else
                 {
-                    e.IsValid = true;
+                    if (txtEmailID.Text.IndexOf('@') < 0)
+                    {
+                        CtrlCs.ValidMsg(this, ref cvEmail, true, General.Msg("Please enter email in correct format", "البريد الالكتروني غير صحيح"));
+                        e.IsValid = false;
+                    }
                 }
             }
         }
-        catch
-        {
-            e.IsValid = false;
-        }
+        catch { e.IsValid = false; }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -877,32 +868,25 @@ public partial class ApplicationUsers : BasePage
         {
             if (source.Equals(cdvMobileNo))
             {
-                if (String.IsNullOrEmpty(txtMobileNo.Text))
+                if (string.IsNullOrEmpty(txtMobileNo.Text))
                 {
-                    int ErsEnable = Convert.ToInt32(LicDf.FetchLic("ER"));
+                    string ErsEnable   = LicDf.FetchLic("ER");
+                    string AlertEnable = LicDf.FetchLic("ES");
 
-                    int AlertEnable = Convert.ToInt32(LicDf.FetchLic("ES"));
-
-                    if ((ErsEnable == 1) && (AlertEnable == 1)) { e.IsValid = false; } else { e.IsValid = true; }
-                }
-
-                string str = Convert.ToString(txtMobileNo.Text);
-
-                if (!IsNumeric(str))
-                {
-                    CtrlCs.ValidMsg(this, ref cdvMobileNo, true, General.Msg("Please enter correct MobileNo", "رقم الجوال غير صحيح"));
-                    e.IsValid = false;
+                    if ((ErsEnable == "1") && (AlertEnable == "1")) { e.IsValid = false; }
                 }
                 else
                 {
-                    e.IsValid = true;
+                    if (!IsNumeric(txtMobileNo.Text))
+                    {
+                        CtrlCs.ValidMsg(this, ref cdvMobileNo, true, General.Msg("Please enter correct MobileNo", "رقم الجوال غير صحيح"));
+                        e.IsValid = false;
+                    }
                 }
+                
             }
         }
-        catch
-        {
-            e.IsValid = false;
-        }
+        catch { e.IsValid = false; }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -923,18 +907,14 @@ public partial class ApplicationUsers : BasePage
         {
             if (source.Equals(cvEmpID))
             {
-                if (String.IsNullOrEmpty(txtEmpID.Text)) { e.IsValid = true; }
-                if (!String.IsNullOrEmpty(txtEmpID.Text))
+                if (!string.IsNullOrEmpty(txtEmpID.Text))
                 {
                     CtrlCs.ValidMsg(this, ref cvEmpID, true, General.Msg("Entered Employee ID does not exist already,Please enter another ID", "رقم الموظف غير موجود,أدخل رقما آخر"));
-                    if (GenCs.isEmpID(txtEmpID.Text)) { e.IsValid = true; } else { e.IsValid = false; }
+                    if (!GenCs.isEmpID(txtEmpID.Text)) { e.IsValid = false; }
                 }
             }
         }
-        catch
-        {
-            e.IsValid = false;
-        }
+        catch { e.IsValid = false; }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -955,10 +935,7 @@ public partial class ApplicationUsers : BasePage
                 }
             }
         }
-        catch
-        {
-            e.IsValid = false;
-        }
+        catch { e.IsValid = false; }
     }    
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -980,10 +957,7 @@ public partial class ApplicationUsers : BasePage
                 }
             }
         }
-        catch
-        {
-            e.IsValid = false;
-        }
+        catch { e.IsValid = false; }
     }
 
     #endregion

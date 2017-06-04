@@ -323,6 +323,20 @@ public class CtrlFun : DataLayerBase
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void FillMachineTypeList(ref DropDownList _ddl, RequiredFieldValidator _rv, bool isClear, bool isAll) 
+    {
+        if (isClear) { _ddl.Items.Clear(); }
+
+        string All = (isAll) ? "A" : "N";
+        DataTable DT = DBCs.FetchData(" SELECT MtpID, MtpName FROM MachineType WHERE MtpStatus = (CASE WHEN @P1 = 'A' THEN MtpStatus ELSE 'True' END) ", new string[] { All });
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            PopulateDDL(_ddl, DT, "MtpName", "MtpID", General.Msg("-Select Machine Type-", "-اختر نوع الماكينة-"));
+            if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void FillBranchList(ref DropDownList _ddl, RequiredFieldValidator _rv, bool isClear)
     {
         if (isClear) { _ddl.Items.Clear(); }

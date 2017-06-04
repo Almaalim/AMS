@@ -54,8 +54,6 @@ public partial class Machine : BasePage
                 ViewState["CommandName"] = "";
                 /*** Common Code ************************************/
 
-                //Session["Machinedt"] = (DataTable)dt;
-
                 SpnVisible(chkIsRound.Checked);
             }
         }
@@ -67,7 +65,7 @@ public partial class Machine : BasePage
     {
         try
         {
-            CtrlCs.FillMachineList(ref ddlMacType, rfvMacType, false, true, "A");
+            CtrlCs.FillMachineTypeList(ref ddlMacType, rfvMacType, false, true);
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
@@ -165,13 +163,7 @@ public partial class Machine : BasePage
         chkStatus.Enabled = pStatus;
         chkIsRound.Enabled = pStatus;
 
-        // For Round Patrol License
-        //string roundPatrolLic = "";
-        //roundPatrolLic = LicDf.FetchLic("RP");
-        //if (roundPatrolLic == "0")
-        //    chkIsRound.Enabled = false;
-        //else
-        chkIsRound.Enabled = true;
+        if (LicDf.FetchLic("RP") == "0") { chkIsRound.Enabled = false; } 
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -204,7 +196,7 @@ public partial class Machine : BasePage
             if (!string.IsNullOrEmpty(txtID.Text)) { ProCs.MacID = txtID.Text; }
             ProCs.MtpID = ddlMacType.SelectedValue;
 
-            if (ddlMacTrnType.SelectedIndex > 0) { ProCs.MacInOutType = Convert.ToBoolean(ddlMacTrnType.SelectedValue); }
+            if (ddlMacTrnType.SelectedIndex > 0) { ProCs.MacInOutType = Convert.ToBoolean(Convert.ToInt32(ddlMacTrnType.SelectedValue)); }
 
             ProCs.MacLocationAr = txtMacLocAr.Text;
             ProCs.MacLocationEn = txtMacLocEn.Text;
@@ -217,7 +209,7 @@ public partial class Machine : BasePage
 
             // if dev num more than lincense, the status will be false
             string licDeviceNum = LicDf.FetchLic("DN");
-            if (!DeviceStatus(licDeviceNum)) { ProCs.MacStatus = false; } else { ProCs.MacStatus = chkStatus.Checked; }
+            if (DeviceStatus(licDeviceNum)) { ProCs.MacStatus = false; } else { ProCs.MacStatus = chkStatus.Checked; }
             
             ProCs.TransactionBy = pgCs.LoginID;
         }
@@ -437,8 +429,6 @@ public partial class Machine : BasePage
                     QDel.Append(" SELECT MacID FROM TransDump WHERE MacID = @P1 ");
                     QDel.Append(" UNION ");
                     QDel.Append(" SELECT MacID FROM Trans WHERE MacID = @P1 ");
-                    QDel.Append(" UNION ");
-                    QDel.Append(" SELECT MacID FROM TransTrail WHERE MacID = @P1 ");
                     QDel.Append(" UNION ");
                     QDel.Append(" SELECT MacID FROM RoundPatrolTransaction WHERE MacID = @P1 ");
 

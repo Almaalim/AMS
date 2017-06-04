@@ -26,7 +26,7 @@ public class ActiveDirectoryFun
         AD.ADMsgNotExists  = "";
 
         DataTable DT = DBCs.FetchData(" SELECT * FROM ADConfig WHERE ADType = @P1 ", new string[] { ADType.ToString() });
-        if (!DBCs.IsNullOrEmpty(DT)) { AD.ADValid = false; /***/ AD.ADError = General.Msg("Active Directory settings have not been entered", "إعدادات الدليل النشط لم يتم إدخالها"); }
+        if (DBCs.IsNullOrEmpty(DT)) { AD.ADValid = false; /***/ AD.ADError = General.Msg("Active Directory settings have not been entered", "إعدادات الدليل النشط لم يتم إدخالها"); }
       
         try 
         { 

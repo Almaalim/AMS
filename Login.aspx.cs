@@ -5,6 +5,7 @@ using System.Text;
 using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Net;
 
 public partial class Login : BasePage
 {
@@ -238,9 +239,31 @@ public partial class Login : BasePage
             string clientPCName;
             string[] computer_name = System.Net.Dns.GetHostEntry(Request.ServerVariables["remote_host"]).HostName.Split(new Char[] { '.' });
             clientPCName = computer_name[0].ToString();
-            logSqlCs.InOutLog_Insert(Session["UserName"].ToString(), clientPCName);
+
+            string IPAddress = GetIPAddress();
+
+            logSqlCs.InOutLog_Insert(Session["UserName"].ToString(), clientPCName, IPAddress);
         }
         catch (Exception e1) { }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+    public string GetIPAddress()
+    {
+        string IPAddress = "";
+        IPHostEntry Host = default(IPHostEntry);
+        string Hostname = null;
+        Hostname = System.Environment.MachineName;
+        Host = Dns.GetHostEntry(Hostname);
+        foreach (IPAddress IP in Host.AddressList)
+        {
+            if (IP.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+            {
+                IPAddress = Convert.ToString(IP);
+            }
+        }
+        return IPAddress;
+
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

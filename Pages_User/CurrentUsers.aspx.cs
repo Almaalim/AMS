@@ -44,7 +44,7 @@ public partial class CurrentUsers : BasePage
         DateTime start = new DateTime(now.Year, now.Month, now.Day, 0, 0, 0, 0);
         DateTime End   = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second, now.Millisecond);
 
-        DataTable DT = DBCs.FetchData(" SELECT UsrName,HostName,max(LogInEvent) maxLogInEvent FROM InOutLog WHERE (LogInEvent BETWEEN @P1 AND @P2) AND LogOutEvent IS NULL GROUP BY UsrName,HostName ", new string[] { start.ToString(), End.ToString() });
+        DataTable DT = DBCs.FetchData(" SELECT UsrName,HostName,HostIP,max(LogInEvent) maxLogInEvent FROM InOutLog WHERE (LogInEvent BETWEEN @P1 AND @P2) AND LogOutEvent IS NULL GROUP BY UsrName,HostName,HostIP ", new string[] { start.ToString(), End.ToString() });
         grdData.DataSource = (DataTable)DT;
         grdData.DataBind();
     }

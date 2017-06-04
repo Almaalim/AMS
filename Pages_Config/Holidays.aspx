@@ -45,7 +45,7 @@
 
                     <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData" />
                     <asp:GridView ID="grdData" runat="server" CssClass="datatable" SelectedIndex="0"
-                        AutoGenerateColumns="False" AllowSorting="True" AllowPaging="True"
+                        AutoGenerateColumns="False" AllowSorting="false" AllowPaging="True"
                         CellPadding="0" BorderWidth="0px" GridLines="None" DataKeyNames="HolID" ShowFooter="True"
                         OnPageIndexChanging="grdData_PageIndexChanging" OnRowCreated="grdData_RowCreated"
                         OnRowDataBound="grdData_RowDataBound" OnSorting="grdData_Sorting" OnSelectedIndexChanged="grdData_SelectedIndexChanged"
@@ -58,19 +58,15 @@
                             NextPageText="Next" NextPageImageUrl="~/images/next.png" PreviousPageText="Prev"
                             PreviousPageImageUrl="~/images/prev.png" />
                         <Columns>
-                            <asp:BoundField HeaderText="Name (Ar)" DataField="HolNameAr"
-                                meta:resourcekey="BoundFieldResource1" />
-                            <asp:BoundField DataField="HolID" HeaderText="ID"
-                                meta:resourcekey="BoundFieldResource2" />
-                            <asp:BoundField DataField="HolNameEn" HeaderText="Name (En)"
-                                meta:resourcekey="BoundFieldResource3" />
-                            <asp:TemplateField HeaderText="Start Date"
-                                meta:resourcekey="TemplateFieldResource1">
+                            <asp:BoundField HeaderText="Name (Ar)" DataField="HolNameAr" meta:resourcekey="BoundFieldResource1" />
+                            <asp:BoundField DataField="HolID" HeaderText="ID" meta:resourcekey="BoundFieldResource2" />
+                            <asp:BoundField DataField="HolNameEn" HeaderText="Name (En)" meta:resourcekey="BoundFieldResource3" />
+                            <asp:TemplateField HeaderText="Start Date" SortExpression="HolStartDate" meta:resourcekey="TemplateFieldResource1">
                                 <ItemTemplate>
                                     <%# DisplayFun.GrdDisplayDate(Eval("HolStartDate"))%>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="End Date"
+                            <asp:TemplateField HeaderText="End Date" SortExpression="HolEndDate"
                                 meta:resourcekey="TemplateFieldResource2">
                                 <ItemTemplate>
                                     <%# DisplayFun.GrdDisplayDate(Eval("HolEndDate"))%>

@@ -63,22 +63,22 @@ public partial class NationalityMaster : BasePage
 
     protected void btnFilter_Click(object sender, ImageClickEventArgs e)
     {
-        //StringBuilder filterQuery = new StringBuilder();
+        SqlCommand cmd = new SqlCommand();
+        string sql = MainQuery;
+
         //if (ddlFilter.SelectedIndex > 0)
         //{
         //    UIClear();
-        //    filterQuery.Append(MainQuery + " AND " + ddlFilter.SelectedItem.Value + " LIKE'" + txtFilter.Text.Trim() + "%' ");
-        //}
-        //else
-        //{
-        //    filterQuery.Append(MainQuery);
+        //    sql = MainQuery + " AND " + ddlFilter.SelectedItem.Value + " LIKE' @P1 ";
+        //    cmd.Parameters.AddWithValue("@P1", txtFilter.Text.Trim() + "%");
         //}
 
-        //UIClear();
-        //BtnStatus("1000");
-        //UIEnabled(false);
-        //grdData.SelectedIndex = -1;
-        //FillGrid(filterQuery.ToString());
+        UIClear();
+        BtnStatus("1000");
+        UIEnabled(false);
+        grdData.SelectedIndex = -1;
+        cmd.CommandText = sql;
+        FillGrid(cmd);
     }
 
     #endregion
@@ -331,6 +331,7 @@ public partial class NationalityMaster : BasePage
             switch (e.CommandName)
             {
                 case ("Delete1"):
+                    string ID = e.CommandArgument.ToString();
                     DataTable DT = DBCs.FetchData(" SELECT * FROM Employee WHERE ISNULL(EmpDeleted,0) = 0 AND NatID = @P1 ", new string[] { ID });
                     if (!DBCs.IsNullOrEmpty(DT))
                     {

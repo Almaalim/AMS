@@ -287,8 +287,8 @@
             </div>
             <div class="row">
                 <div class="col8">
-                    <asp:LinkButton ID="btnAdd" runat="server" CssClass="GenButton glyphicon glyphicon-plus-sign" OnClick="btnAdd_Click"
-                        Text="&lt;img src=&quot;../images/Button_Icons/button_add.png&quot; /&gt; Add"
+                    <asp:LinkButton ID="btnAdd" runat="server" CssClass="GenButton glyphicon glyphicon-plus-sign" 
+                        Text="&lt;img src=&quot;../images/Button_Icons/button_add.png&quot; /&gt; Add" OnClick="btnAdd_Click"
                         meta:resourcekey="btnAddResource1"></asp:LinkButton>
 
                     <asp:LinkButton ID="btnModify" runat="server" CssClass="GenButton  glyphicon glyphicon-edit" OnClick="btnModify_Click"

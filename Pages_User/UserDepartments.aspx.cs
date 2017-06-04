@@ -1,19 +1,10 @@
 ﻿using System;
 using System.Collections;
-using System.Configuration;
 using System.Data;
 using System.Linq;
-using System.Web;
-using System.Web.Security;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Xml.Linq;
 using Elmah;
-
-using System.Text;
-using System.Collections.Generic;
 using System.Data.SqlClient;
 
 public partial class UserDepartments : BasePage
@@ -27,7 +18,7 @@ public partial class UserDepartments : BasePage
     DBFun   DBCs   = new DBFun();
     CtrlFun CtrlCs = new CtrlFun();
 
-    string MainQuery = " SELECT UsrName,UsrFullName,UsrDepartments FROM AppUser WHERE UsrStatus = 1 ";
+    string MainQuery = " SELECT UsrName,UsrFullName,UsrDepartments FROM AppUser WHERE UsrStatus = 1 AND ISNULL(UsrDeleted,0) = 0 ";
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void Page_Load(object sender, EventArgs e)

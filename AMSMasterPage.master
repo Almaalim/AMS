@@ -433,7 +433,7 @@
         <%--side Menu--%>
         <iframe id="Defib" src="~/Pages_Mix/KeepSessionAlive.aspx"
             width="0" height="0" runat="server" frameborder="0" visible="True" style="display: none"></iframe>
-        <asp:ScriptManager ID="Scriptmanager1" runat="server">
+        <asp:ScriptManager ID="Scriptmanager1" runat="server" EnablePageMethods="true">
             <Services>
                 <asp:ServiceReference Path="~/Service/AutoComplete.asmx" />
             </Services>
@@ -444,16 +444,12 @@
                 <div id="rp_padd<%=Session["Language"]%>">
                     <div class="Header">
                         <div id="divCustLogo" runat="server" class="Logo">
-
-
-                            <asp:Image ID="imgLogo" runat="server" />
                             <div class="wrap-title">
                                 <div class="icon">
                                     <span class="ico-arrow-right"></span>
                                 </div>
                                 <h1>Attendance Management System</h1>
                             </div>
-                            <%--ImageUrl="~/images/MasterPage_Images/InsertLogo.JPG"--%>
                         </div>
 
 

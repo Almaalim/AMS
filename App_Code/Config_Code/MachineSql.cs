@@ -28,7 +28,7 @@ public class MachineSql : DataLayerBase
         {
             Sqlcmd.Parameters.Add(new SqlParameter("@MacID"        , IntDB, 10, OU, false, 0, 0, "", DRV, Pro.MacID));
             Sqlcmd.Parameters.Add(new SqlParameter("@MtpID"        , IntDB, 10, IN, false, 0, 0, "", DRV, Pro.MtpID));
-            Sqlcmd.Parameters.Add(new SqlParameter("@MacNo"        , IntDB, 10, OU, false, 0, 0, "", DRV, Pro.MacNo));            
+            Sqlcmd.Parameters.Add(new SqlParameter("@MacNo"        , IntDB, 10, IN, false, 0, 0, "", DRV, Pro.MacNo));            
             Sqlcmd.Parameters.Add(new SqlParameter("@MacLocationAr", VchDB, 50, IN, false, 0, 0, "", DRV, Pro.MacLocationAr));
             Sqlcmd.Parameters.Add(new SqlParameter("@MacLocationEn", VchDB, 50, IN, false, 0, 0, "", DRV, Pro.MacLocationEn));
             Sqlcmd.Parameters.Add(new SqlParameter("@MacIP"        , VchDB, 15, IN, false, 0, 0, "", DRV, Pro.MacIP));
@@ -67,7 +67,7 @@ public class MachineSql : DataLayerBase
         {
             Sqlcmd.Parameters.Add(new SqlParameter("@MacID"        , IntDB, 10, IN, false, 0, 0, "", DRV, Pro.MacID));
             Sqlcmd.Parameters.Add(new SqlParameter("@MtpID"        , IntDB, 10, IN, false, 0, 0, "", DRV, Pro.MtpID));
-            Sqlcmd.Parameters.Add(new SqlParameter("@MacNo"        , IntDB, 10, OU, false, 0, 0, "", DRV, Pro.MacNo));            
+            Sqlcmd.Parameters.Add(new SqlParameter("@MacNo"        , IntDB, 10, IN, false, 0, 0, "", DRV, Pro.MacNo));            
             Sqlcmd.Parameters.Add(new SqlParameter("@MacLocationAr", VchDB, 50, IN, false, 0, 0, "", DRV, Pro.MacLocationAr));
             Sqlcmd.Parameters.Add(new SqlParameter("@MacLocationEn", VchDB, 50, IN, false, 0, 0, "", DRV, Pro.MacLocationEn));
             Sqlcmd.Parameters.Add(new SqlParameter("@MacIP"        , VchDB, 15, IN, false, 0, 0, "", DRV, Pro.MacIP));

@@ -117,24 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BoundFieldResource1.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BoundFieldResource1.FooterText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BoundFieldResource1.HeaderText" xml:space="preserve">
-    <value>إسم القسم (ع)</value>
-  </data>
-  <data name="BoundFieldResource2.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BoundFieldResource2.FooterText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BoundFieldResource2.HeaderText" xml:space="preserve">
-    <value>إسم القسم (E)</value>
-  </data>
   <data name="BoundFieldResource3.AccessibleHeaderText" xml:space="preserve">
     <value />
   </data>
@@ -144,38 +126,14 @@
   <data name="BoundFieldResource3.HeaderText" xml:space="preserve">
     <value>إسم المستخدم</value>
   </data>
-  <data name="BoundFieldResource4.AccessibleHeaderText" xml:space="preserve">
+  <data name="BoundFieldResource422.AccessibleHeaderText" xml:space="preserve">
     <value />
   </data>
-  <data name="BoundFieldResource4.FooterText" xml:space="preserve">
+  <data name="BoundFieldResource422.FooterText" xml:space="preserve">
     <value />
   </data>
-  <data name="BoundFieldResource4.HeaderText" xml:space="preserve">
-    <value>UdrID</value>
-  </data>
-  <data name="BoundFieldResource5.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BoundFieldResource5.FooterText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BoundFieldResource5.HeaderText" xml:space="preserve">
-    <value>رقم القسم</value>
-  </data>
-  <data name="BoundFieldResource6.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BoundFieldResource6.FooterText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BoundFieldResource6.HeaderText" xml:space="preserve">
-    <value>BrcID</value>
-  </data>
-  <data name="btnAddResource1.Text" xml:space="preserve">
-    <value>&lt;img src="../images/Button_Icons/button_add.png" /&gt; إضافة</value>
-  </data>
-  <data name="btnAddResource1.ToolTip" xml:space="preserve">
-    <value />
+  <data name="BoundFieldResource422.HeaderText" xml:space="preserve">
+    <value>الاسم الكامل</value>
   </data>
   <data name="btnCancelResource1.Text" xml:space="preserve">
     <value>&lt;img src="../images/Button_Icons/button_Cancel.png" /&gt; إلغاء</value>
@@ -205,18 +163,21 @@
     <value />
   </data>
   <data name="cvDepartmentResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='Shift 1 Name Arabic is required!' /&gt;</value>
+    <value />
   </data>
   <data name="cvDepartmentResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="ddlBranchNameResource1.ToolTip" xml:space="preserve">
+  <data name="cvShowMsgResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvShowMsgResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvShowMsgResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="ddlFilterResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ddlUsersResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="grdDataResource1.Caption" xml:space="preserve">
@@ -228,34 +189,16 @@
   <data name="grdDataResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="imgbtnDeleteResource1.AlternateText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="imgbtnDeleteResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="Label1Resource1.Text" xml:space="preserve">
     <value>بحث بواسطة :</value>
   </data>
   <data name="Label1Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lblBranchResource1.Text" xml:space="preserve">
-    <value>إسم الفرع :</value>
-  </data>
-  <data name="lblBranchResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="lblDepartmentResource1.Text" xml:space="preserve">
-    <value>القسم</value>
+    <value>الأقسام</value>
   </data>
   <data name="lblDepartmentResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblUsersResource1.Text" xml:space="preserve">
-    <value>إسم المستخدم :</value>
-  </data>
-  <data name="lblUsersResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="ListItemResource1.Text" xml:space="preserve">
@@ -276,33 +219,6 @@
   <data name="PageResource1.Title" xml:space="preserve">
     <value>مدراء الأقسام</value>
   </data>
-  <data name="rfvBranchNameResource1.ErrorMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="rfvBranchNameResource1.Text" xml:space="preserve">
-    <value>&lt;img src='images/Exclamation.gif' title='إسم الفرع إجباري!' /&gt;</value>
-  </data>
-  <data name="rfvBranchNameResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="rfvUsersResource1.ErrorMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="rfvUsersResource1.Text" xml:space="preserve">
-    <value>&lt;img src='images/Exclamation.gif' title='إسم المستخدم إجباري!' /&gt;</value>
-  </data>
-  <data name="rfvUsersResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TemplateFieldResource1.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TemplateFieldResource1.FooterText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TemplateFieldResource1.HeaderText" xml:space="preserve">
-    <value>           </value>
-  </data>
   <data name="TreeNodeBindingResource1.FormatString" xml:space="preserve">
     <value />
   </data>
@@ -318,22 +234,16 @@
   <data name="TreeNodeBindingResource1.Value" xml:space="preserve">
     <value />
   </data>
-  <data name="trvDeptResource1.CollapseImageToolTip" xml:space="preserve">
-    <value>Collapse {0}</value>
-  </data>
-  <data name="trvDeptResource1.ExpandImageToolTip" xml:space="preserve">
-    <value>Expand {0}</value>
-  </data>
-  <data name="trvDeptResource1.SkipLinkText" xml:space="preserve">
-    <value>Skip Navigation Links.</value>
-  </data>
-  <data name="trvDeptResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="txtFilterResource1.Text" xml:space="preserve">
     <value />
   </data>
   <data name="txtFilterResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="vsShowMsgResource1.HeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="vsShowMsgResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="vsumAllResource1.HeaderText" xml:space="preserve">

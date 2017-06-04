@@ -253,7 +253,7 @@
     <value />
   </data>
   <data name="cvCalJoinDateEmptyResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='Installation Date is required!' /&gt;</value>
+    <value>&lt;img src='../images/Exclamation.gif' title='Installation Date is required' /&gt;</value>
   </data>
   <data name="cvCalJoinDateEmptyResource1.ToolTip" xml:space="preserve">
     <value />
@@ -262,7 +262,7 @@
     <value />
   </data>
   <data name="cvCalStartDateEmptyResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='Installation Date is required!' /&gt;</value>
+    <value>&lt;img src='../images/Exclamation.gif' title='Installation Date is required' /&gt;</value>
   </data>
   <data name="cvCalStartDateEmptyResource1.ToolTip" xml:space="preserve">
     <value />
@@ -271,7 +271,7 @@
     <value />
   </data>
   <data name="cvMachineNoResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='Work Type is required!' /&gt;</value>
+    <value>&lt;img src='../images/Exclamation.gif' title='Work Type is required' /&gt;</value>
   </data>
   <data name="cvMachineNoResource1.ToolTip" xml:space="preserve">
     <value />
@@ -280,7 +280,7 @@
     <value />
   </data>
   <data name="cvMacIPResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='Work Type is required!' /&gt;</value>
+    <value>&lt;img src='../images/Exclamation.gif' title='Work Type is required' /&gt;</value>
   </data>
   <data name="cvMacIPResource1.ToolTip" xml:space="preserve">
     <value />
@@ -289,7 +289,7 @@
     <value />
   </data>
   <data name="cvMacLocationResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='Work Type is required!' /&gt;</value>
+    <value>&lt;img src='../images/Exclamation.gif' title='Work Type is required' /&gt;</value>
   </data>
   <data name="cvMacLocationResource1.ToolTip" xml:space="preserve">
     <value />
@@ -298,7 +298,7 @@
     <value />
   </data>
   <data name="cvMacPortResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='Work Type is required!' /&gt;</value>
+    <value>&lt;img src='../images/Exclamation.gif' title='Work Type is required' /&gt;</value>
   </data>
   <data name="cvMacPortResource1.ToolTip" xml:space="preserve">
     <value />
@@ -519,7 +519,7 @@
     <value>?</value>
   </data>
   <data name="ddlMacTypeResource1.Text" xml:space="preserve">
-    <value>Select Transaction Type :</value>
+    <value>Select Transaction Type</value>
   </data>
   <data name="MacTrnTypeResource.Text" xml:space="preserve">
     <value>Machine Transaction Type :</value>

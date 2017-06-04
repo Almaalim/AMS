@@ -22,6 +22,9 @@
                         InsertVisible="False" ReadOnly="True"
                         meta:resourcekey="BoundFieldResource2"></asp:BoundField>
 
+                    <asp:BoundField HeaderText="IP Address" DataField="HostIP" SortExpression="HostIP"
+                        InsertVisible="False" ReadOnly="True" meta:resourcekey="BoundFieldResource562"></asp:BoundField>
+
                     <asp:TemplateField HeaderText="Log In Date" SortExpression="maxLogInEvent"
                         meta:resourcekey="TemplateFieldResource1">
                         <ItemTemplate>

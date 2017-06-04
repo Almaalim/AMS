@@ -321,8 +321,7 @@
                                                 ShowFooter="True" OnPageIndexChanging="grdData_PageIndexChanging" OnRowCreated="grdData_RowCreated"
                                                  OnRowDataBound="grdData_RowDataBound" OnSorting="grdData_Sorting"
                                                 OnRowCommand="grdData_RowCommand" onprerender="grdData_PreRender" 
-                                                onselectedindexchanged="grdData_SelectedIndexChanged" 
-                                                EnableModelValidation="True" meta:resourcekey="grdDataResource1">
+                                                onselectedindexchanged="grdData_SelectedIndexChanged" meta:resourcekey="grdDataResource1">
                                                  
                                                 <PagerSettings Mode="NextPreviousFirstLast" FirstPageText="First"
                                                     FirstPageImageUrl="~/images/first.gif" LastPageText="Last" LastPageImageUrl="~/images/last.gif"
@@ -342,7 +341,7 @@
                                   <div class="row">
                 <div class="col12">
                         <asp:ValidationSummary ID="vsShowMsg" runat="server"  CssClass="MsgSuccess" 
-                            EnableClientScript="False" ValidationGroup="ShowMsg"/>
+                            EnableClientScript="False" ValidationGroup="ShowMsg" meta:resourcekey="vsShowMsgResource1"/>
                        </div>
                                     </div>
                                   <div class="row">
@@ -357,10 +356,6 @@
                         OnClick="btnModify_Click"
                         Text="&lt;img src=&quot;../images/Button_Icons/button_edit.png&quot; /&gt; Modify"
                         meta:resourcekey="btnModifyResource1"></asp:LinkButton>
-                    <%--<asp:LinkButton ID="btnAdd" runat="server" CssClass="GenButton" 
-                                       OnClick="btnAdd_Click" Width="70px"  Height="18px" 
-                                       Text="&lt;img src=&quot;../images/Button_Icons/button_add.png&quot; /&gt; Add" 
-                                       meta:resourcekey="btnAddResource1"></asp:LinkButton>--%>
 
                     <asp:LinkButton ID="btnSave" runat="server" CssClass="GenButton glyphicon glyphicon-floppy-disk"
                         OnClick="btnSave_Click" ValidationGroup="Groups"
@@ -377,8 +372,7 @@
                         Width="10px" meta:resourcekey="txtCustomValidatorResource1"></asp:TextBox>
                     <asp:CustomValidator ID="cvShowMsg" runat="server" Display="None"
                         ValidationGroup="ShowMsg" OnServerValidate="ShowMsg_ServerValidate"
-                        EnableClientScript="False" ControlToValidate="txtValid">
-                    </asp:CustomValidator>
+                        EnableClientScript="False" ControlToValidate="txtValid" meta:resourcekey="cvShowMsgResource1"></asp:CustomValidator>
 
                 </div>
             </div>
@@ -413,7 +407,7 @@
                                     </div>
                                   <div class="row">
                 <div class="col12">
-                        <asp:TextBox ID="txtID" runat="server" AutoCompleteType="Disabled" Enabled="False" Visible="false" Width="15px"></asp:TextBox>
+                        <asp:TextBox ID="txtID" runat="server" AutoCompleteType="Disabled" Enabled="False" Visible="False" Width="15px" meta:resourcekey="txtIDResource1"></asp:TextBox>
                     </div>
                                     </div>
                                   

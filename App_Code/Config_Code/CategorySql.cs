@@ -28,7 +28,7 @@ public class CategorySql : DataLayerBase
         {
             Sqlcmd.Parameters.Add(new SqlParameter("@CatID"    , IntDB, 10,  OU, false, 0, 0, "", DRV, Pro.CatID));
             Sqlcmd.Parameters.Add(new SqlParameter("@CatNameAr", VchDB, 100, IN, false, 0, 0, "", DRV, Pro.CatNameAr));
-            Sqlcmd.Parameters.Add(new SqlParameter("@CatNameAr", VchDB, 100, IN, false, 0, 0, "", DRV, Pro.CatNameAr));
+            Sqlcmd.Parameters.Add(new SqlParameter("@CatNameEn", VchDB, 100, IN, false, 0, 0, "", DRV, Pro.CatNameEn));
             Sqlcmd.Parameters.Add(new SqlParameter("@CatDesc"  , VchDB, 255, IN, false, 0, 0, "", DRV, Pro.CatDesc));
             Sqlcmd.Parameters.Add(new SqlParameter("@Catstatus", BitDB, 1,   IN, false, 0, 0, "", DRV, Pro.CatStatus));
 
@@ -61,7 +61,7 @@ public class CategorySql : DataLayerBase
         {
             Sqlcmd.Parameters.Add(new SqlParameter("@CatID"    , IntDB, 10,  IN, false, 0, 0, "", DRV, Pro.CatID));
             Sqlcmd.Parameters.Add(new SqlParameter("@CatNameAr", VchDB, 100, IN, false, 0, 0, "", DRV, Pro.CatNameAr));
-            Sqlcmd.Parameters.Add(new SqlParameter("@CatNameAr", VchDB, 100, IN, false, 0, 0, "", DRV, Pro.CatNameAr));
+            Sqlcmd.Parameters.Add(new SqlParameter("@CatNameEn", VchDB, 100, IN, false, 0, 0, "", DRV, Pro.CatNameEn));
             Sqlcmd.Parameters.Add(new SqlParameter("@CatDesc"  , VchDB, 255, IN, false, 0, 0, "", DRV, Pro.CatDesc));
             Sqlcmd.Parameters.Add(new SqlParameter("@Catstatus", BitDB, 1,   IN, false, 0, 0, "", DRV, Pro.CatStatus));
 

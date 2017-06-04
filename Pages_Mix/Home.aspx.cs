@@ -25,6 +25,7 @@ public partial class Home : BasePage
         {
             /*** Fill Session ************************************/
             pgCs.FillSession();
+            UIChartsTypeShow(ddlTypeChartsFilter.SelectedValue);
             /*** Fill Session ************************************/
 
             if (!IsPostBack)

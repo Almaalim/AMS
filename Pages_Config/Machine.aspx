@@ -68,23 +68,14 @@
                             <%--<asp:BoundField HeaderText=" Install Date" DataField="MacInstallDate" meta:resourcekey="BoundFieldResource4" />--%>
                             <asp:BoundField DataField="MacNo" HeaderText="Number" meta:resourcekey="BoundFieldResource5"
                                 Visible="False" />
-                            <asp:BoundField DataField="MacStatus" HeaderText="Status" meta:resourcekey="BoundFieldResource6" />
-                            <%--    <asp:BoundField HeaderText="Created By" DataField="MacCreatedBy" SortExpression="MacCreatedBy"
-                                                        Visible="False" meta:resourcekey="BoundFieldResource7" />
-                                                    <asp:TemplateField HeaderText="Created Date" SortExpression="MacCreatedDate" 
-                                                        Visible="False" meta:resourcekey="TemplateFieldResource1">
-                                                        <ItemTemplate>
-                                                            <%# GrnToHij(Eval("MacCreatedDate"))%>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:BoundField DataField="MacModifiedBy" HeaderText="Modified By" SortExpression="MacModifiedBy"
-                                                        Visible="False" meta:resourcekey="BoundFieldResource8" />
-                                                    <asp:TemplateField HeaderText="Modified Date" SortExpression="MacModifiedDate" 
-                                                        Visible="False" meta:resourcekey="TemplateFieldResource2">
-                                                        <ItemTemplate>
-                                                            <%# GrnToHij(Eval("MacModifiedDate"))%>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>--%>
+                            
+                            
+                            <asp:TemplateField HeaderText="Status" SortExpression="MacStatus" meta:resourcekey="BoundFieldResource6">
+                                <ItemTemplate>
+                                    <%# DisplayFun.GrdDisplayStatus(Eval("MacStatus"))%>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
                             <asp:TemplateField HeaderText="           " meta:resourcekey="TemplateFieldResource3">
                                 <ItemTemplate>
                                     <asp:ImageButton ID="imgbtnDelete" Enabled="False" CommandName="Delete1" CommandArgument='<%# Eval("MacID") %>'

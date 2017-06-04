@@ -32,10 +32,9 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
             pgCs.FillSession();
             string ERSLic = LicDf.FetchLic("ER");
             if (Request.UserAgent.IndexOf("AppleWebKit") > 0) { Request.Browser.Adapters.Clear(); }
-            lnkLanguage.Text = General.Msg("عربي", "English");
-            SetPhotoUser();
-            CreateMenu(pgCs.LoginType, pgCs.LoginEmpID, false);
-            FillFavForm();
+            
+            
+            Refresh();
             /*** Fill Session ************************************/
 
             //int ss = Session.Timeout;
@@ -46,16 +45,14 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
 
             if (!IsPostBack)
             {
-                ChangeLogo();
                 SetPageTitel();
-                ShowLogo();
-
+                SetPhotoUser();
                 lblcurrentYear.Text = DateTime.Now.Year.ToString();
                 lblUserName.Text = " " + pgCs.LoginID;
+                lnkLanguage.Text = General.Msg("عربي", "English");
 
                 if (pgCs.LoginType == "USR")
                 {
-                    //FillFavForm();
                     ShowIsExistingRequest();
                     lnkShortcut.Enabled = true;
                 }
@@ -74,6 +71,23 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
             }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void Refresh()
+    {
+        try
+        {
+            FillMenu();
+
+            if (pgCs.LoginType == "USR")
+            {
+                FillFavForm();
+                ShowIsExistingRequest();
+                //lnkShortcut.Enabled = true;
+            }
+        }
+        catch (Exception e1) { }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -181,44 +195,9 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void ShowLogo()
-    {
-        try
-        {
-            if (pgCs.Version == "BorderGuard") { divCustLogo.Visible = false; }
-            else
-            {
-                DataTable DT = DBCs.FetchData(new SqlCommand(" SELECT AppLogo FROM ApplicationSetup "));
-                if (!DBCs.IsNullOrEmpty(DT))
-                {
-                    if (DT.Rows[0][0] != DBNull.Value) { imgLogo.ImageUrl = "~/Pages_Mix/ReadImage.aspx?ID=Logo"; return; }
-                }
-
-                imgLogo.ImageUrl = "~/images/MasterPage_Images/InsertLogo.JPG";
-            }
-        }
-        catch (Exception e1) { }
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void lnkPolicy_Click(object sender, EventArgs e)
     {
         Response.Redirect(@"~/Policies.aspx");
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void Refresh()
-    {
-        try
-        {
-            if (pgCs.LoginType == "USR")
-            {
-                FillFavForm();
-                ShowIsExistingRequest();
-                lnkShortcut.Enabled = true;
-            }
-        }
-        catch (Exception e1) { }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -237,32 +216,44 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
-    protected void CreateMenu(string Type, string EmpID, bool isAdmin)
+    protected void FillMenu()
     {
+        DataSet MuenDS = new DataSet();
+
+        if (Session["MenuDS"] == null)
+        {
+            string QMuen = CreateMenuQuery(pgCs.LoginType, pgCs.LoginEmpID);
+            MuenDS = DBCs.FetchMenuData(QMuen);
+            Session["MenuDS"] = MuenDS;
+        }
+        else
+        {
+            MuenDS = (DataSet)Session["MenuDS"];
+        }
+
+        xmlDataSource.Data = MuenDS.GetXml();
+        FillSideMenu(MuenDS);
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected string CreateMenuQuery(string Type, string EmpID)
+    {
+        StringBuilder QMuen = new StringBuilder();
+
         try
         {
-            StringBuilder QMuen = new StringBuilder();
-
             if (Type == "USR") { QMuen.Append(FindUsrMenu()); }
             if ((Type == "USR" && !string.IsNullOrEmpty(EmpID)) || (Type == "EMP"))
             {
                 if (!string.IsNullOrEmpty(QMuen.ToString())) { QMuen.Append(" UNION ALL "); }
                 QMuen.Append(FindEmpMenu());
             }
-            if (Type == "USR" && isAdmin)
-            {
-                if (!string.IsNullOrEmpty(QMuen.ToString())) { QMuen.Append(" UNION ALL "); }
-                QMuen.Append(FindAdminMenu());
-            }
 
             if (!string.IsNullOrEmpty(QMuen.ToString())) { QMuen.Append(" ORDER BY MnuOrder"); }
-
-            ViewState["QMuen"] = QMuen.ToString();
-
-            FillMenu(QMuen.ToString());
-            FillSideMenu(QMuen.ToString());
         }
         catch (Exception ex) { }
+
+        return QMuen.ToString();
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
@@ -318,31 +309,8 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
         return QMuen.ToString();
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected string FindAdminMenu()
-    {
-        StringBuilder QMuen = new StringBuilder();
-
-        string lang = (pgCs.Lang == "AR") ? "Ar" : "En";
-        string DescCol = (pgCs.Lang == "AR") ? "MnuArabicDescription" : "MnuDescription";
-        string listPage = "'AD_MainMenu','AD_SubMenu'";
-
-        QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText," + DescCol + " as MnuDescription,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder ");
-        QMuen.Append(" FROM Menu WHERE MnuVisible = 'True' AND MnuType IN (" + listPage + ") AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + pgCs.Version + "',VerID) > 0) ");
-
-        return QMuen.ToString();
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void FillMenu(string QMuen)
-    {
-        DataSet MuenDS = new DataSet();
-        MuenDS = DBCs.FetchMenuData(QMuen.ToString());
-        xmlDataSource.Data = MuenDS.GetXml();
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void FillSideMenu(string QMuen)
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+    protected void FillSideMenu(DataSet MuenDS)
     {
         bool isFirst = true;
         string FirstItem = "";
@@ -351,7 +319,8 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
         string MultiItem = "";
         int iMultiItem = 0;
 
-        DataTable DT = DBCs.FetchData(new SqlCommand(QMuen));
+        DataTable DT = MuenDS.Tables[0];
+
         if (!DBCs.IsNullOrEmpty(DT))
         {
             DataRow[] DRs = DT.Select("MnuParentID = 0");
@@ -444,7 +413,9 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
                     FavSqlCs.Insert(FavProCs);
                 }
 
-                Refresh();
+                Session["FavFormDT"] = null;
+
+                FillFavForm();
             }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
@@ -455,7 +426,20 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
     {
         try
         {
-            DataTable DT = DBCs.FetchData(" SELECT * FROM FavoriteFormsView WHERE FavUsrName = @P1 ORDER BY FavType ", new string[] { pgCs.LoginID });
+            FavForm.Controls.Clear();
+
+            DataTable DT = new DataTable();
+
+            if (Session["FavFormDT"] == null)
+            {
+                DT = DBCs.FetchData(" SELECT * FROM FavoriteFormsView WHERE FavUsrName = @P1 ORDER BY FavType ", new string[] { pgCs.LoginID });
+                Session["FavFormDT"] = DT;
+            }
+            else
+            {
+                DT = (DataTable)Session["FavFormDT"];
+            }
+
             foreach (DataRow DR in DT.Rows)
             {
                 FavForm.Controls.Add(new LiteralControl("<li>"));

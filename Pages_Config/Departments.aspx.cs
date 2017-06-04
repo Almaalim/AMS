@@ -64,7 +64,7 @@ public partial class Departments : BasePage
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void FillDepParent() { CtrlCs.FillMgrsList(ref ddlDepParentName, null, true); }
+    protected void FillDepParent() { CtrlCs.FillDepartmentList(ref ddlDepParentName, null, true); }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -326,8 +326,8 @@ public partial class Departments : BasePage
     {
         try
         {
-            UIClear(true);
-            if (trvDept.SelectedNode != null) { trvDept.SelectedNode.Selected = false; }
+            UIClear(false);
+            //if (trvDept.SelectedNode != null) { trvDept.SelectedNode.Selected = false; }
             UIEnabled(true, true);
             BtnStatus("00110");
             ViewState["CommandName"] = "ADD";
@@ -419,28 +419,36 @@ public partial class Departments : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void btnDelete_Click(object sender, EventArgs e)
     {
-        System.Text.StringBuilder QDel = new System.Text.StringBuilder();
-        QDel.Append(" SELECT DepID From Employee WHERE ISNULL(EmpDeleted,0) = 0 AND DepID = @P1 ");
-        QDel.Append(" UNION ");
-        QDel.Append(" SELECT DepID From UsrDepRel WHERE ISNULL(UdrDeleted,0) = 0 AND DepID = @P1");
-
-        DataTable DT = DBCs.FetchData(QDel.ToString(), new string[] { txtID.Text });
-        if (!DBCs.IsNullOrEmpty(DT))
+        try
         {
-            CtrlCs.ShowDelMsg(this, false);
-            return;
+            System.Text.StringBuilder QDel = new System.Text.StringBuilder();
+            QDel.Append(" SELECT DepID From Employee WHERE ISNULL(EmpDeleted,0) = 0 AND DepID = @P1 ");
+            //QDel.Append(" UNION ");
+            //QDel.Append(" SELECT DepID From UsrDepRel WHERE ISNULL(UdrDeleted,0) = 0 AND DepID = @P1");
+
+            DataTable DT = DBCs.FetchData(QDel.ToString(), new string[] { txtID.Text });
+            if (!DBCs.IsNullOrEmpty(DT))
+            {
+                CtrlCs.ShowDelMsg(this, false);
+                return;
+            }
+
+            SqlCs.Delete(txtID.Text, pgCs.LoginID);
+
+            CtrlCs.ShowDelMsg(this, true);
+
+            UIClear(true);
+            ViewState["Action"] = "M";
+            UIEnabled(false, true);
+            BtnStatus("00000");
+            FillTree("-1");
+            ddlBrcParentName.SelectedIndex = -1;
         }
-
-        SqlCs.Delete(txtID.Text, pgCs.LoginID);
-
-        CtrlCs.ShowDelMsg(this, true);
-
-        UIClear(true);
-        ViewState["Action"] = "M";
-        UIEnabled(false, true);
-        BtnStatus("00000");
-        FillTree("-1");
-        ddlBrcParentName.SelectedIndex = -1;
+        catch (Exception ex)
+        {
+            ErrorSignal.FromCurrentContext().Raise(ex);
+            CtrlCs.ShowAdminMsg(this, ex.ToString());
+        }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -542,8 +550,7 @@ public partial class Departments : BasePage
             DataTable DT = DBCs.FetchData(" SELECT DepID,DepParentID,BrcID,DepNameAr,DepNameEn,DepDesc,UsrName,DepStatus,DepLevel FROM Department WHERE ISNULL(DepDeleted,0) = 0 AND DepID = @P1 ", new string[] { pDepID });
             if (!DBCs.IsNullOrEmpty(DT))
             {
-
-                ViewState["ID"] = DT.Rows[0]["DepID"].ToString();
+                txtID.Text = DT.Rows[0]["DepID"].ToString();
                 txtNameAr.Text = DT.Rows[0]["DepNameAr"].ToString();
                 txtNameEn.Text = DT.Rows[0]["DepNameEn"].ToString();
                 txtDepartmentDesc.Text = DT.Rows[0]["DepDesc"].ToString();

@@ -469,7 +469,7 @@ public class UsersSql : DataLayerBase
     /*#############################################################################################################################*/
     #region InOutLogSql
 
-    public bool InOutLog_Insert(string ID, string HostName)
+    public bool InOutLog_Insert(string ID, string HostName, string HostIP)
     {
         SqlCommand Sqlcmd = new SqlCommand("dbo.[InOutLog_Insert]", MainConnection);
         Sqlcmd.CommandType = CommandType.StoredProcedure;
@@ -478,6 +478,7 @@ public class UsersSql : DataLayerBase
         {
             Sqlcmd.Parameters.Add(new SqlParameter("@UsrName" , VchDB, 15,  IN, false, 0, 0, "", DRV, ID));
             Sqlcmd.Parameters.Add(new SqlParameter("@HostName", VchDB, 100, IN, false, 0, 0, "", DRV, HostName));
+            Sqlcmd.Parameters.Add(new SqlParameter("@HostIP"  , VchDB, 100, IN, false, 0, 0, "", DRV, HostIP));
 
             MainConnection.Open();
             Sqlcmd.ExecuteNonQuery();
