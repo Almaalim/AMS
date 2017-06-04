@@ -201,7 +201,7 @@ public partial class Home : BasePage
             if (!GenCs.IsNullOrEmptyDB(DR["SumShiftDuration"]) && !GenCs.IsNullOrEmptyDB(DR["SumWorkDuration"]))
             {
                 SumShiftDuration = ShowSumShiftDuration = DR["SumShiftDuration"];
-                SumWorkDuration = ShowSumWorkDuration = DR["SumWorkDuration"];
+                SumWorkDuration = ShowSumWorkDuration = DR["SumWorkDuration"]; 
                 SumNotWorkDuration = ShowSumNotWorkDuration = (Convert.ToInt32(SumShiftDuration) - Convert.ToInt32(SumWorkDuration)).ToString();
             }
         }
