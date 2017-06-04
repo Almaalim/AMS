@@ -76,63 +76,14 @@
                         </div>
                     </div>
                     <div class="col2">
-                        <div class="row">
-                              <div class="col2">
-                                  </div>
-                            </div>
-                        <div class="row">
-                              <div class="col2">
-                                  </div>
-                            </div>
-                        <div class="row">
-                              <div class="col2">
-                                  </div>
-                            </div>
-                        <div class="row">
-                              <div class="col2">
-                                  </div>
-                            </div>
-                        <div class="row">
-                              <div class="col2">
-                                  </div>
-                            </div>
-                        <div class="row">
-                              <div class="col2">
-                                  </div>
-                            </div>
-                        <div class="row">
-                              <div class="col2">
-                                  </div>
-                            </div>
-                        <div class="row">
-                              <div class="col2">
-                                  </div>
-                            </div>
-                        <div class="row">
-                              <div class="col2">
-                                  </div>
-                            </div>
-                        <div class="row">
-                              <div class="col2">
-                                  </div>
-                            </div>
-                        <div class="row">
-                              <div class="col2">
-                                  </div>
-                            </div>
-                        <div class="row">
-                              <div class="col2">
-                                  </div>
-                            </div>
-                        <div class="row">
-                            <div class="col12 text-center"> 
+                     
+                        <div class="tableDiv">
+                            <div class="tableCell"> 
                                 <asp:ImageButton ID="btnSelectEmp" runat="server" OnClick="btnSelectEmp_Click"
                                     ImageUrl="~/images/Control_Images/next.png" 
                                     meta:resourcekey="btnSelectEmpResource1" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col12 text-center">
+                          </div>
+                          <div class="tableCell">
                                 <asp:ImageButton ID="btnDeSelectEmp" runat="server"
                                     OnClick="btnDeSelectEmp_Click" ImageUrl="~/images/Control_Images/back.png"
                                     meta:resourcekey="btnDeSelectEmpResource1" />

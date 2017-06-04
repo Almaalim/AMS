@@ -124,9 +124,9 @@ body {
 }
 
 
-.Loader > div {
-    position: absolute;
-}
+    .Loader > div {
+        position: absolute;
+    }
 
 .OuterCircle {
     background-image: url(../../images/ExtL.png);
@@ -403,7 +403,7 @@ a.Admin, .Adminlist > ul > li {
 }
 
 a.Attendance, .Attendancelist > ul > li {
-    background-color: #009ad7;
+    background-color: #ffaa31;
 }
 
 a.Requests, .Requestslist > ul > li {
@@ -623,7 +623,6 @@ ul.level2 > li {
     float: left;
     font-weight: bold;
     display: inline-block;
-    margin-right: 5px;
     font-size: 0px !important;
 }
 
@@ -783,6 +782,9 @@ a:active {
     -webkit-box-shadow: 0px 0px 10px #c6c6c6;
     box-shadow: 0px 0px 10px #c6c6c6;
     display: none;
+    right: 0;
+    left: inherit !important;
+    top: 25px !important;
 }
 
 fieldset > legend > select, fieldset > legend {
@@ -827,9 +829,9 @@ fieldset > legend > select, fieldset > legend {
     width: 25px;
 }
 
-.widthAuto {
+/*.widthAuto {
     width: auto;
-}
+}*/
 
 .LeftOverlay1 {
     position: absolute;
@@ -991,8 +993,8 @@ span.glyphicon.CalenderIco {
     position: absolute;
     top: 0px;
     right: 10px;
-    width: 28px;
-    height: 28px;
+    width: 27px;
+    height: 27px;
 }
 
 .DateExp {
@@ -1001,7 +1003,13 @@ span.glyphicon.CalenderIco {
 }
 
     #reqUsername img, #Fullname img, #cvEmpID img, #rfvLanguage img, #Password img, #cvEmail img, #cdvMobileNo img, #cvADUser img, #cvShowMsg img, .CustomValidator img, .DateExp img {
-        display: none;
+            display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
     }
 
 .GridDiv {
@@ -1205,6 +1213,17 @@ body.loginPage > #aspnetForm {
     padding-left: 52px;
 }
 
+.LoginRight .CustomValidator {
+    width: 47px;
+    height: 47px;
+    text-align: center;
+    line-height: 40px;
+}
+
+    .LoginRight .CustomValidator:before {
+        font-size: 24px;
+    }
+
 .UserName:before, .PassWord:before {
     display: block;
     position: absolute;
@@ -1230,32 +1249,78 @@ body.loginPage > #aspnetForm {
 .tp_logoin span {
     font-weight: bold;
 }
+.tableDiv
+{
+    display: table;
+    height:100%;
+}
+.tableCell
+{
+    vertical-align: middle;
+        display: table-cell;
+}
+.MsgValidation, .MsgSuccess {
+    word-break: break-word;
+    padding: 15px 7px;
+    color: #fff !important;
+    position: relative;
+    line-height: 16px;
+    display: table;
+    margin: 0 auto;
+        min-height: 40px;
+    -webkit-box-shadow: 2px 2px 9px 2px rgba(206,220,223,0.68);
+    -moz-box-shadow: 2px 2px 9px 2px rgba(206,220,223,0.68);
+    box-shadow: 2px 2px 9px 2px rgba(206,220,223,0.68);
+    width:100%;
+}
+
+.MsgSuccess {
+    background-color: #68af27;
+    font-size: 16px;
+}
 
 .MsgValidation {
     background-color: #ba2c1d;
-    word-break: break-word;
-    padding: 10px 30px 10px 27px;
-    color: #fff !important;
-    position: relative;
+    font-size: 12px;
 }
 
-    .MsgValidation li {
+    .MsgValidation li, .MsgSuccess li {
         list-style: none;
     }
 
-    .MsgValidation:before {
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        width: 50px;
-        color: rgba(255,255,255,.74);
-        text-align: center;
-        background-color: #ba2c1d;
-        content: "\f05a";
-        font-size: 40px;
-        line-height: 80px !important;
+    .MsgSuccess ul, .MsgValidation ul {
+        vertical-align: middle;
+        display: table-cell;
+        position: inherit;
+        -webkit-margin-before: 0;
+        -webkit-margin-after: 0;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        -webkit-padding-start: 0;
+        margin: 0;
+        Padding-right: 10px;
     }
+
+    .MsgValidation:before, .MsgSuccess:before {
+        width: 45px;
+        color: rgba(255,255,255,1);
+        text-align: center;
+        font-size: 30px;
+        vertical-align: middle;
+        display: table-cell;
+        position: inherit;
+    }
+
+.MsgSuccess:before {
+    background-color: #68af27;
+    content: "\f00c";
+    font-family: FontAwesome;
+}
+
+.MsgValidation:before {
+    background-color: #ba2c1d;
+    content: "\f05a";
+}
 
 .LoginLanguageBtn {
     position: absolute;
@@ -1306,15 +1371,15 @@ body.loginPage > #aspnetForm {
     position: relative;
     display: block;
     margin-bottom: 5px;
-    -webkit-animation: shadowFadeOut 0.4s;
-    -moz-animation: shadowFadeOut 0.4s;
+    -webkit-animation: shadowFadeOut 0.1s;
+    -moz-animation: shadowFadeOut 0.1s;
 }
 
     .LoginBTN:hover {
         color: #fff;
-        box-shadow: inset 0px 46px 0px 0px #0061a7;
-        -webkit-animation: shadowFade 0.4s;
-        -moz-animation: shadowFade 0.4s;
+        box-shadow: inset 0px 54px 0px 0px #0061a7;
+        -webkit-animation: shadowFade 0.1s;
+        -moz-animation: shadowFade 0.1s;
     }
 /*keyframes for input animation*/
 @keyframes shadowFade {
@@ -3120,7 +3185,10 @@ input {
     box-shadow: 2px 2px 9px 2px rgba(206,220,223,0.68);
     background: rgba(206,220,223,0.68);
 }
-
+.form-inline
+{
+    display:inline-block;
+}
 .CalTextStyle {
     -webkit-box-shadow: 0px 0px 0px 0px rgba(255,255,255,0) !important;
     -moz-box-shadow: 0px 0px 0px 0px rgba(255,255,255,0) !important;
@@ -3212,7 +3280,14 @@ h2, .h2 {
 h3, .h3 {
     font-size: 24px;
 }
+.h4 {
+    display: block;
+    
+    padding: 10px;
+    background-color: #005683;
+    color: #f9f9f9;
 
+}
 h4, .h4 {
     font-size: 18px;
 }
@@ -4193,8 +4268,8 @@ a.colord13f2a:before {
 .tooltipSmall {
     display: none;
     position: absolute;
-    border: 1px solid #333;
-    background-color: #161616;
+    border: 3px solid #fff;
+    background-color: rgba(0, 0, 0, 0.9);
     border-radius: 5px;
     padding: 10px;
     color: #fff;
@@ -4272,14 +4347,16 @@ a.level2.dynamic.JobCategory:before {
         font-size: 20px;
     }
 }
+
 @media (max-width:1366px) {
     .Logo {
         width: 185px;
         height: 50px;
         background-size: cover;
-        margin-top:20px;
+        margin-top: 20px;
     }
 }
+
 @media (max-width:1260px) {
     a.static {
         width: 65px;
@@ -4287,11 +4364,11 @@ a.level2.dynamic.JobCategory:before {
         font-size: 9px;
     }
 
-    
-    .Logo
-    {
-        margin-top:5px;
+
+    .Logo {
+        margin-top: 5px;
     }
+
     li.static {
         height: 60px;
     }

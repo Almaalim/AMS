@@ -6,6 +6,8 @@
 #wizHeaderEN li .prevStep:after
 {
     border-left-color:  #6C8695 !important;
+        color: rgb(255, 255, 255);
+    border-radius: 5px;
 }
 #wizHeaderEN li .currentStep
 {
@@ -17,7 +19,7 @@
 }
 #wizHeaderEN li .currentStep:after
 {
-    border-left-color: #FE5A34 !important;
+    border-left-color: #009dc7 !important;
 }
 #wizHeaderEN li .nextStep
 {
@@ -43,6 +45,7 @@
 {
     float: left;
         margin: 0px 10px;
+        position:relative;
 }
 #wizHeaderEN li a
 {
@@ -54,6 +57,7 @@
     /* position: relative; */
     display: block;
     /*float: left;*/
+    margin: 0 10px;
 }
 #wizHeaderEN li a:after
 {
@@ -61,11 +65,11 @@
     display: block;
     width: 0;
     height: 0;
-    border-top: 50px solid transparent; /* Go big on the size, and let overflow hide */
-    border-bottom: 50px solid transparent;
+        border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
     border-left: 30px solid hsla(34,85%,35%,1);
     position: absolute;
-    top: 50%;
+    top: 112%;
     margin-top: -50px;
     left: 100%;
     z-index: 2;
@@ -76,11 +80,11 @@
     display: block;
     width: 0;
     height: 0;
-    border-top: 50px solid transparent;
-    border-bottom: 50px solid transparent;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
     border-left: 30px solid white;
     position: absolute;
-    top: 50%;
+    top: 112%;
     margin-top: -50px;
     margin-left: 1px;
     left: 100%;
@@ -121,6 +125,8 @@ content122
 #wizHeaderAR li .prevStep
 {
     background-color:  #6C8695;
+        color: rgb(255, 255, 255);
+    border-radius: 5px;
 }
 #wizHeaderAR li .prevStep:after
 {
@@ -132,7 +138,7 @@ content122
 }
 #wizHeaderAR li .currentStep:after
 {
-    border-right-color: #FE5A34 !important;
+    border-right-color: #009dc7 !important;
 }
 #wizHeaderAR li .nextStep
 {
@@ -156,6 +162,7 @@ content122
 {
     float: right;
         margin: 0px 10px;
+        position:relative;
 }
 #wizHeaderAR li a
 {
@@ -166,6 +173,7 @@ content122
     background: hsla(34,85%,35%,1);
     /* position: relative; */
     display: block;
+    margin: 0 10px;
     /*float: left;*/
 }
 #wizHeaderAR li a:after
@@ -174,11 +182,11 @@ content122
     display: block;
     width: 0;
     height: 0;
-    border-top: 50px solid transparent; /* Go big on the size, and let overflow hide */
-    border-bottom: 50px solid transparent;
+    border-top: 20px solid transparent; /* Go big on the size, and let overflow hide */
+    border-bottom: 20px solid transparent;
     border-right: 30px solid hsla(34,85%,35%,1);
     position: absolute;
-    top: 50%;
+    top: 112%;
     margin-top: -50px;
     right: 100%;
     z-index: 2;
@@ -189,11 +197,11 @@ content122
     display: block;
     width: 0;
     height: 0;
-    border-top: 50px solid transparent;
-    border-bottom: 50px solid transparent;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
     border-right: 30px solid white;
     position: absolute;
-    top: 50%;
+    top: 112%;
     margin-top: -50px;
     margin-right: 1px;
     left: 100%;

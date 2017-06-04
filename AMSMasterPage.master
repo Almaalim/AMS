@@ -20,14 +20,20 @@
 
     <script type="text/javascript">
         function PostbackFunction() {
-
+            
 
             MobileListResize();
+
         }
         function MobileListResize() {
 
             $('a.static').click(function (e) {
                 return false;
+            });
+            $('img').each(function () {
+                if ($(this).attr("src") == '../images/Exclamation.gif') {
+                    $(this).parents("span:first").addClass('CustomValidator');
+                }
             });
             if ($(".GridTable").width() > $(".row").width()) {
                 //                $(".GridTable").prepend("<thead></thead>");
@@ -89,8 +95,13 @@
                 $("body").css("overflow", "auto");
             }
         });
-        $(document).ready(function () {
+        $(window).ready(function () {
+            // Animate loader off screen
+            $(".LoadingWrapper").delay(1500).fadeOut("slow", 0);
 
+        });
+        $(document).ready(function () {
+           
             //$("a.level2.dynamic").each(function (index) {
             //    var str1 = $(this).attr('title');
 
@@ -636,10 +647,7 @@
 
         </div>
         <script type="text/javascript">
-            $(window).load(function () {
-                // Animate loader off screen
-                $(".LoadingWrapper").fadeOut("0");;
-            });
+            
             $(document).ready(function () {
                 $('.sub-square>a').hover(function () {
                     // Hover over code
@@ -660,9 +668,13 @@
                     $('.tooltipSmall')
                     .css({ top: mousey, left: mousex })
                 });
-                document.addEventListener('contextmenu', function (e) {
-                    e.preventDefault();
-                }, false);
+                if ("ontouchstart" in document.documentElement) {
+                    document.addEventListener('contextmenu', function (e) {
+                        e.preventDefault();
+                    }, false);
+                }
+                
+                
             });
         </script>
     </form>

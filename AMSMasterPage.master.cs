@@ -8,6 +8,7 @@ using System.Text;
 using Elmah;
 using System.Web;
 using System.IO;
+using System.Text.RegularExpressions;
 
 public partial class AMSMasterPage : System.Web.UI.MasterPage
 {
@@ -45,6 +46,14 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
 
             if (!IsPostBack)
             {
+<<<<<<< HEAD
+=======
+                //Dear Developer
+                // I am adding this line for more than 5 times in this project and has been removed.Which brings up extra work for me.So if you concerned about team work and since
+                // we are working on source control i hope that i dont need to add rework on this again.
+                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "PostbackFunction();", true);
+                ChangeLogo();
+>>>>>>> 7c040478558829c4e2c97713448e5c9cc5dfc8c7
                 SetPageTitel();
                 SetPhotoUser();
                 lblcurrentYear.Text = DateTime.Now.Year.ToString();
@@ -71,6 +80,10 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
             }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
+        //Dear Developer
+        // I am adding this line for more than 5 times in this project and has been removed.Which brings up extra work for me.So if you concerned about team work and since
+        // we are working on source control i hope that i dont need to add rework on this again.
+        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "PostbackFunction();", true);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -343,21 +356,27 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
                 iMultiItem = 0;
                 foreach (DataRow SDR in SDRs)
                 {
+                    //muath dassan want to talk to the developer abut the select statament 
+                    string menuCss = SDR["MnuDescription"].ToString();
+                    menuCss = menuCss.Replace(" ", "");
+                    menuCss = Regex.Replace(menuCss, @"[^0-9a-zA-Z]+", "");
                     if (isFirst)
                     {
+                        
                         FirstItem = "<div class='square-big'>";
-                        FirstItem += "<a title='" + SDR["MnuText"].ToString() + "' class='SideMenuItem " + DR["MnuDescription"].ToString() + "' href='" + SDR["MnuURL"].ToString().Replace("~", "..") + "'>" + SDR["MnuText"].ToString() + "</a>";
+                        FirstItem += "<a title='" + SDR["MnuText"].ToString() + "' class='SideMenuItem " + menuCss + "' href='" + SDR["MnuURL"].ToString().Replace("~", "..") + "'>" + SDR["MnuText"].ToString() + "</a>";
                         FirstItem += "</div>";
                         isFirst = false;
                     }
                     else
                     {
+                         
                         if (iMultiItem >= 4) { iMultiItem = 0; }
                         iMultiItem += 1;
                         if (iMultiItem == 1) { MultiItem += SMultiItem; }
 
                         MultiItem += "<div class='sub-square'>";
-                        MultiItem += "<a title='" + SDR["MnuText"].ToString() + "' class='SideMenuItem' href='" + SDR["MnuURL"].ToString().Replace("~", "..") + "'>" + SDR["MnuText"].ToString() + "</a>";
+                        MultiItem += "<a title='" + SDR["MnuText"].ToString() + "' class='SideMenuItem " + menuCss + "' href='" + SDR["MnuURL"].ToString().Replace("~", "..") + "'>" + SDR["MnuText"].ToString() + "</a>";
                         MultiItem += "</div>";
 
                         if (iMultiItem == 4) { MultiItem += EMultiItem; }
