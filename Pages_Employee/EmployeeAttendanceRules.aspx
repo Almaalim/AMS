@@ -19,13 +19,7 @@
                                                         meta:resourcekey="VSFinishResource1" />
                                                  </div>
             </div>
-
-            <div class="row">
-                <div class="col12">
-                                                    <ucEmp:EmployeeSelected runat="server" ID="ucEmployeeSelected" ValidationGroupName="VGFinish" />
-                                                </div>
-            </div>
-            <div class="row">
+                <div class="row">
                 <div class="col2">
                                         <span class="RequiredField">*</span> <asp:Label ID="lblRuleSetSelect" 
                                             runat="server" Text="Select Rule Set:"
@@ -40,6 +34,12 @@
                                         ValidationGroup="VGFinish" meta:resourcekey="rfvLanguageResource1"></asp:RequiredFieldValidator>
                                            </div>
             </div>
+            <div class="row">
+                <div class="col12">
+                                                    <ucEmp:EmployeeSelected runat="server" ID="ucEmployeeSelected" ValidationGroupName="VGFinish" />
+                                                </div>
+            </div>
+            
             <div class="row">
                 <div class="col2">
                                     <asp:LinkButton ID="btnSave" runat="server" CssClass="GenButton   glyphicon glyphicon-floppy-disk" 

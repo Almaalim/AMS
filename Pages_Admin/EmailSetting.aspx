@@ -108,16 +108,17 @@
                                 <div class="col4">
                                     <asp:TextBox ID="txtSendToEmail" runat="server" AutoCompleteType="Disabled" ></asp:TextBox>
                                </div>
-                      </div>
-            <div class="row">
-                <div class="col2">
-                    </div>
-                                <div class="col4">
-                                    <asp:LinkButton ID="btnSendTestEmail" runat="server" CssClass="GenButton glyphicon glyphicon-share" OnClick="btnSendTestEmail_Click"
+                <div class="col4">
+                                    <asp:LinkButton ID="btnSendTestEmail" runat="server" CssClass="GenButton1 glyphicon glyphicon-share" OnClick="btnSendTestEmail_Click"
                                          Text="&lt;img src=&quot;../images/Button_Icons/button_edit.png&quot; /&gt; Send"
                                         ValidationGroup="vgSave">
                                     </asp:LinkButton>
                                        </div>
+                      </div>
+            <div class="row">
+                <div class="col2">
+                    </div>
+                                
                       </div>
             <div class="row">
                 <div class="col2">

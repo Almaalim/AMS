@@ -25,7 +25,8 @@
             MobileListResize();
         }
         function MobileListResize() {
-
+            
+            
             $('a.static').click(function (e) {
                 return false;
             });

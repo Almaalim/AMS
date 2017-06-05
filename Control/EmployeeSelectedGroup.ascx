@@ -22,7 +22,7 @@
                     </div>
                 </div>
                 <div class="row">
-                        <div class="col5">
+                        <div class="col6">
                 <div class="GreySetion">
                     <div class="row">
                         <div class="col12">
@@ -89,16 +89,13 @@
                     </div>
                 </div>
 </div>
-                    <div class="col2">
-                     
-                        <div class="tableDiv">
+                    <div class="col1 tableDiv">
                             <div class="tableCell"> 
               
                                                  <asp:ImageButton ID="btnSelectEmp" runat="server" OnClick="btnSelectEmp_Click" 
                                                      ImageUrl="~/images/Control_Images/next.png" 
                                                      meta:resourcekey="btnSelectEmpResource1" />
-                                             </div>
-                          <div class="tableCell">
+                                           <br />
                                                  <asp:ImageButton ID="btnDeSelectEmp" runat="server" 
                                                      OnClick="btnDeSelectEmp_Click" ImageUrl="~/images/Control_Images/back.png" 
                                                      meta:resourcekey="btnDeSelectEmpResource1" />

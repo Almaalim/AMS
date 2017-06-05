@@ -1258,7 +1258,13 @@ body.loginPage > #aspnetForm {
 {
     vertical-align: middle;
         display: table-cell;
+        text-align:center;
 }
+.tableCell>*
+{
+    margin-top:20%;
+}
+
 .MsgValidation, .MsgSuccess {
     word-break: break-word;
     padding: 15px 7px;
@@ -3280,7 +3286,7 @@ h2, .h2 {
 h3, .h3 {
     font-size: 24px;
 }
-.h4 {
+.h4 , .h3 {
     display: block;
     
     padding: 10px;
