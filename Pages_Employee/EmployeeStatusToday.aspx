@@ -13,29 +13,19 @@
     <%--script--%>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <table border="0" cellpadding="0" cellspacing="0">
-                <tr>
-                    <td>
-                        <table class="rp_Search">
-                            <tr>
-                                <%--<td>
-                                    &nbsp; &nbsp;
-                                    <asp:Label ID="lblDepFilter" runat="server" Text="Search By Department:" 
-                                        meta:resourcekey="lblDepFilterResource1"></asp:Label>
-                                    &nbsp;
-                                    <asp:DropDownList ID="ddlDepFilter" runat="server" Width="500px" 
-                                        meta:resourcekey="ddlDepFilterResource1">
-                                    </asp:DropDownList>
-                                    &nbsp;
-                                    <asp:ImageButton ID="btnDepFilter" runat="server" OnClick="btnDepFilter_Click" 
-                                        ImageUrl="../images/Button_Icons/button_magnify.png" 
-                                        meta:resourcekey="btnDepFilterResource1" />
-                                </td>--%>
-                                <td>
+          <div class="row">
+                <div class="col2">
                                     <asp:Label ID="lblDepFilter" runat="server" Text="Search By Department:" meta:resourcekey="lblDepFilterResource1"></asp:Label>
-                                    <asp:TextBox ID="txtSearchByDep" runat="server" Width="400px"></asp:TextBox>
+                     </div>
+                <div class="col2">
+                                    <asp:TextBox ID="txtSearchByDep" runat="server"  ></asp:TextBox>
+                     </div>
+                <div class="col2">
                                     <asp:ImageButton ID="btnDepFilter" runat="server" OnClick="btnDepFilter_Click" ImageUrl="../images/Button_Icons/button_magnify.png" meta:resourcekey="btnDepFilterResource1"/>
-                                                                    
+                                  </div>
+            </div>          
+             <div class="row">
+                <div class="col12">                        
                                     <asp:Panel runat="server" ID="pnlauDepName" Height="200px"  ScrollBars="Vertical" />
                                     <ajaxToolkit:AutoCompleteExtender
                                         runat="server" 
@@ -52,30 +42,16 @@
                                         CompletionListItemCssClass="AutoExtenderList" 
                                         CompletionListHighlightedItemCssClass="AutoExtenderHighlight" 
                                         CompletionSetCount="12" />
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="grid">
-                            <div class="rounded">
-                                <div class="top-outer">
-                                    <div class="top-inner">
-                                        <div class="top">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mid-outer">
-                                    <div class="mid-inner">
-                                        <div class="mid">
+                                 </div>
+            </div>          
+             <div class="row">
+                <div class="col12"> 
                                             <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData" />
                                             <asp:GridView ID="grdData" runat="server" CssClass="datatable" SelectedIndex="0"
-                                                AutoGenerateColumns="False" AllowPaging="True" CellPadding="0" BorderWidth="0px"
+                                                AutoGenerateColumns="False" AllowPaging="True"  
                                                 GridLines="None" DataKeyNames="EmpID" ShowFooter="True" OnPageIndexChanging="grdData_PageIndexChanging"
                                                 OnRowCreated="grdData_RowCreated" OnRowDataBound="grdData_RowDataBound" OnSelectedIndexChanged="grdData_SelectedIndexChanged"
-                                                OnPreRender="grdData_PreRender" Width="800px" EnableModelValidation="True">
+                                                OnPreRender="grdData_PreRender"    EnableModelValidation="True">
                                                 <Columns>
                                                     <asp:BoundField DataField="EmpID" HeaderText="Employee ID" SortExpression="EmpID"/>
                                                     <asp:BoundField HeaderText="Name (Ar)" DataField="EmpNameAr" 
@@ -95,24 +71,11 @@
                                                 <PagerSettings Mode="NextPreviousFirstLast" FirstPageText="First" FirstPageImageUrl="~/images/first.gif"
                                                     LastPageText="Last" LastPageImageUrl="~/images/last.gif" NextPageText="Next"
                                                     NextPageImageUrl="~/images/next.gif" PreviousPageText="Prev" PreviousPageImageUrl="~/images/prev.gif" />
-                                                <RowStyle CssClass="row" />
-                                                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                                                 
                                             </asp:GridView>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="bottom-outer">
-                                    <div class="bottom-inner">
-                                        <div class="bottom">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        &nbsp;
-                    </td>
-                </tr>
-            </table>
+                                
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
