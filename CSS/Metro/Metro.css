@@ -661,6 +661,7 @@ ul.level2 > li {
 .GenButton1 {
     font-size: 16px;
     line-height: 32px;
+    left: 0px;
 }
 
     .GenButton1:before {

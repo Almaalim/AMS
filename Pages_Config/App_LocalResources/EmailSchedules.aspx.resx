@@ -717,14 +717,8 @@
   <data name="ListItemResource1.Text" xml:space="preserve">
     <value>[None]</value>
   </data>
-  <data name="ListItemResource1.Value" xml:space="preserve">
-    <value>[None]</value>
-  </data>
   <data name="ListItemResource10.Text" xml:space="preserve">
     <value>Run once</value>
-  </data>
-  <data name="ListItemResource10.Value" xml:space="preserve">
-    <value>Once</value>
   </data>
   <data name="ListItemResource11.Text" xml:space="preserve">
     <value>00</value>

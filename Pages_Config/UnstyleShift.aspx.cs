@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Collections;
-using System.Text;
 using Elmah;
 using System.Globalization;
-using System.Data.OleDb;
-using System.IO;
 using System.Data.SqlClient;
 
 public partial class UnstyleShift : BasePage
@@ -289,12 +283,12 @@ public partial class UnstyleShift : BasePage
             grdAddData.Columns.Add(Ctfield);
 
             BoundField bfield = new BoundField();
-            bfield.HeaderText = "ID";
+            bfield.HeaderText = General.Msg("#","م");
             bfield.DataField = "RowID";
             grdAddData.Columns.Add(bfield);
   
             bfield = new BoundField();
-            bfield.HeaderText = "EmpID";
+            bfield.HeaderText = General.Msg("Employee ID", "رقم الموظف");
             bfield.DataField = "EmpID";
             grdAddData.Columns.Add(bfield);
  
@@ -308,7 +302,7 @@ public partial class UnstyleShift : BasePage
             for (int i = 1; i < DayCount + 1; i++)
             {
                 tfield = new TemplateField();
-                tfield.HeaderText = i.ToString();
+                tfield.HeaderText = i.ToString("00") + "/" + Month.ToString("00") + "/" + Year.ToString();
                 grdAddData.Columns.Add(tfield);
             }
 

@@ -331,10 +331,10 @@
     <value>أنواع الإجازات</value>
   </data>
   <data name="RegularExpressionValidator1Resource1.ErrorMessage" xml:space="preserve">
-    <value>ادخل فقط ارقام!</value>
+    <value>ادخل فقط ارقام</value>
   </data>
   <data name="RegularExpressionValidator1Resource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/message_exclamation.png' title='ادخل فقط ارقام!' /&gt;</value>
+    <value>&lt;img src='../images/message_exclamation.png' title='ادخل فقط ارقام' /&gt;</value>
   </data>
   <data name="RegularExpressionValidator1Resource1.ToolTip" xml:space="preserve">
     <value />
@@ -407,5 +407,8 @@
   </data>
   <data name="chkVtpIsMedicalReportResource1.Text" xml:space="preserve">
     <value>يحتاج لتقرير طبي</value>
+  </data>
+  <data name="BoundFieldResource456.HeaderText" xml:space="preserve">
+    <value>رمز الإجازة (ع)</value>
   </data>
 </root>

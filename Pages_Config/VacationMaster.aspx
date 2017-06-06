@@ -37,10 +37,9 @@
 
             <div class="row">
                 <div class="col12">
-                    <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender"
-                        TargetControlID="grdData" />
+                    <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData" />
                     <asp:GridView ID="grdData" runat="server" CssClass="datatable" SelectedIndex="0"
-                        AutoGenerateColumns="False" AllowSorting="True" AllowPaging="True" CellPadding="0"
+                        AutoGenerateColumns="False" AllowSorting="false" AllowPaging="True" CellPadding="0"
                         BorderWidth="0px" GridLines="None" DataKeyNames="VtpID" ShowFooter="True" OnPageIndexChanging="grdData_PageIndexChanging"
                         OnRowCreated="grdData_RowCreated" OnRowDataBound="grdData_RowDataBound"
                         OnSorting="grdData_Sorting" OnSelectedIndexChanged="grdData_SelectedIndexChanged"
@@ -56,10 +55,17 @@
                                 <ItemStyle CssClass="first" />
                             </asp:BoundField>
                             <asp:BoundField DataField="VtpID" HeaderText="Vac ID" meta:resourcekey="BoundFieldResource2" />
-                            <asp:BoundField HeaderText="Name En" DataField="VtpNameEn" InsertVisible="False"
+                            <asp:BoundField DataField="VtpNameEn" HeaderText="Name En" InsertVisible="False"
                                 ReadOnly="True" meta:resourcekey="BoundFieldResource3" />
                             <asp:BoundField DataField="VtpInitialEn" HeaderText="Initial (En)" meta:resourceKey="BoundFieldResource4" />
-                            <asp:BoundField HeaderText="Status" DataField="VtpStatus" meta:resourcekey="BoundFieldResource5" />
+                            <asp:BoundField DataField="VtpInitialAr" HeaderText="Initial (Ar)" meta:resourceKey="BoundFieldResource456" />
+                            
+                             <asp:TemplateField HeaderText="Status" SortExpression="VtpStatus" meta:resourcekey="BoundFieldResource5">
+                                <ItemTemplate>
+                                    <%# DisplayFun.GrdDisplayStatus(Eval("VtpStatus"))%>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                           
                             <asp:TemplateField HeaderText="           " meta:resourcekey="TemplateFieldResource1">
                                 <ItemTemplate>
                                     <asp:ImageButton ID="imgbtnDelete" CommandName="Delete1" CommandArgument='<%# Eval("VtpID") %>'

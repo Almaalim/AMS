@@ -67,7 +67,13 @@
                             <asp:BoundField HeaderText="Initial (Ar)" DataField="ExcInitialAr" SortExpression="ExcInitialAr" meta:resourcekey="BoundFieldResource4" />
                             <asp:BoundField DataField="ExcInitialEn" HeaderText="Initial (En)" SortExpression="ExcInitialEn" meta:resourcekey="BoundFieldResource5" />
                             <asp:BoundField HeaderText="Description" DataField="ExcDesc" SortExpression="ExcDesc" meta:resourcekey="BoundFieldResource6" />
-                            <asp:BoundField HeaderText="Status" DataField="ExcStatus" SortExpression="ExcStatus" meta:resourcekey="BoundFieldResource7" />
+                            <asp:TemplateField HeaderText="Status" SortExpression="ExcStatus" meta:resourcekey="BoundFieldResource7">
+                                <ItemTemplate>
+                                    <%# DisplayFun.GrdDisplayStatus(Eval("ExcStatus"))%>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            
+                            
                             <asp:TemplateField HeaderText="           " meta:resourcekey="TemplateFieldResource1">
                                 <ItemTemplate>
                                     <asp:ImageButton ID="imgbtnDelete" CommandName="Delete1" CommandArgument='<%# Eval("ExcID") %>'

@@ -231,9 +231,9 @@ public partial class AttendanceRules : BasePage
             if (commandName == "ADD") { SqlCs.RuleType_Insert(ProCs); }
 
             UIClear();
-            UIEnabled(true);
+            UIEnabled(false);
             BtnStatus("100");
-            
+            FillGrid();
             CtrlCs.ShowSaveMsg(this);
         }
         catch (Exception ex)
@@ -269,9 +269,10 @@ public partial class AttendanceRules : BasePage
         {
             if (!CtrlCs.PageIsValid(this, vsMSave)) { return; }
 
-            ProCs.RlsNameEn = txtRuleSet.Text;
-            ProCs.RlsNameAr = txtRuleSet.Text;
-            ProCs.RlsStatus = true;
+            ProCs.RlsNameEn     = txtRuleSet.Text;
+            ProCs.RlsNameAr     = txtRuleSet.Text;
+            ProCs.RlsStatus     = true;
+            ProCs.TransactionBy = pgCs.LoginID;
 
             SqlCs.RuleSet_Insert(ProCs);
 
@@ -279,7 +280,11 @@ public partial class AttendanceRules : BasePage
 
             CtrlCs.ShowSaveMsg(this);
         }
-        catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
+        catch (Exception ex)
+        {
+            ErrorSignal.FromCurrentContext().Raise(ex);
+            CtrlCs.ShowAdminMsg(this, ex.ToString());
+        }
 
         ddlRuleSet.Items.Clear();
         FillList();

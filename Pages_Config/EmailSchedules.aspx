@@ -16,7 +16,7 @@
                 </div>
                 <div class="col2">
                     <asp:DropDownList ID="ddlFilter" runat="server" meta:resourcekey="ddlFilterResource1">
-                        <asp:ListItem Selected="True" meta:resourcekey="ListItemResource1">[None]</asp:ListItem>
+                        <asp:ListItem Text="[None]" Selected="True" meta:resourcekey="ListItemResource1"></asp:ListItem>
                         <asp:ListItem Text="Schedule Name(En)" Value="SchNameEn" meta:resourcekey="ListItemResource2"></asp:ListItem>
                         <asp:ListItem Text="Schedule Name(Ar)" Value="SchNameAr" meta:resourcekey="ListItemResource3"></asp:ListItem>
                     </asp:DropDownList>
@@ -36,7 +36,7 @@
                 <div class="col12">
                     <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData" />
                     <asp:GridView ID="grdData" runat="server" CssClass="datatable" SelectedIndex="0"
-                        AutoGenerateColumns="False" AllowSorting="True" AllowPaging="True" CellPadding="0"
+                        AutoGenerateColumns="False" AllowSorting="false" AllowPaging="True" CellPadding="0"
                         BorderWidth="0px" GridLines="None" ShowFooter="True" OnPageIndexChanging="grdData_PageIndexChanging"
                         OnRowCreated="grdData_RowCreated" OnRowDataBound="grdData_RowDataBound"
                         OnSelectedIndexChanged="grdData_SelectedIndexChanged" OnRowCommand="grdData_RowCommand"
