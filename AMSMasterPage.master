@@ -77,6 +77,12 @@
             $('.rp_servlnk2').each(function (i) {
                 $(this).css('background-color', '#' + colors[i % colors.length]);
             });
+            $('.monthSummaryDiv').each(function (i) {
+                $(this).css('background-color', '#' + colors[i % colors.length]);
+            });
+            $('.GapSummeryDiv').each(function (i) {
+                $(this).css('background-color', '#' + colors[i % colors.length]);
+            });
             $("a.SideMenuItem").each(function (i) {
                 $(this).css('background-color', '#' + colors[i % colors.length]);
             });
@@ -634,12 +640,12 @@
 
             <asp:LinkButton ID="LnkHome" runat="server" OnClick="LnkHome_Click" CssClass="ft_home"
                 meta:resourcekey="LnkHomeResource1">Home Page</asp:LinkButton>
-
+          <span>|</span>  
 
 
             <asp:LinkButton ID="lnkAboutUs" runat="server" CssClass="ft_abt" meta:resourcekey="lnkAboutUsResource1">About us</asp:LinkButton>
 
-
+           <span>|</span>
 
             <asp:LinkButton ID="lnkPolicy" runat="server" CssClass="ft_cnt"
                 meta:resourcekey="lnkPolicyResource1" OnClick="lnkPolicy_Click">Policies and Procedures</asp:LinkButton>

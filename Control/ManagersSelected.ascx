@@ -22,6 +22,8 @@
                                     meta:resourcekey="ddlMgrResource1">
                                 </asp:DropDownList>
                             </div>
+                   </div>
+               <div class="row">
                                 <div class="col2">
                                 <asp:Label ID="lblLevel" runat="server" Text="Level :" 
                                     meta:resourcekey="lblLevelResource1"></asp:Label>

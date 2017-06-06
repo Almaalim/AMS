@@ -193,15 +193,15 @@
                 </div>
             </div>
             <div class="GreySetion">
-            <div class="left">
+            
                 <div class="row">
-                    <div class="col4">
+                    <div class="col2">
 
                         <span class="RequiredField">*</span>
                         <asp:Label ID="lblGroupType" runat="server" Text="Group Type :"
                             meta:resourcekey="lblGroupTypeResource1"></asp:Label>
                     </div>
-                    <div class="col8">
+                    <div class="col4">
                         <asp:DropDownList ID="ddlGroupType" runat="server" AutoPostBack="True"
                             OnSelectedIndexChanged="ddlGroupType_SelectedIndexChanged" Enabled="False"
                             meta:resourcekey="ddlGroupTypeResource1">
@@ -222,69 +222,67 @@
                         </div>
                         <asp:RequiredFieldValidator runat="server" ID="rfvGroupType" ControlToValidate="ddlGroupType"
                             InitialValue="-Select group type-" EnableClientScript="False" Text="<img src='../images/Exclamation.gif' title='Please select group!' />"
-                            ValidationGroup="vgSave" meta:resourcekey="rfvGroupTypeResource1"></asp:RequiredFieldValidator>
+                            ValidationGroup="vgSave" meta:resourcekey="rfvGroupTypeResource1" CssClass="CustomValidator"></asp:RequiredFieldValidator>
 
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col4">
+                    <div class="col2">
                         <span class="RequiredField">*</span>
                         <asp:Label ID="lblGroupNameArb" runat="server" Text="Group Name(Ar) :"
                             meta:resourcekey="lblGroupNameArbResource1"></asp:Label>
                     </div>
-                    <div class="col8">
+                    <div class="col4">
                         <asp:TextBox ID="txtGroupNameArb" runat="server" Enabled="False"
                             AutoCompleteType="Disabled" meta:resourcekey="txtGroupNameArbResource1"></asp:TextBox>
                         <asp:CustomValidator ID="cvGroupNameAr" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='' /&gt;"
-                            ValidationGroup="vgSave" OnServerValidate="NameValidate_ServerValidate"
+                            ValidationGroup="vgSave" OnServerValidate="NameValidate_ServerValidate" CssClass="CustomValidator"
                             EnableClientScript="False" ControlToValidate="txtValid"
                             meta:resourcekey="cvArWorkTimeNameResource1"></asp:CustomValidator>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col4">
+                    <div class="col2">
                         <span class="RequiredField">*</span>
                         <asp:Label ID="lblGroupName" runat="server" Text="Group Name(En) :"
                             meta:resourcekey="lblGroupNameResource1"></asp:Label>
                     </div>
-                    <div class="col8">
+                    <div class="col4">
                         <asp:TextBox ID="txtGroupNameEn" runat="server" Enabled="False"
                             AutoCompleteType="Disabled" meta:resourcekey="txtGroupNameResource1"></asp:TextBox>
                         <asp:CustomValidator ID="cvGroupNameEn" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='' /&gt;"
                             ValidationGroup="vgSave" OnServerValidate="NameValidate_ServerValidate"
                             EnableClientScript="False" ControlToValidate="txtValid"
-                            meta:resourcekey="cvEnWorkTimeNameResource1"></asp:CustomValidator>
+                            meta:resourcekey="cvEnWorkTimeNameResource1" CssClass="CustomValidator"></asp:CustomValidator>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col4">
+                    <div class="col2">
                         <asp:Label ID="lblGroupDescription" runat="server" Text="Group Description :"
                             meta:resourcekey="lblGroupDescriptionResource1"></asp:Label>
                     </div>
-                    <div class="col8">
+                    <div class="col4">
                         <asp:TextBox ID="txtGroupDescription" runat="server" Enabled="False"
                             AutoCompleteType="Disabled"
                             meta:resourcekey="txtGroupDescriptionResource1"></asp:TextBox>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="co4">
+                    <div class="co2">
                     </div>
-                    <div class="col8">
+                    <div class="col4">
                         <asp:TextBox ID="txtGrpID" runat="server" Enabled="False" Visible="false"></asp:TextBox>
                     </div>
                 </div>
-            </div>
-            <div class="right">
+           
                 <div class="row">
-                    <div class="col12 Heading">
-                        <asp:Label ID="lblPermissions" runat="server" Text="Permissions" CssClass="h4"
+                    <div class="col12">
+                        <asp:Label ID="lblPermissions" runat="server" Text="Permissions" CssClass="h3"
                             meta:resourcekey="lblPermissionsResource1"></asp:Label>
                     </div>
-                </div>
+                
 
-                <div id="divMenu" runat="server" class="row">
-                    <div class="col12">
+                <div id="divMenu" runat="server" class="col12">
                         <asp:TreeView ID="trvMenu" runat="server" DataSourceID="xmlDataSource1" LineImagesFolder="~/images/TreeLineImages"
                             Enabled="False" ShowLines="True" ShowCheckBoxes="All" OnDataBound="trvMenu_DataBound"
                             OnTreeNodeDataBound="trvMenu_TreeNodeDataBound"
@@ -296,18 +294,7 @@
                             </DataBindings>
                         </asp:TreeView>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col12">
-                        <asp:HiddenField ID="hdnTreeID" runat="server" Value="ctl00_ContentPlaceHolder1_trvMenun0" />
-                        <asp:XmlDataSource ID="xmlDataSource1" TransformFile="~/XSL/TransformXSLT.xsl" XPath="MenuItems/MenuItem"
-                            runat="server" CacheExpirationPolicy="Sliding" EnableCaching="False" />
-                    </div>
-                </div>
-            </div>
-                </div>
-            <div id="divReports" runat="server" visible="False" class="row">
-                <div class="col12">
+                    <div id="divReports" runat="server" visible="False" class="col12">
                     <asp:XmlDataSource ID="xmlReportSource" TransformFile="~/XSL/RepTransformXSLT.xsl" XPath="MenuItems/MenuItem"
                         runat="server" CacheExpirationPolicy="Sliding" EnableCaching="False" />
                     <asp:TreeView ID="trvReport" runat="server" DataSourceID="xmlReportSource" LineImagesFolder="~/images/TreeLineImages"
@@ -320,8 +307,20 @@
                                 ValueField="Value" meta:resourcekey="TreeNodeBindingResource2" />
                         </DataBindings>
                     </asp:TreeView>
-                </div>
+                
             </div>
+                </div>
+                <div class="row">
+                    <div class="col12">
+                        <asp:HiddenField ID="hdnTreeID" runat="server" Value="ctl00_ContentPlaceHolder1_trvMenun0" />
+                        <asp:XmlDataSource ID="xmlDataSource1" TransformFile="~/XSL/TransformXSLT.xsl" XPath="MenuItems/MenuItem"
+                            runat="server" CacheExpirationPolicy="Sliding" EnableCaching="False" />
+                    </div>
+                </div>
+          
+                
+                </div>
+            
             <div class="clearfix"></div>
         </ContentTemplate>
     </asp:UpdatePanel>

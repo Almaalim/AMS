@@ -1,7 +1,11 @@
 ﻿ /*File Created: October 2, 2012 */
 #wizHeaderEN li .prevStep
 {
-    background-color:  #6C8695;
+   background-color: #6c8695;
+    color: #fff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }
 #wizHeaderEN li .prevStep:after
 {
@@ -124,8 +128,10 @@ content122
 
 #wizHeaderAR li .prevStep
 {
-    background-color:  #6C8695;
-        color: rgb(255, 255, 255);
+    background-color: #6c8695;
+    color: #fff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
     border-radius: 5px;
 }
 #wizHeaderAR li .prevStep:after

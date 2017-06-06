@@ -51,7 +51,7 @@
                                   </div>
                 <div class="col1">
                                     <asp:ImageButton ID="btnFilter" runat="server" OnClick="btnFilter_Click" 
-                                        ImageUrl="../images/Button_Icons/button_magnify.png" CssClass="LeftOverlay"
+                                        ImageUrl="../images/Button_Icons/button_magnify.png"  
                                         meta:resourcekey="btnFilterResource1" />
                                                   </div>
             </div>
@@ -159,132 +159,127 @@
                                        </div>
                 </div>
             <div class="row">
-                <div class="col2">
+                <div class="GapSummeryDiv">
                                                 <asp:Label ID="lblGaps"    runat="server" Text="Gaps" 
                                                     meta:resourcekey="lblGapsResource1"></asp:Label>
-                                            </div>
-                <div class="col2">
+                                            <span>
                                                 <asp:Label ID="lblTotalGaps"    runat="server" Text="Total :" 
                                                     meta:resourcekey="lblTotalGapsResource1"></asp:Label>
                                             
                                                 <asp:Label ID="lblTotalGapsDur" runat="server" Text="00:00:00" 
-                                                    meta:resourcekey="lblTotalGapsDurResource1"></asp:Label>
+                                                    meta:resourcekey="lblTotalGapsDurResource1"></asp:Label></span>
                                              </div>
-                <div class="col2">
+                <div class="GapSummeryDiv">
                                                 <asp:Label ID="lblGapWithoutExcuse"    runat="server" 
                                                     Text="Gaps Without Excuse" meta:resourcekey="lblGapWithoutExcuseResource1"></asp:Label>
-                                          </div>
-                <div class="col2">
+                                      
+                <span>
                                                 <asp:Label ID="lblTotalGapWithoutExcuse"    runat="server" Text="Total :" 
                                                     meta:resourcekey="lblTotalGapWithoutExcuseResource1"></asp:Label>
                                        
                                                 <asp:Label ID="lblTotalGapWithoutExcuseDur" runat="server" Text="00:00:00" 
                                                     meta:resourcekey="lblTotalGapWithoutExcuseDurResource1"></asp:Label>
-                                             </div>
-                </div>
-            <div class="row">
-                <div class="col2">
+                                             </span>
+                 </div>
+                <div class="GapSummeryDiv">
                                                 <asp:Label ID="lblGapWithExcuse"    runat="server" Text="Gaps With Excuse " 
                                                     meta:resourcekey="lblGapWithExcuseResource1"></asp:Label>
-                                                </div>
-                <div class="col2">
+                                                
+                <span>
                                                 <asp:Label ID="lblTotalGapWithExcuse"    runat="server" Text="Total :" 
                                                     meta:resourcekey="lblTotalGapWithExcuseResource1"></asp:Label>
                                       
                                                 <asp:Label ID="lblTotalGapWithExcuseDur" runat="server" Text="00:00:00" 
                                                     meta:resourcekey="lblTotalGapWithExcuseDurResource1"></asp:Label>
-                                                </div>
-                <div class="col2">
+                                               
+              
                                                 <asp:Label ID="lblTotalGapWithExcusePaid"    runat="server" Text="Paid :" 
                                                     meta:resourcekey="lblTotalGapWithExcusePaidResource1"></asp:Label>
                                                  
                                                 <asp:Label ID="lblTotalGapWithExcusePaidDur" runat="server" Text="00:00:00" 
-                                                    meta:resourcekey="lblTotalGapWithExcusePaidDurResource1"></asp:Label>
-                                               </div>
-                <div class="col2">
+                                                    meta:resourcekey="lblTotalGapWithExcusePaidDurResource1"></asp:Label> 
+                                              
+                
                                                 <asp:Label ID="lblTotalGapWithExcuseUnPaid"    runat="server" Text="Unpaid :" 
                                                     meta:resourcekey="lblTotalGapWithExcuseUnPaidResource1"></asp:Label>
                                                 
                                                 <asp:Label ID="lblTotalGapWithExcuseUnPaidDur" runat="server" Text="00:00:00" 
                                                     meta:resourcekey="lblTotalGapWithExcuseUnPaidDurResource1"></asp:Label>
+                </span>
                                                 </div>
-                </div>
-            <div class="row">
-                <div class="col2">
+                 
+                <div class="GapSummeryDiv">
                                                 <asp:Label ID="lblGapWithExcuseByUser"    runat="server" 
                                                     Text="Gaps With Excuse By User " 
                                                     meta:resourcekey="lblGapWithExcuseByUserResource1"></asp:Label>
-                                                     </div>
-                <div class="col2">
+                                                    
+                <span>
                                                 <asp:Label ID="lblTotalGapWithExcuseByUser"    runat="server" Text="Total :" 
                                                     meta:resourcekey="lblTotalGapWithExcuseByUserResource1"></asp:Label>
                                                         
                                                 <asp:Label ID="lblTotalGapWithExcuseByUserDur" runat="server" Text="00:00:00" 
                                                     meta:resourcekey="lblTotalGapWithExcuseByUserDurResource1"></asp:Label>
-                                                      </div>
-                <div class="col2">
+                                                      
+                 
                                                 <asp:Label ID="lblTotalGapWithExcusePaidByUser"    runat="server" Text="Paid :" 
                                                     meta:resourcekey="lblTotalGapWithExcusePaidByUserResource1"></asp:Label>
                                                            
                                                 <asp:Label ID="lblTotalGapWithExcusePaidByUserDur" runat="server" 
                                                     Text="00:00:00" meta:resourcekey="lblTotalGapWithExcusePaidByUserDurResource1"></asp:Label>
-                                                    </div>
-                <div class="col2">
+                                                 
+                
                                                 <asp:Label ID="lblTotalGapWithExcuseUnPaidByUser"    runat="server" 
                                                     Text="Unpaid :" meta:resourcekey="lblTotalGapWithExcuseUnPaidByUserResource1"></asp:Label>
                                                        
                                                 <asp:Label ID="lblTotalGapWithExcuseUnPaidByUserDur" runat="server" 
                                                     Text="00:00:00" 
                                                     meta:resourcekey="lblTotalGapWithExcuseUnPaidByUserDurResource1"></asp:Label>
+                </span>
                                                      </div>
-                </div>
-            <div class="row">
-                <div class="col2">
+                 
+                <div class="GapSummeryDiv">
                                                 <asp:Label ID="lblGapWithExcuseByReq"    runat="server" 
                                                     Text="Gaps With Excuse By Request " 
                                                     meta:resourcekey="lblGapWithExcuseByReqResource1"></asp:Label>
-                                                               </div>
-                <div class="col2">
+                                                              
+                <span>
                                                 <asp:Label ID="lblTotalGapWithExcuseByReq"    runat="server" Text="Total :" 
                                                     meta:resourcekey="lblTotalGapWithExcuseByReqResource1"></asp:Label>
                                                 
                                                 <asp:Label ID="lblTotalGapWithExcuseByReqDur" runat="server" Text="00:00:00" 
                                                     meta:resourcekey="lblTotalGapWithExcuseByReqDurResource1"></asp:Label>
-                                                                </div>
-                <div class="col2">
+                                                                
+                
                                                 <asp:Label ID="lblTotalGapWithExcusePaidByReq"    runat="server" Text="Paid :" 
                                                     meta:resourcekey="lblTotalGapWithExcusePaidByReqResource1"></asp:Label>
                                                
                                                 <asp:Label ID="lblTotalGapWithExcusePaidByReqDur" runat="server" 
                                                     Text="00:00:00" meta:resourcekey="lblTotalGapWithExcusePaidByReqDurResource1"></asp:Label>
-                                                               </div>
-                <div class="col2">
+                                               
                                                 <asp:Label ID="lblTotalGapWithExcuseUnPaidByReq"    runat="server" 
                                                     Text="Unpaid :" meta:resourcekey="lblTotalGapWithExcuseUnPaidByReqResource1"></asp:Label>
                                                 &nbsp;
                                                 <asp:Label ID="lblTotalGapWithExcuseUnPaidByReqDur" runat="server" 
                                                     Text="00:00:00" meta:resourcekey="lblTotalGapWithExcuseUnPaidByReqDurResource1"></asp:Label>
-                                                                </div>
-                <div class="col2">
+                                               
                                                 <asp:Label ID="lblTotalGapWithExcuseWaitByReq"    runat="server" 
                                                     Text="Waiting :" meta:resourcekey="lblTotalGapWithExcuseWaitByReqResource1"></asp:Label>
                                                 
                                                 <asp:Label ID="lblTotalGapWithExcuseWaitByReqDur" runat="server" 
-                                                    Text="00:00:00" meta:resourcekey="lblTotalGapWithExcuseWaitByReqDurResource1"></asp:Label>
+                                                    Text="00:00:00" meta:resourcekey="lblTotalGapWithExcuseWaitByReqDurResource1"></asp:Label></span>
                                                         </div>
-                </div>
-            <div class="row">
-                <div class="col2">
+                 
+                <div class="GapSummeryDiv">
                                                 <asp:Label ID="lblDeduction"    runat="server" Text="Deduction" 
                                                     meta:resourcekey="lblDeductionResource1"></asp:Label>
-                                                                   </div>
-                <div class="col2">
+                                                                   
+                <span>
                                                 <asp:Label ID="lblTotalDeduction"    runat="server" Text="Total :" 
                                                     meta:resourcekey="lblTotalDeductionResource1"></asp:Label>
                                                
                                                 <asp:Label ID="lblTotalDeductionDur" runat="server" Text="00:00:00" 
                                                     meta:resourcekey="lblTotalDeductionDurResource1"></asp:Label>
-                                           </div>
+                                           </span></div>
                 </div>
             
             <div id='divBackground'></div>

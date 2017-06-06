@@ -44,7 +44,7 @@
                         <asp:Wizard ID="WizardData" runat="server" DisplaySideBar="False" 
                             onactivestepchanged="WizardData_ActiveStepChanged" 
                             onprerender="WizardData_PreRender" Width="100%" 
-                            meta:resourcekey="WizardDataResource1">
+                            meta:resourcekey="WizardDataResource1" ActiveStepIndex="1">
                             <StartNavigationTemplate>
                              <div class="row">
                             <div class="col12">
@@ -92,7 +92,9 @@
                                                </div>
                             </div>
                             <div class="row">
-                                <div class="col2">
+                                   <div class="col2">
+                                    </div>
+                                <div class="col4">
                                                 <asp:CustomValidator id="cvArWorkTimeName" runat="server"
                                                             Text="&lt;img src='../images/Exclamation.gif' title=AutoIn is required!' /&gt;" 
                                                             ValidationGroup="VGStart"
@@ -116,17 +118,11 @@
                                 <div class="col2">
                                     </div>
                                 <div class="col4">
-                                                    <asp:TextBox ID="txtCustomValidator" runat="server" Text="02120" 
-                                                        Visible="False" Width="10px" meta:resourcekey="txtCustomValidatorResource1"></asp:TextBox>
-                                            </div>
-                                <div class="col2">
-                                     </div>
-                                <div class="col4">
                                                  <asp:CustomValidator id="cvEnWorkTimeName" runat="server"
                                                             Text="&lt;img src='../images/Exclamation.gif' title='AutoOut is required!' /&gt;" 
                                                             ValidationGroup="VGStart"
                                                             OnServerValidate="WorkTimeValidate_ServerValidate"
-                                                            EnableClientScript="False" 
+                                                            EnableClientScript="False" CssClass="CustomValidator"
                                                             ControlToValidate="txtCustomValidator" 
                                                         meta:resourcekey="cvEnWorkTimeNameResource1"></asp:CustomValidator>
                                                     <asp:RadioButtonList ID="rdlAutoOut" runat="server" 
@@ -138,29 +134,37 @@
                                                     </asp:RadioButtonList>
                                                      
                                                  </div>
+                                <div class="col4">
+                                                    <asp:TextBox ID="txtCustomValidator" runat="server" Text="02120" 
+                                                        Visible="False" Width="10px" meta:resourcekey="txtCustomValidatorResource1"></asp:TextBox>
+                                            </div>
+                                <div class="col2">
+                                     </div>
+                                
                             </div>
 
                               
                                 </asp:WizardStep>                
                                 <asp:WizardStep ID="WizardStep2" runat="server" Title="2-Select Employees" 
                                     meta:resourcekey="WizardStep2Resource1">                   
-                                    <div class="content">
+                                  
               
                                         <div class="row">
                                 <div class="col12">
                                                     <asp:ValidationSummary ID="VSFinish" runat="server" CssClass="errorValidation" 
                                                         EnableClientScript="False" ValidationGroup="VGFinish" 
                                                         meta:resourcekey="VSFinishResource1" />
-                                                </td>
-                                            </tr>                       
-                                            <tr>
-                                                <td colspan="4">
+                                                </div>
+                                
+                            </div>                       
+                                          <div class="row">
+                                <div class="col12">
                                                     <ucEmp:EmployeeSelected runat="server" ID="ucEmployeeSelected" ValidationGroupName="VGFinish" />
-                                                </td>
-                                            </tr>
-                                        </table>
+                                                </div>
+                                
+                            </div>         
               
-                                    </div>                      
+                                                          
                                 </asp:WizardStep>                
                             </WizardSteps>                 
                            <HeaderTemplate>                   

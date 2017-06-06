@@ -1267,7 +1267,7 @@ body.loginPage > #aspnetForm {
     margin-top:20%;
 }
 
-.MsgValidation, .MsgSuccess {
+.MsgValidation, .MsgSuccess , .errorValidation {
     word-break: break-word;
     padding: 15px 7px;
     color: #fff !important;
@@ -1287,16 +1287,18 @@ body.loginPage > #aspnetForm {
     font-size: 16px;
 }
 
-.MsgValidation {
+.MsgValidation , .errorValidation {
     background-color: #ba2c1d;
     font-size: 12px;
+    top: 0px;
+    left: 0px;
 }
 
-    .MsgValidation li, .MsgSuccess li {
+    .MsgValidation li, .MsgSuccess li , .errorValidation li {
         list-style: none;
     }
 
-    .MsgSuccess ul, .MsgValidation ul {
+    .MsgSuccess ul, .MsgValidation ul , .errorValidation ul {
         vertical-align: middle;
         display: table-cell;
         position: inherit;
@@ -1309,7 +1311,7 @@ body.loginPage > #aspnetForm {
         Padding-right: 10px;
     }
 
-    .MsgValidation:before, .MsgSuccess:before {
+    .MsgValidation:before, .MsgSuccess:before, .errorValidation:before {
         width: 45px;
         color: rgba(255,255,255,1);
         text-align: center;
@@ -1325,11 +1327,90 @@ body.loginPage > #aspnetForm {
     font-family: FontAwesome;
 }
 
-.MsgValidation:before {
+.MsgValidation:before, .errorValidation:before {
     background-color: #ba2c1d;
     content: "\f05a";
 }
+.monthSummaryDiv
+{
+    width:calc(25% - 22.5px);
+    display:inline-block;
+     -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -moz-box-shadow: 0px 0px 5px #474747;
+    -webkit-box-shadow: 0px 0px 5px #474747;
+    box-shadow: 0px 0px 5px #474747;
+    margin:calc(1% - 10px);
+    padding:10px;
+    position:relative;
 
+}
+.monthSummaryDiv>span
+{
+    display:block;
+    text-align:left;
+    font-size:17px;
+    color:#fff;
+    clear:both;
+}
+
+.monthSummaryDiv>span:first-child
+{
+    font-size:22px;
+}
+.monthSummaryDiv:after
+{
+    font-family:FontAwesome;
+    content: "\f017";
+   font-size:50px;
+    color:#fff;
+    position:absolute;
+    top:2px;
+    right:10px;
+        border-left: 1px solid #f9fafc;
+    padding-left: 10px;
+}
+.GapSummeryDiv
+{
+    width:calc(50% - 22.5px);
+    display:inline-block;
+     -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -moz-box-shadow: 0px 0px 5px #474747;
+    -webkit-box-shadow: 0px 0px 5px #474747;
+    box-shadow: 0px 0px 5px #474747;
+    margin:calc(1% - 10px);
+    padding:10px;
+    position:relative;
+
+}
+.GapSummeryDiv>span
+{
+    display:block;
+    text-align:left;
+    font-size:17px;
+    color:#fff;
+    clear:both;
+}
+
+.GapSummeryDiv>span:first-child
+{
+    font-size:22px;
+}
+.GapSummeryDiv:after
+{
+    font-family:FontAwesome;
+        content: "\f127";
+   font-size:50px;
+    color:#fff;
+    position:absolute;
+    top:2px;
+    right:10px;
+        border-left: 1px solid #f9fafc;
+    padding-left: 10px;
+}
 .LoginLanguageBtn {
     position: absolute;
     top: 10px;
@@ -4383,6 +4464,11 @@ a.level2.dynamic.JobCategory:before {
 }
 
 @media (max-width:1260px) {
+    .monthSummaryDiv
+    {
+        width:430px;
+        margin:1%;
+    }
     a.static {
         width: 65px;
         height: 60px;

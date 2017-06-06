@@ -110,139 +110,139 @@
                     </div>
                 </div>
                 <div class="left">
-                <div class="row">
-                    <div class="col3">
-                        <span id="spnNameAr" runat="server" visible="False" class="RequiredField">*</span>
-                        <asp:Label ID="lblNameAr" runat="server" Text="Name (Ar) :"
-                            meta:resourcekey="lblDepArNameResource1"></asp:Label>
+                    <div class="row">
+                        <div class="col3">
+                            <span id="spnNameAr" runat="server" visible="False" class="RequiredField">*</span>
+                            <asp:Label ID="lblNameAr" runat="server" Text="Name (Ar) :"
+                                meta:resourcekey="lblDepArNameResource1"></asp:Label>
+                        </div>
+                        <div class="col9">
+                            <asp:TextBox ID="txtNameAr" runat="server" AutoCompleteType="Disabled"
+                                Enabled="False" meta:resourcekey="txtArDepNameResource1"></asp:TextBox>
+                            <asp:CustomValidator ID="cvNameAr" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='' /&gt;" CssClass="CustomValidator"
+                                ValidationGroup="vgSave" OnServerValidate="NameValidate_ServerValidate" EnableClientScript="False"
+                                ControlToValidate="txtValid" meta:resourcekey="cvArDepNameResource1"></asp:CustomValidator>
+                        </div>
                     </div>
-                    <div class="col9">
-                        <asp:TextBox ID="txtNameAr" runat="server" AutoCompleteType="Disabled"
-                            Enabled="False" meta:resourcekey="txtArDepNameResource1"></asp:TextBox>
-                        <asp:CustomValidator ID="cvNameAr" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='' /&gt;" CssClass="CustomValidator"
-                            ValidationGroup="vgSave" OnServerValidate="NameValidate_ServerValidate" EnableClientScript="False"
-                            ControlToValidate="txtValid" meta:resourcekey="cvArDepNameResource1"></asp:CustomValidator>
+                    <div class="row">
+                        <div class="col3">
+                            <span id="spnNameEn" runat="server" visible="False" class="RequiredField">*</span>
+                            <asp:Label ID="lblNameEn" runat="server" Text="Name (En) :"
+                                meta:resourcekey="lblDepEnNameResource1"></asp:Label>
+                        </div>
+                        <div class="col9">
+                            <asp:TextBox ID="txtNameEn" runat="server" AutoCompleteType="Disabled" Enabled="False"
+                                meta:resourcekey="txtEnDepartmentNameResource1"></asp:TextBox>
+                            <asp:CustomValidator ID="cvNameEn" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='' /&gt;"
+                                ValidationGroup="vgSave" OnServerValidate="NameValidate_ServerValidate" EnableClientScript="False" CssClass="CustomValidator"
+                                ControlToValidate="txtValid" meta:resourcekey="cvEnDepNameResource1"></asp:CustomValidator>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col3">
+                            <asp:Label ID="lblDepParent" runat="server" Text="Parent Name :" meta:resourcekey="lblDepParentResource1"></asp:Label>
+                        </div>
+                        <div class="col9">
+                            <asp:DropDownList ID="ddlDepParentName" runat="server" Enabled="False"
+                                meta:resourcekey="ddlDepParentNameResource1">
+                            </asp:DropDownList>
+
+                            <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow1" runat="server" TargetControlID="lnkShow1">
+                            </ajaxToolkit:AnimationExtender>
+                            <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose1" runat="server" TargetControlID="lnkClose1">
+                            </ajaxToolkit:AnimationExtender>
+                            <asp:ImageButton ID="lnkShow1" runat="server" meta:resourcekey="lnkButtonResouce"
+                                OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
+                            <div id="pnlInfo1" class="flyOutDiv" style="position: absolute">
+                                <asp:LinkButton ID="lnkClose1" runat="server" Text="X" OnClientClick="return false;"
+                                    CssClass="flyOutDivCloseX glyphicon glyphicon-remove" />
+                                <p>
+                                    <br />
+                                    <asp:Label ID="lblHint1" runat="server" Text="You can choose the Parent department from here"
+                                        meta:resourcekey="lblParentResource"></asp:Label>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col3">
+                            <span id="spnManagerName" runat="server" visible="False" class="RequiredField">*</span>
+                            <asp:Label ID="lblDepMangerID" runat="server" Text="Manager Name :" meta:resourcekey="lblDepMangerIDResource1"></asp:Label>
+                        </div>
+                        <div class="col9">
+                            <asp:DropDownList ID="ddlDepManagerID" runat="server" Enabled="False"
+                                meta:resourcekey="ddlDepManagerIDResource1">
+                            </asp:DropDownList>
+                            <asp:RequiredFieldValidator ID="rfDepMng" runat="server" ControlToValidate="ddlDepManagerID" CssClass="CustomValidator"
+                                EnableClientScript="False" meta:resourcekey="rfvWtpIDResource1" Text="&lt;img src='../images/Exclamation.gif' title='Manager Name is required!' /&gt;"
+                                ValidationGroup="vgSave"></asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col3">
+                            <asp:Label ID="lblDepartmentDesc" runat="server" Text="Description :" meta:resourcekey="lblDepartmentDescResource1"></asp:Label>
+                        </div>
+                        <div class="col9">
+                            <asp:TextBox ID="txtDepartmentDesc" runat="server" AutoCompleteType="Disabled"
+                                TextMode="MultiLine" Enabled="False" meta:resourcekey="txtDepartmentDescResource1"></asp:TextBox>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col3">
+                        </div>
+                        <div class="col9">
+                            <asp:CheckBox ID="chkStatus" runat="server" Enabled="False" Text="Active" Visible="false" Checked="true" meta:resourcekey="chkStatusResource1" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col3">
+                            <asp:TextBox ID="txtLevel" runat="server" AutoCompleteType="Disabled" Enabled="False"
+                                meta:resourcekey="txtArDepNameResource1" Visible="False"></asp:TextBox>
+
+                            <asp:TextBox ID="txtID" runat="server" AutoCompleteType="Disabled" Enabled="False" Visible="false" Width="15px"></asp:TextBox>
+                        </div>
+                        <div class="col9"></div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col3">
-                        <span id="spnNameEn" runat="server" visible="False" class="RequiredField">*</span>
-                        <asp:Label ID="lblNameEn" runat="server" Text="Name (En) :"
-                            meta:resourcekey="lblDepEnNameResource1"></asp:Label>
+                <div class="left">
+                    <div class="row">
+                        <div class="col3">
+                            <asp:Label ID="lblBranchtID" runat="server" Text="Branch Name :" meta:resourcekey="lblBranchtIDResource1"></asp:Label>
+                        </div>
+                        <div class="col9">
+                            <asp:DropDownList ID="ddlBrcParentName" runat="server" Enabled="False"
+                                AutoPostBack="True" OnSelectedIndexChanged="ddlBrcParentName_SelectedIndexChanged"
+                                meta:resourcekey="ddlBrcParentNameResource1">
+                            </asp:DropDownList>
+                            <asp:RequiredFieldValidator ID="rfvBrcParentName" runat="server" ControlToValidate="ddlBrcParentName" CssClass="CustomValidator"
+                                EnableClientScript="False" Text="&lt;img src='../images/Exclamation.gif' title='Branch Name is required!' /&gt;"
+                                ValidationGroup="vgSave" meta:resourcekey="rfvBrcParentNameResource1"></asp:RequiredFieldValidator>
+                        </div>
                     </div>
-                    <div class="col9">
-                        <asp:TextBox ID="txtNameEn" runat="server" AutoCompleteType="Disabled" Enabled="False"
-                            meta:resourcekey="txtEnDepartmentNameResource1"></asp:TextBox>
-                        <asp:CustomValidator ID="cvNameEn" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='' /&gt;"
-                            ValidationGroup="vgSave" OnServerValidate="NameValidate_ServerValidate" EnableClientScript="False" CssClass="CustomValidator"
-                            ControlToValidate="txtValid" meta:resourcekey="cvEnDepNameResource1"></asp:CustomValidator>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col3">
-                        <asp:Label ID="lblDepParent" runat="server" Text="Parent Name :" meta:resourcekey="lblDepParentResource1"></asp:Label>
-                    </div>
-                    <div class="col9">
-                        <asp:DropDownList ID="ddlDepParentName" runat="server" Enabled="False"
-                            meta:resourcekey="ddlDepParentNameResource1">
-                        </asp:DropDownList>
-
-                        <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow1" runat="server" TargetControlID="lnkShow1">
-                        </ajaxToolkit:AnimationExtender>
-                        <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose1" runat="server" TargetControlID="lnkClose1">
-                        </ajaxToolkit:AnimationExtender>
-                        <asp:ImageButton ID="lnkShow1" runat="server" meta:resourcekey="lnkButtonResouce"
-                            OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
-                        <div id="pnlInfo1" class="flyOutDiv" style="position: absolute">
-                            <asp:LinkButton ID="lnkClose1" runat="server" Text="X" OnClientClick="return false;"
-                                CssClass="flyOutDivCloseX glyphicon glyphicon-remove" />
-                            <p>
-                                <br />
-                                <asp:Label ID="lblHint1" runat="server" Text="You can choose the Parent department from here"
-                                    meta:resourcekey="lblParentResource"></asp:Label>
-                            </p>
+                    <div class="row">
+                        <div class="col3">
+                            <asp:Label ID="Label1" runat="server" Text="Departments :" meta:resourcekey="Label1Resource1"></asp:Label>
+                        </div>
+                        <div class="col9">
+                            <asp:XmlDataSource ID="xdsDepartment" runat="server" TransformFile="~/XSL/DepTransformXSLT.xsl"
+                                CacheExpirationPolicy="Sliding" XPath="MenuItems/MenuItem" EnableCaching="False" />
+                            <asp:TreeView ID="trvDept" runat="server" LineImagesFolder="~/images/TreeLineImages" DataSourceID="xdsDepartment"
+                                ShowLines="True" OnDataBound="trvDept_DataBound" OnTreeNodeDataBound="trvDept_TreeNodeDataBound"
+                                Enabled="False" OnSelectedNodeChanged="trvDept_SelectedNodeChanged"
+                                meta:resourcekey="trvDeptResource1">
+                                <DataBindings>
+                                    <asp:TreeNodeBinding DataMember="MenuItem" TextField="Text" ValueField="Value" meta:resourcekey="TreeNodeBindingResource1" />
+                                </DataBindings>
+                                <SelectedNodeStyle ForeColor="Red" />
+                            </asp:TreeView>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col3">
-                        <span id="spnManagerName" runat="server" visible="False" class="RequiredField">*</span>
-                        <asp:Label ID="lblDepMangerID" runat="server" Text="Manager Name :" meta:resourcekey="lblDepMangerIDResource1"></asp:Label>
-                    </div>
-                    <div class="col9">
-                        <asp:DropDownList ID="ddlDepManagerID" runat="server" Enabled="False"
-                            meta:resourcekey="ddlDepManagerIDResource1">
-                        </asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="rfDepMng" runat="server" ControlToValidate="ddlDepManagerID" CssClass="CustomValidator"
-                            EnableClientScript="False" meta:resourcekey="rfvWtpIDResource1" Text="&lt;img src='../images/Exclamation.gif' title='Manager Name is required!' /&gt;"
-                            ValidationGroup="vgSave"></asp:RequiredFieldValidator>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col3">
-                        <asp:Label ID="lblDepartmentDesc" runat="server" Text="Description :" meta:resourcekey="lblDepartmentDescResource1"></asp:Label>
-                    </div>
-                    <div class="col9">
-                        <asp:TextBox ID="txtDepartmentDesc" runat="server" AutoCompleteType="Disabled"
-                            TextMode="MultiLine" Enabled="False" meta:resourcekey="txtDepartmentDescResource1"></asp:TextBox>
-                    </div>
-                    </div>
-
-                <div class="row">
-                    <div class="col3">
-                    </div>
-                    <div class="col9">
-                        <asp:CheckBox ID="chkStatus" runat="server" Enabled="False" Text="Active" Visible="false" Checked="true" meta:resourcekey="chkStatusResource1" />
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col3">
-                        <asp:TextBox ID="txtLevel" runat="server" AutoCompleteType="Disabled" Enabled="False"
-                            meta:resourcekey="txtArDepNameResource1" Visible="False"></asp:TextBox>
-
-                        <asp:TextBox ID="txtID" runat="server" AutoCompleteType="Disabled" Enabled="False" Visible="false" Width="15px"></asp:TextBox>
-                    </div>
-                    <div class="col9"></div>
-                </div>
-                    </div>
-                <div class="left">
-                <div class="row">
-                    <div class="col3">
-                        <asp:Label ID="lblBranchtID" runat="server" Text="Branch Name :" meta:resourcekey="lblBranchtIDResource1"></asp:Label>
-                    </div>
-                    <div class="col9">
-                        <asp:DropDownList ID="ddlBrcParentName" runat="server" Enabled="False"
-                            AutoPostBack="True" OnSelectedIndexChanged="ddlBrcParentName_SelectedIndexChanged"
-                            meta:resourcekey="ddlBrcParentNameResource1">
-                        </asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="rfvBrcParentName" runat="server" ControlToValidate="ddlBrcParentName" CssClass="CustomValidator"
-                            EnableClientScript="False" Text="&lt;img src='../images/Exclamation.gif' title='Branch Name is required!' /&gt;"
-                            ValidationGroup="vgSave" meta:resourcekey="rfvBrcParentNameResource1"></asp:RequiredFieldValidator>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col3">
-                        <asp:Label ID="Label1" runat="server" Text="Departments :" meta:resourcekey="Label1Resource1"></asp:Label>
-                    </div>
-                    <div class="col9">
-                        <asp:XmlDataSource ID="xdsDepartment" runat="server" TransformFile="~/XSL/DepTransformXSLT.xsl"
-                            CacheExpirationPolicy="Sliding" XPath="MenuItems/MenuItem" EnableCaching="False" />
-                        <asp:TreeView ID="trvDept" runat="server" LineImagesFolder="~/images/TreeLineImages" DataSourceID="xdsDepartment"
-                            ShowLines="True" OnDataBound="trvDept_DataBound" OnTreeNodeDataBound="trvDept_TreeNodeDataBound"
-                            Enabled="False" OnSelectedNodeChanged="trvDept_SelectedNodeChanged"
-                            meta:resourcekey="trvDeptResource1">
-                            <DataBindings>
-                                <asp:TreeNodeBinding DataMember="MenuItem" TextField="Text" ValueField="Value" meta:resourcekey="TreeNodeBindingResource1" />
-                            </DataBindings>
-                            <SelectedNodeStyle ForeColor="Red" />
-                        </asp:TreeView>
-                    </div>
-                </div>
-                    </div>
             </div>
 
         </ContentTemplate>

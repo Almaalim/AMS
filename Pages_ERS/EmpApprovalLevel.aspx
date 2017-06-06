@@ -212,9 +212,9 @@
                         </div>
 
                         <div class="row">
-                             
+                             <div class="col12">
                                 <uc:ManagersSelected runat="server" ID="ucManagersSelected" LevelCount="0" ValidationGroupName="Users" />
-                             
+                             </div>
                         </div>
                     </asp:View>
                     <asp:View ID="viw0" runat="server">

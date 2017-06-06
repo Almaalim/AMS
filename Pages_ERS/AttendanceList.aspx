@@ -61,6 +61,9 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="row" runat="server" id="MainTable">
+                <div class="col1">
+                    <asp:Label ID="lblMonth" runat="server" Text="Month:"></asp:Label>
+                </div>
                 <div class="col2">
                     <asp:DropDownList ID="ddlMonth" runat="server"
                         meta:resourcekey="ddlMonthResource1">
@@ -78,16 +81,17 @@
                 <div class="col1">
                     <asp:ImageButton ID="btnFilter" runat="server" OnClick="btnFilter_Click"
                         ImageUrl="../images/Button_Icons/button_magnify.png"
-                        meta:resourcekey="btnFilterResource1" CssClass="LeftOverlay" />
+                        meta:resourcekey="btnFilterResource1"   />
                 </div>
-                <div class="col2">
-                    <asp:TextBox ID="txtValid" runat="server" Text="02120" Visible="False"
-                        Width="10px" meta:resourcekey="txtCustomValidatorResource1"></asp:TextBox>
-
+                <div class="col1">
+                    
                     <asp:CustomValidator ID="cvShowMsg" runat="server" Display="None" CssClass="CustomValidator"
                         ValidationGroup="ShowMsg" OnServerValidate="ShowMsg_ServerValidate"
                         EnableClientScript="False" ControlToValidate="txtValid">
                     </asp:CustomValidator>
+                    <asp:TextBox ID="txtValid" runat="server" Text="02120" Visible="False"
+                        Width="10px" meta:resourcekey="txtCustomValidatorResource1"></asp:TextBox>
+
                 </div>
             </div>
 
