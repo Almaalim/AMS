@@ -26,7 +26,13 @@
         }
         function MobileListResize() {
             
-            
+            $("a.level2.dynamic").each(function (index) {
+                var str1 = $(this).attr('title');
+
+                str1 = str1.replace(/\s/g, '').replace(/[_\W]+/g, "");
+
+                $(this).addClass(str1);
+            });
             $('a.static').click(function (e) {
                 return false;
             });
