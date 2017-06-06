@@ -1646,7 +1646,7 @@ input[type=submit].btn-block, input[type=reset].btn-block, input[type=button].bt
 
 .glyphicon {
     position: relative;
-    top: 1px;
+    top: 0px;
     display: inline-block;
     font-style: normal;
     font-weight: 400;

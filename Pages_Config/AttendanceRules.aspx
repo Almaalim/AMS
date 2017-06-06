@@ -11,6 +11,7 @@
 
     <%--script--%>
     <script type="text/javascript" src="../Script/GridEvent.js"></script>
+    <script type="text/javascript" src="../Script/CheckKey.js"></script>
     <%--script--%>
     
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -201,7 +202,7 @@
                                         Text="Rule Units :" meta:resourcekey="lblRuleUnitsResource1"></asp:Label>
                                 </div>
                                 <div class="col4">
-                                    <asp:TextBox ID="txtRuleUnits" runat="server" AutoCompleteType="Disabled" meta:resourcekey="txtRuleUnitsResource1" Enabled="False"></asp:TextBox>
+                                    <asp:TextBox ID="txtRuleUnits" runat="server" AutoCompleteType="Disabled" onkeypress="return OnlyNumber(event);" meta:resourcekey="txtRuleUnitsResource1" Enabled="False"></asp:TextBox>
                                     <asp:RequiredFieldValidator runat="server" ID="rfvRuleUnits" ControlToValidate="txtRuleUnits" CssClass="CustomValidator"
                                         Text="<img src='../images/Exclamation.gif' title='RuleUnits is required!' />" ErrorMessage="RuleUnits is required!"
                                         ValidationGroup="vgSave" EnableClientScript="False" Display="Dynamic" SetFocusOnError="True"
@@ -211,7 +212,7 @@
                                     <asp:Label ID="lblFrequency" runat="server" Text="Frequency :" meta:resourcekey="lblFrequencyResource1"></asp:Label>
                                 </div>
                                 <div class="col4">
-                                    <asp:TextBox ID="txtFrequency" runat="server" AutoCompleteType="Disabled" meta:resourcekey="txtFrequencyResource1" Enabled="False"></asp:TextBox>
+                                    <asp:TextBox ID="txtFrequency" runat="server" AutoCompleteType="Disabled" onkeypress="return OnlyNumber(event);" meta:resourcekey="txtFrequencyResource1" Enabled="False"></asp:TextBox>
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow2" runat="server" TargetControlID="lnkShow2"></ajaxToolkit:AnimationExtender>
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose2" runat="server" TargetControlID="lnkClose2"></ajaxToolkit:AnimationExtender>
                                     <asp:ImageButton ID="lnkShow2" runat="server" OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
@@ -244,7 +245,7 @@
                                     <asp:Label ID="lblActionUnits" runat="server" Text="Action Units :" meta:resourcekey="lblActionUnitsResource1"></asp:Label>
                                 </div>
                                 <div class="col4">
-                                    <asp:TextBox ID="txtActionUnits" runat="server" AutoCompleteType="Disabled"
+                                    <asp:TextBox ID="txtActionUnits" runat="server" AutoCompleteType="Disabled" onkeypress="return OnlyNumber(event);"
                                          meta:resourcekey="txtActionUnitsResource1" Enabled="False"></asp:TextBox>
                                     <asp:RequiredFieldValidator runat="server" ID="rfvActionUnits" ControlToValidate="txtActionUnits" CssClass="CustomValidator"
                                         Text="<img src='../images/Exclamation.gif' title='ActionUnits is required!' />"

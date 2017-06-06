@@ -31,7 +31,7 @@ public class ExcuseSql : DataLayerBase
             Sqlcmd.Parameters.Add(new SqlParameter("@ExcNameEn"   , VchDB, 100, IN, false, 0, 0, "", DRV, Pro.ExcNameEn));
             Sqlcmd.Parameters.Add(new SqlParameter("@ExcInitialAr", ChrDB, 2,   IN, false, 0, 0, "", DRV, Pro.ExcInitialAr));
             Sqlcmd.Parameters.Add(new SqlParameter("@ExcInitialEn", ChrDB, 2,   IN, false, 0, 0, "", DRV, Pro.ExcInitialEn));
-            Sqlcmd.Parameters.Add(new SqlParameter("@ExcIsPaid"   , BitDB, 1,   IN, false, 0, 0, "", DRV, Pro.ExcIsPaid));
+            Sqlcmd.Parameters.Add(new SqlParameter("@ExcIsPaid"   , ChrDB, 1,   IN, false, 0, 0, "", DRV, Pro.ExcIsPaid));
             Sqlcmd.Parameters.Add(new SqlParameter("@ExcDesc"     , VchDB, 255, IN, false, 0, 0, "", DRV, Pro.ExcDesc));
             Sqlcmd.Parameters.Add(new SqlParameter("@ExcStatus"   , BitDB, 1,   IN, false, 0, 0, "", DRV, Pro.ExcStatus));
             Sqlcmd.Parameters.Add(new SqlParameter("@ExcMaxHoursPerMonth"   , IntDB, 10, IN, false, 0, 0, "", DRV, Pro.ExcMaxHoursPerMonth));
@@ -69,7 +69,7 @@ public class ExcuseSql : DataLayerBase
             Sqlcmd.Parameters.Add(new SqlParameter("@ExcNameEn"   , VchDB, 100, IN, false, 0, 0, "", DRV, Pro.ExcNameEn));
             Sqlcmd.Parameters.Add(new SqlParameter("@ExcInitialAr", ChrDB, 2,   IN, false, 0, 0, "", DRV, Pro.ExcInitialAr));
             Sqlcmd.Parameters.Add(new SqlParameter("@ExcInitialEn", ChrDB, 2,   IN, false, 0, 0, "", DRV, Pro.ExcInitialEn));
-            Sqlcmd.Parameters.Add(new SqlParameter("@ExcIsPaid"   , BitDB, 1,   IN, false, 0, 0, "", DRV, Pro.ExcIsPaid));
+            Sqlcmd.Parameters.Add(new SqlParameter("@ExcIsPaid"   , ChrDB, 1,   IN, false, 0, 0, "", DRV, Pro.ExcIsPaid));
             Sqlcmd.Parameters.Add(new SqlParameter("@ExcDesc"     , VchDB, 255, IN, false, 0, 0, "", DRV, Pro.ExcDesc));
             Sqlcmd.Parameters.Add(new SqlParameter("@ExcStatus"   , BitDB, 1,   IN, false, 0, 0, "", DRV, Pro.ExcStatus));
             Sqlcmd.Parameters.Add(new SqlParameter("@ExcMaxHoursPerMonth"   , IntDB, 10, IN, false, 0, 0, "", DRV, Pro.ExcMaxHoursPerMonth));

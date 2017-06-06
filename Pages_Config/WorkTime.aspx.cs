@@ -775,7 +775,7 @@ public partial class WorkTime : BasePage
                     }
                  default:
                     {
-                        //e.Row.Cells[1].Visible = false; //To hide ID column in grid view
+                        e.Row.Cells[1].Visible = false; //To hide ID column in grid view
                         break;
                     }
             }

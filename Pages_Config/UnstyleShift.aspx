@@ -31,7 +31,7 @@
                 <div class="col12">
                                     
                         <asp:ValidationSummary ID="vsShowMsg" runat="server"  CssClass="MsgSuccess" 
-                            EnableClientScript="False" ValidationGroup="ShowMsg"/>
+                            EnableClientScript="False" ValidationGroup="ShowMsg" meta:resourcekey="vsShowMsgResource1"/>
                      </div>
                 </div>
                
@@ -39,7 +39,7 @@
                 <div class="col12">
                                     
                         <asp:ValidationSummary runat="server" ID="vsSave" ValidationGroup="vgSave" EnableClientScript="False"
-                            CssClass="MsgValidation" ShowSummary="False"/>
+                            CssClass="MsgValidation" ShowSummary="False" meta:resourcekey="vsSaveResource1"/>
                    </div>
                  </div>
             <div class="row">
@@ -62,22 +62,20 @@
                                   
                                     <asp:CustomValidator id="cvShowMsg" runat="server" Display="None" CssClass="CustomValidator"
                                         ValidationGroup="ShowMsg" OnServerValidate="ShowMsg_ServerValidate"
-                                        EnableClientScript="False" ControlToValidate="txtValid">
-                                    </asp:CustomValidator>
+                                        EnableClientScript="False" ControlToValidate="txtValid" meta:resourcekey="cvShowMsgResource1"></asp:CustomValidator>
                                     
                                     <asp:CustomValidator id="cvValid" runat="server" Display="None"  CssClass="CustomValidator"
                                         ValidationGroup="vgSave" OnServerValidate="Valid_ServerValidate"
-                                        EnableClientScript="False" ControlToValidate="txtValid">
-                                    </asp:CustomValidator>
+                                        EnableClientScript="False" ControlToValidate="txtValid" meta:resourcekey="cvValidResource1"></asp:CustomValidator>
                                </div>
             </div>
 
             <div class="row">
                 <div class="col12">
-                                    <asp:Panel ID="pnlGrdAddData" runat="server" CssClass="GridDiv" >
-                                        <asp:GridView ID="grdAddData" runat="server" AutoGenerateColumns = "false" 
+                                    <asp:Panel ID="pnlGrdAddData" runat="server" CssClass="GridDiv" meta:resourcekey="pnlGrdAddDataResource1" >
+                                        <asp:GridView ID="grdAddData" runat="server" AutoGenerateColumns = "False" 
                                             onrowdatabound="grdAddData_RowDataBound" 
-                                            onrowcommand="grdAddData_RowCommand" ShowFooter="True">
+                                            onrowcommand="grdAddData_RowCommand" ShowFooter="True" meta:resourcekey="grdAddDataResource1">
                                         </asp:GridView>
                                     </asp:Panel>
                                 </div>

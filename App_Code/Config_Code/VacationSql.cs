@@ -41,7 +41,7 @@ public class VacationSql : DataLayerBase
             Sqlcmd.Parameters.Add(new SqlParameter("@VtpDesc"           , VchDB, 255, IN, false, 0, 0, "", DataRowVersion.Proposed, Pro.VtpDesc));
             Sqlcmd.Parameters.Add(new SqlParameter("@VtpMaxDays"        , IntDB, 3,   IN, false, 0, 0, "", DataRowVersion.Proposed, Pro.VtpMaxDays));
             Sqlcmd.Parameters.Add(new SqlParameter("@VtpIsReset"        , BitDB, 1,   IN, false, 0, 0, "", DataRowVersion.Proposed, Pro.VtpIsReset));
-            Sqlcmd.Parameters.Add(new SqlParameter("@VtpIsPaid"         , BitDB, 1,   IN, false, 0, 0, "", DataRowVersion.Proposed, Pro.VtpIsPaid));
+            Sqlcmd.Parameters.Add(new SqlParameter("@VtpIsPaid"         , IntDB, 10,  IN, false, 0, 0, "", DataRowVersion.Proposed, Pro.VtpIsPaid));
             Sqlcmd.Parameters.Add(new SqlParameter("@VtpIsMedicalReport", BitDB, 1,   IN, false, 0, 0, "", DataRowVersion.Proposed, Pro.VtpIsMedicalReport));
             Sqlcmd.Parameters.Add(new SqlParameter("@VtpCategory"       , VchDB, 50,  IN, false, 0, 0, "", DataRowVersion.Proposed, Pro.VtpCategory));
             
@@ -81,7 +81,7 @@ public class VacationSql : DataLayerBase
             Sqlcmd.Parameters.Add(new SqlParameter("@VtpDesc"           , VchDB, 255, IN, false, 0, 0, "", DataRowVersion.Proposed, Pro.VtpDesc));
             Sqlcmd.Parameters.Add(new SqlParameter("@VtpMaxDays"        , IntDB, 3,   IN, false, 0, 0, "", DataRowVersion.Proposed, Pro.VtpMaxDays));
             Sqlcmd.Parameters.Add(new SqlParameter("@VtpIsReset"        , BitDB, 1,   IN, false, 0, 0, "", DataRowVersion.Proposed, Pro.VtpIsReset));
-            Sqlcmd.Parameters.Add(new SqlParameter("@VtpIsPaid"         , BitDB, 1,   IN, false, 0, 0, "", DataRowVersion.Proposed, Pro.VtpIsPaid));
+            Sqlcmd.Parameters.Add(new SqlParameter("@VtpIsPaid"         , IntDB, 10,  IN, false, 0, 0, "", DataRowVersion.Proposed, Pro.VtpIsPaid));
             Sqlcmd.Parameters.Add(new SqlParameter("@VtpIsMedicalReport", BitDB, 1,   IN, false, 0, 0, "", DataRowVersion.Proposed, Pro.VtpIsMedicalReport));
             Sqlcmd.Parameters.Add(new SqlParameter("@VtpCategory"       , VchDB, 50,  IN, false, 0, 0, "", DataRowVersion.Proposed, Pro.VtpCategory));
 

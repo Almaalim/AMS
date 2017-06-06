@@ -124,7 +124,7 @@
     <value />
   </data>
   <data name="BoundFieldResource1.HeaderText" xml:space="preserve">
-    <value>Name Ar</value>
+    <value>Name (Ar)</value>
   </data>
   <data name="BoundFieldResource2.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -142,7 +142,7 @@
     <value />
   </data>
   <data name="BoundFieldResource3.HeaderText" xml:space="preserve">
-    <value>Name En</value>
+    <value>Name (En)</value>
   </data>
   <data name="BoundFieldResource4.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -151,7 +151,7 @@
     <value />
   </data>
   <data name="BoundFieldResource4.HeaderText" xml:space="preserve">
-    <value>Initial</value>
+    <value>Initial (En)</value>
   </data>
   <data name="BoundFieldResource5.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -331,10 +331,10 @@
     <value>Vacation Type</value>
   </data>
   <data name="RegularExpressionValidator1Resource1.ErrorMessage" xml:space="preserve">
-    <value>Please Enter Only Numbers!</value>
+    <value>Please Enter Only Numbers</value>
   </data>
   <data name="RegularExpressionValidator1Resource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/message_exclamation.png' title='Please Enter Only Numbers!' /&gt;</value>
+    <value>&lt;img src='../images/message_exclamation.png' title='Please Enter Only Numbers' /&gt;</value>
   </data>
   <data name="RegularExpressionValidator1Resource1.ToolTip" xml:space="preserve">
     <value />
@@ -407,5 +407,8 @@
   </data>
   <data name="chkVtpIsMedicalReportResource1.Text" xml:space="preserve">
     <value>Needs a medical report</value>
+  </data>
+  <data name="BoundFieldResource456.HeaderText" xml:space="preserve">
+    <value>Initial (Ar)</value>
   </data>
 </root>
