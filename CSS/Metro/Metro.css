@@ -267,6 +267,7 @@ body {
 {
        font-size: 13px;
     margin: 5px 0;
+    display:none;
 }
     .UserDetails > span {
             vertical-align: top;
