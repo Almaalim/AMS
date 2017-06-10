@@ -271,7 +271,7 @@ body {
     .UserDetails > span {
             vertical-align: top;
     margin-top: -3px;
-    display: inline-block;
+    display: block;
     color: #fff;
     margin-bottom: 5px;
     }
