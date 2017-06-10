@@ -30,51 +30,49 @@
 
         <ContentTemplate>
             <div id="DivList" class="row" runat="server">
-                <div class="col2">
+                <div class="col1">
                     <asp:Label ID="lblDepChartsFilter" runat="server" Text=" Department:" meta:resourcekey="lblDepChartsFilterResource1"></asp:Label>
                 </div>
-                <div class="col4">
+                <div class="col2">
                     <asp:DropDownList ID="ddlDepChartsFilter" runat="server" OnSelectedIndexChanged="ddlDepChartsFilter_SelectedIndexChanged" AutoPostBack="True" meta:resourcekey="ddlDepChartsFilterResource1">
                     </asp:DropDownList>
                 </div>
-                <div class="col2">
+                <div class="col1">
                     <asp:Label ID="lblEmpChartsFilter" runat="server" Text=" Employee:" meta:resourcekey="lblEmpChartsFilterResource1"></asp:Label>
                 </div>
-                <div class="col4">
+                <div class="col2">
                     <asp:DropDownList ID="ddlEmpChartsFilter" runat="server" meta:resourcekey="ddlEmpChartsFilterResource1"></asp:DropDownList>
                 </div>
             </div>
 
-            <div class="row" runat="server">
-                <div class="col2">
+           
+
+            <div id="DivMonth" runat="server" class="row">
+                <div class="col1">
                     <asp:Label ID="lblTypeChartsFilter" runat="server" Text=" Type:" meta:resourcekey="lblTypeChartsFilterResource1"></asp:Label>
                 </div>
-                <div class="col4">
+                <div class="col2">
                     <asp:DropDownList ID="ddlTypeChartsFilter" runat="server" OnSelectedIndexChanged="ddlTypeChartsFilter_SelectedIndexChanged" AutoPostBack="True" meta:resourcekey="ddlTypeChartsFilterResource1">
                         <asp:ListItem Value="M" Text="Monthly" meta:resourcekey="ListItemResource1"></asp:ListItem>
                         <asp:ListItem Value="D" Text="Daily" meta:resourcekey="ListItemResource2"></asp:ListItem>
                     </asp:DropDownList>
                 </div>
-            </div>
-
-            <div id="DivMonth" runat="server" class="row">
-                
-                <div class="col2">
+                <div class="col1">
                     <asp:Label ID="lblMonth" runat="server" Text="Month:" meta:resourcekey="lblMonthResource1"></asp:Label>
                 </div>
-            <div class="col4">
+            <div class="col2">
                 <asp:DropDownList ID="ddlMonth" runat="server" meta:resourcekey="ddlMonthResource1"></asp:DropDownList>
             </div>
-            <div class="col2">
+            <div class="col1">
                 <asp:Label ID="lblYear" runat="server" Text="Year:" meta:resourcekey="lblYearResource1"></asp:Label>
             </div>
-            <div class="col4">
+            <div class="col2">
                 <asp:DropDownList ID="ddlYear" runat="server" meta:resourcekey="ddlYearResource1"></asp:DropDownList>
             </div>
             </div>
                     <div id="DivDay" runat="server" class="row">
 
-                        <div class="col2">
+                        <div class="col1">
                             <asp:Label ID="lblDate" runat="server" Text="Date:" meta:resourcekey="lblDateResource1"></asp:Label>
                         </div>
                         <div class="col4">

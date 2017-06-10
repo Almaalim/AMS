@@ -305,6 +305,11 @@
         <ContentTemplate>
             <div class="row">
                 <div class="col12">
+                    <asp:Label ID="lblTitleReport" runat="server"  meta:resourcekey="lblTitleReportResource1" CssClass="h4"></asp:Label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col12">
                     <asp:Panel ID="Panel1" runat="server">
                         <div class="rp_Search" runat="server">
                             <asp:DataList ID="dltReport" runat="server" CaptionAlign="Top" RepeatColumns="6"
@@ -332,11 +337,7 @@
                     </asp:Panel>
                 </div>
             </div>
-            <div class="row">
-                <div class="col12">
-                    <asp:Label ID="lblTitleReport" runat="server" Font-Size="13pt" meta:resourcekey="lblTitleReportResource1" CssClass="h4"></asp:Label>
-                </div>
-            </div>
+            
             <%--Popup--%>
             <div id="DivPopup" class="popup" data-popup="popup-1" runat="server">  
                 <div class="popup-inner">

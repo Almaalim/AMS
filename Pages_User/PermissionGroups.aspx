@@ -116,12 +116,9 @@
                         OnRowDataBound="grdData_RowDataBound" OnSorting="grdData_Sorting"
                         OnSelectedIndexChanged="grdData_SelectedIndexChanged" OnRowCommand="grdData_RowCommand"
                         OnPreRender="grdData_PreRender" EnableModelValidation="True"
-                        meta:resourcekey="grdDataResource1">
+                        meta:resourcekey="grdDataResource1" PageSize="2">
 
-                        <PagerSettings Mode="NextPreviousFirstLast" FirstPageText="First"
-                            FirstPageImageUrl="~/images/first.png" LastPageText="Last" LastPageImageUrl="~/images/last.png"
-                            NextPageText="Next" NextPageImageUrl="~/images/next.png" PreviousPageText="Prev"
-                            PreviousPageImageUrl="~/images/prev.png" />
+                        <PagerSettings Mode="NumericFirstLast"  />
                         <Columns>
                             <asp:BoundField HeaderText="Group Name (Ar)" DataField="GrpNameAr" SortExpression="GrpNameAr"
                                 meta:resourcekey="BoundFieldResource1">

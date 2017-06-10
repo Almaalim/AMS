@@ -49,7 +49,7 @@
                               </div>
                 <div class="col2">
                                     <asp:ImageButton ID="btnFilter" runat="server" OnClick="btnFilter_Click" 
-                                        ImageUrl="../images/Button_Icons/button_magnify.png" CssClass="LeftOverlay"
+                                        ImageUrl="../images/Button_Icons/button_magnify.png"  
                                         meta:resourcekey="btnFilterResource1" />
                                   </div>
             </div>
@@ -137,152 +137,128 @@
                                          </div>
             </div>
             <div class="row">
-                <div class="col3">
+                <div class=" GapSummeryDiv Overtime">
                                                 <asp:Label ID="lblBeginEarly" runat="server" Text="Begin Early Overtime"></asp:Label>
-                                          </div>
-                <div class="col3">
+                                     <span>
                                                 <asp:Label ID="lblBeginEarlyTotal" runat="server" Text="Total :"></asp:Label>
                                               
                                                 <asp:Label ID="lblBeginEarlyVTotal" runat="server" Text="00:00:00"></asp:Label>
-                                             </div>
-                <div class="col3">
+                                           
                                                 <asp:Label ID="lblBeginEarlyPaid" runat="server" Text="Paid :"></asp:Label>
-                                                &nbsp;
+                                              
                                                 <asp:Label ID="lblBeginEarlyVPaid" runat="server" Text="00:00:00"></asp:Label>
-                                               </div>
-                <div class="col3">
+                                            
                                                 <asp:Label ID="lblBeginEarlyUnpaid" runat="server" Text="Unpaid :"></asp:Label>
-                                                &nbsp;
-                                                <asp:Label ID="lblBeginEarlyVUnpaid" runat="server" Text="00:00:00"></asp:Label>
+                                              
+                                                <asp:Label ID="lblBeginEarlyVUnpaid" runat="server" Text="00:00:00"></asp:Label></span>     
                                                   </div>
-            </div>
-            <div class="row">
-                <div class="col3">
+             
+                <div class=" GapSummeryDiv Overtime">
                                                 <asp:Label ID="lblOutLate" runat="server" Text="Out Late Overtime "></asp:Label>
-                                                   </div>
-                <div class="col3">
+                                         <span>      
                                                 <asp:Label ID="lblOutLateTotal" runat="server" Text="Total :"></asp:Label>
                                                 &nbsp;
                                                 <asp:Label ID="lblOutLateVTotal" runat="server" Text="00:00:00"></asp:Label>
-                                                     </div>
-                <div class="col3">
+                                              
                                                 <asp:Label ID="lblOutLatePaid" runat="server" Text="Paid :"></asp:Label>
                                                 &nbsp;
                                                 <asp:Label ID="lblOutLateVPaid" runat="server" Text="00:00:00"></asp:Label>
-                                                      </div>
-                <div class="col3">
+                                             
                                                 <asp:Label ID="lblOutLateUnpaid" runat="server" Text="Unpaid :"></asp:Label>
                                                 &nbsp;
-                                                <asp:Label ID="lblOutLateVUnpaid" runat="server" Text="00:00:00"></asp:Label>
+                                                <asp:Label ID="lblOutLateVUnpaid" runat="server" Text="00:00:00"></asp:Label></span>
                                                        </div>
-            </div>
-            <div class="row">
-                <div class="col3">
+             
+                <div class=" GapSummeryDiv Overtime">
                                                 <asp:Label ID="lblOutShift" runat="server" Text="Out Of Shift Overtime "></asp:Label>
-                                                         </div>
-                <div class="col3">
+                                               <span>
                                                 <asp:Label ID="lblOutShiftTotal" runat="server" Text="Total :"></asp:Label>
                                                 &nbsp;
                                                 <asp:Label ID="lblOutShiftVTotal" runat="server" Text="00:00:00"></asp:Label>
-                                                         </div>
-                <div class="col3">
+                                                          
                                                 <asp:Label ID="lblOutShiftPaid" runat="server" Text="Paid :"></asp:Label>
                                                 &nbsp;
                                                 <asp:Label ID="lblOutShiftVPaid" runat="server" Text="00:00:00"></asp:Label>
-                                                        </div>
-                <div class="col3">
+                                                       
                                                 <asp:Label ID="lblOutShiftUnpaid" runat="server" Text="Unpaid :"></asp:Label>
                                                 &nbsp;
-                                                <asp:Label ID="lblOutShiftVUnpaid" runat="server" Text="00:00:00"></asp:Label>
+                                                <asp:Label ID="lblOutShiftVUnpaid" runat="server" Text="00:00:00"></asp:Label></span>
                                                        </div>
-            </div>
-            <div class="row">
-                <div class="col3">
+             
+                <div class=" GapSummeryDiv Overtime">
                                                 <asp:Label ID="lblNoShift" runat="server" Text="No Shift Overtime "></asp:Label>
-                                                          </div>
-                <div class="col3">
+                                                   <span>
                                                 <asp:Label ID="lblNoShiftTotal" runat="server" Text="Total :"></asp:Label>
                                                 &nbsp;
                                                 <asp:Label ID="lblNoShiftVTotal" runat="server" Text="00:00:00"></asp:Label>
-                                                            </div>
-                <div class="col3">
+                                             
                                                 <asp:Label ID="lblNoShiftPaid" runat="server" Text="Paid :"></asp:Label>
                                                 &nbsp;
                                                 <asp:Label ID="lblNoShiftVPaid" runat="server" Text="00:00:00"></asp:Label>
-                                                           </div>
-                <div class="col3">
+                                             
                                                 <asp:Label ID="lblNoShiftUnpaid" runat="server" Text="Unpaid :"></asp:Label>
                                                 &nbsp;
-                                                <asp:Label ID="lblNoShiftVUnpaid" runat="server" Text="00:00:00"></asp:Label>
+                                                <asp:Label ID="lblNoShiftVUnpaid" runat="server" Text="00:00:00"></asp:Label></span>
                                                           </div>
-            </div>
-            <div class="row">
-                <div class="col3">
+           
+                <div class=" GapSummeryDiv Overtime">
                                                 <asp:Label ID="lblInVac" runat="server" Text="Vacation Overtime"></asp:Label>
-                                                                </div>
-                <div class="col3">
+                                            <span>
                                                 <asp:Label ID="lblInVacTotal" runat="server" Text="Total :"></asp:Label>
                                                 &nbsp;
                                                 <asp:Label ID="lblInVacVTotal" runat="server" Text="00:00:00"></asp:Label>
-                                                              </div>
-                <div class="col3">
+                                               
                                                 <asp:Label ID="lblInVacPaid" runat="server" Text="Paid :"></asp:Label>
                                                 &nbsp;
                                                 <asp:Label ID="lblInVacVPaid" runat="server" Text="00:00:00"></asp:Label>
-                                                               </div>
-                <div class="col3">
+                                              
                                                 <asp:Label ID="lblInVacUnpaid" runat="server" Text="Unpaid :"></asp:Label>
                                                 &nbsp;
-                                                <asp:Label ID="lblInVacVUnpaid" runat="server" Text="00:00:00"></asp:Label>
+                                                <asp:Label ID="lblInVacVUnpaid" runat="server" Text="00:00:00"></asp:Label></span>
                                                                </div>
-            </div>
-            <div class="row">
-                <div class="col3">
+             
+                <div class=" GapSummeryDiv Overtime">
                                                 <asp:Label ID="lblOvt" runat="server" Text="Overtime Total"></asp:Label>
-                                                                       </div>
-                <div class="col3">
+                                              <span>
                                                 <asp:Label ID="lbOvtTotal" runat="server" Text="Total :"></asp:Label>
                                                 &nbsp;
                                                 <asp:Label ID="lblOvtVTotal" runat="server" Text="00:00:00"></asp:Label>
-                                                                     </div>
-                <div class="col3">
+                                             
                                                 <asp:Label ID="lblOvtPaid"    runat="server" Text="Paid :"></asp:Label>
                                                 &nbsp;
                                                 <asp:Label ID="lblOvtVPaid" runat="server" Text="00:00:00"></asp:Label>
-                                                                      </div>
-                <div class="col3">
+                                             
                                                 <asp:Label ID="lblOvtUnpaid" runat="server" Text="Unpaid :"></asp:Label>
                                                 &nbsp;
                                                 <asp:Label ID="lblOvtVUnpaid" runat="server" Text="00:00:00"></asp:Label>
-                                                                      </div>
-            </div>
-            <div class="row">
-                <div class="col3">
-                                                <asp:Label ID="lblOvtWait" runat="server" Text="Waiting :"></asp:Label>
+                                                  <asp:Label ID="lblOvtWait" runat="server" Text="Waiting :"></asp:Label>
                                                 &nbsp;
                                                 <asp:Label ID="lblOvtVWait" runat="server" Text="00:00:00"></asp:Label>
-                                       </div>
-                </div>
+
+                                              </span>
+                                                                      </div>
+            </div>
+            
             <div id='divBackground'></div>
-            <div id='divPopup' class="divPopup" style="height:350px; width:680px;">
+            <div id='divPopup' class="divPopup" style="height:500px; width:680px;">
                 <div id='divPopupHead' class="divPopupHead"><asp:Label ID="lblNamePopup" 
                         runat="server"  CssClass="lblNamePopup"></asp:Label></div>
                 <div id='divClosePopup' class="divClosePopup" onclick="hidePopup('divPopup')"><ahref='#'>X</a></div>
                 <div id='divPopupContent' class="divPopupContent">
                    <center>
-                      <iframe id="ifrmPopup" runat="server"  height="350px" width="670px"  scrolling="no" frameborder="0" style="margin-left:10px; background-color:#4E6877"></iframe> 
+                      <iframe id="ifrmPopup" runat="server"  height="500px" width="670px"  scrolling="no" frameborder="0" style="margin-left:10px; background-color:#4E6877"></iframe> 
                    </center>
                 </div>
             </div>
 
-            <div id='divPopup2' class="divPopup" style="height:250px; width:680px;">
+            <div id='divPopup2' class="divPopup" style="height:500px; width:680px;">
                 <div id='divPopupHead2' class="divPopupHead">
                     <asp:Label ID="lblNamePopup2" runat="server" CssClass="lblNamePopup"></asp:Label>
                 </div>
                 <div id='divClosePopup2' class="divClosePopup" onclick="hidePopup('divPopup2')"><ahref='#'>X</a></div>
                 <div id='divPopupContent2' class="divPopupContent">
                    <center>
-                      <iframe id="ifrmPopup2" runat="server"  height="250px" width="670px"  scrolling="no" frameborder="0" style="margin-left:10px; background-color:#4E6877"></iframe> 
+                      <iframe id="ifrmPopup2" runat="server"  height="500px" width="670px"  scrolling="no" frameborder="0" style="margin-left:10px; background-color:#4E6877"></iframe> 
                    </center>
                 </div>
             </div>

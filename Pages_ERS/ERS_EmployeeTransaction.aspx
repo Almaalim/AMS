@@ -42,7 +42,7 @@
                     </asp:DropDownList>
                 </div>
                 <div class="col2">
-                    <asp:ImageButton ID="btnFilter" runat="server" OnClick="btnFilter_Click" ImageUrl="../images/Button_Icons/button_magnify.png" CssClass="LeftOverlay" />
+                    <asp:ImageButton ID="btnFilter" runat="server" OnClick="btnFilter_Click" ImageUrl="../images/Button_Icons/button_magnify.png"  />
                 </div>
             </div>
             <div class="row">

@@ -283,26 +283,26 @@
                 </div>
             
             <div id='divBackground'></div>
-            <div id='divPopup' class="divPopup" style="height:350px; width:680px;">
+            <div id='divPopup' class="divPopup" style="height:500px; width:680px;">
                 <div id='divPopupHead' class="divPopupHead"><asp:Label ID="lblNamePopup" 
                         runat="server"  CssClass="lblNamePopup" 
                         meta:resourcekey="lblNamePopupResource1" ></asp:Label></div>
                 <div id='divClosePopup' class="divClosePopup" onclick="hidePopup('divPopup')"><ahref='#'>X</a></div>
                 <div id='divPopupContent' class="divPopupContent">
                    <center>
-                      <iframe id="ifrmPopup" runat="server"  height="350px" width="670px"  scrolling="no" frameborder="0" style="margin-left:10px; background-color:#4E6877"></iframe> 
+                      <iframe id="ifrmPopup" runat="server"  height="500px" width="670px"  scrolling="no" frameborder="0" style="margin-left:10px; background-color:#4E6877"></iframe> 
                    </center>
                 </div>
             </div>
 
-            <div id='divPopup2' class="divPopup" style="height:250px; width:680px;">
+            <div id='divPopup2' class="divPopup" style="height:500px; width:680px;">
                 <div id='divPopupHead2' class="divPopupHead"><asp:Label ID="lblNamePopup2" 
                         runat="server"  CssClass="lblNamePopup" 
                         meta:resourcekey="lblNamePopup2Resource1" ></asp:Label></div>
                 <div id='divClosePopup2' class="divClosePopup" onclick="hidePopup('divPopup2')"><ahref='#'>X</a></div>
                 <div id='divPopupContent2' class="divPopupContent">
                    <center>
-                      <iframe id="ifrmPopup2" runat="server"  height="250px" width="670px"  scrolling="no" frameborder="0" style="margin-left:10px; background-color:#4E6877"></iframe> 
+                      <iframe id="ifrmPopup2" runat="server"  height="500px" width="670px"  scrolling="no" frameborder="0" style="margin-left:10px; background-color:#4E6877"></iframe> 
                    </center>
                 </div>
             </div>

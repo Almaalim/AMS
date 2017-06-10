@@ -213,7 +213,7 @@
                 </div>
             </div>
 
-            <div id='divPopup2' class="divPopup" style="height: 250px; width: 680px;">
+            <div id='divPopup2' class="divPopup" style="height: 500px; width: 680px;">
                 <div id='divPopupHead2' class="divPopupHead">
                     <asp:Label ID="lblNamePopup2"
                         runat="server" CssClass="lblNamePopup"></asp:Label>
@@ -221,12 +221,12 @@
                 <div id='divClosePopup2' class="divClosePopup" onclick="hidePopup('divPopup2')"><a href='#'>X</a></div>
                 <div id='divPopupContent2' class="divPopupContent">
                     <center>
-                      <iframe id="ifrmPopup2" runat="server"  height="250px" width="670px"  scrolling="no" frameborder="0" style="margin-left:10px; background-color:#4E6877"></iframe> 
+                      <iframe id="ifrmPopup2" runat="server"  height="500px" width="670px"  scrolling="no" frameborder="0" style="margin-left:10px; background-color:#4E6877"></iframe> 
                    </center>
                 </div>
             </div>
 
-            <div id='divPopupAlert' class="divPopup" style="height: 200px; width: 580px;">
+            <div id='divPopupAlert' class="divPopup" style="height: 500px; width: 580px;">
                 <div id='divPopupHeadAlert' class="divPopupHead">
                     <asp:Label ID="lblNamePopupAlert"
                         runat="server" CssClass="lblNamePopup"></asp:Label>
@@ -234,7 +234,7 @@
                 <div id='divClosePopupAlert' class="divClosePopup" onclick="hidePopup('divPopupAlert')"><a href='#'>X</a></div>
                 <div id='divPopupContentAlert' class="divPopupContent">
                     <center>
-                      <iframe id="ifrmPopupAlert" runat="server"  height="200px" width="500px"  scrolling="no" frameborder="0" style="margin-left:10px; background-color:#4E6877"></iframe> 
+                      <iframe id="ifrmPopupAlert" runat="server"  height="500px" width="500px"  scrolling="no" frameborder="0" style="margin-left:10px; background-color:#4E6877"></iframe> 
                    </center>
                 </div>
             </div>

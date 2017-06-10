@@ -98,6 +98,14 @@
 
                 e.preventDefault();
             });
+            $(".NotificationsIcon").on('click', function (e) {
+                $(".NotificationsPopup").addClass("NotificationsActive");
+                
+            });
+            $(".NotificationsPopupClose").on('click', function (e) {
+                $(".NotificationsPopup").removeClass("NotificationsActive");
+
+            });
         }
         $(document).click(function (e) {
             var container = $(".taptap-menu-active, .taptap-main-wrapper-active");
@@ -431,6 +439,21 @@
                     <div class="taptap-main-inner-inner">
                         <div class="taptap-contents-wrapper">
                             <div class="UserDetails">
+                                <div class="NotificationsWrapper">
+                                    <div class="NotificationsIcon">
+                                        <span class="NotificationsNumber">999</span>
+                                    </div>
+                                    <div class="NotificationsPopup">
+                                        <span class="NotificationsPopupClose"></span>
+                                        <ul>
+                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
+                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
+                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
+                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
+                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
+                                        </ul>
+                                    </div>
+                                </div>
                                 <asp:Image ID="UserImg" runat="server" ImageUrl="~/CSS/Metro/Images/UserImg.png" CssClass="UserImg" />
                                 <asp:Label ID="lblWelcome" runat="server" Text="Welcome" meta:resourcekey="lblWelcomeResource1"></asp:Label>
 

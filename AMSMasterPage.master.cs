@@ -481,7 +481,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
                 _lnk.Controls.Add(_lbl);
                 FavForm.Controls.Add(_lnk);
 
-                FavForm.Controls.Add(new LiteralControl("</li>"));
+                FavForm.Controls.Add(new LiteralControl("<span class='folderCloseBtn'></span</li>"));
             }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }

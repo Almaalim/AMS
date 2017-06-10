@@ -14,11 +14,11 @@
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
            <div class="row"   >
-                <div class="col2">
+                <div class="col1">
                                     <asp:Label ID="lblTodayDate" runat="server" Text="Today Date :" 
                                         meta:resourcekey="lblTodayDateResource1"></asp:Label>
                                     </div>
-                <div class="col2">
+                <div class="col1">
                                     <asp:Label ID="lblVTodayDate" runat="server" 
                                         meta:resourcekey="lblVTodayDateResource1"></asp:Label>
                                    </div>
@@ -26,26 +26,25 @@
                                     <asp:Label ID="lblTodayTime" runat="server" 
                                         Text="Transactions until the time :" meta:resourcekey="lblTodayTimeResource1"></asp:Label>
                                   </div>
-                <div class="col2">
+                <div class="col1">
                                     <asp:Label ID="lblVTodayTime" runat="server" 
                                         meta:resourcekey="lblVTodayTimeResource1"></asp:Label>
                                 </div>
-               </div>
-               <div class="row"   >
-                <div class="col2">
+               
+                <div class="col1">
                                     <asp:Label ID="lblShiftFrom" runat="server" Text="Shift From :" 
                                         meta:resourcekey="lblShiftFromResource1"></asp:Label>
                                     </div>
-                <div class="col2">
+                <div class="col1">
                                     <asp:Label ID="lblVShiftFrom" runat="server" 
                                         meta:resourcekey="lblVShiftFromResource1"></asp:Label>
                                      </div>
                
-                <div class="col2">
+                <div class="col1">
                                     <asp:Label ID="lblShiftTo" runat="server" Text="Shift To :" 
                                         meta:resourcekey="lblShiftToResource1"></asp:Label>
                                    </div>
-                <div class="col2">
+                <div class="col1">
                                     <asp:Label ID="lblVShiftTo" runat="server" 
                                         meta:resourcekey="lblVShiftToResource1"></asp:Label>
                     </div>
