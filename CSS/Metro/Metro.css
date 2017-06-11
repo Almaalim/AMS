@@ -214,6 +214,26 @@ body {
     }
 }
 
+.FirstPager:before
+{
+    font-family: 'Glyphicons Halflings';
+    content: "\e070";
+}
+.PreviousPager:before
+{
+    font-family: 'Glyphicons Halflings';
+    content: "\e071";
+}
+.NextPager:before
+{
+    font-family: 'Glyphicons Halflings';
+    content: "\e075";
+}
+.LastPager:before
+{
+    font-family: 'Glyphicons Halflings';
+    content: "\e076";
+}
 
 .wrapper {
     position: relative;
@@ -263,18 +283,19 @@ body {
     margin-left: 3px;
     margin-right: 30px;
 }
-.UserDetails > span[id*='lblWelcome']
-{
-       font-size: 13px;
-    margin: 5px 0;
-    display:none;
-}
+
+    .UserDetails > span[id*='lblWelcome'] {
+        font-size: 13px;
+        margin: 5px 0;
+        display: none;
+    }
+
     .UserDetails > span {
-            vertical-align: top;
-    margin-top: 5px;
-    display: inline-block;
-    color: #fff;
-    margin-bottom: 5px;
+        vertical-align: top;
+        margin-top: 5px;
+        display: inline-block;
+        color: #fff;
+        margin-bottom: 5px;
     }
 
 .UserImg {
@@ -282,7 +303,6 @@ body {
     -moz-border-radius: 99px;
     border-radius: 99px;
     margin-right: 10px;
-    
 }
 
 li.static {
@@ -475,16 +495,17 @@ ul.level2 > li {
     font-size: 22px;
     content: "\e20d";
 }
-.rp_Search>span
-{
-    text-align:center;
+
+.rp_Search > span {
+    text-align: center;
 }
-.rp_Search>span>span
-{
-    width:calc(25% - 20px);
-    display:inline-block;
-    margin:10px;
-}
+
+    .rp_Search > span > span {
+        width: calc(25% - 20px);
+        display: inline-block;
+        margin: 10px;
+    }
+
 .reportsicon {
     width: 100% !important;
     height: 105px !important;
@@ -723,7 +744,7 @@ a:active {
 .ReportBtns {
     font-size: 18px !important;
     color: #fff;
-    line-height:25px;
+    line-height: 25px;
     padding: 20px 91px 0px 10px;
     border: 1px solid #fff;
     margin: 20px 5px;
@@ -738,7 +759,7 @@ a:active {
 }
 
 .ReportBtns:before {
-        font-size: 62px;
+    font-size: 62px;
     display: inline-block;
     width: 62px;
     height: 62px;
@@ -746,7 +767,7 @@ a:active {
     text-align: center !important;
     position: absolute;
     right: 7px;
-        top: 25px;
+    top: 25px;
 }
 
 .GenButton.disabled, .GenButton[disabled="disabled"], *[disabled="disabled"] {
@@ -1028,13 +1049,13 @@ span.glyphicon.CalenderIco {
 }
 
     #reqUsername img, #Fullname img, #cvEmpID img, #rfvLanguage img, #Password img, #cvEmail img, #cdvMobileNo img, #cvADUser img, #cvShowMsg img, .CustomValidator img, .DateExp img {
-            display: block;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    right: 0;
-    opacity: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        opacity: 0;
     }
 
 .GridDiv {
@@ -1230,7 +1251,7 @@ body.loginPage > #aspnetForm {
 .LoginRight .h3 {
     color: #febd07;
     font-size: 14pt;
-    background:none;
+    background: none;
 }
 
 .LoginRight input:not([type=image]) {
@@ -1275,23 +1296,23 @@ body.loginPage > #aspnetForm {
 .tp_logoin span {
     font-weight: bold;
 }
-.tableDiv
-{
+
+.tableDiv {
     display: table;
-    height:100%;
-}
-.tableCell
-{
-    vertical-align: middle;
-        display: table-cell;
-        text-align:center;
-}
-.tableCell>*
-{
-    margin-top:20%;
+    height: 100%;
 }
 
-.MsgValidation, .MsgSuccess , .errorValidation {
+.tableCell {
+    vertical-align: middle;
+    display: table-cell;
+    text-align: center;
+}
+
+    .tableCell > * {
+        margin-top: 20%;
+    }
+
+.MsgValidation, .MsgSuccess, .errorValidation {
     word-break: break-word;
     padding: 15px 7px;
     color: #fff !important;
@@ -1299,11 +1320,11 @@ body.loginPage > #aspnetForm {
     line-height: 16px;
     display: table;
     margin: 0 auto;
-        min-height: 40px;
+    min-height: 40px;
     -webkit-box-shadow: 2px 2px 9px 2px rgba(206,220,223,0.68);
     -moz-box-shadow: 2px 2px 9px 2px rgba(206,220,223,0.68);
     box-shadow: 2px 2px 9px 2px rgba(206,220,223,0.68);
-    width:100%;
+    width: 100%;
 }
 
 .MsgSuccess {
@@ -1311,18 +1332,18 @@ body.loginPage > #aspnetForm {
     font-size: 16px;
 }
 
-.MsgValidation , .errorValidation {
+.MsgValidation, .errorValidation {
     background-color: #ba2c1d;
     font-size: 12px;
     top: 0px;
     left: 0px;
 }
 
-    .MsgValidation li, .MsgSuccess li , .errorValidation li {
+    .MsgValidation li, .MsgSuccess li, .errorValidation li {
         list-style: none;
     }
 
-    .MsgSuccess ul, .MsgValidation ul , .errorValidation ul {
+    .MsgSuccess ul, .MsgValidation ul, .errorValidation ul {
         vertical-align: middle;
         display: table-cell;
         position: inherit;
@@ -1355,49 +1376,47 @@ body.loginPage > #aspnetForm {
     background-color: #ba2c1d;
     content: "\f05a";
 }
-.monthSummaryDiv
-{
-    width:calc(25% - 22.5px);
-    display:inline-block;
-     -moz-border-radius: 3px;
+
+.monthSummaryDiv {
+    width: calc(25% - 22.5px);
+    display: inline-block;
+    -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
     border-radius: 3px;
     -moz-box-shadow: 0px 0px 5px #474747;
     -webkit-box-shadow: 0px 0px 5px #474747;
     box-shadow: 0px 0px 5px #474747;
-    margin:calc(1% - 10px);
-    padding:10px;
-    position:relative;
-
-}
-.monthSummaryDiv>span
-{
-    display:block;
-    text-align:left;
-    font-size:17px;
-    color:#fff;
-    clear:both;
+    margin: calc(1% - 10px);
+    padding: 10px;
+    position: relative;
 }
 
-.monthSummaryDiv>span:first-child
-{
-    font-size:22px;
-}
-.monthSummaryDiv:after
-{
-    font-family:FontAwesome;
-    content: "\f017";
-   font-size:50px;
-    color:#fff;
-    position:absolute;
-    top:2px;
-    right:10px;
+    .monthSummaryDiv > span {
+        display: block;
+        text-align: left;
+        font-size: 17px;
+        color: #fff;
+        clear: both;
+    }
+
+        .monthSummaryDiv > span:first-child {
+            font-size: 22px;
+        }
+
+    .monthSummaryDiv:after {
+        font-family: FontAwesome;
+        content: "\f017";
+        font-size: 50px;
+        color: #fff;
+        position: absolute;
+        top: 2px;
+        right: 10px;
         border-left: 1px solid #f9fafc;
-    padding-left: 10px;
-}
-.GapSummeryDiv
-{
-   width: calc(50% - 30px);
+        padding-left: 10px;
+    }
+
+.GapSummeryDiv {
+    width: calc(50% - 30px);
     display: block;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -1410,167 +1429,174 @@ body.loginPage > #aspnetForm {
     margin: 15px;
     position: relative;
     float: left;
-
-}
-.GapSummeryDiv>span
-{
-    display:block;
-    text-align:left;
-    font-size:15px;
-    color:#fff;
-    clear:both;
 }
 
-.GapSummeryDiv>span:first-child
-{
-    font-size:22px;
-}
-.GapSummeryDiv:after
-{
-    font-family:FontAwesome;
+    .GapSummeryDiv > span {
+        display: block;
+        text-align: left;
+        font-size: 15px;
+        color: #fff;
+        clear: both;
+    }
+
+        .GapSummeryDiv > span:first-child {
+            font-size: 22px;
+        }
+
+    .GapSummeryDiv:after {
+        font-family: FontAwesome;
         content: "\f127";
-   font-size:50px;
-    color:#fff;
-    position:absolute;
-    top:2px;
-    right:10px;
+        font-size: 50px;
+        color: #fff;
+        position: absolute;
+        top: 2px;
+        right: 10px;
         border-left: 1px solid #f9fafc;
-    padding-left: 10px;
-}
-.Overtime:after
-{
+        padding-left: 10px;
+    }
+
+.Overtime:after {
     content: "\e023" !important;
     font-family: 'Glyphicons Halflings' !important;
 }
-.NotificationsWrapper
-{
-    position:relative
+
+.NotificationsWrapper {
+    position: relative;
 }
-.NotificationsPopup
-{
-    position:absolute;
-    background-color:#fff;
+
+.NotificationsPopup {
+    position: absolute;
+    background-color: #fff;
     width: 180px;
     z-index: 99;
-     -webkit-border-radius: 3px;
--moz-border-radius: 3px;
-border-radius: 3px;
-color:#474747;
-border:3px solid rgba(0, 0, 0, 0.68);
-opacity:0;
-display:none;
-
-
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color: #474747;
+    border: 3px solid rgba(0, 0, 0, 0.68);
+    opacity: 0;
+    display: none;
 }
+
 @-webkit-keyframes fadeIn {
-    from { opacity: 0; }
-      to { opacity: 1; }
-}  
-@keyframes fadeIn {
-    from { opacity: 0; }
-      to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
-.NotificationsActive
-{
-    display:block;
-    opacity:1;
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.NotificationsActive {
+    display: block;
+    opacity: 1;
     -webkit-animation: fadeIn 1s;
     animation: fadeIn 1s;
-  
 }
-.NotificationsPopupClose
-{
+
+.NotificationsPopupClose {
     display: inline-block;
     text-align: center;
-    cursor:pointer;
+    cursor: pointer;
     margin-right: 10px;
     speak: none;
-   
     position: absolute;
     top: -11px;
     right: -22px;
     color: #fff;
     font-size: 16px;
-    line-height:23px;
+    line-height: 23px;
     background-color: rgb(82, 82, 82);
-    padding:0px 4px;
+    padding: 0px 4px;
     -webkit-border-radius: 50px;
--moz-border-radius: 50px;
-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
 }
-.NotificationsPopupClose:before
-{
-     font-style: normal;
-    font-weight: normal;
-    -webkit-font-smoothing: antialiased;
-    font-family: 'Glyphicons Halflings' !important;
+
+    .NotificationsPopupClose:before {
+        font-style: normal;
+        font-weight: normal;
+        -webkit-font-smoothing: antialiased;
+        font-family: 'Glyphicons Halflings' !important;
         content: "\e083";
-}
-.NotificationsPopup ul
-{
-        -webkit-margin-before: 0;
+    }
+
+.NotificationsPopup ul {
+    -webkit-margin-before: 0;
     -webkit-margin-after: 0;
     -webkit-margin-start: 0px;
     -webkit-margin-end: 0px;
     -webkit-padding-start: 0;
-     margin:10px 0px;
-     padding:0;
+    margin: 10px 0px;
+    padding: 0;
 }
-.NotificationsPopup ul li
-{
-    list-style-type:none;
-    margin:3px 5px;
-    padding:3px;
-    display:block;
-    border-top:1px solid #ccc;
-    border-bottom:1px solid #ccc;
-    font-size:14px;
+
+    .NotificationsPopup ul li {
+        list-style-type: none;
+        margin: 3px 5px;
+        padding: 3px;
+        display: block;
+        border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+        font-size: 14px;
+    }
+
+.NotificationsTime {
+    float: right;
+    font-size: 12px;
+    color: #999;
 }
-.NotificationsTime
-{
-    float:right;
-    font-size:12px;
-    color:#999;
-}
-.NotificationsIcon
-{
-    position:relative;
-    cursor:pointer;
-    display:inline-block;
-}
-.NotificationsIcon:before
-{
-    font-family: FontAwesome;
-    content: "\f2b7";
-    color: #fff ;
+
+.NotificationsIcon {
+    position: relative;
+    cursor: pointer;
     display: inline-block;
-    background-color: rgb(0, 154, 215);
-    padding: 3px 7px;
-    margin: 5px 0;
-    font-size: 17px;
-    transition: all 1000ms cubic-bezier(0.19, 1, 0.22, 1);
 }
-.NotificationsIcon:hover:before
-{
-    color: rgb(0, 154, 215);
-    background-color: #fff ;
-    -webkit-transform: rotateY(180deg);
-    -ms-transform: rotateX(180deg);
-    -moz-transform: rotateY(180deg);
-    transform: rotateY(180deg);
-}
-.NotificationsNumber
-{
-    position:absolute;
+
+    .NotificationsIcon:before {
+        font-family: FontAwesome;
+        content: "\f2b7";
+        color: #fff;
+        display: inline-block;
+        background-color: rgb(0, 154, 215);
+        padding: 3px 7px;
+        margin: 5px 0;
+        font-size: 17px;
+        transition: all 1000ms cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .NotificationsIcon:hover:before {
+        color: rgb(0, 154, 215);
+        background-color: #fff;
+        -webkit-transform: rotateY(180deg);
+        -ms-transform: rotateX(180deg);
+        -moz-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+    }
+
+.NotificationsNumber {
+    position: absolute;
     background-color: rgb(194, 36, 57);
-    font-size:10px;
+    font-size: 10px;
     -webkit-border-radius: 50px;
--moz-border-radius: 50px;
-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
     padding: 2px;
     top: -3px;
     left: 20px;
 }
+
 .LoginLanguageBtn {
     position: absolute;
     top: 10px;
@@ -1702,24 +1728,24 @@ border-radius: 50px;
         color: #fff;
     }
 }
-.ChackBoxlist
-{
-    width:auto !important;
+
+.ChackBoxlist {
+    width: auto !important;
 }
-.ChackBoxlist td input , .ChackBoxlist td label
-{
-    display:inline-block;
-    float:left;
-    
-}
-.ChackBoxlist td
-{
-    padding:0 5px;
-}
-.ChackBoxlist td input
-{
-    margin:7px;
-}
+
+    .ChackBoxlist td input, .ChackBoxlist td label {
+        display: inline-block;
+        float: left;
+    }
+
+    .ChackBoxlist td {
+        padding: 0 5px;
+    }
+
+        .ChackBoxlist td input {
+            margin: 7px;
+        }
+
 .ico-cabinet:before, .ico-cabinet-2:before, .ico-file:before, .ico-file-2:before, .ico-file-3:before, .ico-files:before, .ico-phone:before, .ico-tablet:before, .ico-window:before, .ico-monitor:before, .ico-film:before, .ico-inbox:before, .ico-download:before, .ico-upload:before, .ico-inbox-2:before, .ico-cog:before, .ico-cogs:before, .ico-cog-2:before, .ico-warning:before, .ico-picture:before, .ico-pictures:before, .ico-pictures-2:before, .ico-alarm-clock:before, .ico-time:before, .ico-checkmark:before, .ico-cancel:before, .ico-eye:before, .ico-site-map:before, .ico-site-map-2:before, .ico-cloud:before, .ico-upload-2:before, .ico-chart:before, .ico-chart-2:before, .ico-chart-3:before, .ico-chart-4:before, .ico-chart-5:before, .ico-chart-6:before, .ico-location:before, .ico-download-2:before, .ico-folder:before, .ico-alarm:before, .ico-alarm-cancel:before, .ico-phone-2:before, .ico-phone-3:before, .ico-image:before, .ico-open:before, .ico-sale:before, .ico-direction:before, .ico-map:before, .ico-trashcan:before, .ico-vote:before, .ico-lab:before, .ico-locked:before, .ico-unlocked:before, .ico-locked-2:before, .ico-unlocked-2:before, .ico-magnifier:before, .ico-zoom-in:before, .ico-zoom-out:before, .ico-stack:before, .ico-stack-2:before, .ico-stack-3:before, .ico-archive:before, .ico-battery:before, .ico-battery-2:before, .ico-battery-3:before, .ico-battery-4:before, .ico-battery-5:before, .ico-megaphone:before, .ico-megaphone-2:before, .ico-patch:before, .ico-pil:before, .ico-injection:before, .ico-thermometer:before, .ico-lamp:before, .ico-lamp-2:before, .ico-lamp-3:before, .ico-cube:before, .ico-box:before, .ico-box-2:before, .ico-diamond:before, .ico-bag:before, .ico-money-bag:before, .ico-grid:before, .ico-grid-2:before, .ico-list:before, .ico-list-2:before, .ico-ruler:before, .ico-ruler-2:before, .ico-layout:before, .ico-layout-2:before, .ico-layout-3:before, .ico-layout-4:before, .ico-layout-5:before, .ico-layout-6:before, .ico-layout-7:before, .ico-layout-8:before, .ico-layout-9:before, .ico-layout-10:before, .ico-layout-11:before, .ico-layout-12:before, .ico-layout-13:before, .ico-layout-14:before, .ico-tools:before, .ico-screwdriver:before, .ico-paint:before, .ico-hammer:before, .ico-brush:before, .ico-pen:before, .ico-chat:before, .ico-comments:before, .ico-chat-2:before, .ico-chat-3:before, .ico-volume:before, .ico-volume-2:before, .ico-volume-3:before, .ico-equalizer:before, .ico-resize:before, .ico-resize-2:before, .ico-download-3:before, .ico-stats:before, .ico-stats-2:before, .ico-attachment:before, .ico-hourglass:before, .ico-pencil:before, .ico-pen-2:before, .ico-pin:before, .ico-pin-2:before, .ico-discout:before, .ico-edit:before, .ico-scissors:before, .ico-profile:before, .ico-rotate:before, .ico-rotate-2:before, .ico-reply:before, .ico-forward:before, .ico-retweet:before, .ico-shuffle:before, .ico-loop:before, .ico-crop:before, .ico-dollar:before, .ico-dollar-2:before, .ico-coins:before, .ico-pig:before, .ico-bookmark:before, .ico-bookmark-2:before, .ico-address-book:before, .ico-address-book-2:before, .ico-safe:before, .ico-envelope:before, .ico-envelope-2:before, .ico-heart:before, .ico-info:before, .ico-info-2:before, .ico-book:before, .ico-book-2:before, .ico-barcode:before, .ico-barcode-2:before, .ico-expand:before, .ico-collapse:before, .ico-pop-out:before, .ico-pop-in:before, .ico-cone:before, .ico-blocked:before, .ico-stop:before, .ico-keyboard:before, .ico-printer:before, .ico-checked:before, .ico-error:before, .ico-add:before, .ico-minus:before, .ico-alert:before, .ico-pictures-3:before, .ico-atom:before, .ico-eyedropper:before, .ico-globe:before, .ico-globe-2:before, .ico-shipping:before, .ico-ying-yang:before, .ico-compass:before, .ico-zip:before, .ico-zip-2:before, .ico-tags:before, .ico-heart-2:before, .ico-heart-3:before, .ico-usb:before, .ico-clipboard:before, .ico-clipboard-2:before, .ico-clipboard-3:before, .ico-switch:before, .ico-ruler-3:before, .ico-glass:before, .ico-music:before, .ico-search:before, .ico-envelope-3:before, .ico-heart-4:before, .ico-star:before, .ico-star-empty:before, .ico-user:before, .ico-film-2:before, .ico-th-large:before, .ico-ok:before, .ico-remove:before, .ico-zoom-in-2:before, .ico-zoom-out-2:before, .ico-off:before, .ico-signal:before, .ico-cog-3:before, .ico-trash:before, .ico-home:before, .ico-file-4:before, .ico-time-2:before, .ico-road:before, .ico-download-alt:before, .ico-download-4:before, .ico-upload-3:before, .ico-inbox-3:before, .ico-play-circle:before, .ico-repeat:before, .ico-refresh:before, .ico-list-alt:before, .ico-lock:before, .ico-flag:before, .ico-volume-off:before, .ico-volume-down:before, .ico-volume-up:before, .ico-qrcode:before, .ico-barcode-3:before, .ico-tag:before, .ico-tags-2:before, .ico-book-3:before, .ico-bookmark-3:before, .ico-print:before, .ico-align-left:before, .ico-align-center:before, .ico-align-right:before, .ico-align-justify:before, .ico-list-3:before, .ico-indent-left:before, .ico-indent-right:before, .ico-facetime-video:before, .ico-picture-2:before, .ico-pencil-2:before, .ico-map-marker:before, .ico-adjust:before, .ico-tint:before, .ico-edit-2:before, .ico-share:before, .ico-check:before, .ico-move:before, .ico-step-backward:before, .ico-fast-backward:before, .ico-backward:before, .ico-play:before, .ico-pause:before, .ico-stop-2:before, .ico-forward-2:before, .ico-fast-forward:before, .ico-step-forward:before, .ico-eject:before, .ico-chevron-left:before, .ico-chevron-right:before, .ico-plus-sign:before, .ico-minus-sign:before, .ico-remove-sign:before, .ico-ok-sign:before, .ico-question-sign:before, .ico-info-sign:before, .ico-screenshot:before, .ico-remove-circle:before, .ico-ok-circle:before, .ico-ban-circle:before, .ico-arrow-left:before, .ico-arrow-right:before, .ico-arrow-up:before, .ico-arrow-down:before, .ico-share-alt:before, .ico-resize-full:before, .ico-resize-small:before, .ico-plus:before, .ico-minus-2:before, .ico-asterisk:before, .ico-exclamation-sign:before, .ico-eye-open:before, .ico-eye-close:before, .ico-warning-sign:before, .ico-plane:before, .ico-calendar:before, .ico-random:before, .ico-comment:before, .ico-magnet:before, .ico-chevron-up:before, .ico-chevron-down:before, .ico-retweet-2:before, .ico-shopping-cart:before, .ico-folder-close:before, .ico-folder-open:before, .ico-resize-vertical:before, .ico-resize-horizontal:before, .ico-bar-chart:before, .ico-cogs-2:before, .ico-comments-2:before, .ico-thumbs-up:before, .ico-thumbs-down:before, .ico-heart-empty:before, .ico-signout:before, .ico-pushpin:before, .ico-external-link:before, .ico-signin:before, .ico-trophy:before, .ico-upload-alt:before, .ico-lemon:before, .ico-phone-4:before, .ico-check-empty:before, .ico-bookmark-empty:before, .ico-phone-sign:before, .ico-facebook:before, .ico-github:before, .ico-unlock:before, .ico-credit:before, .ico-rss:before, .ico-hdd:before, .ico-bullhorn:before, .ico-bell:before, .ico-certificate:before, .ico-hand-right:before, .ico-hand-left:before, .ico-hand-up:before, .ico-hand-down:before, .ico-circle-arrow-left:before, .ico-circle-arrow-right:before, .ico-circle-arrow-up:before, .ico-circle-arrow-down:before, .ico-globe-3:before, .ico-wrench:before, .ico-tasks:before, .ico-filter:before, .ico-briefcase:before, .ico-fullscreen:before, .ico-group:before, .ico-link:before, .ico-cloud-2:before, .ico-beaker:before, .ico-copy:before, .ico-paper-clip:before, .ico-table:before, .ico-money:before, .ico-caret-down:before, .ico-caret-up:before, .ico-caret-left:before, .ico-caret-right:before, .ico-columns:before, .ico-sort:before, .ico-sort-down:before, .ico-sort-up:before, .ico-envelope-alt:before, .ico-undo:before, .ico-comment-alt:before, .ico-comments-alt:before, .ico-bolt:before, .ico-exchange:before, .ico-cloud-download:before, .ico-cloud-upload:before, .ico-file-alt:before, .ico-double-angle-left:before, .ico-double-angle-right:before, .ico-double-angle-up:before, .ico-double-angle-down:before, .ico-angle-left:before, .ico-angle-right:before, .ico-angle-up:before, .ico-angle-down:before, .ico-desktop:before, .ico-laptop:before, .ico-tablet-2:before, .ico-mobile:before, .ico-circle:before, .ico-reply-2:before, .ico-folder-close-alt:before, .ico-folder-open-alt:before, a.level2.mndynamicitemEN.dynamic:before, a.User:before, a.Configuration:before, a.Employees:before, a.Transaction:before, a.Transaction:after, a.Wizard:before, a.ERSSwap:before, a.Report:before, #ctl00_lnkHomeTop:before, #ctl00_LnkChangePassword:before, #ctl00_lnkShortcut:before, #ctl00_lnkERS:before, #ctl00_lnkHelp:before, #ctl00_LnkLogout:before, #ctl00_lnkLanguage:before, .UserDetails > a[id$="lnkSetting"]:before, .img-search:before, a.Admin:before, a.Attendance:before, a.Requests:before, .MsgValidation:before {
     font-family: 'icomoon';
     speak: none;
@@ -3451,10 +3477,11 @@ input {
     box-shadow: 2px 2px 9px 2px rgba(206,220,223,0.68);
     background: rgba(206,220,223,0.68);
 }
-.form-inline
-{
-    display:inline-block;
+
+.form-inline {
+    display: inline-block;
 }
+
 .CalTextStyle {
     -webkit-box-shadow: 0px 0px 0px 0px rgba(255,255,255,0) !important;
     -moz-box-shadow: 0px 0px 0px 0px rgba(255,255,255,0) !important;
@@ -3546,14 +3573,14 @@ h2, .h2 {
 h3, .h3 {
     font-size: 24px;
 }
-.h4 , .h3 {
+
+.h4, .h3 {
     display: block;
-    
     padding: 10px;
     background-color: #005683;
     color: #f9f9f9;
-
 }
+
 h4, .h4 {
     font-size: 18px;
 }
@@ -3962,23 +3989,56 @@ p {
         padding: 2px;
         display: block;
         text-decoration: none;
-        
     }
-    .apps li
-    {
-        position:relative;
+
+    .apps li {
+        position: relative;
     }
-    .folderCloseBtn
-{
-    position:absolute;
-    position: absolute;
+
+.folderCloseBtn {
+        position: absolute;
     right: 0;
-    top: 0;
+    top: 5px;
     cursor: pointer;
+    display: block;
+    width: 31px;
+    height: 31px;
+    text-align: center;
+    color:#fff;
+        transition: all 1000ms cubic-bezier(0.19, 1, 0.22, 1);
+  
+   
 }
-    .folderCloseBtn:before
-    {
-            display: inline-block;
+.folderCloseBtn:hover
+{
+    color:#6f180c;  
+    text-shadow: 0px 0px 15px rgba(255, 255, 255, 1);
+    -webkit-transform: rotateY(180deg);
+    -ms-transform: rotateX(180deg);
+    -moz-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+    .folderCloseBtn:before {
+        display: inline-block;
+        text-align: center;
+        font-size:15px;
+        
+        speak: none;
+        font-style: normal;
+        font-weight: normal;
+        -webkit-font-smoothing: antialiased;
+        font-family: 'FontAwesome' !important;
+        content: "\f014";
+    }
+
+.apps li a span {
+    font-size: 14px;
+}
+
+.apps li a:before {
+    height: 30px;
+    width: 30px;
+    display: inline-block;
     text-align: center;
     line-height: 30px;
     margin-right: 10px;
@@ -3987,29 +4047,11 @@ p {
     font-weight: normal;
     -webkit-font-smoothing: antialiased;
     font-family: 'FontAwesome' !important;
-    content: "\f00d";
-    }
-        .apps li a span {
-            font-size: 14px;
-        }
+}
 
-        .apps li a:before {
-            height: 30px;
-            width: 30px;
-            display: inline-block;
-            text-align: center;
-            line-height: 30px;
-            margin-right: 10px;
-            speak: none;
-            font-style: normal;
-            font-weight: normal;
-            -webkit-font-smoothing: antialiased;
-            font-family: 'FontAwesome' !important;
-        }
-
-        .apps li a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
-        }
+.apps li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
 
 a.color009ad7:before {
     background-color: #009ad7;
@@ -4556,6 +4598,67 @@ a.colord13f2a:before {
     font-family: 'Glyphicons Halflings' !important;
 }
 
+.AttendanceList:before {
+    content: "\e032";
+    font-family: 'Glyphicons Halflings' !important;
+}
+
+.MonthSummary:before {
+    content: "\e057";
+    font-family: 'Glyphicons Halflings' !important;
+}
+
+.EmployeeGaps:before {
+    content: "\e058";
+    font-family: 'Glyphicons Halflings' !important;
+}
+
+.EmployeeOvertimes:before {
+    content: "\e170";
+    font-family: 'Glyphicons Halflings' !important;
+}
+
+.EmployeeRequest:before {
+    content: "\f234";
+    font-family: FontAwesome !important;
+}
+
+.EmployeeVacationDays:before {
+    content: "\e108";
+    font-family: 'Glyphicons Halflings' !important;
+}
+
+.ExcuseRequest:before {
+    content: "\e095";
+    font-family: 'Glyphicons Halflings' !important;
+}
+
+.VacationRequest:before {
+    content: "\e024";
+    font-family: 'Glyphicons Halflings' !important;
+}
+
+.CommissionRequest:before {
+    content: "\f2d2";
+    font-family: FontAwesome !important;
+}
+
+.ShiftSwapRequest:before {
+    content: "\e110";
+    font-family: 'Glyphicons Halflings' !important;
+}
+.ShiftSwapApproval:before {
+    content: "\f087";
+       font-family: 'icomoon' !important;
+}
+.JobAssignmentRequest:before {
+    content: "\f047";
+       font-family: 'icomoon' !important;
+}
+.ShiftExcuseRequest:before {
+       content: "\f03c";
+       font-family: FontAwesome !important;
+}
 .tooltipSmall {
     display: none;
     position: absolute;
@@ -4649,11 +4752,11 @@ a.level2.dynamic.JobCategory:before {
 }
 
 @media (max-width:1260px) {
-    .monthSummaryDiv
-    {
-        width:430px;
-        margin:1%;
+    .monthSummaryDiv {
+        width: 430px;
+        margin: 1%;
     }
+
     a.static {
         width: 65px;
         height: 60px;

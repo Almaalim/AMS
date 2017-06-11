@@ -118,7 +118,7 @@
                         OnPreRender="grdData_PreRender" EnableModelValidation="True"
                         meta:resourcekey="grdDataResource1" PageSize="2">
 
-                        <PagerSettings Mode="NumericFirstLast"  />
+                        <%--<PagerSettings Mode="NextPreviousFirstLast"  />--%>
                         <Columns>
                             <asp:BoundField HeaderText="Group Name (Ar)" DataField="GrpNameAr" SortExpression="GrpNameAr"
                                 meta:resourcekey="BoundFieldResource1">
@@ -142,7 +142,33 @@
                         </Columns>
                         <RowStyle CssClass="row" />
                     </asp:GridView>
+                    <%--Custom Grid Pager--%>
+                    <table>
+                        <tr class="GridPagerStyle">
+                            <td colspan="4">
+                                <table border="0">
+                                    <tbody>
+                                        <tr>
+                                            <td><a href="#" class="FirstPager"></a></td>
+                                            <td><a href="#" class="PreviousPager"></a></td>
+                                            <td>
+                                                <asp:Label ID="lblPage" runat="server" Text="1"></asp:Label></td>
+                                            <td>
+                                                <asp:TextBox ID="txtPagerNumber" runat="server" CssClass="PagerNumbertxt"></asp:TextBox></td>
+                                            <td>
+                                                <asp:Label ID="lblPageof" runat="server" Text="Page of 10"></asp:Label></td>
+                                            <td><a href="#" class="NextPager"></a></td>
+                                            <td><a href="#" class="LastPager"></a></td>
 
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </td>
+                        </tr>
+                    </table>
+                    <%--Custom Grid Pager--%>
                 </div>
             </div>
             <div class="row">
@@ -190,7 +216,7 @@
                 </div>
             </div>
             <div class="GreySetion">
-            
+
                 <div class="row">
                     <div class="col2">
 
@@ -271,15 +297,15 @@
                         <asp:TextBox ID="txtGrpID" runat="server" Enabled="False" Visible="false"></asp:TextBox>
                     </div>
                 </div>
-           
+
                 <div class="row">
                     <div class="col12">
                         <asp:Label ID="lblPermissions" runat="server" Text="Permissions" CssClass="h3"
                             meta:resourcekey="lblPermissionsResource1"></asp:Label>
                     </div>
-                
 
-                <div id="divMenu" runat="server" class="col12">
+
+                    <div id="divMenu" runat="server" class="col12">
                         <asp:TreeView ID="trvMenu" runat="server" DataSourceID="xmlDataSource1" LineImagesFolder="~/images/TreeLineImages"
                             Enabled="False" ShowLines="True" ShowCheckBoxes="All" OnDataBound="trvMenu_DataBound"
                             OnTreeNodeDataBound="trvMenu_TreeNodeDataBound"
@@ -292,20 +318,20 @@
                         </asp:TreeView>
                     </div>
                     <div id="divReports" runat="server" visible="False" class="col12">
-                    <asp:XmlDataSource ID="xmlReportSource" TransformFile="~/XSL/RepTransformXSLT.xsl" XPath="MenuItems/MenuItem"
-                        runat="server" CacheExpirationPolicy="Sliding" EnableCaching="False" />
-                    <asp:TreeView ID="trvReport" runat="server" DataSourceID="xmlReportSource" LineImagesFolder="~/images/TreeLineImages"
-                        Enabled="False" ShowLines="True" ShowCheckBoxes="Root" ForeColor="#CAD2D6"
-                        OnDataBound="trvReport_DataBound"
-                        OnTreeNodeDataBound="trvReport_TreeNodeDataBound"
-                        meta:resourcekey="trvReportResource1">
-                        <DataBindings>
-                            <asp:TreeNodeBinding DataMember="MenuItem" TextField="Text" ToolTipField="ToolTip"
-                                ValueField="Value" meta:resourcekey="TreeNodeBindingResource2" />
-                        </DataBindings>
-                    </asp:TreeView>
-                
-            </div>
+                        <asp:XmlDataSource ID="xmlReportSource" TransformFile="~/XSL/RepTransformXSLT.xsl" XPath="MenuItems/MenuItem"
+                            runat="server" CacheExpirationPolicy="Sliding" EnableCaching="False" />
+                        <asp:TreeView ID="trvReport" runat="server" DataSourceID="xmlReportSource" LineImagesFolder="~/images/TreeLineImages"
+                            Enabled="False" ShowLines="True" ShowCheckBoxes="Root" ForeColor="#CAD2D6"
+                            OnDataBound="trvReport_DataBound"
+                            OnTreeNodeDataBound="trvReport_TreeNodeDataBound"
+                            meta:resourcekey="trvReportResource1">
+                            <DataBindings>
+                                <asp:TreeNodeBinding DataMember="MenuItem" TextField="Text" ToolTipField="ToolTip"
+                                    ValueField="Value" meta:resourcekey="TreeNodeBindingResource2" />
+                            </DataBindings>
+                        </asp:TreeView>
+
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col12">
@@ -314,10 +340,10 @@
                             runat="server" CacheExpirationPolicy="Sliding" EnableCaching="False" />
                     </div>
                 </div>
-          
-                
-                </div>
-            
+
+
+            </div>
+
             <div class="clearfix"></div>
         </ContentTemplate>
     </asp:UpdatePanel>
