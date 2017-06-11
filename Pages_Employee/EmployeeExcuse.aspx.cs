@@ -200,6 +200,7 @@ public partial class EmployeeExcuse : BasePage
             ProCs.ExrIsOverTime = chkExrIsOT.Checked;
 
             ProCs.ExrIsStopped   = false;
+            ProCs.ExrAddBy = "USR"; // 'USR' = FROM USER, 'REQ' = FROM Request, 'EXC' = FROM Execuse Premit, 'INT' = FROM Emport Data
 
             ProCs.TransactionBy = pgCs.LoginID;
         }
@@ -392,8 +393,8 @@ public partial class EmployeeExcuse : BasePage
             {
                 case ("Delete1"):
                     string ID = e.CommandArgument.ToString();
-
-                    DataTable DT = DBCs.FetchData("SELECT * FROM EmpExcRel WHERE ExrCreatedBy = 'SYSTEM' AND ExrID = @P1 ", new string[] { ID });
+                    
+                    DataTable DT = DBCs.FetchData("SELECT * FROM EmpExcRel WHERE ExrAddBy IN ('REQ', 'INT') AND ExrID = @P1 ", new string[] { ID });
                     if (!DBCs.IsNullOrEmpty(DT))
                     {
                         CtrlCs.ShowDelMsg(this, false);

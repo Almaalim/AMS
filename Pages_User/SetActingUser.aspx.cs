@@ -94,19 +94,19 @@ public partial class SetActingUser : BasePage
 
             if (string.IsNullOrEmpty(txtID.Text)) 
             {
-                CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Validation, General.Msg("UsrName is empty", "اسم المستخدم فارغ"));
+                CtrlCs.ShowMsg(this, vsShowMsg, cvShowMsg, CtrlFun.TypeMsg.Validation, "vgShowMsg", General.Msg("UsrName is empty", "اسم المستخدم فارغ"));
                 return; 
             }
             
             
             FillPropeties();
             SqlCs.AppUser_Update_Acting(ProCs);
-            CtrlCs.ShowSaveMsg(this);
+            CtrlCs.ShowMsg(this, vsShowMsg, cvShowMsg, CtrlFun.TypeMsg.Success, "vgShowMsg", General.Msg("Saved data successfully", "تم الحفظ البيانات بنجاح"));
         }
         catch (Exception ex) 
         { 
-            ErrorSignal.FromCurrentContext().Raise(ex); 
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            ErrorSignal.FromCurrentContext().Raise(ex);
+            CtrlCs.ShowAdminMsg(this, vsShowMsg, cvShowMsg, "vgShowMsg", ex.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -116,11 +116,11 @@ public partial class SetActingUser : BasePage
         txtUsrADActUser.Text = "";
         
         UsersPro AD = ActiveDirectoryFun.FillAD(ActiveDirectoryFun.ADTypeEnum.USR, txtEmpID.Text.Trim(), txtEmpID.Text.Trim(), txtUsrActEMailID.Text.Trim());
-        if (!AD.ADValid)      { CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Validation,AD.ADError); return; }
-        if (!AD.ADValidation) { CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Validation,AD.ADMsgValidation); return; }
+        if (!AD.ADValid)      { CtrlCs.ShowMsg(this, vsShowMsg, cvShowMsg, CtrlFun.TypeMsg.Validation, "vgShowMsg", AD.ADError); return; }
+        if (!AD.ADValidation) { CtrlCs.ShowMsg(this, vsShowMsg, cvShowMsg, CtrlFun.TypeMsg.Validation, "vgShowMsg", AD.ADMsgValidation); return; }
 
         txtUsrADActUser.Text = ActiveDirectoryFun.GetAD(AD);
-        if (string.IsNullOrEmpty(txtUsrADActUser.Text)) { CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Validation,AD.ADMsgNotExists); }
+        if (string.IsNullOrEmpty(txtUsrADActUser.Text)) { CtrlCs.ShowMsg(this, vsShowMsg, cvShowMsg, CtrlFun.TypeMsg.Validation, "vgShowMsg", AD.ADMsgNotExists); }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -42,6 +42,9 @@ public class EmpVacPro
 
     string _EvrHospitalType;
     public string EvrHospitalType { get { return _EvrHospitalType; } set { if (_EvrHospitalType != value) { _EvrHospitalType = value; } } }
+
+    string _EvrAddBy;
+    public string EvrAddBy { get { return _EvrAddBy; } set { if (_EvrAddBy != value) { _EvrAddBy = value; } } }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     string _EmpIDs;

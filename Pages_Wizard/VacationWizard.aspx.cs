@@ -183,7 +183,7 @@ public partial class VacationWizard : BasePage
                 ProCs.VtpID           = ddlVacType.SelectedValue.ToString();
                 ProCs.EvrStartDate    = calStartDate.getGDateDBFormat();
                 ProCs.EvrEndDate      = calEndDate.getGDateDBFormat();
-
+                ProCs.EvrAddBy        = "USR";
                 ProCs.EvrPhone        = txtPhoneNo.Text;
                 ProCs.EvrAvailability = txtAvailable.Text;
                 ProCs.EvrDesc         = txtDesc.Text;

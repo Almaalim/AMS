@@ -37,6 +37,7 @@ public class EmpVacSql : DataLayerBase
             Sqlcmd.Parameters.Add(new SqlParameter("@EvrPhone"       , VchDB, 20,  IN, false, 0, 0, "", DRV, Pro.EvrPhone));
             Sqlcmd.Parameters.Add(new SqlParameter("@EvrAvailability", VchDB, 255, IN, false, 0, 0, "", DRV, Pro.EvrAvailability));
             Sqlcmd.Parameters.Add(new SqlParameter("@EvrHospitalType", VchDB, 255, IN, false, 0, 0, "", DRV, Pro.EvrHospitalType));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EvrAddBy"       , ChrDB, 3,   IN, false, 0, 0, "", DRV, Pro.EvrAddBy));
 
             Sqlcmd.Parameters.Add(new SqlParameter("@IsExecute"    , IntDB, 10, OU, false, 0, 0, "", DRV, 0));
             Sqlcmd.Parameters.Add(new SqlParameter("@TransactionBy", VchDB, 15, IN, false, 0, 0, "", DRV, Pro.TransactionBy));

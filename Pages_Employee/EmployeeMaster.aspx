@@ -261,11 +261,10 @@
                             meta:resourcekey="lblJoinDateResource1" ></asp:Label>
                     </div>
                     <div class="col4">
-                        <Cal:Calendar2 ID="calJoinDate" runat="server" CalendarType="System" ValidationRequired="true" ValidationGroup="vgSave" CalTo="Calendar2"/>
+                        <Cal:Calendar2 ID="calJoinDate" runat="server" CalendarType="System" ValidationRequired="true" ValidationGroup="vgSave" CalTo="calLeaveDate"/>
                      </div>
                     <div class="col2">
-                        <asp:Label ID="lblLeaveDate" runat="server" Text="Leave Date:" 
-                            meta:resourcekey="lblLeaveDateResource1" ></asp:Label>
+                        <asp:Label ID="lblLeaveDate" runat="server" Text="Leave Date:" meta:resourcekey="lblLeaveDateResource1" ></asp:Label>
                       </div>
                     <div class="col4">
                         <Cal:Calendar2 ID="calLeaveDate" runat="server" CalendarType="System"/>
@@ -274,9 +273,6 @@
 
                 <div class="row" id="divNationalID" runat="server">>
                     <div class="col2">
-                
-                
-                  
                             <span class="RequiredField">*</span>
                             <asp:Label ID="lblNationalID" runat="server" Text="National ID:" meta:resourcekey="lblNationalIDResource1" ></asp:Label>
                          </div>
@@ -640,12 +636,12 @@
 
                 </div>
             <div id='divBackground'></div>
-            <div id='divPopup' class="divPopup" style="height:450px; width:760px;">
+            <div id='divPopup' class="divPopup" style="height:550px; width:760px;">
                 <div id='divPopupHead' class="divPopupHead"><asp:Label ID="lblNamePopup" runat="server"  CssClass="lblNamePopup" ></asp:Label></div>
                 <div id='divClosePopup' class="divClosePopup<%=Session["Language"]%>" onclick="hidePopup('divPopup')"><ahref='#'>X</a></div>
                 <div id='divPopupContent' class="divPopupContent">
                    <center>
-                      <iframe id="ifrmPopup" runat="server"  height="450px" width="750px"  scrolling="no" frameborder="0" style="margin-left:10px; background-color:#4E6877"></iframe> 
+                      <iframe id="ifrmPopup" runat="server"  height="550px" width="750px"  scrolling="no" frameborder="0" style="margin-left:10px; background-color:#4E6877"></iframe> 
                    </center>
                 </div>
             </div>

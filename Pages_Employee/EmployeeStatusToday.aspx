@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true" CodeFile="EmployeeStatusToday.aspx.cs" Inherits="Pages_Employee_EmployeeStatusToday" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true" CodeFile="EmployeeStatusToday.aspx.cs" Inherits="Pages_Employee_EmployeeStatusToday" meta:resourcekey="PageResource1" %>
 
 <%@ Register Assembly="TimePickerServerControl" Namespace="TimePickerServerControl" TagPrefix="Almaalim" %>
 <%@ Register Assembly="System.Web.DynamicData, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.DynamicData" TagPrefix="cc1" %>
@@ -18,7 +18,7 @@
                                     <asp:Label ID="lblDepFilter" runat="server" Text="Search By Department:" meta:resourcekey="lblDepFilterResource1"></asp:Label>
                      </div>
                 <div class="col2">
-                                    <asp:TextBox ID="txtSearchByDep" runat="server"  ></asp:TextBox>
+                                    <asp:TextBox ID="txtSearchByDep" runat="server" meta:resourcekey="txtSearchByDepResource1"  ></asp:TextBox>
                      </div>
                 <div class="col2">
                                     <asp:ImageButton ID="btnDepFilter" runat="server" OnClick="btnDepFilter_Click" ImageUrl="../images/Button_Icons/button_magnify.png" meta:resourcekey="btnDepFilterResource1"/>
@@ -26,22 +26,20 @@
             </div>          
              <div class="row">
                 <div class="col12">                        
-                                    <asp:Panel runat="server" ID="pnlauDepName" Height="200px"  ScrollBars="Vertical" />
+                                    <asp:Panel runat="server" ID="pnlauDepName" Height="200px"  ScrollBars="Vertical" meta:resourcekey="pnlauDepNameResource1" />
                                     <ajaxToolkit:AutoCompleteExtender
                                         runat="server" 
                                         ID="auDepName" 
                                         TargetControlID="txtSearchByDep"
                                         ServicePath="~/Service/AutoComplete.asmx" 
                                         ServiceMethod="GetDepNameList"
-                                        MinimumPrefixLength="1" 
-                                        CompletionInterval="1000"
-                                        EnableCaching="true"
+                                        MinimumPrefixLength="1"
                                         OnClientItemSelected="AutoCompleteDepNameItemSelected"
                                         CompletionListElementID="pnlauDepName"
                                         CompletionListCssClass="AutoExtender" 
                                         CompletionListItemCssClass="AutoExtenderList" 
                                         CompletionListHighlightedItemCssClass="AutoExtenderHighlight" 
-                                        CompletionSetCount="12" />
+                                        CompletionSetCount="12" DelimiterCharacters="" Enabled="True" />
                                  </div>
             </div>          
              <div class="row">
@@ -51,18 +49,18 @@
                                                 AutoGenerateColumns="False" AllowPaging="True"  
                                                 GridLines="None" DataKeyNames="EmpID" ShowFooter="True" OnPageIndexChanging="grdData_PageIndexChanging"
                                                 OnRowCreated="grdData_RowCreated" OnRowDataBound="grdData_RowDataBound" OnSelectedIndexChanged="grdData_SelectedIndexChanged"
-                                                OnPreRender="grdData_PreRender"    EnableModelValidation="True">
+                                                OnPreRender="grdData_PreRender" meta:resourcekey="grdDataResource1">
                                                 <Columns>
-                                                    <asp:BoundField DataField="EmpID" HeaderText="Employee ID" SortExpression="EmpID"/>
+                                                    <asp:BoundField DataField="EmpID" HeaderText="Employee ID" SortExpression="EmpID" meta:resourcekey="BoundFieldResource1"/>
                                                     <asp:BoundField HeaderText="Name (Ar)" DataField="EmpNameAr" 
-                                                        SortExpression="EmpNameAr"/>
+                                                        SortExpression="EmpNameAr" meta:resourcekey="BoundFieldResource2"/>
                                                     <asp:BoundField DataField="EmpNameEn" HeaderText="Name (En)" 
-                                                        SortExpression="EmpNameEn"/>
+                                                        SortExpression="EmpNameEn" meta:resourcekey="BoundFieldResource3"/>
                                                     <asp:BoundField DataField="DepNameAr" HeaderText="Department Name (Ar)" 
-                                                        SortExpression="DepNameAr"/>
+                                                        SortExpression="DepNameAr" meta:resourcekey="BoundFieldResource4"/>
                                                     <asp:BoundField HeaderText="Department Name (En)" DataField="DepNameEn" 
-                                                        SortExpression="DepNameEn"/>
-                                                    <asp:TemplateField HeaderText="Status">
+                                                        SortExpression="DepNameEn" meta:resourcekey="BoundFieldResource5"/>
+                                                    <asp:TemplateField HeaderText="Status" meta:resourcekey="TemplateFieldResource1">
                                                         <ItemTemplate>
                                                             <%# FindStatus(Eval("EmpID"))%>
                                                         </ItemTemplate>

@@ -267,40 +267,41 @@
                                                               </div>
                     <div class="col4">   
                         <span class="daysChk">
-                                                   <asp:CheckBox ID="chkEwrSat" runat="server" Enabled="False" Text="Saturday" 
-                                                        meta:resourcekey="chkEwrSatResource1" />
-                                                   </span>
-                        <span class="daysChk">
-                                                   <asp:CheckBox ID="chkEwrSun" runat="server" Enabled="False" Text="Sunday" 
-                                                        meta:resourcekey="chkEwrSunResource1" />
-                                                   </span>
+                            <asp:CheckBox ID="chkEwrSun" runat="server" Enabled="False" Text="Sunday" 
+                                meta:resourcekey="chkEwrSunResource1" />
+                            </span>
                         <span class="daysChk">    
-                                                   <asp:CheckBox ID="chkEwrMon" runat="server" Enabled="False" Text="Monday" 
-                                                        meta:resourcekey="chkEwrMonResource1" />
-                                                   </span>
+                            <asp:CheckBox ID="chkEwrMon" runat="server" Enabled="False" Text="Monday" 
+                                meta:resourcekey="chkEwrMonResource1" />
+                            </span>
                         <span class="daysChk">    
-                                                   <asp:CheckBox ID="chkEwrTue" runat="server" Enabled="False" Text="Tuesday" 
-                                                        meta:resourcekey="chkEwrTueResource1" />
-                                                   </span>
+                            <asp:CheckBox ID="chkEwrTue" runat="server" Enabled="False" Text="Tuesday" 
+                                meta:resourcekey="chkEwrTueResource1" />
+                            </span>
                         <span class="daysChk">     
-                                                   <asp:CheckBox ID="chkEwrWed" runat="server" Enabled="False" Text="Wednesday" 
-                                                        meta:resourcekey="chkEwrWedResource1" />
-                                                   </span>
+                            <asp:CheckBox ID="chkEwrWed" runat="server" Enabled="False" Text="Wednesday" 
+                                meta:resourcekey="chkEwrWedResource1" />
+                            </span>
                         <span class="daysChk">    
-                                                   <asp:CheckBox ID="chkEwrThu" runat="server" Enabled="False" Text="Thursday" 
-                                                        meta:resourcekey="chkEwrThuResource1" />
-                                                   </span>
+                            <asp:CheckBox ID="chkEwrThu" runat="server" Enabled="False" Text="Thursday" 
+                                meta:resourcekey="chkEwrThuResource1" />
+                            </span>
                         <span class="daysChk">    
-                                                   <asp:CheckBox ID="chkEwrFri" runat="server" Enabled="False" Text="Friday" 
-                                                        meta:resourcekey="chkEwrFriResource1" />
-                                              </span>      <asp:CustomValidator id="cvSelectWorkDays" runat="server"
-                                                        Text="&lt;img src='../images/message_exclamation.png' title='Select Work Days!' /&gt;" 
-                                                        ValidationGroup="vgSave"
-                                                        ErrorMessage="Select Work Days" CssClass="CustomValidator"
-                                                        OnServerValidate="SelectWorkDays_ServerValidate" 
-                                                        EnableClientScript="False" 
-                                                        ControlToValidate="txtValid" meta:resourcekey="cvSelectWorkDaysResource1"></asp:CustomValidator>
-                                                     </div>
+                            <asp:CheckBox ID="chkEwrFri" runat="server" Enabled="False" Text="Friday" 
+                                meta:resourcekey="chkEwrFriResource1" />
+                        </span>      
+                        <span class="daysChk">
+                            <asp:CheckBox ID="chkEwrSat" runat="server" Enabled="False" Text="Saturday" 
+                                meta:resourcekey="chkEwrSatResource1" />
+                            </span>
+                        <asp:CustomValidator id="cvSelectWorkDays" runat="server"
+                            Text="&lt;img src='../images/message_exclamation.png' title='Select Work Days!' /&gt;" 
+                            ValidationGroup="vgSave"
+                            ErrorMessage="Select Work Days" CssClass="CustomValidator"
+                            OnServerValidate="SelectWorkDays_ServerValidate" 
+                            EnableClientScript="False" 
+                            ControlToValidate="txtValid" meta:resourcekey="cvSelectWorkDaysResource1"></asp:CustomValidator>
+                            </div>
                     <div class="col2">                    </div>
                     <div class="col4"> 
                                                     <asp:TextBox ID="txtID" runat="server" AutoCompleteType="Disabled" Enabled="False" Visible="false" Width="15px"></asp:TextBox>

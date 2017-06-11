@@ -47,9 +47,11 @@ public class ScheduleSql : DataLayerBase
             Sqlcmd.Parameters.Add(new SqlParameter("@SchReportFormat"    , ChrDB, 10,   IN, false, 0, 0, "", DRV, Pro.SchReportFormat));
             Sqlcmd.Parameters.Add(new SqlParameter("@SchEmailBodyContent", VchDB, 500,  IN, false, 0, 0, "", DRV, Pro.SchEmailBodyContent));
             Sqlcmd.Parameters.Add(new SqlParameter("@SchEmailSubject"    , VchDB, 50,   IN, false, 0, 0, "", DRV, Pro.SchEmailSubject));
-            Sqlcmd.Parameters.Add(new SqlParameter("@SchDays"            , VchDB, 100,  IN, false, 0, 0, "", DRV, Pro.SchDays));
-            Sqlcmd.Parameters.Add(new SqlParameter("@SchMonths"          , VchDB, 100,  IN, false, 0, 0, "", DRV, Pro.SchMonths));
-            Sqlcmd.Parameters.Add(new SqlParameter("@SchWeeks"           , VchDB, 100,  IN, false, 0, 0, "", DRV, Pro.SchWeeks));
+            Sqlcmd.Parameters.Add(new SqlParameter("@SchCalendar"        , ChrDB, 1,    IN, false, 0, 0, "", DRV, Pro.SchCalendar));
+
+            Sqlcmd.Parameters.Add(new SqlParameter("@SchDays"            , VchDB, 1000, IN, false, 0, 0, "", DRV, Pro.SchDays));
+            Sqlcmd.Parameters.Add(new SqlParameter("@SchMonths"          , VchDB, 1000, IN, false, 0, 0, "", DRV, Pro.SchMonths));
+            Sqlcmd.Parameters.Add(new SqlParameter("@SchWeekDays"        , VchDB, 1000, IN, false, 0, 0, "", DRV, Pro.SchWeekDays));
 
             Sqlcmd.Parameters.Add(new SqlParameter("@IsExecute"    , IntDB, 10, OU, false, 0, 0, "", DRV, 0));
             Sqlcmd.Parameters.Add(new SqlParameter("@TransactionBy", VchDB, 15, IN, false, 0, 0, "", DRV, Pro.TransactionBy));
@@ -98,9 +100,11 @@ public class ScheduleSql : DataLayerBase
             Sqlcmd.Parameters.Add(new SqlParameter("@SchReportFormat"    , ChrDB, 10,   IN, false, 0, 0, "", DRV, Pro.SchReportFormat));
             Sqlcmd.Parameters.Add(new SqlParameter("@SchEmailBodyContent", VchDB, 500,  IN, false, 0, 0, "", DRV, Pro.SchEmailBodyContent));
             Sqlcmd.Parameters.Add(new SqlParameter("@SchEmailSubject"    , VchDB, 50,   IN, false, 0, 0, "", DRV, Pro.SchEmailSubject));
-            Sqlcmd.Parameters.Add(new SqlParameter("@SchDays"            , VchDB, 100,  IN, false, 0, 0, "", DRV, Pro.SchDays));
-            Sqlcmd.Parameters.Add(new SqlParameter("@SchMonths"          , VchDB, 100,  IN, false, 0, 0, "", DRV, Pro.SchMonths));
-            Sqlcmd.Parameters.Add(new SqlParameter("@SchWeeks"           , VchDB, 100,  IN, false, 0, 0, "", DRV, Pro.SchWeeks));
+            Sqlcmd.Parameters.Add(new SqlParameter("@SchCalendar"        , ChrDB, 1,    IN, false, 0, 0, "", DRV, Pro.SchCalendar));
+
+            Sqlcmd.Parameters.Add(new SqlParameter("@SchDays"    , VchDB, 1000, IN, false, 0, 0, "", DRV, Pro.SchDays));
+            Sqlcmd.Parameters.Add(new SqlParameter("@SchMonths"  , VchDB, 1000, IN, false, 0, 0, "", DRV, Pro.SchMonths));
+            Sqlcmd.Parameters.Add(new SqlParameter("@SchWeekDays", VchDB, 1000, IN, false, 0, 0, "", DRV, Pro.SchWeekDays));
 
             Sqlcmd.Parameters.Add(new SqlParameter("@IsExecute"    , IntDB, 10, OU, false, 0, 0, "", DRV, 0));
             Sqlcmd.Parameters.Add(new SqlParameter("@TransactionBy", VchDB, 15, IN, false, 0, 0, "", DRV, Pro.TransactionBy));

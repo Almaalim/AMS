@@ -7,14 +7,11 @@
     Namespace="System.Web.DynamicData" TagPrefix="cc1" %>
 <%@ Register Assembly="AjaxSamples" Namespace="AjaxSamples" TagPrefix="as" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<%@ Register Assembly="TimePickerServerControl" Namespace="TimePickerServerControl"
-    TagPrefix="Almaalim" %>
+<%@ Register Assembly="TimePickerServerControl" Namespace="TimePickerServerControl" TagPrefix="Almaalim" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <script type="text/javascript" src="../Script/GridEvent.js"></script>
     <script type="text/javascript" src="../Script/CheckKey.js"></script>
     <script type="text/javascript" src="../Script/TabContainer.js"></script>
- <%--   <link href="../CSS/buttonStyle.css" rel="stylesheet" type="text/css" />
-    <link href="../CSS/validationStyle.css" rel="stylesheet" type="text/css" />--%>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="row">

@@ -289,6 +289,7 @@ public partial class Pages_Config_Notifications : BasePage
             UIClear();
             BtnStatus("1000");
             UIEnabled(false);
+            FillGrid(new SqlCommand(MainQuery));
             grdData.SelectedIndex = -1;
             CtrlCs.ShowSaveMsg(this);
         }

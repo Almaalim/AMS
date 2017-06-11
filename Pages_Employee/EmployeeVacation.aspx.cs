@@ -167,7 +167,8 @@ public partial class EmployeeVacation : BasePage
             ProCs.EvrDesc         = txtDesc.Text;
             ProCs.EvrAvailability = txtAvailable.Text;
             ProCs.EvrPhone        = txtPhoneNo.Text;
-        
+
+            ProCs.EvrAddBy      = "USR"; // 'USR' = FROM USER, 'REQ' = FROM Request, 'EXC' = FROM Execuse Premit, 'INT' = FROM Emport Data
             ProCs.TransactionBy = pgCs.LoginID;
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
@@ -350,8 +351,8 @@ public partial class EmployeeVacation : BasePage
             {
                 case ("Delete1"):
                     string ID = e.CommandArgument.ToString();
-                   
-                    DataTable DT = DBCs.FetchData("SELECT * FROM EmpVacRel WHERE EvrCreatedBy = 'SYSTEM' AND EvrID = @P1 ", new string[] { ID });
+                    
+                    DataTable DT = DBCs.FetchData("SELECT * FROM EmpVacRel WHERE EvrAddBy IN ('REQ', 'INT') AND EvrID = @P1 ", new string[] { ID });
                     if (!DBCs.IsNullOrEmpty(DT))
                     {
                         CtrlCs.ShowDelMsg(this, false);

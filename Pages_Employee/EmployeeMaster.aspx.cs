@@ -1,20 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls.WebParts;
 using System.Collections;
-using System.Configuration;
-using System.Web.Security;
 using Elmah;
 using System.Data;
 using System.Data.SqlClient;
-using System.Text;
-using System.Threading;
-using System.Globalization;
 
 public partial class EmployeeMaster : BasePage
 {
@@ -516,12 +506,10 @@ public partial class EmployeeMaster : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void btnVacSet_Click(object sender, EventArgs e)
     {
-        if (pgCs.Lang == "AR") { lblNamePopup.Text = "تخصيص إجازة للموظف"; } else { lblNamePopup.Text = "Set Employee Vacation"; }
-        ifrmPopup.Attributes.Add("src", "SetEmployeeVacation.aspx?EmpID=" + txtEmployeeID.Text);
+        string Name = txtEmployeeID.Text + "-" + General.Msg(txtEmpNameEn.Text, txtEmpNameAr.Text);
+        lblNamePopup.Text = General.Msg("Set Employee Vacation", "تخصيص إجازة للموظف");
+        ifrmPopup.Attributes.Add("src", "SetEmployeeVacation.aspx?EmpID=" + txtEmployeeID.Text + "&Name=" + Name);
         ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "showPopup();", true);
-        
-        //string url = "SetEmployeeVacation.aspx?EmpID=" + txtEmployeeID.Text;
-        //ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "OpenChild('" + url + "');", true);
     }
 
     #endregion

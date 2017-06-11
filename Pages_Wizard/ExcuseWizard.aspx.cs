@@ -205,7 +205,7 @@ public partial class ExcuseWizard : BasePage
                 ProCs.ExrISOvernight = false;
                 ProCs.ExrIsOverTime  = false;
                 ProCs.ExrIsStopped   = false;
-
+                ProCs.ExrAddBy = "USR";
                 ProCs.TransactionBy = pgCs.LoginID;
 
                 SqlCs.Period_Insert_WithUpdateSummary(ProCs);

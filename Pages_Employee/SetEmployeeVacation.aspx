@@ -17,10 +17,6 @@
     <script type="text/javascript" src="../Script/DivPopup.js"></script>
     <%--script--%>
     <%--stylesheet--%>
-    <%--<link href="../CSS/ModalPopup.css" rel="stylesheet" type="text/css" />
-    <link href="../CSS/MasterPageStyle.css" rel="stylesheet" type="text/css" />
-    <link href="../CSS/buttonStyle.css" rel="stylesheet" type="text/css" />
-    <link href="../CSS/validationStyle.css" rel="stylesheet" type="text/css" />--%>
     <link href="../CSS/Metro/Metro.css" rel="stylesheet" />
     <%--stylesheet--%>
 </head>
@@ -32,13 +28,18 @@
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
 
-                    <div id="divName" runat="server">
+                     <div class="row">
+                        <div class="col12">
+                            <asp:Label ID="lblName" runat="server" Text="" CssClass="h4"></asp:Label>
+                        </div>
                     </div>
+                    
+                    
                     <div class="row">
                         <div class="col12">
                             <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData" />
                             <asp:GridView ID="grdData" runat="server" CssClass="datatable" SelectedIndex="0"
-                                AutoGenerateColumns="False" PageSize="3" AllowPaging="True"
+                                AutoGenerateColumns="False" PageSize="5" AllowPaging="false"
                                 GridLines="None" DataKeyNames="EvsID" ShowFooter="True" OnPageIndexChanging="grdData_PageIndexChanging"
                                 OnRowDataBound="grdData_RowDataBound" OnSorting="grdData_Sorting" OnSelectedIndexChanged="grdData_SelectedIndexChanged"
                                 OnRowCommand="grdData_RowCommand" OnRowCreated="grdData_RowCreated"
@@ -51,7 +52,7 @@
                                     <asp:BoundField HeaderText="Employee ID" DataField="EmpID" SortExpression="EmpID"
                                         meta:resourcekey="BoundFieldResource1" />
                                     <asp:BoundField HeaderText="ID" DataField="EvsID" SortExpression="EvsID" meta:resourcekey="BoundFieldResource2" />
-                                    <asp:BoundField HeaderText="Vacation Name (Ar)" DataField="VtpNameAr" SortExpression="VtpNameAr"
+                                     <asp:BoundField HeaderText="Vacation Name (Ar)" DataField="VtpNameAr" SortExpression="VtpNameAr"
                                         meta:resourcekey="BoundFieldResource3" />
                                     <asp:BoundField HeaderText="Vacation Name (En)" DataField="VtpNameEn" SortExpression="VtpNameEn"
                                         meta:resourcekey="BoundFieldResource4" />
@@ -59,7 +60,7 @@
                                         meta:resourcekey="BoundFieldResource5" />
                                     <asp:TemplateField HeaderText="           " meta:resourcekey="TemplateFieldResource1">
                                         <ItemTemplate>
-                                            <asp:ImageButton ID="imgbtnDelete" Enabled="False" CommandName="Delete1" CommandArgument='<%# Eval("EvsID") %>'
+                                            <asp:ImageButton ID="imgbtnDelete" CommandName="Delete1" CommandArgument='<%# Eval("EvsID") %>'
                                                 runat="server" ImageUrl="../images/Button_Icons/button_delete.png" meta:resourcekey="imgbtnDeleteResource1" />
                                         </ItemTemplate>
                                     </asp:TemplateField>
@@ -72,7 +73,7 @@
                     <div class="row">
                         <div class="col12">
                             <asp:ValidationSummary ID="vsShowMsg" runat="server" CssClass="MsgSuccess"
-                                EnableClientScript="False" ValidationGroup="ShowMsg" />
+                                EnableClientScript="False" ValidationGroup="vgShowMsg" />
                         </div>
                     </div>
 
@@ -81,6 +82,35 @@
                             <asp:ValidationSummary ID="vsSave" runat="server" ValidationGroup="vgSave"
                                 EnableClientScript="False" CssClass="MsgValidation"
                                 meta:resourcekey="vsumAllResource1" />
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col8">
+                            <asp:LinkButton ID="btnAdd" runat="server" CssClass="GenButton glyphicon glyphicon-plus-sign" OnClick="btnAdd_Click"
+                                Text="&lt;img src=&quot;../images/Button_Icons/button_add.png&quot; /&gt; Add"
+                                meta:resourcekey="btnAddResource1"></asp:LinkButton>
+
+                            <asp:LinkButton ID="btnModify" runat="server" CssClass="GenButton glyphicon glyphicon-edit"
+                                OnClick="btnModify_Click" Text="&lt;img src=&quot;../images/Button_Icons/button_edit.png&quot; /&gt; Modify"
+                                meta:resourcekey="btnModifyResource1"></asp:LinkButton>
+
+                            <asp:LinkButton ID="btnSave" runat="server" CssClass="GenButton glyphicon glyphicon-floppy-disk"   OnClick="btnSave_Click"
+                                Text="&lt;img src=&quot;../images/Button_Icons/button_storage.png&quot; /&gt; Save"
+                                ValidationGroup="vgSave"   meta:resourcekey="btnSaveResource1"></asp:LinkButton>
+
+                            <asp:LinkButton ID="btnCancel" runat="server" CssClass="GenButton glyphicon glyphicon-remove-circle"
+                                OnClick="btnCancel_Click" Text="&lt;img src=&quot;../images/Button_Icons/button_Cancel.png&quot; /&gt; Cancel"
+                                meta:resourcekey="btnCancelResource1"></asp:LinkButton>
+                        </div>
+                        <div class="col4">
+                            <asp:TextBox ID="txtValid" runat="server" Text="02120" Visible="False"
+                                Width="10px" meta:resourcekey="txtCustomValidatorResource1"></asp:TextBox>
+
+                            <asp:CustomValidator ID="cvShowMsg" runat="server" Display="None" CssClass="CustomValidator"
+                                ValidationGroup="vgShowMsg" OnServerValidate="ShowMsg_ServerValidate"
+                                EnableClientScript="False" ControlToValidate="txtValid">
+                            </asp:CustomValidator>
                         </div>
                     </div>
 
@@ -112,7 +142,7 @@
                             <asp:Label ID="lblMaxDays" runat="server" Text="Max Days:" meta:resourcekey="lblMaxDaysResource1"></asp:Label>
                         </div>
                         <div class="col4">
-                            <asp:TextBox ID="txtMaxDayes" runat="server" Enabled="False" meta:resourcekey="txtMaxDayesResource1"></asp:TextBox>
+                            <asp:TextBox ID="txtMaxDayes" runat="server" Enabled="False" onkeypress="return OnlyNumber(event);" meta:resourcekey="txtMaxDayesResource1"></asp:TextBox>
                             <asp:RegularExpressionValidator ID="RegularExpressionValidator7" runat="server" ControlToValidate="txtMaxDayes"
                                 EnableClientScript="False" ErrorMessage=" Enter Only Numbers" ValidationExpression="^\d+$" CssClass="CustomValidator"
                                 ValidationGroup="vgSave" meta:resourcekey="RegularExpressionValidator7Resource1"><img src="../images/Exclamation.gif" 
@@ -137,36 +167,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col8">
-                            <asp:LinkButton ID="btnAdd" runat="server" CssClass="GenButton glyphicon glyphicon-plus-sign" OnClick="btnAdd_Click"
-                                Text="&lt;img src=&quot;../images/Button_Icons/button_add.png&quot; /&gt; Add"
-                                meta:resourcekey="btnAddResource1"></asp:LinkButton>
-
-                            <asp:LinkButton ID="btnModify" runat="server" CssClass="GenButton glyphicon glyphicon-edit"
-                                OnClick="btnModify_Click" Text="&lt;img src=&quot;../images/Button_Icons/button_edit.png&quot; /&gt; Modify"
-                                meta:resourcekey="btnModifyResource1"></asp:LinkButton>
-
-                            <asp:LinkButton ID="btnSave" runat="server" CssClass="GenButton glyphicon glyphicon-floppy-disk"   OnClick="btnSave_Click"
-                                Text="&lt;img src=&quot;../images/Button_Icons/button_storage.png&quot; /&gt; Save"
-                                ValidationGroup="vgSave"   meta:resourcekey="btnSaveResource1"></asp:LinkButton>
-
-                            <asp:LinkButton ID="btnCancel" runat="server" CssClass="GenButton glyphicon glyphicon-remove-circle"
-                                OnClick="btnCancel_Click" Text="&lt;img src=&quot;../images/Button_Icons/button_Cancel.png&quot; /&gt; Cancel"
-                                meta:resourcekey="btnCancelResource1"></asp:LinkButton>
-                        </div>
-                        <div class="col4">
-                            <asp:TextBox ID="txtValid" runat="server" Text="02120" Visible="False"
-                                Width="10px" meta:resourcekey="txtCustomValidatorResource1"></asp:TextBox>
-
-                            <asp:CustomValidator ID="cvShowMsg" runat="server" Display="None" CssClass="CustomValidator"
-                                ValidationGroup="ShowMsg" OnServerValidate="ShowMsg_ServerValidate"
-                                EnableClientScript="False" ControlToValidate="txtValid">
-                            </asp:CustomValidator>
-                        </div>
-                    </div>
-
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>

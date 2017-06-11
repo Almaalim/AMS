@@ -757,6 +757,21 @@ public class CtrlFun : DataLayerBase
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void ShowAdminMsg(Page pg, ValidationSummary vs, CustomValidator cv, string VG, string pEx)
+    {
+        string MMsg = General.Msg("Transaction failed to commit please contact your administrator. ", "النظام غير قادر على حفظ البيانات, الرجاء الاتصال بمدير النظام. ");
+        string DMsg = General.Msg("<a style=\"color:Blue\" href='#' onclick=\"alert('" + pEx.Replace("'", "") + "');\">To find out the error details Click here </a> ", "<a style=\"color:Blue\" href='#' onclick=\"alert('" + pEx.Replace("'", "") + "');\">لمعرفة تفاصيل الخطأ اضغط هنا </a> ");
+
+        vs.ValidationGroup = VG;
+        pEx = pEx.Replace("'", " ");
+        cv.ErrorMessage = MMsg + DMsg;
+        cv.ValidationGroup = VG;
+        vs.CssClass = "MsgError";
+        vs.ForeColor = ColorTranslator.FromHtml("#D8000C");
+        pg.Validate(VG);
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public string ConfirmDeleteMsg()
     {
         return General.Msg("return confirm('Are you sure you want to delete');", "return confirm('هل أنت متأكد أنك تريد حذف');");

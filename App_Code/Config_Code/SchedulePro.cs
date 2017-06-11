@@ -91,14 +91,17 @@ public class SchedulePro
     string _SchLastRunTime;
     public string SchLastRunTime { get { return _SchLastRunTime; } set { if (_SchLastRunTime != value) { _SchLastRunTime = value; } } }
 
+    string _SchCalendar;
+    public string SchCalendar { get { return _SchCalendar; } set { if (_SchCalendar != value) { _SchCalendar = value; } } }
+
     string _SchDays;
     public string SchDays { get { return _SchDays; } set { if (_SchDays != value) { _SchDays = value; } } }
 
     string _SchMonths;
     public string SchMonths { get { return _SchMonths; } set { if (_SchMonths != value) { _SchMonths = value; } } }
 
-    string _SchWeeks;
-    public string SchWeeks { get { return _SchWeeks; } set { if (_SchWeeks != value) { _SchWeeks = value; } } }
+    string _SchWeekDays;
+    public string SchWeekDays { get { return _SchWeekDays; } set { if (_SchWeekDays != value) { _SchWeekDays = value; } } }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private string _TransactionBy;

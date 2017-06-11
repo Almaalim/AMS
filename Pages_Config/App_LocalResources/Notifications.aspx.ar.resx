@@ -124,7 +124,7 @@
     <value />
   </data>
   <data name="BoundFieldResource1.HeaderText" xml:space="preserve">
-    <value>SchID</value>
+    <value>الاسم (ع)</value>
   </data>
   <data name="BoundFieldResource2.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -133,7 +133,7 @@
     <value />
   </data>
   <data name="BoundFieldResource2.HeaderText" xml:space="preserve">
-    <value>النوع</value>
+    <value>الاسم (E)</value>
   </data>
   <data name="BoundFieldResource3.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -142,7 +142,7 @@
     <value />
   </data>
   <data name="BoundFieldResource3.HeaderText" xml:space="preserve">
-    <value>الاسم (ع)</value>
+    <value>MailID</value>
   </data>
   <data name="BoundFieldResource4.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -151,24 +151,12 @@
     <value />
   </data>
   <data name="BoundFieldResource4.HeaderText" xml:space="preserve">
-    <value>الاسم (E)</value>
-  </data>
-  <data name="btnAddResource1.Text" xml:space="preserve">
-    <value>&lt;img src="../images/Button_Icons/button_add.png" /&gt; اضافة</value>
-  </data>
-  <data name="btnAddResource1.ToolTip" xml:space="preserve">
-    <value />
+    <value>MailCode</value>
   </data>
   <data name="btnCancelResource1.Text" xml:space="preserve">
     <value>&lt;img src="../images/Button_Icons/button_Cancel.png" /&gt; الغاء</value>
   </data>
   <data name="btnCancelResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="btnFilterResource1.AlternateText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="btnFilterResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="btnModifyResource1.Text" xml:space="preserve">
@@ -189,11 +177,8 @@
   <data name="cblDaysOfWeekResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="cblMonthResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="chkStatusResource1.Text" xml:space="preserve">
-    <value />
+    <value>تفعيل</value>
   </data>
   <data name="chkStatusResource1.ToolTip" xml:space="preserve">
     <value />
@@ -225,46 +210,22 @@
   <data name="cvShowMsgResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="ddlEveryMinuteResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ddlFilterResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ddlReportFormatResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ddlReportGroupResource1.ToolTip" xml:space="preserve">
+  <data name="ddlMailSendTypeResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="ddlScheduleTypeResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="ddlWeekOfMonthResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="FridayResource1.Text" xml:space="preserve">
     <value>الجمعة</value>
   </data>
-  <data name="grdSchedulesResource1.Caption" xml:space="preserve">
+  <data name="grdDataResource1.Caption" xml:space="preserve">
     <value />
   </data>
-  <data name="grdSchedulesResource1.EmptyDataText" xml:space="preserve">
+  <data name="grdDataResource1.EmptyDataText" xml:space="preserve">
     <value />
   </data>
-  <data name="grdSchedulesResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="imgbtnDeleteResource1.AlternateText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="imgbtnDeleteResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Label1Resource1.Text" xml:space="preserve">
-    <value>نوع الجدولة :</value>
-  </data>
-  <data name="Label1Resource1.ToolTip" xml:space="preserve">
+  <data name="grdDataResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblCalendardaysResource1.Text" xml:space="preserve">
@@ -279,68 +240,17 @@
   <data name="lblDescriptionResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lblEmpGroupResource1.Text" xml:space="preserve">
-    <value>المستخدم :</value>
+  <data name="lblMailSendTypeResource1.Text" xml:space="preserve">
+    <value>إرسال إلى :</value>
   </data>
-  <data name="lblEmpGroupResource1.ToolTip" xml:space="preserve">
+  <data name="lblMailSendTypeResource1.ToolTip" xml:space="preserve">
     <value />
-  </data>
-  <data name="lblEndDateResource1.Text" xml:space="preserve">
-    <value>تاريخ الإنتهاء :</value>
-  </data>
-  <data name="lblEndDateResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblHintResource1.Text" xml:space="preserve">
-    <value>وفقا لنوع الجدولة الزمنية حدد الأيام ، الأشهر ، الأسابيع</value>
-  </data>
-  <data name="lblHintResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblHintResource2.Text" xml:space="preserve">
-    <value>قائمة المستخدمين الذين سيتم ارسال الايميل لهم بحسب الجدولة المحددة</value>
-  </data>
-  <data name="lblHintResource2.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblhoursResource1.Text" xml:space="preserve">
-    <value>الساعات :</value>
-  </data>
-  <data name="lblhoursResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblIDFilterResource1.Text" xml:space="preserve">
-    <value>بحث بواسطة :</value>
-  </data>
-  <data name="lblIDFilterResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblMessageResource1.Text" xml:space="preserve">
-    <value>الرسالة :</value>
-  </data>
-  <data name="lblMessageResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblminutesResource1.Text" xml:space="preserve">
-    <value>الدقائق :</value>
-  </data>
-  <data name="lblminutesResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblMonthsResource1.Text" xml:space="preserve">
-    <value>الشهور :</value>
-  </data>
-  <data name="lblMonthsResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblNameArResource1.Text" xml:space="preserve">
-    <value>إسم الجدولة (ع) :</value>
   </data>
   <data name="lblNameArResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblNameEnResource1.Text" xml:space="preserve">
-    <value>اسم الجدولة (E) :</value>
+    <value>الاسم (E) :</value>
   </data>
   <data name="lblNameEnResource1.ToolTip" xml:space="preserve">
     <value />
@@ -351,46 +261,10 @@
   <data name="lblOnthefollowingdaysResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lblOnweekofmonthResource1.Text" xml:space="preserve">
-    <value>في أي أسبوع من الشهر :</value>
+  <data name="lblScheduleTypeResource1.Text" xml:space="preserve">
+    <value>نوع الجدولة :</value>
   </data>
-  <data name="lblOnweekofmonthResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblRepeatDaysResource1.Text" xml:space="preserve">
-    <value>إعادة بعد عدد من الأيام :</value>
-  </data>
-  <data name="lblRepeatDaysResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblRepeatweeksResource1.Text" xml:space="preserve">
-    <value>إعادة بعد عدد من الأسابيع :</value>
-  </data>
-  <data name="lblRepeatweeksResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblReportFormatResource1.Text" xml:space="preserve">
-    <value>صيغة التقرير :</value>
-  </data>
-  <data name="lblReportFormatResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblReportGroupResource1.Text" xml:space="preserve">
-    <value>التقرير :</value>
-  </data>
-  <data name="lblReportGroupResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblRunthescheduleeveryResource1.Text" xml:space="preserve">
-    <value>تشغيل الجدولة كل :</value>
-  </data>
-  <data name="lblRunthescheduleeveryResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblStartDateResource1.Text" xml:space="preserve">
-    <value>تاريخ البدء :</value>
-  </data>
-  <data name="lblStartDateResource1.ToolTip" xml:space="preserve">
+  <data name="lblScheduleTypeResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblStartTimeResource1.Text" xml:space="preserve">
@@ -399,140 +273,32 @@
   <data name="lblStartTimeResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lblStatusResource1.Text" xml:space="preserve">
-    <value>تفعيل</value>
-  </data>
-  <data name="lblStatusResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblSubjectResource1.Text" xml:space="preserve">
-    <value>الموضوع :</value>
-  </data>
-  <data name="lblSubjectResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lbxUsersResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="ListItemResource1.Text" xml:space="preserve">
-    <value>[غير محدد]</value>
-  </data>
-  <data name="ListItemResource10.Text" xml:space="preserve">
-    <value>تشغيل مرة واحدة</value>
+    <value>الموظفون</value>
   </data>
   <data name="ListItemResource2.Text" xml:space="preserve">
-    <value>اسم الجدولة (E)</value>
+    <value>المستخدمون</value>
   </data>
   <data name="ListItemResource3.Text" xml:space="preserve">
-    <value>اسم الجدولة (ع)</value>
+    <value>يومي - الوردية الأولى</value>
   </data>
   <data name="ListItemResource4.Text" xml:space="preserve">
-    <value>ساعات</value>
+    <value>يومي - الوردية الثانية</value>
   </data>
   <data name="ListItemResource5.Text" xml:space="preserve">
-    <value>يومي</value>
+    <value>يومي - الوردية الثالثة</value>
   </data>
   <data name="ListItemResource6.Text" xml:space="preserve">
     <value>اسبوعي</value>
   </data>
   <data name="ListItemResource7.Text" xml:space="preserve">
-    <value>تخطي الأسبوعي</value>
-  </data>
-  <data name="ListItemResource71.Text" xml:space="preserve">
-    <value>الأول</value>
-  </data>
-  <data name="ListItemResource72.Text" xml:space="preserve">
-    <value>الثاني</value>
-  </data>
-  <data name="ListItemResource73.Text" xml:space="preserve">
-    <value>الثالث</value>
-  </data>
-  <data name="ListItemResource74.Text" xml:space="preserve">
-    <value>الرابع</value>
-  </data>
-  <data name="ListItemResource75.Text" xml:space="preserve">
-    <value>الأخير</value>
-  </data>
-  <data name="ListItemResource76.Text" xml:space="preserve">
-    <value>-اختر الصيغة-</value>
-  </data>
-  <data name="ListItemResource77.Text" xml:space="preserve">
-    <value>Excel</value>
-  </data>
-  <data name="ListItemResource78.Text" xml:space="preserve">
-    <value>Pdf</value>
-  </data>
-  <data name="ListItemResource8.Text" xml:space="preserve">
-    <value>عدد الأسابيع</value>
-  </data>
-  <data name="ListItemResource9.Text" xml:space="preserve">
-    <value>التقويم</value>
-  </data>
-  <data name="lnkClose1Resource1.Text" xml:space="preserve">
-    <value>X</value>
-  </data>
-  <data name="lnkClose1Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lnkClose2Resource1.Text" xml:space="preserve">
-    <value>X</value>
-  </data>
-  <data name="lnkClose2Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lnkShow1Resource1.AlternateText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lnkShow1Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lnkShow2Resource1.AlternateText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lnkShow2Resource1.ToolTip" xml:space="preserve">
-    <value />
+    <value>شهري</value>
   </data>
   <data name="MondayResource1.Text" xml:space="preserve">
     <value>الإثنين</value>
   </data>
   <data name="PageResource1.Title" xml:space="preserve">
-    <value>صفحة جدولة التقارير</value>
-  </data>
-  <data name="RequiredFieldValidator4Resource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='يجب إختيار المستخدمين' /&gt;</value>
-  </data>
-  <data name="RequiredFieldValidator4Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="rfvMessageResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='الرسالة مطلوبة' /&gt;</value>
-  </data>
-  <data name="rfvMessageResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="rfvReportFormatResource1.ErrorMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="rfvReportFormatResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='يجب إختيار صيغة التقرير' /&gt;</value>
-  </data>
-  <data name="rfvReportFormatResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="rfvReportGroupResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='يجب إختيار التقرير' /&gt;</value>
-  </data>
-  <data name="rfvReportGroupResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="rfvSubjectResource1.ErrorMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="rfvSubjectResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='الموضوع مطلوب' /&gt;</value>
-  </data>
-  <data name="rfvSubjectResource1.ToolTip" xml:space="preserve">
-    <value />
+    <value>صفحة إعدادات التنبيهات</value>
   </data>
   <data name="SaturdayResource1.Text" xml:space="preserve">
     <value>السبت</value>
@@ -547,25 +313,7 @@
     <value />
   </data>
   <data name="TemplateFieldResource1.HeaderText" xml:space="preserve">
-    <value>تاريخ البداية</value>
-  </data>
-  <data name="TemplateFieldResource2.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TemplateFieldResource2.FooterText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TemplateFieldResource2.HeaderText" xml:space="preserve">
-    <value>تاريخ الإنتهاء</value>
-  </data>
-  <data name="TemplateFieldResource3.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TemplateFieldResource3.FooterText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TemplateFieldResource3.HeaderText" xml:space="preserve">
-    <value>           </value>
+    <value>الحالة</value>
   </data>
   <data name="ThursdayResource1.Text" xml:space="preserve">
     <value>الخميس</value>
@@ -586,58 +334,28 @@
   <data name="txtDescriptionResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="txtEveryHourResource1.Text" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="txtEveryHourResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="txtFilterResource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="txtFilterResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="txtIDResource1.Text" xml:space="preserve">
     <value />
   </data>
   <data name="txtIDResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="txtMessageResource1.Text" xml:space="preserve">
+  <data name="txtNameArResource1.Text" xml:space="preserve">
     <value />
   </data>
-  <data name="txtMessageResource1.ToolTip" xml:space="preserve">
+  <data name="txtNameArResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="txtRepeatDaysResource1.Text" xml:space="preserve">
+  <data name="txtNameEnResource1.Text" xml:space="preserve">
     <value />
   </data>
-  <data name="txtRepeatDaysResource1.ToolTip" xml:space="preserve">
+  <data name="txtNameEnResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="txtRepeatWeekResource1.Text" xml:space="preserve">
+  <data name="vsSaveResource1.HeaderText" xml:space="preserve">
     <value />
   </data>
-  <data name="txtRepeatWeekResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="txtScheduleNameArResource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="txtScheduleNameArResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="txtScheduleNameEnResource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="txtScheduleNameEnResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="txtSubjectResource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="txtSubjectResource1.ToolTip" xml:space="preserve">
+  <data name="vsSaveResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="vsShowMsgResource1.HeaderText" xml:space="preserve">
@@ -646,13 +364,10 @@
   <data name="vsShowMsgResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="vsumAllResource1.HeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="vsumAllResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="WednesdayResource1.Text" xml:space="preserve">
     <value>الأربعاء</value>
+  </data>
+  <data name="lblNameArResource1.Text" xml:space="preserve">
+    <value>الاسم (ع) :</value>
   </data>
 </root>

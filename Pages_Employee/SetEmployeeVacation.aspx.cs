@@ -56,7 +56,8 @@ public partial class SetEmployeeVacation : BasePage
                 if (Request.QueryString["EmpID"] != null)
                 {
                     txtEmpID.Text = Request.QueryString["EmpID"].ToString();
-                    FillGrid( new SqlCommand(MainQuery + " AND evs.EmpID = '" + ViewState["EmpID"] + "'"));
+                    lblName.Text = Request.QueryString["Name"].ToString();
+                    FillGrid( new SqlCommand(MainQuery + " AND evs.EmpID = '" + txtEmpID.Text + "'"));
                 }
             }
         }
@@ -139,7 +140,7 @@ public partial class SetEmployeeVacation : BasePage
             if (Boolean.Parse(DT.Rows[0]["VtpStatus"].ToString()) == false)
             {
                 ddlVtpType.SelectedIndex = 0;
-                CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Validation, General.Msg("No can select this vacation, because is unactive", "لا يمكن استخدام هذا النوع من الإجازات، لأنه غير مفعل"));                
+                CtrlCs.ShowMsg(this, vsShowMsg, cvShowMsg, CtrlFun.TypeMsg.Validation, "vgShowMsg", General.Msg("No can select this vacation, because is unactive", "لا يمكن استخدام هذا النوع من الإجازات، لأنه غير مفعل"));           
             }
         }
     }
@@ -188,7 +189,7 @@ public partial class SetEmployeeVacation : BasePage
                 DataTable DT = DBCs.FetchData("SELECT * FROM EmpVacSetting WHERE EmpID = @P1 AND VtpID = @P2", new string[] { txtEmpID.Text,ddlVtpType.SelectedValue.ToString() });
                 if (!DBCs.IsNullOrEmpty(DT))
                 {
-                    CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Validation, General.Msg("this vacation type is saved early", "تم حفظ هذا النوع مسبقاً"));
+                    CtrlCs.ShowMsg(this, vsShowMsg, cvShowMsg, CtrlFun.TypeMsg.Validation, "vgShowMsg", General.Msg("this vacation type is saved early", "تم حفظ هذا النوع مسبقاً"));
                     return;
                 }
 
@@ -201,12 +202,15 @@ public partial class SetEmployeeVacation : BasePage
 
             UIClear();
             BtnStatus("1000");
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "hideparentPopup('');", true);
+            UIEnabled(false);
+            FillGrid(new SqlCommand(MainQuery + " AND evs.EmpID = '" + txtEmpID.Text + "'"));
+            CtrlCs.ShowMsg(this, vsShowMsg, cvShowMsg, CtrlFun.TypeMsg.Success, "vgShowMsg", General.Msg("Saved data successfully", "تم الحفظ البيانات بنجاح"));
+            //ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "hideparentPopup('');", true);
         }
         catch (Exception ex) 
         { 
-            ErrorSignal.FromCurrentContext().Raise(ex); 
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            ErrorSignal.FromCurrentContext().Raise(ex);
+            CtrlCs.ShowAdminMsg(this, vsShowMsg, cvShowMsg, "vgShowMsg", ex.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -259,6 +263,7 @@ public partial class SetEmployeeVacation : BasePage
                     }
                  default:
                     {
+                        e.Row.Cells[0].Visible = false; //To hide ID column in grid view
                         e.Row.Cells[1].Visible = false; //To hide ID column in grid view
                         break;
                     }
@@ -286,7 +291,7 @@ public partial class SetEmployeeVacation : BasePage
                     {
                         ImageButton delBtn = (ImageButton)e.Row.FindControl("imgbtnDelete");
                         Hashtable ht = (Hashtable)ViewState["ht"];
-                        if (ht.ContainsKey("Delete")) { delBtn.Enabled = true; } else { delBtn.Enabled = false; }
+                        //if (ht.ContainsKey("Delete")) { delBtn.Enabled = true; } else { delBtn.Enabled = false; }
                         delBtn.Attributes.Add("OnClick", CtrlCs.ConfirmDeleteMsg());
                         e.Row.Attributes["onclick"] = ClientScript.GetPostBackClientHyperlink(this.grdData, "Select$" + e.Row.RowIndex);
                         break;
@@ -315,14 +320,14 @@ public partial class SetEmployeeVacation : BasePage
                     
                     SqlCs.EmpVacSetting_Delete(ID, pgCs.LoginID);
                     FillGrid(new SqlCommand(MainQuery + " AND evs.EmpID = '" + txtEmpID.Text + "'"));
-                    CtrlCs.ShowDelMsg(this, true);
+                    CtrlCs.ShowMsg(this, vsShowMsg, cvShowMsg, CtrlFun.TypeMsg.Success, "vgShowMsg", General.Msg("detail deleted successfully", "تم حذف البيانات بنجاح"));
                     break;
             }
         }
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, vsShowMsg, cvShowMsg, "vgShowMsg", ex.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -45,6 +45,7 @@ public class EmpExcRelSql : DataLayerBase
             Sqlcmd.Parameters.Add(new SqlParameter("@ExrISOvernight", BitDB, 1,   IN, false, 0, 0, "", DRV, Pro.ExrISOvernight));
             Sqlcmd.Parameters.Add(new SqlParameter("@ExrIsOverTime" , BitDB, 1,   IN, false, 0, 0, "", DRV, Pro.ExrIsOverTime));
             Sqlcmd.Parameters.Add(new SqlParameter("@ExrIsStopped"  , BitDB, 1,   IN, false, 0, 0, "", DRV, Pro.ExrIsOverTime));
+            Sqlcmd.Parameters.Add(new SqlParameter("@ExrAddBy"      , ChrDB, 1,   IN, false, 0, 0, "", DRV, Pro.ExrAddBy));
 
             Sqlcmd.Parameters.Add(new SqlParameter("@IsExecute"    , IntDB, 10, OU, false, 0, 0, "", DRV, 0));
             Sqlcmd.Parameters.Add(new SqlParameter("@TransactionBy", VchDB, 15, IN, false, 0, 0, "", DRV, Pro.TransactionBy));
@@ -116,6 +117,7 @@ public class EmpExcRelSql : DataLayerBase
             Sqlcmd.Parameters.Add(new SqlParameter("@ExrStartTime"  , DtDB,  20,  IN, false, 0, 0, "", DRV, Pro.ExrStartTime));
             Sqlcmd.Parameters.Add(new SqlParameter("@ExrEndTime"    , DtDB,  20,  IN, false, 0, 0, "", DRV, Pro.ExrEndTime));
             Sqlcmd.Parameters.Add(new SqlParameter("@ExrDesc"       , VchDB, 255, IN, false, 0, 0, "", DRV, Pro.ExrDesc));
+            Sqlcmd.Parameters.Add(new SqlParameter("@ExrAddBy"      , ChrDB, 1,   IN, false, 0, 0, "", DRV, Pro.ExrAddBy));
 
             Sqlcmd.Parameters.Add(new SqlParameter("@IsExecute"    , IntDB, 10, OU, false, 0, 0, "", DRV, 0));
             Sqlcmd.Parameters.Add(new SqlParameter("@TransactionBy", VchDB, 15, IN, false, 0, 0, "", DRV, Pro.TransactionBy));

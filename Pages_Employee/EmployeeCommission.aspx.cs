@@ -161,7 +161,7 @@ public partial class EmployeeCommission : BasePage
             ProCs.EvrStartDate = calStartDate.getGDateDBFormat();
             ProCs.EvrEndDate   = calEndDate.getGDateDBFormat();
             ProCs.EvrDesc      = txtDesc.Text;
-        
+            ProCs.EvrAddBy     = "USR";
             ProCs.TransactionBy = pgCs.LoginID;
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
@@ -328,7 +328,7 @@ public partial class EmployeeCommission : BasePage
                 case ("Delete1"):
                     string ID = e.CommandArgument.ToString();
                    
-                    DataTable DT = DBCs.FetchData("SELECT * FROM EmpVacRel WHERE EvrCreatedBy = 'SYSTEM' AND EvrID = @P1 ", new string[] { ID });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM EmpVacRel WHERE EvrAddBy IN ('REQ', 'INT') AND EvrID = @P1 ", new string[] { ID });
                     if (!DBCs.IsNullOrEmpty(DT))
                     {
                         CtrlCs.ShowDelMsg(this, false);

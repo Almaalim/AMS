@@ -1,20 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls.WebParts;
 using System.Collections;
-using System.Configuration;
-using System.Web.Security;
 using Elmah;
 using System.Data;
 using System.Data.SqlClient;
-using System.Text;
 using System.Threading;
-using System.Globalization;
 
 public partial class EmployeeExcuseDay : BasePage
 {
@@ -180,7 +171,7 @@ public partial class EmployeeExcuseDay : BasePage
             ProCs.ExrEndTime   = tpEndTime.getDateTime(calStartDate.getGDateDefFormat()).ToString();
             
             ProCs.ExrDesc = txtDesc.Text;
-           
+            ProCs.ExrAddBy = "USR"; // 'USR' = FROM USER, 'REQ' = FROM Request, 'EXC' = FROM Execuse Premit, 'INT' = FROM Emport Data
             ProCs.TransactionBy = pgCs.LoginID;
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
@@ -370,7 +361,7 @@ public partial class EmployeeExcuseDay : BasePage
                 case ("Delete1"):
                     string ID = e.CommandArgument.ToString();
 
-                    DataTable DT = DBCs.FetchData("SELECT * FROM EmpExcRel WHERE ExrCreatedBy = 'SYSTEM' AND ExrID = @P1 ", new string[] { ID });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM EmpExcRel WHERE ExrAddBy IN ('REQ', 'INT') AND ExrID = @P1 ", new string[] { ID });
                     if (!DBCs.IsNullOrEmpty(DT))
                     {
                         CtrlCs.ShowDelMsg(this, false);
