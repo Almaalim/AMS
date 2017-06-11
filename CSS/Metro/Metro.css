@@ -1461,13 +1461,19 @@ body.loginPage > #aspnetForm {
 }
 
 .NotificationsWrapper {
-    position: relative;
+   position: absolute;
+    direction: ltr;
+    width: calc(100% - 0px);
+    padding: 15px 15px 15px 15px;
+    top: 0;
+    right: 0;
+       background-color:rgb(75, 75, 75);
 }
 
 .NotificationsPopup {
     position: absolute;
     background-color: #fff;
-    width: 180px;
+    width: 250px;
     z-index: 99;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -1476,6 +1482,8 @@ body.loginPage > #aspnetForm {
     border: 3px solid rgba(0, 0, 0, 0.68);
     opacity: 0;
     display: none;
+    top: 60px;
+    right: 105px;
 }
 
 @-webkit-keyframes fadeIn {
@@ -1562,6 +1570,9 @@ body.loginPage > #aspnetForm {
     position: relative;
     cursor: pointer;
     display: inline-block;
+     float: right;
+        margin-right: 322px;
+
 }
 
     .NotificationsIcon:before {
@@ -1571,7 +1582,7 @@ body.loginPage > #aspnetForm {
         display: inline-block;
         background-color: rgb(0, 154, 215);
         padding: 3px 7px;
-        margin: 5px 0;
+        margin:0;
         font-size: 17px;
         transition: all 1000ms cubic-bezier(0.19, 1, 0.22, 1);
     }
@@ -3958,6 +3969,7 @@ p {
 .taptap-contents-wrapper {
     width: 100% !important;
     height: 100%;
+        padding-top: 45px;
 }
 
 .taptap-main-wrapper-active .UserDetails {

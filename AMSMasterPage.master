@@ -438,8 +438,11 @@
                 <div class="taptap-main">
                     <div class="taptap-main-inner-inner">
                         <div class="taptap-contents-wrapper">
-                            <div class="UserDetails">
-                                <div class="NotificationsWrapper">
+                            <div class="NotificationsWrapper">
+                                 <asp:Image ID="UserImg" runat="server" ImageUrl="~/CSS/Metro/Images/UserImg.png" CssClass="UserImg" />
+                                <asp:Label ID="lblWelcome" runat="server" Text="Welcome" meta:resourcekey="lblWelcomeResource1" Visible="false"></asp:Label>
+
+                                <asp:Label ID="lblUserName" runat="server" meta:resourcekey="lblUserNameResource1"></asp:Label>
                                     <div class="NotificationsIcon">
                                         <span class="NotificationsNumber">999</span>
                                     </div>
@@ -453,15 +456,15 @@
                                             <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
                                         </ul>
                                     </div>
+                                   
                                 </div>
-                                <asp:Image ID="UserImg" runat="server" ImageUrl="~/CSS/Metro/Images/UserImg.png" CssClass="UserImg" />
-                                <asp:Label ID="lblWelcome" runat="server" Text="Welcome" meta:resourcekey="lblWelcomeResource1"></asp:Label>
-
-                                <asp:Label ID="lblUserName" runat="server" meta:resourcekey="lblUserNameResource1"></asp:Label>
+                            <div class="UserDetails">
+                                
+                                
 
                                 <div class="clearfix"></div>
 
-                                <asp:LinkButton ID="lnkSetting" runat="server" CssClass="SettingBtn"></asp:LinkButton>
+                                <asp:LinkButton ID="lnkSetting" runat="server" CssClass="SettingBtn" Visible="false"></asp:LinkButton>
                                 <asp:Label ID="Label2" runat="server" Text="Label" CssClass="menu-subtitle">QuickLinks</asp:Label>
 
                                 <%--Menu Left Shortcuts--%>
