@@ -1594,7 +1594,7 @@ box-shadow: inset 0px 0px 0px 4px rgba(75,75,75,1);
 
     .NotificationsIcon:hover:before {
         color: rgb(0, 154, 215);
-        background-color: #fff;
+            background-color: #d9d9d9;
         -webkit-transform: rotateY(180deg);
         -ms-transform: rotateX(180deg);
         -moz-transform: rotateY(180deg);
@@ -1611,6 +1611,7 @@ box-shadow: inset 0px 0px 0px 4px rgba(75,75,75,1);
     padding: 2px;
     top: -3px;
     left: 20px;
+        color: #fff;
 }
 
 .LoginLanguageBtn {
