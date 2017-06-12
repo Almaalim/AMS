@@ -36,6 +36,13 @@
             $('a.static').click(function (e) {
                 return false;
             });
+            $("li>a.folder>span").each(function (index) {
+                var linkwidth = $(this).width();
+                if (linkwidth > 74)
+                {
+                    $(this).addClass("longlinkfolder")
+                }
+            });
             $('img').each(function () {
                 if ($(this).attr("src") == '../images/Exclamation.gif') {
                     $(this).parents("span:first").addClass('CustomValidator');

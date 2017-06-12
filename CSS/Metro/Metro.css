@@ -1462,13 +1462,17 @@ body.loginPage > #aspnetForm {
 }
 
 .NotificationsWrapper {
-   position: absolute;
+  position: absolute;
     direction: ltr;
     width: calc(100% - 0px);
     padding: 9px;
-    top: 0;
+    top: 1px;
     right: 0;
-       background-color:rgb(75, 75, 75);
+    background-color: rgb(249, 250, 252);
+    color: #000;
+    -webkit-box-shadow: inset 0px 0px 0px 4px rgba(75,75,75,1);
+-moz-box-shadow: inset 0px 0px 0px 4px rgba(75,75,75,1);
+box-shadow: inset 0px 0px 0px 4px rgba(75,75,75,1);
 }
 
 .NotificationsPopup {
@@ -4045,7 +4049,7 @@ p {
     }
 
 .apps li a span {
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .apps li a:before {
@@ -4060,8 +4064,13 @@ p {
     font-weight: normal;
     -webkit-font-smoothing: antialiased;
     font-family: 'FontAwesome' !important;
+    float: left;
 }
-
+.longlinkfolder {
+    max-width: 74px;
+    display: inline-block;
+    line-height: 14px;
+}
 .apps li a:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
