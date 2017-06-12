@@ -1483,8 +1483,8 @@ body.loginPage > #aspnetForm {
     border: 3px solid rgba(0, 0, 0, 0.68);
     opacity: 0;
     display: none;
-    top: 60px;
-    right: 105px;
+       top: 40px;
+    right: 123px;
 }
 
 @-webkit-keyframes fadeIn {
