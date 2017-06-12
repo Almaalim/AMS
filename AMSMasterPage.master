@@ -20,7 +20,17 @@
 
     <script type="text/javascript">
         function PostbackFunction() {
-           
+            (function () {
+                // Load the script
+                var script = document.createElement("SCRIPT");
+                script.src = '../Script/jquery-ui-1.8.17.custom.min.js';
+                script.type = 'text/javascript';
+                script.onload = function () {
+                    var $ = window.jQuery;
+                    // Use $ here...
+                };
+                document.getElementsByTagName("head")[0].appendChild(script);
+            })();
 
             MobileListResize();
         }

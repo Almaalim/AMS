@@ -1045,8 +1045,8 @@ span.glyphicon.CalenderIco {
 }
 
 .DateExp {
-    position: inherit;
-    margin-right: 10px;
+        position: relative;
+    margin-left: 12px;
 }
 
     #reqUsername img, #Fullname img, #cvEmpID img, #rfvLanguage img, #Password img, #cvEmail img, #cdvMobileNo img, #cvADUser img, #cvShowMsg img, .CustomValidator img, .DateExp img {
@@ -1907,6 +1907,10 @@ box-shadow: inset 0px 0px 0px 4px rgba(75,75,75,1);
 a.Report:before {
     content: "\f17a";
     font-family: FontAwesome !important;
+}
+.reportsicon:before {
+        content: "\f0f6";
+    font-family: FontAwesome;
 }
 
 .ico-chart-2:before {
