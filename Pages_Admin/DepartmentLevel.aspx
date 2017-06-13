@@ -67,7 +67,7 @@
                 </div>
             <div class="row">
                   <div class="col12">
-                        <asp:Table ID="tblLevel" runat="server" Width="100%" >
+                        <asp:Table ID="tblLevel" runat="server" Width="100%" CssClass ="TableLevel" >
                             <asp:TableRow>
                                 <asp:TableCell>
                                     

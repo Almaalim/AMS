@@ -14,6 +14,10 @@
         border-width: 1px;
         z-index:999;
     }
+   .CalenderTable
+   {
+       width:300px;
+   }
 </style>
 
 
@@ -55,24 +59,24 @@
 
 <asp:UpdatePanel ID="CalendarUpdatePanel" runat="server">
     <ContentTemplate>
-        <table cellpadding="0" cellspacing="0" width="300" class="CalenderTable">
+        <table cellpadding="0" cellspacing="0"  class="CalenderTable">
             <tr>
                 <td>
                     <asp:Label ID="lblCalendar" runat="server" >
-                        <table width="300">
+                        <table >
                             <tr>
                                 <td runat="server" id="tdGCal"  class="td1Allalign" valign="middle">
                                     <%--<asp:Image ID="imgG" runat="server" Width="16px" Height="16" ImageUrl="~/images/Control_Images/G.png" />--%>
                                     <span ID="imgG" runat="server" class="Geo CalenderIco">G</span>
                                 </td>
-                                <td valign="middle">
+                                <td valign="middle" class="calendarTxt">
                                     <asp:TextBox ID="txtGDate" runat="server"  CssClass="CalTextStyle" Enabled="false" width="70px" ></asp:TextBox>
                                 </td>
                                 <td runat="server" id="tdHCal"  class="td1Allalign" valign="middle">
                                     <%--<asp:Image ID="imgH" runat="server" Width="16px" Height="16" ImageUrl="~/images/Control_Images/H.png" />--%>
                                     <span ID="imgH" runat="server" class="Hijri CalenderIco">هـ</span>
                                 </td>
-                                <td class="td1Allalign" valign="middle">
+                                <td class="calendarTxt" valign="middle">
                                     <asp:TextBox ID="txtHDate" runat="server"  CssClass="CalTextStyle" Enabled="false" width="70px"></asp:TextBox>
                                 </td>
                                 <td class="td1Allalign" valign="middle" >

@@ -35,6 +35,10 @@
             MobileListResize();
         }
         function MobileListResize() {
+
+            $("[id*='iFrame']").load(function () {
+                $(this).height($(this).contents().find("html").height());
+            });
             $('input').bind('blur', function (e) {
                 
                     e.preventDefault();
