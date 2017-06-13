@@ -35,7 +35,12 @@
             MobileListResize();
         }
         function MobileListResize() {
-            
+            $('input').bind('blur', function (e) {
+                
+                    e.preventDefault();
+                    $(this).focus();
+                
+            });
             $("a.level2.dynamic").each(function (index) {
                 var str1 = $(this).attr('title');
 
