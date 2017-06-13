@@ -262,7 +262,10 @@
 
         });
         $(document).ready(MobileListResize);
-        $(window).resize(MobileListResize);
+        $(window).resizeDimension('width', function () {
+            MobileListResize();
+        });
+       // $(window).resize(MobileListResize);
     </script>
     <script type="text/javascript">
         // Set timeout variables.
