@@ -20,12 +20,31 @@
 
     <script type="text/javascript">
         function PostbackFunction() {
-           
+            (function () {
+                // Load the script
+                var script = document.createElement("SCRIPT");
+                script.src = '../Script/jquery-ui-1.8.17.custom.min.js';
+                script.type = 'text/javascript';
+                script.onload = function () {
+                    var $ = window.jQuery;
+                    // Use $ here...
+                };
+                document.getElementsByTagName("head")[0].appendChild(script);
+            })();
 
             MobileListResize();
         }
         function MobileListResize() {
-            
+
+            $("[id*='iFrame']").load(function () {
+                $(this).height($(this).contents().find("html").height());
+            });
+            $('input').bind('blur', function (e) {
+                
+                    e.preventDefault();
+                    $(this).focus();
+                
+            });
             $("a.level2.dynamic").each(function (index) {
                 var str1 = $(this).attr('title');
 
@@ -247,7 +266,10 @@
 
         });
         $(document).ready(MobileListResize);
-        $(window).resize(MobileListResize);
+        $(window).resizeDimension('width', function () {
+            MobileListResize();
+        });
+       // $(window).resize(MobileListResize);
     </script>
     <script type="text/javascript">
         // Set timeout variables.
