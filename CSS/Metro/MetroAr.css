@@ -256,7 +256,7 @@ body {
     margin-bottom: 15px;
 }
 
-.Header:after, .UtilityEN:after {
+.Header:after, .UtilityEN:after, .UtilityAR:after  {
     display: block;
     content: "";
     float: none;

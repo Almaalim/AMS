@@ -92,7 +92,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
         else if (CurrentLanguage == "AR")
         {
 
-            LanguageSwitch.Href = "CSS/Metro/Metroar.css";
+            LanguageSwitch.Href = "CSS/Metro/MetroAr.css";
 
         }
         ///Added by Abbas End
