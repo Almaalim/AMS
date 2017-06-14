@@ -16,10 +16,10 @@
         <ContentTemplate>
             <div class="row">
                 <div class="col1">
-                    <asp:Label ID="lblIDFilter" runat="server"  Text="Search By:" meta:resourcekey="lblIDFilterResource1"></asp:Label>
+                    <asp:Label ID="lblIDFilter" runat="server" Text="Search By:" meta:resourcekey="lblIDFilterResource1"></asp:Label>
                 </div>
                 <div class="col2">
-                    <asp:DropDownList ID="ddlFilter" runat="server"   OnSelectedIndexChanged="ddlFilter_SelectedIndexChanged"
+                    <asp:DropDownList ID="ddlFilter" runat="server" OnSelectedIndexChanged="ddlFilter_SelectedIndexChanged"
                         AutoPostBack="True" meta:resourcekey="ddlFilterResource1">
                         <asp:ListItem Selected="True" meta:resourcekey="ListItemResource1">[None]</asp:ListItem>
                         <asp:ListItem Text="Employee ID" Value="EmpID" meta:resourcekey="ListItemResource2"></asp:ListItem>
@@ -52,8 +52,6 @@
                     <Cal:Calendar2 ID="calEndDate" runat="server" CalendarType="System" />
                 </div>
 
-            </div>
-            </div>
             </div>
 
             <div class="row">

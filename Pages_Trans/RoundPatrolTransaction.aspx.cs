@@ -44,6 +44,7 @@ public partial class RoundPatrolTransaction : BasePage
                 
                 /*** get Permission    ***/ ViewState["ht"] = pgCs.getPerm(Request.Url.AbsolutePath);  
                 BtnStatus("1");
+                UIEnabled(true);
                 UILang();
                 btnFilter_Click(null, null);
                 ViewState["CommandName"] = "";
@@ -161,6 +162,13 @@ public partial class RoundPatrolTransaction : BasePage
             grdData.Columns[1].Visible = false;
             ddlFilter.Items.FindByValue("EmpNameAr").Enabled = false;
         }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void UIEnabled(bool pStatus)
+    {
+        calStartDate.SetEnabled(pStatus);
+        calEndDate.SetEnabled(pStatus);
     }
     
     #endregion
