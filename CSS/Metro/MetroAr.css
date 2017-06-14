@@ -1,4 +1,4 @@
-﻿@import "BootStrap.css";
+﻿@import "BootStrapAr.css";
 
 @font-face {
     font-family: 'Segoe UI';
@@ -50,6 +50,7 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+    direction:rtl
 }
 
 a:active, a:hover {
@@ -74,6 +75,7 @@ body {
     background-color: #eeeeee;
     margin: 0 6px;
     padding: 0;
+    
 }
 
 .OpenMenu {
@@ -98,13 +100,13 @@ body {
 .js #loader {
     display: block;
     position: absolute;
-    left: 100px;
+    right: 100px;
     top: 0;
 }
 
 .LoadingWrapper {
     position: fixed;
-    left: 0px;
+    right: 0px;
     top: 0px;
     width: 100%;
     height: 100%;
@@ -117,9 +119,9 @@ body {
     vertical-align: middle;
     width: 167px;
     height: 167px;
-    left: 50%;
+    right: 50%;
     top: 50%;
-    margin-left: -84px;
+    margin-right: -84px;
     margin-top: -84px;
 }
 
@@ -134,7 +136,7 @@ body {
     height: 167px;
     display: block;
     top: 0;
-    left: 0;
+    right: 0;
     animation: spin 3s linear infinite;
 }
 
@@ -144,7 +146,7 @@ body {
     height: 120px;
     display: block;
     top: 22px;
-    left: 23px;
+    right: 23px;
     animation: spin1 2s linear infinite;
 }
 
@@ -154,7 +156,7 @@ body {
     height: 73px;
     display: block;
     top: 48px;
-    left: 47px;
+    right: 47px;
     animation: spin2 2s linear infinite;
 }
 
@@ -164,7 +166,7 @@ body {
     height: 92px;
     display: block;
     top: 43px;
-    left: 79px;
+    right: 79px;
     animation: spin2 2s linear infinite;
 }
 
@@ -174,7 +176,7 @@ body {
     height: 8px;
     display: block;
     top: 81px;
-    left: 58px;
+    right: 58px;
     animation: spin2 2s linear infinite;
 }
 
@@ -237,11 +239,11 @@ body {
 .wrapper {
     position: relative;
     margin: 0px 20px 0px 0px;
-    border-left: 1px solid #d9d9d9;
     border-right: 1px solid #d9d9d9;
+    border-left: 1px solid #d9d9d9;
     padding: 0 20px;
     background-color: #f9fafc;
-    width: 100%;
+    /*width: 100%;*/
 }
 
 .Header {
@@ -262,7 +264,7 @@ body {
 }
 
 .Logo {
-    float: left;
+    float: right;
     width: auto;
     height: 82px;
     width: 304px;
@@ -274,13 +276,13 @@ body {
     }
 
 .UserDetails, #ctl00_divMenu {
-    float: right;
-    margin-right: 60px;
+    float: left;
+    margin-left: 60px;
 }
 
 .UserDetails {
-    margin-left: 3px;
-    margin-right: 30px;
+    margin-right: 3px;
+    margin-left: 30px;
 }
 
     .UserDetails > span[id*='lblWelcome'] {
@@ -301,29 +303,29 @@ body {
     -webkit-border-radius: 99px;
     -moz-border-radius: 99px;
     border-radius: 99px;
-    margin-right: 10px;
-    margin-left: 27px;
+    margin-left: 10px;
+    margin-right: 27px;
 }
 
 li.static {
     float: none !important;
     display: inline-block;
     height: 91px;
-    margin-left: 3px;
+    margin-right: 3px;
     margin-bottom: 3px;
 }
 
 .wrap-title {
-    float: left;
+    float: right;
     margin-bottom: 5px;
     width: 100%;
     display: none;
 }
 
     .wrap-title .icon {
-        float: left;
+        float: right;
         display: block;
-        margin-right: 10px;
+        margin-left: 10px;
         width: 29px;
         height: 29px;
         border: 3px solid #999;
@@ -341,7 +343,7 @@ li.static {
             line-height: 22px;
         }
 
-        .wrap-title .icon .ico-arrow-right:before {
+        .wrap-title .icon .ico-arrow-left:before {
             font-family: 'Glyphicons Halflings';
             content: "\e092";
         }
@@ -447,9 +449,14 @@ a.level2.dynamic {
     a.level2.dynamic:hover {
         box-shadow: inset 0 0 0 4px #fff, 0 0 1px transparent;
     }
-
+#ctl00_Menu1 ul.dynamic {
+    z-index: 1;
+    left: inherit !important;
+    right: 0;
+}
 ul.level2 > li {
     border-bottom: 1px solid #fff;
+    width: calc(100% + 30px);
 }
 
 .UtilityEN, .UtilityAR {
@@ -488,7 +495,7 @@ ul.level2 > li {
     }
 
 .UtilityLinks {
-    float: right;
+    float: left;
 }
 
 .UserDetails > a[id$="lnkSetting"]:before {
@@ -517,7 +524,7 @@ ul.level2 > li {
 
 .UtilityLinks a {
     color: #333333 !important;
-    margin-left: 10px;
+    margin-right: 10px;
     font-size: 12px;
     padding: 8px 7px;
     -webkit-transition: all 0.3s ease-in-out;
@@ -533,7 +540,7 @@ ul.level2 > li {
 
     .UtilityLinks a:before {
         font-size: 13px;
-        margin-right: 7px;
+        margin-left: 7px;
     }
 
 .Sep {
@@ -541,16 +548,16 @@ ul.level2 > li {
 }
 
 .breadcrumb {
-    float: left;
+    float: right;
     position: relative;
-    padding-left: 18px;
+    padding-right: 18px;
 }
 
     .breadcrumb:before {
         font-size: 12px;
         line-height: 10px;
         position: absolute;
-        left: 0;
+        right: 0;
         top: 3px;
         color: #009ad7;
     }
@@ -586,7 +593,7 @@ ul.level2 > li {
 .Searchtxt {
     padding: 8px 12px !important;
     font-size: 15px !important;
-    margin-left: -4px !important;
+    margin-right: -4px !important;
     height: 40px !important;
 }
 
@@ -657,7 +664,7 @@ ul.level2 > li {
 }
 
 .RequiredField {
-    float: left;
+    float: right;
     font-weight: bold;
     display: inline-block;
     font-size: 0px !important;
@@ -678,7 +685,7 @@ ul.level2 > li {
     float: none;
     content: "*";
     position: absolute;
-    right: 15px;
+    left: 15px;
     font-size: 25px;
     top: 5px;
     animation: 2s changeColor ease infinite;
@@ -698,7 +705,7 @@ ul.level2 > li {
 .GenButton1 {
     font-size: 16px;
     line-height: 32px;
-    left: 0px;
+    right: 0px;
 }
 
     .GenButton1:before {
@@ -766,7 +773,7 @@ a:active {
     margin: 10px 13px;
     text-align: center !important;
     position: absolute;
-    right: 7px;
+    left: 7px;
     top: 25px;
 }
 
@@ -809,12 +816,12 @@ a:active {
 
 .left {
     width: 50%;
-    float: left;
+    float: right;
 }
 
 .right {
     width: 50%;
-    float: right;
+    float: left;
 }
 
 .flyOutDiv {
@@ -828,8 +835,8 @@ a:active {
     -webkit-box-shadow: 0px 0px 10px #c6c6c6;
     box-shadow: 0px 0px 10px #c6c6c6;
     display: none;
-    right: 0;
-    left: inherit !important;
+    left: 0;
+    right: inherit !important;
     top: 25px !important;
 }
 
@@ -840,7 +847,7 @@ fieldset > legend > select, fieldset > legend {
 .flyOutDivCloseX {
     position: absolute;
     top: 15px;
-    right: 15px;
+    left: 15px;
     text-decoration: none;
     font-size: 0;
 }
@@ -852,14 +859,14 @@ fieldset > legend > select, fieldset > legend {
 .LeftOverlay {
     position: absolute;
     top: 5px;
-    right: -10px;
+    left: -10px;
     width: 19px;
 }
 
 .LeftOverlay3 {
     position: absolute;
     top: 2px;
-    right: 15px;
+    left: 15px;
     width: 19px;
 }
 
@@ -871,7 +878,7 @@ fieldset > legend > select, fieldset > legend {
 .RightOverlay {
     position: absolute;
     top: 3px;
-    left: 20px;
+    right: 20px;
     width: 25px;
 }
 
@@ -887,9 +894,9 @@ fieldset > legend > select, fieldset > legend {
 
 .LeftOverlay2 {
     display: block;
-    float: right;
+    float: left;
     width: 27px;
-    margin-left: 3px;
+    margin-right: 3px;
 }
 
 .CalenderIco {
@@ -948,7 +955,7 @@ span.glyphicon.CalenderIco {
 .widgets {
     text-align: center;
     position: relative;
-    float: left;
+    float: right;
     width: 100%;
 }
 
@@ -958,7 +965,7 @@ span.glyphicon.CalenderIco {
     position: relative;
     width: 400px;
     margin-bottom: 20px;
-    margin-right: 20px;
+    margin-left: 20px;
     display: inline-block;
 }
 
@@ -991,7 +998,7 @@ span.glyphicon.CalenderIco {
         font-family: FontAwesome;
         color: #fff;
         top: 5px;
-        right: 5px;
+        left: 5px;
     }
 
     .widget span {
@@ -999,7 +1006,7 @@ span.glyphicon.CalenderIco {
         font-size: 22px;
         line-height: 50px;
         display: block;
-        text-align: left;
+        text-align: right;
     }
 
         .widget span:last-child {
@@ -1038,14 +1045,14 @@ span.glyphicon.CalenderIco {
     display: inline-block;
     position: absolute;
     top: 0px;
-    right: 10px;
+    left: 10px;
     width: 27px;
     height: 27px;
 }
 
 .DateExp {
     position: relative;
-    margin-left: 12px;
+    margin-right: 12px;
 }
 
     #reqUsername img, #Fullname img, #cvEmpID img, #rfvLanguage img, #Password img, #cvEmail img, #cdvMobileNo img, #cvADUser img, #cvShowMsg img, .CustomValidator img, .DateExp img {
@@ -1054,7 +1061,7 @@ span.glyphicon.CalenderIco {
         height: 100%;
         position: absolute;
         top: 0;
-        right: 0;
+        left: 0;
         opacity: 0;
     }
 
@@ -1151,7 +1158,7 @@ span.glyphicon.CalenderIco {
 }
 
 .ajax__tab_xp .ajax__tab_header .ajax__tab_inner {
-    padding-right: 3px;
+    padding-left: 3px;
     background: none !important;
 }
 
@@ -1257,7 +1264,7 @@ body.loginPage > #aspnetForm {
 .LoginRight input:not([type=image]) {
     height: 47px;
     font-size: 16px;
-    padding-left: 52px;
+    padding-right: 52px;
 }
 
 .LoginRight .CustomValidator {
@@ -1336,7 +1343,7 @@ body.loginPage > #aspnetForm {
     background-color: #ba2c1d;
     font-size: 12px;
     top: 0px;
-    left: 0px;
+    right: 0px;
 }
 
     .MsgValidation li, .MsgSuccess li, .errorValidation li {
@@ -1353,7 +1360,7 @@ body.loginPage > #aspnetForm {
         -webkit-margin-end: 0px;
         -webkit-padding-start: 0;
         margin: 0;
-        Padding-right: 10px;
+        Padding-left: 10px;
     }
 
     .MsgValidation:before, .MsgSuccess:before, .errorValidation:before {
@@ -1393,7 +1400,7 @@ body.loginPage > #aspnetForm {
 
     .monthSummaryDiv > span {
         display: block;
-        text-align: left;
+        text-align: right;
         font-size: 17px;
         color: #fff;
         clear: both;
@@ -1410,9 +1417,9 @@ body.loginPage > #aspnetForm {
         color: #fff;
         position: absolute;
         top: 2px;
-        right: 10px;
-        border-left: 1px solid #f9fafc;
-        padding-left: 10px;
+        left: 10px;
+        border-right: 1px solid #f9fafc;
+        padding-right: 10px;
     }
 
 .GapSummeryDiv {
@@ -1428,12 +1435,12 @@ body.loginPage > #aspnetForm {
     padding: 15px;
     margin: 15px;
     position: relative;
-    float: left;
+    float: right;
 }
 
     .GapSummeryDiv > span {
         display: block;
-        text-align: left;
+        text-align: right;
         font-size: 15px;
         color: #fff;
         clear: both;
@@ -1450,9 +1457,9 @@ body.loginPage > #aspnetForm {
         color: #fff;
         position: absolute;
         top: 2px;
-        right: 10px;
-        border-left: 1px solid #f9fafc;
-        padding-left: 10px;
+        left: 10px;
+        border-right: 1px solid #f9fafc;
+        padding-right: 10px;
     }
 
 .Overtime:after {
@@ -1462,11 +1469,11 @@ body.loginPage > #aspnetForm {
 
 .NotificationsWrapper {
     position: absolute;
-    direction: ltr;
+    direction: rtl;
     width: calc(100% - 0px);
     padding: 9px;
     top: 1px;
-    right: 0;
+    left: 0;
     background-color: rgb(249, 250, 252);
     color: #000;
     -webkit-box-shadow: inset 0px 0px 0px 4px rgba(75,75,75,1);
@@ -1487,7 +1494,7 @@ body.loginPage > #aspnetForm {
     opacity: 0;
     display: none;
     top: 40px;
-    right: 123px;
+    left: 123px;
 }
 
 @-webkit-keyframes fadeIn {
@@ -1521,11 +1528,11 @@ body.loginPage > #aspnetForm {
     display: inline-block;
     text-align: center;
     cursor: pointer;
-    margin-right: 10px;
+    margin-left: 10px;
     speak: none;
     position: absolute;
     top: -11px;
-    right: -22px;
+    left: -22px;
     color: #fff;
     font-size: 16px;
     line-height: 23px;
@@ -1565,7 +1572,7 @@ body.loginPage > #aspnetForm {
     }
 
 .NotificationsTime {
-    float: right;
+    float: left;
     font-size: 12px;
     color: #999;
 }
@@ -1574,8 +1581,8 @@ body.loginPage > #aspnetForm {
     position: relative;
     cursor: pointer;
     display: inline-block;
-    float: right;
-    margin-right: 331px;
+    float: left;
+    margin-left: 331px;
 }
 
     .NotificationsIcon:before {
@@ -1608,14 +1615,14 @@ body.loginPage > #aspnetForm {
     border-radius: 50px;
     padding: 2px;
     top: -3px;
-    left: 20px;
+    right: 20px;
     color: #fff;
 }
 
 .LoginLanguageBtn {
     position: absolute;
     top: 10px;
-    right: 10px;
+    left: 10px;
     display: block;
     background-color: #253F68;
     border: 0;
@@ -1750,7 +1757,7 @@ body.loginPage > #aspnetForm {
 
     .ChackBoxlist td input, .ChackBoxlist td label {
         display: inline-block;
-        float: left;
+        float: right;
     }
 
     .ChackBoxlist td {
@@ -1761,7 +1768,7 @@ body.loginPage > #aspnetForm {
             margin: 7px;
         }
 
-.ico-cabinet:before, .ico-cabinet-2:before, .ico-file:before, .ico-file-2:before, .ico-file-3:before, .ico-files:before, .ico-phone:before, .ico-tablet:before, .ico-window:before, .ico-monitor:before, .ico-film:before, .ico-inbox:before, .ico-download:before, .ico-upload:before, .ico-inbox-2:before, .ico-cog:before, .ico-cogs:before, .ico-cog-2:before, .ico-warning:before, .ico-picture:before, .ico-pictures:before, .ico-pictures-2:before, .ico-alarm-clock:before, .ico-time:before, .ico-checkmark:before, .ico-cancel:before, .ico-eye:before, .ico-site-map:before, .ico-site-map-2:before, .ico-cloud:before, .ico-upload-2:before, .ico-chart:before, .ico-chart-2:before, .ico-chart-3:before, .ico-chart-4:before, .ico-chart-5:before, .ico-chart-6:before, .ico-location:before, .ico-download-2:before, .ico-folder:before, .ico-alarm:before, .ico-alarm-cancel:before, .ico-phone-2:before, .ico-phone-3:before, .ico-image:before, .ico-open:before, .ico-sale:before, .ico-direction:before, .ico-map:before, .ico-trashcan:before, .ico-vote:before, .ico-lab:before, .ico-locked:before, .ico-unlocked:before, .ico-locked-2:before, .ico-unlocked-2:before, .ico-magnifier:before, .ico-zoom-in:before, .ico-zoom-out:before, .ico-stack:before, .ico-stack-2:before, .ico-stack-3:before, .ico-archive:before, .ico-battery:before, .ico-battery-2:before, .ico-battery-3:before, .ico-battery-4:before, .ico-battery-5:before, .ico-megaphone:before, .ico-megaphone-2:before, .ico-patch:before, .ico-pil:before, .ico-injection:before, .ico-thermometer:before, .ico-lamp:before, .ico-lamp-2:before, .ico-lamp-3:before, .ico-cube:before, .ico-box:before, .ico-box-2:before, .ico-diamond:before, .ico-bag:before, .ico-money-bag:before, .ico-grid:before, .ico-grid-2:before, .ico-list:before, .ico-list-2:before, .ico-ruler:before, .ico-ruler-2:before, .ico-layout:before, .ico-layout-2:before, .ico-layout-3:before, .ico-layout-4:before, .ico-layout-5:before, .ico-layout-6:before, .ico-layout-7:before, .ico-layout-8:before, .ico-layout-9:before, .ico-layout-10:before, .ico-layout-11:before, .ico-layout-12:before, .ico-layout-13:before, .ico-layout-14:before, .ico-tools:before, .ico-screwdriver:before, .ico-paint:before, .ico-hammer:before, .ico-brush:before, .ico-pen:before, .ico-chat:before, .ico-comments:before, .ico-chat-2:before, .ico-chat-3:before, .ico-volume:before, .ico-volume-2:before, .ico-volume-3:before, .ico-equalizer:before, .ico-resize:before, .ico-resize-2:before, .ico-download-3:before, .ico-stats:before, .ico-stats-2:before, .ico-attachment:before, .ico-hourglass:before, .ico-pencil:before, .ico-pen-2:before, .ico-pin:before, .ico-pin-2:before, .ico-discout:before, .ico-edit:before, .ico-scissors:before, .ico-profile:before, .ico-rotate:before, .ico-rotate-2:before, .ico-reply:before, .ico-forward:before, .ico-retweet:before, .ico-shuffle:before, .ico-loop:before, .ico-crop:before, .ico-dollar:before, .ico-dollar-2:before, .ico-coins:before, .ico-pig:before, .ico-bookmark:before, .ico-bookmark-2:before, .ico-address-book:before, .ico-address-book-2:before, .ico-safe:before, .ico-envelope:before, .ico-envelope-2:before, .ico-heart:before, .ico-info:before, .ico-info-2:before, .ico-book:before, .ico-book-2:before, .ico-barcode:before, .ico-barcode-2:before, .ico-expand:before, .ico-collapse:before, .ico-pop-out:before, .ico-pop-in:before, .ico-cone:before, .ico-blocked:before, .ico-stop:before, .ico-keyboard:before, .ico-printer:before, .ico-checked:before, .ico-error:before, .ico-add:before, .ico-minus:before, .ico-alert:before, .ico-pictures-3:before, .ico-atom:before, .ico-eyedropper:before, .ico-globe:before, .ico-globe-2:before, .ico-shipping:before, .ico-ying-yang:before, .ico-compass:before, .ico-zip:before, .ico-zip-2:before, .ico-tags:before, .ico-heart-2:before, .ico-heart-3:before, .ico-usb:before, .ico-clipboard:before, .ico-clipboard-2:before, .ico-clipboard-3:before, .ico-switch:before, .ico-ruler-3:before, .ico-glass:before, .ico-music:before, .ico-search:before, .ico-envelope-3:before, .ico-heart-4:before, .ico-star:before, .ico-star-empty:before, .ico-user:before, .ico-film-2:before, .ico-th-large:before, .ico-ok:before, .ico-remove:before, .ico-zoom-in-2:before, .ico-zoom-out-2:before, .ico-off:before, .ico-signal:before, .ico-cog-3:before, .ico-trash:before, .ico-home:before, .ico-file-4:before, .ico-time-2:before, .ico-road:before, .ico-download-alt:before, .ico-download-4:before, .ico-upload-3:before, .ico-inbox-3:before, .ico-play-circle:before, .ico-repeat:before, .ico-refresh:before, .ico-list-alt:before, .ico-lock:before, .ico-flag:before, .ico-volume-off:before, .ico-volume-down:before, .ico-volume-up:before, .ico-qrcode:before, .ico-barcode-3:before, .ico-tag:before, .ico-tags-2:before, .ico-book-3:before, .ico-bookmark-3:before, .ico-print:before, .ico-align-left:before, .ico-align-center:before, .ico-align-right:before, .ico-align-justify:before, .ico-list-3:before, .ico-indent-left:before, .ico-indent-right:before, .ico-facetime-video:before, .ico-picture-2:before, .ico-pencil-2:before, .ico-map-marker:before, .ico-adjust:before, .ico-tint:before, .ico-edit-2:before, .ico-share:before, .ico-check:before, .ico-move:before, .ico-step-backward:before, .ico-fast-backward:before, .ico-backward:before, .ico-play:before, .ico-pause:before, .ico-stop-2:before, .ico-forward-2:before, .ico-fast-forward:before, .ico-step-forward:before, .ico-eject:before, .ico-chevron-left:before, .ico-chevron-right:before, .ico-plus-sign:before, .ico-minus-sign:before, .ico-remove-sign:before, .ico-ok-sign:before, .ico-question-sign:before, .ico-info-sign:before, .ico-screenshot:before, .ico-remove-circle:before, .ico-ok-circle:before, .ico-ban-circle:before, .ico-arrow-left:before, .ico-arrow-right:before, .ico-arrow-up:before, .ico-arrow-down:before, .ico-share-alt:before, .ico-resize-full:before, .ico-resize-small:before, .ico-plus:before, .ico-minus-2:before, .ico-asterisk:before, .ico-exclamation-sign:before, .ico-eye-open:before, .ico-eye-close:before, .ico-warning-sign:before, .ico-plane:before, .ico-calendar:before, .ico-random:before, .ico-comment:before, .ico-magnet:before, .ico-chevron-up:before, .ico-chevron-down:before, .ico-retweet-2:before, .ico-shopping-cart:before, .ico-folder-close:before, .ico-folder-open:before, .ico-resize-vertical:before, .ico-resize-horizontal:before, .ico-bar-chart:before, .ico-cogs-2:before, .ico-comments-2:before, .ico-thumbs-up:before, .ico-thumbs-down:before, .ico-heart-empty:before, .ico-signout:before, .ico-pushpin:before, .ico-external-link:before, .ico-signin:before, .ico-trophy:before, .ico-upload-alt:before, .ico-lemon:before, .ico-phone-4:before, .ico-check-empty:before, .ico-bookmark-empty:before, .ico-phone-sign:before, .ico-facebook:before, .ico-github:before, .ico-unlock:before, .ico-credit:before, .ico-rss:before, .ico-hdd:before, .ico-bullhorn:before, .ico-bell:before, .ico-certificate:before, .ico-hand-right:before, .ico-hand-left:before, .ico-hand-up:before, .ico-hand-down:before, .ico-circle-arrow-left:before, .ico-circle-arrow-right:before, .ico-circle-arrow-up:before, .ico-circle-arrow-down:before, .ico-globe-3:before, .ico-wrench:before, .ico-tasks:before, .ico-filter:before, .ico-briefcase:before, .ico-fullscreen:before, .ico-group:before, .ico-link:before, .ico-cloud-2:before, .ico-beaker:before, .ico-copy:before, .ico-paper-clip:before, .ico-table:before, .ico-money:before, .ico-caret-down:before, .ico-caret-up:before, .ico-caret-left:before, .ico-caret-right:before, .ico-columns:before, .ico-sort:before, .ico-sort-down:before, .ico-sort-up:before, .ico-envelope-alt:before, .ico-undo:before, .ico-comment-alt:before, .ico-comments-alt:before, .ico-bolt:before, .ico-exchange:before, .ico-cloud-download:before, .ico-cloud-upload:before, .ico-file-alt:before, .ico-double-angle-left:before, .ico-double-angle-right:before, .ico-double-angle-up:before, .ico-double-angle-down:before, .ico-angle-left:before, .ico-angle-right:before, .ico-angle-up:before, .ico-angle-down:before, .ico-desktop:before, .ico-laptop:before, .ico-tablet-2:before, .ico-mobile:before, .ico-circle:before, .ico-reply-2:before, .ico-folder-close-alt:before, .ico-folder-open-alt:before, a.level2.mndynamicitemEN.dynamic:before, a.User:before, a.Configuration:before, a.Employees:before, a.Transaction:before, a.Transaction:after, a.Wizard:before, a.ERSSwap:before, a.Report:before, #ctl00_lnkHomeTop:before, #ctl00_LnkChangePassword:before, #ctl00_lnkShortcut:before, #ctl00_lnkERS:before, #ctl00_lnkHelp:before, #ctl00_LnkLogout:before, #ctl00_lnkLanguage:before, .UserDetails > a[id$="lnkSetting"]:before, .img-search:before, a.Admin:before, a.Attendance:before, a.Requests:before, .MsgValidation:before {
+.ico-cabinet:before, .ico-cabinet-2:before, .ico-file:before, .ico-file-2:before, .ico-file-3:before, .ico-files:before, .ico-phone:before, .ico-tablet:before, .ico-window:before, .ico-monitor:before, .ico-film:before, .ico-inbox:before, .ico-download:before, .ico-upload:before, .ico-inbox-2:before, .ico-cog:before, .ico-cogs:before, .ico-cog-2:before, .ico-warning:before, .ico-picture:before, .ico-pictures:before, .ico-pictures-2:before, .ico-alarm-clock:before, .ico-time:before, .ico-checkmark:before, .ico-cancel:before, .ico-eye:before, .ico-site-map:before, .ico-site-map-2:before, .ico-cloud:before, .ico-upload-2:before, .ico-chart:before, .ico-chart-2:before, .ico-chart-3:before, .ico-chart-4:before, .ico-chart-5:before, .ico-chart-6:before, .ico-location:before, .ico-download-2:before, .ico-folder:before, .ico-alarm:before, .ico-alarm-cancel:before, .ico-phone-2:before, .ico-phone-3:before, .ico-image:before, .ico-open:before, .ico-sale:before, .ico-direction:before, .ico-map:before, .ico-trashcan:before, .ico-vote:before, .ico-lab:before, .ico-locked:before, .ico-unlocked:before, .ico-locked-2:before, .ico-unlocked-2:before, .ico-magnifier:before, .ico-zoom-in:before, .ico-zoom-out:before, .ico-stack:before, .ico-stack-2:before, .ico-stack-3:before, .ico-archive:before, .ico-battery:before, .ico-battery-2:before, .ico-battery-3:before, .ico-battery-4:before, .ico-battery-5:before, .ico-megaphone:before, .ico-megaphone-2:before, .ico-patch:before, .ico-pil:before, .ico-injection:before, .ico-thermometer:before, .ico-lamp:before, .ico-lamp-2:before, .ico-lamp-3:before, .ico-cube:before, .ico-box:before, .ico-box-2:before, .ico-diamond:before, .ico-bag:before, .ico-money-bag:before, .ico-grid:before, .ico-grid-2:before, .ico-list:before, .ico-list-2:before, .ico-ruler:before, .ico-ruler-2:before, .ico-layout:before, .ico-layout-2:before, .ico-layout-3:before, .ico-layout-4:before, .ico-layout-5:before, .ico-layout-6:before, .ico-layout-7:before, .ico-layout-8:before, .ico-layout-9:before, .ico-layout-10:before, .ico-layout-11:before, .ico-layout-12:before, .ico-layout-13:before, .ico-layout-14:before, .ico-tools:before, .ico-screwdriver:before, .ico-paint:before, .ico-hammer:before, .ico-brush:before, .ico-pen:before, .ico-chat:before, .ico-comments:before, .ico-chat-2:before, .ico-chat-3:before, .ico-volume:before, .ico-volume-2:before, .ico-volume-3:before, .ico-equalizer:before, .ico-resize:before, .ico-resize-2:before, .ico-download-3:before, .ico-stats:before, .ico-stats-2:before, .ico-attachment:before, .ico-hourglass:before, .ico-pencil:before, .ico-pen-2:before, .ico-pin:before, .ico-pin-2:before, .ico-discout:before, .ico-edit:before, .ico-scissors:before, .ico-profile:before, .ico-rotate:before, .ico-rotate-2:before, .ico-reply:before, .ico-forward:before, .ico-retweet:before, .ico-shuffle:before, .ico-loop:before, .ico-crop:before, .ico-dollar:before, .ico-dollar-2:before, .ico-coins:before, .ico-pig:before, .ico-bookmark:before, .ico-bookmark-2:before, .ico-address-book:before, .ico-address-book-2:before, .ico-safe:before, .ico-envelope:before, .ico-envelope-2:before, .ico-heart:before, .ico-info:before, .ico-info-2:before, .ico-book:before, .ico-book-2:before, .ico-barcode:before, .ico-barcode-2:before, .ico-expand:before, .ico-collapse:before, .ico-pop-out:before, .ico-pop-in:before, .ico-cone:before, .ico-blocked:before, .ico-stop:before, .ico-keyboard:before, .ico-printer:before, .ico-checked:before, .ico-error:before, .ico-add:before, .ico-minus:before, .ico-alert:before, .ico-pictures-3:before, .ico-atom:before, .ico-eyedropper:before, .ico-globe:before, .ico-globe-2:before, .ico-shipping:before, .ico-ying-yang:before, .ico-compass:before, .ico-zip:before, .ico-zip-2:before, .ico-tags:before, .ico-heart-2:before, .ico-heart-3:before, .ico-usb:before, .ico-clipboard:before, .ico-clipboard-2:before, .ico-clipboard-3:before, .ico-switch:before, .ico-ruler-3:before, .ico-glass:before, .ico-music:before, .ico-search:before, .ico-envelope-3:before, .ico-heart-4:before, .ico-star:before, .ico-star-empty:before, .ico-user:before, .ico-film-2:before, .ico-th-large:before, .ico-ok:before, .ico-remove:before, .ico-zoom-in-2:before, .ico-zoom-out-2:before, .ico-off:before, .ico-signal:before, .ico-cog-3:before, .ico-trash:before, .ico-home:before, .ico-file-4:before, .ico-time-2:before, .ico-road:before, .ico-download-alt:before, .ico-download-4:before, .ico-upload-3:before, .ico-inbox-3:before, .ico-play-circle:before, .ico-repeat:before, .ico-refresh:before, .ico-list-alt:before, .ico-lock:before, .ico-flag:before, .ico-volume-off:before, .ico-volume-down:before, .ico-volume-up:before, .ico-qrcode:before, .ico-barcode-3:before, .ico-tag:before, .ico-tags-2:before, .ico-book-3:before, .ico-bookmark-3:before, .ico-print:before, .ico-align-right:before, .ico-align-center:before, .ico-align-left:before, .ico-align-justify:before, .ico-list-3:before, .ico-indent-right:before, .ico-indent-left:before, .ico-facetime-video:before, .ico-picture-2:before, .ico-pencil-2:before, .ico-map-marker:before, .ico-adjust:before, .ico-tint:before, .ico-edit-2:before, .ico-share:before, .ico-check:before, .ico-move:before, .ico-step-backward:before, .ico-fast-backward:before, .ico-backward:before, .ico-play:before, .ico-pause:before, .ico-stop-2:before, .ico-forward-2:before, .ico-fast-forward:before, .ico-step-forward:before, .ico-eject:before, .ico-chevron-right:before, .ico-chevron-left:before, .ico-plus-sign:before, .ico-minus-sign:before, .ico-remove-sign:before, .ico-ok-sign:before, .ico-question-sign:before, .ico-info-sign:before, .ico-screenshot:before, .ico-remove-circle:before, .ico-ok-circle:before, .ico-ban-circle:before, .ico-arrow-right:before, .ico-arrow-left:before, .ico-arrow-up:before, .ico-arrow-down:before, .ico-share-alt:before, .ico-resize-full:before, .ico-resize-small:before, .ico-plus:before, .ico-minus-2:before, .ico-asterisk:before, .ico-exclamation-sign:before, .ico-eye-open:before, .ico-eye-close:before, .ico-warning-sign:before, .ico-plane:before, .ico-calendar:before, .ico-random:before, .ico-comment:before, .ico-magnet:before, .ico-chevron-up:before, .ico-chevron-down:before, .ico-retweet-2:before, .ico-shopping-cart:before, .ico-folder-close:before, .ico-folder-open:before, .ico-resize-vertical:before, .ico-resize-horizontal:before, .ico-bar-chart:before, .ico-cogs-2:before, .ico-comments-2:before, .ico-thumbs-up:before, .ico-thumbs-down:before, .ico-heart-empty:before, .ico-signout:before, .ico-pushpin:before, .ico-external-link:before, .ico-signin:before, .ico-trophy:before, .ico-upload-alt:before, .ico-lemon:before, .ico-phone-4:before, .ico-check-empty:before, .ico-bookmark-empty:before, .ico-phone-sign:before, .ico-facebook:before, .ico-github:before, .ico-unlock:before, .ico-credit:before, .ico-rss:before, .ico-hdd:before, .ico-bullhorn:before, .ico-bell:before, .ico-certificate:before, .ico-hand-left:before, .ico-hand-right:before, .ico-hand-up:before, .ico-hand-down:before, .ico-circle-arrow-right:before, .ico-circle-arrow-left:before, .ico-circle-arrow-up:before, .ico-circle-arrow-down:before, .ico-globe-3:before, .ico-wrench:before, .ico-tasks:before, .ico-filter:before, .ico-briefcase:before, .ico-fullscreen:before, .ico-group:before, .ico-link:before, .ico-cloud-2:before, .ico-beaker:before, .ico-copy:before, .ico-paper-clip:before, .ico-table:before, .ico-money:before, .ico-caret-down:before, .ico-caret-up:before, .ico-caret-right:before, .ico-caret-left:before, .ico-columns:before, .ico-sort:before, .ico-sort-down:before, .ico-sort-up:before, .ico-envelope-alt:before, .ico-undo:before, .ico-comment-alt:before, .ico-comments-alt:before, .ico-bolt:before, .ico-exchange:before, .ico-cloud-download:before, .ico-cloud-upload:before, .ico-file-alt:before, .ico-double-angle-right:before, .ico-double-angle-left:before, .ico-double-angle-up:before, .ico-double-angle-down:before, .ico-angle-right:before, .ico-angle-left:before, .ico-angle-up:before, .ico-angle-down:before, .ico-desktop:before, .ico-laptop:before, .ico-tablet-2:before, .ico-mobile:before, .ico-circle:before, .ico-reply-2:before, .ico-folder-close-alt:before, .ico-folder-open-alt:before, a.level2.mndynamicitemEN.dynamic:before, a.User:before, a.Configuration:before, a.Employees:before, a.Transaction:before, a.Transaction:after, a.Wizard:before, a.ERSSwap:before, a.Report:before, #ctl00_lnkHomeTop:before, #ctl00_LnkChangePassword:before, #ctl00_lnkShortcut:before, #ctl00_lnkERS:before, #ctl00_lnkHelp:before, #ctl00_LnkLogout:before, #ctl00_lnkLanguage:before, .UserDetails > a[id$="lnkSetting"]:before, .img-search:before, a.Admin:before, a.Attendance:before, a.Requests:before, .MsgValidation:before {
     font-family: 'icomoon';
     speak: none;
     font-style: normal;
@@ -2723,7 +2730,7 @@ a.Report:before {
     content: "\f02f";
 }
 
-.ico-align-left:before {
+.ico-align-right:before {
     content: "\f036";
 }
 
@@ -2731,7 +2738,7 @@ a.Report:before {
     content: "\f037";
 }
 
-.ico-align-right:before {
+.ico-align-left:before {
     content: "\f038";
 }
 
@@ -2743,11 +2750,11 @@ a.Report:before {
     content: "\f03a";
 }
 
-.ico-indent-left:before {
+.ico-indent-right:before {
     content: "\f03b";
 }
 
-.ico-indent-right:before {
+.ico-indent-left:before {
     content: "\f03c";
 }
 
@@ -2831,11 +2838,11 @@ a.Report:before {
     content: "\f052";
 }
 
-.ico-chevron-left:before {
+.ico-chevron-right:before {
     content: "\f053";
 }
 
-.ico-chevron-right:before {
+.ico-chevron-left:before {
     content: "\f054";
 }
 
@@ -2879,7 +2886,7 @@ a.Report:before {
     content: "\f05e";
 }
 
-.ico-arrow-left:before {
+.ico-arrow-right:before {
     content: "\f060";
 }
 
@@ -2888,7 +2895,7 @@ a.Transaction:before {
     content: "\e150";
 }
 
-.ico-arrow-right:before {
+.ico-arrow-left:before {
     content: "\f061";
 }
 
@@ -3096,11 +3103,11 @@ a.Transaction:before {
     content: "\f0a3";
 }
 
-.ico-hand-right:before {
+.ico-hand-left:before {
     content: "\f0a4";
 }
 
-.ico-hand-left:before {
+.ico-hand-right:before {
     content: "\f0a5";
 }
 
@@ -3112,11 +3119,11 @@ a.Transaction:before {
     content: "\f0a7";
 }
 
-.ico-circle-arrow-left:before {
+.ico-circle-arrow-right:before {
     content: "\f0a8";
 }
 
-.ico-circle-arrow-right:before {
+.ico-circle-arrow-left:before {
     content: "\f0a9";
 }
 
@@ -3197,11 +3204,11 @@ a.Transaction:before {
     content: "\f0d8";
 }
 
-.ico-caret-left:before {
+.ico-caret-right:before {
     content: "\f0d9";
 }
 
-.ico-caret-right:before {
+.ico-caret-left:before {
     content: "\f0da";
 }
 
@@ -3257,11 +3264,11 @@ a.Transaction:before {
     content: "\f0f6";
 }
 
-.ico-double-angle-left:before {
+.ico-double-angle-right:before {
     content: "\f100";
 }
 
-.ico-double-angle-right:before {
+.ico-double-angle-left:before {
     content: "\f101";
 }
 
@@ -3273,11 +3280,11 @@ a.Transaction:before {
     content: "\f103";
 }
 
-.ico-angle-left:before {
+.ico-angle-right:before {
     content: "\f104";
 }
 
-.ico-angle-right:before {
+.ico-angle-left:before {
     content: "\f105";
 }
 
@@ -3342,7 +3349,7 @@ a.Requests:before {
     z-index: 9999;
     position: fixed;
     top: 0px;
-    left: 0px;
+    right: 0px;
     background: rgba(0,0,0,0.75);
 }
 
@@ -3353,7 +3360,7 @@ a.Requests:before {
     width: 90%;
     position: absolute;
     top: 50%;
-    left: 50%;
+    right: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     box-shadow: 0px 2px 6px rgba(0,0,0,1);
@@ -3375,7 +3382,7 @@ a.Requests:before {
     display: inline-block;
     position: absolute;
     top: 0px;
-    right: 0px;
+    left: 0px;
     transition: ease 0.25s all;
     -webkit-transform: translate(50%, -50%);
     transform: translate(50%, -50%);
@@ -3397,8 +3404,8 @@ a.Requests:before {
     }
 
 .LoginRight {
-    margin: 50px 125px 0px 0px;
-    float: right;
+    margin: 50px 0px 0px 125px;
+    float: left;
     width: 309px;
 }
 
@@ -3406,7 +3413,7 @@ a.Requests:before {
     background-image: url(../../Images/LoginPanelBG.png);
     width: 532px;
     height: 509px;
-    float: left;
+    float: right;
 }
 
 .clearfix, .clearfix:after, .container:after, .container-fluid:after, .row:after, .form-horizontal .form-group:after, .btn-toolbar:after, .btn-group-vertical > .btn-group:after, .nav:after, .navbar:after, .navbar-header:after, .navbar-collapse:after, .pager:after, .panel-body:after, .modal-footer:after {
@@ -3618,27 +3625,27 @@ p {
 }
 
 .row {
-    margin-left: -15px;
     margin-right: -15px;
+    margin-left: -15px;
 }
 
 .container .row {
-    margin-left: 0;
     margin-right: 0;
+    margin-left: 0;
 }
 
 .col1, .col1, .col1, .col1, .col2, .col2, .col2, .col2, .col3, .col3, .col3, .col3, .col4, .col4, .col4, .col4, .col5, .col5, .col5, .col5, .col6, .col6, .col6, .col6, .col7, .col7, .col7, .col7, .col8, .col8, .col8, .col8, .col9, .col9, .col9, .col9, .col10, .col10, .col10, .col10, .col11, .col11, .col11, .col11, .col12, .col12, .col12, .col12 {
     position: relative;
     min-height: 1px;
-    padding-left: 15px;
     padding-right: 15px;
+    padding-left: 15px;
     padding-bottom: 7px;
     font-size: 15px;
     line-height: 25px;
 }
 
 .col1, .col2, .col3, .col4, .col5, .col6, .col7, .col8, .col9, .col10, .col11, .col12 {
-    float: left;
+    float: right;
 }
 
 
@@ -3691,176 +3698,176 @@ p {
 }
 
 .colpull12 {
-    right: 100%;
-}
-
-.colpull11 {
-    right: 91.66666667%;
-}
-
-.colpull10 {
-    right: 83.33333333%;
-}
-
-.colpull9 {
-    right: 75%;
-}
-
-.colpull8 {
-    right: 66.66666667%;
-}
-
-.colpull7 {
-    right: 58.33333333%;
-}
-
-.colpull6 {
-    right: 50%;
-}
-
-.colpull5 {
-    right: 41.66666667%;
-}
-
-.colpull4 {
-    right: 33.33333333%;
-}
-
-.colpull3 {
-    right: 25%;
-}
-
-.colpull2 {
-    right: 16.66666667%;
-}
-
-.colpull1 {
-    right: 8.33333333%;
-}
-
-.colpull0 {
-    right: 0;
-}
-
-.colpush12 {
     left: 100%;
 }
 
-.colpush11 {
+.colpull11 {
     left: 91.66666667%;
 }
 
-.colpush10 {
+.colpull10 {
     left: 83.33333333%;
 }
 
-.colpush9 {
+.colpull9 {
     left: 75%;
 }
 
-.colpush8 {
+.colpull8 {
     left: 66.66666667%;
 }
 
-.colpush7 {
+.colpull7 {
     left: 58.33333333%;
 }
 
-.colpush6 {
+.colpull6 {
     left: 50%;
 }
 
-.colpush5 {
+.colpull5 {
     left: 41.66666667%;
 }
 
-.colpush4 {
+.colpull4 {
     left: 33.33333333%;
 }
 
-.colpush3 {
+.colpull3 {
     left: 25%;
 }
 
-.colpush2 {
+.colpull2 {
     left: 16.66666667%;
 }
 
-.colpush1 {
+.colpull1 {
     left: 8.33333333%;
 }
 
-.colpush0 {
+.colpull0 {
     left: 0;
 }
 
+.colpush12 {
+    right: 100%;
+}
+
+.colpush11 {
+    right: 91.66666667%;
+}
+
+.colpush10 {
+    right: 83.33333333%;
+}
+
+.colpush9 {
+    right: 75%;
+}
+
+.colpush8 {
+    right: 66.66666667%;
+}
+
+.colpush7 {
+    right: 58.33333333%;
+}
+
+.colpush6 {
+    right: 50%;
+}
+
+.colpush5 {
+    right: 41.66666667%;
+}
+
+.colpush4 {
+    right: 33.33333333%;
+}
+
+.colpush3 {
+    right: 25%;
+}
+
+.colpush2 {
+    right: 16.66666667%;
+}
+
+.colpush1 {
+    right: 8.33333333%;
+}
+
+.colpush0 {
+    right: 0;
+}
+
 .coloffset12 {
-    margin-left: 100%;
+    margin-right: 100%;
 }
 
 .coloffset11 {
-    margin-left: 91.66666667%;
+    margin-right: 91.66666667%;
 }
 
 .coloffset10 {
-    margin-left: 83.33333333%;
+    margin-right: 83.33333333%;
 }
 
 .coloffset9 {
-    margin-left: 75%;
+    margin-right: 75%;
 }
 
 .coloffset8 {
-    margin-left: 66.66666667%;
+    margin-right: 66.66666667%;
 }
 
 .coloffset7 {
-    margin-left: 58.33333333%;
+    margin-right: 58.33333333%;
 }
 
 .coloffset6 {
-    margin-left: 50%;
+    margin-right: 50%;
 }
 
 .coloffset5 {
-    margin-left: 41.66666667%;
+    margin-right: 41.66666667%;
 }
 
 .coloffset4 {
-    margin-left: 33.33333333%;
+    margin-right: 33.33333333%;
 }
 
 .coloffset3 {
-    margin-left: 25%;
+    margin-right: 25%;
 }
 
 .coloffset2 {
-    margin-left: 16.66666667%;
+    margin-right: 16.66666667%;
 }
 
 .coloffset1 {
-    margin-left: 8.33333333%;
+    margin-right: 8.33333333%;
 }
 
 .coloffset0 {
-    margin-left: 0;
+    margin-right: 0;
 }
 
 .taptap-menu-button-wrapper {
     position: absolute;
     top: 8px;
-    right: 38px;
-    left: auto;
+    left: 38px;
+    right: auto;
     -webkit-transition: opacity .25s ease;
     -moz-transition: opacity .25s ease;
     transition: opacity .25s ease;
-    float: right;
+    float: left;
     z-index: 999;
     background-color: #009ad7;
     width: 45px;
     height: 45px;
     margin-top: -5px;
-    margin-right: -10px;
+    margin-left: -10px;
     cursor: pointer;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     -webkit-transition: all .25s ease;
@@ -3907,19 +3914,19 @@ p {
     z-index: 999;
     position: fixed;
     top: 8px;
-    right: 12px;
+    left: 12px;
     background-color: #4b4b4b;
 }
 
 .taptap-main-wrapper {
     position: fixed;
     z-index: 990;
-    direction: rtl !important;
+    direction: ltr !important;
     width: 600px;
     visibility: hidden;
     opacity: 0;
-    margin-right: -80px;
-    right: 0;
+    margin-left: -80px;
+    left: 0;
     height: 100%;
     -webkit-transform: translate3d(0,0,0);
     transform: translate3d(0,0,0);
@@ -3943,7 +3950,7 @@ p {
 .taptap-main-wrapper-active {
     visibility: visible;
     opacity: 1;
-    margin-right: 0px;
+    margin-left: 0px;
     transition: margin-right 350ms, visibility 350ms, opacity 350ms;
     -webkit-transition: margin-right 350ms, visibility 350ms, opacity 350ms;
 }
@@ -3953,6 +3960,7 @@ p {
     height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
+        direction: ltr;
 }
 
 .taptap-main {
@@ -3971,8 +3979,8 @@ p {
     margin: 0;
     padding: 5px;
     color: #fff;
-    padding-left: 15px;
     padding-right: 15px;
+    padding-left: 15px;
 }
 
 .taptap-contents-wrapper {
@@ -3984,8 +3992,8 @@ p {
 .taptap-main-wrapper-active .UserDetails {
     width: calc(33.333% - 22.5px);
     padding: 15px 7.5px 15px 15px;
-    float: left;
-    direction: ltr;
+    float: right;
+    direction: rtl;
 }
 
 .menu-subtitle {
@@ -4018,7 +4026,7 @@ p {
 
 .folderCloseBtn {
     position: absolute;
-    right: 0;
+    left: 0;
     top: 5px;
     cursor: pointer;
     display: block;
@@ -4060,13 +4068,13 @@ p {
     display: inline-block;
     text-align: center;
     line-height: 30px;
-    margin-right: 10px;
+    margin-left: 10px;
     speak: none;
     font-style: normal;
     font-weight: normal;
     -webkit-font-smoothing: antialiased;
     font-family: 'FontAwesome' !important;
-    float: left;
+    float: right;
 }
 
 .longlinkfolder {
@@ -4118,8 +4126,8 @@ a.colord13f2a:before {
 .menu-grid {
     width: calc(66.666% - 22.5px);
     padding: 15px 15px 15px 7.5px;
-    float: left;
-    direction: ltr;
+    float: right;
+    direction: rtl;
 }
 
 ..menu-subtitle {
@@ -4132,7 +4140,7 @@ a.colord13f2a:before {
 }
 
 .squares .square-big {
-    float: left;
+    float: right;
     position: relative;
     overflow: hidden;
     margin: 2px;
@@ -4142,7 +4150,7 @@ a.colord13f2a:before {
 
 .squares .square-mult {
     margin: 0;
-    float: left;
+    float: right;
     width: 50%;
 }
 
@@ -4156,7 +4164,7 @@ a.colord13f2a:before {
 }
 
 .squares .square-mult .sub-square {
-    float: left;
+    float: right;
     position: relative;
     overflow: hidden;
     margin: 2px;
@@ -4172,13 +4180,13 @@ a.colord13f2a:before {
     position: absolute;
     margin: auto;
     display: block;
-    left: 0;
     right: 0;
+    left: 0;
     line-height: 12px;
     top: 0;
     bottom: 0;
     border: 3px solid rgba(255, 255, 255, 0);
-    padding-left: 1px;
+    padding-right: 1px;
 }
 
     .squares .square-big a:hover, .squares .square-mult .sub-square a:hover {
@@ -4193,11 +4201,11 @@ a.colord13f2a:before {
     position: absolute;
     margin: auto;
     display: block;
-    left: 0;
     right: 0;
+    left: 0;
     top: 0;
     bottom: 0;
-    padding-left: 1px;
+    padding-right: 1px;
     border: 3px solid rgba(255, 255, 255, 0);
     -webkit-user-select: none !important;
 }
@@ -4272,7 +4280,7 @@ a.colord13f2a:before {
     padding: 7px;
     margin: 5px;
     font-size: 16px;
-    float: left;
+    float: right;
 }
 
 .DivLeftPanelEN {
@@ -4285,7 +4293,7 @@ a.colord13f2a:before {
         padding: 7px;
         margin: 5px;
         font-size: 16px;
-        float: left;
+        float: right;
     }
 
 .rp_realpad:after, .rp_servlnk1:before {
@@ -4762,7 +4770,7 @@ a.level2.dynamic.JobCategory:before {
         }
 
     .UtilityLinks a {
-        margin-left: 20px;
+        margin-right: 20px;
     }
 }
 
@@ -4925,13 +4933,13 @@ a.level2.dynamic.JobCategory:before {
         font-size: 0;
         margin: 3px;
         display: block;
-        float: right;
+        float: left;
         text-align: center;
     }
 
         .UtilityLinks a:before {
             display: block;
-            float: left;
+            float: right;
             text-align: center;
             margin: 0 3px;
             font-size: 18px;
@@ -4942,7 +4950,7 @@ a.level2.dynamic.JobCategory:before {
     }
 
     .LeftOverlay {
-        right: 20px;
+        left: 20px;
     }
 
     #ctl00_divMenu {
@@ -5019,7 +5027,7 @@ a.level2.dynamic.JobCategory:before {
     font-family: FontAwesome;
     color: #fff;
     top: 5px;
-    right: 5px;
+    left: 5px;
 }
 .widget
 {
@@ -5057,7 +5065,7 @@ a.level2.dynamic.JobCategory:before {
     }
 
     .NotificationsIcon {
-        margin-right: 60px;
+        margin-left: 60px;
     }
 
     .longlinkfolder {
@@ -5118,7 +5126,7 @@ a.level2.dynamic.JobCategory:before {
 
 @media (min-width:768px) {
     .col1, .col2, .col3, .col4, .col5, .col6, .col7, .col8, .col9, .col10, .col11, .col12 {
-        float: left;
+        float: right;
     }
 
     .col12 {
@@ -5170,165 +5178,165 @@ a.level2.dynamic.JobCategory:before {
     }
 
     .colpull12 {
-        right: 100%;
-    }
-
-    .colpull11 {
-        right: 91.66666667%;
-    }
-
-    .colpull10 {
-        right: 83.33333333%;
-    }
-
-    .colpull9 {
-        right: 75%;
-    }
-
-    .colpull8 {
-        right: 66.66666667%;
-    }
-
-    .colpull7 {
-        right: 58.33333333%;
-    }
-
-    .colpull6 {
-        right: 50%;
-    }
-
-    .colpull5 {
-        right: 41.66666667%;
-    }
-
-    .colpull4 {
-        right: 33.33333333%;
-    }
-
-    .colpull3 {
-        right: 25%;
-    }
-
-    .colpull2 {
-        right: 16.66666667%;
-    }
-
-    .colpull1 {
-        right: 8.33333333%;
-    }
-
-    .colpull0 {
-        right: 0;
-    }
-
-    .colpush12 {
         left: 100%;
     }
 
-    .colpush11 {
+    .colpull11 {
         left: 91.66666667%;
     }
 
-    .colpush10 {
+    .colpull10 {
         left: 83.33333333%;
     }
 
-    .colpush9 {
+    .colpull9 {
         left: 75%;
     }
 
-    .colpush8 {
+    .colpull8 {
         left: 66.66666667%;
     }
 
-    .colpush7 {
+    .colpull7 {
         left: 58.33333333%;
     }
 
-    .colpush6 {
+    .colpull6 {
         left: 50%;
     }
 
-    .colpush5 {
+    .colpull5 {
         left: 41.66666667%;
     }
 
-    .colpush4 {
+    .colpull4 {
         left: 33.33333333%;
     }
 
-    .colpush3 {
+    .colpull3 {
         left: 25%;
     }
 
-    .colpush2 {
+    .colpull2 {
         left: 16.66666667%;
     }
 
-    .colpush1 {
+    .colpull1 {
         left: 8.33333333%;
     }
 
-    .colpush0 {
+    .colpull0 {
         left: 0;
     }
 
+    .colpush12 {
+        right: 100%;
+    }
+
+    .colpush11 {
+        right: 91.66666667%;
+    }
+
+    .colpush10 {
+        right: 83.33333333%;
+    }
+
+    .colpush9 {
+        right: 75%;
+    }
+
+    .colpush8 {
+        right: 66.66666667%;
+    }
+
+    .colpush7 {
+        right: 58.33333333%;
+    }
+
+    .colpush6 {
+        right: 50%;
+    }
+
+    .colpush5 {
+        right: 41.66666667%;
+    }
+
+    .colpush4 {
+        right: 33.33333333%;
+    }
+
+    .colpush3 {
+        right: 25%;
+    }
+
+    .colpush2 {
+        right: 16.66666667%;
+    }
+
+    .colpush1 {
+        right: 8.33333333%;
+    }
+
+    .colpush0 {
+        right: 0;
+    }
+
     .coloffset12 {
-        margin-left: 100%;
+        margin-right: 100%;
     }
 
     .coloffset11 {
-        margin-left: 91.66666667%;
+        margin-right: 91.66666667%;
     }
 
     .coloffset10 {
-        margin-left: 83.33333333%;
+        margin-right: 83.33333333%;
     }
 
     .coloffset9 {
-        margin-left: 75%;
+        margin-right: 75%;
     }
 
     .coloffset8 {
-        margin-left: 66.66666667%;
+        margin-right: 66.66666667%;
     }
 
     .coloffset7 {
-        margin-left: 58.33333333%;
+        margin-right: 58.33333333%;
     }
 
     .coloffset6 {
-        margin-left: 50%;
+        margin-right: 50%;
     }
 
     .coloffset5 {
-        margin-left: 41.66666667%;
+        margin-right: 41.66666667%;
     }
 
     .coloffset4 {
-        margin-left: 33.33333333%;
+        margin-right: 33.33333333%;
     }
 
     .coloffset3 {
-        margin-left: 25%;
+        margin-right: 25%;
     }
 
     .coloffset2 {
-        margin-left: 16.66666667%;
+        margin-right: 16.66666667%;
     }
 
     .coloffset1 {
-        margin-left: 8.33333333%;
+        margin-right: 8.33333333%;
     }
 
     .coloffset0 {
-        margin-left: 0;
+        margin-right: 0;
     }
 }
 
 @media (min-width:992px) {
     .col1, .col2, .col3, .col4, .col5, .col6, .col7, .col8, .col9, .col10, .col11, .col12 {
-        float: left;
+        float: right;
     }
 
     .col12 {
@@ -5380,159 +5388,159 @@ a.level2.dynamic.JobCategory:before {
     }
 
     .colpull12 {
-        right: 100%;
-    }
-
-    .colpull11 {
-        right: 91.66666667%;
-    }
-
-    .colpull10 {
-        right: 83.33333333%;
-    }
-
-    .colpull9 {
-        right: 75%;
-    }
-
-    .colpull8 {
-        right: 66.66666667%;
-    }
-
-    .colpull7 {
-        right: 58.33333333%;
-    }
-
-    .colpull6 {
-        right: 50%;
-    }
-
-    .colpull5 {
-        right: 41.66666667%;
-    }
-
-    .colpull4 {
-        right: 33.33333333%;
-    }
-
-    .colpull3 {
-        right: 25%;
-    }
-
-    .colpull2 {
-        right: 16.66666667%;
-    }
-
-    .colpull1 {
-        right: 8.33333333%;
-    }
-
-    .colpull0 {
-        right: 0;
-    }
-
-    .colpush12 {
         left: 100%;
     }
 
-    .colpush11 {
+    .colpull11 {
         left: 91.66666667%;
     }
 
-    .colpush10 {
+    .colpull10 {
         left: 83.33333333%;
     }
 
-    .colpush9 {
+    .colpull9 {
         left: 75%;
     }
 
-    .colpush8 {
+    .colpull8 {
         left: 66.66666667%;
     }
 
-    .colpush7 {
+    .colpull7 {
         left: 58.33333333%;
     }
 
-    .colpush6 {
+    .colpull6 {
         left: 50%;
     }
 
-    .colpush5 {
+    .colpull5 {
         left: 41.66666667%;
     }
 
-    .colpush4 {
+    .colpull4 {
         left: 33.33333333%;
     }
 
-    .colpush3 {
+    .colpull3 {
         left: 25%;
     }
 
-    .colpush2 {
+    .colpull2 {
         left: 16.66666667%;
     }
 
-    .colpush1 {
+    .colpull1 {
         left: 8.33333333%;
     }
 
-    .colpush0 {
+    .colpull0 {
         left: 0;
     }
 
+    .colpush12 {
+        right: 100%;
+    }
+
+    .colpush11 {
+        right: 91.66666667%;
+    }
+
+    .colpush10 {
+        right: 83.33333333%;
+    }
+
+    .colpush9 {
+        right: 75%;
+    }
+
+    .colpush8 {
+        right: 66.66666667%;
+    }
+
+    .colpush7 {
+        right: 58.33333333%;
+    }
+
+    .colpush6 {
+        right: 50%;
+    }
+
+    .colpush5 {
+        right: 41.66666667%;
+    }
+
+    .colpush4 {
+        right: 33.33333333%;
+    }
+
+    .colpush3 {
+        right: 25%;
+    }
+
+    .colpush2 {
+        right: 16.66666667%;
+    }
+
+    .colpush1 {
+        right: 8.33333333%;
+    }
+
+    .colpush0 {
+        right: 0;
+    }
+
     .coloffset12 {
-        margin-left: 100%;
+        margin-right: 100%;
     }
 
     .coloffset11 {
-        margin-left: 91.66666667%;
+        margin-right: 91.66666667%;
     }
 
     .coloffset10 {
-        margin-left: 83.33333333%;
+        margin-right: 83.33333333%;
     }
 
     .coloffset9 {
-        margin-left: 75%;
+        margin-right: 75%;
     }
 
     .coloffset8 {
-        margin-left: 66.66666667%;
+        margin-right: 66.66666667%;
     }
 
     .coloffset7 {
-        margin-left: 58.33333333%;
+        margin-right: 58.33333333%;
     }
 
     .coloffset6 {
-        margin-left: 50%;
+        margin-right: 50%;
     }
 
     .coloffset5 {
-        margin-left: 41.66666667%;
+        margin-right: 41.66666667%;
     }
 
     .coloffset4 {
-        margin-left: 33.33333333%;
+        margin-right: 33.33333333%;
     }
 
     .coloffset3 {
-        margin-left: 25%;
+        margin-right: 25%;
     }
 
     .coloffset2 {
-        margin-left: 16.66666667%;
+        margin-right: 16.66666667%;
     }
 
     .coloffset1 {
-        margin-left: 8.33333333%;
+        margin-right: 8.33333333%;
     }
 
     .coloffset0 {
-        margin-left: 0;
+        margin-right: 0;
     }
     .left , .right
     {
@@ -5543,7 +5551,7 @@ a.level2.dynamic.JobCategory:before {
 }
 @media (min-width:1200px) {
     .col1, .col2, .col3, .col4, .col5, .col6, .col7, .col8, .col9, .col10, .col11, .col12 {
-        float: left;
+        float: right;
     }
 
     .col12 {
@@ -5595,159 +5603,159 @@ a.level2.dynamic.JobCategory:before {
     }
 
     .colpull12 {
-        right: 100%;
-    }
-
-    .colpull11 {
-        right: 91.66666667%;
-    }
-
-    .colpull10 {
-        right: 83.33333333%;
-    }
-
-    .colpull9 {
-        right: 75%;
-    }
-
-    .colpull8 {
-        right: 66.66666667%;
-    }
-
-    .colpull7 {
-        right: 58.33333333%;
-    }
-
-    .colpull6 {
-        right: 50%;
-    }
-
-    .colpull5 {
-        right: 41.66666667%;
-    }
-
-    .colpull4 {
-        right: 33.33333333%;
-    }
-
-    .colpull3 {
-        right: 25%;
-    }
-
-    .colpull2 {
-        right: 16.66666667%;
-    }
-
-    .colpull1 {
-        right: 8.33333333%;
-    }
-
-    .colpull0 {
-        right: 0;
-    }
-
-    .colpush12 {
         left: 100%;
     }
 
-    .colpush11 {
+    .colpull11 {
         left: 91.66666667%;
     }
 
-    .colpush10 {
+    .colpull10 {
         left: 83.33333333%;
     }
 
-    .colpush9 {
+    .colpull9 {
         left: 75%;
     }
 
-    .colpush8 {
+    .colpull8 {
         left: 66.66666667%;
     }
 
-    .colpush7 {
+    .colpull7 {
         left: 58.33333333%;
     }
 
-    .colpush6 {
+    .colpull6 {
         left: 50%;
     }
 
-    .colpush5 {
+    .colpull5 {
         left: 41.66666667%;
     }
 
-    .colpush4 {
+    .colpull4 {
         left: 33.33333333%;
     }
 
-    .colpush3 {
+    .colpull3 {
         left: 25%;
     }
 
-    .colpush2 {
+    .colpull2 {
         left: 16.66666667%;
     }
 
-    .colpush1 {
+    .colpull1 {
         left: 8.33333333%;
     }
 
-    .colpush0 {
+    .colpull0 {
         left: 0;
     }
 
+    .colpush12 {
+        right: 100%;
+    }
+
+    .colpush11 {
+        right: 91.66666667%;
+    }
+
+    .colpush10 {
+        right: 83.33333333%;
+    }
+
+    .colpush9 {
+        right: 75%;
+    }
+
+    .colpush8 {
+        right: 66.66666667%;
+    }
+
+    .colpush7 {
+        right: 58.33333333%;
+    }
+
+    .colpush6 {
+        right: 50%;
+    }
+
+    .colpush5 {
+        right: 41.66666667%;
+    }
+
+    .colpush4 {
+        right: 33.33333333%;
+    }
+
+    .colpush3 {
+        right: 25%;
+    }
+
+    .colpush2 {
+        right: 16.66666667%;
+    }
+
+    .colpush1 {
+        right: 8.33333333%;
+    }
+
+    .colpush0 {
+        right: 0;
+    }
+
     .coloffset12 {
-        margin-left: 100%;
+        margin-right: 100%;
     }
 
     .coloffset11 {
-        margin-left: 91.66666667%;
+        margin-right: 91.66666667%;
     }
 
     .coloffset10 {
-        margin-left: 83.33333333%;
+        margin-right: 83.33333333%;
     }
 
     .coloffset9 {
-        margin-left: 75%;
+        margin-right: 75%;
     }
 
     .coloffset8 {
-        margin-left: 66.66666667%;
+        margin-right: 66.66666667%;
     }
 
     .coloffset7 {
-        margin-left: 58.33333333%;
+        margin-right: 58.33333333%;
     }
 
     .coloffset6 {
-        margin-left: 50%;
+        margin-right: 50%;
     }
 
     .coloffset5 {
-        margin-left: 41.66666667%;
+        margin-right: 41.66666667%;
     }
 
     .coloffset4 {
-        margin-left: 33.33333333%;
+        margin-right: 33.33333333%;
     }
 
     .coloffset3 {
-        margin-left: 25%;
+        margin-right: 25%;
     }
 
     .coloffset2 {
-        margin-left: 16.66666667%;
+        margin-right: 16.66666667%;
     }
 
     .coloffset1 {
-        margin-left: 8.33333333%;
+        margin-right: 8.33333333%;
     }
 
     .coloffset0 {
-        margin-left: 0;
+        margin-right: 0;
     }
     .left , .right
     {
