@@ -50,7 +50,7 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    direction:rtl
+    direction: rtl;
 }
 
 a:active, a:hover {
@@ -75,7 +75,6 @@ body {
     background-color: #eeeeee;
     margin: 0 6px;
     padding: 0;
-    
 }
 
 .OpenMenu {
@@ -256,7 +255,7 @@ body {
     margin-bottom: 15px;
 }
 
-.Header:after, .UtilityEN:after, .UtilityAR:after  {
+.Header:after, .UtilityEN:after, .UtilityAR:after {
     display: block;
     content: "";
     float: none;
@@ -449,11 +448,13 @@ a.level2.dynamic {
     a.level2.dynamic:hover {
         box-shadow: inset 0 0 0 4px #fff, 0 0 1px transparent;
     }
+
 #ctl00_Menu1 ul.dynamic {
     z-index: 1;
     left: inherit !important;
     right: 0;
 }
+
 ul.level2 > li {
     border-bottom: 1px solid #fff;
     width: calc(100% + 30px);
@@ -3960,7 +3961,7 @@ p {
     height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
-        direction: ltr;
+    direction: ltr;
 }
 
 .taptap-main {
@@ -4854,75 +4855,85 @@ a.level2.dynamic.JobCategory:before {
             line-height: 8px;
         }
 
-    .GapSummeryDiv, .monthSummaryDiv  {
+    .GapSummeryDiv, .monthSummaryDiv {
         width: calc(100% - 30px);
     }
+
     .monthSummaryDiv {
         width: calc(100% - 30px);
-        margin:5px 15px;
+        margin: 5px 15px;
     }
 }
+
 @media (max-width: 1073px) {
-    .loginPage > #aspnetForm > #main_block
-    {
-        display:block;
-        
+    .loginPage > #aspnetForm > #main_block {
+        display: block;
     }
-    .loginWrapper , body.loginPage > #aspnetForm
-    {
-        width:100%;
-        height:auto;
-        display:block;
-        position:relative;
+
+    .loginWrapper, body.loginPage > #aspnetForm {
+        width: 100%;
+        height: auto;
+        display: block;
+        position: relative;
         -moz-box-shadow: 0px 0px 5px #fff;
-    -webkit-box-shadow: 0px 0px 5px #fff;
-    box-shadow: 0px 0px 5px #fff;
+        -webkit-box-shadow: 0px 0px 5px #fff;
+        box-shadow: 0px 0px 5px #fff;
     }
-    .loginPage
-    {
-        margin:0;
+
+    .loginPage {
+        margin: 0;
         background-color: #fff;
     }
-    .LoginLeft 
-    {
-        float:none;
-        width:100%;
-        height:auto;
+
+    .LoginLeft {
+        float: none;
+        width: 100%;
+        height: auto;
         padding: 55px 0;
-        background-size:100%;
+        background-size: 100%;
     }
-    .LoginRight
-    {
-        float:none;
-        width:calc(100% - 30px);
-        height:auto;
-        margin:15px auto;
+
+    .LoginRight {
+        float: none;
+        width: calc(100% - 30px);
+        height: auto;
+        margin: 15px auto;
     }
-    #ft_padd
-    {
-        width:95vW;
-        margin:0 auto;
+
+    #ft_padd {
+        width: 95vW;
+        margin: 0 auto;
     }
-    .LoginFooterLink
-    {
-        width:100%;
+
+    .LoginFooterLink {
+        width: 100%;
     }
-    .loginLogoM
-    {
-        display:none;
+
+    .loginLogoM {
+        display: none;
     }
-    .loginLogoS
-    {
-        display:block;
-        margin:0px auto;
-        padding:5px;
-        width:304px;
-        height:82px;
+
+    .loginLogoS {
+        display: block;
+        margin: 0px auto;
+        padding: 5px;
+        width: 304px;
+        height: 82px;
     }
 }
+
 @media (max-width: 992px) {
     .col1, .col2, .col3, .col4, .col5, .col6, .col7, .col8, .col9, .col10, col11, .col12, .row > .col4:nth-child(2), .row > .col4:nth-child(4), .row > .col2:nth-child(1), .row > .col2:nth-child(3), .left, .right, .rp_Search > span > span {
         width: 100%;
+    }
+
+    .Header {
+        background-size: 100%;
+    }
+
+    .Logo {
+        margin-top: 5px;
+        margin-bottom: 5px;
     }
 
     .breadcrumb {
@@ -4972,10 +4983,10 @@ a.level2.dynamic.JobCategory:before {
 }
 
 @media (max-width: 600px) {
-    .TableLevel td
-    {
-        display:block
+    .TableLevel td {
+        display: block;
     }
+
     .taptap-main-wrapper {
         width: 100%;
     }
@@ -4998,41 +5009,43 @@ a.level2.dynamic.JobCategory:before {
             .widget span:last-child {
                 font-size: 25px;
             }
-.widget:after {
-    position: absolute;
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    font-size: 34px;
-    margin: 10px 17px 8px;
-    line-height: 65px !important;
-    display: block;
-    border: 3px solid #FFF;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    text-align: center;
-    -webkit-border-radius: 99px;
-    -moz-border-radius: 99px;
-    border-radius: 99px;
-    -o-transition: all .5s;
-    -ms-transition: all .5s;
-    -moz-transition: all .5s;
-    -webkit-transition: all .5s;
-    transition: all .5s;
-    width: 70px;
-    height: 70px;
-    font-family: FontAwesome;
-    color: #fff;
-    top: 5px;
-    left: 5px;
-}
-.widget
-{
+
+        .widget:after {
+            position: absolute;
+            speak: none;
+            font-style: normal;
+            font-weight: normal;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            font-size: 34px;
+            margin: 10px 17px 8px;
+            line-height: 65px !important;
+            display: block;
+            border: 3px solid #FFF;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            border-radius: 50%;
+            text-align: center;
+            -webkit-border-radius: 99px;
+            -moz-border-radius: 99px;
+            border-radius: 99px;
+            -o-transition: all .5s;
+            -ms-transition: all .5s;
+            -moz-transition: all .5s;
+            -webkit-transition: all .5s;
+            transition: all .5s;
+            width: 70px;
+            height: 70px;
+            font-family: FontAwesome;
+            color: #fff;
+            top: 5px;
+            left: 5px;
+        }
+
+    .widget {
         height: 100px;
-}
+    }
+
     .reportsicon, .rp_Search > span > span {
         width: 100% !important;
         margin: 0;
@@ -5094,7 +5107,7 @@ a.level2.dynamic.JobCategory:before {
 }
 
 @media (max-width: 450px) {
-    .CalenderTable>tbody>tr>td>span>table>tbody>tr>td {
+    .CalenderTable > tbody > tr > td > span > table > tbody > tr > td {
         display: inline-block;
         margin: 2px 0;
     }
@@ -5116,7 +5129,7 @@ a.level2.dynamic.JobCategory:before {
         display: block;
     }
 
-        .CalenderTable>tbody>tr>td>span>table>tbody, .CalenderTable>tbody>tr>td>span>table>tbody>tr {
+        .CalenderTable > tbody > tr > td > span > table > tbody, .CalenderTable > tbody > tr > td > span > table > tbody > tr {
             /* width:calc(100% - 33px);*/
             display: block;
             height: 100px !important;
