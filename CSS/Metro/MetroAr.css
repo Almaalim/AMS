@@ -247,7 +247,7 @@ body {
 }
 
 .Header {
-    background: top right url(Images/HeaderBGAR.png) no-repeat;
+    background: top left url(Images/HeaderBGAR.png) no-repeat;
     padding-top: 3px;
 }
 
