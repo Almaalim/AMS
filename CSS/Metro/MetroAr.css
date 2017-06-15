@@ -835,7 +835,7 @@ a:active {
     -webkit-box-shadow: 0px 0px 10px #c6c6c6;
     box-shadow: 0px 0px 10px #c6c6c6;
     display: none;
-    left: 0;
+    left: 0 !important;
     right: inherit !important;
     top: 25px !important;
 }
@@ -5094,7 +5094,7 @@ a.level2.dynamic.JobCategory:before {
 }
 
 @media (max-width: 450px) {
-    .CalenderTable td {
+    .CalenderTable>tbody>tr>td>span>table>tbody>tr>td {
         display: inline-block;
         margin: 2px 0;
     }
@@ -5116,7 +5116,7 @@ a.level2.dynamic.JobCategory:before {
         display: block;
     }
 
-        .CalenderTable tbody, .CalenderTable tbody tr {
+        .CalenderTable>tbody>tr>td>span>table>tbody, .CalenderTable>tbody>tr>td>span>table>tbody>tr {
             /* width:calc(100% - 33px);*/
             display: block;
             height: 100px !important;

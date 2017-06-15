@@ -5086,7 +5086,7 @@ a.level2.dynamic.JobCategory:before {
 }
 
 @media (max-width: 450px) {
-    .CalenderTable td {
+    .CalenderTable>tbody>tr>td>span>table>tbody>tr>td {
         display: inline-block;
         margin: 2px 0;
     }
@@ -5108,7 +5108,7 @@ a.level2.dynamic.JobCategory:before {
         display: block;
     }
 
-        .CalenderTable tbody, .CalenderTable tbody tr {
+        .CalenderTable>tbody>tr>td>span>table>tbody, .CalenderTable>tbody>tr>td>span>table>tbody>tr {
             /* width:calc(100% - 33px);*/
             display: block;
             height: 100px !important;

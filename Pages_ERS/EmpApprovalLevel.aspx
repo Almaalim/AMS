@@ -41,7 +41,7 @@
                 </div>
                 <div class="col2">
                     <asp:DropDownList ID="ddlFilter" runat="server"
-                        meta:resourcekey="ddlFilterResource1" Width="300px">
+                        meta:resourcekey="ddlFilterResource1">
                         <asp:ListItem meta:resourcekey="ListItemResource1" Selected="True">[None]</asp:ListItem>
                         <asp:ListItem meta:resourcekey="ListItemResource2" Value="EmpID">Employee ID</asp:ListItem>
                         <asp:ListItem meta:resourcekey="ListItemResource3" Text="Employee Name (Ar)"
