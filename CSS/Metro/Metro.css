@@ -5077,6 +5077,7 @@ a.level2.dynamic.JobCategory:before {
     .NotificationsActive
     {
         right:10px;
+        top: 60px;
     }
     .squares .square-big {
         width: 105px;
