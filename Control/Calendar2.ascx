@@ -110,13 +110,13 @@
                         <table>
                             <tr>
                                 <td>
-                                    <asp:DropDownList ID="ddlLocaleChoice" runat="server" width="85px" AutoPostBack="True" 
+                                    <asp:DropDownList ID="ddlLocaleChoice" runat="server" width="90px" AutoPostBack="True" 
                                         OnSelectedIndexChanged="ddlLocaleChoice_SelectedIndexChanged" CssClass="clsDDL">
                                         <asp:ListItem Value="ar-SA" Text="Hijri"></asp:ListItem>
                                         <asp:ListItem Value="en-US" Text="Gregorian"></asp:ListItem>
                                     </asp:DropDownList>
                                     <asp:DropDownList ID="ddlMonths" runat="server" AutoPostBack="True" 
-                                        Width="115px" CssClass="CallstItemStyle"
+                                        Width="101px" CssClass="CallstItemStyle"
                                         OnSelectedIndexChanged="ddlMonths_SelectedIndexChanged">
                                     </asp:DropDownList>
                                     <asp:DropDownList ID="ddlYears" runat="server" AutoPostBack="True" Width="65px" CssClass="CallstItemStyle"

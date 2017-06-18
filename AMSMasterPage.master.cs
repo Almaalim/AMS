@@ -9,6 +9,7 @@ using Elmah;
 using System.Web;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Web.UI.HtmlControls;
 
 public partial class AMSMasterPage : System.Web.UI.MasterPage
 {
@@ -47,12 +48,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
             if (!IsPostBack)
             {
 
-                //Dear Developer
-                // I am adding this line for more than 5 times in this project and has been removed.Which brings up extra work for me.So if you concerned about team work and since
-                // we are working on source control i hope that i dont need to add rework on this again.
-
-                //Dear designer
-                //I have never seen this line and never deleted it, please make sure you have a problem before adding any comment
+                
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "PostbackFunction();", true);
                 ChangeLogo();
  
@@ -82,13 +78,28 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
             }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
-        //Dear Developer
-        // I am adding this line for more than 5 times in this project and has been removed.Which brings up extra work for me.So if you concerned about team work and since
-        // we are working on source control i hope that i dont need to add rework on this again.
 
-        //Dear designer
-        //I have never seen this line and never deleted it, please make sure you have a problem before adding any comment
+
+        ///Added by Abbas
+        string CurrentLanguage = Session["Language"].ToString();
+        if (CurrentLanguage == "EN")
+        {
+
+            LanguageSwitch.Href = "CSS/Metro/Metro.css";
+
+
+        }
+        else if (CurrentLanguage == "AR")
+        {
+
+            LanguageSwitch.Href = "CSS/Metro/MetroAr.css";
+
+        }
+        ///Added by Abbas End
+        ///
         ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "PostbackFunction();", true);
+
+
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -179,7 +190,17 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void lnkLanguage_Click(object sender, EventArgs e)
     {
-        if (pgCs.Lang == "AR") { Session["Language"] = "EN"; } else { Session["Language"] = "AR"; }
+           HtmlLink link = new HtmlLink();
+        if (pgCs.Lang == "AR")
+        {
+            Session["Language"] = "EN";    
+         
+        }
+        else
+        {
+            Session["Language"] = "AR";
+            
+        }
 
         string QS = (Request.QueryString.Count != 0) ? Request.QueryString.ToString() : "";
         Response.Redirect(Request.FilePath + QS);

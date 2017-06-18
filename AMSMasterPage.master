@@ -16,7 +16,7 @@
     <script type="text/javascript" src="../Script/jquery-ui-1.8.17.custom.min.js"></script>
     <script type="text/javascript" src="../Script/SessionScript.js"></script>
     <script src="../Script/jquery.mousewheel.js"></script>
-    <link href="CSS/Metro/Metro.css" rel="stylesheet" />
+    <link href="CSS/Metro/Metro.css"  rel="stylesheet" runat="server" id="LanguageSwitch" />
 
     <script type="text/javascript">
         function PostbackFunction() {
