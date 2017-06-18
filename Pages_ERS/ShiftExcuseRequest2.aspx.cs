@@ -114,7 +114,7 @@ public partial class ShiftExcuseRequest2 : BasePage
                       + " ((DATEPART(DW, @P2) = 5) AND (EwrThu = 1)) OR "
                       + " ((DATEPART(DW, @P2) = 6) AND (EwrFri = 1)) OR "
                       + " ((DATEPART(DW, @P2) = 7) AND (EwrSat = 1)))"
-                      + " ORDER BY EwrCreatedDate DESC";
+                      + " ORDER BY EwrID DESC";
             DataTable DT = DBCs.FetchData(MQ, new string[] { pgCs.LoginEmpID, Date.ToString() });
             if (!DBCs.IsNullOrEmpty(DT))
             {
@@ -318,7 +318,7 @@ public partial class ShiftExcuseRequest2 : BasePage
         { 
             BtnStatus("11");
             ErrorSignal.FromCurrentContext().Raise(ex); 
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

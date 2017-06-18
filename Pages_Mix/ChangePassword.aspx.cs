@@ -50,7 +50,8 @@ public partial class ChangePassword : BasePage
         {
             if (!CtrlCs.PageIsValid(this, vsSave)) { return; }
 
-            string EncPass = CryptorEngine.Encrypt(txtNewpassword.Text, true);
+            string EncPass = txtNewpassword.Text;
+            //string EncPass = CryptorEngine.Encrypt(txtNewpassword.Text, true);
 
             if (pgCs.LoginType == "EMP") { EmpSqlCs.Employee_Update_Password(pgCs.LoginID, EncPass, pgCs.LoginID); }
             else { UsrSqlCs.AppUser_Update_Pass(pgCs.LoginID, EncPass); }
@@ -60,7 +61,7 @@ public partial class ChangePassword : BasePage
         catch (Exception ex) 
         { 
             ErrorSignal.FromCurrentContext().Raise(ex); 
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

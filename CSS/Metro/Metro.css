@@ -214,22 +214,23 @@ body {
     }
 }
 
-.FirstPager:before {
+.FirstPager:before
+{
     font-family: 'Glyphicons Halflings';
     content: "\e070";
 }
-
-.PreviousPager:before {
+.PreviousPager:before
+{
     font-family: 'Glyphicons Halflings';
     content: "\e071";
 }
-
-.NextPager:before {
+.NextPager:before
+{
     font-family: 'Glyphicons Halflings';
     content: "\e075";
 }
-
-.LastPager:before {
+.LastPager:before
+{
     font-family: 'Glyphicons Halflings';
     content: "\e076";
 }
@@ -302,7 +303,7 @@ body {
     -moz-border-radius: 99px;
     border-radius: 99px;
     margin-right: 10px;
-    margin-left: 27px;
+        margin-left: 27px;
 }
 
 li.static {
@@ -452,7 +453,7 @@ ul.level2 > li {
     border-bottom: 1px solid #fff;
 }
 
-.UtilityEN, .UtilityAR {
+.UtilityEN {
     background-color: #f5f5f5;
     margin: 0;
     padding: 6px 35px;
@@ -1044,8 +1045,8 @@ span.glyphicon.CalenderIco {
 }
 
 .DateExp {
-    position: relative;
-    margin-left: 12px;
+    position: inherit;
+    margin-right: 10px;
 }
 
     #reqUsername img, #Fullname img, #cvEmpID img, #rfvLanguage img, #Password img, #cvEmail img, #cdvMobileNo img, #cvADUser img, #cvShowMsg img, .CustomValidator img, .DateExp img {
@@ -1378,7 +1379,7 @@ body.loginPage > #aspnetForm {
 }
 
 .monthSummaryDiv {
-    width: calc(50% - 30px);
+    width: calc(25% - 22.5px);
     display: inline-block;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -1461,7 +1462,7 @@ body.loginPage > #aspnetForm {
 }
 
 .NotificationsWrapper {
-    position: absolute;
+  position: absolute;
     direction: ltr;
     width: calc(100% - 0px);
     padding: 9px;
@@ -1470,8 +1471,8 @@ body.loginPage > #aspnetForm {
     background-color: rgb(249, 250, 252);
     color: #000;
     -webkit-box-shadow: inset 0px 0px 0px 4px rgba(75,75,75,1);
-    -moz-box-shadow: inset 0px 0px 0px 4px rgba(75,75,75,1);
-    box-shadow: inset 0px 0px 0px 4px rgba(75,75,75,1);
+-moz-box-shadow: inset 0px 0px 0px 4px rgba(75,75,75,1);
+box-shadow: inset 0px 0px 0px 4px rgba(75,75,75,1);
 }
 
 .NotificationsPopup {
@@ -1486,7 +1487,7 @@ body.loginPage > #aspnetForm {
     border: 3px solid rgba(0, 0, 0, 0.68);
     opacity: 0;
     display: none;
-    top: 40px;
+       top: 40px;
     right: 123px;
 }
 
@@ -1574,25 +1575,26 @@ body.loginPage > #aspnetForm {
     position: relative;
     cursor: pointer;
     display: inline-block;
-    float: right;
-    margin-right: 331px;
+     float: right;
+        margin-right: 331px;
+
 }
 
     .NotificationsIcon:before {
         font-family: FontAwesome;
-        content: "\f2b7";
-        color: #fff;
-        display: inline-block;
-        background-color: rgb(0, 154, 215);
-        padding: 3px 7px;
-        margin: 2px;
-        font-size: 15px;
-        transition: all 1000ms cubic-bezier(0.19, 1, 0.22, 1);
+    content: "\f2b7";
+    color: #fff;
+    display: inline-block;
+    background-color: rgb(0, 154, 215);
+    padding: 3px 7px;
+    margin: 2px;
+    font-size: 15px;
+    transition: all 1000ms cubic-bezier(0.19, 1, 0.22, 1);
     }
 
     .NotificationsIcon:hover:before {
         color: rgb(0, 154, 215);
-        background-color: #d9d9d9;
+        background-color: #fff;
         -webkit-transform: rotateY(180deg);
         -ms-transform: rotateX(180deg);
         -moz-transform: rotateY(180deg);
@@ -1609,7 +1611,6 @@ body.loginPage > #aspnetForm {
     padding: 2px;
     top: -3px;
     left: 20px;
-    color: #fff;
 }
 
 .LoginLanguageBtn {
@@ -1906,11 +1907,6 @@ body.loginPage > #aspnetForm {
 a.Report:before {
     content: "\f17a";
     font-family: FontAwesome !important;
-}
-
-.reportsicon:before {
-    content: "\f0f6";
-    font-family: FontAwesome;
 }
 
 .ico-chart-2:before {
@@ -3978,7 +3974,7 @@ p {
 .taptap-contents-wrapper {
     width: 100% !important;
     height: 100%;
-    padding-top: 45px;
+        padding-top: 45px;
 }
 
 .taptap-main-wrapper-active .UserDetails {
@@ -4017,7 +4013,7 @@ p {
     }
 
 .folderCloseBtn {
-    position: absolute;
+        position: absolute;
     right: 0;
     top: 5px;
     cursor: pointer;
@@ -4025,23 +4021,25 @@ p {
     width: 31px;
     height: 31px;
     text-align: center;
-    color: #fff;
-    transition: all 1000ms cubic-bezier(0.19, 1, 0.22, 1);
+    color:#fff;
+        transition: all 1000ms cubic-bezier(0.19, 1, 0.22, 1);
+  
+   
 }
-
-    .folderCloseBtn:hover {
-        color: #6f180c;
-        text-shadow: 0px 0px 15px rgba(255, 255, 255, 1);
-        -webkit-transform: rotateY(180deg);
-        -ms-transform: rotateX(180deg);
-        -moz-transform: rotateY(180deg);
-        transform: rotateY(180deg);
-    }
-
+.folderCloseBtn:hover
+{
+    color:#6f180c;  
+    text-shadow: 0px 0px 15px rgba(255, 255, 255, 1);
+    -webkit-transform: rotateY(180deg);
+    -ms-transform: rotateX(180deg);
+    -moz-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
     .folderCloseBtn:before {
         display: inline-block;
         text-align: center;
-        font-size: 15px;
+        font-size:15px;
+        
         speak: none;
         font-style: normal;
         font-weight: normal;
@@ -4068,13 +4066,11 @@ p {
     font-family: 'FontAwesome' !important;
     float: left;
 }
-
 .longlinkfolder {
     max-width: 74px;
     display: inline-block;
     line-height: 14px;
 }
-
 .apps li a:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
@@ -4673,22 +4669,18 @@ a.colord13f2a:before {
     content: "\e110";
     font-family: 'Glyphicons Halflings' !important;
 }
-
 .ShiftSwapApproval:before {
     content: "\f087";
-    font-family: 'icomoon' !important;
+       font-family: 'icomoon' !important;
 }
-
 .JobAssignmentRequest:before {
     content: "\f047";
-    font-family: 'icomoon' !important;
+       font-family: 'icomoon' !important;
 }
-
 .ShiftExcuseRequest:before {
-    content: "\f03c";
-    font-family: FontAwesome !important;
+       content: "\f03c";
+       font-family: FontAwesome !important;
 }
-
 .tooltipSmall {
     display: none;
     position: absolute;
@@ -4782,8 +4774,6 @@ a.level2.dynamic.JobCategory:before {
 }
 
 @media (max-width:1260px) {
-
-
     .monthSummaryDiv {
         width: 430px;
         margin: 1%;
@@ -4844,217 +4834,6 @@ a.level2.dynamic.JobCategory:before {
             font-size: 12px;
             color: #999;
             line-height: 8px;
-        }
-
-    .GapSummeryDiv, .monthSummaryDiv  {
-        width: calc(100% - 30px);
-    }
-    .monthSummaryDiv {
-        width: calc(100% - 30px);
-        margin:5px 15px;
-    }
-}
-
-@media (max-width: 992px) {
-    .col1, .col2, .col3, .col4, .col5, .col6, .col7, .col8, .col9, .col10, col11, .col12, .row > .col4:nth-child(2), .row > .col4:nth-child(4), .row > .col2:nth-child(1), .row > .col2:nth-child(3), .left, .right, .rp_Search > span > span {
-        width: 100%;
-    }
-
-    .breadcrumb {
-        margin: 10px 0;
-    }
-
-    .UtilityLinks a {
-        font-size: 0;
-        margin: 3px;
-        display: block;
-        float: right;
-        text-align: center;
-    }
-
-        .UtilityLinks a:before {
-            display: block;
-            float: left;
-            text-align: center;
-            margin: 0 3px;
-            font-size: 18px;
-        }
-
-    .UtilityEN, .UtilityAR {
-        padding: 6px;
-    }
-
-    .LeftOverlay {
-        right: 20px;
-    }
-
-    #ctl00_divMenu {
-        display: none;
-    }
-
-    .tableDiv {
-        display: block;
-        text-align: center;
-    }
-
-    .tableCell {
-        display: inline-block;
-    }
-
-        .tableCell > * {
-            margin: 5px;
-        }
-}
-
-@media (max-width: 600px) {
-    .TableLevel td
-    {
-        display:block
-    }
-    .taptap-main-wrapper {
-        width: 100%;
-    }
-
-    #wizHeaderEN li a, #wizHeaderAR li a, #wizHeaderEN li .currentStep, #wizHeaderAR li .currentStep, #wizHeaderEN li .currentStep, #wizHeaderAR li .currentStep {
-        width: calc(100% - 30px) !important;
-        display: block !important;
-    }
-
-    #wizHeaderEN li, #wizHeaderAR li, .widget {
-        width: 100% !important;
-    }
-
-        .widget span {
-            width: calc(100% - 150px);
-            font-size: 16px;
-            line-height: normal;
-        }
-
-            .widget span:last-child {
-                font-size: 25px;
-            }
-.widget:after {
-    position: absolute;
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    font-size: 34px;
-    margin: 10px 17px 8px;
-    line-height: 65px !important;
-    display: block;
-    border: 3px solid #FFF;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-    text-align: center;
-    -webkit-border-radius: 99px;
-    -moz-border-radius: 99px;
-    border-radius: 99px;
-    -o-transition: all .5s;
-    -ms-transition: all .5s;
-    -moz-transition: all .5s;
-    -webkit-transition: all .5s;
-    transition: all .5s;
-    width: 70px;
-    height: 70px;
-    font-family: FontAwesome;
-    color: #fff;
-    top: 5px;
-    right: 5px;
-}
-.widget
-{
-        height: 100px;
-}
-    .reportsicon, .rp_Search > span > span {
-        width: 100% !important;
-        margin: 0;
-    }
-
-    #wizHeaderEN li a:before, #wizHeaderAR li a:before, #wizHeaderEN li a:after, #wizHeaderAR li a:after {
-        display: none !important;
-    }
-
-    #wizHeaderEN li, #wizHeaderAR li {
-        padding: 0 !important;
-        margin: 3px 0 !important;
-    }
-
-    .ChackBoxlist td {
-        display: inline-block;
-        width: 50%;
-    }
-
-    .menu-grid {
-        width: 100%;
-    }
-
-    .taptap-main-wrapper-active .UserDetails, .ajax__tab_xp .ajax__tab_header .ajax__tab_outer {
-        width: 100%;
-    }
-
-    .ajax__tab_body.ajax__scroll_none {
-        height: auto !important;
-    }
-
-    .NotificationsIcon {
-        margin-right: 60px;
-    }
-
-    .longlinkfolder {
-        max-width: 100%;
-    }
-
-    .NotificationsPopup {
-        top: 50px;
-    }
-
-    .squares .square-big {
-        width: 105px;
-        height: 105px;
-        padding-bottom: 0;
-    }
-
-    .squares .square-mult {
-        width: 109px;
-        height: 109px;
-    }
-    /* .squares .square-big a
-    {
-        height:105px;
-        position:relative;
-    }*/
-}
-
-@media (max-width: 450px) {
-    .CalenderTable td {
-        display: inline-block;
-        margin: 2px 0;
-    }
-
-    .CalenderTable .calendarTxt {
-        width: calc(100% - 38px);
-    }
-
-        .CalenderTable .calendarTxt input {
-            width: 100% !important;
-        }
-
-    .CalenderTable {
-        -webkit-box-shadow: 2px 2px 9px 2px rgba(206,220,223,0);
-        -moz-box-shadow: 2px 2px 9px 2px rgba(206,220,223,0);
-        box-shadow: 2px 2px 9px 2px rgba(206,220,223,0);
-        background: rgba(206,220,223,0);
-        width: calc(100% - 33px) !important;
-        display: block;
-    }
-
-        .CalenderTable tbody, .CalenderTable tbody tr {
-            /* width:calc(100% - 33px);*/
-            display: block;
-            height: 100px !important;
         }
 }
 /*

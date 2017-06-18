@@ -66,7 +66,7 @@ public class TransDumpSql : DataLayerBase
         
         try
         {
-            Sqlcmd.Parameters.Add(new SqlParameter("@EmpIDs"  , txtDB, 15, IN, false, 0, 0, "", DRV, Pro.EmpIDs));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EmpIDs"  , txtDB, 1000000, IN, false, 0, 0, "", DRV, Pro.EmpIDs));
 
             Sqlcmd.Parameters.Add(new SqlParameter("@TrnDate", DtDB,  20, IN, false, 0, 0, "", DRV, Pro.TrnDate));
             Sqlcmd.Parameters.Add(new SqlParameter("@TrnTime", DtDB,  20, IN, false, 0, 0, "", DRV, Pro.TrnTime));

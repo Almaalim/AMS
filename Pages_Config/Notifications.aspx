@@ -155,6 +155,14 @@
                                                 <asp:ListItem Value="6" Text="Friday"    meta:resourcekey="FridayResource1"></asp:ListItem>
                                                 <asp:ListItem Value="7" Text="Saturday"  meta:resourcekey="SaturdayResource1"></asp:ListItem>
                                             </asp:CheckBoxList>
+
+                                            <asp:CustomValidator id="cvDaysOfWeek" runat="server"
+                                            Text="&lt;img src='../images/message_exclamation.png' title='Please Select Atleast one Day' /&gt;" 
+                                            ValidationGroup="vgSave"
+                                            ErrorMessage="Please Select Atleast one Day" CssClass="CustomValidator"
+                                            OnServerValidate="DaysOfWeek_ServerValidate" 
+                                            EnableClientScript="False" Enabled ="false"
+                                            ControlToValidate="txtValid" meta:resourcekey="cvDaysOfWeekResource1"></asp:CustomValidator>
                                         </div>
                                     </div>
                                 </div>
@@ -163,13 +171,20 @@
                                 <div id="tblCalendar">
                                     <div class="row">
                                         <div class="col12">
-                                            <asp:Label ID="lblCalendardays" runat="server" Text="Calendar days:" meta:resourcekey="lblCalendardaysResource1"></asp:Label>
+                                            <asp:Label ID="lblCalendarDays" runat="server" Text="Calendar days:" meta:resourcekey="lblCalendardaysResource1"></asp:Label>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col12">
-                                            <asp:CheckBoxList ID="cblCalendardays" runat="server"   RepeatDirection="Horizontal" RepeatColumns="8" meta:resourcekey="cblCalendardaysResource1">
+                                            <asp:CheckBoxList ID="cblCalendarDays" runat="server"   RepeatDirection="Horizontal" RepeatColumns="8" meta:resourcekey="cblCalendardaysResource1">
                                             </asp:CheckBoxList>
+                                            <asp:CustomValidator id="cvCalendarDays" runat="server"
+                                            Text="&lt;img src='../images/message_exclamation.png' title='Please Select Atleast one Day' /&gt;" 
+                                            ValidationGroup="vgSave"
+                                            ErrorMessage="Please Select Atleast one Day" CssClass="CustomValidator"
+                                            OnServerValidate="CalendarDays_ServerValidate" 
+                                            EnableClientScript="False" Enabled ="false"
+                                            ControlToValidate="txtValid" meta:resourcekey="cvCalendarDaysResource1"></asp:CustomValidator>
                                         </div>
                                     </div>
                                 </div>
@@ -181,7 +196,7 @@
                             </div>
                             <div class="row">
                                 <div class="col12">
-                                    <Almaalim:TimePicker ID="tpStartTime" runat="server" FormatTime="HHmm" CssClass="TimeCss" meta:resourcekey="tpStartTimeResource1" TimePickerValidationGroup="" TimePickerValidationText="" />
+                                    <Almaalim:TimePicker ID="tpStartTime" runat="server" FormatTime="HHmm" CssClass="TimeCss" meta:resourcekey="tpStartTimeResource1" TimePickerValidationGroup="vgSave" TimePickerValidationText="&lt;img src='../images/Exclamation.gif' title='Start Time is required' /&gt;" />
                                 </div>
                             </div>
                         </fieldset>

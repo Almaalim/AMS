@@ -73,7 +73,7 @@ public partial class PendingTransaction : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void FillLocationList(string Type)
     {
-        CtrlCs.FillMachineList(ref ddlLocation, rfvLocation, true, false, Type);
+        CtrlCs.FillMachineList(ref ddlLocation, rvLocation, true, false, Type);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -103,8 +103,8 @@ public partial class PendingTransaction : BasePage
                 /******************************************************************************************************/
                 /*For GACA AMS */
                 FQ.Append(" SELECT e.TrnDate, e.TrnTime, e.EmpID, e.MacID, e.TrnType, e.UsrName ");
-                FQ.Append(" , (select MacLocationEn from dbo.Machine where MacID = e.MacID) as LocationEn ");
-                FQ.Append(" , (select MacLocationAr from dbo.Machine where MacID = e.MacID) as LocationAr "); 
+                FQ.Append(" , (select MacLocationEn from dbo.Machine where MacID = e.MacID) as MacLocationEn ");
+                FQ.Append(" , (select MacLocationAr from dbo.Machine where MacID = e.MacID) as MacLocationAr "); 
                 FQ.Append(" , (select EmpNameEn from dbo.Employee where EmpID = e.EmpID) as EmpNameEn "); 
                 FQ.Append(" , (select EmpNameAr from dbo.Employee where EmpID = e.EmpID) as EmpNameAr "); 
                 FQ.Append(" FROM Trans e,GACA_TransICCountVeiw V ");         
@@ -196,7 +196,7 @@ public partial class PendingTransaction : BasePage
         ddlLocation.Enabled       = pStatus;
         txtDesc.Enabled           = pStatus;
         fudReqFile.Enabled        = pStatus;
-        calDate.SetEnabled(pStatus);
+        calDate.SetEnabled(false);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -289,7 +289,7 @@ public partial class PendingTransaction : BasePage
         catch (Exception ex) 
         { 
             ErrorSignal.FromCurrentContext().Raise(ex); 
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

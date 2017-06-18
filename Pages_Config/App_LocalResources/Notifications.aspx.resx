@@ -370,4 +370,19 @@
   <data name="WednesdayResource1.Text" xml:space="preserve">
     <value>Wednesday</value>
   </data>
+  <data name="cvCalendarDaysResource1.ErrorMessage" xml:space="preserve">
+    <value>Please Select Atleast one Day</value>
+  </data>
+  <data name="cvCalendarDaysResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/message_exclamation.png' title='Please Select Atleast one Day' /&gt;</value>
+  </data>
+  <data name="cvDaysOfWeekResource1.ErrorMessage" xml:space="preserve">
+    <value>Please Select Atleast one Day</value>
+  </data>
+  <data name="cvDaysOfWeekResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/message_exclamation.png' title='Please Select Atleast one Day' /&gt;</value>
+  </data>
+  <data name="tpStartTimeResource1.TimePickerValidationText" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='Start Time is required' /&gt;</value>
+  </data>
 </root>

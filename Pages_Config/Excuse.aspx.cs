@@ -100,8 +100,7 @@ public partial class Excuse : BasePage
 
         if (ddlFilter.SelectedIndex > 0)
         {
-            UIClear();
-            sql = MainQuery + " AND " + ddlFilter.SelectedItem.Value + " LIKE @P1 ";
+            sql = MainQuery + " AND " + ddlFilter.SelectedValue + " LIKE @P1 ";
             cmd.Parameters.AddWithValue("@P1", txtFilter.Text.Trim() + "%");
         }
 
@@ -237,7 +236,7 @@ public partial class Excuse : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -253,7 +252,7 @@ public partial class Excuse : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -275,7 +274,7 @@ public partial class Excuse : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -415,7 +414,7 @@ public partial class Excuse : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

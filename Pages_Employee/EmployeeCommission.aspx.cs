@@ -228,7 +228,7 @@ public partial class EmployeeCommission : BasePage
         catch (Exception ex) 
         { 
             ErrorSignal.FromCurrentContext().Raise(ex); 
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -346,7 +346,7 @@ public partial class EmployeeCommission : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -506,7 +506,7 @@ public partial class EmployeeCommission : BasePage
                 int iEndDate   = DTCs.ConvertDateTimeToInt(calEndDate.getGDate(), "Gregorian");
                 if (iStartDate <= iEndDate)
                 {
-                    bool NestingDates = VacCs.FindNestingDates(pgCs.DateType, calStartDate.getGDate(), calEndDate.getGDate(), txtEmpID.Text);
+                    bool NestingDates = VacCs.FindNestingDates("Gregorian", calStartDate.getGDate(), calEndDate.getGDate(), txtEmpID.Text);
                     if (!NestingDates)
                     {
                         
@@ -521,9 +521,6 @@ public partial class EmployeeCommission : BasePage
         }
         catch { e.IsValid = false; }
     }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void ShowMsg_ServerValidate(Object source, ServerValidateEventArgs e) { e.IsValid = false; }
 
     #endregion
     /*#############################################################################################################################*/

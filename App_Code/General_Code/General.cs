@@ -319,14 +319,32 @@ public class General
     public DataSet FillRepTree(string Version)
     {
         DBFun DBCs = new DBFun();
-        
+
         DataSet RepDS = new DataSet();
         StringBuilder RQ = new StringBuilder();
-        RQ.Append(" SELECT RepID,RepNameAr,RepNameEn,CONVERT(CHAR(10),RgpID) AS RgpID FROM Report WHERE ISNULL(RepDeleted,0) = 0  ");
-        RQ.Append(" AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + Version + "',VerID) > 0) ");
-        RQ.Append(" UNION ");
         RQ.Append(" SELECT CONVERT(CHAR(10),RgpID) AS RepID,RgpArName AS RepNameAr,RgpEnName AS RepNameEn,CONVERT(CHAR(10),RgpParID) AS RgpID FROM ReportGroup");
         RQ.Append(" WHERE ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + Version + "',VerID) > 0) ");
+        RQ.Append(" UNION ");
+        RQ.Append(" SELECT RepID,RepNameAr,RepNameEn,CONVERT(CHAR(10),RgpID) AS RgpID FROM Report WHERE ISNULL(RepDeleted,0) = 0  ");
+        RQ.Append(" AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + Version + "',VerID) > 0) ");
+
+        return DBCs.FetchReportData(RQ.ToString());
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public DataSet FillRepTree(string Version, string PermSet)
+    {
+        DBFun DBCs = new DBFun();
+
+        DataSet RepDS = new DataSet();
+        StringBuilder RQ = new StringBuilder();
+        RQ.Append(" SELECT CONVERT(CHAR(10),RgpID) AS RepID,RgpArName AS RepNameAr,RgpEnName AS RepNameEn,CONVERT(CHAR(10),RgpParID) AS RgpID FROM ReportGroup");
+        RQ.Append(" WHERE ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + Version + "',VerID) > 0) ");
+        RQ.Append(" AND RgpID IN (" + PermSet + ") ");
+        RQ.Append(" UNION ");
+        RQ.Append(" SELECT RepID,RepNameAr,RepNameEn,CONVERT(CHAR(10),RgpID) AS RgpID FROM Report WHERE ISNULL(RepDeleted,0) = 0  ");
+        RQ.Append(" AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + Version + "',VerID) > 0) ");
+        RQ.Append(" AND RgpID IN (" + PermSet + ") ");
 
         return DBCs.FetchReportData(RQ.ToString());
     }

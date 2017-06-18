@@ -190,7 +190,7 @@
     <value />
   </data>
   <data name="cvCalDateEmptyResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='Start Date is required!' /&gt;</value>
+    <value>&lt;img src='../images/Exclamation.gif' title='Start Date is required' /&gt;</value>
   </data>
   <data name="cvCalDateEmptyResource1.ToolTip" xml:space="preserve">
     <value />
@@ -199,7 +199,7 @@
     <value />
   </data>
   <data name="cvtpickerTimeResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='Time is required!' /&gt;</value>
+    <value>&lt;img src='../images/Exclamation.gif' title='Time is required' /&gt;</value>
   </data>
   <data name="cvtpickerTimeResource1.ToolTip" xml:space="preserve">
     <value />
@@ -283,7 +283,7 @@
     <value />
   </data>
   <data name="PageResource1.Title" xml:space="preserve">
-    <value>Pending Transaction</value>
+    <value>Pending Transaction Page</value>
   </data>
   <data name="pnlauIDResource1.GroupingText" xml:space="preserve">
     <value />
@@ -291,20 +291,14 @@
   <data name="pnlauIDResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="rfvLocationResource1.ErrorMessage" xml:space="preserve">
-    <value>Location is required!</value>
-  </data>
   <data name="rfvLocationResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='Language is required!' /&gt;</value>
+    <value>&lt;img src='../images/Exclamation.gif' title='Location is required' /&gt;</value>
   </data>
   <data name="rfvLocationResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="rfvTypeResource1.ErrorMessage" xml:space="preserve">
-    <value>Transaction type is required!</value>
-  </data>
   <data name="rfvTypeResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='Language is required!' /&gt;</value>
+    <value>&lt;img src='../images/Exclamation.gif' title='Type is required' /&gt;</value>
   </data>
   <data name="rfvTypeResource1.ToolTip" xml:space="preserve">
     <value />
@@ -365,7 +359,7 @@
     <value>Employee Name :</value>
   </data>
   <data name="rvEmpIDResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='Emloyee ID is required!' /&gt;</value>
+    <value>&lt;img src='../images/Exclamation.gif' title='Emloyee ID is required' /&gt;</value>
   </data>
   <data name="cvReqFileResource1.Text" xml:space="preserve">
     <value>&lt;img src='../images/Exclamation.gif' title='Attachment File is required' /&gt;</value>

@@ -370,4 +370,19 @@
   <data name="lblNameArResource1.Text" xml:space="preserve">
     <value>الاسم (ع) :</value>
   </data>
+  <data name="cvCalendarDaysResource1.ErrorMessage" xml:space="preserve">
+    <value>الرجاء اختيار يوم واحد على الأقل</value>
+  </data>
+  <data name="cvCalendarDaysResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/message_exclamation.png' title='الرجاء اختيار يوم واحد على الأقل' /&gt;</value>
+  </data>
+  <data name="cvDaysOfWeekResource1.ErrorMessage" xml:space="preserve">
+    <value>الرجاء اختيار يوم واحد على الأقل</value>
+  </data>
+  <data name="cvDaysOfWeekResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/message_exclamation.png' title='الرجاء اختيار يوم واحد على الأقل' /&gt;</value>
+  </data>
+  <data name="tpStartTimeResource1.TimePickerValidationText" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='وقت البدء مطلوب' /&gt;</value>
+  </data>
 </root>

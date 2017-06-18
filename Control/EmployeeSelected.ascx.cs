@@ -13,11 +13,11 @@ public partial class EmployeeSelected : System.Web.UI.UserControl
 {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    PageFun pgCs   = new PageFun();
-    General GenCs  = new General();
-    DBFun   DBCs   = new DBFun();
+    PageFun pgCs = new PageFun();
+    General GenCs = new General();
+    DBFun DBCs = new DBFun();
     CtrlFun CtrlCs = new CtrlFun();
-    DTFun   DTCs   = new DTFun();
+    DTFun DTCs = new DTFun();
 
     DataTable dtLeft;
     DataTable dtRight;
@@ -38,11 +38,13 @@ public partial class EmployeeSelected : System.Web.UI.UserControl
         try
         {
             /*** Fill Session ************************************/
-            pgCs.FillSession(); 
+            pgCs.FillSession();
+            CtrlCs.RefreshGridEmpty(ref grdLeftGrid);
+            CtrlCs.RefreshGridEmpty(ref grdRightGrid);
             /*** Fill Session ************************************/
-            
-            btnSelectEmp.ImageUrl   = General.Msg("images/Control_Images/next.png","images/Control_Images/back.png");
-            btnDeSelectEmp.ImageUrl = General.Msg("images/Control_Images/back.png","images/Control_Images/next.png");
+
+            btnSelectEmp.ImageUrl = General.Msg("images/Control_Images/next.png", "images/Control_Images/back.png");
+            btnDeSelectEmp.ImageUrl = General.Msg("images/Control_Images/back.png", "images/Control_Images/next.png");
 
             if (!IsPostBack)
             {
@@ -53,9 +55,9 @@ public partial class EmployeeSelected : System.Web.UI.UserControl
                 CtrlCs.FillGridEmpty(ref grdLeftGrid, 50);
                 CtrlCs.FillGridEmpty(ref grdRightGrid, 50);
 
-            cvSelectEmployees.ValidationGroup = ValidationGroupName;
+                cvSelectEmployees.ValidationGroup = ValidationGroupName;
             }
-  
+
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
@@ -83,7 +85,7 @@ public partial class EmployeeSelected : System.Web.UI.UserControl
 
                 string Q = "SELECT E.EmpID, " + General.Msg("E.EmpNameEn", "E.EmpNameAr") + " AS EmpName FROM Employee E,Department D WHERE EmpStatus ='True' AND ISNULL(EmpDeleted,0) = 0 AND E.DepID = D.DepID AND D.DepID = " + ddlDepartment.SelectedValue.ToString() + IN + Con;
                 dtLeft = DBCs.FetchData(new SqlCommand(Q));
-                
+
                 if (!DBCs.IsNullOrEmpty(dtLeft))
                 {
                     grdLeftGrid.DataSource = (DataTable)dtLeft;
@@ -162,14 +164,14 @@ public partial class EmployeeSelected : System.Web.UI.UserControl
             }
         }
     }
-   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void btnSelectEmp_Click(object sender, EventArgs e)
     {
         try
         {
             dtRight = EmptyDataTable();
-            dtLeft  = EmptyDataTable();
+            dtLeft = EmptyDataTable();
             if (ViewState["dtRight"] == null) { ViewState["dtRight"] = EmptyDataTable(); } else { dtRight = (DataTable)ViewState["dtRight"]; }
             if (ViewState["dtLeft"] == null) { ViewState["dtLeft"] = EmptyDataTable(); } else { dtLeft = (DataTable)ViewState["dtLeft"]; }
 
@@ -232,7 +234,7 @@ public partial class EmployeeSelected : System.Web.UI.UserControl
                 ViewState["dtLeft"] = (DataTable)dtLeft;
             }
         }
-        catch (Exception e1) {    }
+        catch (Exception e1) { }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -332,7 +334,7 @@ public partial class EmployeeSelected : System.Web.UI.UserControl
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
     #region Custom Validate Events
@@ -353,7 +355,7 @@ public partial class EmployeeSelected : System.Web.UI.UserControl
     #endregion
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
-    
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

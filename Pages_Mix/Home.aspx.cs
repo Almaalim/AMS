@@ -101,14 +101,16 @@ public partial class Home : BasePage
     {
         if (TypeID == "D")
         {
-            DivMonth.Visible = false;
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "showPopup('" + DivDay.ClientID + "');", true);
+            DivMonth1.Visible = DivMonth2.Visible = DivYear1.Visible = DivYear2.Visible = false;
+            DivDay1.Visible = true;
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "showPopup('" + DivDay2.ClientID + "');", true);
             calDate.SetEnabled(true);
         }
         else
         {
-            DivMonth.Visible = true;
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "hidePopup('" + DivDay.ClientID + "');", true);
+            DivMonth1.Visible = DivMonth2.Visible = DivYear1.Visible = DivYear2.Visible = true;
+            DivDay1.Visible = false;
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "hidePopup('" + DivDay2.ClientID + "');", true);
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -150,7 +152,7 @@ public partial class Home : BasePage
         else
         {
             if (DepID == "All") { CQ.Append(" EmpID IN (SELECT EmpID FROM spActiveEmployeeView WHERE DepID IN (" + pgCs.DepList + "))"); }
-            else { CQ.Append(" EmpID IN (SELECT EmpID FROM spActiveEmployeeView WHERE DepID = @DepID"); cmd.Parameters.AddWithValue("@DepID", DepID); }
+            else { CQ.Append(" EmpID IN (SELECT EmpID FROM spActiveEmployeeView WHERE DepID = @DepID)"); cmd.Parameters.AddWithValue("@DepID", DepID); }
         }
 
         if (Type == "M")
@@ -165,7 +167,7 @@ public partial class Home : BasePage
             CQ.Append(" AND CONVERT(VARCHAR(10),DsmDate,101) = CONVERT(VARCHAR(10),@DsmDate,101) ");
             cmd.Parameters.AddWithValue("@DsmDate", Date);
         }
-
+        
         cmd.CommandText = CQ.ToString();
 
         DataTable ChartDT = new DataTable();

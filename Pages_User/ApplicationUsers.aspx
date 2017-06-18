@@ -545,11 +545,11 @@
                         <asp:XmlDataSource ID="xmlDataSource1" TransformFile="~/XSL/TransformXSLT.xsl" XPath="MenuItems/MenuItem"
                             runat="server" CacheExpirationPolicy="Sliding" EnableCaching="False" />
                         <asp:TreeView ID="TreeView1" runat="server" DataSourceID="xmlDataSource1" LineImagesFolder="~/images/TreeLineImages"
-                            ShowLines="True" OnDataBound="TreeView1_DataBound" ShowCheckBoxes="All" OnTreeNodeDataBound="TreeView1_TreeNodeDataBound"
+                            ShowLines="True" OnDataBound="TreeView1_DataBound" ShowCheckBoxes="All"  OnTreeNodeDataBound="TreeView1_TreeNodeDataBound"
                             Font-Names="Tahoma" Font-Size="10pt" ForeColor="#CAD2D6" meta:resourcekey="TreeView1Resource1"
                             Visible="False">
                             <DataBindings>
-                                <asp:TreeNodeBinding DataMember="MenuItem" TextField="Text" ToolTipField="ToolTip"
+                                <asp:TreeNodeBinding DataMember="MenuItem" TextField="Text" ToolTipField="ToolTip" 
                                     ValueField="Value" meta:resourcekey="TreeNodeBindingResource1" />
                             </DataBindings>
                         </asp:TreeView>

@@ -135,7 +135,7 @@ public partial class EmailSetting : BasePage
         }
         catch (Exception ex) 
         { 
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -271,7 +271,7 @@
                    </div>
                 </div>
 
-                <div class="row" id="divNationalID" runat="server">>
+                <div class="row" id="divNationalID" runat="server">
                     <div class="col2">
                             <span class="RequiredField">*</span>
                             <asp:Label ID="lblNationalID" runat="server" Text="National ID:" meta:resourcekey="lblNationalIDResource1" ></asp:Label>

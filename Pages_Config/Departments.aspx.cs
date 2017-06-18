@@ -159,7 +159,7 @@ public partial class Departments : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -183,7 +183,7 @@ public partial class Departments : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -267,7 +267,7 @@ public partial class Departments : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -307,7 +307,7 @@ public partial class Departments : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
 
@@ -336,7 +336,7 @@ public partial class Departments : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -382,7 +382,7 @@ public partial class Departments : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -401,7 +401,7 @@ public partial class Departments : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -447,7 +447,7 @@ public partial class Departments : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -582,6 +582,7 @@ public partial class Departments : BasePage
         try
         {
             string UQ = string.Empty;
+            string parent = (ddlDepParentName.SelectedIndex > 0) ? ddlDepParentName.SelectedValue : "0";
             if (ViewState["CommandName"].ToString() == "EDIT") { UQ = " AND DepID != @P4 "; }
 
             if (source.Equals(cvNameEn))
@@ -595,7 +596,7 @@ public partial class Departments : BasePage
                 if (!string.IsNullOrEmpty(txtNameEn.Text))
                 {
                     CtrlCs.ValidMsg(this, ref cvNameEn, true, General.Msg("Entered Department English Name exist already,Please enter another name", "إسم القسم بالإنجليزي مدخل مسبقا ، الرجاء إدخال إسم آخر"));
-                    DataTable DT = DBCs.FetchData("SELECT * FROM Department WHERE DepNameEn = @P1 AND BrcID = @P2 AND DepParentID = @P3 " + UQ, new string[] { txtNameEn.Text,ddlBrcParentName.SelectedValue,ddlDepParentName.SelectedValue, txtID.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM Department WHERE DepNameEn = @P1 AND BrcID = @P2 AND DepParentID = @P3 " + UQ, new string[] { txtNameEn.Text,ddlBrcParentName.SelectedValue, parent, txtID.Text });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }
@@ -611,7 +612,7 @@ public partial class Departments : BasePage
                 {
                     CtrlCs.ValidMsg(this, ref cvNameAr, true, General.Msg("Entered Department Arabic Name exist already,Please enter another name", "إسم القسم بالعربي مدخل مسبقا ، الرجاء إدخال إسم آخر"));
                     
-                    DataTable DT = DBCs.FetchData("SELECT * FROM Department WHERE DepNameAr = @P1 AND BrcID = @P2 AND DepParentID = @P3 " + UQ, new string[] { txtNameAr.Text,ddlBrcParentName.SelectedValue,ddlDepParentName.SelectedValue, txtID.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM Department WHERE DepNameAr = @P1 AND BrcID = @P2 AND DepParentID = @P3 " + UQ, new string[] { txtNameAr.Text,ddlBrcParentName.SelectedValue, parent, txtID.Text });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }

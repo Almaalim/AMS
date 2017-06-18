@@ -206,7 +206,8 @@ public partial class AutoOutWizard : BasePage
 
                 if (rdlAutoOut.Items[0].Selected) { ProCs.EmpAutoOutWizard = "1"; } else if (rdlAutoOut.Items[1].Selected) { ProCs.EmpAutoOutWizard = "0"; } else { ProCs.EmpAutoOutWizard = "2"; }
                 if (rdlAutoIn.Items[0].Selected)  { ProCs.EmpAutoInWizard  = "1"; } else if (rdlAutoIn.Items[1].Selected)  { ProCs.EmpAutoInWizard  = "0"; } else { ProCs.EmpAutoInWizard  = "2"; }
-                
+
+                ProCs.TransactionBy = pgCs.LoginID;
                 SqlCs.Wizard_AutoInOut(ProCs);
                 ////////////////////////////////////////////////////////////////////// 
                 CtrlCs.ShowSaveMsg(this);
@@ -217,7 +218,7 @@ public partial class AutoOutWizard : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
 
