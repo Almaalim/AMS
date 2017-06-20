@@ -286,7 +286,7 @@
                             </asp:RegularExpressionValidator>
                             <asp:RequiredFieldValidator ID="rvfNationalID" runat="server" ControlToValidate="ddlDepartment"  CssClass="CustomValidator"
                                 EnableClientScript="False" Text="&lt;img src='../images/Exclamation.gif' title='National ID is required!' /&gt;"
-                                ValidationGroup="Users" meta:resourcekey="rvfNationalIDResource1"></asp:RequiredFieldValidator>
+                                ValidationGroup="vgSave" meta:resourcekey="rvfNationalIDResource1"></asp:RequiredFieldValidator>
                          </div>
                     <div class="col2">
                             <asp:Label ID="lblEmpRankTitel2" runat="server" Text="Rank Titel :" meta:resourcekey="lblEmpRankTitelResource1" Visible="false" ></asp:Label>
@@ -356,7 +356,7 @@
                         </asp:DropDownList>
                         <asp:RequiredFieldValidator ID="rfvddlNationality" runat="server" ControlToValidate="ddlNationality" CssClass="CustomValidator"
                             EnableClientScript="False" ErrorMessage="Nationality is required!" Text="&lt;img src='../images/Exclamation.gif' title='Nationality is required!' /&gt;"
-                            ValidationGroup="Employee" meta:resourcekey="rfvddlNationalityResource1"></asp:RequiredFieldValidator>
+                            ValidationGroup="vgSave" meta:resourcekey="rfvddlNationalityResource1"></asp:RequiredFieldValidator>
                     </div>
                     <div class="col2">
                         <asp:Label ID="lblEmpTypeID" runat="server" Text="Employee Type:" 
