@@ -87,7 +87,7 @@ public partial class OverTimeRequest2 : BasePage
         {
             bool isFind = GenCs.FindEmpApprovalSequence("OVT", pgCs.LoginEmpID);
             btnSave.Enabled = btnCancel.Enabled = isFind;
-            if (!isFind) { CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Info, General.ApprovalSequenceMsg()); }
+            if (!isFind) { if (!isFind) { CtrlCs.ShowMsg(this, vsShowMsg, cvShowMsg, CtrlFun.TypeMsg.Info, "vgShowMsg", General.ApprovalSequenceMsg()); } }
         }
         catch (Exception e1) { ErrorSignal.FromCurrentContext().Raise(e1); }
     }
@@ -118,6 +118,7 @@ public partial class OverTimeRequest2 : BasePage
         ProCs.GapOvtID     = txtOvtID.Text;
         ProCs.ErqStartDate = DTCs.ToDefFormat(txtDate.Text, pgCs.DateType);
         ProCs.ErqStartTime = tpFrom.getDateTime(DTCs.GetGregDateFromCurrDateType(ProCs.ErqStartDate, "dd/MM/yyyy")).ToString();
+        ProCs.ErqEndDate   = DTCs.ToDefFormat(txtDate.Text, pgCs.DateType);
         ProCs.ErqEndTime   = tpTo.getDateTime(DTCs.GetGregDateFromCurrDateType(ProCs.ErqStartDate, "dd/MM/yyyy")).ToString();
         ProCs.ErqReason    = txtDesc.Text;
         ProCs.ErqReqStatus = "0";
@@ -195,8 +196,8 @@ public partial class OverTimeRequest2 : BasePage
         catch (Exception ex) 
         { 
             BtnStatus("11");
-            ErrorSignal.FromCurrentContext().Raise(ex); 
-            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
+            ErrorSignal.FromCurrentContext().Raise(ex);
+            CtrlCs.ShowAdminMsg(this, vsShowMsg, cvShowMsg, "vgShowMsg", ex.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

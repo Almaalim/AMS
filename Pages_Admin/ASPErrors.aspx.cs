@@ -20,7 +20,7 @@ public partial class ASPErrors : BasePage
     CtrlFun CtrlCs = new CtrlFun();
     DTFun   DTCs   = new DTFun();
 
-    string MainQuery = " SELECT * FROM ELMAH_Error ";
+    string MainQuery = " SELECT ErrorId,Application,Host,Type,Source,Message,User,StatusCode,TimeUtc,Sequence FROM ELMAH_Error ";
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void Page_Load(object sender, EventArgs e)

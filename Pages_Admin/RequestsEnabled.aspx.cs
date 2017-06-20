@@ -49,7 +49,9 @@ public partial class RequestsEnabled : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////     
     public void Populate()
 	{
-        DataTable DT = DBCs.FetchData(new SqlCommand(" SELECT * FROM RequestType ORDER By RetOrder "));
+        chkbReqList.Items.Clear();
+
+        DataTable DT = DBCs.FetchData(new SqlCommand(" SELECT * FROM RequestType WHERE RetVisible = 'True' ORDER By RetOrder "));
         if (!DBCs.IsNullOrEmpty(DT))
         {
             CtrlCs.PopulateCBL(chkbReqList, DT, General.Msg("RetNameEn","RetNameAr"), "RetID", "-Select Requset Type-");
@@ -169,8 +171,6 @@ public partial class RequestsEnabled : BasePage
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
     #region Custom Validate Events
-
-    protected void ShowMsg_ServerValidate(Object source, ServerValidateEventArgs e) { e.IsValid = false; }
 
     #endregion
     /*#############################################################################################################################*/

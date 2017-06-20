@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true" CodeFile="DepartmentLevel.aspx.cs" Inherits="DepartmentLevel" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true" CodeFile="DepartmentLevel.aspx.cs" Inherits="DepartmentLevel" meta:resourcekey="PageResource1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     
@@ -25,31 +25,28 @@
         }    
    </script>
     
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always">
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="row">
                 <div class="col12">
                         <asp:ValidationSummary ID="vsShowMsg" runat="server"  CssClass="MsgSuccess" 
-                            EnableClientScript="False" ValidationGroup="ShowMsg"/>
+                            EnableClientScript="False" ValidationGroup="ShowMsg" meta:resourcekey="vsShowMsgResource1"/>
                     </div>
                 </div>
             <div class="row">
                 <div class="col8">
                                     <asp:LinkButton ID="btnModify" runat="server" CssClass="GenButton  glyphicon glyphicon-edit" OnClick="btnModify_Click"
                                         Text="&lt;img src=&quot;../images/Button_Icons/button_edit.png&quot; /&gt; Modify"
-                                        meta:resourcekey="btnModifyResource1">
-                                    </asp:LinkButton>
+                                        meta:resourcekey="btnModifyResource1"></asp:LinkButton>
                                 
                                     <asp:LinkButton ID="btnSave" runat="server" CssClass="GenButton glyphicon glyphicon-floppy-disk"  
                                         OnClick="btnSave_Click" 
                                         Text="&lt;img src=&quot;../images/Button_Icons/button_storage.png&quot; /&gt; Save" 
-                                        ValidationGroup="Groups"  >
-                                    </asp:LinkButton>
+                                        ValidationGroup="Groups" meta:resourcekey="btnSaveResource1"  ></asp:LinkButton>
                                  
                                     <asp:LinkButton ID="btnCancel" runat="server" CssClass="GenButton glyphicon glyphicon-remove-circle" OnClick="btnCancel_Click"
                                         Text="&lt;img src=&quot;../images/Button_Icons/button_Cancel.png&quot; /&gt; Cancel"
-                                        meta:resourcekey="btnCancelResource1">
-                                    </asp:LinkButton>
+                                        meta:resourcekey="btnCancelResource1"></asp:LinkButton>
                                  </div>
                               <div class="col4">
                                     <asp:TextBox ID="txtValid" runat="server" Text="02120" Visible="False"
@@ -57,8 +54,7 @@
                                     
                                     <asp:CustomValidator id="cvShowMsg" runat="server" Display="None" 
                                         ValidationGroup="ShowMsg" OnServerValidate="ShowMsg_ServerValidate"
-                                        EnableClientScript="False" ControlToValidate="txtValid">
-                                    </asp:CustomValidator>
+                                        EnableClientScript="False" ControlToValidate="txtValid" meta:resourcekey="cvShowMsgResource1"></asp:CustomValidator>
                                
                                     <asp:HiddenField ID="hdnDepCount" runat="server" />
                                     <asp:HiddenField ID="hdnNameEn" runat="server" />
@@ -67,15 +63,12 @@
                 </div>
             <div class="row">
                   <div class="col12">
-                        <asp:Table ID="tblLevel" runat="server" Width="100%" CssClass ="TableLevel" >
-                            <asp:TableRow>
-                                <asp:TableCell>
-                                    
-                                    <asp:Label ID="lblCount" runat="server" Text="Level Count:"></asp:Label>
-                                </asp:TableCell>
-                                <asp:TableCell>
-                                    <asp:DropDownList ID="ddlCount" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlCount_SelectedIndexChanged"></asp:DropDownList>
-                                </asp:TableCell>
+                        <asp:Table ID="tblLevel" runat="server" Width="100%" CssClass ="TableLevel" meta:resourcekey="tblLevelResource1" >
+                            <asp:TableRow runat="server" meta:resourcekey="TableRowResource1">
+                                <asp:TableCell runat="server" meta:resourcekey="TableCellResource1"><asp:Label ID="lblCount" runat="server" Text="Level Count:" meta:resourcekey="lblCountResource1"></asp:Label>
+</asp:TableCell>
+                                <asp:TableCell runat="server" meta:resourcekey="TableCellResource2"><asp:DropDownList ID="ddlCount" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlCount_SelectedIndexChanged" meta:resourcekey="ddlCountResource1"></asp:DropDownList>
+</asp:TableCell>
                             </asp:TableRow>  
                         </asp:Table> 
                     </div>

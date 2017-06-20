@@ -124,7 +124,7 @@
     <value />
   </data>
   <data name="BoundFieldResource1.HeaderText" xml:space="preserve">
-    <value>Day</value>
+    <value>ID</value>
   </data>
   <data name="BoundFieldResource2.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -133,7 +133,7 @@
     <value />
   </data>
   <data name="BoundFieldResource2.HeaderText" xml:space="preserve">
-    <value>Date</value>
+    <value>Procedure</value>
   </data>
   <data name="BoundFieldResource3.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -142,7 +142,7 @@
     <value />
   </data>
   <data name="BoundFieldResource3.HeaderText" xml:space="preserve">
-    <value>Date</value>
+    <value>Line</value>
   </data>
   <data name="BoundFieldResource4.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -151,16 +151,7 @@
     <value />
   </data>
   <data name="BoundFieldResource4.HeaderText" xml:space="preserve">
-    <value>Shift ID</value>
-  </data>
-  <data name="BoundFieldResource5.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BoundFieldResource5.FooterText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="BoundFieldResource5.HeaderText" xml:space="preserve">
-    <value>AnyStatus</value>
+    <value>Message</value>
   </data>
   <data name="btnFilterResource1.AlternateText" xml:space="preserve">
     <value />
@@ -168,16 +159,10 @@
   <data name="btnFilterResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="cvShowMsgResource1.ErrorMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="cvShowMsgResource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="cvShowMsgResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="ddlMonthResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlProcedureResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="ddlYearResource1.ToolTip" xml:space="preserve">
@@ -192,28 +177,16 @@
   <data name="grdDataResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="lblIDFilterResource1.Text" xml:space="preserve">
+    <value>Procedure:</value>
+  </data>
+  <data name="lblIDFilterResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="lblMonthResource1.Text" xml:space="preserve">
     <value>Month:</value>
   </data>
   <data name="lblMonthResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblNamePopup2Resource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblNamePopup2Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblNamePopupAlertResource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblNamePopupAlertResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblNamePopupResource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblNamePopupResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblYearResource1.Text" xml:space="preserve">
@@ -222,23 +195,8 @@
   <data name="lblYearResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="Literal1Resource1.Text" xml:space="preserve">
-    <value>Attendance List</value>
-  </data>
   <data name="PageResource1.Title" xml:space="preserve">
-    <value>Attendance List Page</value>
-  </data>
-  <data name="SendVacDayResource1.AlternateText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="SendVacDayResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="StatusRequestResource1.AlternateText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="StatusRequestResource1.ToolTip" xml:space="preserve">
-    <value />
+    <value>Database Errors Page</value>
   </data>
   <data name="TemplateFieldResource1.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -247,75 +205,6 @@
     <value />
   </data>
   <data name="TemplateFieldResource1.HeaderText" xml:space="preserve">
-    <value>Punch In</value>
-  </data>
-  <data name="TemplateFieldResource2.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TemplateFieldResource2.FooterText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TemplateFieldResource2.HeaderText" xml:space="preserve">
-    <value>Punch Out</value>
-  </data>
-  <data name="TemplateFieldResource3.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TemplateFieldResource3.FooterText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TemplateFieldResource3.HeaderText" xml:space="preserve">
-    <value>Begin Late</value>
-  </data>
-  <data name="TemplateFieldResource4.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TemplateFieldResource4.FooterText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TemplateFieldResource4.HeaderText" xml:space="preserve">
-    <value>Out Early</value>
-  </data>
-  <data name="TemplateFieldResource5.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TemplateFieldResource5.FooterText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TemplateFieldResource5.HeaderText" xml:space="preserve">
-    <value>Middle Gaps</value>
-  </data>
-  <data name="TemplateFieldResource6.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TemplateFieldResource6.FooterText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TemplateFieldResource6.HeaderText" xml:space="preserve">
-    <value>Status</value>
-  </data>
-  <data name="TemplateFieldResource7.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TemplateFieldResource7.FooterText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TemplateFieldResource7.HeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TemplateFieldResource8.AccessibleHeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TemplateFieldResource8.FooterText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="TemplateFieldResource8.HeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="vsShowMsgResource1.HeaderText" xml:space="preserve">
-    <value />
-  </data>
-  <data name="vsShowMsgResource1.ToolTip" xml:space="preserve">
-    <value />
+    <value>Date</value>
   </data>
 </root>

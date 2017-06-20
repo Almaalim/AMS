@@ -104,7 +104,7 @@ public partial class DepartmentLevel : BasePage
             TableCell td1 = new TableCell();
             Label _label1 = new Label();
             _label1.ID    = "lblLevelEn_" + i.ToString();
-            _label1.Text  = "Level " + (i+1).ToString() + " Name(En) :";
+            _label1.Text  = General.Msg("Level " + (i+1).ToString() + " Name(En) :", " الاسم (E)" + "للمستوى " + (i + 1).ToString() + " :");
             td1.Controls.Add(_label1);
             //==Create column 2========//
             TableCell td2     = new TableCell();
@@ -120,7 +120,7 @@ public partial class DepartmentLevel : BasePage
             TableCell td4 = new TableCell();
             Label _label2 = new Label();
             _label2.ID    = "lblLevelAr_" + i.ToString();
-            _label2.Text  = "Level " + (i+1).ToString() + " Name(Ar) :";
+            _label2.Text = General.Msg("Level " + (i + 1).ToString() + " Name(Ar) :", " الاسم (ع)" + "للمستوى " + (i + 1).ToString() + " :");
             td4.Controls.Add(_label2);
             //==Create column 5========//
             TableCell td5     = new TableCell();

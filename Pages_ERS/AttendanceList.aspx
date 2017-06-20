@@ -62,7 +62,7 @@
         <ContentTemplate>
             <div class="row" runat="server" id="MainTable">
                 <div class="col1">
-                    <asp:Label ID="lblMonth" runat="server" Text="Month:"></asp:Label>
+                    <asp:Label ID="lblMonth" runat="server" Text="Month:" meta:resourcekey="lblMonthResource1"></asp:Label>
                 </div>
                 <div class="col2">
                     <asp:DropDownList ID="ddlMonth" runat="server"
@@ -81,14 +81,13 @@
                 <div class="col1">
                     <asp:ImageButton ID="btnFilter" runat="server" OnClick="btnFilter_Click"
                         ImageUrl="../images/Button_Icons/button_magnify.png"
-                        meta:resourcekey="btnFilterResource1"   />
+                        meta:resourcekey="btnFilterResource1" />
                 </div>
                 <div class="col1">
-                    
+
                     <asp:CustomValidator ID="cvShowMsg" runat="server" Display="None" CssClass="CustomValidator"
                         ValidationGroup="ShowMsg" OnServerValidate="ShowMsg_ServerValidate"
-                        EnableClientScript="False" ControlToValidate="txtValid">
-                    </asp:CustomValidator>
+                        EnableClientScript="False" ControlToValidate="txtValid" meta:resourcekey="cvShowMsgResource1"></asp:CustomValidator>
                     <asp:TextBox ID="txtValid" runat="server" Text="02120" Visible="False"
                         Width="10px" meta:resourcekey="txtCustomValidatorResource1"></asp:TextBox>
 
@@ -98,17 +97,17 @@
             <div class="row">
                 <div class="col12">
                     <asp:ValidationSummary ID="vsShowMsg" runat="server" CssClass="MsgSuccess"
-                        EnableClientScript="False" ValidationGroup="ShowMsg" />
+                        EnableClientScript="False" ValidationGroup="ShowMsg" meta:resourcekey="vsShowMsgResource1" />
                 </div>
             </div>
-            <div class="row">
+            <%--<div class="row">
                 <div class="col12">
                     <span class="h3">
-                                            <asp:Literal ID="Literal1" runat="server" Text="Attendance List" 
-                                                meta:resourcekey="Literal1Resource1"></asp:Literal>
-                        </span>
-                                         </div>
-            </div>
+                        <asp:Literal ID="Literal1" runat="server" Text="Attendance List"
+                            meta:resourcekey="Literal1Resource1"></asp:Literal>
+                    </span>
+                </div>
+            </div>--%>
             <div class="row">
                 <div class="col12">
                     <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData" />
@@ -116,83 +115,83 @@
                         AutoGenerateColumns="False" PageSize="3" DataKeyNames="DayGDate"
                         CellPadding="0" BorderWidth="0px" GridLines="None" ShowFooter="True" OnRowCreated="grdData_RowCreated"
                         OnRowDataBound="grdData_RowDataBound"
-                        OnRowCommand="grdData_RowCommand" >
+                        OnRowCommand="grdData_RowCommand" meta:resourcekey="grdDataResource1">
                         <Columns>
                             <asp:BoundField DataField="DayName" HeaderText="Day"
-                                SortExpression="DayName">
+                                SortExpression="DayName" meta:resourcekey="BoundFieldResource1">
                                 <HeaderStyle Width="100px" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle Width="100px" HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="DayGDate" HeaderText="G.Date" SortExpression="DayGDate">
+                            <asp:BoundField DataField="DayGDate" HeaderText="G.Date" SortExpression="DayGDate" meta:resourcekey="BoundFieldResource2">
                                 <HeaderStyle Width="100px" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle Width="100px" HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="DayHDate" HeaderText="H.Date" SortExpression="DayHDate">
+                            <asp:BoundField DataField="DayHDate" HeaderText="H.Date" SortExpression="DayHDate" meta:resourcekey="BoundFieldResource3">
                                 <HeaderStyle Width="100px" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle Width="100px" HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:BoundField>
-                            <asp:BoundField DataField="SsmShift" HeaderText="Shift ID" HtmlEncode="False">
+                            <asp:BoundField DataField="SsmShift" HeaderText="Shift ID" HtmlEncode="False" meta:resourcekey="BoundFieldResource4">
                                 <HeaderStyle Width="50px" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle Width="50px" HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:BoundField>
-                            <asp:TemplateField HeaderText="Punch In" SortExpression="SsmPunchIn">
+                            <asp:TemplateField HeaderText="Punch In" SortExpression="SsmPunchIn" meta:resourcekey="TemplateFieldResource1">
                                 <ItemTemplate>
                                     <%# DisplayFun.GrdDisplayTime(Eval("SsmPunchIn"))%>
                                 </ItemTemplate>
                                 <HeaderStyle Width="100px" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle Width="100px" HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Punch Out" SortExpression="SsmPunchOut">
+                            <asp:TemplateField HeaderText="Punch Out" SortExpression="SsmPunchOut" meta:resourcekey="TemplateFieldResource2">
                                 <ItemTemplate>
                                     <%# DisplayFun.GrdDisplayTime(Eval("SsmPunchOut"))%>
                                 </ItemTemplate>
                                 <HeaderStyle Width="100px" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle Width="100px" HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Begin Late" SortExpression="SsmBeginLate">
+                            <asp:TemplateField HeaderText="Begin Late" SortExpression="SsmBeginLate" meta:resourcekey="TemplateFieldResource3">
                                 <ItemTemplate>
                                     <%# DisplayFun.GrdDisplayDuration(Eval("SsmBeginLate"))%>
                                 </ItemTemplate>
                                 <HeaderStyle Width="100px" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle Width="100px" HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Out Early" SortExpression="SsmOutEarly">
+                            <asp:TemplateField HeaderText="Out Early" SortExpression="SsmOutEarly" meta:resourcekey="TemplateFieldResource4">
                                 <ItemTemplate>
                                     <%# DisplayFun.GrdDisplayDuration(Eval("SsmOutEarly"))%>
                                 </ItemTemplate>
                                 <HeaderStyle Width="100px" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle Width="100px" HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Middle Gaps" SortExpression="SsmGapDur_MG">
+                            <asp:TemplateField HeaderText="Middle Gaps" SortExpression="SsmGapDur_MG" meta:resourcekey="TemplateFieldResource5">
                                 <ItemTemplate>
                                     <%# DisplayFun.GrdDisplayDuration(Eval("SsmGapDur_MG"))%>
                                 </ItemTemplate>
                                 <HeaderStyle Width="100px" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle Width="100px" HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Status">
+                            <asp:TemplateField HeaderText="Status" meta:resourcekey="TemplateFieldResource6">
                                 <ItemTemplate>
                                 </ItemTemplate>
                                 <HeaderStyle Width="150px" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle Width="150px" HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:TemplateField>
-                            <asp:TemplateField>
+                            <asp:TemplateField meta:resourcekey="TemplateFieldResource7">
                                 <ItemTemplate>
                                     <asp:ImageButton ID="SendVacDay" CommandName="SendVacDay_Command" CommandArgument='<%# Eval("DayGDate") + "-" + Eval("AnyStatus") + "-" + Eval("SsmShift") %>'
-                                        runat="server" Height="16px" Width="16px" />
+                                        runat="server" Height="16px" Width="16px" meta:resourcekey="SendVacDayResource1" />
                                 </ItemTemplate>
                                 <HeaderStyle Width="50px" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle Width="50px" HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:TemplateField>
-                            <asp:TemplateField>
+                            <asp:TemplateField meta:resourcekey="TemplateFieldResource8">
                                 <ItemTemplate>
                                     <asp:ImageButton ID="StatusRequest" CommandName="StatusRequest_Command" CommandArgument='<%# Eval("DayGDate") %>'
-                                        runat="server" Height="16px" Width="16px" Enabled="False" />
+                                        runat="server" Height="16px" Width="16px" Enabled="False" meta:resourcekey="StatusRequestResource1" />
                                 </ItemTemplate>
                                 <HeaderStyle Width="50px" HorizontalAlign="Center" VerticalAlign="Middle" />
                                 <ItemStyle Width="50px" HorizontalAlign="Center" VerticalAlign="Middle" />
                             </asp:TemplateField>
-                            <asp:BoundField DataField="AnyStatus" HeaderText="AnyStatus" SortExpression="AnyStatus"></asp:BoundField>
+                            <asp:BoundField DataField="AnyStatus" HeaderText="AnyStatus" SortExpression="AnyStatus" meta:resourcekey="BoundFieldResource5"></asp:BoundField>
                         </Columns>
                         <RowStyle CssClass="row" />
                     </asp:GridView>
@@ -203,7 +202,7 @@
             <div id='divPopup' class="divPopup" style="height: 350px; width: 680px;">
                 <div id='divPopupHead' class="divPopupHead">
                     <asp:Label ID="lblNamePopup"
-                        runat="server" CssClass="lblNamePopup"></asp:Label>
+                        runat="server" CssClass="lblNamePopup" meta:resourcekey="lblNamePopupResource1"></asp:Label>
                 </div>
                 <div id='divClosePopup' class="divClosePopup" onclick="hidePopup('divPopup')"><a href='#'>X</a></div>
                 <div id='divPopupContent' class="divPopupContent">
@@ -216,7 +215,7 @@
             <div id='divPopup2' class="divPopup" style="height: 500px; width: 680px;">
                 <div id='divPopupHead2' class="divPopupHead">
                     <asp:Label ID="lblNamePopup2"
-                        runat="server" CssClass="lblNamePopup"></asp:Label>
+                        runat="server" CssClass="lblNamePopup" meta:resourcekey="lblNamePopup2Resource1"></asp:Label>
                 </div>
                 <div id='divClosePopup2' class="divClosePopup" onclick="hidePopup('divPopup2')"><a href='#'>X</a></div>
                 <div id='divPopupContent2' class="divPopupContent">
@@ -229,7 +228,7 @@
             <div id='divPopupAlert' class="divPopup" style="height: 500px; width: 580px;">
                 <div id='divPopupHeadAlert' class="divPopupHead">
                     <asp:Label ID="lblNamePopupAlert"
-                        runat="server" CssClass="lblNamePopup"></asp:Label>
+                        runat="server" CssClass="lblNamePopup" meta:resourcekey="lblNamePopupAlertResource1"></asp:Label>
                 </div>
                 <div id='divClosePopupAlert' class="divClosePopup" onclick="hidePopup('divPopupAlert')"><a href='#'>X</a></div>
                 <div id='divPopupContentAlert' class="divPopupContent">

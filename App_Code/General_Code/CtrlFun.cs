@@ -679,7 +679,6 @@ public class CtrlFun : DataLayerBase
         else if (Type == TypeMsg.Error) { vs.CssClass = "MsgError";      /****/ vs.ForeColor = ColorTranslator.FromHtml("#D8000C"); }
         else if (Type == TypeMsg.Validation) { vs.CssClass = "MsgValidation"; /****/ vs.ForeColor = ColorTranslator.FromHtml("#D63301"); }
 
-
         pg.Validate(VG);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -55,8 +55,6 @@ public partial class ERS_EmployeeTransaction : BasePage
     {
         try
         {
-            Literal1.Text = General.Msg(Convert.ToInt32(Month).ToString("00") + "/" + Year.ToString(), Convert.ToInt32(Month).ToString("00") + "/" + Year.ToString());
-
             SqlCommand cmd = new SqlCommand();
             string sql = MainQuery;
 

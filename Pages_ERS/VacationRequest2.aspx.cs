@@ -138,8 +138,6 @@ public partial class VacationRequest2 : BasePage
     public void UIEnabled(bool pStatus)
     {
         //txtEmpID.Enabled = pStatus;
-        //calStartDate.ImageDate.Enabled = false;
-        //calEndDate.ImageDate.Enabled = false;
         ddlVacType.Enabled = pStatus;
         //fudReqFile.Enabled = pStatus;
         txtDesc.Enabled = pStatus;
@@ -220,7 +218,7 @@ public partial class VacationRequest2 : BasePage
         else
         {
             btnSave.Enabled = btnCancel.Enabled = false;
-            CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Validation, General.Msg("No sequence approvals for this type of Request, please refer to the management", "لا يوجد سلسة موافقات لهذا النوع من الطلبات ، الرجاء مراجعة الإدارة"));
+            CtrlCs.ShowMsg(this, vsShowMsg, cvShowMsg, CtrlFun.TypeMsg.Info, "vgShowMsg", General.ApprovalSequenceMsg());
         }
         
         FillVacList(ReqType);
@@ -308,14 +306,14 @@ public partial class VacationRequest2 : BasePage
             }
             else
             {
-                CtrlCs.ShowSaveMsg(this);
+                CtrlCs.ShowMsg(this, vsShowMsg, cvShowMsg, CtrlFun.TypeMsg.Success, "vgShowMsg", General.Msg("Saved data successfully", "تم حفظ البيانات بنجاح"));
             }
         }
         catch (Exception ex)
         {
             BtnStatus("11");
-            ErrorSignal.FromCurrentContext().Raise(ex); 
-            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
+            ErrorSignal.FromCurrentContext().Raise(ex);
+            CtrlCs.ShowAdminMsg(this, vsShowMsg, cvShowMsg, "vgShowMsg", ex.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -375,8 +373,8 @@ public partial class VacationRequest2 : BasePage
         {
             if (source.Equals(cvMaxDays) && ddlVacType.SelectedIndex > 0 && !String.IsNullOrEmpty(calStartDate.getGDate()) && !String.IsNullOrEmpty(calEndDate.getGDate()) )
             {
-                int iStartDate = DTCs.ConvertDateTimeToInt("Gregorian", calStartDate.getGDate());
-                int iEndDate   = DTCs.ConvertDateTimeToInt("Gregorian", calEndDate.getGDate());
+                int iStartDate = DTCs.ConvertDateTimeToInt(calStartDate.getGDate(),"Gregorian");
+                int iEndDate   = DTCs.ConvertDateTimeToInt(calEndDate.getGDate(),"Gregorian");
                 if (iStartDate <= iEndDate)
                 {
                     bool NestingDates = VacCs.FindNestingDates("Gregorian", calStartDate.getGDate(), calEndDate.getGDate(), pgCs.LoginEmpID);

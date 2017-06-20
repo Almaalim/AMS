@@ -131,13 +131,13 @@ public partial class MachineErrors : BasePage
                         GridViewRow grvr = new GridViewRow(0, 0, DataControlRowType.Header, DataControlRowState.Insert);
                         
                         TableCell oTableCell = new TableCell();
-                        oTableCell.Text = "Machine";
+                        oTableCell.Text = General.Msg("Machine", "المكينة");
                         oTableCell.HorizontalAlign = HorizontalAlign.Center;
                         oTableCell.ColumnSpan = 5;
                         grvr.Cells.Add(oTableCell);
 
                         oTableCell = new TableCell();
-                        oTableCell.Text = "Error";
+                        oTableCell.Text = General.Msg("Error", "الخطأ");
                         oTableCell.HorizontalAlign = HorizontalAlign.Center;
                         oTableCell.ColumnSpan = 3;
                         grvr.Cells.Add(oTableCell);

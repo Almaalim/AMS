@@ -100,7 +100,7 @@ public partial class ExcuseRequest2 : BasePage
         {
             bool isFind = GenCs.FindEmpApprovalSequence("EXC", pgCs.LoginEmpID);
             btnSave.Enabled = btnCancel.Enabled = isFind;
-            if (!isFind) { CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Info, General.ApprovalSequenceMsg()); }
+            if (!isFind) { CtrlCs.ShowMsg(this, vsShowMsg, cvShowMsg, CtrlFun.TypeMsg.Info, "vgShowMsg", General.ApprovalSequenceMsg()); }
         }
         catch (Exception e1) { ErrorSignal.FromCurrentContext().Raise(e1); }
     }
@@ -202,14 +202,14 @@ public partial class ExcuseRequest2 : BasePage
             }
             else
             {
-                CtrlCs.ShowSaveMsg(this);
+                CtrlCs.ShowMsg(this, vsShowMsg, cvShowMsg, CtrlFun.TypeMsg.Success, "vgShowMsg", General.Msg("Saved data successfully", "تم حفظ البيانات بنجاح"));
             }      
         }
         catch (Exception ex) 
         { 
             BtnStatus("11");
-            ErrorSignal.FromCurrentContext().Raise(ex); 
-            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
+            ErrorSignal.FromCurrentContext().Raise(ex);
+            CtrlCs.ShowAdminMsg(this, vsShowMsg, cvShowMsg, "vgShowMsg", ex.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -307,10 +307,13 @@ public partial class ExcuseRequest2 : BasePage
         {
             if (source.Equals(cvTime))
             {
-                TimeSpan tsFrom = new TimeSpan(tpFrom.getHours(), tpFrom.getMinutes(), tpFrom.getSeconds());
-                TimeSpan tsTo   = new TimeSpan(tpTo.getHours(), tpTo.getMinutes(), tpTo.getSeconds());
+                if (tpFrom.getIntTime() >= 0 && tpTo.getIntTime() >= 0)
+                {
+                    TimeSpan tsFrom = new TimeSpan(tpFrom.getHours(), tpFrom.getMinutes(), tpFrom.getSeconds());
+                    TimeSpan tsTo = new TimeSpan(tpTo.getHours(), tpTo.getMinutes(), tpTo.getSeconds());
 
-                if (tsFrom.TotalSeconds >= tsTo.TotalSeconds ) { e.IsValid = false; }
+                    if (tsFrom.TotalSeconds >= tsTo.TotalSeconds) { e.IsValid = false; }
+                }
             }
         }
         catch (Exception ex)
