@@ -32,10 +32,10 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
         {
             /*** Fill Session ************************************/
             pgCs.FillSession();
+            hdnLang.Value = pgCs.Lang;
             string ERSLic = LicDf.FetchLic("ER");
             if (Request.UserAgent.IndexOf("AppleWebKit") > 0) { Request.Browser.Adapters.Clear(); }
-            
-            
+
             Refresh();
             /*** Fill Session ************************************/
 
@@ -47,33 +47,30 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
 
             if (!IsPostBack)
             {
-
-                
                 ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "PostbackFunction();", true);
                 ChangeLogo();
- 
+
                 SetPageTitel();
                 SetPhotoUser();
-                lblcurrentYear.Text = DateTime.Now.Year.ToString();
+                lblcurrentYear.Text = DTCs.FindCurrentYear("Gregorian");
                 lblUserName.Text = " " + pgCs.LoginID;
                 lnkLanguage.Text = General.Msg("عربي", "English");
 
                 if (pgCs.LoginType == "USR")
                 {
-                    ShowIsExistingRequest();
                     lnkShortcut.Enabled = true;
                 }
                 else if (pgCs.LoginType == "EMP")
                 {
                     lnkShortcut.Enabled = false;
 
-                    DataTable DT = DBCs.FetchData(" SELECT * FROM EmpInfoView WHERE EmpID =  @P1 ", new string[] { pgCs.LoginEmpID });
-                    if (!DBCs.IsNullOrEmpty(DT))
-                    {
-                        string lan = (pgCs.Lang == "AR") ? "Ar" : "En";
-                        if (DT.Rows[0]["EmpName" + lan] != DBNull.Value) { lblEmpNameVal.Text = DT.Rows[0]["EmpName" + lan].ToString(); }
-                        if (DT.Rows[0]["DepName" + lan] != DBNull.Value) { lblDepNameVal.Text = DT.Rows[0]["DepName" + lan].ToString(); }
-                    }
+                    //DataTable DT = DBCs.FetchData(" SELECT * FROM EmpInfoView WHERE EmpID =  @P1 ", new string[] { pgCs.LoginEmpID });
+                    //if (!DBCs.IsNullOrEmpty(DT))
+                    //{
+                    //    string lan = (pgCs.Lang == "AR") ? "Ar" : "En";
+                    //    if (DT.Rows[0]["EmpName" + lan] != DBNull.Value) { lblEmpNameVal.Text = DT.Rows[0]["EmpName" + lan].ToString(); }
+                    //    if (DT.Rows[0]["DepName" + lan] != DBNull.Value) { lblDepNameVal.Text = DT.Rows[0]["DepName" + lan].ToString(); }
+                    //}
                 }
             }
         }
@@ -190,17 +187,9 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void lnkLanguage_Click(object sender, EventArgs e)
     {
-           HtmlLink link = new HtmlLink();
-        if (pgCs.Lang == "AR")
-        {
-            Session["Language"] = "EN";    
-         
-        }
-        else
-        {
-            Session["Language"] = "AR";
-            
-        }
+        if (pgCs.Lang == "AR") { Session["Language"] = "EN"; } else { Session["Language"] = "AR"; }
+
+        Session["MenuDS"] = null;
 
         string QS = (Request.QueryString.Count != 0) ? Request.QueryString.ToString() : "";
         Response.Redirect(Request.FilePath + QS);
@@ -500,24 +489,29 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
                 _lbl.ID = "lbl_" + DR["FavID"].ToString();
                 _lbl.Text = DR[General.Msg("FormNameEn", "FormNameAr")].ToString();
                 _lnk.Controls.Add(_lbl);
+
                 FavForm.Controls.Add(_lnk);
 
-                FavForm.Controls.Add(new LiteralControl("<span class='folderCloseBtn'></span</li>"));
+                FavForm.Controls.Add(new LiteralControl("<span class='folderCloseBtn' onclick='FavDelete(" + DR["FavID"].ToString() + ");'></span</li>")); //
             }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void dlFavReport_ItemCommand(object source, DataListCommandEventArgs e)
+    protected void btnDeleteForm_Click(object sender, EventArgs e)
     {
-        //FavoriteFormsSql FavSqlCs = new FavoriteFormsSql();
-        //string FavID = e.CommandArgument.ToString();
-        //FavSqlCs.Delete(FavID, pgCs.LoginID);
+        try
+        {
+            FavoriteFormsSql FavSqlCs = new FavoriteFormsSql();
+            string FavID = hdnFavID.Value;
+            FavSqlCs.Delete(FavID, pgCs.LoginID);
 
-        //FavoriteFormsSql FavSqlCs = new FavoriteFormsSql();
-        //string FavID = e.CommandArgument.ToString();
-        //FavSqlCs.Delete(FavID, pgCs.LoginID);
+            Session["FavFormDT"] = null;
+        }
+        catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
+
+        FillFavForm();
     }
 
     #endregion
@@ -535,9 +529,10 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
     {
         try
         {
+            spnNotificationsNo.InnerText = "";
+
             string ERSLic = LicDf.FetchLic("ER");
 
-            divRequest.Visible = false;
             if (ERSLic == "1")
             {
                 DataTable DT = DBCs.FetchData(" SELECT COUNT(ErqID) ReqNo FROM EmpRequest WHERE ErqID IN ( SELECT E.ReqID FROM EmpRequestApprovalStatus E WHERE @P1 IN (SELECT * FROM UF_CSVToTable(E.MgrID)) AND E.EraStatus = 0 ) ", new string[] { pgCs.LoginID });
@@ -547,9 +542,8 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
 
                     if (Convert.ToInt32(ReqNo) > 0)
                     {
-                        lnkRequest.Text = General.Msg("There waiting requests - " + ReqNo + " Requests", "يوجد طلبات في الانتظار - عددها " + ReqNo);
-                        divRequest.Visible = true;
-                        upRequest.Update();
+                        spnNotificationsNo.InnerText = ReqNo;
+                        //lnkRequest.Text = General.Msg("There waiting requests - " + ReqNo + " Requests", "يوجد طلبات في الانتظار - عددها " + ReqNo);
                     }
                 }
             }

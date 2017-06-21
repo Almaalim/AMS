@@ -16,7 +16,7 @@
     <script type="text/javascript" src="../Script/jquery-ui-1.8.17.custom.min.js"></script>
     <script type="text/javascript" src="../Script/SessionScript.js"></script>
     <script src="../Script/jquery.mousewheel.js"></script>
-    <link href="CSS/Metro/Metro.css"  rel="stylesheet" runat="server" id="LanguageSwitch" />
+    <link href="CSS/Metro/Metro.css" rel="stylesheet" runat="server" id="LanguageSwitch" />
 
     <script type="text/javascript">
         function PostbackFunction() {
@@ -40,10 +40,10 @@
                 $(this).height($(this).contents().find("html").height());
             });
             $('input').bind('blur', function (e) {
-                
-                    e.preventDefault();
-                    $(this).focus();
-                
+
+                e.preventDefault();
+                $(this).focus();
+
             });
             $("a.level2.dynamic").each(function (index) {
                 var str1 = $(this).attr('title');
@@ -57,8 +57,7 @@
             });
             $("li>a.folder>span").each(function (index) {
                 var linkwidth = $(this).width();
-                if (linkwidth > 74)
-                {
+                if (linkwidth > 74) {
                     $(this).addClass("longlinkfolder")
                 }
             });
@@ -126,7 +125,7 @@
             });
             $(".NotificationsIcon").on('click', function (e) {
                 $(".NotificationsPopup").addClass("NotificationsActive");
-                
+
             });
             $(".NotificationsPopupClose").on('click', function (e) {
                 $(".NotificationsPopup").removeClass("NotificationsActive");
@@ -147,7 +146,7 @@
 
         });
         $(document).ready(function () {
-           
+
             //$("a.level2.dynamic").each(function (index) {
             //    var str1 = $(this).attr('title');
 
@@ -242,8 +241,8 @@
                     $(this).addClass("taptap-menu-active");
                     $(".taptap-main-wrapper").addClass("taptap-main-wrapper-active");
                     $("body").css("overflow", "hidden");
-                    
-                    
+
+
 
 
                 }
@@ -269,7 +268,7 @@
         $(window).resizeDimension('width', function () {
             MobileListResize();
         });
-       // $(window).resize(MobileListResize);
+        // $(window).resize(MobileListResize);
     </script>
     <script type="text/javascript">
         // Set timeout variables.
@@ -308,7 +307,7 @@
             window.location = logoutUrl;
         }
     </script>
-    <script language="javascript" type="text/javascript">
+    <script type="text/javascript">
 
         var oldgridSelectedColor;
         function setMouseOverColor(element) {
@@ -384,10 +383,10 @@
 
 
     </script>
-    <script language="javascript" type="text/javascript">
+    <script type="text/javascript">
         function Browser_Close() { }
     </script>
-    <script language="javascript" type="text/javascript">
+    <script type="text/javascript">
         var isClose = false;
 
         document.onkeydown = checkKeycode
@@ -450,7 +449,6 @@
             }
             return xmlHttp;
         }
-
     </script>
     <script type="text/javascript">
         function ShowHelp(Url) { window.open(Url, 'AMSHELP'); }
@@ -468,28 +466,26 @@
                     <div class="taptap-main-inner-inner">
                         <div class="taptap-contents-wrapper">
                             <div class="NotificationsWrapper">
-                                 <asp:Image ID="UserImg" runat="server" ImageUrl="~/CSS/Metro/Images/UserImg.png" CssClass="UserImg" />
+                                <asp:Image ID="UserImg" runat="server" ImageUrl="~/CSS/Metro/Images/UserImg.png" CssClass="UserImg" />
                                 <asp:Label ID="lblWelcome" runat="server" Text="Welcome" meta:resourcekey="lblWelcomeResource1" Visible="false"></asp:Label>
 
                                 <asp:Label ID="lblUserName" runat="server" meta:resourcekey="lblUserNameResource1"></asp:Label>
-                                    <div class="NotificationsIcon">
-                                        <span class="NotificationsNumber">999</span>
-                                    </div>
-                                    <div class="NotificationsPopup">
-                                        <span class="NotificationsPopupClose"></span>
-                                        <ul>
-                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
-                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
-                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
-                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
-                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
-                                        </ul>
-                                    </div>
-                                   
+                                <div class="NotificationsIcon">
+                                    <span ID="spnNotificationsNo" runat="server" class="NotificationsNumber" >999</span>
                                 </div>
+                                <div class="NotificationsPopup">
+                                    <span class="NotificationsPopupClose"></span>
+                                    <ul>
+                                        <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
+                                        <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
+                                        <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
+                                        <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
+                                        <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
+                                    </ul>
+                                </div>
+
+                            </div>
                             <div class="UserDetails">
-                                
-                                
 
                                 <div class="clearfix"></div>
 
@@ -541,11 +537,6 @@
                                     <asp:MenuItemBinding DataMember="MenuItem" NavigateUrlField="NavigateUrl" TextField="Text"
                                         ToolTipField="ToolTip" meta:resourcekey="MenuItemBindingResource1" />
                                 </DataBindings>
-                                <%--<StaticSelectedStyle CssClass="tp_hmebg" />--%>
-
-                                <%-- <DynamicSelectedStyle CssClass="mndynamicitem2" />--%>
-
-                                <%--<StaticHoverStyle CssClass="tp_hmebg" />--%>
                                 <Items>
                                     <asp:MenuItem Text="New Item" Value="New Item" meta:resourcekey="MenuItemResource1"></asp:MenuItem>
                                 </Items>
@@ -560,7 +551,7 @@
                             </div>
                         </div>
                         <div class="clearfix"></div>
-
+                        
 
                     </div>
 
@@ -598,17 +589,12 @@
                         <hr class="Sep" />
                     </div>
 
-
-
-
                     <div class="container">
-
-
                         <h1 class="pageTitle">
                             <asp:Label ID="lblPageTitel" runat="server" CssClass="lp_servit" meta:resourcekey="lblPageTitelResource1"></asp:Label>
-
-
-
+                            <asp:Button ID="btnDeleteForm" runat="server" OnClick="btnDeleteForm_Click" CssClass="hidden" />
+                            <asp:HiddenField ID="hdnFavID" runat="server" />
+                            <asp:HiddenField ID="hdnLang" runat="server" />
                         </h1>
                         <div>
                             <div id="divEmpInfo" runat="server" visible="False" class="DarkGrey">
@@ -634,28 +620,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div style="display: none">
-                                <asp:UpdatePanel ID="upRequest" runat="server" ChildrenAsTriggers="False" UpdateMode="Conditional">
-                                    <ContentTemplate>
-                                        <div id="divRequest" runat="server" visible="False">
-                                            <div class="rp_realpad">
-
-                                                <span class="rp_realtitbg">
-
-                                                    <asp:Label ID="Label1" runat="server" Text="Requests" CssClass="Titel_DivLeftPanel"
-                                                        meta:resourcekey="Label1Resource1"></asp:Label>
-                                                </span>
-                                                <img src="../images/MasterPage_Images/rp_intarre<%=Session["Language"]%>.jpg" width="8"
-                                                    height="5" alt="" class="rp_arres<%=Session["Language"]%>" />
-                                                <asp:LinkButton ID="lnkRequest" runat="server" CssClass="rp_servlnk1" OnClick="lnkRequest_Click"
-                                                    meta:resourcekey="lnkRequestResource1"></asp:LinkButton>
-                                            </div>
-
-                                        </div>
-                                    </ContentTemplate>
-                                </asp:UpdatePanel>
-                            </div>
-                        </div>
 
                         <div id="lp_padd">
                             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
@@ -695,12 +659,12 @@
 
             <asp:LinkButton ID="LnkHome" runat="server" OnClick="LnkHome_Click" CssClass="ft_home"
                 meta:resourcekey="LnkHomeResource1">Home Page</asp:LinkButton>
-          <span>|</span>  
+            <span>|</span>
 
 
             <asp:LinkButton ID="lnkAboutUs" runat="server" CssClass="ft_abt" meta:resourcekey="lnkAboutUsResource1">About us</asp:LinkButton>
 
-           <span>|</span>
+            <span>|</span>
 
             <asp:LinkButton ID="lnkPolicy" runat="server" CssClass="ft_cnt"
                 meta:resourcekey="lnkPolicyResource1" OnClick="lnkPolicy_Click">Policies and Procedures</asp:LinkButton>
@@ -714,14 +678,14 @@
 
         </div>
         <script type="text/javascript">
-            
+
             $(document).ready(function () {
                 $('.sub-square>a').hover(function () {
                     // Hover over code
                     var title = $(this).attr('title');
                     $(this).data('tipText', title).removeAttr('title');
                     $('<div class="tooltipSmall"></div>')
-                        
+
                     .text(title)
                     .appendTo("body")
                     .fadeIn('slow');
@@ -740,9 +704,23 @@
                         e.preventDefault();
                     }, false);
                 }
-                
-                
+
+
             });
+        </script>
+        <script type="text/javascript">    
+            function FavDelete(FavID)
+            {
+                var lang = document.getElementById('<%= hdnLang.ClientID %>').value;
+                var result;
+                if (lang == 'AR') { result = confirm('هل أنت متأكد أنك تريد الحذف؟'); }
+                else { result = confirm('Are you sure you want to delete?'); }
+
+                if (result) {
+                    document.getElementById('<%= hdnFavID.ClientID %>').value = FavID;
+                    document.getElementById('<%= btnDeleteForm.ClientID %>').click();
+                }       
+            }
         </script>
     </form>
     <div class="LoadingWrapper">
