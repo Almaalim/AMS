@@ -48,8 +48,9 @@ public partial class EmailSchedules : BasePage
 
                 ViewState["CommandName"] = "";
                 /*** Common Code ************************************/
-                ttRunthescheduleevery.SetTime(1, 0);
+                ttRunScheduleEvery.SetTime(1, 0);
                 divHour.Visible = true;
+                cvRunScheduleEvery.Enabled = true;
             }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
@@ -63,11 +64,11 @@ public partial class EmailSchedules : BasePage
             for (int i = 1; i <= 31; i++)
             {
                 ListItem _li = new ListItem(i.ToString(), i.ToString());
-                cblCalendardays.Items.Add(_li);
+                cblCalendarDays.Items.Add(_li);
             }
 
             ListItem _li2 = new ListItem(General.Msg("Last","الأخير"), "Last");
-            cblCalendardays.Items.Add(_li2);
+            cblCalendarDays.Items.Add(_li2);
 
             DTCs.MonthPopulateList(ref cblMonth, pgCs.DateType);
 
@@ -154,7 +155,7 @@ public partial class EmailSchedules : BasePage
         txtDescription.Enabled = pStatus;
         chkStatus.Enabled = pStatus;
         ddlScheduleType.Enabled = pStatus;
-        ttRunthescheduleevery.Enabled = pStatus;
+        ttRunScheduleEvery.Enabled = pStatus;
         ddlWeekOfMonth.Enabled = pStatus;
         txtRepeatDays.Enabled = pStatus;
         txtRepeatWeek.Enabled = pStatus;
@@ -166,7 +167,7 @@ public partial class EmailSchedules : BasePage
         ddlReportFormat.Enabled = pStatus;
 
         cblDaysOfWeek.Enabled = pStatus;
-        cblCalendardays.Enabled = pStatus;
+        cblCalendarDays.Enabled = pStatus;
         cblMonth.Enabled = pStatus;
         calStartDate.SetEnabled(pStatus);
         calEndDate.SetEnabled(pStatus);
@@ -195,10 +196,10 @@ public partial class EmailSchedules : BasePage
             ProCs.SchStartHour = tpStartTime.getHours().ToString(); 
             ProCs.SchStartMin  = tpStartTime.getMinutes().ToString();
 
-            if (!string.IsNullOrEmpty(ttRunthescheduleevery.getHours().ToString()))
+            if (!string.IsNullOrEmpty(ttRunScheduleEvery.getHours().ToString()))
             {
-                ProCs.SchEveryHour   = ttRunthescheduleevery.getHours().ToString();
-                ProCs.SchEveryMinute = ttRunthescheduleevery.getMinutes().ToString();
+                ProCs.SchEveryHour   = ttRunScheduleEvery.getHours().ToString();
+                ProCs.SchEveryMinute = ttRunScheduleEvery.getMinutes().ToString();
             }
 
             if (ddlWeekOfMonth.SelectedIndex > 0) { ProCs.SchWeekOfMonth = ddlWeekOfMonth.SelectedValue; }
@@ -209,20 +210,21 @@ public partial class EmailSchedules : BasePage
             if (!string.IsNullOrEmpty(txtSubject.Text))    { ProCs.SchEmailSubject = txtSubject.Text; }
             if (ddlReportGroup.SelectedIndex > 0)          { ProCs.ReportID = ddlReportGroup.SelectedValue; }
 
-            string SelectedUsers = string.Empty;
+            string Users = string.Empty;
             if (lbxUsers.SelectedIndex > -1)
+            {
                 if (lbxUsers.Items.Count > 0)
                 {
                     for (int i = 0; i < lbxUsers.Items.Count; i++)
                     {
                         if (lbxUsers.Items[i].Selected)
                         {
-                            SelectedUsers += lbxUsers.Items[i].Text.ToString().Trim();
-                            SelectedUsers += ",";
+                            if (string.IsNullOrEmpty(Users)) { Users = lbxUsers.Items[i].Text.Trim(); } else { Users += "," + lbxUsers.Items[i].Text.Trim(); }
                         }
                     }
                 }
-            ProCs.SchUsers = SelectedUsers;
+            }
+            ProCs.SchUsers = Users;
 
             if (ddlReportFormat.SelectedIndex > 0) { ProCs.SchReportFormat = ddlReportFormat.SelectedValue; }
 
@@ -249,9 +251,9 @@ public partial class EmailSchedules : BasePage
             string SchDays = null;
             if (ddlScheduleType.SelectedValue == "Calendar")
             {
-                for (int i = 0; i < cblCalendardays.Items.Count; i++)
+                for (int i = 0; i < cblCalendarDays.Items.Count; i++)
                 {
-                    if (cblCalendardays.Items[i].Selected) { if (string.IsNullOrEmpty(SchDays)) { SchDays += cblCalendardays.Items[i].Value; } else { SchDays += "," + cblCalendardays.Items[i].Value; } }
+                    if (cblCalendarDays.Items[i].Selected) { if (string.IsNullOrEmpty(SchDays)) { SchDays += cblCalendarDays.Items[i].Value; } else { SchDays += "," + cblCalendarDays.Items[i].Value; } }
                 }
             }
 
@@ -278,7 +280,7 @@ public partial class EmailSchedules : BasePage
             txtDescription.Text = "";
             chkStatus.Checked = false;
             ddlScheduleType.SelectedIndex = -1;
-            ttRunthescheduleevery.SetTime(1, 0);
+            ttRunScheduleEvery.SetTime(1, 0);
             ddlWeekOfMonth.SelectedIndex = -1;
             txtRepeatDays.Text = "";
             txtRepeatWeek.Text = "";
@@ -290,7 +292,7 @@ public partial class EmailSchedules : BasePage
             ddlReportFormat.SelectedIndex = -1;
 
             for (int i = 0; i < cblDaysOfWeek.Items.Count; i++) { cblDaysOfWeek.Items[i].Selected = false; }
-            for (int i = 0; i < cblCalendardays.Items.Count; i++) { cblCalendardays.Items[i].Selected = false; }
+            for (int i = 0; i < cblCalendarDays.Items.Count; i++) { cblCalendarDays.Items[i].Selected = false; }
             for (int i = 0; i < cblMonth.Items.Count; i++) { cblMonth.Items[i].Selected = false; }
             calStartDate.ClearDate();
             calEndDate.ClearDate();
@@ -309,41 +311,47 @@ public partial class EmailSchedules : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void UIShow(string ScheduleType, int schID)
     {
-        divHour.Visible = false;
-        divDaysOfWeek.Visible = false;
-        divDayRepeat.Visible = false;
-        divWeekRepeat.Visible = false;
-        divMonths.Visible = false;
+        divHour.Visible        = false; /**/ cvRunScheduleEvery.Enabled = false;
+        divDaysOfWeek.Visible  = false; /**/ cvDaysOfWeek.Enabled = false;
+        divDayRepeat.Visible   = false; /**/ rvRepeatDays.Enabled = false;
+        divWeekRepeat.Visible  = false;
+        divMonths.Visible      = false; /**/ cvMonth.Enabled = false;
         divWeekOfMonth.Visible = false;
-        divCalendar.Visible = false;
+        divCalendar.Visible    = false; /**/ cvCalendarDays.Enabled = false;
 
         switch (ScheduleType)
         {
             case "Hourly":
-                divHour.Visible = true;
+                divHour.Visible            = true;
+                cvRunScheduleEvery.Enabled = true;
                 break;
             case "Weekly":
                 divDaysOfWeek.Visible = true;
-                //if (schID != 0) { PopulateWeek(schID); }
+                cvDaysOfWeek.Enabled  = true;
                 break;
             case "Daily":
                 divDayRepeat.Visible = true;
+                rvRepeatDays.Enabled = true;
                 break;
             case "WeeklySkip":
                 divWeekRepeat.Visible = true;
                 divDaysOfWeek.Visible = true;
-                //if (schID != 0) { PopulateWeek(schID); }
+                cvDaysOfWeek.Enabled  = true;
                 break;
             case "WeekNumber":
                 divMonths.Visible      = true;
                 divWeekOfMonth.Visible = true;
                 divDaysOfWeek.Visible  = true;
-                //if (schID != 0) { PopulateMonth(schID); PopulateWeek(schID); }
+
+                cvMonth.Enabled        = true;
+                cvDaysOfWeek.Enabled   = true;
                 break;
             case "Calendar":
-                divMonths.Visible = true;
+                divMonths.Visible   = true;
                 divCalendar.Visible = true;
-                // if (schID != 0) { PopulateDays(schID); PopulateMonth(schID); }
+
+                cvMonth.Enabled        = true;
+                cvCalendarDays.Enabled = true;
                 break;
             
             default:
@@ -374,7 +382,7 @@ public partial class EmailSchedules : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -390,7 +398,7 @@ public partial class EmailSchedules : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -415,7 +423,7 @@ public partial class EmailSchedules : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -544,7 +552,7 @@ public partial class EmailSchedules : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -651,7 +659,7 @@ public partial class EmailSchedules : BasePage
             int minute = 0;
             if (DRs[0]["SchEveryHour"]   != DBNull.Value) { hours  = Convert.ToInt32(DRs[0]["SchEveryHour"]); }
             if (DRs[0]["SchEveryMinute"] != DBNull.Value) { minute = Convert.ToInt32(DRs[0]["SchEveryMinute"]); }
-            ttRunthescheduleevery.SetTime(hours, minute);
+            ttRunScheduleEvery.SetTime(hours, minute);
 
             ddlWeekOfMonth.SelectedIndex = ddlWeekOfMonth.Items.IndexOf(ddlWeekOfMonth.Items.FindByValue(DRs[0]["SchWeekOfMonth"].ToString()));
 
@@ -692,8 +700,8 @@ public partial class EmailSchedules : BasePage
                 string[] Days = DRs[0]["SchDays"].ToString().Split(',');
                 for (int i = 0; i < Days.Length; i++)
                 {
-                    int index = cblCalendardays.Items.IndexOf(cblCalendardays.Items.FindByValue(Days[i]));
-                    if (index > -1) { cblCalendardays.Items[index].Selected = true; } else { cblCalendardays.Items[index].Selected = false; }
+                    int index = cblCalendarDays.Items.IndexOf(cblCalendarDays.Items.FindByValue(Days[i]));
+                    if (index > -1) { cblCalendarDays.Items[index].Selected = true; } else { cblCalendarDays.Items[index].Selected = false; }
                 }
             }
 
@@ -773,8 +781,8 @@ public partial class EmailSchedules : BasePage
             {
                 string Days = DT.Rows[i]["ShdDayId"].ToString();
 
-                int index = cblCalendardays.Items.IndexOf(cblCalendardays.Items.FindByValue(Days));
-                if (index > -1) { cblCalendardays.Items[index].Selected = true; } else { cblCalendardays.Items[index].Selected = false; }
+                int index = cblCalendarDays.Items.IndexOf(cblCalendarDays.Items.FindByValue(Days));
+                if (index > -1) { cblCalendarDays.Items[index].Selected = true; } else { cblCalendarDays.Items[index].Selected = false; }
             }
         }
     }
@@ -855,11 +863,75 @@ public partial class EmailSchedules : BasePage
             e.IsValid = false;
         }
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void RunScheduleEvery_ServerValidate(Object source, ServerValidateEventArgs e)
+    {
+        try
+        {
+            if (source.Equals(cvRunScheduleEvery))
+            {
+                if (ttRunScheduleEvery.getTimeInSecond() <= 0) { e.IsValid = false; }
+            }
+        }
+        catch
+        {
+            e.IsValid = false;
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void DaysOfWeek_ServerValidate(Object source, ServerValidateEventArgs e)
+    {
+        try
+        {
+            if (source.Equals(cvDaysOfWeek))
+            {
+                e.IsValid = cblDaysOfWeek.SelectedItem != null;
+            }
+        }
+        catch
+        {
+            e.IsValid = false;
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void Month_ServerValidate(Object source, ServerValidateEventArgs e)
+    {
+        try
+        {
+            if (source.Equals(cvMonth))
+            {
+                e.IsValid = cblMonth.SelectedItem != null;
+            }
+        }
+        catch
+        {
+            e.IsValid = false;
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void CalendarDays_ServerValidate(Object source, ServerValidateEventArgs e)
+    {
+        try
+        {
+            if (source.Equals(cvCalendarDays))
+            {
+                e.IsValid = cblCalendarDays.SelectedItem != null;
+            }
+        }
+        catch
+        {
+            e.IsValid = false;
+        }
+    }
 
     #endregion
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
-    
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

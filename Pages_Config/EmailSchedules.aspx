@@ -182,8 +182,8 @@
                                     <asp:ListItem Value="Hourly" meta:resourcekey="ListItemResource4" Text="Hourly"></asp:ListItem>
                                     <asp:ListItem Value="Daily" meta:resourcekey="ListItemResource5" Text="Daily"></asp:ListItem>
                                     <asp:ListItem Value="Weekly" meta:resourcekey="ListItemResource6" Text="Weekly"></asp:ListItem>
-                                    <asp:ListItem Value="WeeklySkip" meta:resourcekey="ListItemResource7" Text="Weekly skip"></asp:ListItem>
-                                    <asp:ListItem Value="WeekNumber" meta:resourcekey="ListItemResource8" Text="Week number"></asp:ListItem>
+                                    <%--<asp:ListItem Value="WeeklySkip" meta:resourcekey="ListItemResource7" Text="Weekly skip"></asp:ListItem>--%>
+                                    <%--<asp:ListItem Value="WeekNumber" meta:resourcekey="ListItemResource8" Text="Week number"></asp:ListItem>--%>
                                     <asp:ListItem Value="Calendar" meta:resourcekey="ListItemResource9" Text="Calendar"></asp:ListItem>
                                     <asp:ListItem Value="Once" meta:resourcekey="ListItemResource10" Text="Run once"></asp:ListItem>
                                 </asp:DropDownList>
@@ -206,11 +206,14 @@
                             <div id="divHour" runat="server" visible="False">
                                 <div class="row">
                                     <div class="col2">
-                                        <asp:Label ID="lblRunthescheduleevery" runat="server" Text="Run the schedule every:"
+                                        <asp:Label ID="lblRunScheduleEvery" runat="server" Text="Run the schedule every:"
                                             meta:resourcekey="lblRunthescheduleeveryResource1"></asp:Label>
                                     </div>
                                     <div class="col4">
-                                        <Almaalim:TextTime ID="ttRunthescheduleevery" runat="server" FormatTime="hhmm" CssClass="TimeCss" />
+                                        <Almaalim:TextTime ID="ttRunScheduleEvery" runat="server" FormatTime="hhmm" CssClass="TimeCss" />
+                                         <asp:CustomValidator ID="cvRunScheduleEvery" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='Run the schedule every is required' /&gt;"
+                                            ValidationGroup="vgSave" OnServerValidate="RunScheduleEvery_ServerValidate" EnableClientScript="False" Enabled ="false"
+                                            ControlToValidate="txtValid" meta:resourcekey="cvRunScheduleEveryResource1" CssClass="CustomValidator"></asp:CustomValidator>
                                     </div>
                                 </div>
                             </div>
@@ -231,6 +234,13 @@
                                             <asp:ListItem Value="6" Text="Friday"    meta:resourcekey="FridayResource1"></asp:ListItem>
                                             <asp:ListItem Value="7" Text="Saturday"  meta:resourcekey="SaturdayResource1"></asp:ListItem>
                                         </asp:CheckBoxList>
+                                        <asp:CustomValidator id="cvDaysOfWeek" runat="server"
+                                            Text="&lt;img src='../images/message_exclamation.png' title='Please Select Atleast one Day' /&gt;" 
+                                            ValidationGroup="vgSave"
+                                            ErrorMessage="Please Select Atleast one Day" CssClass="CustomValidator"
+                                            OnServerValidate="DaysOfWeek_ServerValidate" 
+                                            EnableClientScript="False" Enabled ="false"
+                                            ControlToValidate="txtValid" meta:resourcekey="cvDaysOfWeekResource1"></asp:CustomValidator>
                                     </div>
                                 </div>
 
@@ -259,6 +269,10 @@
                                     </div>
                                     <div class="col4">
                                         <asp:TextBox ID="txtRepeatDays" runat="server" onkeypress="return OnlyNumber(event);" meta:resourcekey="txtRepeatDaysResource1"></asp:TextBox>
+                                        <asp:RequiredFieldValidator ID="rvRepeatDays" runat="server" ControlToValidate="txtRepeatDays" CssClass="CustomValidator"
+                                            Text="<img src='../images/Exclamation.gif' title='Repeat after this number of days is required' />"
+                                            ValidationGroup="vgSave" EnableClientScript="False" Display="Dynamic" SetFocusOnError="True" Enabled ="false"
+                                            meta:resourcekey="rvRepeatDaysResource1"></asp:RequiredFieldValidator>
                                     </div>
                                 </div>
                             </div>
@@ -281,26 +295,40 @@
                                     <div class="col4">
                                         <asp:CheckBoxList ID="cblMonth" runat="server"  RepeatDirection="Horizontal" RepeatColumns="7" meta:resourcekey="cblMonthResource1">
                                         </asp:CheckBoxList>
+                                        <asp:CustomValidator id="cvMonth" runat="server"
+                                            Text="&lt;img src='../images/message_exclamation.png' title='Please Select Atleast one Month' /&gt;" 
+                                            ValidationGroup="vgSave"
+                                            ErrorMessage="Please Select Atleast one Month" CssClass="CustomValidator"
+                                            OnServerValidate="Month_ServerValidate" 
+                                            EnableClientScript="False" Enabled ="false"
+                                            ControlToValidate="txtValid" meta:resourcekey="cvMonthResource1"></asp:CustomValidator>
                                     </div>
                                 </div>
                             </div>
                             <div id="divCalendar" runat="server" visible="False">
                                 <div class="row">
                                     <div class="col2">
-                                        <asp:Label ID="lblCalendardays" runat="server" Text="Calendar days:" meta:resourcekey="lblCalendardaysResource1"></asp:Label>
+                                        <asp:Label ID="lblCalendarDays" runat="server" Text="Calendar days:" meta:resourcekey="lblCalendardaysResource1"></asp:Label>
                                     </div>
                                     <div class="col10">
-                                        <asp:CheckBoxList ID="cblCalendardays" runat="server"   RepeatDirection="Horizontal" RepeatColumns="8" meta:resourcekey="cblCalendardaysResource1">
+                                        <asp:CheckBoxList ID="cblCalendarDays" runat="server"   RepeatDirection="Horizontal" RepeatColumns="8" meta:resourcekey="cblCalendardaysResource1">
                                         </asp:CheckBoxList>
+                                        <asp:CustomValidator id="cvCalendarDays" runat="server"
+                                            Text="&lt;img src='../images/message_exclamation.png' title='Please Select Atleast one Day' /&gt;" 
+                                            ValidationGroup="vgSave"
+                                            ErrorMessage="Please Select Atleast one Day" CssClass="CustomValidator"
+                                            OnServerValidate="CalendarDays_ServerValidate" 
+                                            EnableClientScript="False" Enabled ="false"
+                                            ControlToValidate="txtValid" meta:resourcekey="cvCalendarDaysResource1"></asp:CustomValidator>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col2">
-                                    <asp:Label ID="lblStartTime" runat="server" Text="Start Time:" meta:resourcekey="lblStartTimeResource1"></asp:Label>
+                                    <asp:Label ID="lblStartTime" runat="server" Text="Start Time:"  meta:resourcekey="lblStartTimeResource1"></asp:Label>
                                 </div>
                                 <div class="col4">
-                                    <Almaalim:TimePicker ID="tpStartTime" runat="server" FormatTime="HHmm" CssClass="TimeCss" meta:resourcekey="tpStartTimeResource1" TimePickerValidationGroup="" TimePickerValidationText="" />
+                                    <Almaalim:TimePicker ID="tpStartTime" runat="server" FormatTime="HHmm" CssClass="TimeCss"  TimePickerValidationGroup="vgSave" TimePickerValidationText="&lt;img src='../images/Exclamation.gif' title='Start Time is required' /&gt;" meta:resourcekey="tpStartTimeResource1"/>
                                 </div>
                             </div>
                             <div class="row">
@@ -308,7 +336,7 @@
                                     <asp:Label ID="lblStartDate" runat="server" Text="Start Date :" meta:resourcekey="lblStartDateResource1"></asp:Label>
                                 </div>
                                 <div class="col4">
-                                    <Cal:Calendar2 ID="calStartDate" runat="server" CalendarType="System" ValidationGroup="vgSave" CalTo="calEndDate" />
+                                    <Cal:Calendar2 ID="calStartDate" runat="server" CalendarType="System" ValidationRequired="true" ValidationGroup="vgSave" CalTo="calEndDate" />
                                 </div>
                                 <div class="col2">
                                     <asp:Label ID="lblEndDate" runat="server" Text="End Date :" meta:resourcekey="lblEndDateResource1"></asp:Label>
@@ -380,7 +408,7 @@
                                     meta:resourcekey="lblHintResource2"></asp:Label>
                             </p>
                         </div>
-                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" Text="<img src='../images/Exclamation.gif' title='The Users must be selected' />" CssClass="CustomValidator"
+                        <asp:RequiredFieldValidator ID="rvUsers" runat="server" Text="<img src='../images/Exclamation.gif' title='The Users must be selected' />" CssClass="CustomValidator"
                             ControlToValidate="lbxUsers" InitialValue="0" ValidationGroup="vgSave" meta:resourcekey="RequiredFieldValidator4Resource1"></asp:RequiredFieldValidator>
                     </div>
                 </div>

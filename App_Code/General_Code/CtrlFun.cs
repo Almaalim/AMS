@@ -6,6 +6,7 @@ using System.Data;
 using System.IO;
 using System.Drawing;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 public class CtrlFun : DataLayerBase
 {
@@ -67,8 +68,11 @@ public class CtrlFun : DataLayerBase
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                ListItem ls = new ListItem(dt.Rows[i][Text].ToString(), dt.Rows[i][Value].ToString());
-                ddl.Items.Add(ls);
+                if (!string.IsNullOrEmpty(dt.Rows[i][Text].ToString()))
+                {
+                    ListItem ls = new ListItem(dt.Rows[i][Text].ToString(), dt.Rows[i][Value].ToString());
+                    ddl.Items.Add(ls);
+                }
             }
 
             ListItem lsMsg = new ListItem(Msg, Msg);
@@ -91,8 +95,11 @@ public class CtrlFun : DataLayerBase
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                ListItem ls = new ListItem(dt.Rows[i][Text1].ToString() + "-" + dt.Rows[i][Text2].ToString(), dt.Rows[i][Value].ToString());
-                ddl.Items.Add(ls);
+                if (!string.IsNullOrEmpty(dt.Rows[i][Text1].ToString()) || !string.IsNullOrEmpty(dt.Rows[i][Text2].ToString()))
+                {
+                    ListItem ls = new ListItem(dt.Rows[i][Text1].ToString() + "-" + dt.Rows[i][Text2].ToString(), dt.Rows[i][Value].ToString());
+                    ddl.Items.Add(ls);
+                }
             }
 
             ListItem lsMsg = new ListItem(Msg, Msg);
@@ -112,8 +119,11 @@ public class CtrlFun : DataLayerBase
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                ListItem ls = new ListItem(dt.Rows[i][Text].ToString(), dt.Rows[i][Value].ToString());
-                ddl.Items.Add(ls);
+                if (!string.IsNullOrEmpty(dt.Rows[i][Text].ToString()))
+                {
+                    ListItem ls = new ListItem(dt.Rows[i][Text].ToString(), dt.Rows[i][Value].ToString());
+                    ddl.Items.Add(ls);
+                }
             }
 
             return true;
@@ -134,8 +144,11 @@ public class CtrlFun : DataLayerBase
 
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                ListItem ls = new ListItem(dt.Rows[i][Text].ToString(), dt.Rows[i][Value].ToString());
-                ddl.Items.Add(ls);
+                if (!string.IsNullOrEmpty(dt.Rows[i][Text].ToString()))
+                {
+                    ListItem ls = new ListItem(dt.Rows[i][Text].ToString(), dt.Rows[i][Value].ToString());
+                    ddl.Items.Add(ls);
+                }
             }
 
             return true;
@@ -666,7 +679,6 @@ public class CtrlFun : DataLayerBase
         else if (Type == TypeMsg.Error) { vs.CssClass = "MsgError";      /****/ vs.ForeColor = ColorTranslator.FromHtml("#D8000C"); }
         else if (Type == TypeMsg.Validation) { vs.CssClass = "MsgValidation"; /****/ vs.ForeColor = ColorTranslator.FromHtml("#D63301"); }
 
-
         pg.Validate(VG);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -721,10 +733,10 @@ public class CtrlFun : DataLayerBase
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void ShowAdminMsg(Page pg, ValidationSummary vs, CustomValidator cv, string VG, string pMsg, string pEx)
     {
-        string DMsg = General.Msg("<a style=\"color:Blue\" href='#' onclick=\"alert('" + pEx.Replace("'", "") + "');\">To find out the error details Click here </a> ", "<a style=\"color:Blue\" href='#' onclick=\"alert('" + pEx.Replace("'", "") + "');\">لمعرفة تفاصيل الخطأ اضغط هنا </a> ");
+        string errMsg = Regex.Replace(pEx, @"[&\/\\#,+()$~%.':*?<>{ }]", " ");
+        string DMsg = General.Msg("<a style=\"color:Blue\" href='#' onclick=\"alert('" + errMsg + "');\">To find out the error details Click here </a> ", "<a style=\"color:Blue\" href='#' onclick=\"alert('" + errMsg + "')\">لمعرفة تفاصيل الخطأ اضغط هنا </a> ");
 
-        vs.ValidationGroup = VG;
-        pEx = pEx.Replace("'", " ");
+        vs.ValidationGroup = VG;       
         cv.ErrorMessage = pMsg + DMsg;
         cv.ValidationGroup = VG;
         vs.CssClass = "MsgError";
@@ -733,42 +745,32 @@ public class CtrlFun : DataLayerBase
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void ShowAdminMsg(Page pg, string pEx)
+    public void ShowAdminMsg(Page pg, ValidationSummary vs, CustomValidator cv, string VG, string pEx)
     {
         string MMsg = General.Msg("Transaction failed to commit please contact your administrator. ", "النظام غير قادر على حفظ البيانات, الرجاء الاتصال بمدير النظام. ");
-
+        ShowAdminMsg(pg, vs, cv, VG, MMsg, pEx);
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void ShowAdminMsg(Page pg, string pEx)
+    {
         string VG = "vgShowMsg";
         ValidationSummary vs = pg.Master.FindControl("ContentPlaceHolder1").FindControl("vsShowMsg") as ValidationSummary;
         CustomValidator cv = pg.Master.FindControl("ContentPlaceHolder1").FindControl("cvShowMsg") as CustomValidator;
 
-        ShowAdminMsg(pg, vs, cv, VG, MMsg, pEx);
+        ShowAdminMsg(pg, vs, cv, VG, pEx);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void ShowAdminMsg2(Page pg, string pEx)
     {
-        string MMsg = General.Msg("Transaction failed to commit please contact your administrator. ", "النظام غير قادر على حفظ البيانات, الرجاء الاتصال بمدير النظام. ");
-
         string VG = "vgShowMsg2";
         ValidationSummary vs = pg.Master.FindControl("ContentPlaceHolder1").FindControl("vsShowMsg2") as ValidationSummary;
         CustomValidator cv = pg.Master.FindControl("ContentPlaceHolder1").FindControl("cvShowMsg2") as CustomValidator;
 
-        ShowAdminMsg(pg, vs, cv, VG, MMsg, pEx);
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void ShowAdminMsg(Page pg, ValidationSummary vs, CustomValidator cv, string VG, string pEx)
-    {
-        string MMsg = General.Msg("Transaction failed to commit please contact your administrator. ", "النظام غير قادر على حفظ البيانات, الرجاء الاتصال بمدير النظام. ");
-        string DMsg = General.Msg("<a style=\"color:Blue\" href='#' onclick=\"alert('" + pEx.Replace("'", "") + "');\">To find out the error details Click here </a> ", "<a style=\"color:Blue\" href='#' onclick=\"alert('" + pEx.Replace("'", "") + "');\">لمعرفة تفاصيل الخطأ اضغط هنا </a> ");
+        //string ss = vs.ValidationGroup;
 
-        vs.ValidationGroup = VG;
-        pEx = pEx.Replace("'", " ");
-        cv.ErrorMessage = MMsg + DMsg;
-        cv.ValidationGroup = VG;
-        vs.CssClass = "MsgError";
-        vs.ForeColor = ColorTranslator.FromHtml("#D8000C");
-        pg.Validate(VG);
+        ShowAdminMsg(pg, vs, cv, VG, pEx);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

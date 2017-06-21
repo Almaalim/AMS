@@ -10,7 +10,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <%--script--%>
     <script type="text/javascript">
-        function showPopup(devName) { 
+        function showPopup(devName) {
             document.getElementById(devName).style.display = 'block';
             document.getElementById(devName).style.visibility = 'visible';
         }
@@ -19,7 +19,7 @@
             document.getElementById(devName).style.visibility = 'hidden';
             document.getElementById(devName).style.display = 'none';
         }
-     </script>
+    </script>
 
     <script type="text/javascript" src="../FusionCharts/FusionCharts.js"></script>
     <%--script--%>
@@ -45,7 +45,7 @@
                 </div>
             </div>
 
-           
+
 
             <div id="DivMonth" runat="server" class="row">
                 <div class="col1">
@@ -57,29 +57,35 @@
                         <asp:ListItem Value="D" Text="Daily" meta:resourcekey="ListItemResource2"></asp:ListItem>
                     </asp:DropDownList>
                 </div>
-                <div class="col1">
+                <div id="DivMonth1" runat="server" class="col1">
                     <asp:Label ID="lblMonth" runat="server" Text="Month:" meta:resourcekey="lblMonthResource1"></asp:Label>
                 </div>
-            <div class="col2">
-                <asp:DropDownList ID="ddlMonth" runat="server" meta:resourcekey="ddlMonthResource1"></asp:DropDownList>
+                <div id="DivMonth2" runat="server" class="col2">
+                    <asp:DropDownList ID="ddlMonth" runat="server" meta:resourcekey="ddlMonthResource1"></asp:DropDownList>
+                </div>
+                <div id="DivYear1" runat="server" class="col1">
+                    <asp:Label ID="lblYear" runat="server" Text="Year:" meta:resourcekey="lblYearResource1"></asp:Label>
+                </div>
+                <div id="DivYear2" runat="server" class="col2">
+                    <asp:DropDownList ID="ddlYear" runat="server" meta:resourcekey="ddlYearResource1"></asp:DropDownList>
+                </div>
+                <div id="DivDay1" runat="server" class="col1">
+                    <asp:Label ID="lblDate" runat="server" Text="Date:" meta:resourcekey="lblDateResource1"></asp:Label>
+                </div>
+                <div id="DivDay2" runat="server" class="col4">
+                    <Cal:Calendar2 ID="calDate" runat="server" CalendarType="System" ValidationGroup="" InitialValue="true" />
+                </div>
             </div>
-            <div class="col1">
-                <asp:Label ID="lblYear" runat="server" Text="Year:" meta:resourcekey="lblYearResource1"></asp:Label>
-            </div>
-            <div class="col2">
-                <asp:DropDownList ID="ddlYear" runat="server" meta:resourcekey="ddlYearResource1"></asp:DropDownList>
-            </div>
-            </div>
-                    <div id="DivDay" runat="server" class="row">
+            <%--<div id="DivDay" runat="server" class="row">
 
-                        <div class="col1">
-                            <asp:Label ID="lblDate" runat="server" Text="Date:" meta:resourcekey="lblDateResource1"></asp:Label>
-                        </div>
-                        <div class="col4">
-                            <Cal:Calendar2 ID="calDate" runat="server" CalendarType="System" ValidationGroup="" InitialValue="true" />
-                        </div>
+                <div class="col1">
+                    <asp:Label ID="lblDate" runat="server" Text="Date:" meta:resourcekey="lblDateResource1"></asp:Label>
+                </div>
+                <div class="col4">
+                    <Cal:Calendar2 ID="calDate" runat="server" CalendarType="System" ValidationGroup="" InitialValue="true" />
+                </div>
 
-                    </div>
+            </div>--%>
 
             <div class="row" runat="server">
                 <div class="col8">

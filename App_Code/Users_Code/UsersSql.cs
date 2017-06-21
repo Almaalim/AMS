@@ -271,7 +271,6 @@ public class UsersSql : DataLayerBase
             Sqlcmd.Parameters.Add(new SqlParameter("@IsExecute"  , IntDB, 10, OU, false, 0, 0, "", DRV, 0));
             MainConnection.Open();
 
-            MainConnection.Open();
             Sqlcmd.ExecuteNonQuery();
             if (Convert.ToInt32(Sqlcmd.Parameters["@IsExecute"].Value) == -1) { throw new Exception(General.ProcedureMsg(), null); }
             return true;

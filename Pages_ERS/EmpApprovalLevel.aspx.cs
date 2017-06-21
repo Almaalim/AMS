@@ -203,7 +203,7 @@ public partial class EmpApprovalLevel : BasePage
         BtnStatus("0001");
 
         MultiView1.ActiveViewIndex = 1;
-        if (CtrlCs.isGridEmpty(grdData.SelectedRow.Cells[0].Text) && grdData.SelectedRow.Cells.Count == 1) { CtrlCs.FillGridEmpty(ref grdData, 50); }
+        //if (CtrlCs.isGridEmpty(grdData.SelectedRow.Cells[0].Text) && grdData.SelectedRow.Cells.Count == 1) { CtrlCs.FillGridEmpty(ref grdData, 50); }
         UIClearWizard();
         WizardData.ActiveStepIndex = 0;
     }
@@ -265,7 +265,7 @@ public partial class EmpApprovalLevel : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -378,7 +378,7 @@ public partial class EmpApprovalLevel : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -664,7 +664,7 @@ public partial class EmpApprovalLevel : BasePage
         catch (Exception ex) 
         { 
             ErrorSignal.FromCurrentContext().Raise(ex); 
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
 

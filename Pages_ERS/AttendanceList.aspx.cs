@@ -127,7 +127,7 @@ public partial class AttendanceList : BasePage
             Session["AttendanceListMonth"] = pMonth.ToString();
             Session["AttendanceListYear"]  = pYear.ToString();
 
-            Literal1.Text = General.Msg("Attendance List : ", "الحضور : ") + pMonth.ToString("00") + "/" + pYear.ToString();
+            //Literal1.Text = General.Msg("Attendance List : ", "الحضور : ") + pMonth.ToString("00") + "/" + pYear.ToString();
 
             GregorianCalendar Grn = new GregorianCalendar();
             UmAlQuraCalendar Umq = new UmAlQuraCalendar();

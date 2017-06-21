@@ -45,7 +45,7 @@ public class EmpExcPermSql : DataLayerBase
             MainConnection.Open();
             Sqlcmd.ExecuteNonQuery();
             if (Convert.ToInt32(Sqlcmd.Parameters["@IsExecute"].Value) == -1) { throw new Exception(General.ProcedureMsg(), null); }
-            return Convert.ToInt32(Sqlcmd.Parameters["@BrcID"].Value); 
+            return Convert.ToInt32(Sqlcmd.Parameters["@ExprID"].Value); 
         }
         catch (Exception ex)
         {

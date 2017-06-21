@@ -109,7 +109,7 @@
 
                         <asp:LinkButton ID="btnSave" runat="server" CssClass="GenButton glyphicon glyphicon-floppy-disk" OnClick="btnSave_Click"
                             Text="&lt;img src=&quot;../images/Button_Icons/button_storage.png&quot; /&gt; Save"
-                            ValidationGroup="vsSave" meta:resourcekey="btnSaveResource1"></asp:LinkButton>
+                            ValidationGroup="vgSave" meta:resourcekey="btnSaveResource1"></asp:LinkButton>
 
                         <asp:LinkButton ID="btnCancel" runat="server" CssClass="GenButton glyphicon glyphicon-remove-circle"
                             OnClick="btnCancel_Click" Text="&lt;img src=&quot;../images/Button_Icons/button_Cancel.png&quot; /&gt; Cancel" meta:resourcekey="btnCancelResource1"></asp:LinkButton>
@@ -139,7 +139,7 @@
                         </asp:RadioButtonList>
                         <asp:RequiredFieldValidator ID="rfvrblExprType" runat="server" ControlToValidate="rblExprType" CssClass="CustomValidator"
                             EnableClientScript="False" Text="&lt;img src='../images/Exclamation.gif' title='Permission Type is required!' /&gt;"
-                            ValidationGroup="vsSave" meta:resourcekey="rfvrblExprTypeResource1"></asp:RequiredFieldValidator>
+                            ValidationGroup="vgSave" meta:resourcekey="rfvrblExprTypeResource1"></asp:RequiredFieldValidator>
                     </div>
                     <div class="col2">
                         <span class="RequiredField">*</span>
@@ -151,9 +151,9 @@
                             meta:resourcekey="txtEmpIDResource1"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rvEmpID" runat="server" ControlToValidate="txtEmpID" CssClass="CustomValidator"
                             EnableClientScript="False" Text="&lt;img src='../images/Exclamation.gif' title='Employee ID is required!' /&gt;"
-                            ValidationGroup="vsSave" meta:resourcekey="rvEmpIDResource1"></asp:RequiredFieldValidator>
+                            ValidationGroup="vgSave" meta:resourcekey="rvEmpIDResource1"></asp:RequiredFieldValidator>
                         <asp:CustomValidator ID="cvCheckExcuseEmpID" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='this employee already has excuse today!' /&gt;"
-                            ValidationGroup="vsSave" OnServerValidate="CheckExcuseEmpID_ServerValidate" EnableClientScript="False" CssClass="CustomValidator"
+                            ValidationGroup="vgSave" OnServerValidate="CheckExcuseEmpID_ServerValidate" EnableClientScript="False" CssClass="CustomValidator"
                             ControlToValidate="txtValid"
                             meta:resourcekey="cvCheckExcuseEmpIDResource1"></asp:CustomValidator>
                     </div>
@@ -175,7 +175,7 @@
                             </asp:RadioButtonList>
                             <asp:RequiredFieldValidator ID="rfvrblPeriodExc" runat="server" ControlToValidate="rblPeriodExc" CssClass="CustomValidator"
                                 EnableClientScript="False" Text="&lt;img src='../images/Exclamation.gif' title='Period Excuse is required!' /&gt;"
-                                ValidationGroup="vsSave" meta:resourcekey="rfvrblPeriodExcResource1"></asp:RequiredFieldValidator>
+                                ValidationGroup="vgSave" meta:resourcekey="rfvrblPeriodExcResource1"></asp:RequiredFieldValidator>
                         </div>
                         <div class="col2">
                             <span class="RequiredField">*</span>
@@ -188,7 +188,7 @@
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="rfvddlShiftID" runat="server" ControlToValidate="ddlShiftID" CssClass="CustomValidator"
                                 EnableClientScript="False" Text="&lt;img src='../images/Exclamation.gif' title='Shift Name is required!' /&gt;"
-                                ValidationGroup="vsSave" meta:resourcekey="rfvddlShiftIDResource1"></asp:RequiredFieldValidator>
+                                ValidationGroup="vgSave" meta:resourcekey="rfvddlShiftIDResource1"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="row">
@@ -203,7 +203,7 @@
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="rfvddlExcType" runat="server" ControlToValidate="ddlExcType" CssClass="CustomValidator"
                                 EnableClientScript="False" Text="&lt;img src='../images/Exclamation.gif' title='Excuse Type is required!' /&gt;"
-                                ValidationGroup="vsSave" meta:resourcekey="rfvddlExcTypeResource1"></asp:RequiredFieldValidator>
+                                ValidationGroup="vgSave" meta:resourcekey="rfvddlExcTypeResource1"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                 </div>
@@ -232,7 +232,7 @@
                             </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="rfvddlVacType" runat="server" ControlToValidate="ddlVacType"
                                 EnableClientScript="False" Text="&lt;img src='../images/Exclamation.gif' title='Permit Type is required!' /&gt;"
-                                ValidationGroup="vsSave" meta:resourcekey="rfvddlVacTypeResource1" CssClass="CustomValidator"></asp:RequiredFieldValidator>
+                                ValidationGroup="vgSave" meta:resourcekey="rfvddlVacTypeResource1" CssClass="CustomValidator"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                 </div>
@@ -250,7 +250,7 @@
                             meta:resourcekey="txtDescResource1"></asp:TextBox>
                         <%--<asp:RequiredFieldValidator ID="rfvtxtDesc" runat="server" ControlToValidate="txtDesc"
                                             EnableClientScript="False" Text="&lt;img src='../images/Exclamation.gif' title='Reason Field is required!' /&gt;"
-                                            ValidationGroup="vsSave" meta:resourcekey="rfvtxtDescResource1"></asp:RequiredFieldValidator>--%>
+                                            ValidationGroup="vgSave" meta:resourcekey="rfvtxtDescResource1"></asp:RequiredFieldValidator>--%>
                     </div>
                     <div class="col2">
                     </div>

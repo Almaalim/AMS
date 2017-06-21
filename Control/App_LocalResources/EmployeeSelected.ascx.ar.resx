@@ -124,7 +124,7 @@
     <value />
   </data>
   <data name="BoundFieldResource1.HeaderText" xml:space="preserve">
-    <value>رقم الموظف</value>
+    <value>الرقم</value>
   </data>
   <data name="BoundFieldResource2.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -142,7 +142,7 @@
     <value />
   </data>
   <data name="BoundFieldResource3.HeaderText" xml:space="preserve">
-    <value>رقم الموظف</value>
+    <value>الرقم</value>
   </data>
   <data name="BoundFieldResource4.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -190,10 +190,10 @@
     <value />
   </data>
   <data name="cvSelectEmployeesResource1.ErrorMessage" xml:space="preserve">
-    <value>إختر موظف</value>
+    <value>يجب إختيار موظف واحد على الأقل</value>
   </data>
   <data name="cvSelectEmployeesResource1.Text" xml:space="preserve">
-    <value>&lt;img src='images/message_exclamation.png' title='إختر موظف !' /&gt;</value>
+    <value>&lt;img src='images/message_exclamation.png' title='يجب إختيار موظف واحد على الأقل' /&gt;</value>
   </data>
   <data name="cvSelectEmployeesResource1.ToolTip" xml:space="preserve">
     <value />
@@ -226,13 +226,13 @@
     <value />
   </data>
   <data name="lblLeftResource1.Text" xml:space="preserve">
-    <value>إختر موظف</value>
+    <value>إختيار الموظفين</value>
   </data>
   <data name="lblLeftResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblRightResource1.Text" xml:space="preserve">
-    <value>إختر موظف</value>
+    <value>الموظفون المختارون</value>
   </data>
   <data name="lblRightResource1.ToolTip" xml:space="preserve">
     <value />

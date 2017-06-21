@@ -160,7 +160,7 @@ public partial class ConnString : BasePage
         }
         catch (Exception ex) 
         { 
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -231,7 +231,7 @@ public partial class ConnString : BasePage
         catch (Exception ex)
         {
             sqlConn.Close();
-            CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Validation, ex.Message);
+            CtrlCs.ShowAdminMsg(this, ex.Message);
             return false;
         }
 

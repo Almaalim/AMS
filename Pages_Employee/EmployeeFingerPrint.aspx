@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true" CodeFile="EmployeeFingerPrint.aspx.cs" Inherits="EmployeeFingerPrint" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true" CodeFile="EmployeeFingerPrint.aspx.cs" Inherits="EmployeeFingerPrint" meta:resourcekey="PageResource1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
@@ -40,4 +40,3 @@
     </div>
 
 </asp:Content>
-

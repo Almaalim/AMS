@@ -132,7 +132,7 @@ public partial class ShiftSwap_EmployeeApproval : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

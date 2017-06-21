@@ -44,7 +44,7 @@
                         <asp:Wizard ID="WizardData" runat="server" DisplaySideBar="False" 
                             onactivestepchanged="WizardData_ActiveStepChanged" 
                             onprerender="WizardData_PreRender" Width="100%" 
-                            meta:resourcekey="WizardDataResource1" ActiveStepIndex="1">
+                            meta:resourcekey="WizardDataResource1" ActiveStepIndex="0">
                             <StartNavigationTemplate>
                              <div class="row">
                             <div class="col12">

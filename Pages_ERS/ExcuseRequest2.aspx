@@ -66,7 +66,7 @@
                         <div class="row">
                             <div class="col12">
                                 <asp:ValidationSummary ID="vsShowMsg" runat="server" CssClass="MsgSuccess"
-                                    EnableClientScript="False" ValidationGroup="ShowMsg" />
+                                    EnableClientScript="False" ValidationGroup="vgShowMsg" />
                             </div>
                         </div>
                         <div class="row">
@@ -150,8 +150,8 @@
                                     meta:resourcekey="lblTimeToResource1"></asp:Label>
                             </div>
                             <div class="col4">
-                                <Almaalim:TimePicker ID="tpTo" FormatTime="HHmmss" runat="server" TimePickerValidationGroup="vgSave"
-                                    CssClass="TimeCss"
+                                <Almaalim:TimePicker ID="tpTo" FormatTime="HHmmss" runat="server" 
+                                    CssClass="TimeCss" TimePickerValidationGroup="vgSave"
                                     TimePickerValidationText="&lt;img src='../images/Exclamation.gif' title='Time To is required!' /&gt;" />
                                 <asp:CustomValidator ID="cvTime" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='End Time must be greater than the start time' /&gt;"
                                     ValidationGroup="vgSave" ErrorMessage="End Time must be greater than the start time" OnServerValidate="Time_ServerValidate"
@@ -209,7 +209,7 @@
                                     Width="10px" meta:resourcekey="txtCustomValidatorResource1"></asp:TextBox>
                                 &nbsp;
                                                         <asp:CustomValidator ID="cvShowMsg" runat="server" Display="None"
-                                                            ValidationGroup="ShowMsg" OnServerValidate="ShowMsg_ServerValidate"
+                                                            ValidationGroup="vgShowMsg" OnServerValidate="ShowMsg_ServerValidate"
                                                             EnableClientScript="False" ControlToValidate="txtValid">
                                                         </asp:CustomValidator>
                             </div>

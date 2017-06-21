@@ -655,4 +655,31 @@
   <data name="WednesdayResource1.Text" xml:space="preserve">
     <value>Wednesday</value>
   </data>
+  <data name="cvCalendarDaysResource1.ErrorMessage" xml:space="preserve">
+    <value>Please Select Atleast one Day</value>
+  </data>
+  <data name="cvCalendarDaysResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/message_exclamation.png' title='Please Select Atleast one Day' /&gt;</value>
+  </data>
+  <data name="cvDaysOfWeekResource1.ErrorMessage" xml:space="preserve">
+    <value>Please Select Atleast one Day</value>
+  </data>
+  <data name="cvDaysOfWeekResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/message_exclamation.png' title='Please Select Atleast one Day' /&gt;</value>
+  </data>
+  <data name="cvMonthResource1.ErrorMessage" xml:space="preserve">
+    <value>Please Select Atleast one Month</value>
+  </data>
+  <data name="cvMonthResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/message_exclamation.png' title='Please Select Atleast one Month' /&gt;</value>
+  </data>
+  <data name="cvRunScheduleEveryResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='Run the schedule every is required' /&gt;</value>
+  </data>
+  <data name="rvRepeatDaysResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='Repeat after this number of days is required' /&gt;</value>
+  </data>
+  <data name="tpStartTimeResource1.TimePickerValidationText" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='Start Time is required' /&gt;</value>
+  </data>
 </root>

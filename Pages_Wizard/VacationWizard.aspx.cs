@@ -39,6 +39,7 @@ public partial class VacationWizard : BasePage
                 /*** Check AMS License ***/ pgCs.CheckAMSLicense();  
                 /*** get Permission    ***/ ViewState["ht"] = pgCs.getPerm(Request.Url.AbsolutePath);  
                 UILang();
+                UIEnabled(true);
                 FillList();
                 ViewState["CommandName"] = "";
                 /*** Common Code ************************************/
@@ -76,6 +77,13 @@ public partial class VacationWizard : BasePage
             StartStep.ImageUrl = "~/images/Wizard_Image/step_next.png";
             FinishBackStep.ImageUrl = "images/Wizard_Image/step_previous.png";
         }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void UIEnabled(bool pStatus)
+    {
+        calStartDate.SetEnabled(pStatus);
+        calEndDate.SetEnabled(pStatus);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -200,7 +208,7 @@ public partial class VacationWizard : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
 

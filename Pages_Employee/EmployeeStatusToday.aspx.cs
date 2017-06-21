@@ -59,10 +59,8 @@ public partial class Pages_Employee_EmployeeStatusToday : BasePage
         else
         {
             string[] Deps = txtSearchByDep.Text.Split('-');
-        
-            //if (Deps.Length != 2) { return; }
-            if (string.IsNullOrEmpty(Deps[1])) { return; }
-            FillGrid(Deps[1]);
+            DataTable DT = DBCs.FetchData("SELECT DepID FROM Department WHERE ISNULL(DepDeleted, 0) = 0 AND " + General.Msg("DepNameEn", "DepNameAr") + " = @P1 ", new string[] { Deps[0] });
+            if (!DBCs.IsNullOrEmpty(DT)) { FillGrid(DT.Rows[0][0].ToString()); } else { FillGrid("0"); }
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

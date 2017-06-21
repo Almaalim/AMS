@@ -124,6 +124,7 @@ public partial class UserDepartments : BasePage
     void UIClear()
     {
         txtID.Text = "";
+        ViewState["Departments"] = null;
         trvDept.CheckedNodes.Clear();
         trvDept.DataBind();
     }
@@ -187,7 +188,7 @@ public partial class UserDepartments : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -380,6 +381,8 @@ public partial class UserDepartments : BasePage
     {
         try
         {
+
+
             DataTable dt = (DataTable)ViewState["grdDataDT"];
             DataRow[] DRs = dt.Select("UsrName = '" + pID + "'");
 
@@ -393,7 +396,7 @@ public partial class UserDepartments : BasePage
             ///////////////////////////////////////////
              
             trvDept.DataBind();
-            trvDept.CollapseAll();
+            trvDept.ExpandAll();
 
             ///////////////////////////////////////////
         }

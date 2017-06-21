@@ -1,19 +1,10 @@
 ﻿using System;
 using System.Collections;
-using System.Configuration;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Xml.Linq;
 using Elmah;
 using System.Data.SqlClient;
-using System.Text;
-using System.Globalization;
 
 public partial class ApplicationUsers : BasePage
 {
@@ -44,7 +35,7 @@ public partial class ApplicationUsers : BasePage
             
             /*** TreeView Code ***********************************/
             FillPageTree("");
-            FillRepTree();
+            FillRepTree("");
             /*** TreeView Code ***********************************/
 
             //if (string.IsNullOrEmpty(hdnPopup.Value)) { ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "hidePopup('" + DivPopup.ClientID + "');", true); }
@@ -105,12 +96,12 @@ public partial class ApplicationUsers : BasePage
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void FillRepTree()
+    public void FillRepTree(string PermSet)
     {
         try
         {
             DataSet RepDS = new DataSet();
-            RepDS = GenCs.FillRepTree(pgCs.Version);
+            RepDS = GenCs.FillRepTree(pgCs.Version, PermSet);
             xmlReportSource.Data = RepDS.GetXml();
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
@@ -165,7 +156,6 @@ public partial class ApplicationUsers : BasePage
         txtDomainName.Enabled = pStatus;
         ddlPermissionGroup.Enabled = pStatus;
         ddlRepPermissionGroup.Enabled = pStatus;
-        //TreeView1.Enabled = pStatus;
         calStartDate.SetEnabled(pStatus); 
         calEndDate.SetEnabled(pStatus); 
         txtMobileNo.Enabled = pStatus;
@@ -180,6 +170,9 @@ public partial class ApplicationUsers : BasePage
         btnActingUser.Enabled = false;
         //string commandName = ViewState["CommandName"].ToString();
         //if (commandName == "update") { btnActingUser.Enabled = pStatus; } else { btnActingUser.Enabled = false; }
+
+        TreeView1.Enabled = false;
+        trvReport.Enabled = false;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -265,16 +258,25 @@ public partial class ApplicationUsers : BasePage
                 if (groupID < 1) { return; }
                 
                 // To show the permissions in the treeview as per the selected index
-                DataTable DT = DBCs.FetchData(" SELECT * FROM PermissionGroup WHERE GrpID = @P1 AND ISNULL(RepDeleted,0) = 0 ", new string[] { groupID.ToString() });
+                DataTable DT = DBCs.FetchData(" SELECT * FROM PermissionGroup WHERE GrpID = @P1 AND ISNULL(GrpDeleted,0) = 0 ", new string[] { groupID.ToString() });
                 if (!DBCs.IsNullOrEmpty(DT))
                 {
                     string cipherText = DT.Rows[0]["GrpPermissions"].ToString();
                     string permmissionSet = CryptorEngine.Decrypt(cipherText, true);
                     ViewState["Permissions"] = permmissionSet.ToString();
+
+                    if (!string.IsNullOrEmpty(permmissionSet))
+                    {
+                        FillPageTree(permmissionSet);
+                    }
                 }
 
                 TreeView1.DataBind();
                 TreeView1.Visible = true;
+            }
+            else
+            {
+                TreeView1.Visible = false;
             }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
@@ -292,16 +294,26 @@ public partial class ApplicationUsers : BasePage
                 int repgroupID = Convert.ToInt32(ddlRepPermissionGroup.SelectedValue);
                 if (repgroupID < 1) { return; }
 
-                DataTable DT = DBCs.FetchData(" SELECT * FROM PermissionGroup WHERE GrpID = @P1 AND ISNULL(RepDeleted,0) = 0 ", new string[] { repgroupID.ToString() });
+                DataTable DT = DBCs.FetchData(" SELECT * FROM PermissionGroup WHERE GrpID = @P1 AND ISNULL(GrpDeleted,0) = 0 ", new string[] { repgroupID.ToString() });
                 if (!DBCs.IsNullOrEmpty(DT))
                 {
                     string cipherText = DT.Rows[0]["GrpPermissions"].ToString();
                     string permmissionSet = CryptorEngine.Decrypt(cipherText, true);
                     ViewState["RepPermissions"] = permmissionSet.ToString();
+
+
+                    if (!string.IsNullOrEmpty(permmissionSet))
+                    {
+                        FillRepTree(permmissionSet);
+                    }
                 }
 
                 trvReport.DataBind();
                 trvReport.Visible = true;
+            }
+            else
+            {
+                TreeView1.Visible = false;
             }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
@@ -364,7 +376,7 @@ public partial class ApplicationUsers : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -395,7 +407,7 @@ public partial class ApplicationUsers : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -423,7 +435,7 @@ public partial class ApplicationUsers : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -556,7 +568,7 @@ public partial class ApplicationUsers : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -715,14 +727,7 @@ public partial class ApplicationUsers : BasePage
             //////////////////////////////////////////////   
             if (!string.IsNullOrEmpty(RepPermmissionSet))
             {
-                //ds = new DataSet();
-                //StringBuilder sb = new StringBuilder();
-                //sb.Append("Select RepID,RepNameAr,RepNameEn,RgpID from Report where (RepDeleted is null or RepDeleted = 0) AND RepID IN ('" + permmissionSet1 + "')");
-                //sb.Append("union ");
-                //sb.Append("Select RgpID as RepID,RgpArName as RepNameAr,RgpEnName as RepNameEn,RgpParID as RgpID from ReportGroup where RgpID in ('" + permmissionSet1 + "')");
-
-                //ds = (DataSet)hc.FetchReportDataset(sb.ToString());
-                //xmlReportSource.Data = ds.GetXml();
+                FillRepTree(RepPermmissionSet);
                 trvReport.DataBind();
             }
             //////////////////////////////////////////////
@@ -765,7 +770,7 @@ public partial class ApplicationUsers : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void TreeView1_DataBound(object sender, EventArgs e)
     {
-        TreeView1.CollapseAll();
+        TreeView1.ExpandAll();
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -795,7 +800,7 @@ public partial class ApplicationUsers : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void trvReport_DataBound(object sender, EventArgs e)
     {
-        trvReport.CollapseAll();
+        trvReport.ExpandAll();
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -807,7 +812,7 @@ public partial class ApplicationUsers : BasePage
             {
                 // Showing the treeview as per the permissions available
                 string str = Convert.ToString(e.Node.Value.Trim());
-
+                
                 string permmissionSet = Convert.ToString(ViewState["RepPermissions"]);
                 //string permmissionSet = CryptorEngine.Decrypt(cipherText, true);
 

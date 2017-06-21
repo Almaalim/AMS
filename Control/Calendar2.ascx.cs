@@ -98,6 +98,8 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ar-SA");
         }
 
+        ScriptManager.RegisterStartupScript(CalendarUpdatePanel, typeof(string), "ShowPopup" + this.DivCal.ClientID, "document.getElementById('" + this.DivCal.ClientID + "').style.display = 'none'; ", true);
+
         if (!Page.IsPostBack)
         {
             //txtGDate.Text = string.Empty;

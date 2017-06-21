@@ -39,6 +39,7 @@ public partial class AppendingTransactionsWizard : BasePage
                 /*** Check AMS License ***/ pgCs.CheckAMSLicense();  
                 /*** get Permission    ***/ ViewState["ht"] = pgCs.getPerm(Request.Url.AbsolutePath);  
                 UILang();
+                UIEnabled(true);
                 ViewState["CommandName"] = "";
                 /*** Common Code ************************************/
 
@@ -89,6 +90,12 @@ public partial class AppendingTransactionsWizard : BasePage
             StartStep.ImageUrl = "~/images/Wizard_Image/step_next.png";
             FinishBackStep.ImageUrl = "images/Wizard_Image/step_previous.png";
         }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void UIEnabled(bool pStatus)
+    {
+        CalDate.SetEnabled(pStatus);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -262,6 +269,7 @@ public partial class AppendingTransactionsWizard : BasePage
                 ProCs.MacID      = ddlLocation.SelectedValue;
                 ProCs.UsrName    = pgCs.LoginID;            
                 ProCs.TrnReason  = txtDesc.Text;
+                ProCs.TransactionBy = pgCs.LoginID;
 
                 if (!string.IsNullOrEmpty(ProCs.TrnFilePath) ) 
                 {
@@ -283,7 +291,7 @@ public partial class AppendingTransactionsWizard : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
 

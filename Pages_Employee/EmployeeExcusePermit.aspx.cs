@@ -79,7 +79,8 @@ public partial class EmployeeExcusePermit : BasePage
     {
         try
         {
-            DataTable DT = DBCs.FetchData("SELECT * FROM TransDump WHERE EmpID = @P1 AND TrnDate = @P2 ", new string[] { pEmpID.ToString(), DateTime.Now.ToString("MM/dd/yyyy") });
+            DateTime NowDate = DTCs.ConvertToDatetime(DTCs.GDateNow(), "Gregorian");
+            DataTable DT = DBCs.FetchData("SELECT * FROM TransDump WHERE EmpID = @P1 AND CONVERT(VARCHAR(12),TrnDate,103) = CONVERT(VARCHAR(12),@P2,103) ", new string[] { pEmpID.ToString(), NowDate.ToString("dd/MM/yyyy") });
             if (!DBCs.IsNullOrEmpty(DT)) { return General.Msg("Present","حاضر"); } else { return General.Msg("Absent","غائب"); }
         }
         catch (Exception e1)
@@ -163,7 +164,7 @@ public partial class EmployeeExcusePermit : BasePage
         //txtEmpID.Enabled = pStatus;
         rblExprType.Enabled = pStatus;
         ddlExcType.Enabled = pStatus;
-        //ddlVacType.Enabled = pStatus;
+        ddlVacType.Enabled = pStatus;
         chkVacNoPresent.Enabled = pStatus;
         txtDesc.Enabled = pStatus;
         rblPeriodExc.Enabled = pStatus;
@@ -188,8 +189,9 @@ public partial class EmployeeExcusePermit : BasePage
 
             if (chkVacNoPresent.Checked) { ProCs.ExprVacIfNoPresent = true; } else { ProCs.ExprVacIfNoPresent = false; }
 
-            ProCs.ExprStartDate = DateTime.Now.ToString("dd/MM/yyyy");
-            ProCs.ExprEndDate   = DateTime.Now.ToString("dd/MM/yyyy");
+            string Today = DTCs.GDateNow();
+            ProCs.ExprStartDate = DTCs.ToDBFormat(Today, "Gregorian");
+            ProCs.ExprEndDate   = DTCs.ToDBFormat(Today, "Gregorian"); 
             ProCs.ExprDesc = txtDesc.Text;
         
             ProCs.TransactionBy = pgCs.LoginID;
@@ -211,13 +213,22 @@ public partial class EmployeeExcusePermit : BasePage
         txtDesc.Text = "";
         ddlShiftID.Items.Clear();
         try { rblPeriodExc.ClearSelection(); } catch { }
+
+        UIVisible("Vac");
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void rblExprType_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (rblExprType.SelectedValue == "Exc") { divExcType.Visible = true; divVacType.Visible = false; divCheckNoPresent.Visible = false; }
-        else if (rblExprType.SelectedValue == "Vac") { divExcType.Visible = false; divCheckNoPresent.Visible = false; divVacType.Visible = true; ddlVacType.SelectedIndex = 1; }
+        UIVisible(rblExprType.SelectedValue);
+        if (rblExprType.SelectedValue == "Vac") { ddlVacType.SelectedIndex = 1; }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void UIVisible(string pType)
+    {
+        if      (pType == "Exc") { divExcType.Visible = true; divVacType.Visible = false; divCheckNoPresent.Visible = false; }
+        else if (pType == "Vac") { divExcType.Visible = false; divCheckNoPresent.Visible = false; divVacType.Visible = true; }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -292,10 +303,6 @@ public partial class EmployeeExcusePermit : BasePage
             {
                 SqlCs.Insert(ProCs);
             }
-            //else if (commandName == "EDIT")
-            //{
-            //    SqlCs.Update(ProCs);
-            //}
 
             btnFilter_Click(null,null);
             CtrlCs.ShowSaveMsg(this);
@@ -303,7 +310,7 @@ public partial class EmployeeExcusePermit : BasePage
         catch (Exception ex) 
         { 
             ErrorSignal.FromCurrentContext().Raise(ex); 
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -311,7 +318,7 @@ public partial class EmployeeExcusePermit : BasePage
     protected void btnCancel_Click(object sender, EventArgs e)
     {
         UIClear();
-        BtnStatus("100");
+        BtnStatus("000");
         UIEnabled(false);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -467,7 +474,7 @@ public partial class EmployeeExcusePermit : BasePage
             else
             {
                 PopulateUI(grdData.SelectedRow.Cells[0].Text);
-                BtnStatus("100");
+                
             }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
@@ -483,9 +490,22 @@ public partial class EmployeeExcusePermit : BasePage
 
             txtID.Text    = DRs[0]["EmpID"].ToString();
             txtEmpID.Text = DRs[0]["EmpID"].ToString().Trim();
-            FillShiftName();
+            if (FillShiftName())
+            {
+                BtnStatus("100");
+            }
+            else
+            {
+                BtnStatus("000");
+                CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Validation, General.Msg("This employee does not have a working time for the current day, can not add an administrative license", "هذا الموظف لا يملك وقت عمل لليوم الحالي، لا يمكن إضافة رخصة إدارية"));
+            }
         }
-        catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
+        catch (Exception ex)
+        {
+            BtnStatus("000");
+            ErrorSignal.FromCurrentContext().Raise(ex);
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
+        }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -508,11 +528,10 @@ public partial class EmployeeExcusePermit : BasePage
     protected void grdData_PreRender(object sender, EventArgs e) { CtrlCs.GridRender((GridView)sender); }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void FillShiftName()
+    protected bool FillShiftName()
     {
         ddlShiftID.Items.Clear();
-
-        DateTime Date = DateTime.Today;
+        DateTime NowDate = DTCs.ConvertToDatetime(DTCs.GDateNow(), "Gregorian");
         string MQ = " SELECT WktID FROM EmpWrkRel WHERE EmpID = @P1 AND ISNULL(EwrDeleted,0) = 0 "
                   + " AND @P2 BETWEEN EwrStartDate AND EwrEndDate "
                   + " AND (((DATEPART(DW, @P2) = 1) AND (EwrSun = 1)) OR "
@@ -522,9 +541,9 @@ public partial class EmployeeExcusePermit : BasePage
                   + " ((DATEPART(DW, @P2) = 5) AND (EwrThu = 1)) OR "
                   + " ((DATEPART(DW, @P2) = 6) AND (EwrFri = 1)) OR "
                   + " ((DATEPART(DW, @P2) = 7) AND (EwrSat = 1)))"
-                  + " ORDER BY EwrCreatedDate DESC";
+                  + " ORDER BY EwrID DESC";
 
-        DataTable DT = DBCs.FetchData(MQ, new string[] { txtEmpID.Text, Date.ToString() });
+        DataTable DT = DBCs.FetchData(MQ, new string[] { txtEmpID.Text, NowDate.ToString() });
         if (!DBCs.IsNullOrEmpty(DT)) 
         { 
             string Q = " SELECT WktNameAr,WktNameEn,WktShift1NameAr,WktShift1NameEn,WktShift2NameAr,WktShift2NameEn,WktShift3NameAr,WktShift3NameEn "
@@ -552,6 +571,12 @@ public partial class EmployeeExcusePermit : BasePage
                 //rfvddlShiftID.InitialValue = ddlShiftID.Items[0].Text;
                 ddlShiftID.SelectedIndex = 0;
             }
+
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -569,13 +594,15 @@ public partial class EmployeeExcusePermit : BasePage
     protected void CheckExcuseEmpID_ServerValidate(Object source, ServerValidateEventArgs e)
     {
         Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+        DateTime NowDate = DTCs.ConvertToDatetime(DTCs.GDateNow(), "Gregorian");
+
         try
         {
             if (source.Equals(cvCheckExcuseEmpID) && !string.IsNullOrEmpty(txtEmpID.Text))
             {
                 if (rblExprType.SelectedValue == "Vac")
                 {
-                    DataTable DT = DBCs.FetchData("SELECT * FROM EmpExcPermRel WHERE EmpID = @P1 AND @P2 BETWEEN ExprStartDate AND ExprEndDate ", new string[] { txtEmpID.Text, DateTime.Now.ToShortDateString() });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM EmpExcPermRel WHERE EmpID = @P1 AND @P2 BETWEEN ExprStartDate AND ExprEndDate ", new string[] { txtEmpID.Text, NowDate.ToString("MM/dd/yyyy") });
                     if (!DBCs.IsNullOrEmpty(DT))
                     {
                         CtrlCs.ValidMsg(this, ref cvCheckExcuseEmpID, true, General.Msg("This employee already has license or permission for today, can not add other permit", "هذا الموظف لدية رخصة أو استئذان لهذا اليوم، لايمكن اضافة رخصة أخرى"));
@@ -597,7 +624,7 @@ public partial class EmployeeExcusePermit : BasePage
                     {
                         string pExprType = rblExprType.SelectedValue.ToString();
 
-                        DataTable DT1 = DBCs.FetchData("SELECT * FROM EmpExcPermRel WHERE EmpID = @P1 AND @P2 BETWEEN ExprStartDate AND ExprEndDate AND ExprType = 'Vac' ", new string[] { txtEmpID.Text, DateTime.Now.ToShortDateString() });
+                        DataTable DT1 = DBCs.FetchData("SELECT * FROM EmpExcPermRel WHERE EmpID = @P1 AND @P2 BETWEEN ExprStartDate AND ExprEndDate AND ExprType = 'Vac' ", new string[] { txtEmpID.Text, NowDate.ToString("MM/dd/yyyy") });
                         if (!DBCs.IsNullOrEmpty(DT1))
                         {
                             CtrlCs.ValidMsg(this, ref cvCheckExcuseEmpID, true, General.Msg("This employee already has license for today, can not add other Excuse", "هذا الموظف لدية رخصة لهذا اليوم، لايمكن اضافة استئذان آخر"));
@@ -605,7 +632,7 @@ public partial class EmployeeExcusePermit : BasePage
                             return;
                         }
                         
-                        DataTable DT2 = DBCs.FetchData("SELECT * FROM EmpExcPermRel WHERE EmpID = @P1 AND @P2 BETWEEN ExprStartDate AND ExprEndDate AND ExprType = @P3 AND ExcType = @P4 ", new string[] { txtEmpID.Text, DateTime.Now.ToShortDateString(),pExprType,rblPeriodExc.SelectedValue });
+                        DataTable DT2 = DBCs.FetchData("SELECT * FROM EmpExcPermRel WHERE EmpID = @P1 AND @P2 BETWEEN ExprStartDate AND ExprEndDate AND ExprType = @P3 AND ExcType = @P4 ", new string[] { txtEmpID.Text, NowDate.ToString("MM/dd/yyyy"), pExprType,rblPeriodExc.SelectedValue });
                         if (!DBCs.IsNullOrEmpty(DT2))
                         {
                             CtrlCs.ValidMsg(this, ref cvCheckExcuseEmpID, true, General.Msg("This employee already has same Excuse Type for today, can not add other Excuse", "هذا الموظف لدية استئذان لنفس النوع لهذا اليوم، لايمكن اضافة استئذان آخر"));
@@ -643,9 +670,6 @@ public partial class EmployeeExcusePermit : BasePage
             return false;
         }
     }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void ShowMsg_ServerValidate(Object source, ServerValidateEventArgs e) { e.IsValid = false; }
 
     #endregion
     /*#############################################################################################################################*/

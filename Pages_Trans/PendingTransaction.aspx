@@ -9,7 +9,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <%--script--%>
     <script type="text/javascript" src="../Script/GridEvent.js"></script>
-    <script type="text/javascript" src="../Script/AutoComplete1.js"></script>
+    <script type="text/javascript" src="../Script/AutoComplete1.js"></script>  
 
     <%--script--%>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
@@ -41,20 +41,20 @@
                         Enabled="True" />
                 </div>
                 <div class="col1">
-                    <asp:Label ID="lblMonth" runat="server" Text="Month:" 
+                    <asp:Label ID="lblMonth" runat="server" Text="Month:"
                         meta:resourcekey="lblMonthResource1"></asp:Label>
                 </div>
                 <div class="col2">
-                    <asp:DropDownList ID="ddlMonth" runat="server"  
+                    <asp:DropDownList ID="ddlMonth" runat="server"
                         meta:resourcekey="ddlMonthResource1">
                     </asp:DropDownList>
                 </div>
                 <div class="col1">
-                    <asp:Label ID="lblYear" runat="server" Text="Year:"  
+                    <asp:Label ID="lblYear" runat="server" Text="Year:"
                         meta:resourcekey="lblYearResource1"></asp:Label>
                 </div>
                 <div class="col2">
-                    <asp:DropDownList ID="ddlYear" runat="server" 
+                    <asp:DropDownList ID="ddlYear" runat="server"
                         meta:resourcekey="ddlYearResource1">
                     </asp:DropDownList>
                 </div>
@@ -135,11 +135,11 @@
                                             <%# DisplayFun.GrdDisplayTypeTrans(Eval("TrnType"))%>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:BoundField HeaderText="Location(En)" DataField="LocationEn"
+                                    <asp:BoundField HeaderText="Location(En)" DataField="MacLocationEn"
                                         InsertVisible="False" ReadOnly="True"
                                         meta:resourcekey="BoundFieldResource3"></asp:BoundField>
 
-                                    <asp:BoundField HeaderText="Location(Ar)" DataField="LocationAr"
+                                    <asp:BoundField HeaderText="Location(Ar)" DataField="MacLocationAr"
                                         InsertVisible="False" ReadOnly="True"
                                         meta:resourcekey="BoundFieldResource4"></asp:BoundField>
                                     <asp:BoundField HeaderText="User Name" DataField="UsrName"
@@ -208,10 +208,10 @@
                     </div>
                     <div class="col4">
                         <asp:TextBox ID="txtEmpID" runat="server"
-                            Enabled="False"   meta:resourcekey="txtEmpIDResource1"></asp:TextBox>
+                            Enabled="False" meta:resourcekey="txtEmpIDResource1"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rvEmpID" runat="server"
                             ControlToValidate="txtEmpID" EnableClientScript="False" CssClass="CustomValidator"
-                            Text="&lt;img src='../images/Exclamation.gif' title='Emloyee ID is required!' /&gt;"
+                            Text="&lt;img src='../images/Exclamation.gif' title='Employee ID is required' /&gt;"
                             ValidationGroup="vgSave" meta:resourcekey="rvEmpIDResource1"></asp:RequiredFieldValidator>
                     </div>
                     <div class="col2">
@@ -220,7 +220,7 @@
                     </div>
                     <div class="col4">
                         <asp:TextBox ID="txtEmpName" runat="server" AutoCompleteType="Disabled"
-                              Enabled="false"
+                            Enabled="false"
                             meta:resourcekey="txtEmpNameResource1"></asp:TextBox>
                     </div>
                 </div>
@@ -228,8 +228,7 @@
                 <div class="row">
                     <div class="col2">
                         <span class="RequiredField">*</span>
-                        <asp:Label ID="Label1" runat="server"
-                            Text="Date :" meta:resourcekey="Label1Resource1"></asp:Label>
+                        <asp:Label ID="Label1" runat="server" Text="Date :" meta:resourcekey="Label1Resource1"></asp:Label>
                     </div>
                     <div class="col4">
                         <Cal:Calendar2 ID="calDate" runat="server" CalendarType="System" ValidationRequired="true" ValidationGroup="vgSave" />
@@ -260,28 +259,26 @@
                     </div>
                     <div class="col4">
                         <asp:DropDownList ID="ddlType" runat="server" AutoPostBack="True"
-                            Enabled="False"   meta:resourcekey="ddlTypeResource1">
-                            <asp:ListItem meta:resourcekey="ListItemResource1">-Select Type-</asp:ListItem>
-                            <asp:ListItem Text="IN" Value="1" meta:resourcekey="ListItemResource2"></asp:ListItem>
-                            <asp:ListItem Text="OUT" Value="0" meta:resourcekey="ListItemResource3"></asp:ListItem>
+                            Enabled="False" meta:resourcekey="ddlTypeResource1">
+                            <asp:ListItem Value="9" Text="-Select Type-" meta:resourcekey="ListItemResource1"></asp:ListItem>
+                            <asp:ListItem Value="1" Text="IN" meta:resourcekey="ListItemResource2"></asp:ListItem>
+                            <asp:ListItem Value="0" Text="OUT" meta:resourcekey="ListItemResource3"></asp:ListItem>
                         </asp:DropDownList>
                         <asp:RequiredFieldValidator runat="server" ID="rfvType" ControlToValidate="ddlType"
-                            InitialValue="Select Type" EnableClientScript="False" Text="<img src='../images/Exclamation.gif' title='Language is required!' />"
-                            ErrorMessage="Transaction type is required!" ValidationGroup="vgSave" CssClass="CustomValidator"
+                            InitialValue="9" EnableClientScript="False" Text="<img src='../images/Exclamation.gif' title='Type is required' />"
+                            ValidationGroup="vgSave" CssClass="CustomValidator"
                             meta:resourcekey="rfvTypeResource1"></asp:RequiredFieldValidator>
                     </div>
                     <div class="col2">
                         <span class="RequiredField">*</span>
-                        <asp:Label ID="lblLocation" runat="server"
-                            Text="Location :" meta:resourcekey="lblLocationResource1"></asp:Label>
+                        <asp:Label ID="lblLocation" runat="server" Text="Location :" meta:resourcekey="lblLocationResource1"></asp:Label>
                     </div>
                     <div class="col4">
-                        <asp:DropDownList ID="ddlLocation" runat="server"
-                            Enabled="False"   meta:resourcekey="ddlLocationResource1">
+                        <asp:DropDownList ID="ddlLocation" runat="server" Enabled="False" meta:resourcekey="ddlLocationResource1">
                         </asp:DropDownList>
-                        <asp:RequiredFieldValidator runat="server" ID="rfvLocation" ControlToValidate="ddlLocation"
-                            InitialValue="Select Location" EnableClientScript="False" Text="<img src='../images/Exclamation.gif' title='Language is required!' />"
-                            ErrorMessage="Location is required!" ValidationGroup="vgSave" CssClass="CustomValidator"
+                        <asp:RequiredFieldValidator runat="server" ID="rvLocation" ControlToValidate="ddlLocation"
+                            EnableClientScript="False" Text="<img src='../images/Exclamation.gif' title='Location is required' />"
+                            ValidationGroup="vgSave" CssClass="CustomValidator"
                             meta:resourcekey="rfvLocationResource1"></asp:RequiredFieldValidator>
                     </div>
                 </div>
@@ -293,20 +290,19 @@
                     </div>
                     <div class="col4">
                         <asp:TextBox ID="txtDesc" runat="server" AutoCompleteType="Disabled"
-                            TextMode="MultiLine"  
+                            TextMode="MultiLine"
                             meta:resourcekey="txtDescResource1"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="rvDesc" runat="server"
                             ControlToValidate="txtDesc" EnableClientScript="False" CssClass="CustomValidator"
-                            Text="&lt;img src='../images/Exclamation.gif' title='Reason is required!' /&gt;"
+                            Text="&lt;img src='../images/Exclamation.gif' title='Reason is required' /&gt;"
                             ValidationGroup="vgSave" meta:resourcekey="rvDescResource1"></asp:RequiredFieldValidator>
                     </div>
                     <div class="col2">
                         <span id="spnReqFile" runat="server" visible="False" class="RequiredField">*</span>
-                        <asp:Label ID="lblReqFile" runat="server" Text="Attachment File :"
-                            meta:resourcekey="lblReqFileResource1"></asp:Label>
+                        <asp:Label ID="lblReqFile" runat="server" Text="Attachment File :" meta:resourcekey="lblReqFileResource1"></asp:Label>
                     </div>
                     <div class="col4">
-                        <asp:FileUpload ID="fudReqFile" runat="server"   meta:resourcekey="fudReqFileResource1" />
+                        <asp:FileUpload ID="fudReqFile" runat="server" meta:resourcekey="fudReqFileResource1" />
                         <asp:CustomValidator ID="cvReqFile" runat="server"
                             Text="&lt;img src='../images/Exclamation.gif' title='Attachment File is required!' /&gt;"
                             ValidationGroup="vgSave"

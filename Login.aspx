@@ -1,4 +1,4 @@
-﻿<%@ Page Title="AMSWeb" Language="C#" MasterPageFile="~/LoginMasterPage.master" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Login" meta:resourcekey="PageResource1" %>
+﻿<%@ Page Title="Force Work Web" Language="C#" MasterPageFile="~/LoginMasterPage.master" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Login" meta:resourcekey="PageResource1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:Panel ID="pnlMain" runat="server" DefaultButton="btnLogin" CssClass="LoginPanel"

@@ -116,12 +116,12 @@ public partial class RotationShift : BasePage
             UIClear();
             if (ddlFilter.Text == "WktID") 
             { 
-                sql = MainQuery + " AND " + ddlFilter.SelectedItem.Value + " = @P1 ";
+                sql = MainQuery + " AND " + ddlFilter.SelectedValue + " = @P1 ";
                 cmd.Parameters.AddWithValue("@P1", txtFilter.Text.Trim());
             }
             else 
             { 
-                sql = MainQuery + " AND " + ddlFilter.SelectedItem.Value + " = @P1 ";
+                sql = MainQuery + " AND " + ddlFilter.SelectedValue + " LIKE @P1 ";
                 cmd.Parameters.AddWithValue("@P1", txtFilter.Text.Trim() + "%");
             }
         }
@@ -293,7 +293,7 @@ public partial class RotationShift : BasePage
             UIClear();
             ClearWizardUI();
             UIEnabled(true);
-            BtnStatus("11");
+            BtnStatus("01");
             ViewState["CommandName"] = "ADD";
             MultiView1.ActiveViewIndex = 1;
             WizardData.ActiveStepIndex = 0;
@@ -301,7 +301,7 @@ public partial class RotationShift : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -447,7 +447,7 @@ public partial class RotationShift : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -937,7 +937,7 @@ public partial class RotationShift : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
 

@@ -190,7 +190,7 @@
     <value />
   </data>
   <data name="cvCalDateEmptyResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='حقل تاريخ البدء إجباري!' /&gt;</value>
+    <value>&lt;img src='../images/Exclamation.gif' title='حقل تاريخ البدء مطلوب' /&gt;</value>
   </data>
   <data name="cvCalDateEmptyResource1.ToolTip" xml:space="preserve">
     <value />
@@ -199,7 +199,7 @@
     <value />
   </data>
   <data name="cvtpickerTimeResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='الوقت إجباري!' /&gt;</value>
+    <value>&lt;img src='../images/Exclamation.gif' title='الوقت مطلوب' /&gt;</value>
   </data>
   <data name="cvtpickerTimeResource1.ToolTip" xml:space="preserve">
     <value />
@@ -291,20 +291,14 @@
   <data name="pnlauIDResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="rfvLocationResource1.ErrorMessage" xml:space="preserve">
-    <value>حقل الموقع إجباري!</value>
-  </data>
   <data name="rfvLocationResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='حقل الموقع إجباري!' /&gt;</value>
+    <value>&lt;img src='../images/Exclamation.gif' title='الموقع مطلوب' /&gt;</value>
   </data>
   <data name="rfvLocationResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="rfvTypeResource1.ErrorMessage" xml:space="preserve">
-    <value>إختيار نوع الحركة إجباري</value>
-  </data>
   <data name="rfvTypeResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='إختيار نوع الحركة إجباري!' /&gt;</value>
+    <value>&lt;img src='../images/Exclamation.gif' title='نوع الحركة مطلوب'/&gt;</value>
   </data>
   <data name="rfvTypeResource1.ToolTip" xml:space="preserve">
     <value />
@@ -367,9 +361,6 @@
   <data name="lblEmpNameResource1.Text" xml:space="preserve">
     <value>إسم الموظف :</value>
   </data>
-  <data name="rvEmpIDResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='حقل رقم الموظف إجباري!' /&gt;</value>
-  </data>
   <data name="cvReqFileResource1.Text" xml:space="preserve">
     <value>&lt;img src='../images/Exclamation.gif' title='الملف المرفق مطلوب' /&gt;</value>
   </data>
@@ -381,5 +372,8 @@
   </data>
   <data name="rvDescResource1.Text" xml:space="preserve">
     <value>&lt;img src='../images/Exclamation.gif' title='السبب مطلوب' /&gt;</value>
+  </data>
+  <data name="rvEmpIDResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='رقم الموظف مطلوب' /&gt;</value>
   </data>
 </root>

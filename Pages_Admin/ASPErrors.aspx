@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true" CodeFile="ASPErrors.aspx.cs" Inherits="ASPErrors" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true" CodeFile="ASPErrors.aspx.cs" Inherits="ASPErrors" meta:resourcekey="PageResource1" %>
 
 <%@ Register Assembly="AjaxSamples" Namespace="AjaxSamples" TagPrefix="as" %>
 
@@ -11,21 +11,21 @@
                         <table class="rp_Search">
                             <tr>
                                 <td valign="middle" style="width:55px">  
-                                    <asp:Label ID="lblMonth" runat="server" Text="Month:"></asp:Label>
+                                    <asp:Label ID="lblMonth" runat="server" Text="Month:" meta:resourcekey="lblMonthResource1"></asp:Label>
                                 </td>
                                 <td valign="middle"style="width:105px">      
-                                    <asp:DropDownList ID="ddlMonth" runat="server" Width="100px"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlMonth" runat="server" Width="100px" meta:resourcekey="ddlMonthResource1"></asp:DropDownList>
                                 </td>
                                 <td valign="middle" style="width:45px"> 
-                                    <asp:Label ID="lblYear" runat="server" Text="Year:"></asp:Label>
+                                    <asp:Label ID="lblYear" runat="server" Text="Year:" meta:resourcekey="lblYearResource1"></asp:Label>
                                  </td>
                                 <td valign="middle" style="width:75px">  
-                                     <asp:DropDownList ID="ddlYear" runat="server" Width="70px">
+                                     <asp:DropDownList ID="ddlYear" runat="server" Width="70px" meta:resourcekey="ddlYearResource1">
                                     </asp:DropDownList>
                                 </td>
                                 <td valign="middle">     
                                     &nbsp;&nbsp;
-                                    <asp:ImageButton ID="btnFilter" runat="server" OnClick="btnFilter_Click" ImageUrl="../images/Button_Icons/button_magnify.png"/>
+                                    <asp:ImageButton ID="btnFilter" runat="server" OnClick="btnFilter_Click" ImageUrl="../images/Button_Icons/button_magnify.png" meta:resourcekey="btnFilterResource1"/>
                                 </td>  
                                 
                                 <td></td>  
@@ -44,7 +44,7 @@
                                     <div class="top-outer">
                                         <div class="top-inner">
                                             <div class="top">
-                                                <asp:Literal ID="Literal1" runat="server" Text="ASP.NET Errors"></asp:Literal>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -59,35 +59,29 @@
                                                     AutoGenerateColumns="False" AllowPaging="True" CellPadding="0" BorderWidth="0px"
                                                     GridLines="None" DataKeyNames="ErrorId" ShowFooter="True" OnPageIndexChanging="grdData_PageIndexChanging"
                                                     OnRowCreated="grdData_RowCreated" OnRowDataBound="grdData_RowDataBound"
-                                                    OnPreRender="grdData_PreRender" Width="800px"
-                                                    EnableModelValidation="True" meta:resourcekey="grdDataResource1">
+                                                    OnPreRender="grdData_PreRender" Width="800px" meta:resourcekey="grdDataResource1">
 
                                                     <PagerSettings Mode="NextPreviousFirstLast" FirstPageText="First" FirstPageImageUrl="~/images/first.png"
                                                         LastPageText="Last" LastPageImageUrl="~/images/last.png" NextPageText="Next"
                                                         NextPageImageUrl="~/images/next.png" PreviousPageText="Prev" PreviousPageImageUrl="~/images/prev.png" />
 
                                                     <Columns>
-                                                        <asp:TemplateField HeaderText="ID" ItemStyle-Wrap="False" SortExpression="ErrorId" Visible="false">
+                                                        <asp:TemplateField HeaderText="ID" SortExpression="ErrorId" Visible="False" meta:resourcekey="TemplateFieldResource1">
                                                             <ItemTemplate><%# Server.HtmlEncode(Eval("ErrorId").ToString()) %></ItemTemplate>
                                                             <ItemStyle Wrap="False"></ItemStyle>
                                                         </asp:TemplateField>
                                                         
-                                                        <asp:TemplateField HeaderText="Application" ItemStyle-Wrap="False" SortExpression="Application" Visible="false">
-                                                            <ItemTemplate><%# Server.HtmlEncode(Eval("Application").ToString()) %></ItemTemplate>
-                                                            <ItemStyle Wrap="False"></ItemStyle>
-                                                        </asp:TemplateField>
-                                                        
-                                                        <asp:TemplateField HeaderText="Host" ItemStyle-Wrap="False" SortExpression="Host">
+                                                        <asp:TemplateField HeaderText="Host" SortExpression="Host" meta:resourcekey="TemplateFieldResource2">
                                                             <ItemTemplate><%# Server.HtmlEncode(Eval("Host").ToString()) %></ItemTemplate>
                                                             <ItemStyle Wrap="False"></ItemStyle>
                                                         </asp:TemplateField>
 
-                                                        <asp:TemplateField HeaderText="Code" ItemStyle-Wrap="False" SortExpression="StatusCode">
+                                                        <asp:TemplateField HeaderText="Code" SortExpression="StatusCode" meta:resourcekey="TemplateFieldResource3">
                                                             <ItemTemplate><%# Server.HtmlEncode(Eval("StatusCode").ToString()) %></ItemTemplate>
                                                             <ItemStyle Wrap="False"></ItemStyle>
                                                         </asp:TemplateField>
 
-                                                        <asp:TemplateField HeaderText="Type" ItemStyle-Wrap="False" SortExpression="Type">
+                                                        <asp:TemplateField HeaderText="Type" SortExpression="Type" meta:resourcekey="TemplateFieldResource4">
                                                             <ItemTemplate>
                                                                 <span title="<%# Server.HtmlEncode(Eval("Type").ToString()) %>">
                                                                     <%# Server.HtmlEncode(Elmah.ErrorDisplay.HumaneExceptionErrorType(Eval("Type").ToString())) %>
@@ -96,38 +90,25 @@
                                                             <ItemStyle Wrap="False"></ItemStyle>
                                                         </asp:TemplateField>
 
-                                                         <asp:TemplateField HeaderText="Message" SortExpression="Message">
+                                                         <asp:TemplateField HeaderText="Message" SortExpression="Message" meta:resourcekey="TemplateFieldResource5">
                                                             <ItemTemplate>
                                                                 <%# Server.HtmlEncode(Eval("Message").ToString()) %>
-                                                                <asp:HyperLink ID="HyperLink1" runat="server" Text="More&hellip;" NavigateUrl='<%# "~/elmah.axd/detail?id=" + Eval("ErrorId") %>' />
+                                                                <asp:HyperLink ID="HyperLink1" runat="server" Text="More&hellip;" NavigateUrl='<%# "~/elmah.axd/detail?id=" + Eval("ErrorId") %>' meta:resourcekey="HyperLink1Resource1" />
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
 
-                                                        <asp:TemplateField HeaderText="User" ItemStyle-Wrap="False" SortExpression="User">
-                                                            <ItemTemplate><%# Server.HtmlEncode(Eval("User").ToString())%></ItemTemplate>
-                                                            <ItemStyle Wrap="False"></ItemStyle>
-                                                        </asp:TemplateField>
-
-                                                        <asp:TemplateField HeaderText="Date" ItemStyle-Wrap="False" SortExpression="Date">
+                                                        <asp:TemplateField HeaderText="Date" SortExpression="Date" meta:resourcekey="TemplateFieldResource6">
                                                             <ItemTemplate>
                                                                 <%# ShowLocalDate(Eval("TimeUtc"))%>
-                                                                <%--<%# Server.HtmlEncode(Eval("TimeUtc", "{0:dd/MM/yyyy}"))%>--%>
                                                             </ItemTemplate>
                                                             <ItemStyle Wrap="False"></ItemStyle>
                                                         </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Time" ItemStyle-Wrap="False" SortExpression="Time">
+                                                        <asp:TemplateField HeaderText="Time" SortExpression="Time" meta:resourcekey="TemplateFieldResource7">
                                                             <ItemTemplate>
                                                                 <%# ShowLocalTime(Eval("TimeUtc"))%>
-                                                                <%--<%# Server.HtmlEncode(Eval("TimeUtc", "{0:t}"))%>--%>
                                                             </ItemTemplate>
                                                             <ItemStyle Wrap="False"></ItemStyle>
                                                         </asp:TemplateField>
-
-                                                        <%--<asp:TemplateField HeaderText="Date" SortExpression="ErrorDate">
-                                                            <ItemTemplate>
-                                                                <%# General.GrdDisplayDate(Eval("ErrorDate"), Session["dateType"], Session["DateFormat"] + " " + General.GrdDisplayTime(Eval("ErrorDate")))%>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>--%>
                                                     </Columns>
                                                     <RowStyle CssClass="row" />
                                                 </asp:GridView>

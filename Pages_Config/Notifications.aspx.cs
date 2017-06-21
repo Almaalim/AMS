@@ -1,14 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using Elmah;
 using System.Data.SqlClient;
 using System.Data;
-using System.Globalization;
-using System.Text;
 using System.Collections;
 
 public partial class Pages_Config_Notifications : BasePage
@@ -54,8 +48,8 @@ public partial class Pages_Config_Notifications : BasePage
                 ViewState["CommandName"] = "";
                 /*** Common Code ************************************/
 
-                divDaysOfWeek.Visible = true;
-                divCalendar.Visible   = false;
+                divDaysOfWeek.Visible = true;   /**/ cvDaysOfWeek.Enabled = true;
+                divCalendar.Visible   = false;  /**/ cvCalendarDays.Enabled = false;
             }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
@@ -69,11 +63,11 @@ public partial class Pages_Config_Notifications : BasePage
             for (int i=1; i<= 31; i++)
             {
                 ListItem _li = new ListItem(i.ToString(), i.ToString());
-                cblCalendardays.Items.Add(_li);
+                cblCalendarDays.Items.Add(_li);
             }
             
             ListItem _li2 = new ListItem("Last", "Last");
-            cblCalendardays.Items.Add(_li2);
+            cblCalendarDays.Items.Add(_li2);
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
@@ -148,7 +142,7 @@ public partial class Pages_Config_Notifications : BasePage
         chkStatus.Enabled       = pStatus;
         ddlScheduleType.Enabled = pStatus;
         cblDaysOfWeek.Enabled   = pStatus;
-        cblCalendardays.Enabled = pStatus;
+        cblCalendarDays.Enabled = pStatus;
         tpStartTime.Enabled     = pStatus;
 
         txtID.Enabled = txtID.Visible = false;
@@ -174,9 +168,9 @@ public partial class Pages_Config_Notifications : BasePage
                 
                 if (ddlScheduleType.SelectedValue == "Monthly")
                 {
-                    for (int i = 0; i < cblCalendardays.Items.Count; i++)
+                    for (int i = 0; i < cblCalendarDays.Items.Count; i++)
                     {
-                        if (cblCalendardays.Items[i].Selected) { if (string.IsNullOrEmpty(SchDays)) { SchDays += cblCalendardays.Items[i].Value; } else { SchDays += "," + cblCalendardays.Items[i].Value; } }
+                        if (cblCalendarDays.Items[i].Selected) { if (string.IsNullOrEmpty(SchDays)) { SchDays += cblCalendarDays.Items[i].Value; } else { SchDays += "," + cblCalendarDays.Items[i].Value; } }
                     }
                 }
                 else
@@ -211,11 +205,11 @@ public partial class Pages_Config_Notifications : BasePage
             chkStatus.Checked = false;
             ddlScheduleType.SelectedIndex = -1;
             for (int i = 0; i < cblDaysOfWeek.Items.Count; i++) { cblDaysOfWeek.Items[i].Selected = false; }
-            for (int i = 0; i < cblCalendardays.Items.Count; i++) { cblCalendardays.Items[i].Selected = false; }
+            for (int i = 0; i < cblCalendarDays.Items.Count; i++) { cblCalendarDays.Items[i].Selected = false; }
             tpStartTime.ClearTime();
 
-            divDaysOfWeek.Visible = true;
-            divCalendar.Visible   = false;
+            divDaysOfWeek.Visible = true;   /**/ cvDaysOfWeek.Enabled   = true;
+            divCalendar.Visible   = false;  /**/ cvCalendarDays.Enabled = false;
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
@@ -223,10 +217,14 @@ public partial class Pages_Config_Notifications : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void ddlScheduleType_SelectedIndexChanged(object sender, EventArgs e)
     {
-        divCalendar.Visible   = false;
-        divDaysOfWeek.Visible = false;
+        for (int i = 0; i < cblDaysOfWeek.Items.Count; i++) { cblDaysOfWeek.Items[i].Selected = false; }
+        for (int i = 0; i < cblCalendarDays.Items.Count; i++) { cblCalendarDays.Items[i].Selected = false; }
+        tpStartTime.ClearTime();
 
-        if (ddlScheduleType.SelectedValue == "Monthly") { divCalendar.Visible = true; } else { divDaysOfWeek.Visible = true; }
+        divCalendar.Visible   = false; /**/ cvCalendarDays.Enabled = false;
+        divDaysOfWeek.Visible = false; /**/ cvDaysOfWeek.Enabled   = false;
+
+        if (ddlScheduleType.SelectedValue == "Monthly") { divCalendar.Visible = true; /**/ cvCalendarDays.Enabled = true; } else { divDaysOfWeek.Visible = true; /**/ cvDaysOfWeek.Enabled = true; }
     }
 
     #endregion
@@ -252,7 +250,7 @@ public partial class Pages_Config_Notifications : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -268,7 +266,7 @@ public partial class Pages_Config_Notifications : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -296,7 +294,7 @@ public partial class Pages_Config_Notifications : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -429,7 +427,7 @@ public partial class Pages_Config_Notifications : BasePage
         catch (Exception ex)
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -539,18 +537,18 @@ public partial class Pages_Config_Notifications : BasePage
                 string[] Days = SchDays.Split(',');
                 if (DRs[0]["SchType"].ToString() == "Monthly")
                 {
-                    divCalendar.Visible = true;
-                    divDaysOfWeek.Visible = false; 
+                    divCalendar.Visible   = true;   /**/ cvCalendarDays.Enabled = true;
+                    divDaysOfWeek.Visible = false;  /**/ cvDaysOfWeek.Enabled   = false;
                     for (int i = 0; i < Days.Length; i++)
                     {
-                        int index = cblCalendardays.Items.IndexOf(cblCalendardays.Items.FindByValue(Days[i]));
-                        if (index > -1) { cblCalendardays.Items[index].Selected = true; } else { cblCalendardays.Items[index].Selected = false; }
+                        int index = cblCalendarDays.Items.IndexOf(cblCalendarDays.Items.FindByValue(Days[i]));
+                        if (index > -1) { cblCalendarDays.Items[index].Selected = true; } else { cblCalendarDays.Items[index].Selected = false; }
                     }
                 }
                 else
                 {
-                    divCalendar.Visible = false;
-                    divDaysOfWeek.Visible = true; 
+                    divCalendar.Visible = false;    /**/ cvCalendarDays.Enabled = false;
+                    divDaysOfWeek.Visible = true;   /**/ cvDaysOfWeek.Enabled   = true;
                     for (int i = 0; i < Days.Length; i++)
                     {
                         int index = cblDaysOfWeek.Items.IndexOf(cblDaysOfWeek.Items.FindByValue(Days[i]));
@@ -636,11 +634,43 @@ public partial class Pages_Config_Notifications : BasePage
             e.IsValid = false;
         }
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void DaysOfWeek_ServerValidate(Object source, ServerValidateEventArgs e)
+    {
+        try
+        {
+            if (source.Equals(cvDaysOfWeek))
+            {
+                e.IsValid = cblDaysOfWeek.SelectedItem != null;
+            }
+        }
+        catch
+        {
+            e.IsValid = false;
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void CalendarDays_ServerValidate(Object source, ServerValidateEventArgs e)
+    {
+        try
+        {
+            if (source.Equals(cvCalendarDays))
+            {
+                e.IsValid = cblCalendarDays.SelectedItem != null;
+            }
+        }
+        catch
+        {
+            e.IsValid = false;
+        }
+    }
 
     #endregion
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
-    
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

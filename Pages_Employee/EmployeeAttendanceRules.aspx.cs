@@ -18,18 +18,18 @@ public partial class EmployeeAttendanceRules : BasePage
     RulePro ProCs = new RulePro();
     RuleSql SqlCs = new RuleSql();
 
-    PageFun pgCs   = new PageFun();
-    General GenCs  = new General();
-    DBFun   DBCs   = new DBFun();
+    PageFun pgCs = new PageFun();
+    General GenCs = new General();
+    DBFun DBCs = new DBFun();
     CtrlFun CtrlCs = new CtrlFun();
-    DTFun   DTCs   = new DTFun();
+    DTFun DTCs = new DTFun();
 
     DataTable Employeedt;
     DataTable EmployeeSelecteddt;
 
     string sortDirection = "ASC";
     string sortExpression = "";
-    
+
     //string MainQuery = " SELECT * FROM EmployeeVactionInfoView WHERE VtpCategory = 'VAC' ";
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -38,15 +38,17 @@ public partial class EmployeeAttendanceRules : BasePage
         try
         {
             /*** Fill Session ************************************/
-            pgCs.FillSession(); 
+            pgCs.FillSession();
             //CtrlCs.RefreshGridEmpty(ref grdData);
             /*** Fill Session ************************************/
 
             if (!IsPostBack)
             {
                 /*** Common Code ************************************/
-                /*** Check AMS License ***/ pgCs.CheckAMSLicense();  
-                /*** get Permission    ***/ ViewState["ht"] = pgCs.getPerm(Request.Url.AbsolutePath);  
+                /*** Check AMS License ***/
+                pgCs.CheckAMSLicense();
+                /*** get Permission    ***/
+                ViewState["ht"] = pgCs.getPerm(Request.Url.AbsolutePath);
                 BtnStatus("0010");
                 //UIEnabled(false);
                 //UILang();
@@ -64,7 +66,7 @@ public partial class EmployeeAttendanceRules : BasePage
     {
         try
         {
-            CtrlCs.FillRuleSetList(ref ddlRuleSet, null, true);
+            CtrlCs.FillRuleSetList(ref ddlRuleSet, rvRuleSet, true);
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
@@ -100,17 +102,8 @@ public partial class EmployeeAttendanceRules : BasePage
             //string commandName = ViewState["CommandName"].ToString();
             //if (commandName == string.Empty) { return; }
 
-            //if (!CtrlCs.PageIsValid(this, vsSave)) { return; }
+            if (!CtrlCs.PageIsValid(this, vsSave)) { return; }
 
-            //FillPropeties();
-
-            //if (commandName == "ADD") { SqlCs.InsertWithUpdateSummary(ProCs); }
-            //else if (commandName == "EDIT") { SqlCs.Update(ProCs); }
-
-            //btnFilter_Click(null,null);
-            //CtrlCs.ShowSaveMsg(this);
-            /////////////////
-             
             DataTable EmployeeInsertdt = ucEmployeeSelected.EmpSelected;
             if (DBCs.IsNullOrEmpty(EmployeeInsertdt)) { return; }
             if (ddlRuleSet.SelectedIndex < 1) { return; }
@@ -122,10 +115,10 @@ public partial class EmployeeAttendanceRules : BasePage
             ucEmployeeSelected.Clear();
             ddlRuleSet.ClearSelection();
         }
-        catch (Exception ex) 
-        { 
-            ErrorSignal.FromCurrentContext().Raise(ex); 
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+        catch (Exception ex)
+        {
+            ErrorSignal.FromCurrentContext().Raise(ex);
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -143,9 +136,9 @@ public partial class EmployeeAttendanceRules : BasePage
         Hashtable Permht = (Hashtable)ViewState["ht"];
         //btnAdd.Enabled    = GenCs.FindStatus(Status[0]);
         //btnModify.Enabled = GenCs.FindStatus(Status[1]);
-        btnSave.Enabled   = GenCs.FindStatus(Status[2]);
+        btnSave.Enabled = GenCs.FindStatus(Status[2]);
         //btnCancel.Enabled = GenCs.FindStatus(Status[3]);
-        
+
         if (Status[2] != '0') { btnSave.Enabled = Permht.ContainsKey("Insert"); }
         //if (Status[1] != '0') { btnModify.Enabled = Permht.ContainsKey("Update"); }
     }
@@ -160,8 +153,6 @@ public partial class EmployeeAttendanceRules : BasePage
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
     #region Custom Validate Events
-
-    protected void ShowMsg_ServerValidate(Object source, ServerValidateEventArgs e) { e.IsValid = false; }
 
     #endregion
     /*#############################################################################################################################*/

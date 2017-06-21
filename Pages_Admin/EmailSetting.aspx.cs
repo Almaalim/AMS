@@ -135,7 +135,7 @@ public partial class EmailSetting : BasePage
         }
         catch (Exception ex) 
         { 
-            CtrlCs.ShowAdminMsg(this, ex.ToString());
+            CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -159,14 +159,14 @@ public partial class EmailSetting : BasePage
     protected void btnSendTestEmail_Click(object sender, EventArgs e)
     {
         txtLogSend.Text = "";
-        if (string.IsNullOrEmpty(txtSendToEmail.Text)) { txtLogSend.Text = General.Msg("Enter Email To Filed",""); return; } 
+        if (string.IsNullOrEmpty(txtSendToEmail.Text)) { txtLogSend.Text = General.Msg("Enter Email To Filed", "أدخل البريد الإلكتروني"); return; } 
 
         bool isEmail = Regex.IsMatch(txtSendToEmail.Text, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
-        if (!isEmail) { txtLogSend.Text = General.Msg("Email is not valid",""); return; }
+        if (!isEmail) { txtLogSend.Text = General.Msg("Email is not valid", "البريد الإلكتروني غير صالح"); return; }
 
         bool isValid = true;
         if (string.IsNullOrEmpty(txtServerID.Text) || string.IsNullOrEmpty(txtPortNo.Text) || string.IsNullOrEmpty(txtSenderEmailID.Text) || string.IsNullOrEmpty(txtSenderEmailPassword.Text)) { isValid = false; }
-        if (!isValid) { txtLogSend.Text = General.Msg("No Email Setting data entry",""); return; }
+        if (!isValid) { txtLogSend.Text = General.Msg("No Email Setting data entry","لم يتم إدخال إعدادات البريد الإلكتروني"); return; }
 
         SendEMail();
     }
@@ -203,6 +203,7 @@ public partial class EmailSetting : BasePage
 
             SClient.Send(msgMail);
 
+            txtLogSend.Text = General.Msg("The email has been sent successfully", "لقد تم إرسال الايميل بنجاح");
             return true;
         }
         catch (Exception ex) { txtLogSend.Text = ex.Message; return false; }
