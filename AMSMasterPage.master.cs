@@ -372,14 +372,14 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
                 foreach (DataRow SDR in SDRs)
                 {
                     //muath dassan want to talk to the developer abut the select statament 
-                    string menuCss = SDR["MnuDescription"].ToString();
+                    string menuCss = SDR["MnuID"].ToString();
                     menuCss = menuCss.Replace(" ", "");
                     menuCss = Regex.Replace(menuCss, @"[^0-9a-zA-Z]+", "");
                     if (isFirst)
                     {
                         
                         FirstItem = "<div class='square-big'>";
-                        FirstItem += "<a title='" + SDR["MnuText"].ToString() + "' class='SideMenuItem " + menuCss + "' href='" + SDR["MnuURL"].ToString().Replace("~", "..") + "'>" + SDR["MnuText"].ToString() + "</a>";
+                        FirstItem += "<a title='" + SDR["MnuText"].ToString() + "' class='SideMenuItem " + "icon" + menuCss + "' href='" + SDR["MnuURL"].ToString().Replace("~", "..") + "'>" + SDR["MnuText"].ToString() + "</a>";
                         FirstItem += "</div>";
                         isFirst = false;
                     }
@@ -391,7 +391,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
                         if (iMultiItem == 1) { MultiItem += SMultiItem; }
 
                         MultiItem += "<div class='sub-square'>";
-                        MultiItem += "<a title='" + SDR["MnuText"].ToString() + "' class='SideMenuItem " + menuCss + "' href='" + SDR["MnuURL"].ToString().Replace("~", "..") + "'>" + SDR["MnuText"].ToString() + "</a>";
+                        MultiItem += "<a title='" + SDR["MnuText"].ToString() + "' class='SideMenuItem " + "icon" + menuCss + "' href='" + SDR["MnuURL"].ToString().Replace("~", "..") + "'>" + SDR["MnuText"].ToString() + "</a>";
                         MultiItem += "</div>";
 
                         if (iMultiItem == 4) { MultiItem += EMultiItem; }

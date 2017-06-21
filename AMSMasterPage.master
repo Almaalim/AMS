@@ -35,15 +35,25 @@
             MobileListResize();
         }
         function MobileListResize() {
+            var Notifi = $(".NotificationsPopup");
+            if ($(window).width() < 874) {
+                $(".NotificationsPopup").addClass("NotificationsMobile");
 
+                $(".NotificationsWrapper").after(Notifi);
+            }
+            else
+            {
+                $(".NotificationsPopup").removeClass("NotificationsMobile");
+                $("#aspnetForm").prepend(Notifi);
+            }
             $("[id*='iFrame']").load(function () {
                 $(this).height($(this).contents().find("html").height());
             });
             $('input').bind('blur', function (e) {
-
-                e.preventDefault();
-                $(this).focus();
-
+                
+                    e.preventDefault();
+                    $(this).focus();
+                
             });
             $("a.level2.dynamic").each(function (index) {
                 var str1 = $(this).attr('title');
@@ -125,7 +135,7 @@
             });
             $(".NotificationsIcon").on('click', function (e) {
                 $(".NotificationsPopup").addClass("NotificationsActive");
-
+                
             });
             $(".NotificationsPopupClose").on('click', function (e) {
                 $(".NotificationsPopup").removeClass("NotificationsActive");
@@ -133,9 +143,10 @@
             });
         }
         $(document).click(function (e) {
-            var container = $(".taptap-menu-active, .taptap-main-wrapper-active");
+            var container = $(".taptap-menu-active, .taptap-main-wrapper-active, .NotificationsPopup");
             if (!container.is(e.target) && container.has(e.target).length === 0) {
                 $(".taptap-menu-active").removeClass("taptap-menu-active");
+                $(".NotificationsPopup").removeClass("NotificationsActive");
                 $(".taptap-main-wrapper").removeClass("taptap-main-wrapper-active");
                 $("body").css("overflow", "auto");
             }
@@ -146,7 +157,7 @@
 
         });
         $(document).ready(function () {
-
+           
             //$("a.level2.dynamic").each(function (index) {
             //    var str1 = $(this).attr('title');
 
@@ -241,8 +252,8 @@
                     $(this).addClass("taptap-menu-active");
                     $(".taptap-main-wrapper").addClass("taptap-main-wrapper-active");
                     $("body").css("overflow", "hidden");
-
-
+                    
+                    
 
 
                 }
@@ -265,10 +276,19 @@
 
         });
         $(document).ready(MobileListResize);
-        $(window).resizeDimension('width', function () {
-            MobileListResize();
+        var w = 0;
+
+        $(window).load(function () {
+
+            w = $(window).width();
+
         });
-        // $(window).resize(MobileListResize);
+        $(window).resize(function () {
+            if (w != $(window).width()) {
+            MobileListResize();
+            }
+        });
+       // $(window).resize(MobileListResize);
     </script>
     <script type="text/javascript">
         // Set timeout variables.
@@ -459,6 +479,16 @@
     <%--onload="StartTimers();" onmousemove="ResetTimers();"--%>
     <%--onunload="bodyUnload();"--%>
     <form id="form1" runat="server">
+        <div class="NotificationsPopup">
+                                        <span class="NotificationsPopupClose"></span>
+                                        <ul>
+                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
+                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
+                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
+                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
+                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
+                                        </ul>
+                                    </div>
         <%--side Menu--%>
         <div class="taptap-main-wrapper">
             <div class="taptap-main-inner">
@@ -466,27 +496,18 @@
                     <div class="taptap-main-inner-inner">
                         <div class="taptap-contents-wrapper">
                             <div class="NotificationsWrapper">
-                                <asp:Image ID="UserImg" runat="server" ImageUrl="~/CSS/Metro/Images/UserImg.png" CssClass="UserImg" />
+                                 <asp:Image ID="UserImg" runat="server" ImageUrl="~/CSS/Metro/Images/UserImg.png" CssClass="UserImg" />
                                 <asp:Label ID="lblWelcome" runat="server" Text="Welcome" meta:resourcekey="lblWelcomeResource1" Visible="false"></asp:Label>
 
                                 <asp:Label ID="lblUserName" runat="server" meta:resourcekey="lblUserNameResource1"></asp:Label>
-                                <div class="NotificationsIcon">
+                                    <div class="NotificationsIcon">
                                     <span ID="spnNotificationsNo" runat="server" class="NotificationsNumber" >999</span>
+                                    </div>
+                                   
+                                   
                                 </div>
-                                <div class="NotificationsPopup">
-                                    <span class="NotificationsPopupClose"></span>
-                                    <ul>
-                                        <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
-                                        <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
-                                        <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
-                                        <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
-                                        <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
-                                    </ul>
-                                </div>
-
-                            </div>
                             <div class="UserDetails">
-
+                                
                                 <div class="clearfix"></div>
 
                                 <asp:LinkButton ID="lnkSetting" runat="server" CssClass="SettingBtn" Visible="false"></asp:LinkButton>
@@ -551,7 +572,7 @@
                             </div>
                         </div>
                         <div class="clearfix"></div>
-                        
+
 
                     </div>
 
@@ -618,7 +639,7 @@
                                         <asp:Label ID="lblDepNameVal" runat="server" Text="------" CssClass="label_DivLeftPanel"
                                             meta:resourcekey="lblDepNameValResource1"></asp:Label>
                                     </div>
-                                </div>
+                                        </div>
                             </div>
 
                         <div id="lp_padd">
@@ -659,12 +680,12 @@
 
             <asp:LinkButton ID="LnkHome" runat="server" OnClick="LnkHome_Click" CssClass="ft_home"
                 meta:resourcekey="LnkHomeResource1">Home Page</asp:LinkButton>
-            <span>|</span>
+          <span>|</span>  
 
 
             <asp:LinkButton ID="lnkAboutUs" runat="server" CssClass="ft_abt" meta:resourcekey="lnkAboutUsResource1">About us</asp:LinkButton>
 
-            <span>|</span>
+           <span>|</span>
 
             <asp:LinkButton ID="lnkPolicy" runat="server" CssClass="ft_cnt"
                 meta:resourcekey="lnkPolicyResource1" OnClick="lnkPolicy_Click">Policies and Procedures</asp:LinkButton>
@@ -678,14 +699,14 @@
 
         </div>
         <script type="text/javascript">
-
+            
             $(document).ready(function () {
                 $('.sub-square>a').hover(function () {
                     // Hover over code
                     var title = $(this).attr('title');
                     $(this).data('tipText', title).removeAttr('title');
                     $('<div class="tooltipSmall"></div>')
-
+                        
                     .text(title)
                     .appendTo("body")
                     .fadeIn('slow');
@@ -704,8 +725,8 @@
                         e.preventDefault();
                     }, false);
                 }
-
-
+                
+                
             });
         </script>
         <script type="text/javascript">    

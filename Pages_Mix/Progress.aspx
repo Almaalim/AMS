@@ -133,6 +133,11 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <%--This is script to hide Loading --%> <%--$(".LoadingWrapper").fadeOut("slow", 0);--%>
+
+        <%--This is script to Show Loading --%> <%--$(".LoadingWrapper").fadeIn("slow", 0);--%>
+       
+
        <div class="LoadingWrapper">
         <div class="Loader">
             <div class="OuterCircle"></div>

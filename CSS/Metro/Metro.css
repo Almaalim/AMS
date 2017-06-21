@@ -214,23 +214,22 @@ body {
     }
 }
 
-.FirstPager:before
-{
+.FirstPager:before {
     font-family: 'Glyphicons Halflings';
     content: "\e070";
 }
-.PreviousPager:before
-{
+
+.PreviousPager:before {
     font-family: 'Glyphicons Halflings';
     content: "\e071";
 }
-.NextPager:before
-{
+
+.NextPager:before {
     font-family: 'Glyphicons Halflings';
     content: "\e075";
 }
-.LastPager:before
-{
+
+.LastPager:before {
     font-family: 'Glyphicons Halflings';
     content: "\e076";
 }
@@ -453,7 +452,7 @@ ul.level2 > li {
     border-bottom: 1px solid #fff;
 }
 
-.UtilityEN {
+.UtilityEN, .UtilityAR {
     background-color: #f5f5f5;
     margin: 0;
     padding: 6px 35px;
@@ -1045,8 +1044,8 @@ span.glyphicon.CalenderIco {
 }
 
 .DateExp {
-    position: inherit;
-    margin-right: 10px;
+    position: relative;
+    margin-left: 12px;
 }
 
     #reqUsername img, #Fullname img, #cvEmpID img, #rfvLanguage img, #Password img, #cvEmail img, #cdvMobileNo img, #cvADUser img, #cvShowMsg img, .CustomValidator img, .DateExp img {
@@ -1379,7 +1378,7 @@ body.loginPage > #aspnetForm {
 }
 
 .monthSummaryDiv {
-    width: calc(25% - 22.5px);
+    width: calc(50% - 30px);
     display: inline-block;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -1487,8 +1486,8 @@ body.loginPage > #aspnetForm {
     border: 3px solid rgba(0, 0, 0, 0.68);
     opacity: 0;
     display: none;
-    top: 40px;
-    right: 123px;
+    top: 0px;
+    right: 600px;
 }
 
 @-webkit-keyframes fadeIn {
@@ -1525,16 +1524,23 @@ body.loginPage > #aspnetForm {
     margin-right: 10px;
     speak: none;
     position: absolute;
-    top: -11px;
-    right: -22px;
+    top: 0px;
+    right: -11px;
     color: #fff;
     font-size: 16px;
     line-height: 23px;
     background-color: rgb(82, 82, 82);
     padding: 0px 4px;
-    -webkit-border-radius: 50px;
+    /*-webkit-border-radius: 50px;
     -moz-border-radius: 50px;
-    border-radius: 50px;
+    border-radius: 50px;*/
+}
+.NotificationsMobile {
+    position: relative;
+    right: 0px !important;
+    top:0 !important;
+    width: calc(100% + 30px);
+    margin-right: -15px;
 }
 
     .NotificationsPopupClose:before {
@@ -1551,7 +1557,7 @@ body.loginPage > #aspnetForm {
     -webkit-margin-start: 0px;
     -webkit-margin-end: 0px;
     -webkit-padding-start: 0;
-    margin: 10px 0px;
+    margin: 25px 0px;
     padding: 0;
 }
 
@@ -1577,12 +1583,11 @@ body.loginPage > #aspnetForm {
     display: inline-block;
     float: right;
     margin-right: 331px;
-
 }
 
     .NotificationsIcon:before {
         font-family: FontAwesome;
-        content: "\f2b7";
+            content: "\f27a";
         color: #fff;
         display: inline-block;
         background-color: rgb(0, 154, 215);
@@ -1594,7 +1599,7 @@ body.loginPage > #aspnetForm {
 
     .NotificationsIcon:hover:before {
         color: rgb(0, 154, 215);
-        background-color: #fff;
+        background-color: #d9d9d9;
         -webkit-transform: rotateY(180deg);
         -ms-transform: rotateX(180deg);
         -moz-transform: rotateY(180deg);
@@ -1611,6 +1616,7 @@ body.loginPage > #aspnetForm {
     padding: 2px;
     top: -3px;
     left: 20px;
+    color: #fff;
 }
 
 .LoginLanguageBtn {
@@ -1907,6 +1913,11 @@ body.loginPage > #aspnetForm {
 a.Report:before {
     content: "\f17a";
     font-family: FontAwesome !important;
+}
+
+.reportsicon:before {
+    content: "\f0f6";
+    font-family: FontAwesome;
 }
 
 .ico-chart-2:before {
@@ -4021,25 +4032,23 @@ p {
     width: 31px;
     height: 31px;
     text-align: center;
-    color:#fff;
+    color: #fff;
     transition: all 1000ms cubic-bezier(0.19, 1, 0.22, 1);
-
-   
 }
-.folderCloseBtn:hover
-{
-    color:#6f180c;  
+
+    .folderCloseBtn:hover {
+        color: #6f180c;
         text-shadow: 0px 0px 15px rgba(255, 255, 255, 1);
         -webkit-transform: rotateY(180deg);
         -ms-transform: rotateX(180deg);
         -moz-transform: rotateY(180deg);
         transform: rotateY(180deg);
     }
+
     .folderCloseBtn:before {
         display: inline-block;
         text-align: center;
-        font-size:15px;
-        
+        font-size: 15px;
         speak: none;
         font-style: normal;
         font-weight: normal;
@@ -4066,11 +4075,13 @@ p {
     font-family: 'FontAwesome' !important;
     float: left;
 }
+
 .longlinkfolder {
     max-width: 74px;
     display: inline-block;
     line-height: 14px;
 }
+
 .apps li a:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
@@ -4335,352 +4346,357 @@ a.colord13f2a:before {
     text-decoration: none;
 }
 
-.Machine:before {
+.Machine:before , .icon278:before {
     content: "\e20c";
     font-family: 'icomoon' !important;
 }
 
-.Branch:before {
+.Branch:before , .icon268:before {
     content: "\f0e8";
     font-family: FontAwesome !important;
 }
 
-.Department:before {
+.Department:before , .icon119:before {
     content: "\f0f7";
     font-family: FontAwesome !important;
 }
 
-.Holiday:before {
+.Holiday:before , .icon273:before {
     content: "\f072";
     font-family: FontAwesome !important;
 }
 
-.VacationType:before {
+.VacationType:before , .icon288:before {
     content: "\f1ba";
     font-family: FontAwesome !important;
 }
 
-.ExcuseType:before {
+.ExcuseType:before , .icon293:before {
     content: "\f24a";
     font-family: FontAwesome !important;
 }
 
-.JobCategory:before {
+.JobCategory:before , .icon43:before {
     content: "\e139";
     font-family: 'Glyphicons Halflings' !important;
 }
 
-.Nationality:before {
+.Nationality:before , .icon283:before {
     content: "\e034";
     font-family: 'Glyphicons Halflings' !important;
 }
 
-.WorkTime:before {
+.WorkTime:before , .icon62:before {
     content: "\e023";
     font-family: 'Glyphicons Halflings' !important;
 }
 
-.RotationShift:before {
+.RotationShift:before , .icon319:before {
     content: "\e2c0";
     font-family: 'icomoon' !important;
 }
 
-.UnstyleShift:before {
+.UnstyleShift:before , .icon512:before {
     content: "\f273";
     font-family: FontAwesome !important;
 }
 
-.AttendanceRule:before {
+.AttendanceRule:before , .icon436:before {
     content: "\f0f6";
     font-family: FontAwesome !important;
 }
 
-.Schedule:before {
+.Schedule:before , .icon480:before {
     content: "\f017";
     font-family: 'icomoon' !important;
 }
 
-.GeneralConfiguration:before {
+.GeneralConfiguration:before , .icon300:before {
     content: "\f085";
     font-family: 'icomoon' !important;
 }
 
-.Notifications:before {
+.Notifications:before , .icon613:before {
     content: "\e2dd";
     font-family: 'icomoon' !important;
 }
 
-.Employee:before, .EmployeeMaster:before {
+.Employee:before, .EmployeeMaster:before , .icon400:before {
     content: "\f2c0";
     font-family: FontAwesome !important;
 }
 
-.EmployeeStatusToday:before {
+.EmployeeStatusToday:before , .icon615:before {
     content: "\f26c";
     font-family: FontAwesome !important;
 }
 
-.EmployeeWorkTime:before {
+.EmployeeWorkTime:before , .icon385:before {
     content: "\f252";
     font-family: FontAwesome !important;
 }
 
-.EmployeeJobAssignment:before {
+.EmployeeJobAssignment:before , .icon572:before {
     content: "\f0ae";
     font-family: FontAwesome !important;
 }
 
-.EmployeeType:before {
+.EmployeeType:before , .icon475:before {
     content: "\f2bd";
     font-family: FontAwesome !important;
 }
 
-.EmployeeVacation:before {
+.EmployeeVacation:before , .icon361:before {
     content: "\f045";
     font-family: 'icomoon' !important;
 }
 
-.EmployeeCommission:before {
+.EmployeeCommission:before , .icon569:before {
     content: "\e1e5";
     font-family: 'icomoon' !important;
 }
 
-.EmployeeExcusePeriod:before {
+.EmployeeExcusePeriod:before , .icon366:before {
     content: "\f249";
     font-family: FontAwesome !important;
 }
 
-.EmployeeAttendanceRule:before {
+.EmployeeAttendanceRule:before , .icon441:before {
     content: "\f036";
     font-family: FontAwesome !important;
 }
 
-.ActiveDirectoryEmployees:before {
+.ActiveDirectoryEmployees:before , .icon562:before {
     content: "\f2bc";
     font-family: FontAwesome !important;
 }
 
-.EmployeesFingerPrints:before {
+.EmployeesFingerPrints:before , .icon552:before {
     content: "\f0a6";
     font-family: FontAwesome !important;
 }
 
-.WorkTimeDefault:before {
+.WorkTimeDefault:before , .icon583:before {
     content: "\f274";
     font-family: FontAwesome !important;
 }
 
-.AdministrativeLicenses:before {
+.AdministrativeLicenses:before , .icon567:before {
     content: "\f2c2";
     font-family: FontAwesome !important;
 }
 
-.EmployeeExcuseDay:before {
+.EmployeeExcuseDay:before , .icon575:before {
     content: "\f272";
     font-family: FontAwesome !important;
 }
 
-.EmployeeTransaction:before {
+.EmployeeTransaction:before , .icon145:before , .icon608:before {
     content: "\f0ec";
     font-family: FontAwesome !important;
 }
 
-.TodayTransaction:before {
+.TodayTransaction:before , .icon154:before , .icon579:before {
     content: "\f18d";
     font-family: FontAwesome !important;
 }
 
-.AddTransaction:before {
+.AddTransaction:before , .icon236:before {
     content: "\f196";
     font-family: FontAwesome !important;
 }
 
-.PendingTransaction:before {
+.PendingTransaction:before , .icon241:before {
     content: "\f192";
     font-family: FontAwesome !important;
 }
 
-.RoundPatrolTransaction:before {
+.RoundPatrolTransaction:before , .icon324:before {
     content: "\f1ce";
     font-family: FontAwesome !important;
 }
 
-.AddTransactionWizard:before {
+.AddTransactionWizard:before , .icon298:before {
     content: "\f055";
     font-family: FontAwesome !important;
 }
 
-.WorkTimeWizard:before {
+.WorkTimeWizard:before , .icon390:before {
     content: "\f251";
     font-family: FontAwesome !important;
 }
 
-.VacationWizard:before {
+.VacationWizard:before , .icon371:before {
     content: "\f000";
     font-family: FontAwesome !important;
 }
 
-.ExcuseWizard:before {
+.ExcuseWizard:before , .icon376:before {
     content: "\f016";
     font-family: 'icomoon' !important;
 }
 
-.AutoInOutWizard:before {
+.AutoInOutWizard:before , .icon405:before {
     content: "\f04b";
     font-family: FontAwesome !important;
 }
 
-.RequestApprovalLevel:before {
+.RequestApprovalLevel:before , .icon341:before {
     content: "\f061";
     font-family: FontAwesome !important;
 }
 
-.RequestApproval:before {
+.RequestApproval:before , .icon357:before {
     content: "\f26c";
     font-family: FontAwesome !important;
 }
 
-.EmployeeReport:before {
+.EmployeeReport:before , .icon448:before {
     content: "\f2be";
     font-family: FontAwesome !important;
 }
 
-.DepartmentReport:before {
+.DepartmentReport:before , .icon453:before {
     content: "\f1ad";
     font-family: FontAwesome !important;
 }
 
-.MachineReport:before {
+.MachineReport:before , .icon457:before {
     content: "\f013";
     font-family: FontAwesome !important;
 }
 
-.HeaderReport:before {
+.HeaderReport:before , .icon559:before {
     content: "\f003";
     font-family: FontAwesome !important;
 }
 
-.TodayReport:before {
+.TodayReport:before , .icon566:before {
     content: "\f073";
     font-family: FontAwesome !important;
 }
 
-.AdministrativeReport:before {
+.AdministrativeReport:before , .icon461:before {
     content: "\f29a";
     font-family: FontAwesome !important;
 }
 
-.ChartReport:before {
+.ChartReport:before , .icon497:before {
     content: "\f1fe";
     font-family: FontAwesome !important;
 }
 
-.StatusSystem:before {
+.StatusSystem:before , .icon598:before {
     content: "\f201";
     font-family: FontAwesome !important;
 }
 
-.Connectionstring:before {
+.Connectionstring:before , .icon599:before {
     content: "\f0c1";
     font-family: FontAwesome !important;
 }
 
-.DepartmentsLevels:before {
+.DepartmentsLevels:before , .icon600:before {
     content: "\f039";
     font-family: FontAwesome !important;
 }
 
-.RequestsEnabled:before {
+.RequestsEnabled:before , .icon606:before {
     content: "\f02f";
     font-family: FontAwesome !important;
 }
 
-.ProcedureErrors:before {
+.ProcedureErrors:before , .icon603:before {
     content: "\f071";
     font-family: FontAwesome !important;
 }
 
-.ActiveDirectorySetting:before {
+.ActiveDirectorySetting:before , .icon601:before {
     content: "\f2ba";
     font-family: FontAwesome !important;
 }
 
-.EmailSetting:before {
+.EmailSetting:before , .icon602:before {
     content: "\f2b6";
     font-family: FontAwesome !important;
 }
 
-.ASPNETErrors:before {
+.ASPNETErrors:before , .icon604:before {
     content: "\f121";
     font-family: FontAwesome !important;
 }
 
-.MachineErrors:before {
+.MachineErrors:before , .icon605:before {
     content: "\e107";
     font-family: 'Glyphicons Halflings' !important;
 }
 
-.AttendanceList:before {
+.AttendanceList:before , .icon383:before {
     content: "\e032";
     font-family: 'Glyphicons Halflings' !important;
 }
 
-.MonthSummary:before {
+.MonthSummary:before , .icon609:before {
     content: "\e057";
     font-family: 'Glyphicons Halflings' !important;
 }
 
-.EmployeeGaps:before {
+.EmployeeGaps:before , .icon550:before {
     content: "\e058";
     font-family: 'Glyphicons Halflings' !important;
 }
 
-.EmployeeOvertimes:before {
+.EmployeeOvertimes:before , .icon607:before {
     content: "\e170";
     font-family: 'Glyphicons Halflings' !important;
 }
 
-.EmployeeRequest:before {
+.EmployeeRequest:before , .icon381:before {
     content: "\f234";
     font-family: FontAwesome !important;
 }
 
-.EmployeeVacationDays:before {
+.EmployeeVacationDays:before , .icon502:before {
     content: "\e108";
     font-family: 'Glyphicons Halflings' !important;
 }
 
-.ExcuseRequest:before {
+.ExcuseRequest:before , .icon594:before {
     content: "\e095";
     font-family: 'Glyphicons Halflings' !important;
 }
 
-.VacationRequest:before {
+.VacationRequest:before , .icon590:before
+{
     content: "\e024";
     font-family: 'Glyphicons Halflings' !important;
 }
 
-.CommissionRequest:before {
+.CommissionRequest:before , .icon591:before {
     content: "\f2d2";
     font-family: FontAwesome !important;
 }
 
-.ShiftSwapRequest:before {
+.ShiftSwapRequest:before , .icon596:before {
     content: "\e110";
     font-family: 'Glyphicons Halflings' !important;
 }
-.ShiftSwapApproval:before {
+
+.ShiftSwapApproval:before , .icon346:before {
     content: "\f087";
     font-family: 'icomoon' !important;
 }
-.JobAssignmentRequest:before {
+
+.JobAssignmentRequest:before , .icon592:before {
     content: "\f047";
     font-family: 'icomoon' !important;
 }
-.ShiftExcuseRequest:before {
+
+.ShiftExcuseRequest:before , .icon595:before {
     content: "\f03c";
     font-family: FontAwesome !important;
 }
+
 .tooltipSmall {
     display: none;
     position: absolute;
@@ -4693,27 +4709,27 @@ a.colord13f2a:before {
     top: 0;
 }
 
-a.SideMenuItem.PermissionGroup:before, a.level2.dynamic.PermissionGroup:before {
+a.SideMenuItem.icon172:before, a.level2.dynamic.PermissionGroup:before {
     content: "\f0c0";
     font-family: 'icomoon' !important;
 }
 
-a.SideMenuItem.ApplicationUser:before, a.level2.dynamic.ApplicationUser:before {
+a.SideMenuItem.icon167:before, a.level2.dynamic.ApplicationUser:before {
     content: "\f007";
     font-family: FontAwesome !important;
 }
 
-a.SideMenuItem.UsersDepartmentRelation:before, a.level2.dynamic.UsersDepartmentRelation:before {
+a.SideMenuItem.icon228:before, a.level2.dynamic.UsersDepartmentRelation:before {
     content: "\e263";
     font-family: 'icomoon' !important;
 }
 
-a.SideMenuItem.ActiveDirectoryUsers:before, a.level2.dynamic.ActiveDirectoryUsers:before {
+a.SideMenuItem.icon560:before, a.level2.dynamic.ActiveDirectoryUsers:before {
     content: "\e262";
     font-family: 'icomoon' !important;
 }
 
-a.SideMenuItem.CurrentUser:before, a.level2.dynamic.CurrentUser:before {
+a.SideMenuItem.icon266:before, a.level2.dynamic.CurrentUser:before {
     content: "\f183";
     font-family: 'FontAwesome' !important;
 }
@@ -4774,6 +4790,8 @@ a.level2.dynamic.JobCategory:before {
 }
 
 @media (max-width:1260px) {
+
+
     .monthSummaryDiv {
         width: 430px;
         margin: 1%;
@@ -4844,12 +4862,76 @@ a.level2.dynamic.JobCategory:before {
         margin:5px 15px;
     }
 }
-
-@media (max-width: 992px) {
+@media (max-width: 1073px) {
+    .loginPage > #aspnetForm > #main_block
+    {
+        display:block;
+        
+    }
+    .loginWrapper , body.loginPage > #aspnetForm
+    {
+        width:100%;
+        height:auto;
+        display:block;
+        position:relative;
+        -moz-box-shadow: 0px 0px 5px #fff;
+    -webkit-box-shadow: 0px 0px 5px #fff;
+    box-shadow: 0px 0px 5px #fff;
+    }
+    .loginPage
+    {
+        margin:0;
+        background-color: #fff;
+    }
+    .LoginLeft 
+    {
+        float:none;
+        width:100%;
+        height:auto;
+        padding: 55px 0;
+        background-size:100%;
+    }
+    .LoginRight
+    {
+        float:none;
+        width:calc(100% - 30px);
+        height:auto;
+        margin:15px auto;
+    }
+    #ft_padd
+    {
+        width:95vW;
+        margin:0 auto;
+    }
+    .LoginFooterLink
+    {
+        width:100%;
+    }
+    .loginLogoM
+    {
+        display:none;
+    }
+    .loginLogoS
+    {
+        display:block;
+        margin:0px auto;
+        padding:5px;
+        width:304px;
+        height:82px;
+    }
+}
+@media (max-width: 1012px) {
     .col1, .col2, .col3, .col4, .col5, .col6, .col7, .col8, .col9, .col10, col11, .col12, .row > .col4:nth-child(2), .row > .col4:nth-child(4), .row > .col2:nth-child(1), .row > .col2:nth-child(3), .left, .right, .rp_Search > span > span {
         width: 100%;
     }
+    .Header {
+        background-size: 100%;
+    }
 
+    .Logo {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
     .breadcrumb {
         margin: 10px 0;
     }
@@ -5000,7 +5082,11 @@ a.level2.dynamic.JobCategory:before {
     .NotificationsPopup {
         top: 50px;
     }
-
+    .NotificationsActive
+    {
+        right:10px;
+        top: 60px;
+    }
     .squares .square-big {
         width: 105px;
         height: 105px;
@@ -5019,7 +5105,7 @@ a.level2.dynamic.JobCategory:before {
 }
 
 @media (max-width: 450px) {
-    .CalenderTable td {
+    .CalenderTable>tbody>tr>td>span>table>tbody>tr>td {
         display: inline-block;
         margin: 2px 0;
     }
@@ -5041,7 +5127,7 @@ a.level2.dynamic.JobCategory:before {
         display: block;
     }
 
-        .CalenderTable tbody, .CalenderTable tbody tr {
+        .CalenderTable>tbody>tr>td>span>table>tbody, .CalenderTable>tbody>tr>td>span>table>tbody>tr {
             /* width:calc(100% - 33px);*/
             display: block;
             height: 100px !important;
