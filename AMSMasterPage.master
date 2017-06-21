@@ -35,7 +35,17 @@
             MobileListResize();
         }
         function MobileListResize() {
-
+            var Notifi = $(".NotificationsPopup");
+            if ($(window).width() < 874) {
+                $(".NotificationsPopup").addClass("NotificationsMobile");
+                
+                $(".NotificationsWrapper").after(Notifi);
+            }
+            else
+            {
+                $(".NotificationsPopup").removeClass("NotificationsMobile");
+                $("#aspnetForm").prepend(Notifi);
+            }
             $("[id*='iFrame']").load(function () {
                 $(this).height($(this).contents().find("html").height());
             });
@@ -134,9 +144,10 @@
             });
         }
         $(document).click(function (e) {
-            var container = $(".taptap-menu-active, .taptap-main-wrapper-active");
+            var container = $(".taptap-menu-active, .taptap-main-wrapper-active, .NotificationsPopup");
             if (!container.is(e.target) && container.has(e.target).length === 0) {
                 $(".taptap-menu-active").removeClass("taptap-menu-active");
+                $(".NotificationsPopup").removeClass("NotificationsActive");
                 $(".taptap-main-wrapper").removeClass("taptap-main-wrapper-active");
                 $("body").css("overflow", "auto");
             }
@@ -266,8 +277,17 @@
 
         });
         $(document).ready(MobileListResize);
-        $(window).resizeDimension('width', function () {
-            MobileListResize();
+        var w = 0;
+
+        $(window).load(function () {
+
+            w = $(window).width();
+
+        });
+        $(window).resize(function () {
+            if (w != $(window).width()) {
+                MobileListResize();
+            }
         });
        // $(window).resize(MobileListResize);
     </script>
@@ -461,6 +481,16 @@
     <%--onload="StartTimers();" onmousemove="ResetTimers();"--%>
     <%--onunload="bodyUnload();"--%>
     <form id="form1" runat="server">
+        <div class="NotificationsPopup">
+                                        <span class="NotificationsPopupClose"></span>
+                                        <ul>
+                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
+                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
+                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
+                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
+                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
+                                        </ul>
+                                    </div>
         <%--side Menu--%>
         <div class="taptap-main-wrapper">
             <div class="taptap-main-inner">
@@ -475,16 +505,7 @@
                                     <div class="NotificationsIcon">
                                         <span class="NotificationsNumber">999</span>
                                     </div>
-                                    <div class="NotificationsPopup">
-                                        <span class="NotificationsPopupClose"></span>
-                                        <ul>
-                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
-                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
-                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
-                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
-                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
-                                        </ul>
-                                    </div>
+                                    
                                    
                                 </div>
                             <div class="UserDetails">
