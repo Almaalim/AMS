@@ -479,16 +479,8 @@
     <%--onload="StartTimers();" onmousemove="ResetTimers();"--%>
     <%--onunload="bodyUnload();"--%>
     <form id="form1" runat="server">
-        <div class="NotificationsPopup">
-                                        <span class="NotificationsPopupClose"></span>
-                                        <ul>
-                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
-                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
-                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
-                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
-                                            <li>Message 1114400 <span class="NotificationsTime">00:00</span></li>
-                                        </ul>
-                                    </div>
+        <div id="divNotifications" runat="server" class="NotificationsPopup">
+        </div>
         <%--side Menu--%>
         <div class="taptap-main-wrapper">
             <div class="taptap-main-inner">
@@ -501,10 +493,8 @@
 
                                 <asp:Label ID="lblUserName" runat="server" meta:resourcekey="lblUserNameResource1"></asp:Label>
                                     <div class="NotificationsIcon">
-                                    <span ID="spnNotificationsNo" runat="server" class="NotificationsNumber" >999</span>
+                                        <span ID="spnNotificationsNo" runat="server" class="NotificationsNumber" >999</span>
                                     </div>
-                                   
-                                   
                                 </div>
                             <div class="UserDetails">
                                 

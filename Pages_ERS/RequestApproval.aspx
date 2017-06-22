@@ -12,15 +12,15 @@
     <%--script--%>
     <link href="../CSS/validationStyle.css" rel="stylesheet" type="text/css" />
 
-    <%--<asp:UpdateProgress ID="upWaiting" runat="server" DynamicLayout="true" AssociatedUpdatePanelID="UpdatePanel1">
+    <asp:UpdateProgress ID="upWaiting" runat="server" DynamicLayout="true" AssociatedUpdatePanelID="UpdatePanel1">
         <ProgressTemplate>
             <div class="row">
                 <div class="col12">
-                    <iframe id="ifrmProgress" runat="server" src="../Pages_Mix/Progress.aspx" scrolling="no" frameborder="0" height="500px" width="500px"></iframe>
+                    <iframe id="ifrmProgress" runat="server" src="../Pages_Mix/Progress.aspx" scrolling="no" frameborder="0" height="500px" width="100%"></iframe>
                 </div>
             </div>
         </ProgressTemplate>
-    </asp:UpdateProgress>--%>
+    </asp:UpdateProgress>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <Triggers>
@@ -28,6 +28,12 @@
         </Triggers>
         <ContentTemplate>
             <div runat="server" id="MainTable">
+                <div class="row">
+                    <div class="col12">
+                        <asp:ValidationSummary ID="vsShowMsg" runat="server" CssClass="MsgValidation"
+                            EnableClientScript="False" ValidationGroup="vgShowMsg" />
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col1">
                         <asp:Label ID="lblFilter" runat="server" Text="Employee ID:"
@@ -147,17 +153,23 @@
 
                     </div>
                 </div>
+                
                 <div class="row">
                     <div class="col12">
-                        <asp:ValidationSummary ID="vsShowMsg" runat="server" CssClass="MsgSuccess"
-                            EnableClientScript="False" ValidationGroup="ShowMsg" />
+                        <asp:ValidationSummary ID="vsSave" runat="server" ValidationGroup="vgSave"
+                            EnableClientScript="False" CssClass="MsgSuccess"
+                            meta:resourcekey="vsumAllResource1" />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col12">
-                        <asp:ValidationSummary ID="vsSave" runat="server" ValidationGroup="vgSave"
-                            EnableClientScript="False" CssClass="MsgValidation"
-                            meta:resourcekey="vsumAllResource1" />
+                         <asp:TextBox ID="txtValid" runat="server" Text="02120" Visible="False"
+                                    Width="10px" meta:resourcekey="txtCustomValidatorResource1"></asp:TextBox>
+
+                                <asp:CustomValidator ID="cvShowMsg" runat="server" Display="None" CssClass="CustomValidator"
+                                    ValidationGroup="vgShowMsg" OnServerValidate="ShowMsg_ServerValidate"
+                                    EnableClientScript="False" ControlToValidate="txtValid">
+                                </asp:CustomValidator>
                     </div>
                 </div>
                 <div class="row" runat="server" id="divVacType">
@@ -391,13 +403,7 @@
                                     Enabled="False" Visible="false" Width="15px"></asp:TextBox>
                             </div>
                             <div class="col4">
-                                <asp:TextBox ID="txtValid" runat="server" Text="02120" Visible="False"
-                                    Width="10px" meta:resourcekey="txtCustomValidatorResource1"></asp:TextBox>
-
-                                <asp:CustomValidator ID="cvShowMsg" runat="server" Display="None" CssClass="CustomValidator"
-                                    ValidationGroup="ShowMsg" OnServerValidate="ShowMsg_ServerValidate"
-                                    EnableClientScript="False" ControlToValidate="txtValid">
-                                </asp:CustomValidator>
+                                
                             </div>
 
                         </div>
@@ -439,7 +445,7 @@
                     </div>
 
                 </div>
-                </div>
+            </div>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

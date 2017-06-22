@@ -30,8 +30,6 @@ public partial class AttendanceList : BasePage
             //CtrlCs.RefreshGridEmpty(ref grdData);
             /*** Fill Session ************************************/
 
-            if (Session["ShowedAlert"] != null) { ShoweAlert = Convert.ToBoolean(Session["ShowedAlert"].ToString()); }
-
             if (ddlMonth.SelectedIndex >= 0 && ddlYear.SelectedIndex >= 0)
             {
                 Session["AttendanceListMonth"] = ddlMonth.SelectedValue;
@@ -65,23 +63,6 @@ public partial class AttendanceList : BasePage
                     FillMonthTable(Convert.ToInt32(CurrentMonth), Convert.ToInt32(CurrentYear));
                     ddlMonth.SelectedIndex = ddlMonth.Items.IndexOf(ddlMonth.Items.FindByValue(CurrentMonth));
                     ddlYear.SelectedIndex = ddlYear.Items.IndexOf(ddlYear.Items.FindByValue(CurrentYear));
-                }
-
-                
-                if (!ShoweAlert)
-                {
-                    int TotalGaps, TotalAbs;
-
-                    FindGapsForCurrentMonth(out TotalGaps, out TotalAbs);
-
-                    if (TotalGaps > 0 || TotalAbs > 0)
-                    {
-                        lblNamePopupAlert.Text = General.Msg("Alert", "تنبيه");
-                        ifrmPopupAlert.Attributes.Add("src", "AlertEmpForGaps.aspx?Gaps=" + TotalGaps + "&Abs=" + TotalAbs);
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "showPopup('divPopupAlert');", true);
-                    }
-
-                    ShoweAlert = true;
                 }
             }
         }
@@ -437,24 +418,6 @@ public partial class AttendanceList : BasePage
             case "SendRequest": PIcon += SendStatusIcon[ReqStatus];  break;
         }
         return PIcon;
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void FindGapsForCurrentMonth(out int TotalGaps, out int TotalAbs)
-    {
-        TotalGaps = 0;
-        TotalAbs = 0;
-
-        DateTime SDate;
-        DateTime EDate;
-        DTCs.FindMonthDates(DTCs.FindCurrentYear(), DTCs.FindCurrentMonth(), out SDate, out EDate);
-
-        DataTable DT = DBCs.FetchData(" SELECT MsmDays_Absent_WithoutVac, MsmGapDur_WithoutExc From MonthSummary WHERE EmpID = @P1 AND CONVERT(VARCHAR(12),MsmStartDate,103) = CONVERT(VARCHAR(12),@P2,103) ", new string[] { pgCs.LoginEmpID, SDate.ToString("dd/MM/yyyy") });
-        if (!DBCs.IsNullOrEmpty(DT))
-        {
-            TotalGaps = Convert.ToInt32(DT.Rows[0]["MsmGapDur_WithoutExc"].ToString());
-            TotalAbs  = Convert.ToInt32(DT.Rows[0]["MsmDays_Absent_WithoutVac"].ToString());
-        }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

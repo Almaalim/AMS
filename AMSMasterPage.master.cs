@@ -95,8 +95,6 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
         ///Added by Abbas End
         ///
         ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "PostbackFunction();", true);
-
-
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -109,8 +107,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
             if (pgCs.LoginType == "USR")
             {
                 FillFavForm();
-                ShowIsExistingRequest();
-                //lnkShortcut.Enabled = true;
+                ShowNotifications();
             }
         }
         catch (Exception e1) { }
@@ -130,6 +127,14 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
             if (!DBCs.IsNullOrEmpty(DT))
             {
                 if (DT.Rows[0]["MnuTextEn"] != DBNull.Value) { lblPageTitel.Text = General.Msg(DT.Rows[0]["MnuTextEn"].ToString(), DT.Rows[0]["MnuTextAr"].ToString()); }
+            }
+            else
+            {
+                DataTable DT1 = DBCs.FetchData(" SELECT * FROM Menu WHERE MnuURL like @P1 ", new string[] { PageFileInfo.Name });
+                if (!DBCs.IsNullOrEmpty(DT1))
+                {
+                    if (DT1.Rows[0]["MnuTextEn"] != DBNull.Value) { lblPageTitel.Text = General.Msg(DT1.Rows[0]["MnuTextEn"].ToString(), DT1.Rows[0]["MnuTextAr"].ToString()); }
+                }
             }
         }
         catch (Exception e1) { }
@@ -152,15 +157,15 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
         try
         {
             string URL = Request.Url.ToString().ToLower();
-            if (pgCs.Version == "BorderGuard")
-            {
-                //if (URL.EndsWith("home.aspx")) { divLogo.Attributes["class"] = "tp_logo_Home_AlJoufUN_" + Language; } else { divLogo.Attributes["class"] = "tp_logo_AlJoufUN_" + Language; }
-                if (URL.EndsWith("home.aspx")) { divLogo.Attributes["class"] = "tp_logo_Home_BorderGuard_" + pgCs.Lang; } else { divLogo.Attributes["class"] = "tp_logo_BorderGuard_" + pgCs.Lang; }
-            }
-            else // (ActiveVersion == "General")
-            {
+            //if (pgCs.Version == "BorderGuard")
+            //{
+            //    //if (URL.EndsWith("home.aspx")) { divLogo.Attributes["class"] = "tp_logo_Home_AlJoufUN_" + Language; } else { divLogo.Attributes["class"] = "tp_logo_AlJoufUN_" + Language; }
+            //    if (URL.EndsWith("home.aspx")) { divLogo.Attributes["class"] = "tp_logo_Home_BorderGuard_" + pgCs.Lang; } else { divLogo.Attributes["class"] = "tp_logo_BorderGuard_" + pgCs.Lang; }
+            //}
+            //else // (ActiveVersion == "General")
+            //{
                 if (URL.EndsWith("home.aspx")) { divLogo.Attributes["class"] = "tp_logobgHome" + pgCs.Lang; } else { divLogo.Attributes["class"] = "tp_logobg" + pgCs.Lang; }
-            }
+            //}
         }
         catch (Exception e1) { }
     }
@@ -523,14 +528,43 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
 
     /*******************************************************************************************************************************/
     /*******************************************************************************************************************************/
-    #region Request Events
+    #region Notifications Events
 
-    public void ShowIsExistingRequest()
+    public void ShowNotifications()
     {
         try
         {
+            string text  = "";
+            string count = "";
+            string strItems = "";
             spnNotificationsNo.InnerText = "";
 
+            if (ShowIsExistingRequest(out text, out count))     { strItems += CreateNotificationsItem(text, count, "../Pages_ERS/RequestApproval.aspx?ID=ALL"); /**/ ShowCountNotifications(); }
+            if (FindGapsForCurrentMonth(out text, out count))   { strItems += CreateNotificationsItem(text, count, "../Pages_ERS/EmployeeGaps.aspx");           /**/ ShowCountNotifications(); }
+            if (FindAbsentForCurrentMonth(out text, out count)) { strItems += CreateNotificationsItem(text, count, "../Pages_ERS/AttendanceList.aspx");         /**/ ShowCountNotifications(); }
+
+            //if (!string.IsNullOrEmpty(strItems))
+            //{
+                string _ul = "";
+                _ul = "<span class='NotificationsPopupClose'></span>";
+                _ul += "<ul>";
+                _ul += strItems;
+                _ul += "</ul>";
+                divNotifications.Controls.Add(new LiteralControl(this.Server.HtmlDecode(_ul)));
+            //}
+        }
+        catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public bool ShowIsExistingRequest(out string text, out string count)
+    {
+        text  = "";
+        count = "";
+        bool show = false;
+
+        try
+        {
             string ERSLic = LicDf.FetchLic("ER");
 
             if (ERSLic == "1")
@@ -542,19 +576,113 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
 
                     if (Convert.ToInt32(ReqNo) > 0)
                     {
-                        spnNotificationsNo.InnerText = ReqNo;
-                        //lnkRequest.Text = General.Msg("There waiting requests - " + ReqNo + " Requests", "يوجد طلبات في الانتظار - عددها " + ReqNo);
+                        text = General.Msg("There are pending requests - their number", "يوجد طلبات في الانتظار - عددها");
+                        count = ReqNo;
+                        show = true;
                     }
                 }
             }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
+
+        return show;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void lnkRequest_Click(object sender, EventArgs e)
+    protected bool FindGapsForCurrentMonth(out string text, out string count)
     {
-        Response.Redirect("~/Pages_ERS/RequestApproval.aspx?ID=ALL");
+        text  = "";
+        count = "";
+        bool show = false;
+
+        try
+        {
+            string ERSLic = LicDf.FetchLic("ER");
+
+            if (ERSLic == "1" && !string.IsNullOrEmpty(pgCs.LoginEmpID))
+            {
+                DateTime SDate;
+                DateTime EDate;
+                DTCs.FindMonthDates(DTCs.FindCurrentYear(), DTCs.FindCurrentMonth(), out SDate, out EDate);
+
+                DataTable DT = DBCs.FetchData(" SELECT MsmGapDur_WithoutExc FROM MonthSummary WHERE EmpID = @P1 AND CONVERT(VARCHAR(12),MsmStartDate,103) = CONVERT(VARCHAR(12),@P2,103) ", new string[] { pgCs.LoginEmpID, SDate.ToString("dd/MM/yyyy") });
+                if (!DBCs.IsNullOrEmpty(DT))
+                {
+                    string No = DT.Rows[0]["MsmGapDur_WithoutExc"].ToString();
+
+                    if (Convert.ToInt32(No) > 0)
+                    {
+                        text = General.Msg("There you have Gaps Without Excuse of Total ", "يوجد لديك مجموع ثغرات بدون استئذان");
+                        count = DisplayFun.GrdDisplayDuration(No);
+                        show = true;
+                    }
+                }
+            }
+        }
+        catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
+
+        return show;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected bool FindAbsentForCurrentMonth(out string text, out string count)
+    {
+        text  = "";
+        count = "";
+        bool show = false;
+
+        try
+        {
+            string ERSLic = LicDf.FetchLic("ER");
+
+            if (ERSLic == "1" && !string.IsNullOrEmpty(pgCs.LoginEmpID))
+            {
+                DateTime SDate;
+                DateTime EDate;
+                DTCs.FindMonthDates(DTCs.FindCurrentYear(), DTCs.FindCurrentMonth(), out SDate, out EDate);
+
+                DataTable DT = DBCs.FetchData(" SELECT MsmDays_Absent_WithoutVac FROM MonthSummary WHERE EmpID = @P1 AND CONVERT(VARCHAR(12),MsmStartDate,103) = CONVERT(VARCHAR(12),@P2,103) ", new string[] { pgCs.LoginEmpID, SDate.ToString("dd/MM/yyyy") });
+                if (!DBCs.IsNullOrEmpty(DT))
+                {
+                    string No = DT.Rows[0]["MsmDays_Absent_WithoutVac"].ToString();
+
+                    if (Convert.ToInt32(No) > 0)
+                    {
+                        text = General.Msg("There you have days Absent Without Excuse ", "يوجد لديك أيام غياب بدون استئذان");
+                        count = No;
+                        show = true;
+                    }
+                }
+            }
+        }
+        catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
+
+        return show;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public string CreateNotificationsItem(string text, string count, string link)
+    {
+        string li = "";
+        if (string.IsNullOrEmpty(link)) { li = "<li> [TEXT] <span class='NotificationsTime'>[COUNT]</span></li>"; }
+        else { li = "<li><a title = '' href='[LINK]'> [TEXT] </a><span class='NotificationsTime'>[COUNT]</span></li>"; }
+
+        string item = li;
+        item = item.Replace("[TEXT]", text);
+        item = item.Replace("[COUNT]", count);
+        item = item.Replace("[LINK]", link);
+
+        return item;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void ShowCountNotifications()
+    {
+        string No = spnNotificationsNo.InnerText;
+
+        if (string.IsNullOrEmpty(No)) { No = "1"; } else { No = (Convert.ToInt32(No) + 1).ToString(); }
+
+        spnNotificationsNo.InnerText = No;
     }
 
     #endregion

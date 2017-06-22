@@ -465,14 +465,14 @@ public class DTFun
         
         if (pDateType == "Gregorian")
         {
-            ddl.SelectedIndex = DateTime.Now.Month - 1;
+            if (IsAll) { ddl.SelectedIndex = DateTime.Now.Month; } else { ddl.SelectedIndex = DateTime.Now.Month - 1; }
         }
         else if (pDateType == "Hijri")
         {
-            string date =  GregToHijri(DateTime.Now.ToString("dd/MM/yyyy"));
+            string date = GregToHijri(HDateNow("dd/MM/yyyy"));// GregToHijri(DateTime.Now.ToString("dd/MM/yyyy"));
             string[] arrDate = date.Split('/');
             Int32 M = Convert.ToInt32(arrDate[1]);
-            ddl.SelectedIndex = M - 1;
+            if (IsAll) { ddl.SelectedIndex = M; } else { ddl.SelectedIndex = M - 1; }
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

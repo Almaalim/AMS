@@ -82,10 +82,10 @@
                 <div id="ft_padd">
                     <div class="row">
                         <div class="col12 LoginFooterLink">
-                            <asp:LinkButton ID="LnkHome" runat="server" OnClick="LnkHome_Click"
+                            <%--<asp:LinkButton ID="LnkHome" runat="server" OnClick="LnkHome_Click"
                                 CssClass="ft_home" meta:resourcekey="LnkHomeResource1">Home Page</asp:LinkButton>
 
-                            <img src="images/MasterPage_Images/ft_bar.gif" width="1" height="11" alt="" class="ft_bar" />
+                            <img src="images/MasterPage_Images/ft_bar.gif" width="1" height="11" alt="" class="ft_bar" />--%>
 
                             <asp:LinkButton ID="lnkAboutUs" runat="server" CssClass="ft_abt"
                                 meta:resourcekey="lnkAboutUsResource1">About us</asp:LinkButton>

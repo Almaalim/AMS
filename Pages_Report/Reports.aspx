@@ -688,7 +688,7 @@
             <%--Popup--%>
         </ContentTemplate>
     </asp:UpdatePanel>
-    <div class="row">
+    <div class="row" runat="server" visible="false">
         <div class="col6">
             <asp:LinkButton ID="btnExportRecord" runat="server" CssClass="GenButton glyphicon glyphicon-export"
                 OnClick="btnExportRecord_Click" Text="&lt;img src=&quot;../images/Button_Icons/page_export.png&quot; /&gt; Export"
@@ -702,17 +702,17 @@
                 meta:resourcekey="btnUploadReportResource1"></asp:LinkButton>
         </div>
     </div>
-    <div class="row">
+    <div class="row" runat="server" visible="false">
         <div class="col12">
             <cc2:StiWebDesigner ID="StiWebDesigner1" runat="server" OnSaveReport="StiWebDesigner1_SaveReport"
                 OnPreInit="StiWebDesigner1_PreInit" />
         </div>
     </div>
-    <div id="Div1" runat="server" class="row">
+    <div id="Div1" runat="server" class="row" visible="false">
         <div class="col12">
         </div>
     </div>
-    <div id="Div2" runat="server" class="row">
+    <div id="Div2" runat="server" class="row" visible="false">
         <div class="col12">
             <asp:LinkButton ID="btnImportRecord" runat="server" CssClass="GenButton glyphicon glyphicon-import"
                 OnClick="btnImportRecord_Click" Text="&lt;img src=&quot;../images/Button_Icons/page_import.png&quot; /&gt; Import Technical"

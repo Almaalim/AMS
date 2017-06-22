@@ -44,7 +44,7 @@
             <ProgressTemplate>
                 <div class="row">
                         <div class="col12">
-                        <iframe id="ifrmProgress" runat="server" src="~/Pages_Mix/Progress.aspx" scrolling="no" frameborder="0" height="600px" width="650px" ></iframe> 
+                        <iframe id="ifrmProgress" runat="server" src="../Pages_Mix/Progress.aspx" scrolling="no" frameborder="0" height="600px" width="100%" ></iframe> 
                     </div>
                 </div>
             </ProgressTemplate>

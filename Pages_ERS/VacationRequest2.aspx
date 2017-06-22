@@ -26,14 +26,6 @@
     <script type="text/javascript" src="../Script/DivPopup.js"></script>
     <%--script--%>
 
-    <%--stylesheet--%>
-    <%--<link href="../CSS/General.css" rel="stylesheet" type="text/css" />--%>
-    <%--<link href="../CSS/VSStyle.css" rel="stylesheet" type="text/css" />--%>
-    <%--<link href="../CSS/ModalPopup.css" rel="stylesheet" type="text/css" />
-    <link href="../CSS/MasterPageStyle.css" rel="stylesheet" type="text/css" />
-    <link href="../CSS/buttonStyle.css" rel="stylesheet" type="text/css" />
-    <link href="../CSS/validationStyle.css" rel="stylesheet" type="text/css" />--%>
-    <%--stylesheet--%>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -44,7 +36,7 @@
                 <ProgressTemplate>
                     <div class="row">
                         <div class="col12">
-                            <iframe id="ifrmProgress" runat="server" src="~/Pages_Mix/Progress.aspx" scrolling="no" frameborder="0" height="600px" width="650px"></iframe>
+                            <iframe id="ifrmProgress" runat="server" src="../Pages_Mix/Progress.aspx" scrolling="no" frameborder="0" height="500px" width="100%"></iframe>
                         </div>
                     </div>
                 </ProgressTemplate>
