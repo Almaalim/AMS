@@ -843,6 +843,7 @@ a:active {
 
 fieldset > legend > select, fieldset > legend {
     width: auto;
+    position: relative;
 }
 
 .flyOutDivCloseX {
@@ -1383,6 +1384,7 @@ body.loginPage > #aspnetForm {
 .MsgValidation:before, .errorValidation:before {
     background-color: #ba2c1d;
     content: "\f05a";
+    font-family: FontAwesome;
 }
 
 .monthSummaryDiv {
@@ -4908,7 +4910,7 @@ a.level2.dynamic.JobCategory:before {
     }
 
     #ft_padd {
-        width: 95vW;
+        
         margin: 0 auto;
     }
 

@@ -50,7 +50,7 @@
                     OnActiveStepChanged="WizardData_ActiveStepChanged"
                     OnPreRender="WizardData_PreRender"
                     OnFinishButtonClick="WizardData_FinishButtonClick" Width="100%"
-                    meta:resourcekey="WizardDataResource1" ActiveStepIndex="0">
+                    meta:resourcekey="WizardDataResource1" ActiveStepIndex="1">
                     <StartNavigationTemplate>
                         <div class="row">
                             <div class="col12">
@@ -204,7 +204,7 @@
                             
 
                                 <div class="row">
-                                <div class="col2">
+                                <div class="col12">
                                             <asp:ValidationSummary ID="VSFinish" runat="server" CssClass="errorValidation"
                                                 EnableClientScript="False" ValidationGroup="VGFinish"
                                                 meta:resourcekey="VSFinishResource1" />

@@ -877,7 +877,7 @@
     <value>عدد الساعات المسموح احتسابها كوقت إضافي في اليوم.</value>
   </data>
   <data name="lblHint2Resource.Text" xml:space="preserve">
-    <value>تحديد فترة الوردية للدوام العادي والمرن وذلك بالضغط على زر  &lt;img src='images/Button_Icons/button_calculator.png'/&gt; لاحتساب الفترة بعد إدخال أوقات الفترة,و في حالة دوام الساعات يتم تحديد عدد الساعات المطلوبة في هذه الوردية.</value>
+    <value>تحديد فترة الوردية للدوام العادي والمرن وذلك بالضغط على زر  &lt;img src='../images/Button_Icons/button_calculator.png'/&gt; لاحتساب الفترة بعد إدخال أوقات الفترة,و في حالة دوام الساعات يتم تحديد عدد الساعات المطلوبة في هذه الوردية.</value>
   </data>
   <data name="lblHint3Resource.Text" xml:space="preserve">
     <value>هي الوردية التي تبدأ قبل منتصف الليل ( الساعة الثانية عشرة ليلا ) وتنتهي في فجر اليوم التالي.</value>

@@ -102,6 +102,7 @@
                             </div>
                                        <div class="row">
                                 <div class="col2">
+                                   <div style="height: 30px;">
                                                     <asp:CustomValidator ID="cvSelectEmployees" runat="server"
                                                         ErrorMessage="Select Employees" CssClass="CustomValidator"
                                                         Text="&lt;img src='images/message_exclamation.png' title='Select Employees!' /&gt;"
@@ -109,11 +110,13 @@
                                                         EnableClientScript="False"
                                                         ControlToValidate="txtCustomValidator"
                                                         meta:resourcekey="cvSelectEmployeesResource1"></asp:CustomValidator>
-                                                </div>
+                                    
+                                                </div></div>
                                 <div class="col4">
                                                     <asp:TextBox ID="txtCustomValidator" runat="server" Text="02120" Visible="False"
                                                         Width="10px" meta:resourcekey="txtCustomValidatorResource1"></asp:TextBox>
                                                 </div>
+                                            <div class="clearfix"></div>
                             </div>
                             <div class="row">
                                 <div class="col12">
