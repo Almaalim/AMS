@@ -106,6 +106,7 @@
 
                                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow1" runat="server" TargetControlID="lnkShow1"></ajaxToolkit:AnimationExtender>
                                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose1" runat="server" TargetControlID="lnkClose1"></ajaxToolkit:AnimationExtender>
+                        <div class="flyoutWrap">
                                         <asp:ImageButton ID="lnkShow1" runat="server" OnClientClick="return false;" ImageUrl = "~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
                                         <div id="pnlInfo1" class="flyOutDiv">
                                             <asp:LinkButton ID="lnkClose1" runat="server" Text="X" OnClientClick="return false;" CssClass= "flyOutDivCloseX glyphicon glyphicon-remove" />
@@ -114,13 +115,14 @@
                                                 <asp:Label ID="lblHint1" runat="server" Text="This option determines whether this feature can be selected on the Employee page or not, it means the ability to add movement automatic entry automatically" meta:resourcekey="lblHint1Resource"></asp:Label>
                                             </p>
                                         </div>
+                            </div>
                         </div>
                                <div class="col2">
                         </div>
                     <div class="col4">
                                     <asp:CheckBox ID="chkIsTakeAutoIn" runat="server" Enabled="False" 
                                         Text="Auto In Priority" meta:resourcekey="chkIsTakeAutoInResource1" />
-
+                        <div class="flyoutWrap">
                                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow2" runat="server" TargetControlID="lnkShow2"></ajaxToolkit:AnimationExtender>
                                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose2" runat="server" TargetControlID="lnkClose2"></ajaxToolkit:AnimationExtender>
                                         <asp:ImageButton ID="lnkShow2" runat="server" OnClientClick="return false;" ImageUrl = "~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
@@ -131,6 +133,7 @@
                                                 <asp:Label ID="lblHint2" runat="server" Text="Identify priority choice between regular entry movement, if any, automatic login movement at treatment, when selecting priority will be given to automatic login movement." meta:resourcekey="lblHint2Resource"></asp:Label>
                                             </p>
                                         </div>
+                            </div>
                                </div>
             </div>
             <div class="row">
@@ -140,6 +143,7 @@
                                     <asp:CheckBox ID="chkAutoOut" runat="server" Enabled="False" Text="Auto Out" 
                                         AutoPostBack="True" oncheckedchanged="chkAutoOut_CheckedChanged" 
                                         meta:resourcekey="chkAutoOutResource1" />
+                        <div class="flyoutWrap">
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow3" runat="server" TargetControlID="lnkShow3"></ajaxToolkit:AnimationExtender>
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose3" runat="server" TargetControlID="lnkClose3"></ajaxToolkit:AnimationExtender>
                                     <asp:ImageButton ID="lnkShow3" runat="server" OnClientClick="return false;" ImageUrl = "~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
@@ -151,12 +155,13 @@
                                         </p>
                                     </div>
                                 </div>
-
+                        </div>
                                <div class="col2">
                         </div>
                     <div class="col4">
                                     <asp:CheckBox ID="chkIsTakeAutoOut" runat="server" Enabled="False" 
                                         Text="Auto Out Priority" meta:resourcekey="chkIsTakeAutoOutResource1" />
+                        <div class="flyoutWrap">
                                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow4" runat="server" TargetControlID="lnkShow4"></ajaxToolkit:AnimationExtender>
                                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose4" runat="server" TargetControlID="lnkClose4"></ajaxToolkit:AnimationExtender>
                                         <asp:ImageButton ID="lnkShow4" runat="server" OnClientClick="return false;" ImageUrl = "~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
@@ -167,6 +172,7 @@
                                                 <asp:Label ID="lblHint4" runat="server" Text="Identify priority choice between regular exit transaction, if any, and automatic exit transaction at treatment, when selecting priority will be given to automatic exit transaction." meta:resourcekey="lblHint4Resource"></asp:Label>
                                             </p>
                                         </div>
+                            </div>
                               </div>
                 </div>
                 <div class="row">
@@ -284,6 +290,7 @@
                     <div class="col4">
                                     <Almaalim:TextTime ID="txtMaxPercOT" runat="server" FormatTime="hhmm" 
                                         meta:resourcekey="txtMaxPercOTResource1" />
+                        <div class="flyoutWrap">
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow8" runat="server" TargetControlID="lnkShow8"></ajaxToolkit:AnimationExtender>
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose8" runat="server" TargetControlID="lnkClose8"></ajaxToolkit:AnimationExtender>
                                     <asp:ImageButton ID="lnkShow8" runat="server" OnClientClick="return false;" ImageUrl = "~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
@@ -295,6 +302,7 @@
                                         </p>
                                     </div>
                                </div>
+                        </div>
                 </div>
                
                 <div class="row">
@@ -306,6 +314,7 @@
                     <div class="col4">
                                     <Almaalim:TextTime ID="txtOTBeginEarlyInterval" runat="server" FormatTime="mm" 
                                         meta:resourcekey="txtOTBeginEarlyIntervalResource1" />
+                        <div class="flyoutWrap">
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow10" runat="server" TargetControlID="lnkShow10"></ajaxToolkit:AnimationExtender>
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose10" runat="server" TargetControlID="lnkClose10"></ajaxToolkit:AnimationExtender>
                                     <asp:ImageButton ID="lnkShow10" runat="server" OnClientClick="return false;" ImageUrl = "~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
@@ -317,11 +326,13 @@
                                         </p>
                                     </div>
                                  </div>
+                        </div>
                     
                     <div class="col4">
                                     <asp:CheckBox ID="chkOTBeginEarlyFlag" runat="server" Enabled="False" 
                                         Text="Begin Early overtime" 
                                         meta:resourcekey="chkOTBeginEarlyFlagResource1" />
+                        <div class="flyoutWrap">
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow9" runat="server" TargetControlID="lnkShow9"></ajaxToolkit:AnimationExtender>
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose9" runat="server" TargetControlID="lnkClose9"></ajaxToolkit:AnimationExtender>
                                     <asp:ImageButton ID="lnkShow9" runat="server" OnClientClick="return false;" ImageUrl = "~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
@@ -332,6 +343,7 @@
                                             <asp:Label ID="lblHint9" runat="server" Text="When selected early attendance is calculated as overtime for employees" meta:resourcekey="lblHint9Resource"></asp:Label>
                                         </p>
                                     </div>
+                            </div>
                                  </div>
                 </div>
                 <div class="row">
@@ -413,7 +425,7 @@
                                 </div>
                     <div class="col4">
                                                <Cal:Calendar2 ID="calVacResetDate" runat="server" CalendarType="System" ValidationRequired="true" ValidationGroup="vgSave"/>
-                                            
+                                            <div class="flyoutWrap">
                                                 <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow11" runat="server" TargetControlID="lnkShow11"></ajaxToolkit:AnimationExtender>
                                                 <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose11" runat="server" TargetControlID="lnkClose11"></ajaxToolkit:AnimationExtender>
                                                 <asp:ImageButton ID="lnkShow11" runat="server" OnClientClick="return false;" ImageUrl = "~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
@@ -423,6 +435,7 @@
                                                         <br />
                                                         <asp:Label ID="lblHint11" runat="server" Text="The date on which he has been re-calculating vacation days that are of the types of vacations that are re-calculated." meta:resourcekey="lblHint11Resource"></asp:Label>
                                                     </p>
+                                                </div>
                                                 </div>
                                           </div>
 
@@ -438,6 +451,7 @@
                                         meta:resourcekey="txtDaysLimitReqVacResource1"></asp:TextBox>
                                     <asp:Label ID="lblDayType" runat="server" Text=" Days " 
                                         meta:resourcekey="lblDayTypeResource1"></asp:Label>
+
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow14" runat="server" TargetControlID="lnkShow14"></ajaxToolkit:AnimationExtender>
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose14" runat="server" TargetControlID="lnkClose14"></ajaxToolkit:AnimationExtender>
                                     <asp:ImageButton ID="lnkShow14" runat="server" OnClientClick="return false;" ImageUrl = "~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />

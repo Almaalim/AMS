@@ -176,7 +176,7 @@
                     <div class="col4">
                         <Almaalim:TextTime ID="txtMaxHours" runat="server" FormatTime="hhmm" meta:resourcekey="txtMaxHoursResource1"
                             CssClass="TimeCss" />
-                        &nbsp;
+                           <div class="flyoutWrap">
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow1" runat="server" TargetControlID="lnkShow1"></ajaxToolkit:AnimationExtender>
                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose1" runat="server" TargetControlID="lnkClose1"></ajaxToolkit:AnimationExtender>
                         <asp:ImageButton ID="lnkShow1" runat="server" meta:resourcekey="lnkButtonResouce"
@@ -190,6 +190,7 @@
                                     meta:resourcekey="lblMaxResource"></asp:Label>
                             </p>
                         </div>
+                               </div>
                     </div>
                     <div class="col2">
                         <asp:Label ID="lblPercentAllowable" runat="server" Text="Percent Allowable Per Shift :"
@@ -200,7 +201,7 @@
                             Enabled="False" MaxLength="3" onkeypress="return OnlyNumber(event);"
                             meta:resourcekey="txtPercentAllowableResource1"></asp:TextBox>
                         &nbsp;
-                                    <asp:Label ID="Label2" runat="server" Text=" % " meta:resourcekey="Label2Resource1" CssClass="LeftOverlay"></asp:Label>
+                                    <asp:Label ID="Label2" runat="server" Text=" % " meta:resourcekey="Label2Resource1" CssClass="LeftOverlay3"></asp:Label>
                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow2" runat="server" TargetControlID="lnkShow2"></ajaxToolkit:AnimationExtender>
                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose2" runat="server" TargetControlID="lnkClose2"></ajaxToolkit:AnimationExtender>
                         <asp:ImageButton ID="lnkShow2" runat="server" OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" meta:resourcekey="lnkShow2Resouce" />

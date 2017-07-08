@@ -174,3 +174,7 @@ iframe#ifrmProgress {
    
     height: 100vH !important;
 }
+.GridRowStyle:hover td, .GridAlterNative:hover td
+{
+    background-color:#60c2dc !important;
+}
