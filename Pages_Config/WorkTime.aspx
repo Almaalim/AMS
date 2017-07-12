@@ -361,10 +361,12 @@
 
                 <div class="row">
                     <div class="col12">
-                        <asp:CheckBox ID="chkShift2Setting" runat="server" Text="Shift2" AutoPostBack="True"
-                            Enabled="False" OnCheckedChanged="chkShift2Setting_CheckedChanged" meta:resourcekey="chkShift2SettingResource1" />
+                        
 
                         <asp:Label ID="Label11" runat="server" Text="Shift 2 Setting" meta:resourcekey="Label11Resource1" CssClass="h4"></asp:Label>
+
+                        <asp:CheckBox ID="chkShift2Setting" runat="server" Text="Shift2" AutoPostBack="True"
+                            Enabled="False" OnCheckedChanged="chkShift2Setting_CheckedChanged" meta:resourcekey="chkShift2SettingResource1" />
                     </div>
                 </div>
 
@@ -495,12 +497,13 @@
 
                 <div class="row">
                     <div class="col12">
-                        <asp:CheckBox ID="chkShift3Setting" runat="server" AutoPostBack="True"
-                            Enabled="False" meta:resourcekey="chkShift3SettingResource1"
-                            OnCheckedChanged="chkShift3Setting_CheckedChanged" Text="Shift3" />
+                        
 
                         <asp:Label ID="Label13" runat="server" meta:resourcekey="Label13Resource1" CssClass="h4"
                             Text="Shift 3 Setting"></asp:Label>
+                        <asp:CheckBox ID="chkShift3Setting" runat="server" AutoPostBack="True"
+                            Enabled="False" meta:resourcekey="chkShift3SettingResource1"
+                            OnCheckedChanged="chkShift3Setting_CheckedChanged" Text="Shift3" />
                     </div>
                 </div>
 

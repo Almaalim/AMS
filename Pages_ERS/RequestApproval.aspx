@@ -61,13 +61,12 @@
                         <asp:DropDownList ID="ddlYear" runat="server"
                             meta:resourcekey="ddlYearResource1">
                         </asp:DropDownList>
-                    </div>
-                    <div class="col1">
                         <asp:ImageButton ID="btnFilter" runat="server"
-                            OnClick="btnFilter_Click"
+                            OnClick="btnFilter_Click" CssClass="LeftOverlay"
                             ImageUrl="../images/Button_Icons/button_magnify.png"
                             meta:resourcekey="btnMonthFilterResource1" />
                     </div>
+                    
                 </div>
                 <div class="row">
                     <div class="col12">

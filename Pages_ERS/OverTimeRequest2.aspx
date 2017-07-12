@@ -31,6 +31,20 @@
     <link href="../CSS/validationStyle.css" rel="stylesheet" type="text/css" />--%>
     <link href="../CSS/Metro/Metro.css" rel="stylesheet" />
     <%--stylesheet--%>
+     <script type="text/javascript" src="../Script/jquery-1.7.1.min.js"></script>
+     <script type="text/javascript">
+        $(document).ready(function () {
+            $("div[class*='col']").each(function () {
+                if ($(this).children(".RequiredField").length > 0) {
+                    $(this).addClass("RequiredFieldDiv");
+                }
+                var $this = $(this);
+
+                $this.html($this.html().replace(/&nbsp;/g, ''));
+
+            });
+        });
+    </script>
 </head>
 <body>
     <form id="form1" runat="server" >

@@ -162,9 +162,10 @@ box-shadow: 2px 2px 9px 2px rgba(206,220,223,0);
 .TreeViewStyle
 {
     border:1px solid #005683;
-    padding:30px;
+    padding:0 30px;
         background-color: #971728;
 }
+
 
 .TreeViewStyle a , .TreeViewStyle span
 {
