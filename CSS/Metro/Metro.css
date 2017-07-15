@@ -860,6 +860,7 @@ fieldset > legend > select, fieldset > legend {
     top: 5px;
     right: -10px;
     width: 19px;
+    z-index: 99;
 }
 
 .LeftOverlay3 {
@@ -868,6 +869,7 @@ fieldset > legend > select, fieldset > legend {
     right: 15px;
     width: 19px;
 }
+
 
 .LeftOverlay[disabled] {
     background: none;
@@ -1197,7 +1199,7 @@ span.glyphicon.CalenderIco {
 
 
 
-.loginLogoS {
+.loginLogoSEn , .loginLogoSAr , .loginLogoMAr {
     display: none;
     width: 393px;
     height: 89px;
@@ -1205,7 +1207,7 @@ span.glyphicon.CalenderIco {
 }
 
 
-.loginLogoM {
+.loginLogoMEn {
     height: 100px;
     margin: 6% auto;
     display: block;
@@ -4914,11 +4916,11 @@ a.level2.dynamic.JobCategory:before {
     {
         width:100%;
     }
-    .loginLogoM
+    .loginLogoMEn
     {
         display:none;
     }
-    .loginLogoS
+    .loginLogoSEn
     {
         display:block;
         margin:0px auto;

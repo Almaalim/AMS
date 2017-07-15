@@ -178,4 +178,6 @@ iframe#ifrmProgress {
 .GridRowStyle:hover td, .GridAlterNative:hover td
 {
     background-color:#60c2dc !important;
+    cursor:pointer;
+    color:#fff;
 }

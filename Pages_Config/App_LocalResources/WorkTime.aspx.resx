@@ -367,7 +367,7 @@
     <value />
   </data>
   <data name="cvShift2DurationResource1.Text" xml:space="preserve">
-    <value>&lt;img src='images/Exclamation.gif' title='Shift 2 Duration is required!' /&gt;</value>
+    <value>&lt;img src='../images/Exclamation.gif' title='Shift 2 Duration is required!' /&gt;</value>
   </data>
   <data name="cvShift2DurationResource1.ToolTip" xml:space="preserve">
     <value />
@@ -376,7 +376,7 @@
     <value />
   </data>
   <data name="cvShift2TimeResource1.Text" xml:space="preserve">
-    <value>&lt;img src='images/message_exclamation.png' title='Enter correct Shift 2 Time' /&gt;</value>
+    <value>&lt;img src='../images/message_exclamation.png' title='Enter correct Shift 2 Time' /&gt;</value>
   </data>
   <data name="cvShift2TimeResource1.ToolTip" xml:space="preserve">
     <value />

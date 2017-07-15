@@ -154,7 +154,7 @@
     <value>الوصف</value>
   </data>
   <data name="btnAddResource1.Text" xml:space="preserve">
-    <value>&lt;img src="vimages/Button_Icons/button_add.png" /&gt; اضافة</value>
+    <value>&lt;img src="../images/Button_Icons/button_add.png" /&gt; اضافة</value>
   </data>
   <data name="btnAddResource1.ToolTip" xml:space="preserve">
     <value />

@@ -16,11 +16,14 @@
 
             <div class="LoginLeft">
 
-                <asp:Image ID="Image1" runat="server" CssClass="loginLogoS"
+                <asp:Image ID="Image1" runat="server" CssClass="loginLogoSAr"
                     ImageUrl="~/images/Logo.png" meta:resourcekey="imgLogoResource1" />
-                <asp:Image ID="Image2" runat="server" CssClass="loginLogoM"
+                <asp:Image ID="Image2" runat="server" CssClass="loginLogoMAr"
                     ImageUrl="~/images/LoginLogo.png" meta:resourcekey="imgLogoResource1" />
-
+                <asp:Image ID="Image3" runat="server" CssClass="loginLogoSEn"
+                    ImageUrl="~/images/LogoEn.png" meta:resourcekey="imgLogoResource1" />
+                <asp:Image ID="Image4" runat="server" CssClass="loginLogoMEn"
+                    ImageUrl="~/images/LoginLogoEn.png" meta:resourcekey="imgLogoResource1" />
 
             </div>
             <div class="LoginRight">
