@@ -23,6 +23,30 @@
     <script type="text/javascript" src="../Script/CheckKey.js"></script>
     <script type="text/javascript" src="../Script/ModalPopup.js"></script>
     <script type="text/javascript" src="../Script/DivPopup.js"></script>
+    <script type="text/javascript" src="../Script/jquery-1.7.1.min.js"></script>
+      <script type="text/javascript">
+        $(document).ready(function () {
+            $("div[class*='col']").each(function () {
+                if ($(this).children(".RequiredField").length > 0) {
+                    $(this).addClass("RequiredFieldDiv");
+                }
+                var $this = $(this);
+
+                $this.html($this.html().replace(/&nbsp;/g, ''));
+
+            });
+        });
+    </script>
+    <style>
+        @media (max-width: 1012px)
+        {
+            .col2
+            {
+                width:25% !important;
+            }
+        }
+
+    </style>
     <%--script--%>
     <%--stylesheet--%>
     <%--<link href="../CSS/ModalPopup.css" rel="stylesheet" type="text/css" />
@@ -31,6 +55,20 @@
     <link href="../CSS/validationStyle.css" rel="stylesheet" type="text/css" />--%>
     <link href="../CSS/Metro/Metro.css" rel="stylesheet" />
     <%--stylesheet--%>
+     <script type="text/javascript" src="../Script/jquery-1.7.1.min.js"></script>
+     <script type="text/javascript">
+        $(document).ready(function () {
+            $("div[class*='col']").each(function () {
+                if ($(this).children(".RequiredField").length > 0) {
+                    $(this).addClass("RequiredFieldDiv");
+                }
+                var $this = $(this);
+
+                $this.html($this.html().replace(/&nbsp;/g, ''));
+
+            });
+        });
+    </script>
 </head>
 <body>
     <form id="form1" runat="server" >
@@ -75,6 +113,7 @@
                     </div>
                     <div class="row">
                         <div class="col2">
+                            <span class="RequiredField">*</span>
                             <asp:Label ID="lblGapID" runat="server" Text="Overtime ID :" meta:resourcekey="lblGapIDResource1"></asp:Label>
                         </div>
                         <div class="col4">
@@ -89,6 +128,7 @@
                     </div>
                     <div class="row">
                         <div class="col2">
+                            <span class="RequiredField">*</span>
                             <asp:Label ID="lblDate" runat="server" Text="Date :" meta:resourcekey="lblDateResource1"></asp:Label>
                         </div>
                         <div class="col4">
@@ -98,15 +138,17 @@
                     </div>
                     <div class="row">
                         <div class="col2">
+                            <span class="RequiredField">*</span>
                             <asp:Label ID="lblTimeFrom" runat="server" Text="Time from :" meta:resourcekey="lblTimeFromResource1"></asp:Label>
                         </div>
-                        <div class="col4">
+                        <div class="col2">
                             <Almaalim:TimePicker ID="tpFrom" runat="server" FormatTime="HHmmss" CssClass="TimeCss" />
                         </div>
                         <div class="col2">
+                            <span class="RequiredField">*</span>
                             <asp:Label ID="lblTimeTo" runat="server" Text="Time To :" meta:resourcekey="lblTimeToResource1"></asp:Label>
                         </div>
-                        <div class="col4">
+                        <div class="col2">
                             <Almaalim:TimePicker ID="tpTo" runat="server" FormatTime="HHmmss" CssClass="TimeCss" />
                         </div>
                     </div>

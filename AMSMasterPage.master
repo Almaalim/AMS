@@ -31,18 +31,45 @@
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             })();
+            $("[id*='iFrame']").load(function () {
+
+                $(this).height($(this).contents().find("html").height());
+
+            });
+            $("[id*='ifrm']").load(function () {
+
+                $(this).height(($(this).contents().find("html").height()) - 30);
+
+            });
 
             MobileListResize();
         }
         function MobileListResize() {
+            //$("div[class*='col']>span[id*='lbl']").each(function (i, obj) {
+            //    labelh = $(this).height();
+
+            //    if ((labelh > 32) && (!$(window).width() < 1012)) {
+            //        $(this).css("white-space", "nowrap");
+            //        var parentDiv = $(this).parent().attr('class');
+            //        parentDiv = ("." + parentDiv);
+            //        lblW = $(this).width();
+            //        $(parentDiv).css("width", lblW);
+            //        //$(this).parent("div[class*='col']").css("width", "auto");
+            //    }
+            //    else
+            //    {
+            //        $(this).css("white-space", "");
+            //        $(this).parent("div[class*='col']").css("width", "");
+            //    }
+
+            //});
             var Notifi = $(".NotificationsPopup");
             if ($(window).width() < 874) {
                 $(".NotificationsPopup").addClass("NotificationsMobile");
 
                 $(".NotificationsWrapper").after(Notifi);
             }
-            else
-            {
+            else {
                 $(".NotificationsPopup").removeClass("NotificationsMobile");
                 $("#aspnetForm").prepend(Notifi);
             }
@@ -50,10 +77,10 @@
                 $(this).height($(this).contents().find("html").height());
             });
             $('input').bind('blur', function (e) {
-                
-                    e.preventDefault();
-                    $(this).focus();
-                
+
+                e.preventDefault();
+                $(this).focus();
+
             });
             $("a.level2.dynamic").each(function (index) {
                 var str1 = $(this).attr('title');
@@ -74,6 +101,16 @@
             $('img').each(function () {
                 if ($(this).attr("src") == '../images/Exclamation.gif') {
                     $(this).parents("span:first").addClass('CustomValidator');
+                }
+            });
+            
+            //$(".flyOutDiv").each(function () {
+            //    var peraH = $(this).find("p").height();
+            //    $(this).height(peraH);
+            //});
+            $("a.nextStep").each(function () {
+                if ($(this).attr('title') == "  ") {
+                    $(this).hide();
                 }
             });
             if ($(".GridTable").width() > $(".row").width()) {
@@ -135,7 +172,7 @@
             });
             $(".NotificationsIcon").on('click', function (e) {
                 $(".NotificationsPopup").addClass("NotificationsActive");
-                
+
             });
             $(".NotificationsPopupClose").on('click', function (e) {
                 $(".NotificationsPopup").removeClass("NotificationsActive");
@@ -157,7 +194,7 @@
 
         });
         $(document).ready(function () {
-           
+
             //$("a.level2.dynamic").each(function (index) {
             //    var str1 = $(this).attr('title');
 
@@ -252,8 +289,8 @@
                     $(this).addClass("taptap-menu-active");
                     $(".taptap-main-wrapper").addClass("taptap-main-wrapper-active");
                     $("body").css("overflow", "hidden");
-                    
-                    
+
+
 
 
                 }
@@ -285,10 +322,10 @@
         });
         $(window).resize(function () {
             if (w != $(window).width()) {
-            MobileListResize();
+                MobileListResize();
             }
         });
-       // $(window).resize(MobileListResize);
+        // $(window).resize(MobileListResize);
     </script>
     <script type="text/javascript">
         // Set timeout variables.
@@ -488,16 +525,16 @@
                     <div class="taptap-main-inner-inner">
                         <div class="taptap-contents-wrapper">
                             <div class="NotificationsWrapper">
-                                 <asp:Image ID="UserImg" runat="server" ImageUrl="~/CSS/Metro/Images/UserImg.png" CssClass="UserImg" />
+                                <asp:Image ID="UserImg" runat="server" ImageUrl="~/CSS/Metro/Images/UserImg.png" CssClass="UserImg" />
                                 <asp:Label ID="lblWelcome" runat="server" Text="Welcome" meta:resourcekey="lblWelcomeResource1" Visible="false"></asp:Label>
 
                                 <asp:Label ID="lblUserName" runat="server" meta:resourcekey="lblUserNameResource1"></asp:Label>
-                                    <div class="NotificationsIcon">
-                                        <span ID="spnNotificationsNo" runat="server" class="NotificationsNumber" >999</span>
-                                    </div>
+                                <div class="NotificationsIcon">
+                                    <span id="spnNotificationsNo" runat="server" class="NotificationsNumber">999</span>
                                 </div>
+                            </div>
                             <div class="UserDetails">
-                                
+
                                 <div class="clearfix"></div>
 
                                 <asp:LinkButton ID="lnkSetting" runat="server" CssClass="SettingBtn" Visible="false"></asp:LinkButton>
@@ -629,32 +666,32 @@
                                         <asp:Label ID="lblDepNameVal" runat="server" Text="------" CssClass="label_DivLeftPanel"
                                             meta:resourcekey="lblDepNameValResource1"></asp:Label>
                                     </div>
-                                        </div>
+                                </div>
                             </div>
 
-                        <div id="lp_padd">
-                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                            </asp:ContentPlaceHolder>
+                            <div id="lp_padd">
+                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                </asp:ContentPlaceHolder>
+                            </div>
                         </div>
                     </div>
+
                 </div>
 
-            </div>
-
-            <div id='LocalDialogModal' style="display: none">
-                <h1>Session About To Timeout - AMSWEB </h1>
-                <center>
+                <div id='LocalDialogModal' style="display: none">
+                    <h1>Session About To Timeout - AMSWEB </h1>
+                    <center>
                 <h1>مهلة الخروج من النظام</h1>
             </center>
-                <center>
+                    <center>
 
                 <p>
                     You will be automatically logged out in 1 minute.<br />
                     To remain logged in move your mouse over this window.
                 </p>
             </center>
-                <br />
-                <center>
+                    <br />
+                    <center>
                 <p>
                     سوف يتم تسجيل الخروج تلقائيا خلال دقيقة واحدة
                     <br />
@@ -663,76 +700,75 @@
         
                 </p>
             </center>
+                </div>
+
             </div>
+            <div id="ft_padd" class="footer">
 
-        </div>
-        <div id="ft_padd" class="footer">
-
-            <asp:LinkButton ID="LnkHome" runat="server" OnClick="LnkHome_Click" CssClass="ft_home"
-                meta:resourcekey="LnkHomeResource1">Home Page</asp:LinkButton>
-          <span>|</span>  
+                <asp:LinkButton ID="LnkHome" runat="server" OnClick="LnkHome_Click" CssClass="ft_home"
+                    meta:resourcekey="LnkHomeResource1">Home Page</asp:LinkButton>
+                <span>|</span>
 
 
-            <asp:LinkButton ID="lnkAboutUs" runat="server" CssClass="ft_abt" meta:resourcekey="lnkAboutUsResource1">About us</asp:LinkButton>
+                <asp:LinkButton ID="lnkAboutUs" runat="server" CssClass="ft_abt" meta:resourcekey="lnkAboutUsResource1">About us</asp:LinkButton>
 
-           <span>|</span>
+                <span>|</span>
 
-            <asp:LinkButton ID="lnkPolicy" runat="server" CssClass="ft_cnt"
-                meta:resourcekey="lnkPolicyResource1" OnClick="lnkPolicy_Click">Policies and Procedures</asp:LinkButton>
+                <asp:LinkButton ID="lnkPolicy" runat="server" CssClass="ft_cnt"
+                    meta:resourcekey="lnkPolicyResource1" OnClick="lnkPolicy_Click">Policies and Procedures</asp:LinkButton>
 
-            <div class="clearfix"></div>
-            <asp:Label ID="lblcopyrights" runat="server" Text="copyrights Almaalim 2005-" meta:resourcekey="lblcopyrightsResource1" />
+                <div class="clearfix"></div>
+                <asp:Label ID="lblcopyrights" runat="server" Text="copyrights Almaalim 2005-" meta:resourcekey="lblcopyrightsResource1" />
 
-            <asp:Label ID="lblcurrentYear" runat="server" meta:resourcekey="lblcurrentYearResource1" />
+                <asp:Label ID="lblcurrentYear" runat="server" meta:resourcekey="lblcurrentYearResource1" />
 
-            <asp:Label ID="lblRights" runat="server" Text=". All Rights Reserved." meta:resourcekey="lblRightsResource1" />
+                <asp:Label ID="lblRights" runat="server" Text=". All Rights Reserved." meta:resourcekey="lblRightsResource1" />
 
-        </div>
-        <script type="text/javascript">
-            
-            $(document).ready(function () {
-                $('.sub-square>a').hover(function () {
-                    // Hover over code
-                    var title = $(this).attr('title');
-                    $(this).data('tipText', title).removeAttr('title');
-                    $('<div class="tooltipSmall"></div>')
-                        
-                    .text(title)
-                    .appendTo("body")
-                    .fadeIn('slow');
-                }, function () {
-                    // Hover out code
-                    $(this).attr('title', $(this).data('tipText'));
-                    $('.tooltipSmall').remove();
-                }).mousemove(function (e) {
-                    var mousex = e.pageX - 50; //Get X coordinates
-                    var mousey = e.pageY - 50; //Get Y coordinates
-                    $('.tooltipSmall')
-                    .css({ top: mousey, left: mousex })
+            </div>
+            <script type="text/javascript">
+
+                $(document).ready(function () {
+                    $('.sub-square>a').hover(function () {
+                        // Hover over code
+                        var title = $(this).attr('title');
+                        $(this).data('tipText', title).removeAttr('title');
+                        $('<div class="tooltipSmall"></div>')
+
+                        .text(title)
+                        .appendTo("body")
+                        .fadeIn('slow');
+                    }, function () {
+                        // Hover out code
+                        $(this).attr('title', $(this).data('tipText'));
+                        $('.tooltipSmall').remove();
+                    }).mousemove(function (e) {
+                        var mousex = e.pageX - 50; //Get X coordinates
+                        var mousey = e.pageY - 50; //Get Y coordinates
+                        $('.tooltipSmall')
+                        .css({ top: mousey, left: mousex })
+                    });
+                    if ("ontouchstart" in document.documentElement) {
+                        document.addEventListener('contextmenu', function (e) {
+                            e.preventDefault();
+                        }, false);
+                    }
+
+
                 });
-                if ("ontouchstart" in document.documentElement) {
-                    document.addEventListener('contextmenu', function (e) {
-                        e.preventDefault();
-                    }, false);
-                }
-                
-                
-            });
-        </script>
-        <script type="text/javascript">    
-            function FavDelete(FavID)
-            {
-                var lang = document.getElementById('<%= hdnLang.ClientID %>').value;
-                var result;
-                if (lang == 'AR') { result = confirm('هل أنت متأكد أنك تريد الحذف؟'); }
-                else { result = confirm('Are you sure you want to delete?'); }
+            </script>
+            <script type="text/javascript">
+                function FavDelete(FavID) {
+                    var lang = document.getElementById('<%= hdnLang.ClientID %>').value;
+                    var result;
+                    if (lang == 'AR') { result = confirm('هل أنت متأكد أنك تريد الحذف؟'); }
+                    else { result = confirm('Are you sure you want to delete?'); }
 
-                if (result) {
-                    document.getElementById('<%= hdnFavID.ClientID %>').value = FavID;
+                    if (result) {
+                        document.getElementById('<%= hdnFavID.ClientID %>').value = FavID;
                     document.getElementById('<%= btnDeleteForm.ClientID %>').click();
-                }       
+                }
             }
-        </script>
+            </script>
     </form>
     <div class="LoadingWrapper">
         <div class="Loader">

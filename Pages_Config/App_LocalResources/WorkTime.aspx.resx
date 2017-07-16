@@ -367,7 +367,7 @@
     <value />
   </data>
   <data name="cvShift2DurationResource1.Text" xml:space="preserve">
-    <value>&lt;img src='images/Exclamation.gif' title='Shift 2 Duration is required!' /&gt;</value>
+    <value>&lt;img src='../images/Exclamation.gif' title='Shift 2 Duration is required!' /&gt;</value>
   </data>
   <data name="cvShift2DurationResource1.ToolTip" xml:space="preserve">
     <value />
@@ -376,7 +376,7 @@
     <value />
   </data>
   <data name="cvShift2TimeResource1.Text" xml:space="preserve">
-    <value>&lt;img src='images/message_exclamation.png' title='Enter correct Shift 2 Time' /&gt;</value>
+    <value>&lt;img src='../images/message_exclamation.png' title='Enter correct Shift 2 Time' /&gt;</value>
   </data>
   <data name="cvShift2TimeResource1.ToolTip" xml:space="preserve">
     <value />
@@ -886,7 +886,7 @@
     <value>The number of hours allowed calculated as overtime a day.</value>
   </data>
   <data name="lblHint2Resource.Text" xml:space="preserve">
-    <value>The establishment of a Shift period of normal time and flexible and clicking on the button &lt;img src='images/Button_Icons/button_calculator.png'/&gt; for the calculation of the period after the introduction period times, and in the case of time clocks is determined by the number of hours required in this shift.</value>
+    <value>The establishment of a Shift period of normal time and flexible and clicking on the button &lt;img src='../images/Button_Icons/button_calculator.png'/&gt; for the calculation of the period after the introduction period times, and in the case of time clocks is determined by the number of hours required in this shift.</value>
   </data>
   <data name="lblHint3Resource.Text" xml:space="preserve">
     <value>Shift is that start before midnight (Twelfth Night) and ends at the dawn of the next day.</value>

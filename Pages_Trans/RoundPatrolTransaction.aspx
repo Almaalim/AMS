@@ -39,16 +39,16 @@
                 </div>
             </div>
             <div id="divdate" runat="server" visible="false" class="row">
-                <div class="col2">
+                <div class="col1">
                     <asp:Label ID="lblFromDate" runat="server" Text="From:" meta:resourcekey="lblFromDateResource1"></asp:Label>
                 </div>
-                <div class="col2">
+                <div class="col4">
                     <Cal:Calendar2 ID="calStartDate" runat="server" CalendarType="System" />
                 </div>
-                <div class="col2">
+                <div class="col1">
                     <asp:Label ID="lblToDate" runat="server" Text="To:" meta:resourcekey="lblToDateResource1"></asp:Label>
                 </div>
-                <div class="col2">
+                <div class="col4">
                     <Cal:Calendar2 ID="calEndDate" runat="server" CalendarType="System" />
                 </div>
 

@@ -116,7 +116,7 @@
                         OnRowDataBound="grdData_RowDataBound" OnSorting="grdData_Sorting"
                         OnSelectedIndexChanged="grdData_SelectedIndexChanged" OnRowCommand="grdData_RowCommand"
                         OnPreRender="grdData_PreRender" EnableModelValidation="True"
-                        meta:resourcekey="grdDataResource1" PageSize="2">
+                        meta:resourcekey="grdDataResource1" PageSize="10">
 
                         <%--<PagerSettings Mode="NextPreviousFirstLast"  />--%>
                         <Columns>

@@ -118,7 +118,7 @@ color:#FF0000;
 clear:both; 
 height: 100%;
     background-color: rgb(238, 238, 238);
-/*padding:10px; */ 
+overflow: auto;
 }
 
 /*<!--[ifIE]>*/

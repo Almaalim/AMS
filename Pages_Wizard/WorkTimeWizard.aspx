@@ -161,11 +161,6 @@
                                     <asp:CheckBox ID="chkEwrFri" runat="server" Text="Friday"
                                         meta:resourcekey="chkEwrFriResource1" />
                                         </span>
-                                    
-                                </div>
-                                <div class="col2">
-                                </div>
-                                <div class="col4">
                                     <asp:TextBox ID="txtCustomValidator" runat="server" Text="02120"
                                         Visible="False" Width="10px" meta:resourcekey="txtCustomValidatorResource1"></asp:TextBox>
                                     <asp:CustomValidator ID="cvSelectWorkDays" runat="server"
@@ -177,6 +172,10 @@
                                         ControlToValidate="txtCustomValidator"
                                         meta:resourcekey="cvSelectWorkDaysResource1"></asp:CustomValidator>
                                 </div>
+                                <div class="col2">
+                                    
+                                </div>
+                                
                             </div>
                         </asp:WizardStep>
                         <asp:WizardStep ID="WizardStep2" runat="server" Title="2-Select Employees"

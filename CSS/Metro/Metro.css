@@ -816,7 +816,12 @@ a:active {
     width: 50%;
     float: right;
 }
-
+.flyoutWrap {
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    position: absolute;
+}
 .flyOutDiv {
     position: absolute;
     z-index: 999;
@@ -835,6 +840,7 @@ a:active {
 
 fieldset > legend > select, fieldset > legend {
     width: auto;
+    position: relative;
 }
 
 .flyOutDivCloseX {
@@ -854,6 +860,7 @@ fieldset > legend > select, fieldset > legend {
     top: 5px;
     right: -10px;
     width: 19px;
+    z-index: 99;
 }
 
 .LeftOverlay3 {
@@ -862,6 +869,7 @@ fieldset > legend > select, fieldset > legend {
     right: 15px;
     width: 19px;
 }
+
 
 .LeftOverlay[disabled] {
     background: none;
@@ -1191,7 +1199,7 @@ span.glyphicon.CalenderIco {
 
 
 
-.loginLogoS {
+.loginLogoSEn , .loginLogoSAr , .loginLogoMAr {
     display: none;
     width: 393px;
     height: 89px;
@@ -1199,7 +1207,7 @@ span.glyphicon.CalenderIco {
 }
 
 
-.loginLogoM {
+.loginLogoMEn {
     height: 100px;
     margin: 6% auto;
     display: block;
@@ -1375,6 +1383,7 @@ body.loginPage > #aspnetForm {
 .MsgValidation:before, .errorValidation:before {
     background-color: #ba2c1d;
     content: "\f05a";
+    font-family: FontAwesome;
 }
 
 .monthSummaryDiv {
@@ -4900,18 +4909,18 @@ a.level2.dynamic.JobCategory:before {
     }
     #ft_padd
     {
-        width:95vW;
+        
         margin:0 auto;
     }
     .LoginFooterLink
     {
         width:100%;
     }
-    .loginLogoM
+    .loginLogoMEn
     {
         display:none;
     }
-    .loginLogoS
+    .loginLogoSEn
     {
         display:block;
         margin:0px auto;

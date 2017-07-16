@@ -64,7 +64,25 @@
                 </div>
             </div>
 
-            <div class="row">
+            
+            <div class="GreySetion">
+                <div class="left">
+                      <div class="row">
+                        <div class="col3">
+                            <asp:Label ID="lblBranchtID" runat="server" Text="Branch Name :" meta:resourcekey="lblBranchtIDResource1"></asp:Label>
+                        </div>
+                        <div class="col9">
+                            <asp:DropDownList ID="ddlBrcParentName" runat="server" Enabled="False"
+                                AutoPostBack="True" OnSelectedIndexChanged="ddlBrcParentName_SelectedIndexChanged"
+                                meta:resourcekey="ddlBrcParentNameResource1">
+                            </asp:DropDownList>
+                            <asp:RequiredFieldValidator ID="rfvBrcParentName" runat="server" ControlToValidate="ddlBrcParentName" CssClass="CustomValidator"
+                                EnableClientScript="False" Text="&lt;img src='../images/Exclamation.gif' title='Branch Name is required!' /&gt;"
+                                ValidationGroup="vgSave" meta:resourcekey="rfvBrcParentNameResource1"></asp:RequiredFieldValidator>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                 <div class="col8">
                     <asp:LinkButton ID="btnAdd" runat="server" CssClass="GenButton glyphicon glyphicon-plus-sign" OnClick="btnAdd_Click" Text="&lt;img src=&quot;../images/Button_Icons/button_add.png&quot; /&gt; Add"
                         meta:resourcekey="btnAddResource1"></asp:LinkButton>
@@ -92,7 +110,6 @@
                     </asp:CustomValidator>
                 </div>
             </div>
-            <div class="GreySetion">
                 <div class="row">
                     <div class="col12">
                         <asp:Panel runat="server" ID="pnlMyDialogBox" Visible="False"
@@ -110,9 +127,30 @@
                     </div>
                 </div>
 
-                
 
-                <div class="left">
+
+             <div class="left">
+                  
+
+                    <div class="row">
+                        <div class="col3">
+                            <asp:Label ID="Label1" runat="server" Text="Departments :" meta:resourcekey="Label1Resource1"></asp:Label>
+                        </div>
+                        <div class="col9">
+                            <asp:XmlDataSource ID="xdsDepartment" runat="server" TransformFile="~/XSL/DepTransformXSLT.xsl"
+                                CacheExpirationPolicy="Sliding" XPath="MenuItems/MenuItem" EnableCaching="False" />
+                            <asp:TreeView ID="trvDept" runat="server" LineImagesFolder="~/images/TreeLineImages" DataSourceID="xdsDepartment"
+                                ShowLines="True" OnDataBound="trvDept_DataBound" OnTreeNodeDataBound="trvDept_TreeNodeDataBound"
+                                Enabled="False" OnSelectedNodeChanged="trvDept_SelectedNodeChanged"
+                                meta:resourcekey="trvDeptResource1">
+                                <DataBindings>
+                                    <asp:TreeNodeBinding DataMember="MenuItem" TextField="Text" ValueField="Value" meta:resourcekey="TreeNodeBindingResource1" />
+                                </DataBindings>
+                                <SelectedNodeStyle ForeColor="Red" />
+                            </asp:TreeView>
+                        </div>
+                    </div>
+                
                     <div class="row">
                         <div class="col3">
                             <span id="spnNameAr" runat="server" visible="False" class="RequiredField">*</span>
@@ -210,44 +248,10 @@
                         </div>
                         <div class="col9"></div>
                     </div>
+             
+
                 </div>
 
-                <div class="left">
-                    <div class="row">
-                        <div class="col3">
-                            <asp:Label ID="lblBranchtID" runat="server" Text="Branch Name :" meta:resourcekey="lblBranchtIDResource1"></asp:Label>
-                        </div>
-                        <div class="col9">
-                            <asp:DropDownList ID="ddlBrcParentName" runat="server" Enabled="False"
-                                AutoPostBack="True" OnSelectedIndexChanged="ddlBrcParentName_SelectedIndexChanged"
-                                meta:resourcekey="ddlBrcParentNameResource1">
-                            </asp:DropDownList>
-                            <asp:RequiredFieldValidator ID="rfvBrcParentName" runat="server" ControlToValidate="ddlBrcParentName" CssClass="CustomValidator"
-                                EnableClientScript="False" Text="&lt;img src='../images/Exclamation.gif' title='Branch Name is required!' /&gt;"
-                                ValidationGroup="vgSave" meta:resourcekey="rfvBrcParentNameResource1"></asp:RequiredFieldValidator>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col3">
-                            <asp:Label ID="Label1" runat="server" Text="Departments :" meta:resourcekey="Label1Resource1"></asp:Label>
-                        </div>
-                        <div class="col9">
-                            <asp:XmlDataSource ID="xdsDepartment" runat="server" TransformFile="~/XSL/DepTransformXSLT.xsl"
-                                CacheExpirationPolicy="Sliding" XPath="MenuItems/MenuItem" EnableCaching="False" />
-                            <asp:TreeView ID="trvDept" runat="server" LineImagesFolder="~/images/TreeLineImages" DataSourceID="xdsDepartment"
-                                ShowLines="True" OnDataBound="trvDept_DataBound" OnTreeNodeDataBound="trvDept_TreeNodeDataBound"
-                                Enabled="False" OnSelectedNodeChanged="trvDept_SelectedNodeChanged"
-                                meta:resourcekey="trvDeptResource1">
-                                <DataBindings>
-                                    <asp:TreeNodeBinding DataMember="MenuItem" TextField="Text" ValueField="Value" meta:resourcekey="TreeNodeBindingResource1" />
-                                </DataBindings>
-                                <SelectedNodeStyle ForeColor="Red" />
-                            </asp:TreeView>
-                        </div>
-                    </div>
-                </div>
-                
             </div>
 
         </ContentTemplate>
