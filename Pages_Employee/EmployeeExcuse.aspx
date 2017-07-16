@@ -22,7 +22,6 @@
                     <asp:Label ID="lblFilter" runat="server" Text="Search by:" meta:resourcekey="lblSearchByResource1"></asp:Label>
                 </div>
                 <div class="col2">
-
                     <asp:DropDownList ID="ddlFilter" runat="server" meta:resourcekey="ddlSearchByResource1">
                         <asp:ListItem Selected="True" meta:resourcekey="ListItemResource1">[None]</asp:ListItem>
                         <asp:ListItem Text="Employee ID" Value="EmpID" meta:resourcekey="ListItemResource2"></asp:ListItem>

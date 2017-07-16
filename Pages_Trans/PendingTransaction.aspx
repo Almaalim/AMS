@@ -10,7 +10,7 @@
     <%--script--%>
     <script type="text/javascript" src="../Script/GridEvent.js"></script>
     <script type="text/javascript" src="../Script/AutoComplete1.js"></script>  
-
+    <script type="text/javascript" src="../Script/CheckKey.js"></script>
     <%--script--%>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <Triggers>
@@ -22,8 +22,13 @@
                     <asp:Label ID="lblFilter" runat="server" Text="Employee ID:" Height="18px" meta:resourcekey="lblIDFilterResource1"></asp:Label>
                 </div>
                 <div class="col2">
-                    <asp:TextBox ID="txtEmployeeID" runat="server" AutoCompleteType="Disabled"
+                    <asp:TextBox ID="txtEmployeeID" runat="server" AutoCompleteType="Disabled" onkeypress="return OnlyNumber(event);"
                         ToolTip="Employee ID" meta:resourcekey="txtEmployeeIDResource1"></asp:TextBox>
+                    <%--<asp:RegularExpressionValidator ID="revtxtEmployeeID" runat="server" ControlToValidate="txtEmployeeID"
+                        EnableClientScript="False" ErrorMessage=" Enter Only Numbers" ValidationExpression="^\d+$"  CssClass="CustomValidator"
+                        ValidationGroup="vgSave" 
+                            meta:resourcekey="RegularExpressionValidator1Resource1"><img src="../images/Exclamation.gif" title="Enter Only Numbers!" />
+                    </asp:RegularExpressionValidator>--%>
                     <asp:Panel runat="server" ID="pnlauID" ScrollBars="Vertical" meta:resourcekey="pnlauIDResource1" />
                     <ajaxToolkit:AutoCompleteExtender
                         runat="server"

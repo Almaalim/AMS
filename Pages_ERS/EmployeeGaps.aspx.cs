@@ -84,6 +84,9 @@ public partial class EmployeeGaps : BasePage
         {
             Literal1.Text = General.Msg(pMonth.ToString("00") + "/" + pYear.ToString(), pMonth.ToString("00") + "/" + pYear.ToString());
 
+            DataTable DT = DBCs.FetchData(" SELECT EmpID,EmpNameAr,EmpNameEn FROM Employee WHERE EmpID = @P1 ", new string[] { pgCs.LoginEmpID });
+            if (!DBCs.IsNullOrEmpty(DT)) { Literal2.Text = DT.Rows[0]["EmpID"].ToString() + " - " + DT.Rows[0][General.Msg("EmpNameEn", "EmpNameAr")].ToString(); }
+
             SqlCommand cmd = new SqlCommand();
             string sql = MainQuery + " AND GapID = '0' ";
 

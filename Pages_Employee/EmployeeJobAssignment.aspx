@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true" CodeFile="EmployeeJobAssignment.aspx.cs" Inherits="EmployeeJobAssignment" %>
+﻿<%@ Page Title="Employee Job Assignment" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true" CodeFile="EmployeeJobAssignment.aspx.cs" Inherits="EmployeeJobAssignment" meta:resourcekey="PageResource1" %>
 
 <%@ Register Assembly="System.Web.DynamicData, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.DynamicData" TagPrefix="cc1" %>
 <%@ Register Assembly="AjaxSamples" Namespace="AjaxSamples" TagPrefix="as" %>

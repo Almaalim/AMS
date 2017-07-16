@@ -72,8 +72,8 @@
                                     <%# DisplayFun.GrdDisplayStatus(Eval("ExcStatus"))%>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            
-                            
+
+
                             <asp:TemplateField HeaderText="           " meta:resourcekey="TemplateFieldResource1">
                                 <ItemTemplate>
                                     <asp:ImageButton ID="imgbtnDelete" CommandName="Delete1" CommandArgument='<%# Eval("ExcID") %>'
@@ -116,11 +116,11 @@
                 <div class="col4">
                     <asp:TextBox ID="txtValid" runat="server" Text="02120" Visible="False"
                         Width="10px" meta:resourcekey="txtCustomValidatorResource1"></asp:TextBox>
-                    
-                                    <asp:CustomValidator ID="cvShowMsg" runat="server" Display="None"
-                                        ValidationGroup="ShowMsg" OnServerValidate="ShowMsg_ServerValidate"
-                                        EnableClientScript="False" ControlToValidate="txtValid">
-                                    </asp:CustomValidator>
+
+                    <asp:CustomValidator ID="cvShowMsg" runat="server" Display="None"
+                        ValidationGroup="ShowMsg" OnServerValidate="ShowMsg_ServerValidate"
+                        EnableClientScript="False" ControlToValidate="txtValid">
+                    </asp:CustomValidator>
                 </div>
             </div>
             <div class="GreySetion">
@@ -199,8 +199,9 @@
                         <asp:TextBox ID="txtPercentAllowable" runat="server" AutoCompleteType="Disabled"
                             Enabled="False" MaxLength="3" onkeypress="return OnlyNumber(event);"
                             meta:resourcekey="txtPercentAllowableResource1"></asp:TextBox>
+                        
                         &nbsp;
-                                    <asp:Label ID="Label2" runat="server" Text=" % " meta:resourcekey="Label2Resource1" CssClass="LeftOverlay"></asp:Label>
+                        <asp:Label ID="Label2" runat="server" Text=" % " meta:resourcekey="Label2Resource1" CssClass="LeftOverlay"></asp:Label>
                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow2" runat="server" TargetControlID="lnkShow2"></ajaxToolkit:AnimationExtender>
                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose2" runat="server" TargetControlID="lnkClose2"></ajaxToolkit:AnimationExtender>
                         <asp:ImageButton ID="lnkShow2" runat="server" OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" meta:resourcekey="lnkShow2Resouce" />
@@ -221,7 +222,7 @@
                     </div>
                     <div class="col4">
                         <asp:TextBox ID="txtExcuseDesc" runat="server" AutoCompleteType="Disabled"
-                            Enabled="False" TextMode="MultiLine"  meta:resourcekey="txtExcuseDescResource1"></asp:TextBox>
+                            Enabled="False" TextMode="MultiLine" meta:resourcekey="txtExcuseDescResource1"></asp:TextBox>
                     </div>
                     <div class="col2">
                     </div>

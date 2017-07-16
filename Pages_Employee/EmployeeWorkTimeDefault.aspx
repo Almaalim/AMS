@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true"
+﻿<%@ Page Title="Work Time Default" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true"
     CodeFile="EmployeeWorkTimeDefault.aspx.cs" Inherits="EmployeeWorkTimeDefault"
     meta:resourcekey="PageResource1" %>
 
