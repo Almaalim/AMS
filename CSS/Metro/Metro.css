@@ -836,6 +836,7 @@ a:active {
     right: 0;
     left: inherit !important;
     top: 25px !important;
+    height:auto !important;
 }
 
 fieldset > legend > select, fieldset > legend {
