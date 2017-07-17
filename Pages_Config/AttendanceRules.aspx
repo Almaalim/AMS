@@ -24,19 +24,19 @@
             </div>
 
             <div class="row">
-                <div class="col1">
+                <div class="col2">
                     <asp:Label ID="lblRuleSetNew" runat="server" Text="RuleSet(Add new):" meta:resourcekey="lblRuleSetNewResource1"></asp:Label>
                 </div>
-                <div class="col2">
+                <div class="col4">
                     <asp:TextBox ID="txtRuleSet" runat="server" AutoCompleteType="Disabled"
                         meta:resourcekey="txtRuleSetResource1"></asp:TextBox>
                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow1" runat="server" TargetControlID="lnkShow1"></ajaxToolkit:AnimationExtender>
                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose1" runat="server" TargetControlID="lnkClose1"></ajaxToolkit:AnimationExtender>
                     <asp:ImageButton ID="lnkShow1" runat="server" OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
                     <div id="pnlInfo1" class="flyOutDiv">
-                        <asp:LinkButton ID="lnkClose1" runat="server" Text="X" OnClientClick="return false;" CssClass="GenButton1 glyphicon glyphicon-remove" />
+                        <asp:LinkButton ID="lnkClose1" runat="server" Text="X" OnClientClick="return false;" CssClass="flyOutDivCloseX glyphicon glyphicon-remove" />
 
-                        <asp:Label ID="lblHint1" runat="server" Text="Ruleset can be ttached to employee by adding rules to it" meta:resourcekey="lblHintResource"></asp:Label>
+                        <asp:Label ID="lblHint1" runat="server" Text="Ruleset can be atached to employee by adding rules to it" meta:resourcekey="lblHint1Resource1"></asp:Label>
 
                     </div>
                     <asp:CustomValidator ID="cvRuleSet" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='Enter Ruleset!' /&gt;"
@@ -53,10 +53,10 @@
             </div>
 
             <div class="row">
-                <div class="col1">
+                <div class="col2">
                     <asp:Label ID="lblRuleSetSelect" runat="server" Text="Select Rule Set:" meta:resourcekey="lblRuleSetSelectResource1"></asp:Label>
                 </div>
-                <div class="col2">
+                <div class="col4">
                     <asp:DropDownList ID="ddlRuleSet" runat="server" AutoPostBack="True"
                         OnSelectedIndexChanged="ddlRuleSet_SelectedIndexChanged" meta:resourcekey="ddlRuleSetResource1">
                     </asp:DropDownList>
@@ -221,7 +221,7 @@
                             <asp:LinkButton ID="lnkClose2" runat="server" Text="X" OnClientClick="return false;" CssClass="flyOutDivCloseX glyphicon glyphicon-remove" />
                             <p>
                                 <br />
-                                <asp:Label ID="lblHint2" runat="server" Text="The count for rule units exceeding which rules are applied" meta:resourcekey="lblHintResource2"></asp:Label>
+                                <asp:Label ID="lblHint2" runat="server" Text="The count for rule units exceeding which rules are applied" meta:resourcekey="lblHint2Resource1"></asp:Label>
                             </p>
                         </div>
                         <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtFrequency" CssClass="CustomValidator"

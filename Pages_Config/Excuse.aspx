@@ -190,7 +190,7 @@
                                     meta:resourcekey="lblMaxResource"></asp:Label>
                             </p>
                         </div>
-                               </div>
+                    </div>
                     </div>
                     <div class="col2">
                         <asp:Label ID="lblPercentAllowable" runat="server" Text="Percent Allowable Per Shift :"
@@ -200,8 +200,9 @@
                         <asp:TextBox ID="txtPercentAllowable" runat="server" AutoCompleteType="Disabled"
                             Enabled="False" MaxLength="3" onkeypress="return OnlyNumber(event);"
                             meta:resourcekey="txtPercentAllowableResource1"></asp:TextBox>
+                        
                         &nbsp;
-                                    <asp:Label ID="Label2" runat="server" Text=" % " meta:resourcekey="Label2Resource1" CssClass="LeftOverlay3"></asp:Label>
+                                    <asp:Label ID="Label2" runat="server" Text=" % " meta:resourcekey="Label2Resource1" CssClass="LeftOverlay"></asp:Label>
                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow2" runat="server" TargetControlID="lnkShow2"></ajaxToolkit:AnimationExtender>
                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose2" runat="server" TargetControlID="lnkClose2"></ajaxToolkit:AnimationExtender>
                         <asp:ImageButton ID="lnkShow2" runat="server" OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" meta:resourcekey="lnkShow2Resouce" />
@@ -222,7 +223,7 @@
                     </div>
                     <div class="col4">
                         <asp:TextBox ID="txtExcuseDesc" runat="server" AutoCompleteType="Disabled"
-                            Enabled="False" TextMode="MultiLine"  meta:resourcekey="txtExcuseDescResource1"></asp:TextBox>
+                            Enabled="False" TextMode="MultiLine" meta:resourcekey="txtExcuseDescResource1"></asp:TextBox>
                     </div>
                     <div class="col2">
                     </div>

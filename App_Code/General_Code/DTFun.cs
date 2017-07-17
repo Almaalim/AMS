@@ -398,7 +398,7 @@ public class DTFun
             int minYear = 1997; //DateTime.Now.Year - 5;
             int maxYear = DateTime.Now.Year + 10;
 
-            for (int i = minYear; i <= maxYear; i++) { ddl.Items.Add(i.ToString()); }
+            for (int i = maxYear; i >= minYear; i--) { ddl.Items.Add(i.ToString()); }
 
             ddl.Items.FindByValue(DateTime.Now.Year.ToString()).Selected = true;
         }
@@ -412,11 +412,40 @@ public class DTFun
             Int32 D = Convert.ToInt32(arrDate[2]);
             int minYear = 1400; //Y - 5;
             int maxYear = 1450;
-        
-            for (int i = minYear; i <= maxYear; i++) { ddl.Items.Add(i.ToString()); }
+
+            for (int i = maxYear; i <= minYear; i--) { ddl.Items.Add(i.ToString()); }
 
             ddl.Items.FindByValue(Y.ToString()).Selected = true;
         }
+
+
+
+        //if (IsAll) { ListItem _li = new ListItem(General.Msg("All", "الكل"), "0"); /**/  ddl.Items.Add(_li); }
+
+        //if (pDateType == "Gregorian")
+        //{
+        //    int minYear = 1997; //DateTime.Now.Year - 5;
+        //    int maxYear = DateTime.Now.Year + 10;
+
+        //    for (int i = minYear; i <= maxYear; i++) { ddl.Items.Add(i.ToString()); }
+
+        //    ddl.Items.FindByValue(DateTime.Now.Year.ToString()).Selected = true;
+        //}
+        //else if (pDateType == "Hijri")
+        //{
+        //    string date = GregToHijri(DateTime.Now.ToString("dd/MM/yyyy"));
+
+        //    string[] arrDate = date.Split('/');
+        //    Int32 Y = Convert.ToInt32(arrDate[0]);
+        //    Int32 M = Convert.ToInt32(arrDate[1]);
+        //    Int32 D = Convert.ToInt32(arrDate[2]);
+        //    int minYear = 1400; //Y - 5;
+        //    int maxYear = 1450;
+        
+        //    for (int i = minYear; i <= maxYear; i++) { ddl.Items.Add(i.ToString()); }
+
+        //    ddl.Items.FindByValue(Y.ToString()).Selected = true;
+        //}
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

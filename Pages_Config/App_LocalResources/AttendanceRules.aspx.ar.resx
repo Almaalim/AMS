@@ -378,4 +378,10 @@
   <data name="vsumAllResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="lblHint1Resource1.Text" xml:space="preserve">
+    <value>الضابط يمكن اضافته للموظف لتطبيق القواعد عليه</value>
+  </data>
+  <data name="lblHint2Resource1.Text" xml:space="preserve">
+    <value>عدد المرات أو الوحدات التي تستوفي لتطبيق الضوابط</value>
+  </data>
 </root>

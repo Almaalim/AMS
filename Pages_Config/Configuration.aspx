@@ -90,7 +90,7 @@
                         </div>
                     <div class="col4">
                                     <asp:CheckBox ID="chkAutoIn" runat="server" Enabled="False" Text="Auto In" 
-                                        AutoPostBack="True" oncheckedchanged="chkAutoIn_CheckedChanged" 
+                            AutoPostBack="True" OnCheckedChanged="chkAutoIn_CheckedChanged"
                                         meta:resourcekey="chkAutoInResource1" />
 
                                         <%--<ajaxToolkit:AnimationExtender ID="AnimationExtenderShow?" runat="server" TargetControlID="lnkShow?"></ajaxToolkit:AnimationExtender>
@@ -106,16 +106,15 @@
 
                                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow1" runat="server" TargetControlID="lnkShow1"></ajaxToolkit:AnimationExtender>
                                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose1" runat="server" TargetControlID="lnkClose1"></ajaxToolkit:AnimationExtender>
-                        <div class="flyoutWrap">
                                         <asp:ImageButton ID="lnkShow1" runat="server" OnClientClick="return false;" ImageUrl = "~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
                                         <div id="pnlInfo1" class="flyOutDiv">
-                                            <asp:LinkButton ID="lnkClose1" runat="server" Text="X" OnClientClick="return false;" CssClass= "flyOutDivCloseX glyphicon glyphicon-remove" />
+                            <asp:LinkButton ID="lnkClose1" runat="server" Text="X" OnClientClick="return false;" CssClass="flyOutDivCloseX glyphicon glyphicon-remove" />
                                             <p>
                                                 <br />
                                                 <asp:Label ID="lblHint1" runat="server" Text="This option determines whether this feature can be selected on the Employee page or not, it means the ability to add movement automatic entry automatically" meta:resourcekey="lblHint1Resource"></asp:Label>
                                             </p>
                                         </div>
-                            </div>
+                        </div>
                         </div>
                                <div class="col2">
                         </div>
@@ -125,30 +124,30 @@
                         <div class="flyoutWrap">
                                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow2" runat="server" TargetControlID="lnkShow2"></ajaxToolkit:AnimationExtender>
                                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose2" runat="server" TargetControlID="lnkClose2"></ajaxToolkit:AnimationExtender>
-                                        <asp:ImageButton ID="lnkShow2" runat="server" OnClientClick="return false;" ImageUrl = "~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
+                        <asp:ImageButton ID="lnkShow2" runat="server" OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
                                         <div id="pnlInfo2" class="flyOutDiv">
-                                            <asp:LinkButton ID="lnkClose2" runat="server" Text="X" OnClientClick="return false;" CssClass= "flyOutDivCloseX glyphicon glyphicon-remove" />
+                            <asp:LinkButton ID="lnkClose2" runat="server" Text="X" OnClientClick="return false;" CssClass="flyOutDivCloseX glyphicon glyphicon-remove" />
                                             <p>
                                                 <br />
                                                 <asp:Label ID="lblHint2" runat="server" Text="Identify priority choice between regular entry movement, if any, automatic login movement at treatment, when selecting priority will be given to automatic login movement." meta:resourcekey="lblHint2Resource"></asp:Label>
                                             </p>
                                         </div>
-                            </div>
                                </div>
+            </div>
             </div>
             <div class="row">
                     <div class="col2">
                         </div>
                     <div class="col4">
                                     <asp:CheckBox ID="chkAutoOut" runat="server" Enabled="False" Text="Auto Out" 
-                                        AutoPostBack="True" oncheckedchanged="chkAutoOut_CheckedChanged" 
+                            AutoPostBack="True" OnCheckedChanged="chkAutoOut_CheckedChanged"
                                         meta:resourcekey="chkAutoOutResource1" />
                         <div class="flyoutWrap">
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow3" runat="server" TargetControlID="lnkShow3"></ajaxToolkit:AnimationExtender>
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose3" runat="server" TargetControlID="lnkClose3"></ajaxToolkit:AnimationExtender>
-                                    <asp:ImageButton ID="lnkShow3" runat="server" OnClientClick="return false;" ImageUrl = "~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
+                        <asp:ImageButton ID="lnkShow3" runat="server" OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
                                     <div id="pnlInfo3" class="flyOutDiv">
-                                        <asp:LinkButton ID="lnkClose3" runat="server" Text="X" OnClientClick="return false;" CssClass= "flyOutDivCloseX glyphicon glyphicon-remove" />
+                            <asp:LinkButton ID="lnkClose3" runat="server" Text="X" OnClientClick="return false;" CssClass="flyOutDivCloseX glyphicon glyphicon-remove" />
                                         <p>
                                             <br />
                                             <asp:Label ID="lblHint3" runat="server" Text="This option determines whether this feature can be selected on the employee page or not, it means the ability to add automatic movement out automatically." meta:resourcekey="lblHint3Resource"></asp:Label>
@@ -164,16 +163,16 @@
                         <div class="flyoutWrap">
                                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow4" runat="server" TargetControlID="lnkShow4"></ajaxToolkit:AnimationExtender>
                                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose4" runat="server" TargetControlID="lnkClose4"></ajaxToolkit:AnimationExtender>
-                                        <asp:ImageButton ID="lnkShow4" runat="server" OnClientClick="return false;" ImageUrl = "~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
+                        <asp:ImageButton ID="lnkShow4" runat="server" OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
                                         <div id="pnlInfo4" class="flyOutDiv">
-                                            <asp:LinkButton ID="lnkClose4" runat="server" Text="X" OnClientClick="return false;" CssClass= "flyOutDivCloseX glyphicon glyphicon-remove" />
+                            <asp:LinkButton ID="lnkClose4" runat="server" Text="X" OnClientClick="return false;" CssClass="flyOutDivCloseX glyphicon glyphicon-remove" />
                                             <p>
                                                 <br />
                                                 <asp:Label ID="lblHint4" runat="server" Text="Identify priority choice between regular exit transaction, if any, and automatic exit transaction at treatment, when selecting priority will be given to automatic exit transaction." meta:resourcekey="lblHint4Resource"></asp:Label>
                                             </p>
                                         </div>
-                            </div>
                               </div>
+                </div>
                 </div>
                 <div class="row">
                     <div class="col2">
@@ -186,9 +185,9 @@
                                         meta:resourcekey="txtMiddleGapCountResource1"></asp:TextBox>
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow5" runat="server" TargetControlID="lnkShow5"></ajaxToolkit:AnimationExtender>
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose5" runat="server" TargetControlID="lnkClose5"></ajaxToolkit:AnimationExtender>
-                                    <asp:ImageButton ID="lnkShow5" runat="server" OnClientClick="return false;" ImageUrl = "~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
+                        <asp:ImageButton ID="lnkShow5" runat="server" OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
                                     <div id="pnlInfo5" class="flyOutDiv">
-                                        <asp:LinkButton ID="lnkClose5" runat="server" Text="X" OnClientClick="return false;" CssClass= "flyOutDivCloseX glyphicon glyphicon-remove" />
+                            <asp:LinkButton ID="lnkClose5" runat="server" Text="X" OnClientClick="return false;" CssClass="flyOutDivCloseX glyphicon glyphicon-remove" />
                                         <p>
                                             <br />
                                             <asp:Label ID="lblHint5" runat="server" Text="The number of gaps allowed in shift the grace which duration is specified in the page working times." meta:resourcekey="lblHint5Resource"></asp:Label>
@@ -220,9 +219,9 @@
                                         meta:resourcekey="Label1Resource1"></asp:Label>
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow6" runat="server" TargetControlID="lnkShow6"></ajaxToolkit:AnimationExtender>
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose6" runat="server" TargetControlID="lnkClose6"></ajaxToolkit:AnimationExtender>
-                                    <asp:ImageButton ID="lnkShow6" runat="server" OnClientClick="return false;" ImageUrl = "~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
+                        <asp:ImageButton ID="lnkShow6" runat="server" OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
                                     <div id="pnlInfo6" class="flyOutDiv">
-                                        <asp:LinkButton ID="lnkClose6" runat="server" Text="X" OnClientClick="return false;" CssClass= "flyOutDivCloseX glyphicon glyphicon-remove" />
+                            <asp:LinkButton ID="lnkClose6" runat="server" Text="X" OnClientClick="return false;" CssClass="flyOutDivCloseX glyphicon glyphicon-remove" />
                                         <p>
                                             <br />
                                             <asp:Label ID="lblHint6" runat="server" Text="This property specifies the percentage allowed for incomplete movement, when you choose 50%, for example, then you can not close the movement completed only a period equal to or less than half the duration of the Shift." meta:resourcekey="lblHint6Resource"></asp:Label>
@@ -254,9 +253,9 @@
                                     </asp:DropDownList>
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow7" runat="server" TargetControlID="lnkShow7"></ajaxToolkit:AnimationExtender>
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose7" runat="server" TargetControlID="lnkClose7"></ajaxToolkit:AnimationExtender>
-                                    <asp:ImageButton ID="lnkShow7" runat="server" OnClientClick="return false;" ImageUrl = "~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
+                        <asp:ImageButton ID="lnkShow7" runat="server" OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
                                     <div id="pnlInfo7" class="flyOutDiv">
-                                        <asp:LinkButton ID="lnkClose7" runat="server" Text="X" OnClientClick="return false;" CssClass= "flyOutDivCloseX glyphicon glyphicon-remove" />
+                            <asp:LinkButton ID="lnkClose7" runat="server" Text="X" OnClientClick="return false;" CssClass="flyOutDivCloseX glyphicon glyphicon-remove" />
                                         <p>
                                             <br />
                                             <asp:Label ID="lblHint7" runat="server" Text="This option determines access movement, which will be processed (first or last) in the case of more of the entry in a row and ignore the other movements." meta:resourcekey="lblHint7Resource"></asp:Label>
@@ -293,16 +292,16 @@
                         <div class="flyoutWrap">
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow8" runat="server" TargetControlID="lnkShow8"></ajaxToolkit:AnimationExtender>
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose8" runat="server" TargetControlID="lnkClose8"></ajaxToolkit:AnimationExtender>
-                                    <asp:ImageButton ID="lnkShow8" runat="server" OnClientClick="return false;" ImageUrl = "~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
+                        <asp:ImageButton ID="lnkShow8" runat="server" OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
                                     <div id="pnlInfo8" class="flyOutDiv">
-                                        <asp:LinkButton ID="lnkClose8" runat="server" Text="X" OnClientClick="return false;" CssClass= "flyOutDivCloseX glyphicon glyphicon-remove" />
+                            <asp:LinkButton ID="lnkClose8" runat="server" Text="X" OnClientClick="return false;" CssClass="flyOutDivCloseX glyphicon glyphicon-remove" />
                                         <p>
                                             <br />
                                             <asp:Label ID="lblHint8" runat="server" Text="Limit the time allowed a maximum of overtime a day, which the employee can not provide additional job applications when crossed." meta:resourcekey="lblHint8Resource"></asp:Label>
                                         </p>
                                     </div>
                                </div>
-                        </div>
+                </div>
                 </div>
                
                 <div class="row">
@@ -317,9 +316,9 @@
                         <div class="flyoutWrap">
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow10" runat="server" TargetControlID="lnkShow10"></ajaxToolkit:AnimationExtender>
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose10" runat="server" TargetControlID="lnkClose10"></ajaxToolkit:AnimationExtender>
-                                    <asp:ImageButton ID="lnkShow10" runat="server" OnClientClick="return false;" ImageUrl = "~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
+                        <asp:ImageButton ID="lnkShow10" runat="server" OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
                                     <div id="pnlInfo10" class="flyOutDiv">
-                                        <asp:LinkButton ID="lnkClose10" runat="server" Text="X" OnClientClick="return false;" CssClass= "flyOutDivCloseX glyphicon glyphicon-remove" />
+                            <asp:LinkButton ID="lnkClose10" runat="server" Text="X" OnClientClick="return false;" CssClass="flyOutDivCloseX glyphicon glyphicon-remove" />
                                         <p>
                                             <br />
                                             <asp:Label ID="lblHint10" runat="server" Text="Less duration can be calculated as overtime early attendance and who is after this period." meta:resourcekey="lblHint10Resource"></asp:Label>
@@ -335,19 +334,19 @@
                         <div class="flyoutWrap">
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow9" runat="server" TargetControlID="lnkShow9"></ajaxToolkit:AnimationExtender>
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose9" runat="server" TargetControlID="lnkClose9"></ajaxToolkit:AnimationExtender>
-                                    <asp:ImageButton ID="lnkShow9" runat="server" OnClientClick="return false;" ImageUrl = "~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
+                        <asp:ImageButton ID="lnkShow9" runat="server" OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
                                     <div id="pnlInfo9" class="flyOutDiv">
-                                        <asp:LinkButton ID="lnkClose9" runat="server" Text="X" OnClientClick="return false;" CssClass= "flyOutDivCloseX glyphicon glyphicon-remove" />
+                            <asp:LinkButton ID="lnkClose9" runat="server" Text="X" OnClientClick="return false;" CssClass="flyOutDivCloseX glyphicon glyphicon-remove" />
                                         <p>
                                             <br />
                                             <asp:Label ID="lblHint9" runat="server" Text="When selected early attendance is calculated as overtime for employees" meta:resourcekey="lblHint9Resource"></asp:Label>
                                         </p>
                                     </div>
-                            </div>
                                  </div>
                 </div>
+                </div>
                 <div class="row">
-                    <div class="col2"> </div>
+                    <div class="col2"></div>
                     <div class="col4">
                                     <asp:CheckBox ID="chkOTOutLateFlag" runat="server" Enabled="False" 
                                         Text="Out Late overtime" meta:resourcekey="chkOTOutLateFlagResource1" />
@@ -363,7 +362,7 @@
                                </div>
                 </div>
                 <div class="row">
-                    <div class="col2"> </div>
+                    <div class="col2"></div>
                     <div class="col4">
                                     <asp:CheckBox ID="chkOTOutOfShiftFlag" runat="server" Enabled="False" 
                                         Text="Out Of Shift overtime" 
@@ -381,7 +380,7 @@
                                 </div>
                 </div>
                 <div class="row">
-                    <div class="col2"> </div>
+                    <div class="col2"></div>
                     <div class="col4">
                                     <asp:CheckBox ID="chkOTNoShiftFlag" runat="server" Enabled="False" 
                                         Text="No Shift overtime" meta:resourcekey="chkOTNoShiftFlagResource1" />
@@ -397,7 +396,7 @@
                                  </div>
                 </div>
                 <div class="row">
-                    <div class="col2"> </div>
+                    <div class="col2"></div>
                     <div class="col4">
                                     <asp:CheckBox ID="chkOTVacationFlag" runat="server" Enabled="False" 
                                         Text="Vacation overtime" meta:resourcekey="chkOTVacationFlagResource1" />
@@ -425,18 +424,18 @@
                                 </div>
                     <div class="col4">
                                                <Cal:Calendar2 ID="calVacResetDate" runat="server" CalendarType="System" ValidationRequired="true" ValidationGroup="vgSave"/>
-                                            <div class="flyoutWrap">
+                                            
                                                 <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow11" runat="server" TargetControlID="lnkShow11"></ajaxToolkit:AnimationExtender>
                                                 <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose11" runat="server" TargetControlID="lnkClose11"></ajaxToolkit:AnimationExtender>
-                                                <asp:ImageButton ID="lnkShow11" runat="server" OnClientClick="return false;" ImageUrl = "~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
+                        <asp:ImageButton ID="lnkShow11" runat="server" OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
                                                 <div id="pnlInfo11" class="flyOutDiv">
-                                                    <asp:LinkButton ID="lnkClose11" runat="server" Text="X" OnClientClick="return false;" CssClass= "flyOutDivCloseX glyphicon glyphicon-remove" />
+                            <asp:LinkButton ID="lnkClose11" runat="server" Text="X" OnClientClick="return false;" CssClass="flyOutDivCloseX glyphicon glyphicon-remove" />
                                                     <p>
                                                         <br />
                                                         <asp:Label ID="lblHint11" runat="server" Text="The date on which he has been re-calculating vacation days that are of the types of vacations that are re-calculated." meta:resourcekey="lblHint11Resource"></asp:Label>
                                                     </p>
                                                 </div>
-                                                </div>
+                                          </div>
                                           </div>
 
                                <div class="col2">
@@ -454,9 +453,9 @@
 
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow14" runat="server" TargetControlID="lnkShow14"></ajaxToolkit:AnimationExtender>
                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose14" runat="server" TargetControlID="lnkClose14"></ajaxToolkit:AnimationExtender>
-                                    <asp:ImageButton ID="lnkShow14" runat="server" OnClientClick="return false;" ImageUrl = "~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
+                        <asp:ImageButton ID="lnkShow14" runat="server" OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
                                     <div id="pnlInfo14" class="flyOutDiv">
-                                        <asp:LinkButton ID="lnkClose14" runat="server" Text="X" OnClientClick="return false;" CssClass= "flyOutDivCloseX glyphicon glyphicon-remove" />
+                            <asp:LinkButton ID="lnkClose14" runat="server" Text="X" OnClientClick="return false;" CssClass="flyOutDivCloseX glyphicon glyphicon-remove" />
                                         <p>
                                             <br />
                                             <asp:Label ID="lblHint14" runat="server" Text="This property specifies the Count Days Limit allowe for employee to request vacation for absent, when you left Text zero No limit for Days Request, but if you entrie write any number the Employee can't Request vacation after passing days limit." meta:resourcekey="lblHint14Resource"></asp:Label>
@@ -476,9 +475,9 @@
                                         
                                              <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow12" runat="server" TargetControlID="lnkShow12"></ajaxToolkit:AnimationExtender>
                                              <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose12" runat="server" TargetControlID="lnkClose12"></ajaxToolkit:AnimationExtender>
-                                             <asp:ImageButton ID="lnkShow12" runat="server" OnClientClick="return false;" ImageUrl = "~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
+                        <asp:ImageButton ID="lnkShow12" runat="server" OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
                                              <div id="pnlInfo12" class="flyOutDiv">
-                                                <asp:LinkButton ID="lnkClose12" runat="server" Text="X" OnClientClick="return false;" CssClass= "flyOutDivCloseX glyphicon glyphicon-remove" />
+                            <asp:LinkButton ID="lnkClose12" runat="server" Text="X" OnClientClick="return false;" CssClass="flyOutDivCloseX glyphicon glyphicon-remove" />
                                                 <p>
                                                     <br />
                                                     <asp:Label ID="lblHint12" runat="server" Text="This option specifies the form you will be asked to type the request is compulsory or not, and choose the types of applications required form." meta:resourcekey="lblHint12Resource"></asp:Label>
@@ -510,7 +509,7 @@
                     <div class="col4">
                                     <asp:TextBox ID="txtcfgApprovalsMonthCount" runat="server" Width="30px" MaxLength="2" 
                                         onkeypress="return OnlyNumber(event);" 
-                                        meta:resourcekey="txtcfgApprovalsMonthCountResource1" ></asp:TextBox>
+                            meta:resourcekey="txtcfgApprovalsMonthCountResource1"></asp:TextBox>
                               </div>
                 </div>
                 <div class="row">
@@ -521,7 +520,7 @@
                     <div class="col4">
                                     <asp:TextBox ID="txtcfgTransInDaysCount" runat="server" Width="30px" MaxLength="2" 
                                         onkeypress="return OnlyNumber(event);" 
-                                        meta:resourcekey="txtcfgTransInDaysCountResource1" ></asp:TextBox>
+                            meta:resourcekey="txtcfgTransInDaysCountResource1"></asp:TextBox>
                                  </div>
                 </div>
                 <div class="row">
@@ -539,9 +538,9 @@
                                           
                                              <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow13" runat="server" TargetControlID="lnkShow13"></ajaxToolkit:AnimationExtender>
                                              <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose13" runat="server" TargetControlID="lnkClose13"></ajaxToolkit:AnimationExtender>
-                                             <asp:ImageButton ID="lnkShow13" runat="server" OnClientClick="return false;" ImageUrl = "~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
+                        <asp:ImageButton ID="lnkShow13" runat="server" OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
                                              <div id="pnlInfo13" class="flyOutDiv">
-                                                <asp:LinkButton ID="lnkClose13" runat="server" Text="X" OnClientClick="return false;" CssClass= "flyOutDivCloseX glyphicon glyphicon-remove" />
+                            <asp:LinkButton ID="lnkClose13" runat="server" Text="X" OnClientClick="return false;" CssClass="flyOutDivCloseX glyphicon glyphicon-remove" />
                                                 <p>
                                                     <br />
                                                     <asp:Label ID="lblHint13" runat="server" Text="Specify the language of the input data required and can not be conservation without entered." meta:resourcekey="lblHint13Resource"></asp:Label>

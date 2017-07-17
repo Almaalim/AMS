@@ -34,7 +34,14 @@ public partial class EmployeeExcuse : BasePage
         try
         {
             /*** Fill Session ************************************/
-            pgCs.FillSession(); 
+            pgCs.FillSession();
+            for (int i = 1; i <= 2; i++)
+            {
+                AjaxControlToolkit.AnimationExtender aniExtShow = (AjaxControlToolkit.AnimationExtender)this.Master.FindControl("ContentPlaceHolder1").FindControl("AnimationExtenderShow" + i.ToString());
+                AjaxControlToolkit.AnimationExtender aniExtClose = (AjaxControlToolkit.AnimationExtender)this.Master.FindControl("ContentPlaceHolder1").FindControl("AnimationExtenderClose" + i.ToString());
+                ImageButton lnkShow = (ImageButton)this.Master.FindControl("ContentPlaceHolder1").FindControl("lnkShow" + i.ToString());
+                if (aniExtShow != null) { CtrlCs.Animation(ref aniExtShow, ref aniExtClose, ref lnkShow, i.ToString()); }
+            }
             CtrlCs.RefreshGridEmpty(ref grdData);
             /*** Fill Session ************************************/
             
