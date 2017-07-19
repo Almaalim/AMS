@@ -161,9 +161,7 @@
                                 EnableClientScript="False" ErrorMessage=" Enter Only Numbers" ValidationExpression="^\d+$" CssClass="CustomValidator"
                                 ValidationGroup="vgSave" meta:resourcekey="RegularExpressionValidator7Resource1"><img src="../images/Exclamation.gif" 
                                                    title="Enter Only Numbers!" /></asp:RegularExpressionValidator>
-                        </div>
-                        <div class="col1">
-                            <asp:CustomValidator ID="cvMaxDays" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='Max Days is required!' /&gt;"
+                             <asp:CustomValidator ID="cvMaxDays" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='Max Days is required!' /&gt;"
                                 ValidationGroup="vgSave" OnServerValidate="MaxDaysValidate_ServerValidate" CssClass="CustomValidator"
                                 EnableClientScript="False" ControlToValidate="txtValid" meta:resourcekey="cvMaxDaysResource1"></asp:CustomValidator>
                             <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow1" runat="server" TargetControlID="lnkShow1" />
@@ -179,6 +177,9 @@
                                     <asp:Label ID="lblHint1" runat="server" meta:resourcekey="lblHint1Resource1" Text="enter number of maximum days for vacation"></asp:Label>
                                 </p>
                             </div>
+                        </div>
+                        <div class="col1">
+                           
                         </div>
                     </div>
                 </ContentTemplate>
