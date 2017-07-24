@@ -1,5 +1,8 @@
 ﻿$(function () {
-    $.noConflict(true);
+    var currentUrl = window.location.href;
+    if (currentUrl.indexOf('EXC') == currentUrl.length - 3) {
+        $.noConflict(true);
+    }
     $("#LocalDialogModal").dialog({
         dialogClass: 'DynamicDialogStyle',
         autoOpen: false,
