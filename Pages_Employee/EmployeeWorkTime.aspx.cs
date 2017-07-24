@@ -396,9 +396,7 @@ public partial class EmployeeWorkTime : BasePage
                     }
 
                     SqlCs.Wkt_Delete(ID, pgCs.LoginID);
-
                     btnFilter_Click(null,null);
-
                     CtrlCs.ShowDelMsg(this, true);
                     break;
             }
