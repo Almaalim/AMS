@@ -188,11 +188,11 @@
                 $("body").css("overflow", "auto");
             }
         });
-        $(window).ready(function () {
-            // Animate loader off screen
-            $(".LoadingWrapper").delay(1500).fadeOut("slow", 0);
+        //$(window).ready(function () {
+        //    // Animate loader off screen
+        //    $(".LoadingWrapper").delay(1500).fadeOut("slow", 0);
 
-        });
+        //});
         $(document).ready(function () {
 
             //$("a.level2.dynamic").each(function (index) {
@@ -770,7 +770,7 @@
             }
             </script>
     </form>
-    <div class="LoadingWrapper">
+    <%--<div class="LoadingWrapper">
         <div class="Loader">
             <div class="OuterCircle"></div>
             <div class="MiddleCircle"></div>
@@ -780,7 +780,7 @@
 
         </div>
 
-    </div>
+    </div>--%>
 </body>
 <%--<body onresize="resizeWindow()" onload="resizeWindow()" onbeforeunload="doUnload();" >  <%--onbeforeunload="doUnload()"  onmousedown="somefunction()"</body>--%>
 </html>

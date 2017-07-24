@@ -1,5 +1,5 @@
 ﻿$(function () {
-
+    $.noConflict(true);
     $("#LocalDialogModal").dialog({
         dialogClass: 'DynamicDialogStyle',
         autoOpen: false,
