@@ -41,7 +41,6 @@ public partial class RoundPatrolTransaction : BasePage
                 /*** Common Code ************************************/
                 /*** Check AMS License ***/ pgCs.CheckAMSLicense();  
                 if ( LicDf.FetchLic("RP") == "0" ) { Server.Transfer("login.aspx"); }
-                
                 /*** get Permission    ***/ ViewState["ht"] = pgCs.getPerm(Request.Url.AbsolutePath);  
                 BtnStatus("1");
                 UIEnabled(true);
