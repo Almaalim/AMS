@@ -45,10 +45,8 @@ public partial class EmployeeAttendanceRules : BasePage
             if (!IsPostBack)
             {
                 /*** Common Code ************************************/
-                /*** Check AMS License ***/
-                pgCs.CheckAMSLicense();
-                /*** get Permission    ***/
-                ViewState["ht"] = pgCs.getPerm(Request.Url.AbsolutePath);
+                /*** Check AMS License ***/ pgCs.CheckAMSLicense();
+                /*** get Permission    ***/ ViewState["ht"] = pgCs.getPerm(Request.Url.AbsolutePath);
                 BtnStatus("0010");
                 //UIEnabled(false);
                 //UILang();
