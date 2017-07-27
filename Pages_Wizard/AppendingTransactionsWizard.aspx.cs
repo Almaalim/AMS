@@ -43,6 +43,8 @@ public partial class AppendingTransactionsWizard : BasePage
                 ViewState["CommandName"] = "";
                 /*** Common Code ************************************/
 
+                WizardData.ActiveStepIndex = 0;
+
                 spnReqFile.Visible = CheckFileRequired("ATR");
                 ddlType.SelectedIndex = 1;
                 FillLocationList("IN");

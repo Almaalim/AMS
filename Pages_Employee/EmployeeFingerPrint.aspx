@@ -31,7 +31,8 @@
 
                     <%--for AMS fingerprint tools activeX with webservice--%>
                     <object id="FPObject" name="FPObject" classid="CLSID:849EAF77-06CC-455B-B5A8-B5B8684146C5">
-                        <p>cannot load Finger Print activeX</p>
+                        <p>The Finger Print activeX can not be loaded, please contact your system administrator to help you</p>
+                        <p>لا يمكن تحميل عنصر البصمات، الرجاء الاتصال بمدير النظام لمساعدتك</p>
                     </object>
                     
                 </td>

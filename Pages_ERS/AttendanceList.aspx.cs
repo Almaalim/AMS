@@ -46,6 +46,8 @@ public partial class AttendanceList : BasePage
                 DTCs.YearPopulateList(ref ddlYear);
                 DTCs.MonthPopulateList(ref ddlMonth);
 
+                FillName();
+
                 if (Session["ERSRefresh"] == null ) { Session["ERSRefresh"] = "NotUpdate"; }
                 
                 if (Session["ERSRefresh"].ToString() == "Update" )
@@ -67,6 +69,13 @@ public partial class AttendanceList : BasePage
             }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    private void FillName()
+    {
+        DataTable DT = DBCs.FetchData(" SELECT EmpID,EmpNameAr,EmpNameEn FROM Employee WHERE EmpID = @P1 ", new string[] { pgCs.LoginEmpID });
+        if (!DBCs.IsNullOrEmpty(DT)) { LitEmpName.Text = DT.Rows[0]["EmpID"].ToString() + " - " + DT.Rows[0][General.Msg("EmpNameEn", "EmpNameAr")].ToString(); }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

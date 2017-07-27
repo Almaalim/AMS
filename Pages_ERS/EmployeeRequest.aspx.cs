@@ -56,6 +56,8 @@ public partial class EmployeeRequest : BasePage
                 ddlYear.SelectedIndex  = ddlYear.Items.IndexOf(ddlYear.Items.FindByValue(DTCs.FindCurrentYear()));
                 Session["AttendanceListMonth"] = ddlMonth.SelectedValue;
                 Session["AttendanceListYear"]  = ddlYear.SelectedValue;
+
+                FillName();
             }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
@@ -73,6 +75,13 @@ public partial class EmployeeRequest : BasePage
             CtrlCs.FillVacationTypeList(ref ddlVacType, null, false, true, "ALL");
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    private void FillName()
+    {
+        DataTable DT = DBCs.FetchData(" SELECT EmpID,EmpNameAr,EmpNameEn FROM Employee WHERE EmpID = @P1 ", new string[] { pgCs.LoginEmpID });
+        if (!DBCs.IsNullOrEmpty(DT)) { LitEmpName.Text = DT.Rows[0]["EmpID"].ToString() + " - " + DT.Rows[0][General.Msg("EmpNameEn", "EmpNameAr")].ToString(); }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
