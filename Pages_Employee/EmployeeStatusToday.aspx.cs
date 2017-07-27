@@ -37,7 +37,7 @@ public partial class Pages_Employee_EmployeeStatusToday : BasePage
                 /*** Check AMS License ***/ pgCs.CheckAMSLicense();  
                 /*** get Permission    ***/ ViewState["ht"] = pgCs.getPerm(Request.Url.AbsolutePath);  
                 UILang();
-                FillGrid(pgCs.DepList);
+                FillGrid("DEP", pgCs.DepList);
                 ViewState["CommandName"] = "";
                 /*** Common Code ************************************/
             }
@@ -55,12 +55,20 @@ public partial class Pages_Employee_EmployeeStatusToday : BasePage
     {
         //if (ddlDepFilter.SelectedIndex > 0) { FillGrid(ddlDepFilter.SelectedValue); } else { FillGrid(departmentList); }
 
-        if (string.IsNullOrEmpty(txtSearchByDep.Text)) { FillGrid(pgCs.DepList); }
+        if (string.IsNullOrEmpty(txtSearchByDep.Text)) { FillGrid("DEP", pgCs.DepList); }
         else
         {
-            string[] Deps = txtSearchByDep.Text.Split('-');
-            DataTable DT = DBCs.FetchData("SELECT DepID FROM Department WHERE ISNULL(DepDeleted, 0) = 0 AND " + General.Msg("DepNameEn", "DepNameAr") + " = @P1 ", new string[] { Deps[0] });
-            if (!DBCs.IsNullOrEmpty(DT)) { FillGrid(DT.Rows[0][0].ToString()); } else { FillGrid("0"); }
+            if (ddlFilter.SelectedIndex == 0)
+            {
+                string[] Deps = txtSearchByDep.Text.Split('-');
+                DataTable DT = DBCs.FetchData("SELECT DepID FROM Department WHERE ISNULL(DepDeleted, 0) = 0 AND " + General.Msg("DepNameEn", "DepNameAr") + " = @P1 ", new string[] { Deps[0] });
+                if (!DBCs.IsNullOrEmpty(DT)) { FillGrid("DEP", DT.Rows[0][0].ToString()); } else { FillGrid("DEP", "0"); }
+            }
+            else if (ddlFilter.SelectedIndex == 1)
+            {
+                string[] Deps = txtSearchByDep.Text.Split('-');
+                if (!string.IsNullOrEmpty(Deps[0])) { FillGrid("EMP", Deps[0]); } else { FillGrid("EMP", "0"); }
+            }
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -78,6 +86,19 @@ public partial class Pages_Employee_EmployeeStatusToday : BasePage
             return "";
         }
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
+    protected void ddlFilter_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlFilter.SelectedIndex == 0)
+        {
+            auDepName.ServiceMethod = "GetDepNameList";
+        }
+        else if (ddlFilter.SelectedIndex == 1)
+        {
+            auDepName.ServiceMethod = "GetEmployeeIDList";
+        }
+    }
 
     #endregion
     /*#############################################################################################################################*/
@@ -85,7 +106,7 @@ public partial class Pages_Employee_EmployeeStatusToday : BasePage
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
     #region DataItem Events
@@ -185,12 +206,13 @@ public partial class Pages_Employee_EmployeeStatusToday : BasePage
     protected void grdData_SelectedIndexChanged(object sender, EventArgs e) { }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void FillGrid(string DepList)
+    protected void FillGrid(string Type, string ListID) //Type In EMP OR DEP
     {
         StringBuilder FQ = new StringBuilder();
         FQ.Append(" SELECT EmpID, EmpNameEn, EmpNameAr, DepNameEn, DepNameAr ");
         FQ.Append(" FROM EmployeeMasterActiveInfoView ");
-        FQ.Append(" WHERE DepID IN ( " + DepList + " )");
+        if (Type == "DEP") { FQ.Append(" WHERE DepID IN ( " + ListID + " )"); }
+        if (Type == "EMP") { FQ.Append(" WHERE EmpID IN ( '" + ListID + "' )"); }
 
         //DataTable GDT = DBCs.FetchData(FQ.ToString(), new string[] {}, DepList.Split(','));
         DataTable GDT = DBCs.FetchData(new SqlCommand(FQ.ToString()));
