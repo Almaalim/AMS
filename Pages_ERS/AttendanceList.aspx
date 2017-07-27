@@ -96,6 +96,16 @@
 
             <div class="row">
                 <div class="col12">
+                    <span class="h3">
+                        <asp:Literal ID="LitEmpName" runat="server" Text="Employee name"
+                            meta:resourcekey="Literal2Resource1"></asp:Literal>
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col12">
                     <asp:ValidationSummary ID="vsShowMsg" runat="server" CssClass="MsgSuccess"
                         EnableClientScript="False" ValidationGroup="ShowMsg" meta:resourcekey="vsShowMsgResource1" />
                 </div>
