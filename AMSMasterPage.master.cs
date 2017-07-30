@@ -243,16 +243,17 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
     {
         
         string lang = (pgCs.Lang == "AR") ? "Ar" : "En";
-        string q = " SELECT MnuID AS ID FROM Menu WHERE MnuText" + lang + " = '" + e.Item.Text + "'";
+        string q = " SELECT MnuTextEn AS ID FROM Menu WHERE MnuText" + lang + " = '" + e.Item.Text + "'";
         DataTable DT1 = DBCs.FetchData(new SqlCommand(q));
         if (!DBCs.IsNullOrEmpty(DT1))
         {
             if (DT1.Rows[0]["ID"] != DBNull.Value)
             {
                 string menuCss = DT1.Rows[0]["ID"].ToString();
-                menuCss = menuCss.Replace(" ", "");
-                menuCss = Regex.Replace(menuCss, @"[^0-9a-zA-Z]+", "");
-                e.Item.ToolTip = "SideMenuItem " + "icon" + menuCss;
+                //menuCss = menuCss.Replace(" ", "");
+                //menuCss = Regex.Replace(menuCss, @"[^0-9a-zA-Z]+", "");
+                //e.Item.ToolTip = "SideMenuItem " + "icon" + menuCss;
+                e.Item.ToolTip = "SideMenuItem " + menuCss;
             }
         }
 
