@@ -181,3 +181,18 @@ iframe#ifrmProgress {
     cursor:pointer;
     color:#fff;
 }
+.AutoExtender
+{
+    background-color:#fff;
+    max-height:250px;
+    overflow:auto;
+    border:1px solid #e6e6e6;
+    -webkit-box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.75);
+}
+.AutoExtender>div
+{
+    padding:10px 3px;
+    border-bottom:1px solid #e6e6e6;
+}

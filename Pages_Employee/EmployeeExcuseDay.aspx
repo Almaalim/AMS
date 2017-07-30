@@ -114,21 +114,20 @@
             </div>
             <div class="row">
                 <div class="col8">
-                    <asp:LinkButton ID="btnAdd" runat="server" CssClass="GenButton  glyphicon glyphicon-plus-sign" Height="18px" OnClick="btnAdd_Click"
-                        Text="&lt;img src=&quot;../images/Button_Icons/button_add.png&quot; /&gt; Add" Width="70px"
+                    <asp:LinkButton ID="btnAdd" runat="server" CssClass="GenButton  glyphicon glyphicon-plus-sign"  OnClick="btnAdd_Click"
+                        Text="&lt;img src=&quot;../images/Button_Icons/button_add.png&quot; /&gt; Add"
                         meta:resourcekey="btnAddResource1"></asp:LinkButton>
 
                     <asp:LinkButton ID="btnModify" runat="server" CssClass="GenButton glyphicon glyphicon-edit" Visible="False"
-                        Height="18px" OnClick="btnModify_Click" Text="&lt;img src=&quot;../images/Button_Icons/button_edit.png&quot; /&gt; Modify"
-                        Width="70px" meta:resourcekey="btnModifyResource1"></asp:LinkButton>
+                         OnClick="btnModify_Click" Text="&lt;img src=&quot;../images/Button_Icons/button_edit.png&quot; /&gt; Modify"
+                        meta:resourcekey="btnModifyResource1"></asp:LinkButton>
 
-                    <asp:LinkButton ID="btnSave" runat="server" CssClass="GenButton glyphicon glyphicon-floppy-disk" Height="18px" OnClick="btnSave_Click"
+                    <asp:LinkButton ID="btnSave" runat="server" CssClass="GenButton glyphicon glyphicon-floppy-disk" OnClick="btnSave_Click"
                         Text="&lt;img src=&quot;../images/Button_Icons/button_storage.png&quot; /&gt; Save"
-                        ValidationGroup="vgSave" Width="70px" meta:resourcekey="btnSaveResource1"></asp:LinkButton>
+                        ValidationGroup="vgSave" meta:resourcekey="btnSaveResource1"></asp:LinkButton>
 
-                    <asp:LinkButton ID="btnCancel" runat="server" CssClass="GenButton glyphicon glyphicon-remove-circle" Height="18px"
-                        OnClick="btnCancel_Click" Text="&lt;img src=&quot;../images/Button_Icons/button_Cancel.png&quot; /&gt; Cancel"
-                        Width="70px" meta:resourcekey="btnCancelResource1"></asp:LinkButton>
+                    <asp:LinkButton ID="btnCancel" runat="server" CssClass="GenButton glyphicon glyphicon-remove-circle"
+                        OnClick="btnCancel_Click" Text="&lt;img src=&quot;../images/Button_Icons/button_Cancel.png&quot; /&gt; Cancel" meta:resourcekey="btnCancelResource1"></asp:LinkButton>
                 </div>
                 <div class="col4">
                     <asp:TextBox ID="txtValid" runat="server" Text="02120" Visible="False"

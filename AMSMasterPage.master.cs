@@ -164,7 +164,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
             //}
             //else // (ActiveVersion == "General")
             //{
-                if (URL.EndsWith("home.aspx")) { divLogo.Attributes["class"] = "tp_logobgHome" + pgCs.Lang; } else { divLogo.Attributes["class"] = "tp_logobg" + pgCs.Lang; }
+            if (URL.EndsWith("home.aspx")) { divLogo.Attributes["class"] = "tp_logobgHome" + pgCs.Lang; } else { divLogo.Attributes["class"] = "tp_logobg" + pgCs.Lang; }
             //}
         }
         catch (Exception e1) { }
@@ -241,14 +241,29 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
 
     protected void Menu1_MenuItemDataBound(object sender, MenuEventArgs e)
     {
+
+        string lang = (pgCs.Lang == "AR") ? "Ar" : "En";
+        string q = " SELECT MnuID AS ID FROM Menu WHERE MnuText" + lang + " = '" + e.Item.Text + "'";
+        DataTable DT1 = DBCs.FetchData(new SqlCommand(q));
+        if (!DBCs.IsNullOrEmpty(DT1))
+        {
+            if (DT1.Rows[0]["ID"] != DBNull.Value)
+            {
+                string menuCss = DT1.Rows[0]["ID"].ToString();
+                menuCss = menuCss.Replace(" ", "");
+                menuCss = Regex.Replace(menuCss, @"[^0-9a-zA-Z]+", "");
+                e.Item.ToolTip = "SideMenuItem " + "icon" + menuCss;
+            }
+        }
+
         System.Xml.XmlElement node = (System.Xml.XmlElement)e.Item.DataItem;
         if (node.ChildNodes.Count != 0)
         {
             e.Item.Selectable = false;
+            //e.Item.ToolTip = "SideMenuItem " + "icon448";
         }
-       e.Item.ToolTip = "SideMenuItem " + "icon448" ;
 
-
+        //e.Item.ToolTip = "SideMenuItem " + "icon448";
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
@@ -305,15 +320,15 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
         string MPerm = (GenCs.IsNullOrEmpty(Session["MenuPermissions"])) ? "0" : Session["MenuPermissions"].ToString();
         string RPerm = (GenCs.IsNullOrEmpty(Session["ReportPermissions"])) ? "0" : Session["ReportPermissions"].ToString();
 
-        QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText," + DescCol + " as MnuDescription,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder ");
+        QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText," + DescCol + " as MnuDescription,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder,MnuPermissionID AS MnuDepth ");
         QMuen.Append(" FROM Menu WHERE MnuVisible = 'True' AND MnuType IN ('Menu') ");
 
         QMuen.Append(" UNION ALL ");
-        QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText," + DescCol + " as MnuDescription,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder ");
+        QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText," + DescCol + " as MnuDescription,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder,MnuPermissionID AS MnuDepth ");
         QMuen.Append(" FROM Menu WHERE MnuVisible = 'True' AND MnuType IN (" + listPage + ") AND MnuID IN (" + MPerm + ") AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + pgCs.Version + "',VerID) > 0) ");
 
         QMuen.Append(" UNION ALL ");
-        QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText," + DescCol + " as MnuDescription,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder ");
+        QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText," + DescCol + " as MnuDescription,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder,MnuPermissionID AS MnuDepth ");
         QMuen.Append(" FROM Menu WHERE  MnuVisible ='True' AND MnuType IN ('Reports') AND RgpID IN (" + RPerm + ") AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + pgCs.Version + "',VerID) > 0) ");
 
         return QMuen.ToString();
@@ -339,7 +354,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
         if (ERSLic == "1" && Reqht.ContainsKey("ESH")) { listPage += ",'ERS_ESHMenu'"; }
         if (ERSLic == "1" && LicDf.FetchLic("SS") == "1" && Reqht.ContainsKey("SWP")) { listPage += ",'ERS_SWPMenu'"; }
 
-        QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText," + DescCol + " as MnuDescription,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder ");
+        QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText," + DescCol + " as MnuDescription,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder,MnuPermissionID AS MnuDepth ");
         QMuen.Append(" FROM Menu WHERE MnuVisible = 'True' AND MnuType IN (" + listPage + ") AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + pgCs.Version + "',VerID) > 0) ");
 
         return QMuen.ToString();
@@ -385,7 +400,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
                     menuCss = Regex.Replace(menuCss, @"[^0-9a-zA-Z]+", "");
                     if (isFirst)
                     {
-                        
+
                         FirstItem = "<div class='square-big'>";
                         FirstItem += "<a title='" + SDR["MnuText"].ToString() + "' class='SideMenuItem " + "icon" + menuCss + "' href='" + SDR["MnuURL"].ToString().Replace("~", "..") + "'>" + SDR["MnuText"].ToString() + "</a>";
                         FirstItem += "</div>";
@@ -393,7 +408,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
                     }
                     else
                     {
-                         
+
                         if (iMultiItem >= 4) { iMultiItem = 0; }
                         iMultiItem += 1;
                         if (iMultiItem == 1) { MultiItem += SMultiItem; }
@@ -537,23 +552,23 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
     {
         try
         {
-            string text  = "";
+            string text = "";
             string count = "";
             string strItems = "";
             spnNotificationsNo.InnerText = "";
 
-            if (ShowIsExistingRequest(out text, out count))     { strItems += CreateNotificationsItem(text, count, "../Pages_ERS/RequestApproval.aspx?ID=ALL"); /**/ ShowCountNotifications(); }
-            if (FindGapsForCurrentMonth(out text, out count))   { strItems += CreateNotificationsItem(text, count, "../Pages_ERS/EmployeeGaps.aspx");           /**/ ShowCountNotifications(); }
+            if (ShowIsExistingRequest(out text, out count)) { strItems += CreateNotificationsItem(text, count, "../Pages_ERS/RequestApproval.aspx?ID=ALL"); /**/ ShowCountNotifications(); }
+            if (FindGapsForCurrentMonth(out text, out count)) { strItems += CreateNotificationsItem(text, count, "../Pages_ERS/EmployeeGaps.aspx");           /**/ ShowCountNotifications(); }
             if (FindAbsentForCurrentMonth(out text, out count)) { strItems += CreateNotificationsItem(text, count, "../Pages_ERS/AttendanceList.aspx");         /**/ ShowCountNotifications(); }
 
             //if (!string.IsNullOrEmpty(strItems))
             //{
-                string _ul = "";
-                _ul = "<span class='NotificationsPopupClose'></span>";
-                _ul += "<ul>";
-                _ul += strItems;
-                _ul += "</ul>";
-                divNotifications.Controls.Add(new LiteralControl(this.Server.HtmlDecode(_ul)));
+            string _ul = "";
+            _ul = "<span class='NotificationsPopupClose'></span>";
+            _ul += "<ul>";
+            _ul += strItems;
+            _ul += "</ul>";
+            divNotifications.Controls.Add(new LiteralControl(this.Server.HtmlDecode(_ul)));
             //}
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
@@ -562,7 +577,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public bool ShowIsExistingRequest(out string text, out string count)
     {
-        text  = "";
+        text = "";
         count = "";
         bool show = false;
 
@@ -594,7 +609,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected bool FindGapsForCurrentMonth(out string text, out string count)
     {
-        text  = "";
+        text = "";
         count = "";
         bool show = false;
 
@@ -630,7 +645,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected bool FindAbsentForCurrentMonth(out string text, out string count)
     {
-        text  = "";
+        text = "";
         count = "";
         bool show = false;
 
@@ -694,7 +709,4 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
- 
 }

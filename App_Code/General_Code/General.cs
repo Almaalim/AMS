@@ -131,7 +131,7 @@ public class General
 
         foreach (TreeNode node in _TV.CheckedNodes)
         {
-            if (string.IsNullOrEmpty(IDs)) { IDs = node.Value; } else { IDs += "," + node.Value; }
+            if (string.IsNullOrEmpty(IDs)) { IDs = node.Value.Trim(); } else { IDs += "," + node.Value.Trim(); }
         }
 
         return IDs;

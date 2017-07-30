@@ -1,5 +1,9 @@
 ﻿$(function () {
-
+    var currentUrl = window.location.href;
+    if (currentUrl.indexOf('EXC') == currentUrl.length - 3 || currentUrl.indexOf('COM') == currentUrl.length - 3 || currentUrl.indexOf('JOB') == currentUrl.length - 3 ||
+        currentUrl.indexOf('VAC') == currentUrl.length - 3 || currentUrl.indexOf('ESH') == currentUrl.length - 3 || currentUrl.indexOf('SWP') == currentUrl.length - 3) {
+        $.noConflict(true);
+    }
     $("#LocalDialogModal").dialog({
         dialogClass: 'DynamicDialogStyle',
         autoOpen: false,

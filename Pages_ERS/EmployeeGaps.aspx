@@ -59,16 +59,7 @@
             <div class="row">
                 <div class="col12">
                     <span class="h3">
-                        <asp:Literal ID="Literal1" runat="server" Text="Attendance List"
-                            meta:resourcekey="Literal1Resource1"></asp:Literal>
-                    </span>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col12">
-                    <span class="h3">
-                        <asp:Literal ID="Literal2" runat="server" Text="Employee name"
+                        <asp:Literal ID="LitEmpName" runat="server" Text="Employee name"
                             meta:resourcekey="Literal2Resource1"></asp:Literal>
                     </span>
                 </div>

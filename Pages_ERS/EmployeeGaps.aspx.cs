@@ -82,10 +82,7 @@ public partial class EmployeeGaps : BasePage
     {
         try
         {
-            Literal1.Text = General.Msg(pMonth.ToString("00") + "/" + pYear.ToString(), pMonth.ToString("00") + "/" + pYear.ToString());
-
-            DataTable DT = DBCs.FetchData(" SELECT EmpID,EmpNameAr,EmpNameEn FROM Employee WHERE EmpID = @P1 ", new string[] { pgCs.LoginEmpID });
-            if (!DBCs.IsNullOrEmpty(DT)) { Literal2.Text = DT.Rows[0]["EmpID"].ToString() + " - " + DT.Rows[0][General.Msg("EmpNameEn", "EmpNameAr")].ToString(); }
+            FillName();
 
             SqlCommand cmd = new SqlCommand();
             string sql = MainQuery + " AND GapID = '0' ";
@@ -108,6 +105,13 @@ public partial class EmployeeGaps : BasePage
             FillGrid(cmd);
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    private void FillName()
+    {
+        DataTable DT = DBCs.FetchData(" SELECT EmpID,EmpNameAr,EmpNameEn FROM Employee WHERE EmpID = @P1 ", new string[] { pgCs.LoginEmpID });
+        if (!DBCs.IsNullOrEmpty(DT)) { LitEmpName.Text = DT.Rows[0]["EmpID"].ToString() + " - " + DT.Rows[0][General.Msg("EmpNameEn", "EmpNameAr")].ToString(); }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

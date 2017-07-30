@@ -89,9 +89,9 @@ public partial class Reports : BasePage
                 dltReport.RepeatColumns = 4;
                 ShowPanels();
 
-                //calDate.SetEnabled(true);
-                //calStartDate.SetEnabled(true);
-                //calEndDate.SetEnabled(true);
+                calDate.SetEnabled(true);
+                calStartDate.SetEnabled(true);
+                calEndDate.SetEnabled(true);
 
             }
         }
