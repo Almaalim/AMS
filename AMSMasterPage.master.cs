@@ -241,12 +241,29 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
 
     protected void Menu1_MenuItemDataBound(object sender, MenuEventArgs e)
     {
+        
+        string lang = (pgCs.Lang == "AR") ? "Ar" : "En";
+        string q = " SELECT MnuID AS ID FROM Menu WHERE MnuText" + lang + " = '" + e.Item.Text + "'";
+        DataTable DT1 = DBCs.FetchData(new SqlCommand(q));
+        if (!DBCs.IsNullOrEmpty(DT1))
+        {
+            if (DT1.Rows[0]["ID"] != DBNull.Value)
+            {
+                string menuCss = DT1.Rows[0]["ID"].ToString();
+                menuCss = menuCss.Replace(" ", "");
+                menuCss = Regex.Replace(menuCss, @"[^0-9a-zA-Z]+", "");
+                e.Item.ToolTip = "SideMenuItem " + "icon" + menuCss;
+            }
+        }
+
         System.Xml.XmlElement node = (System.Xml.XmlElement)e.Item.DataItem;
         if (node.ChildNodes.Count != 0)
         {
             e.Item.Selectable = false;
+            //e.Item.ToolTip = "SideMenuItem " + "icon448";
         }
-        e.Item.ToolTip = "SideMenuItem " + "icon448";
+
+        //e.Item.ToolTip = "SideMenuItem " + "icon448";
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
@@ -303,15 +320,15 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
         string MPerm = (GenCs.IsNullOrEmpty(Session["MenuPermissions"])) ? "0" : Session["MenuPermissions"].ToString();
         string RPerm = (GenCs.IsNullOrEmpty(Session["ReportPermissions"])) ? "0" : Session["ReportPermissions"].ToString();
 
-        QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText," + DescCol + " as MnuDescription,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder ");
+        QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText," + DescCol + " as MnuDescription,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder,MnuPermissionID AS MnuDepth ");
         QMuen.Append(" FROM Menu WHERE MnuVisible = 'True' AND MnuType IN ('Menu') ");
 
         QMuen.Append(" UNION ALL ");
-        QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText," + DescCol + " as MnuDescription,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder ");
+        QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText," + DescCol + " as MnuDescription,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder,MnuPermissionID AS MnuDepth ");
         QMuen.Append(" FROM Menu WHERE MnuVisible = 'True' AND MnuType IN (" + listPage + ") AND MnuID IN (" + MPerm + ") AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + pgCs.Version + "',VerID) > 0) ");
 
         QMuen.Append(" UNION ALL ");
-        QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText," + DescCol + " as MnuDescription,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder ");
+        QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText," + DescCol + " as MnuDescription,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder,MnuPermissionID AS MnuDepth ");
         QMuen.Append(" FROM Menu WHERE  MnuVisible ='True' AND MnuType IN ('Reports') AND RgpID IN (" + RPerm + ") AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + pgCs.Version + "',VerID) > 0) ");
 
         return QMuen.ToString();
@@ -337,7 +354,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
         if (ERSLic == "1" && Reqht.ContainsKey("ESH")) { listPage += ",'ERS_ESHMenu'"; }
         if (ERSLic == "1" && LicDf.FetchLic("SS") == "1" && Reqht.ContainsKey("SWP")) { listPage += ",'ERS_SWPMenu'"; }
 
-        QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText," + DescCol + " as MnuDescription,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder ");
+        QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText," + DescCol + " as MnuDescription,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder,MnuPermissionID AS MnuDepth ");
         QMuen.Append(" FROM Menu WHERE MnuVisible = 'True' AND MnuType IN (" + listPage + ") AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + pgCs.Version + "',VerID) > 0) ");
 
         return QMuen.ToString();
