@@ -164,9 +164,6 @@
             $(".ReportBtns").each(function (i) {
                 $(this).css('background-color', '#' + colors[i % colors.length]);
             });
-            $("ul.level2.dynamic").each(function (i) {
-                $(this).css('background-color', '#' + colors[i % colors.length]);
-            });
             $('[data-popup-close]').on('click', function (e) {
                 var targeted_popup_class = jQuery(this).attr('data-popup-close');
                 $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
@@ -269,7 +266,7 @@
 
                 $(this).addClass(str);
                 $(this).parent().addClass(str + "list")
-
+                //debugger;
             });
             $("a").each(function (index) {
                 if ($(this).is('[disabled=disabled]')) {

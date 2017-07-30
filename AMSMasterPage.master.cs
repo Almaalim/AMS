@@ -164,7 +164,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
             //}
             //else // (ActiveVersion == "General")
             //{
-                if (URL.EndsWith("home.aspx")) { divLogo.Attributes["class"] = "tp_logobgHome" + pgCs.Lang; } else { divLogo.Attributes["class"] = "tp_logobg" + pgCs.Lang; }
+            if (URL.EndsWith("home.aspx")) { divLogo.Attributes["class"] = "tp_logobgHome" + pgCs.Lang; } else { divLogo.Attributes["class"] = "tp_logobg" + pgCs.Lang; }
             //}
         }
         catch (Exception e1) { }
@@ -241,7 +241,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
 
     protected void Menu1_MenuItemDataBound(object sender, MenuEventArgs e)
     {
-        
+
         string lang = (pgCs.Lang == "AR") ? "Ar" : "En";
         string q = " SELECT MnuTextEn AS ID FROM Menu WHERE MnuText" + lang + " = '" + e.Item.Text + "'";
         DataTable DT1 = DBCs.FetchData(new SqlCommand(q));
@@ -401,7 +401,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
                     menuCss = Regex.Replace(menuCss, @"[^0-9a-zA-Z]+", "");
                     if (isFirst)
                     {
-                        
+
                         FirstItem = "<div class='square-big'>";
                         FirstItem += "<a title='" + SDR["MnuText"].ToString() + "' class='SideMenuItem " + "icon" + menuCss + "' href='" + SDR["MnuURL"].ToString().Replace("~", "..") + "'>" + SDR["MnuText"].ToString() + "</a>";
                         FirstItem += "</div>";
@@ -409,7 +409,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
                     }
                     else
                     {
-                         
+
                         if (iMultiItem >= 4) { iMultiItem = 0; }
                         iMultiItem += 1;
                         if (iMultiItem == 1) { MultiItem += SMultiItem; }
@@ -553,23 +553,23 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
     {
         try
         {
-            string text  = "";
+            string text = "";
             string count = "";
             string strItems = "";
             spnNotificationsNo.InnerText = "";
 
-            if (ShowIsExistingRequest(out text, out count))     { strItems += CreateNotificationsItem(text, count, "../Pages_ERS/RequestApproval.aspx?ID=ALL"); /**/ ShowCountNotifications(); }
-            if (FindGapsForCurrentMonth(out text, out count))   { strItems += CreateNotificationsItem(text, count, "../Pages_ERS/EmployeeGaps.aspx");           /**/ ShowCountNotifications(); }
+            if (ShowIsExistingRequest(out text, out count)) { strItems += CreateNotificationsItem(text, count, "../Pages_ERS/RequestApproval.aspx?ID=ALL"); /**/ ShowCountNotifications(); }
+            if (FindGapsForCurrentMonth(out text, out count)) { strItems += CreateNotificationsItem(text, count, "../Pages_ERS/EmployeeGaps.aspx");           /**/ ShowCountNotifications(); }
             if (FindAbsentForCurrentMonth(out text, out count)) { strItems += CreateNotificationsItem(text, count, "../Pages_ERS/AttendanceList.aspx");         /**/ ShowCountNotifications(); }
 
             //if (!string.IsNullOrEmpty(strItems))
             //{
-                string _ul = "";
-                _ul = "<span class='NotificationsPopupClose'></span>";
-                _ul += "<ul>";
-                _ul += strItems;
-                _ul += "</ul>";
-                divNotifications.Controls.Add(new LiteralControl(this.Server.HtmlDecode(_ul)));
+            string _ul = "";
+            _ul = "<span class='NotificationsPopupClose'></span>";
+            _ul += "<ul>";
+            _ul += strItems;
+            _ul += "</ul>";
+            divNotifications.Controls.Add(new LiteralControl(this.Server.HtmlDecode(_ul)));
             //}
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
@@ -578,7 +578,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public bool ShowIsExistingRequest(out string text, out string count)
     {
-        text  = "";
+        text = "";
         count = "";
         bool show = false;
 
@@ -610,7 +610,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected bool FindGapsForCurrentMonth(out string text, out string count)
     {
-        text  = "";
+        text = "";
         count = "";
         bool show = false;
 
@@ -646,7 +646,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected bool FindAbsentForCurrentMonth(out string text, out string count)
     {
-        text  = "";
+        text = "";
         count = "";
         bool show = false;
 
