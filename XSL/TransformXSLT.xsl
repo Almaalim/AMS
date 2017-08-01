@@ -25,7 +25,7 @@
       </xsl:attribute>
       
       <xsl:attribute name="ToolTip">
-        <xsl:value-of select="MnuDescription"/>
+        <xsl:value-of select="MnuTextEn"/>
       </xsl:attribute>
    
       
@@ -37,7 +37,7 @@
         <xsl:value-of select="MnuPermissionID"/>
       </xsl:attribute>
       
-     
+        
       <xsl:if test="count(Menu) > 0">
         <xsl:call-template name="MenuListing" />
       </xsl:if>
