@@ -196,3 +196,7 @@ box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.75);
     padding:10px 3px;
     border-bottom:1px solid #e6e6e6;
 }
+.GridRowStyle:hover td select, .GridAlterNative:hover td select
+{
+    color:rgba(0,0,0,0.75);
+}

@@ -663,7 +663,9 @@ ul.level2 > li {
     padding-bottom: 30px;
     color: #fff;
 }
-
+.RequiredFieldDiv {
+    padding-left: 20px;
+}
 .RequiredField {
     float: right;
     font-weight: bold;
