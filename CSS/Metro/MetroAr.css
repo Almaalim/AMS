@@ -457,7 +457,7 @@ a.level2.dynamic {
 
 ul.level2 > li {
     border-bottom: 1px solid #fff;
-    width: calc(100% + 30px);
+    /*width: calc(100% + 30px);*/
 }
 
 .UtilityEN, .UtilityAR {
@@ -4808,7 +4808,7 @@ a.level2.dynamic.JobCategory:before {
     }
 }
 
-@media (max-width:1260px) {
+@media (max-width:1295px) {
 
 
     .monthSummaryDiv {
