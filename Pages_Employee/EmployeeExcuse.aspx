@@ -248,6 +248,7 @@
                     <div class="col4">
                         <asp:CheckBox ID="chkExrIsOvernight" runat="server" Enabled="False" Text="Is Overnight"
                             meta:resourcekey="chkExrIsOvernightResource1" />
+                        <div class="flyoutWrap">
                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow1" runat="server" TargetControlID="lnkShow1">
                         </ajaxToolkit:AnimationExtender>
                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose1" runat="server" TargetControlID="lnkClose1">
@@ -262,6 +263,7 @@
                                     meta:resourcekey="lblHint1Resource"></asp:Label>
                             </p>
                         </div>
+                            </div>
                     </div>
                 </div>
 
@@ -270,6 +272,7 @@
                     </div>
                     <div class="col4">
                         <asp:CheckBox ID="chkExrIsOT" runat="server" Enabled="False" Text="Is Overtime" meta:resourcekey="chkExrIsOTResource1" />
+                        <div class="flyoutWrap">
                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow2" runat="server" TargetControlID="lnkShow2">
                         </ajaxToolkit:AnimationExtender>
                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose2" runat="server" TargetControlID="lnkClose2">
@@ -284,6 +287,7 @@
                                     meta:resourcekey="lblHint1Resource"></asp:Label>
                             </p>
                         </div>
+                            </div>
                     </div>
                 </div>
 
