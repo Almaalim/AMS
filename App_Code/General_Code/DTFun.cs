@@ -395,83 +395,55 @@ public class DTFun
 
         if (pDateType == "Gregorian")
         {
+            Int32 Y = Convert.ToInt32(FindCurrentYear("Gregorian"));
+
             int minYear = 1997; //DateTime.Now.Year - 5;
-            int maxYear = DateTime.Now.Year + 10;
+            int maxYear = Y + 10; //DateTime.Now.Year
 
             for (int i = maxYear; i >= minYear; i--) { ddl.Items.Add(i.ToString()); }
 
-            ddl.Items.FindByValue(DateTime.Now.Year.ToString()).Selected = true;
+            ddl.Items.FindByValue(Y.ToString()).Selected = true;
         }
         else if (pDateType == "Hijri")
         {
-            string date = GregToHijri(DateTime.Now.ToString("dd/MM/yyyy"));
+            //string date = HDateNow("dd/MM/yyyy"); //GregToHijri(DateTime.Now.ToString("dd/MM/yyyy"));
 
-            string[] arrDate = date.Split('/');
-            Int32 Y = Convert.ToInt32(arrDate[0]);
-            Int32 M = Convert.ToInt32(arrDate[1]);
-            Int32 D = Convert.ToInt32(arrDate[2]);
+            //string[] arrDate = date.Split('/');
+            //Int32 Y = Convert.ToInt32(arrDate[0]);
+            //Int32 M = Convert.ToInt32(arrDate[1]);
+            //Int32 D = Convert.ToInt32(arrDate[2]);
+
+            Int32 Y = Convert.ToInt32(FindCurrentYear("Hijri"));
+
             int minYear = 1400; //Y - 5;
             int maxYear = 1450;
 
-            for (int i = maxYear; i <= minYear; i--) { ddl.Items.Add(i.ToString()); }
+            for (int i = maxYear; i >= minYear; i--) { ddl.Items.Add(i.ToString()); }
 
             ddl.Items.FindByValue(Y.ToString()).Selected = true;
         }
-
-
-
-        //if (IsAll) { ListItem _li = new ListItem(General.Msg("All", "الكل"), "0"); /**/  ddl.Items.Add(_li); }
-
-        //if (pDateType == "Gregorian")
-        //{
-        //    int minYear = 1997; //DateTime.Now.Year - 5;
-        //    int maxYear = DateTime.Now.Year + 10;
-
-        //    for (int i = minYear; i <= maxYear; i++) { ddl.Items.Add(i.ToString()); }
-
-        //    ddl.Items.FindByValue(DateTime.Now.Year.ToString()).Selected = true;
-        //}
-        //else if (pDateType == "Hijri")
-        //{
-        //    string date = GregToHijri(DateTime.Now.ToString("dd/MM/yyyy"));
-
-        //    string[] arrDate = date.Split('/');
-        //    Int32 Y = Convert.ToInt32(arrDate[0]);
-        //    Int32 M = Convert.ToInt32(arrDate[1]);
-        //    Int32 D = Convert.ToInt32(arrDate[2]);
-        //    int minYear = 1400; //Y - 5;
-        //    int maxYear = 1450;
-        
-        //    for (int i = minYear; i <= maxYear; i++) { ddl.Items.Add(i.ToString()); }
-
-        //    ddl.Items.FindByValue(Y.ToString()).Selected = true;
-        //}
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void YearGPopulateList(ref DropDownList ddl)
     {
-        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-        pgCs.FillDTSession();
-
+        //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+        //pgCs.FillDTSession();
         YearPopulateList(ref ddl, "Gregorian", false);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void YearHPopulateList(ref DropDownList ddl)
     {
-        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-        pgCs.FillDTSession();
-
+        //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
         YearPopulateList(ref ddl, "Hijri", false);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void YearPopulateList(ref DropDownList ddl)
     {
-        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+        //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
         pgCs.FillDTSession();
-
         YearPopulateList(ref ddl, pgCs.DateType, false);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -498,7 +470,7 @@ public class DTFun
         }
         else if (pDateType == "Hijri")
         {
-            string date = GregToHijri(HDateNow("dd/MM/yyyy"));// GregToHijri(DateTime.Now.ToString("dd/MM/yyyy"));
+            string date = HDateNow("dd/MM/yyyy");// GregToHijri(DateTime.Now.ToString("dd/MM/yyyy"));
             string[] arrDate = date.Split('/');
             Int32 M = Convert.ToInt32(arrDate[1]);
             if (IsAll) { ddl.SelectedIndex = M; } else { ddl.SelectedIndex = M - 1; }
@@ -508,18 +480,12 @@ public class DTFun
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
     public void MonthGPopulateList(ref DropDownList ddl)
     {
-        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-        pgCs.FillDTSession();
-
         MonthPopulateList(ref ddl, "Gregorian", false);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void MonthHPopulateList(ref DropDownList ddl)
     {
-        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-        pgCs.FillDTSession();
-
         MonthPopulateList(ref ddl, "Hijri", false);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -579,7 +545,7 @@ public class DTFun
         try
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-            if (DateType == "Gregorian") { return DateTime.Now.Year.ToString(); } else if (DateType == "Hijri") { return Umq.GetYear(DateTime.Now).ToString(); }
+            if (DateType == "Gregorian") { return Grn.GetYear(DateTime.Now).ToString(); } else if (DateType == "Hijri") { return Umq.GetYear(DateTime.Now).ToString(); }
 
             return "0";
         }
@@ -603,7 +569,7 @@ public class DTFun
         try
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-            if (DateType == "Gregorian") { return DateTime.Now.Month.ToString(); } else if (DateType == "Hijri") { return Umq.GetMonth(DateTime.Now).ToString(); }
+            if (DateType == "Gregorian") { return Grn.GetMonth(DateTime.Now).ToString(); } else if (DateType == "Hijri") { return Umq.GetMonth(DateTime.Now).ToString(); }
 
             return "0";
         }

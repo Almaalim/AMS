@@ -87,7 +87,7 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
         else if (CalendarType == CalendarEnum.Both) { ddlLocaleChoice.Enabled = true; }
         else if (CalendarType == CalendarEnum.System) { }
 
-        DefaultCalendarCulture = DefaultCalendarCultureEnum.Gregorian;
+        DefaultCalendarCulture = DefaultCalendarCultureEnum.Hijri;
 
         if (DefaultCalendarCulture == DefaultCalendarCultureEnum.Gregorian)
         {
@@ -98,13 +98,10 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ar-SA");
         }
 
-        ScriptManager.RegisterStartupScript(CalendarUpdatePanel, typeof(string), "ShowPopup" + this.DivCal.ClientID, "document.getElementById('" + this.DivCal.ClientID + "').style.display = 'none'; ", true);
+        //ScriptManager.RegisterStartupScript(CalendarUpdatePanel, typeof(string), "ShowPopup" + this.DivCal.ClientID, "document.getElementById('" + this.DivCal.ClientID + "').style.display = 'none'; ", true);
 
         if (!Page.IsPostBack)
         {
-            //txtGDate.Text = string.Empty;
-            //txtHDate.Text = string.Empty;
-
             try
             {
                 if (!string.IsNullOrEmpty(ViewState["vg"].ToString()) && ValidationRequired)
@@ -136,6 +133,7 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
                 ddlMonths.Items.Clear();
                 DTCs.YearGPopulateList(ref ddlYears);
                 DTCs.MonthGPopulateList(ref ddlMonths);
+
                 Changedate("G");
             }
             else
@@ -146,6 +144,7 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
                 ddlMonths.Items.Clear();
                 DTCs.YearHPopulateList(ref ddlYears);
                 DTCs.MonthHPopulateList(ref ddlMonths);
+
                 Changedate("H");
             }
 
@@ -180,6 +179,7 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
                             ddlMonths.Items.Clear();
                             DTCs.YearGPopulateList(ref ddlYears);
                             DTCs.MonthGPopulateList(ref ddlMonths);
+                            Page.Culture = GCulture.Name;
                             Changedate("G");
 
                         }
@@ -190,6 +190,7 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
                             ddlYears.Items.Clear();
                             DTCs.YearHPopulateList(ref ddlYears);
                             DTCs.MonthHPopulateList(ref ddlMonths);
+                            Page.Culture = HCulture.Name;
                             Changedate("H");
                         }
                     }
@@ -202,7 +203,7 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
                 System.Threading.Thread.CurrentThread.CurrentCulture = selected_culture;
             }
             catch { }
-        }
+        }       
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -233,14 +234,14 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
     {
         if (ddlLocaleChoice.SelectedValue == HCulture.Name)
         {
-            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(ddlLocaleChoice.SelectedValue);
+            //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(ddlLocaleChoice.SelectedValue);
             this.txtHDate.Text = CalDate.SelectedDate.ToString("dd/MM/yyyy");
             this.txtGDate.Text = DTCs.HijriToGreg(this.txtHDate.Text, "dd/MM/yyyy");
             CalDate.SelectedDates.Clear();
         }
         else if (ddlLocaleChoice.SelectedValue == GCulture.Name)
         {
-            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(ddlLocaleChoice.SelectedValue);
+            //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(ddlLocaleChoice.SelectedValue);
             this.txtGDate.Text = CalDate.SelectedDate.ToString("dd/MM/yyyy");
             this.txtHDate.Text = DTCs.GregToHijri(this.txtGDate.Text, "dd/MM/yyyy");
             CalDate.SelectedDates.Clear();
@@ -264,10 +265,6 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
     {
         try
         {
-            //string[] ss = new string[5];
-            //txtGDate.Attributes.Keys.CopyTo(ss,0);
-            //string vv = txtGDate.Attributes["value"].ToString();
-
             if (DTType == "G")
             {
                 System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(ddlLocaleChoice.SelectedValue);
@@ -278,7 +275,7 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
             {
                 System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(ddlLocaleChoice.SelectedValue);
                 CalDate.TodaysDate = new DateTime(Convert.ToInt32(ddlYears.SelectedValue), Convert.ToInt32(ddlMonths.SelectedValue), 1, Umq);
-                //CalDate.SelectedDate =new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, Umq);
+                //CalDate.SelectedDate = new DateTime(Convert.ToInt32(ddlYears.SelectedValue), Convert.ToInt32(ddlMonths.SelectedValue), 1, Umq);
             }
         }
         catch (Exception ex) { }
@@ -379,7 +376,7 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void SetGDate(object Date, string format)
     {
-        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+        //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
         if (Date != DBNull.Value)
         {
             DateTime DT = (DateTime)Date;
@@ -405,7 +402,7 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
     {
         try
         {
-            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+            //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             this.txtGDate.Text = DTCs.GDateNow("dd/MM/yyyy");
             this.txtHDate.Text = DTCs.GregToHijri(this.txtGDate.Text, "dd/MM/yyyy");
         }
