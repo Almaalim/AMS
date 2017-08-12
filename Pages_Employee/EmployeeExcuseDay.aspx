@@ -124,7 +124,7 @@
 
                     <asp:LinkButton ID="btnSave" runat="server" CssClass="GenButton glyphicon glyphicon-floppy-disk" OnClick="btnSave_Click"
                         Text="&lt;img src=&quot;../images/Button_Icons/button_storage.png&quot; /&gt; Save"
-                        ValidationGroup="vgSave" meta:resourcekey="btnSaveResource1"></asp:LinkButton>
+                        ValidationGroup="vgSave" meta:resourcekey="btnSaveResource1"></asp:LinkButton> 
 
                     <asp:LinkButton ID="btnCancel" runat="server" CssClass="GenButton glyphicon glyphicon-remove-circle"
                         OnClick="btnCancel_Click" Text="&lt;img src=&quot;../images/Button_Icons/button_Cancel.png&quot; /&gt; Cancel" meta:resourcekey="btnCancelResource1"></asp:LinkButton>

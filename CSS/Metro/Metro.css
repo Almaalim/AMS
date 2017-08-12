@@ -266,7 +266,7 @@ body {
     width: auto;
     height: 82px;
     width: 304px;
-    background: top right url(../../images/Logo.png) no-repeat;
+    background: top right url(../../images/LogoEn.png) no-repeat;
 }
 
     .Logo > img {
@@ -656,7 +656,7 @@ ul.level2 > li {
     color: #fff;
 }
 .RequiredFieldDiv {
-    padding-right: 20px;
+    padding-right: 20px !important;
 }
 .RequiredField {
     float: left;
