@@ -202,7 +202,7 @@
                             meta:resourcekey="txtPercentAllowableResource1"></asp:TextBox>
                         
                         &nbsp;
-                                    <asp:Label ID="Label2" runat="server" Text=" % " meta:resourcekey="Label2Resource1" CssClass="LeftOverlay"></asp:Label>
+                                    <asp:Label ID="Label2" runat="server" Text=" % " meta:resourcekey="Label2Resource1" CssClass="LeftOverlay3"></asp:Label>
                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow2" runat="server" TargetControlID="lnkShow2"></ajaxToolkit:AnimationExtender>
                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose2" runat="server" TargetControlID="lnkClose2"></ajaxToolkit:AnimationExtender>
                         <asp:ImageButton ID="lnkShow2" runat="server" OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" meta:resourcekey="lnkShow2Resouce" />
