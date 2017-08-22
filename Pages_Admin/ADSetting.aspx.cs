@@ -164,14 +164,14 @@ public partial class ADSetting : BasePage
 
             FillPropeties();
 
-            System.Configuration.Configuration config = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
-            AuthenticationSection AuthSection = (AuthenticationSection)config.GetSection("system.web/authentication");
-            AuthSection.Mode = AuthenticationMode.Windows;
+            //System.Configuration.Configuration config = System.Web.Configuration.WebConfigurationManager.OpenWebConfiguration("~");
+            //AuthenticationSection AuthSection = (AuthenticationSection)config.GetSection("system.web/authentication");
+            //AuthSection.Mode = AuthenticationMode.Windows;
             
-            IdentitySection IdenSection = (IdentitySection)config.GetSection("system.web/identity");
-            if (chkADEnabled.Checked) { IdenSection.Impersonate = true; } else { IdenSection.Impersonate = false; } 
+            //IdentitySection IdenSection = (IdentitySection)config.GetSection("system.web/identity");
+            //if (chkADEnabled.Checked) { IdenSection.Impersonate = true; } else { IdenSection.Impersonate = false; } 
             
-            config.Save();
+            //config.Save();
             SqlCs.ADConfig_InsertUpdate(ProCs);
             ////////////////////////
 

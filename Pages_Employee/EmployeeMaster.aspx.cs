@@ -280,7 +280,7 @@ public partial class EmployeeMaster : BasePage
             ProCs.EmpEmailID = txtEmail.Text;
             ProCs.EmpMobileNo = txtMobileNo.Text;
             if (!string.IsNullOrEmpty(txtEmpADUser.Text)) { ProCs.EmpADUser = txtEmpADUser.Text; }
-            ProCs.EmpPWD = txtEmployeeID.Text;
+            ProCs.EmpPWD = CryptorEngine.Encrypt(txtEmployeeID.Text.Trim(), true);
             ProCs.EmpGender = rblGender.SelectedValue.ToString();
             ProCs.EmpSendEmailAlert = chkSendEmailAlert.Checked;
             ProCs.EmpSendSMSAlert = chkSendSMSAlert.Checked;
@@ -480,7 +480,7 @@ public partial class EmployeeMaster : BasePage
         try
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-            string empid = ViewState["ID"].ToString();
+            string empid   = txtEmployeeID.Text;
             string empPass = GeneratPass(empid);
             string lang = ddlLanguage.SelectedValue.ToString();
 

@@ -15,8 +15,8 @@
     <script type="text/javascript" src="../Script/CheckKey.js"></script>
     <%--script--%>
     <link href="../CSS/PopupStyle.css" rel="stylesheet" type="text/css" />
-    <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>--%>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
             <div class="row">
                 <div class="col1">
                     <asp:Label ID="lblIDFilter" runat="server" Text="Search by:" meta:resourcekey="lblSearchByResource1"></asp:Label>
@@ -629,6 +629,6 @@
                    </center>
                 </div>
             </div>
-        <%--</ContentTemplate>
-    </asp:UpdatePanel>--%>
+        </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>

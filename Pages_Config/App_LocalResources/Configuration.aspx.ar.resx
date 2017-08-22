@@ -349,7 +349,7 @@
     <value />
   </data>
   <data name="lblSessionDurationResource1.Text" xml:space="preserve">
-    <value>: خروج تلقائي للبرنامج</value>
+    <value> خروج تلقائي للبرنامج :</value>
   </data>
   <data name="lblSessionDurationResource1.ToolTip" xml:space="preserve">
     <value />

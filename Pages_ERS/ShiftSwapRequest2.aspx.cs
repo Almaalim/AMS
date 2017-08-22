@@ -30,9 +30,10 @@ public partial class ShiftSwapRequest2 : BasePage
         try
         {
             /*** Fill Session ************************************/
-            pgCs.FillSession(); 
+            pgCs.FillSession();
+            if (pgCs.Lang == "AR") { LanguageSwitch.Href = "~/CSS/Metro/MetroAr.css"; } else { LanguageSwitch.Href = "~/CSS/Metro/Metro.css"; }
             /*** Fill Session ************************************/
-            
+
             if (!IsPostBack)
             {
                 /*** Common Code ************************************/

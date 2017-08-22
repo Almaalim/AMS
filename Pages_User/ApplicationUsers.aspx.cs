@@ -38,8 +38,6 @@ public partial class ApplicationUsers : BasePage
             FillRepTree("");
             /*** TreeView Code ***********************************/
 
-            //if (string.IsNullOrEmpty(hdnPopup.Value)) { ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "hidePopup('" + DivPopup.ClientID + "');", true); }
-
             if (!IsPostBack)
             {
                 /*** Common Code ************************************/
@@ -183,7 +181,7 @@ public partial class ApplicationUsers : BasePage
             ProCs.UsrName            = txtUsername.Text.Trim();
             ProCs.UsrFullName        = txtFullname.Text.Trim();
             ProCs.EmpID              = txtEmpID.Text.Trim();
-            ProCs.UsrPassword        = txtPassword.Text.Trim();
+            ProCs.UsrPassword        = CryptorEngine.Encrypt(txtPassword.Text.Trim(), true);
             if (ddlLanguage.SelectedIndex > 0) { ProCs.UsrLanguage = ddlLanguage.SelectedValue; }
             ProCs.UsrStatus          = chkActiveUser.Checked;
             ProCs.UsrActingUser      = chkActUser.Checked;
@@ -677,7 +675,7 @@ public partial class ApplicationUsers : BasePage
             calStartDate.SetGDate(DRs[0]["UsrStartDate"], pgCs.DateFormat);
             calEndDate.SetGDate(DRs[0]["UsrExpireDate"],  pgCs.DateFormat);
 
-            txtPassword.Attributes["value"]     = DRs[0]["UsrPassword"].ToString();
+            txtPassword.Attributes["value"]     = CryptorEngine.Decrypt(DRs[0]["UsrPassword"].ToString(), true);
             txtEmailID.Text                     = DRs[0]["UsrEMailID"].ToString();
             txtMobileNo.Text                    = DRs[0]["UsrMobileNo"].ToString(); 
             txtUsrADUser.Text                   = DRs[0]["UsrADUser"].ToString(); 
@@ -985,7 +983,8 @@ public partial class ApplicationUsers : BasePage
         {
             txtActID.Text = User;
             txtActLoginName.Text = DT.Rows[0]["UsrActUserName"].ToString();
-            txtActPassword.Attributes["value"] = DT.Rows[0]["UsrActPwd"].ToString();
+            if (DT.Rows[0]["UsrActPwd"] != DBNull.Value) { txtActPassword.Attributes["value"] = CryptorEngine.Decrypt(DT.Rows[0]["UsrActPwd"].ToString(), true); }
+
             txtActEmpID.Text = DT.Rows[0]["UsrActEmpID"].ToString();
             txtActEmailID.Text = DT.Rows[0]["UsrActEMailID"].ToString();
             txtActADUser.Text = DT.Rows[0]["UsrADActUser"].ToString();
@@ -1000,7 +999,7 @@ public partial class ApplicationUsers : BasePage
             ProCs.UsrName = txtActID.Text;
             ProCs.UsrActingUser = true;
             ProCs.UsrActUserName = txtActLoginName.Text.Trim();
-            ProCs.UsrActPwd = txtActPassword.Text.Trim();
+            ProCs.UsrActPwd = CryptorEngine.Encrypt(txtActPassword.Text.Trim(), true);
             if (!string.IsNullOrEmpty(txtActEmpID.Text))   { ProCs.UsrActEmpID   = txtActEmpID.Text.Trim(); }
             if (!string.IsNullOrEmpty(txtActEmailID.Text)) { ProCs.UsrActEMailID = txtActEmailID.Text; }
             if (!string.IsNullOrEmpty(txtActADUser.Text))  { ProCs.UsrADActUser  = txtActADUser.Text; }

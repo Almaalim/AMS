@@ -18,7 +18,7 @@ public partial class Departments : BasePage
     General GenCs  = new General();
     DBFun   DBCs   = new DBFun();
     CtrlFun CtrlCs = new CtrlFun();
-
+    protected string Variable_codebehind;
     string MainQuery = " SELECT * FROM Department WHERE ISNULL(DepDeleted,0) = 0 ";
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -43,7 +43,7 @@ public partial class Departments : BasePage
 
                 ViewState["CommandName"] = "";
                 /*** Common Code ************************************/
-       
+                Variable_codebehind = General.Msg("Oops, nothing found!","لا يوجد نتائج");
                 ViewState["Action"] = "M";
                 FillTree("-1");
             }
@@ -58,7 +58,9 @@ public partial class Departments : BasePage
         {
             FillDepParent();
             CtrlCs.FillBranchList(ref ddlBrcParentName, rfvBrcParentName, false);
-            CtrlCs.FillMgrsList(ref ddlDepManagerID, rfDepMng, false);
+            //CtrlCs.FillMgrsList(ref ddlDepManagerID, rfDepMng, false);
+
+            CtrlCs.FillMgrsChosenList(ref ddlDepManagerID, rfDepMng, false);
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
@@ -248,8 +250,7 @@ public partial class Departments : BasePage
             {
                 if (DT.Rows[0]["UsrDepartments"] != DBNull.Value) 
                 {
-                    DepList = DT.Rows[0]["UsrDepartments"].ToString();
-                    //DepList = CryptorEngine.Decrypt(DT.Rows[0]["UsrDepartments"].ToString(), true);
+                    DepList = CryptorEngine.Decrypt(DT.Rows[0]["UsrDepartments"].ToString(), true);
                 }
 
                 if (string.IsNullOrEmpty(DepList)) { DepList = DepID; }
@@ -259,8 +260,7 @@ public partial class Departments : BasePage
                     if (!Deps.Contains(DepID)) { DepList += ',' + DepID; }
                 }
             
-                encDepList = DepList;
-                //encDepList = CryptorEngine.Encrypt(DepList, true);
+                encDepList = CryptorEngine.Encrypt(DepList, true);
                 UsrSqlCs.AppUser_Update_DepList(ManagerID, encDepList, pgCs.LoginID);
             }
         }
@@ -285,8 +285,7 @@ public partial class Departments : BasePage
             {
                 if (DT.Rows[0]["UsrDepartments"] != DBNull.Value) 
                 {
-                    DepList = DT.Rows[0]["UsrDepartments"].ToString();
-                    //DepList = CryptorEngine.Decrypt(DT.Rows[0]["UsrDepartments"].ToString(), true);
+                    DepList = CryptorEngine.Decrypt(DT.Rows[0]["UsrDepartments"].ToString(), true);
                 }
 
                 if (!string.IsNullOrEmpty(DepList))
@@ -299,8 +298,7 @@ public partial class Departments : BasePage
                     }
                 }
             
-                encDepList = newDepList;
-                //encDepList = CryptorEngine.Encrypt(newDepList, true);
+                encDepList = CryptorEngine.Encrypt(newDepList, true);
                 UsrSqlCs.AppUser_Update_DepList(ManagerID, encDepList, pgCs.LoginID);
             }
         }

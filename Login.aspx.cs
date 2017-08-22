@@ -12,26 +12,21 @@ public partial class Login : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     UsersSql logSqlCs = new UsersSql();
-    int x = 0;
     PageFun pgCs   = new PageFun();
     General GenCs  = new General();
     DBFun   DBCs   = new DBFun();
     CtrlFun CtrlCs = new CtrlFun();
     DTFun   DTCs   = new DTFun();
-
-    string calendarType = string.Empty;
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void Page_PreInit(object sender, EventArgs e) 
     { 
         //string Applang = (Session["Language"] != null) ? Session["Language"].ToString() : getAppLanguage();
         //Session["Language"] = Applang;
-        //if (Session["Language"].ToString() == "AR") { Session["Part1align"] = "left"; Session["Part2align"] = "right"; } else { Session["Part1align"] = "right"; Session["Part2align"] = "left";}
         //System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo((Applang == "AR") ? "ar-Sa" : "en-US");
     
         string Applang = (ViewState["Language"] != null) ? ViewState["Language"].ToString() : getAppLanguage();
         ViewState["Language"] = Applang;
-        if (ViewState["Language"].ToString() == "AR") { ViewState["Part1align"] = "left"; ViewState["Part2align"] = "right"; } else { ViewState["Part1align"] = "right"; ViewState["Part2align"] = "left";}
         System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo((Applang == "AR") ? "ar-Sa" : "en-US");
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -77,49 +72,9 @@ public partial class Login : BasePage
         if (LicDf.FetchLic("LC") != "1") { CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Validation, "There is no License to use this Application <br /> لا يوجد ترخيص لإستخدام هذا البرنامج"); return; }
         /******************************************************************/
 
-        string ActiveVersion = LicDf.FindActiveVersion();
-        if (ActiveVersion == "BorderGuard") { loginTD.Attributes["class"] = "tp_logoin_BorderGuard"; } else { loginTD.Attributes["class"] = "tp_logoin"; }
+        loginTD.Attributes["class"] = "tp_logoin";
 
-        if (!IsPostBack)
-        {
-            //if (ActiveVersion == "BorderGuard") { divLogo.Visible = false; tdLogo.Width = "150px"; }
-            //else { divLogo.Visible = true; ShowLogo(); tdLogo.Width = "250px";}
-
-
-            ViewState["DateType"]   = GenCs.GetCalendarType();
-            ViewState["DateFormat"] = GenCs.GetCalendarFormat();
-            
-            DataTable CDT = DBCs.FetchData(new SqlCommand(" SELECT * FROM Configuration "));
-            if (!DBCs.IsNullOrEmpty(CDT)) 
-            {
-                int TimeOutValue = Convert.ToInt32(CDT.Rows[0]["cfgSessionDuration"]);
-                if (TimeOutValue > 0) { Session.Timeout = TimeOutValue / 60; }
-            }
-
-            bool AD_Active = ActiveDirectoryFun.ADEnabled();
-            if (AD_Active)
-            {
-                if (ActiveVersion == "BorderGuard") { lblDomain.Visible = lblDomainName.Visible = false; }
-                else { lblDomain.Visible = lblDomainName.Visible = true; }
-                    
-                    
-                lblDomainName.Text = ActiveDirectoryFun.GetDomainFromDB(ActiveDirectoryFun.ADTypeEnum.USR);
-                txtname.Text = ActiveDirectoryFun.GetWinLoginName();
-            }
-        }
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void ShowLogo()
-    {
-        try
-        {
-            DataTable DT = DBCs.FetchData(new SqlCommand(" SELECT * FROM ApplicationSetup "));
-            if (!DBCs.IsNullOrEmpty(DT)) { if (DT.Rows[0][0] != DBNull.Value) { imgLogo.ImageUrl = "~/Pages_Mix/ReadImage.aspx?ID=Logo"; return; } }
-
-            imgLogo.ImageUrl = "~/images/LoginInsertLogo.jpg";
-        }
-        catch (Exception e1) { }
+        if (!IsPostBack) { }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -136,7 +91,16 @@ public partial class Login : BasePage
         if (AD_Active)
         {
             string AD_Domain = lblDomainName.Text = ActiveDirectoryFun.GetDomainFromDB(ActiveDirectoryFun.ADTypeEnum.USR);
-            if (ActiveDirectoryFun.Authenticate(loginName, password, AD_Domain)) { isLogin = FindLoginInfo("AD", loginName, password); }
+
+            DataTable DT = DBCs.FetchData(" SELECT UsrAD FROM LoginView WHERE UsrAD = @P1 ", new string[] { loginName });
+            if (!DBCs.IsNullOrEmpty(DT))
+            {
+                if (ActiveDirectoryFun.Authenticate(loginName, password, AD_Domain)) { isLogin = FindLoginInfo("AD", loginName, password); }
+            }
+            else
+            {
+                isLogin = FindLoginInfo("DB_AD", loginName, password);
+            }    
         }
         else
         {
@@ -146,12 +110,7 @@ public partial class Login : BasePage
         if (isLogin)
         {
             ///////////////////////////////////////////////////////////////////////////////////////
-            Session["DateType"]   = ViewState["DateType"].ToString();
-            Session["DateFormat"] = ViewState["DateFormat"].ToString();
-            Session["Part1align"] = ViewState["Part1align"].ToString();
-            Session["Part2align"] = ViewState["Part2align"].ToString();
-            ///////////////////////////////////////////////////////////////////////////////////////
-            DataLang();
+            getApplicationSetting();
             ///////////////////////////////////////////////////////////////////////////////////////
             LoginReg();
             ///////////////////////////////////////////////////////////////////////////////////////
@@ -168,21 +127,24 @@ public partial class Login : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected bool FindLoginInfo(string Type, string loginName, string loginPass)
     {
-        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+        //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
         bool isLogin = false;
 
         StringBuilder QU = new StringBuilder();
         QU.Append(" SELECT * FROM LoginView ");
-        if (Type == "DB") { QU.Append(" WHERE UsrName = @P1 "); }  
-        if (Type == "AD") { QU.Append(" WHERE UsrAD   = @P1 "); }
-        
+        if (Type == "DB")    { QU.Append(" WHERE UsrName = @P1 "); }  
+        if (Type == "AD")    { QU.Append(" WHERE UsrAD   = @P1 "); }
+        if (Type == "DB_AD") { QU.Append(" WHERE UsrName = @P1 AND UsrAD IS NULL "); }      
+        //QU.Append(" AND GETDATE() <= '2017-09-16 00:00:00' ");
+
         DataTable DT = DBCs.FetchData(QU.ToString(), new string[] { loginName });
         if (!DBCs.IsNullOrEmpty(DT)) 
         {
             //////////////////////////////////////////////////////////////
-            if (Type == "DB")
+            if (Type == "DB" || Type == "DB_AD")
             {
-                if (DT.Rows[0]["UsrPass"].ToString().Trim() == loginPass && DT.Rows[0]["UsrName"].ToString().Trim() == loginName) { isLogin = true; } else { return false; }         
+                string DecPass = CryptorEngine.Decrypt(DT.Rows[0]["UsrPass"].ToString(), true);
+                if (DecPass == loginPass && DT.Rows[0]["UsrName"].ToString().Trim() == loginName) { isLogin = true; } else { return false; }         
             }
             else if (Type == "AD") { isLogin = true; }
 
@@ -199,9 +161,8 @@ public partial class Login : BasePage
             if      (LoginType == "USR" || LoginType == "ACT") { Session["UserType"] = "USR"; /**/ ViewState["HomePage"] = @"~/Pages_Mix/Home.aspx"; }  //@"~/Pages_User/PermissionGroups.aspx"; } 
             else if (LoginType == "EMP")                       { Session["UserType"] = "EMP"; /**/ ViewState["HomePage"] = @"~/Pages_Mix/Home.aspx"; }
 
-            if (DT.Rows[0]["UsrDepartments"] != DBNull.Value) { Session["DepartmentList"] = DT.Rows[0]["UsrDepartments"].ToString(); } else { Session["UsrDepartments"] = ""; }
-            //Session["DepartmentList"] = CryptorEngine.Decrypt(DT.Rows[0]["UsrDepartments"].ToString(),true); 
-
+            if (DT.Rows[0]["UsrDepartments"] != DBNull.Value) { Session["DepartmentList"] = CryptorEngine.Decrypt(DT.Rows[0]["UsrDepartments"].ToString(), true); } else { Session["UsrDepartments"] = ""; }
+            
             Session["MenuPermissions"]   = "";
             Session["ReportPermissions"] = "";
             if (DT.Rows[0]["PGrpPermissions"] != DBNull.Value) { Session["MenuPermissions"]   = CryptorEngine.Decrypt(DT.Rows[0]["PGrpPermissions"].ToString(), true); }
@@ -215,19 +176,27 @@ public partial class Login : BasePage
     }    
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void DataLang()
+    protected void getApplicationSetting()
     {
-        DataTable DT = DBCs.FetchData(new SqlCommand(" SELECT cfgDataLang FROM Configuration "));
-        if (!DBCs.IsNullOrEmpty(DT)) 
+        Session["DataLangEn"] = true;
+        Session["DataLangAr"] = true;
+        Session["DateType"]   = "Gregorian";
+        Session["DateFormat"] = "dd/MM/yyyy";
+
+        DataTable DT = DBCs.FetchData(new SqlCommand(" SELECT AppCalendar,AppDateFormat,AppDataLangRequired, AppSessionDuration FROM ApplicationSetup "));
+        if (!DBCs.IsNullOrEmpty(DT))
         {
-            DataRow Configdr = (DataRow)DT.Rows[0];
-            if (Configdr["cfgDataLang"].ToString() == "B" || Configdr["cfgDataLang"].ToString() == "E") { Session["DataLangEn"] = true; } else { Session["DataLangEn"] = false; }
-            if (Configdr["cfgDataLang"].ToString() == "B" || Configdr["cfgDataLang"].ToString() == "A") { Session["DataLangAr"] = true; } else { Session["DataLangAr"] = false; }
-        }
-        else
-        {
-            Session["DataLangEn"] = true;
-            Session["DataLangAr"] = true;
+            DataRow DR = (DataRow)DT.Rows[0];
+            if (DR["AppCalendar"].ToString() == "H") { Session["DateType"] = "Hijri"; } else { Session["DateType"] = "Gregorian"; }
+            if (!string.IsNullOrEmpty(DR["AppDateFormat"].ToString())) { Session["DateFormat"] = DR["AppDateFormat"].ToString(); }
+            
+            if (DR["AppDataLangRequired"].ToString() == "B" || DR["AppDataLangRequired"].ToString() == "E") { Session["DataLangEn"] = true; } else { Session["DataLangEn"] = false; }
+            if (DR["AppDataLangRequired"].ToString() == "B" || DR["AppDataLangRequired"].ToString() == "A") { Session["DataLangAr"] = true; } else { Session["DataLangAr"] = false; }
+            if (DR["AppSessionDuration"] != DBNull.Value)
+            {
+                int TimeOutValue = Convert.ToInt32(DR["AppSessionDuration"]);
+                if (TimeOutValue > 0) { Session.Timeout = TimeOutValue / 60; }
+            }
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -4441,6 +4441,16 @@ a.colord13f2a:before {
     font-family: 'icomoon' !important;
 }
 
+.ApplicationSetting:before , .icon625:before {
+    content: "\f085";
+    font-family: 'icomoon' !important;
+}
+
+.TransactionLog:before , .icon624:before {
+    content: "\f044";
+    font-family: 'icomoon' !important;
+}
+
 .Notifications:before , .icon613:before {
     content: "\e2dd";
     font-family: 'icomoon' !important;
@@ -4497,6 +4507,11 @@ a.colord13f2a:before {
 }
 
 .EmployeesFingerPrints:before , .icon552:before {
+    content: "\f0a6";
+    font-family: FontAwesome !important;
+}
+
+.MiniLogger:before , .icon621:before {
     content: "\f0a6";
     font-family: FontAwesome !important;
 }
@@ -4616,7 +4631,7 @@ a.colord13f2a:before {
     font-family: FontAwesome !important;
 }
 
-.Connectionstring:before , .icon599:before {
+.Databaseconnection:before , .icon599:before {
     content: "\f0c1";
     font-family: FontAwesome !important;
 }
@@ -4631,7 +4646,7 @@ a.colord13f2a:before {
     font-family: FontAwesome !important;
 }
 
-.ProcedureErrors:before , .icon603:before {
+.DatabaseErrors:before , .icon603:before {
     content: "\f071";
     font-family: FontAwesome !important;
 }

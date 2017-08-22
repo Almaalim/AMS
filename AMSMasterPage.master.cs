@@ -24,6 +24,9 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
     CtrlFun CtrlCs = new CtrlFun();
     DTFun DTCs = new DTFun();
     ReportFun RepCs = new ReportFun();
+
+    protected string Label_Chosen_noResult;
+    protected bool rtl_Chosen;
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void Page_Load(object sender, EventArgs e)
@@ -56,6 +59,8 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
                 lblUserName.Text = " " + pgCs.LoginID;
                 lnkLanguage.Text = General.Msg("عربي", "English");
 
+                Label_Chosen_noResult = General.Msg("Oops, nothing found!", "لا يوجد نتائج");
+                rtl_Chosen = (pgCs.Lang == "AR") ? true : false;
                 if (pgCs.LoginType == "USR")
                 {
                     lnkShortcut.Enabled = true;
@@ -197,7 +202,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
         Session["MenuDS"] = null;
 
         string QS = (Request.QueryString.Count != 0) ? Request.QueryString.ToString() : "";
-        Response.Redirect(Request.FilePath + QS);
+        Response.Redirect(Request.FilePath + "?" + QS);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

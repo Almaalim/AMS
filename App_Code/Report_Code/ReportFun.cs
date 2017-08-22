@@ -266,8 +266,7 @@ public class ReportFun
         {
             if (DT.Rows[0]["UsrDepartments"] != DBNull.Value) 
             {
-                DepList = DT.Rows[0]["UsrDepartments"].ToString();
-                //DepList = CryptorEngine.Decrypt(DT.Rows[0]["UsrDepartments"].ToString(), true);
+                DepList = CryptorEngine.Decrypt(DT.Rows[0]["UsrDepartments"].ToString(), true);
             }
         }
 

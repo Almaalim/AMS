@@ -19,22 +19,15 @@
             </tr>
             <tr>
                 <td align="center">
-                    <asp:HiddenField ID="hfdConnStr" runat="server" />
-                    <asp:HiddenField ID="hfdLoginUser" runat="server" />
+                    <asp:HiddenField ID="hfdConn" runat="server" />
+                    <asp:HiddenField ID="hfdLoginID" runat="server" />
                     <asp:HiddenField ID="hfdLang" runat="server" />
-                    <asp:HiddenField ID="hfdPage" runat="server" />
-                    <asp:HiddenField ID="hfdFile" runat="server" />
-                                                                                   
-                    <%--<object id="FPObject" name="FPObject" classid="CLSID:D609EEB2-BA80-4AE4-9AE4-776D731AC827">
-                        <p>cannot load Finger Print activeX</p>
-                    </object>--%>
-
-                    <%--for AMS fingerprint tools activeX with webservice--%>
-                    <object id="FPObject" name="FPObject" classid="CLSID:849EAF77-06CC-455B-B5A8-B5B8684146C5">
+                    <asp:HiddenField ID="hfdEmpID" runat="server" />
+                                                       
+                    <object id="FPObject" name="FPObject" classid="CLSID:27BF3D51-2B12-4593-8455-49226FB8D5E1">
                         <p>The Finger Print activeX can not be loaded, please contact your system administrator to help you</p>
                         <p>لا يمكن تحميل عنصر البصمات، الرجاء الاتصال بمدير النظام لمساعدتك</p>
-                    </object>
-                    
+                    </object>                
                 </td>
             </tr>
         </table>

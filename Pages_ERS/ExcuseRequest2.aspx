@@ -33,7 +33,7 @@
     <link href="../CSS/buttonStyle.css"     rel="stylesheet" type="text/css" />
     <link href="../CSS/validationStyle.css" rel="stylesheet" type="text/css" />
     <link href="../CSS/progressCss.css"     rel="stylesheet" type="text/css" />--%>
-    <link href="../CSS/Metro/Metro.css" rel="stylesheet" />
+    <link href="~/CSS/Metro/Metro.css" rel="stylesheet" runat="server" id="LanguageSwitch" />
     <%--stylesheet--%>
      <script type="text/javascript" src="../Script/jquery-1.7.1.min.js"></script>
      <script type="text/javascript">

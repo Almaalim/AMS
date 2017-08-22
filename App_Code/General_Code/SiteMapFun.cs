@@ -28,8 +28,6 @@ public class SiteMapFun : StaticSiteMapProvider
     {
         lock (this)
         {
-            DataTable DT = DBCs.FetchData(new SqlCommand("SELECT * FROM MENU"));
-
             Lang = HttpContext.Current.Cache["SiteMapLang"] as string;
             parentNode = HttpContext.Current.Cache["SiteMapParentNode1"] as SiteMapNode;
             if (parentNode == null || Lang != General.Msg("EN", "AR"))
@@ -37,6 +35,7 @@ public class SiteMapFun : StaticSiteMapProvider
                 base.Clear();
                 Lang = General.Msg("EN", "AR");
 
+                DataTable DT = DBCs.FetchData(new SqlCommand("SELECT * FROM MENU"));
                 DataRow[] DRs = DT.Select("MnuURL ='Home.aspx'");
                 string DisName = (DRs.Length == 0) ? "Home" : DRs[0][General.Msg("MnuTextEn", "MnuTextAr")].ToString();
 
@@ -72,10 +71,28 @@ public class SiteMapFun : StaticSiteMapProvider
             DataRow[] DRs = DT.Select("MnuParentID = 0 AND MnuServer ='~/" + item.DirectoryName + "/'");
             string DisName = (DRs.Length == 0) ? item.DirectoryName : DRs[0][General.Msg("MnuTextEn", "MnuTextAr")].ToString();
 
-            SiteMapNode folderNode = new SiteMapNode(this, folderUrl, null, DisName, DisName);
+            //if (item.DirectoryName != "Pages_ERS")
+            //{
+                SiteMapNode folderNode = new SiteMapNode(this, folderUrl, null, DisName, DisName);
+                AddNode(folderNode, parentNode);
+                AddFiles(folderNode, DT);
+            //}
+            //else
+            //{
+            //    SiteMapNode folderNode = new SiteMapNode(this, folderUrl, null, DisName, DisName);
+            //    AddNode(folderNode, parentNode);
+               
+            //    DataRow[] DRs1 = DT.Select("MnuNumber = 610");
+            //    SiteMapNode folderNode1 = new SiteMapNode(this, folderUrl + "610", null, DRs1[0][General.Msg("MnuTextEn", "MnuTextAr")].ToString(), DRs1[0][General.Msg("MnuTextEn", "MnuTextAr")].ToString());
+            //    AddNode(folderNode1, parentNode);
 
-            AddNode(folderNode, parentNode);
-            AddFiles(folderNode, DT);
+
+            //    DataRow[] DRs2 = DT.Select("MnuNumber = 611");
+            //    SiteMapNode folderNode2 = new SiteMapNode(this, folderUrl + "611", null, DRs2[0][General.Msg("MnuTextEn", "MnuTextAr")].ToString(), DRs2[0][General.Msg("MnuTextEn", "MnuTextAr")].ToString());
+            //    AddNode(folderNode2, parentNode);
+
+            //    AddFiles(folderNode, folderNode1, folderNode2, DT);
+            //}   
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -109,6 +126,53 @@ public class SiteMapFun : StaticSiteMapProvider
                 string ss = folderNode.Key;
 
                 SiteMapNode fileNode = new SiteMapNode(this, item.FileName, folderNode.Key + "/" + item.FileName, DisName);
+                AddNode(fileNode, folderNode);
+            }
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    private void AddFiles(SiteMapNode folderNode, SiteMapNode folderNode1, SiteMapNode folderNode2, DataTable DT)
+    {
+        var files = from o in Directory.GetFiles(HttpContext.Current.Server.MapPath(folderNode.Key))
+                    let fileName = new FileInfo(o)
+                    where !Regex.Match(fileName.Name, ExcludedFiles).Success
+                    select new
+                    {
+                        FileName = fileName.Name
+                    };
+
+        foreach (var item in files)
+        {
+            string floderkey = folderNode.Key;
+            if (item.FileName == "RequestApproval.aspx" || item.FileName == "EmpApprovalLevel.aspx")
+            {
+                floderkey = folderNode.Key;
+            }
+            else if (item.FileName == "RequestMaster.aspx" || item.FileName == "ShiftSwap_EmployeeApproval.aspx")
+            {
+                floderkey = folderNode2.Key;
+            }
+            else 
+            {
+                floderkey = folderNode1.Key;
+            }
+
+            if (item.FileName == "RequestMaster.aspx" || item.FileName == "Reports.aspx")
+            {
+                DataRow[] DRs = DT.Select("MnuURL LIKE '%" + item.FileName + "?%'");
+                foreach (DataRow DR in DRs)
+                {
+                    SiteMapNode fileNode = new SiteMapNode(this, DR["MnuURL"].ToString(), floderkey + "/" + DR["MnuURL"].ToString(), DR[General.Msg("MnuTextEn", "MnuTextAr")].ToString());
+                    AddNode(fileNode, folderNode);
+                }
+            }
+            else
+            {
+                DataRow[] DRs = DT.Select("MnuURL ='" + item.FileName + "'");
+                string DisName = (DRs.Length == 0) ? item.FileName : DRs[0][General.Msg("MnuTextEn", "MnuTextAr")].ToString();
+
+                SiteMapNode fileNode = new SiteMapNode(this, item.FileName, floderkey + "/" + item.FileName, DisName);
                 AddNode(fileNode, folderNode);
             }
         }

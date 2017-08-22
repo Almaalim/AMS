@@ -215,31 +215,32 @@
                             <div class="col4">
                                 <asp:CheckBox ID="chkEwrSat" runat="server" Enabled="False" Text="Saturday"
                                     meta:resourcekey="chkEwrSatResource1" />
-                               
-                                                    <span class="form-inline">
-                                                                        <asp:CheckBox ID="chkEwrSun" runat="server" Enabled="False" Text="Sunday"
-                                                                            meta:resourcekey="chkEwrSunResource1" />
-                                 </span>
-                                                    <span class="form-inline">
-                                                                        <asp:CheckBox ID="chkEwrMon" runat="server" Enabled="False" Text="Monday"
-                                                                            meta:resourcekey="chkEwrMonResource1" />
-                                 </span>
-                                                    <span class="form-inline">
-                                                                        <asp:CheckBox ID="chkEwrTue" runat="server" Enabled="False" Text="Tuesday"
-                                                                            meta:resourcekey="chkEwrTueResource1" />
-                                 </span>
-                                                   <span class="form-inline">
-                                                                        <asp:CheckBox ID="chkEwrWed" runat="server" Enabled="False" Text="Wednesday"
-                                                                            meta:resourcekey="chkEwrWedResource1" />
-                               </span>
-                                                    <span class="form-inline">
-                                                                        <asp:CheckBox ID="chkEwrThu" runat="server" Enabled="False" Text="Thursday"
-                                                                            meta:resourcekey="chkEwrThuResource1" />
+
+                                <span class="form-inline">
+                                    <asp:CheckBox ID="chkEwrSun" runat="server" Enabled="False" Text="Sunday"
+                                        meta:resourcekey="chkEwrSunResource1" />
                                 </span>
-                                                    <span class="form-inline">
-                                                                        <asp:CheckBox ID="chkEwrFri" runat="server" Enabled="False" Text="Friday"
-                                                                            meta:resourcekey="chkEwrFriResource1" /> </span>
-                                                   
+                                <span class="form-inline">
+                                    <asp:CheckBox ID="chkEwrMon" runat="server" Enabled="False" Text="Monday"
+                                        meta:resourcekey="chkEwrMonResource1" />
+                                </span>
+                                <span class="form-inline">
+                                    <asp:CheckBox ID="chkEwrTue" runat="server" Enabled="False" Text="Tuesday"
+                                        meta:resourcekey="chkEwrTueResource1" />
+                                </span>
+                                <span class="form-inline">
+                                    <asp:CheckBox ID="chkEwrWed" runat="server" Enabled="False" Text="Wednesday"
+                                        meta:resourcekey="chkEwrWedResource1" />
+                                </span>
+                                <span class="form-inline">
+                                    <asp:CheckBox ID="chkEwrThu" runat="server" Enabled="False" Text="Thursday"
+                                        meta:resourcekey="chkEwrThuResource1" />
+                                </span>
+                                <span class="form-inline">
+                                    <asp:CheckBox ID="chkEwrFri" runat="server" Enabled="False" Text="Friday"
+                                        meta:resourcekey="chkEwrFriResource1" />
+                                </span>
+
                             </div>
                         </div>
 
@@ -430,37 +431,37 @@
                                                 <div class="col4">
                                                     <asp:CheckBox ID="chkEwrSat_viw0" runat="server" Text="Saturday"
                                                         meta:resourcekey="chkEwrSat_viw0Resource1" />
-                                                     <span class="form-inline">
-                                                                                        <asp:CheckBox ID="chkEwrSun_viw0" runat="server" Text="Sunday"
-                                                                                            meta:resourcekey="chkEwrSun_viw0Resource1" />
-                                                   </span>
                                                     <span class="form-inline">
-                                                                                        <asp:CheckBox ID="chkEwrMon_viw0" runat="server" Text="Monday"
-                                                                                            meta:resourcekey="chkEwrMon_viw0Resource1" />
-                                                     </span>
-                                                   <span class="form-inline">
-                                                                                        <asp:CheckBox ID="chkEwrTue_viw0" runat="server" Text="Tuesday"
-                                                                                            meta:resourcekey="chkEwrTue_viw0Resource1" />
-                                                     </span>
-                                                   <span class="form-inline">
-                                                                                        <asp:CheckBox ID="chkEwrWed_viw0" runat="server" Text="Wednesday"
-                                                                                            meta:resourcekey="chkEwrWed_viw0Resource1" />
-                                                     </span>
-                                                  <span class="form-inline">
-                                                                                        <asp:CheckBox ID="chkEwrThu_viw0" runat="server" Text="Thursday"
-                                                                                            meta:resourcekey="chkEwrThu_viw0Resource1" />
-                                                     </span>
-                                                   <span class="form-inline">
-                                                                                        <asp:CheckBox ID="chkEwrFri_viw0" runat="server" Text="Friday"
-                                                                                            meta:resourcekey="chkEwrFri_viw0Resource1" />
-                                                     </span>
-                                                    
-                                                                                        <asp:CustomValidator ID="cvSelectWorkDays_viw0" runat="server"
-                                                                                            ControlToValidate="txtCustomValidator" EnableClientScript="False"
-                                                                                            ErrorMessage="Select Work Days" CssClass="CustomValidator"
-                                                                                            OnServerValidate="SelectWorkDays_ServerValidate"
-                                                                                            Text="&lt;img src='../images/message_exclamation.png' title='Select Work Days!' /&gt;"
-                                                                                            ValidationGroup="VGStart" meta:resourcekey="cvSelectWorkDays_viw0Resource1"></asp:CustomValidator>
+                                                        <asp:CheckBox ID="chkEwrSun_viw0" runat="server" Text="Sunday"
+                                                            meta:resourcekey="chkEwrSun_viw0Resource1" />
+                                                    </span>
+                                                    <span class="form-inline">
+                                                        <asp:CheckBox ID="chkEwrMon_viw0" runat="server" Text="Monday"
+                                                            meta:resourcekey="chkEwrMon_viw0Resource1" />
+                                                    </span>
+                                                    <span class="form-inline">
+                                                        <asp:CheckBox ID="chkEwrTue_viw0" runat="server" Text="Tuesday"
+                                                            meta:resourcekey="chkEwrTue_viw0Resource1" />
+                                                    </span>
+                                                    <span class="form-inline">
+                                                        <asp:CheckBox ID="chkEwrWed_viw0" runat="server" Text="Wednesday"
+                                                            meta:resourcekey="chkEwrWed_viw0Resource1" />
+                                                    </span>
+                                                    <span class="form-inline">
+                                                        <asp:CheckBox ID="chkEwrThu_viw0" runat="server" Text="Thursday"
+                                                            meta:resourcekey="chkEwrThu_viw0Resource1" />
+                                                    </span>
+                                                    <span class="form-inline">
+                                                        <asp:CheckBox ID="chkEwrFri_viw0" runat="server" Text="Friday"
+                                                            meta:resourcekey="chkEwrFri_viw0Resource1" />
+                                                    </span>
+
+                                                    <asp:CustomValidator ID="cvSelectWorkDays_viw0" runat="server"
+                                                        ControlToValidate="txtCustomValidator" EnableClientScript="False"
+                                                        ErrorMessage="Select Work Days" CssClass="CustomValidator"
+                                                        OnServerValidate="SelectWorkDays_ServerValidate"
+                                                        Text="&lt;img src='../images/message_exclamation.png' title='Select Work Days!' /&gt;"
+                                                        ValidationGroup="VGStart" meta:resourcekey="cvSelectWorkDays_viw0Resource1"></asp:CustomValidator>
                                                 </div>
                                             </div>
 
@@ -506,10 +507,9 @@
                                                     </asp:DropDownList>
                                                 </div>
                                             </div>
-                                           
+
                                             <div class="row">
                                                 <div class="col2">
-                                                    
                                                 </div>
                                                 <div class="col4">
                                                     <asp:ListBox ID="lstWorkTime_viw1" runat="server" Height="200px"
@@ -528,9 +528,9 @@
                                                                                                         ValidationGroup="VGStep1" meta:resourcekey="rfvlstWorkTime_viw1Resource1" ></asp:RequiredFieldValidator>--%>
                                                 </div>
                                             </div>
-                                             <div class="row">
+                                            <div class="row">
                                                 <div class="col2"></div>
-                                                  <div class="col4">
+                                                <div class="col4">
                                                     <asp:ImageButton ID="btnAdd_viw1" runat="server" OnClick="btnAdd_viw1_Click"
                                                         ImageUrl="../images/Wizard_Image/add.png" ToolTip="Add"
                                                         meta:resourcekey="btnAdd_viw1Resource1" />
@@ -569,14 +569,14 @@
                                                         meta:resourcekey="txtGrpName_viw2Resource1"></asp:TextBox>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="row">
-                                                 <div class="col2">
-                                                    </div>
+                                                <div class="col2">
+                                                </div>
                                                 <div class="col4">
                                                     <asp:ListBox ID="lstRotationGroup_viw2" runat="server" Height="200px"
                                                         meta:resourcekey="lstRotationGroup_viw2Resource1"></asp:ListBox>
-                                               
+
                                                     <asp:CustomValidator ID="cvlstRotationGroup_viw2" runat="server"
                                                         ControlToValidate="txtCustomValidator" EnableClientScript="False"
                                                         OnServerValidate="lstRotationGroup_viw2_ServerValidate"
@@ -593,7 +593,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col2">
-                                                    </div>
+                                                </div>
                                                 <div class="col4">
                                                     <asp:ImageButton ID="btnAdd_viw2" runat="server" OnClick="btnAdd_viw2_Click"
                                                         ImageUrl="../images/Wizard_Image/add.png" ToolTip="Add"
@@ -630,7 +630,7 @@
                                         </asp:WizardStep>
                                     </WizardSteps>
                                     <HeaderTemplate>
-                                        <ul id="wizHeader<%=Session["Language"]%>"  >
+                                        <ul id="wizHeader<%=Session["Language"]%>">
                                             <asp:Repeater ID="SideBarList" runat="server">
                                                 <ItemTemplate>
                                                     <li><a class="<%# GetClassForWizardStep(Container.DataItem) %>"

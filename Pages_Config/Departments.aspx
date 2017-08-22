@@ -12,44 +12,14 @@
     <%--    <script type="text/javascript" src="../Script/GridEvent.js"></script>
     <script type="text/javascript" src="../Script/ModalPopup.js"></script>--%>
     <%--script--%>
-    <link href="../CSS/validationStyle.css" rel="stylesheet" type="text/css" />
+    <%--<link href="../CSS/validationStyle.css" rel="stylesheet" type="text/css" />--%>
+    
+    <%--<link href="../Script/chosen/chosen.css" rel="Stylesheet" type="text/css" />
+    <script src="../Script/chosen/chosen.jquery.js" type="text/javascript"></script>--%>
+
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <%--  <ajaxToolkit:AnimationExtender ID="AnimationExtender1" runat="server" TargetControlID="lnkShow1">
-                <Animations>
-                    <OnClick Position="absolute">
-                        <Sequence>
-                            <EnableAction Enabled="false"></EnableAction>
-                            <StyleAction AnimationTarget="pnlInfo1" Attribute="display" Value="block"/>                 
-                            <Parallel AnimationTarget="pnlInfo1" Duration=".2" Fps="25">
-                                <Move Horizontal='10' Vertical='10' />
-                                <Resize Height="80%" Width="150%" />
-                                <FadeIn />
-                            </Parallel>
-                            <Parallel AnimationTarget="pnlInfo1" Duration=".5"> 
-                                  <Color PropertyKey="color" StartValue="#666666" EndValue="#FF0000"/> 
-                                  <Color PropertyKey="borderColor" StartValue="#666666" EndValue="#FF0000" /> 
-                            </Parallel> 
-                            <EnableAction AnimationTarget="lnkClose1" Enabled="true" />
-                        </Sequence>
-                    </OnClick>
-                </Animations>
-            </ajaxToolkit:AnimationExtender>
-            <ajaxToolkit:AnimationExtender ID="AnimationExtender2" runat="server" TargetControlID="lnkClose1">
-                <Animations>
-                    <OnClick Position="absolute">
-                        <Sequence AnimationTarget="pnlInfo1">
-                            <EnableAction AnimationTarget="lnkClose1" Enabled="false" />
-                            <Parallel AnimationTarget="pnlInfo1" Duration=".3" Fps="25">
-                                <Move Horizontal="-10" Vertical="-10" />
-                                <Scale ScaleFactor="0.05" FontUnit="px" />
-                                <FadeOut />
-                            </Parallel>
-                            <EnableAction AnimationTarget="lnkShow1" Enabled="true" />
-                        </Sequence>
-                    </OnClick>
-                </Animations>
-            </ajaxToolkit:AnimationExtender>--%>
+
             <div class="row">
                 <div class="col12">
                     <asp:ValidationSummary ID="vsShowMsg" runat="server" CssClass="MsgSuccess"
@@ -64,10 +34,10 @@
                 </div>
             </div>
 
-            
+
             <div class="GreySetion">
                 <div class="left">
-                      <div class="row">
+                    <div class="row">
                         <div class="col3">
                             <asp:Label ID="lblBranchtID" runat="server" Text="Branch Name :" meta:resourcekey="lblBranchtIDResource1"></asp:Label>
                         </div>
@@ -83,33 +53,33 @@
                     </div>
                 </div>
                 <div class="row">
-                <div class="col8">
-                    <asp:LinkButton ID="btnAdd" runat="server" CssClass="GenButton glyphicon glyphicon-plus-sign" OnClick="btnAdd_Click" Text="&lt;img src=&quot;../images/Button_Icons/button_add.png&quot; /&gt; Add"
-                        meta:resourcekey="btnAddResource1"></asp:LinkButton>
+                    <div class="col8">
+                        <asp:LinkButton ID="btnAdd" runat="server" CssClass="GenButton glyphicon glyphicon-plus-sign" OnClick="btnAdd_Click" Text="&lt;img src=&quot;../images/Button_Icons/button_add.png&quot; /&gt; Add"
+                            meta:resourcekey="btnAddResource1"></asp:LinkButton>
 
-                    <asp:LinkButton ID="btnModify" runat="server" CssClass="GenButton glyphicon glyphicon-edit" OnClick="btnModify_Click" Text="&lt;img src=&quot;../images/Button_Icons/button_edit.png&quot; /&gt; Modify"
-                        meta:resourcekey="btnModifyResource1"></asp:LinkButton>
+                        <asp:LinkButton ID="btnModify" runat="server" CssClass="GenButton glyphicon glyphicon-edit" OnClick="btnModify_Click" Text="&lt;img src=&quot;../images/Button_Icons/button_edit.png&quot; /&gt; Modify"
+                            meta:resourcekey="btnModifyResource1"></asp:LinkButton>
 
-                    <asp:LinkButton ID="btnSave" runat="server" CssClass="GenButton glyphicon glyphicon-floppy-disk" OnClick="btnSave_Click" ValidationGroup="vgSave" Text="&lt;img src=&quot;../images/Button_Icons/button_storage.png&quot; /&gt; Save"
-                        meta:resourcekey="btnSaveResource1"></asp:LinkButton>
+                        <asp:LinkButton ID="btnSave" runat="server" CssClass="GenButton glyphicon glyphicon-floppy-disk" OnClick="btnSave_Click" ValidationGroup="vgSave" Text="&lt;img src=&quot;../images/Button_Icons/button_storage.png&quot; /&gt; Save"
+                            meta:resourcekey="btnSaveResource1"></asp:LinkButton>
 
-                    <asp:LinkButton ID="btnCancel" runat="server" CssClass="GenButton glyphicon glyphicon-remove-circle" OnClick="btnCancel_Click" Text="&lt;img src=&quot;../images/Button_Icons/button_Cancel.png&quot; /&gt; Cancel"
-                        meta:resourcekey="btnCancelResource1"></asp:LinkButton>
+                        <asp:LinkButton ID="btnCancel" runat="server" CssClass="GenButton glyphicon glyphicon-remove-circle" OnClick="btnCancel_Click" Text="&lt;img src=&quot;../images/Button_Icons/button_Cancel.png&quot; /&gt; Cancel"
+                            meta:resourcekey="btnCancelResource1"></asp:LinkButton>
 
-                    <asp:LinkButton ID="btnDelete" runat="server" CssClass="GenButton glyphicon glyphicon-remove"
-                        Text="&lt;img src=&quot;../images/Button_Icons/button_delete.png&quot; /&gt; Delete"
-                        OnClick="btnDelete_Click" meta:resourcekey="btnDeleteResource1"></asp:LinkButton>
+                        <asp:LinkButton ID="btnDelete" runat="server" CssClass="GenButton glyphicon glyphicon-remove"
+                            Text="&lt;img src=&quot;../images/Button_Icons/button_delete.png&quot; /&gt; Delete"
+                            OnClick="btnDelete_Click" meta:resourcekey="btnDeleteResource1"></asp:LinkButton>
 
-                    <asp:TextBox ID="txtValid" runat="server" Text="02120" Visible="False"
-                        Width="10px" meta:resourcekey="txtCustomValidatorResource1"></asp:TextBox>
+                        <asp:TextBox ID="txtValid" runat="server" Text="02120" Visible="False"
+                            Width="10px" meta:resourcekey="txtCustomValidatorResource1"></asp:TextBox>
+                    </div>
+                    <div class="col4">
+                        <asp:CustomValidator ID="cvShowMsg" runat="server" Display="None"
+                            ValidationGroup="ShowMsg" OnServerValidate="ShowMsg_ServerValidate"
+                            EnableClientScript="False" ControlToValidate="txtValid">
+                        </asp:CustomValidator>
+                    </div>
                 </div>
-                <div class="col4">
-                    <asp:CustomValidator ID="cvShowMsg" runat="server" Display="None"
-                        ValidationGroup="ShowMsg" OnServerValidate="ShowMsg_ServerValidate"
-                        EnableClientScript="False" ControlToValidate="txtValid">
-                    </asp:CustomValidator>
-                </div>
-            </div>
                 <div class="row">
                     <div class="col12">
                         <asp:Panel runat="server" ID="pnlMyDialogBox" Visible="False"
@@ -129,8 +99,8 @@
 
 
 
-             <div class="left">
-                  
+                <div class="left">
+
 
                     <div class="row">
                         <div class="col3">
@@ -150,7 +120,7 @@
                             </asp:TreeView>
                         </div>
                     </div>
-                
+
                     <div class="row">
                         <div class="col3">
                             <span id="spnNameAr" runat="server" visible="False" class="RequiredField">*</span>
@@ -212,14 +182,21 @@
                             <asp:Label ID="lblDepMangerID" runat="server" Text="Manager Name :" meta:resourcekey="lblDepMangerIDResource1"></asp:Label>
                         </div>
                         <div class="col9">
-                            <asp:DropDownList ID="ddlDepManagerID" runat="server" Enabled="False"
-                                meta:resourcekey="ddlDepManagerIDResource1">
+                            <asp:DropDownList ID="ddlDepManagerID" runat="server" class="chosen-select" data-placeholder="Choose" >
                             </asp:DropDownList>
+                            
+                            <%--<asp:DropDownList ID="ddlDepManagerID" runat="server" Enabled="False"
+                                meta:resourcekey="ddlDepManagerIDResource1">
+                            </asp:DropDownList>--%>
                             <asp:RequiredFieldValidator ID="rfDepMng" runat="server" ControlToValidate="ddlDepManagerID" CssClass="CustomValidator"
                                 EnableClientScript="False" meta:resourcekey="rfvWtpIDResource1" Text="&lt;img src='../images/Exclamation.gif' title='Manager Name is required!' /&gt;"
                                 ValidationGroup="vgSave"></asp:RequiredFieldValidator>
                         </div>
                     </div>
+
+
+                    
+
 
                     <div class="row">
                         <div class="col3">
@@ -248,12 +225,15 @@
                         </div>
                         <div class="col9"></div>
                     </div>
-             
+
 
                 </div>
 
             </div>
-
         </ContentTemplate>
     </asp:UpdatePanel>
+
+    
+
+
 </asp:Content>

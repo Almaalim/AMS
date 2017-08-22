@@ -101,7 +101,7 @@ public class EmployeeSql : DataLayerBase
             if (!string.IsNullOrEmpty(Pro.EmpLeaveDate)) { Sqlcmd.Parameters.Add(new SqlParameter("@EmpLeaveDate", DtDB, 14, IN, false, 0, 0, "", DRV,Pro.EmpLeaveDate)); }
             Sqlcmd.Parameters.Add(new SqlParameter("@NatID"                , IntDB, 10,  IN, false, 0, 0, "", DRV, Pro.NatID));
             Sqlcmd.Parameters.Add(new SqlParameter("@EmpStatus"            , BitDB, 1,   IN, false, 0, 0, "", DRV, Pro.EmpStatus));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EmpPWD"               , VchDB, 100, IN, false, 0, 0, "", DRV, Pro.EmpPWD));
+            //Sqlcmd.Parameters.Add(new SqlParameter("@EmpPWD"               , VchDB, 100, IN, false, 0, 0, "", DRV, Pro.EmpPWD));
             Sqlcmd.Parameters.Add(new SqlParameter("@EmpAutoOut"           , BitDB, 1,   IN, false, 0, 0, "", DRV, Pro.EmpAutoOut));
             Sqlcmd.Parameters.Add(new SqlParameter("@EmpAutoIn"            , BitDB, 1,   IN, false, 0, 0, "", DRV, Pro.EmpAutoIn));
             Sqlcmd.Parameters.Add(new SqlParameter("@EtpID"                , IntDB, 10,  IN, false, 0, 0, "", DRV, Pro.EtpID));

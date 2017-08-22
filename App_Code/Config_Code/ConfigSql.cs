@@ -51,8 +51,6 @@ public class ConfigSql : DataLayerBase
             
             if (!string.IsNullOrEmpty(Pro.cfgVacResetDate)) { Sqlcmd.Parameters.Add(new SqlParameter("@cfgVacResetDate", DtDB, 14, IN, false, 0, 0, "", DRV, Pro.cfgVacResetDate)); }
             Sqlcmd.Parameters.Add(new SqlParameter("@cfgFormReq"             , VchDB, 500, IN, false, 0, 0, "", DRV, Pro.cfgFormReq));
-            Sqlcmd.Parameters.Add(new SqlParameter("@cfgSessionDuration"     , IntDB, 10,  IN, false, 0, 0, "", DRV, Pro.cfgSessionDuration));
-            Sqlcmd.Parameters.Add(new SqlParameter("@cfgDataLang"            , ChrDB, 1,   IN, false, 0, 0, "", DRV, Pro.cfgDataLang));
             Sqlcmd.Parameters.Add(new SqlParameter("@cfgApprovalsMonthCount" , IntDB, 10,  IN, false, 0, 0, "", DRV, Pro.cfgApprovalsMonthCount));
             Sqlcmd.Parameters.Add(new SqlParameter("@cfgTransInDaysCount"    , IntDB, 10,  IN, false, 0, 0, "", DRV, Pro.cfgTransInDaysCount));
             Sqlcmd.Parameters.Add(new SqlParameter("@cfgDaysLimitReqVac"     , IntDB, 10,  IN, false, 0, 0, "", DRV, Pro.cfgDaysLimitReqVac));

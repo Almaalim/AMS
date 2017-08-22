@@ -57,8 +57,8 @@ public class MailFun
                     if (DT.Rows[0]["EmlPortNo"]         != DBNull.Value) { EmailPort       = Convert.ToInt32(DT.Rows[0]["EmlPortNo"]); }
                     if (DT.Rows[0]["EmlSenderEmail"]    != DBNull.Value) { SenderEmailID   = DT.Rows[0]["EmlSenderEmail"].ToString(); }
                     if (DT.Rows[0]["EmlSenderPassword"] != DBNull.Value) { SenderEmailPass = DT.Rows[0]["EmlSenderPassword"].ToString(); }
-                    if (DT.Rows[0]["EmlSsl"]            != DBNull.Value) { EmailSsl        = Convert.ToBoolean(DT.Rows[0]["AppEmailSsl"]); }
-                    if (DT.Rows[0]["EmlCredential"]     != DBNull.Value) { EmailCredential = Convert.ToBoolean(DT.Rows[0]["AppEmailCredential"]); } 
+                    if (DT.Rows[0]["EmlSsl"]            != DBNull.Value) { EmailSsl        = Convert.ToBoolean(DT.Rows[0]["EmlSsl"]); }
+                    if (DT.Rows[0]["EmlCredential"]     != DBNull.Value) { EmailCredential = Convert.ToBoolean(DT.Rows[0]["EmlCredential"]); } 
                 }
                 else { return false; }
                 
@@ -142,8 +142,8 @@ public class MailFun
                     }
                     else if (PKList[i].Contains("ENCRYPT_")) 
                     { 
-                        if (Body.IndexOf("[" + PKList[i] + "]") > 0) { Body = Body.Replace("[" + PKList[i] + "]", DR[PKList[i]].ToString()); }
-                        //if (Body.IndexOf("[" + PKList[i] + "]") > 0) { Body = Body.Replace("[" + PKList[i] + "]", CryptorEngine.Decrypt(DR[PKList[i]].ToString(),true)); }
+                        //if (Body.IndexOf("[" + PKList[i] + "]") > 0) { Body = Body.Replace("[" + PKList[i] + "]", DR[PKList[i]].ToString()); }
+                        if (Body.IndexOf("[" + PKList[i] + "]") > 0) { Body = Body.Replace("[" + PKList[i] + "]", CryptorEngine.Decrypt(DR[PKList[i]].ToString(),true)); }
                     }
                     else if (PKList[i].Contains("STATUSAR_")) 
                     { 

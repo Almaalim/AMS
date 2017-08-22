@@ -87,7 +87,13 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
         else if (CalendarType == CalendarEnum.Both) { ddlLocaleChoice.Enabled = true; }
         else if (CalendarType == CalendarEnum.System) { }
 
-        DefaultCalendarCulture = DefaultCalendarCultureEnum.Hijri;
+        DefaultCalendarCulture = DefaultCalendarCultureEnum.Gregorian;
+        if (HttpContext.Current.Session["DateType"] != null)
+        {
+            string DateType = HttpContext.Current.Session["DateType"].ToString();
+            if (DateType == "Gregorian") { DefaultCalendarCulture = DefaultCalendarCultureEnum.Gregorian; }
+            else if (DateType == "Hijri") DefaultCalendarCulture = DefaultCalendarCultureEnum.Hijri;
+        }
 
         if (DefaultCalendarCulture == DefaultCalendarCultureEnum.Gregorian)
         {
@@ -462,7 +468,7 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
                 }
             }
         }
-        catch { e.IsValid = false; }
+        catch (Exception ex) { e.IsValid = false; }
     }
 
     #endregion

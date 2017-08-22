@@ -124,7 +124,7 @@
     <value />
   </data>
   <data name="BoundFieldResource1.HeaderText" xml:space="preserve">
-    <value>الرقم</value>
+    <value>ID</value>
   </data>
   <data name="BoundFieldResource2.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -133,7 +133,7 @@
     <value />
   </data>
   <data name="BoundFieldResource2.HeaderText" xml:space="preserve">
-    <value>الإسم (ع)</value>
+    <value>Table Name (Ar)</value>
   </data>
   <data name="BoundFieldResource3.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -142,7 +142,7 @@
     <value />
   </data>
   <data name="BoundFieldResource3.HeaderText" xml:space="preserve">
-    <value>الإسم (E)</value>
+    <value>Table Name (En)</value>
   </data>
   <data name="BoundFieldResource4.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -151,7 +151,7 @@
     <value />
   </data>
   <data name="BoundFieldResource4.HeaderText" xml:space="preserve">
-    <value>إسم القسم (ع)</value>
+    <value>Transaction By</value>
   </data>
   <data name="BoundFieldResource5.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -160,15 +160,39 @@
     <value />
   </data>
   <data name="BoundFieldResource5.HeaderText" xml:space="preserve">
-    <value>إسم القسم (E)</value>
+    <value>LogTransactionDate</value>
   </data>
-  <data name="btnFilterResource1.AlternateText" xml:space="preserve">
+  <data name="BoundFieldResource6.AccessibleHeaderText" xml:space="preserve">
     <value />
+  </data>
+  <data name="BoundFieldResource6.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource6.HeaderText" xml:space="preserve">
+    <value>Data ID</value>
+  </data>
+  <data name="BoundFieldResource7.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource7.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource7.HeaderText" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="btnFilterResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Button_Icons/button_magnify.png" /&gt; Search</value>
   </data>
   <data name="btnFilterResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="ddlFilterResource1.ToolTip" xml:space="preserve">
+  <data name="ddlLogTableNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlLogTransactionByResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ddlLogTransactionTypeResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="grdDataResource1.Caption" xml:space="preserve">
@@ -180,35 +204,53 @@
   <data name="grdDataResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lblIDFilterResource1.Text" xml:space="preserve">
-    <value>بحث بواسطة :</value>
+  <data name="lblEndDateResource1.Text" xml:space="preserve">
+    <value>To:</value>
   </data>
-  <data name="lblIDFilterResource1.ToolTip" xml:space="preserve">
+  <data name="lblEndDateResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblLogTableNameResource1.Text" xml:space="preserve">
+    <value>Table Name:</value>
+  </data>
+  <data name="lblLogTableNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblLogTransactionByResource1.Text" xml:space="preserve">
+    <value>Transaction By:</value>
+  </data>
+  <data name="lblLogTransactionByResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblLogTransactionTypeResource1.Text" xml:space="preserve">
+    <value>Transaction:</value>
+  </data>
+  <data name="lblLogTransactionTypeResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblStartDateResource1.Text" xml:space="preserve">
+    <value>From:</value>
+  </data>
+  <data name="lblStartDateResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="ListItemResource1.Text" xml:space="preserve">
-    <value>[None]</value>
+    <value>-Select Type-</value>
   </data>
   <data name="ListItemResource2.Text" xml:space="preserve">
-    <value>رقم الموظف</value>
+    <value>Add</value>
   </data>
   <data name="ListItemResource3.Text" xml:space="preserve">
-    <value>إسم الموظف (ع)</value>
+    <value>Update</value>
   </data>
   <data name="ListItemResource4.Text" xml:space="preserve">
-    <value>إسم الموظف (E)</value>
-  </data>
-  <data name="ListItemResource5.Text" xml:space="preserve">
-    <value>إسم القسم (ع)</value>
-  </data>
-  <data name="ListItemResource6.Text" xml:space="preserve">
-    <value>إسم القسم (E)</value>
+    <value>Delete</value>
   </data>
   <data name="Literal1Resource1.Text" xml:space="preserve">
     <value />
   </data>
   <data name="PageResource1.Title" xml:space="preserve">
-    <value>حركات اليوم</value>
+    <value>Transaction Log Page</value>
   </data>
   <data name="TemplateFieldResource1.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -217,15 +259,30 @@
     <value />
   </data>
   <data name="TemplateFieldResource1.HeaderText" xml:space="preserve">
-    <value>الحركة</value>
+    <value>Type</value>
   </data>
-  <data name="txtFilterResource1.Text" xml:space="preserve">
+  <data name="TemplateFieldResource2.AccessibleHeaderText" xml:space="preserve">
     <value />
   </data>
-  <data name="txtFilterResource1.ToolTip" xml:space="preserve">
+  <data name="TemplateFieldResource2.FooterText" xml:space="preserve">
     <value />
   </data>
-  <data name="TemplateFieldResource11.HeaderText" xml:space="preserve">
-    <value>الوقت </value>
+  <data name="TemplateFieldResource2.HeaderText" xml:space="preserve">
+    <value>Transaction Date</value>
+  </data>
+  <data name="TemplateFieldResource3.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource3.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource3.HeaderText" xml:space="preserve">
+    <value>Transaction Time</value>
+  </data>
+  <data name="vsSearchResource1.HeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="vsSearchResource1.ToolTip" xml:space="preserve">
+    <value />
   </data>
 </root>

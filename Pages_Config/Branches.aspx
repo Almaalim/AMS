@@ -163,7 +163,7 @@
                         <asp:Label ID="lblBranchParentName" runat="server" Font-Size="10pt" meta:resourcekey="lblBranchParentNameResource1">Parent Name :</asp:Label>
                     </div>
                     <div class="col4">
-                        <asp:DropDownList ID="ddlBranchParentName" runat="server" Enabled="False"
+                        <asp:DropDownList ID="ddlBranchParentName" runat="server"  Enabled="False"
                             meta:resourcekey="ddlBranchParentNameResource1">
                         </asp:DropDownList>
                     </div>
@@ -175,7 +175,7 @@
                             meta:resourcekey="lblDepMangerID0Resource1"></asp:Label>
                     </div>
                     <div class="col4">
-                        <asp:DropDownList ID="ddlBranchManagerID" runat="server" Enabled="False"
+                        <asp:DropDownList ID="ddlBranchManagerID" runat="server" Enabled="False" class="chosen-select"
                             meta:resourcekey="ddlBranchManagerIDResource1">
                         </asp:DropDownList>
                     </div>

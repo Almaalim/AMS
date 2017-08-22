@@ -170,9 +170,8 @@ public partial class UserDepartments : BasePage
                     if (string.IsNullOrEmpty(DepList)) { DepList = node.Value; } else { DepList += "," + node.Value; }
                 }
 
-                //string DepListEnc = CryptorEngine.Encrypt(DepList,true);
-
-                SqlCs.AppUser_Update_DepList(txtID.Text, DepList, pgCs.LoginID);
+                string DepListEnc = CryptorEngine.Encrypt(DepList,true);
+                SqlCs.AppUser_Update_DepList(txtID.Text, DepListEnc, pgCs.LoginID);
             }
 
             UIClear();
@@ -381,17 +380,15 @@ public partial class UserDepartments : BasePage
     {
         try
         {
-
-
             DataTable dt = (DataTable)ViewState["grdDataDT"];
             DataRow[] DRs = dt.Select("UsrName = '" + pID + "'");
 
             txtID.Text = DRs[0]["UsrName"].ToString();
 
             string UsrDepartmentsEnc = DRs[0]["UsrDepartments"].ToString();
-            //string UsrDepartmentsDec = CryptorEngine.Decrypt(UsrDepartmentsEnc, true);
+            string UsrDepartmentsDec = CryptorEngine.Decrypt(UsrDepartmentsEnc, true);
 
-            ViewState["Departments"] = UsrDepartmentsEnc;
+            ViewState["Departments"] = UsrDepartmentsDec;
 
             ///////////////////////////////////////////
              

@@ -17,7 +17,7 @@
             //}
         }
     </script>
-    <link href="../CSS/Metro/Metro.css" rel="stylesheet" />
+    <link href="~/CSS/Metro/Metro.css" rel="stylesheet" runat="server" id="LanguageSwitch" />
     <title>Vacation Request </title>
     <%--script--%>
     <script type="text/javascript" src="../Script/GridEvent.js"></script>

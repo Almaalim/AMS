@@ -56,7 +56,9 @@ public partial class Branches : BasePage
     {
         try
         {
-           CtrlCs.FillMgrsList(ref ddlBranchManagerID, null, false);
+            CtrlCs.FillMgrsChosenList(ref ddlBranchManagerID, null, false);
+
+            //CtrlCs.FillMgrsList(ref ddlBranchManagerID, null, false);
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }

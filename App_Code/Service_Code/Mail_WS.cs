@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Services;
 using System.Text;
 using System.Data;
@@ -27,14 +24,14 @@ public class Mail_WS : System.Web.Services.WebService
     {
         try
         {
-            DataTable DT = DBCs.FetchData("SELECT * FROM WSUsers WHERE WSStatus = 'True' AND WSUsr = @P1", new string[] { UWS });
+            DataTable DT = DBCs.FetchData("SELECT * FROM WSUsers WHERE WSStatus = 'True' AND WSName = @P1", new string[] { "WSMail" });
             if (DBCs.IsNullOrEmpty(DT)) { return false; }
             else
             {
-                string Name = CryptorEngine.Encrypt(DT.Rows[0]["WSName"].ToString(), true);
-                string Pass = CryptorEngine.Encrypt(DT.Rows[0]["WSPassword"].ToString(), true);
-                
-                if (Pass == PWS && Name == "Mail_WS") { return true; } else { return false; }
+                string User = CryptorEngine.Decrypt(DT.Rows[0]["WSUsr"].ToString(), true);
+                string Pass = CryptorEngine.Decrypt(DT.Rows[0]["WSPassword"].ToString(), true);
+
+                if (Pass == PWS && User == UWS) { return true; } else { return false; }
             }
         }
         catch (Exception ex) { return false; }

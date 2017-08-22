@@ -15,7 +15,6 @@ public class ConfigPro
     //cfgICApprovalPercent	    int	Checked   
     //cfgRedundantInSelection	char(1)	Checked
     //cfgRedundantOutSelection	char(1)	Checked
-    //cfgSessionDuration	    int	Checked
     
     //cfgOTBeginEarlyFlag	bit	Checked
     //cfgOTOutLateFlag	bit	Checked
@@ -27,7 +26,6 @@ public class ConfigPro
     //cfgOTNoShiftInterval	int	Checked
     
     //cfgMiddleGapCount	int	Checked
-    //cfgDataLang	char(1)	Checked
     //cfgFormReq	varchar(500)	Checked
     //cfgAutoTransaction	bit	Checked
     //cfgApprovalsMonthCount	int	Checked
@@ -67,9 +65,6 @@ public class ConfigPro
     string _cfgRedundantOutSelection;
     public string cfgRedundantOutSelection { get { return _cfgRedundantOutSelection; } set { if (_cfgRedundantOutSelection != value) { _cfgRedundantOutSelection = value; } } }
 
-    string _cfgSessionDuration;
-    public string cfgSessionDuration { get { return _cfgSessionDuration; } set { if (_cfgSessionDuration != value) { _cfgSessionDuration = value; } } }
-
     bool _cfgOTBeginEarlyFlag;
     public bool cfgOTBeginEarlyFlag { get { return _cfgOTBeginEarlyFlag; } set { if (_cfgOTBeginEarlyFlag != value) { _cfgOTBeginEarlyFlag = value; } } }
 
@@ -102,9 +97,6 @@ public class ConfigPro
 
     string _cfgMiddleGapCount;
     public string cfgMiddleGapCount { get { return _cfgMiddleGapCount; } set { if (_cfgMiddleGapCount != value) { _cfgMiddleGapCount = value; } } }
-
-    string _cfgDataLang;
-    public string cfgDataLang { get { return _cfgDataLang; } set { if (_cfgDataLang != value) { _cfgDataLang = value; } } }
 
     string _cfgFormReq;
     public string cfgFormReq { get { return _cfgFormReq; } set { if (_cfgFormReq != value) { _cfgFormReq = value; } } }

@@ -7,25 +7,6 @@ public class BasePage : System.Web.UI.Page
 {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected override void OnPreInit(EventArgs e)
-    {
-
-        base.OnPreInit(e);
-
-
-        if (Convert.ToString(Request.QueryString["lp"]) == "0")
-        {
-            Page.MasterPageFile = "~/AMSMasterPageWithoutLeftpanel.master";
-        }
-        else
-            if (Convert.ToString(Request.QueryString["lp"]) == "1")
-            {
-                Page.MasterPageFile = "~/AMSMasterPage.master";
-            }
-       
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public String CurrentCulture
     {
         get
@@ -47,15 +28,14 @@ public class BasePage : System.Web.UI.Page
         string CurrentCulture = "en-US";
         if (Session["Language"] != null)
         {
-            if (Session["Language"].ToString() == "AR") { CurrentCulture = "ar-Sa"; Session["Part1align"] = "left"; Session["Part2align"] = "right"; } 
-            else { CurrentCulture = "en-US";  Session["Part1align"] = "right"; Session["Part2align"] = "left";}
+            if (Session["Language"].ToString() == "AR") { CurrentCulture = "ar-Sa"; } else { CurrentCulture = "en-US"; }
         }
         else
         {
             CurrentCulture = "en-US"; Session["Part1align"] = "right"; Session["Part2align"] = "left";
         }
         UICulture = CurrentCulture;
-        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+        //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
         System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(CurrentCulture);
         base.InitializeCulture();
     }
@@ -95,4 +75,6 @@ public class BasePage : System.Web.UI.Page
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void ShowMsg_ServerValidate(Object source, ServerValidateEventArgs e) { e.IsValid = false; }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

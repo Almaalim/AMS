@@ -160,6 +160,37 @@ public class CtrlFun : DataLayerBase
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public bool PopulateChosenDDL(DropDownList ddl, DataTable dt, string Text1, string Text2, string Value, string Msg)
+    {
+        try
+        {
+            if (DBCs.IsNullOrEmpty(dt)) { return false; }
+
+            ddl.DataSource = null;
+            ddl.Items.Clear();
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(dt.Rows[i][Text1].ToString()))
+                {
+                    string txt = (string.IsNullOrEmpty(dt.Rows[i][Text2].ToString())) ? dt.Rows[i][Text1].ToString() : dt.Rows[i][Text1].ToString() + "-" + dt.Rows[i][Text2].ToString();
+
+                    ListItem ls = new ListItem(txt, dt.Rows[i][Value].ToString());
+                    ddl.Items.Add(ls);
+                }
+            }
+
+            ListItem lsMsg = new ListItem("", "-1");
+            ddl.Items.Insert(0, lsMsg);
+
+            ddl.Attributes.Add("data-placeholder", Msg);
+
+            return true;
+        }
+        catch (Exception e1) { throw e1; }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected DataTable PopulateDepartment(string DepList, string Version)
     {
         string DQ = "";
@@ -389,7 +420,7 @@ public class CtrlFun : DataLayerBase
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void FillMgrsList(ref DropDownList _ddl, RequiredFieldValidator _rv, bool isClear)
+    public void FillMgrsList2(ref DropDownList _ddl, RequiredFieldValidator _rv, bool isClear)
     {
         if (isClear) { _ddl.Items.Clear(); }
 
@@ -398,6 +429,19 @@ public class CtrlFun : DataLayerBase
         {
             PopulateDDL(_ddl, DT, "UsrName", "UsrName", General.Msg("-Select Manager Name-", "-اختر مدير القسم-"));
             if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void FillMgrsChosenList(ref DropDownList _ddl, RequiredFieldValidator _rv, bool isClear)
+    {
+        if (isClear) { _ddl.Items.Clear(); }
+
+        DataTable DT = DBCs.FetchData(new SqlCommand(" SELECT UsrName,EmpID FROM AppUser WHERE ISNULL(UsrDeleted,0) = 0 AND UsrStatus = 'True' "));
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            PopulateChosenDDL(_ddl, DT, "UsrName", "EmpID", "UsrName", General.Msg("-Select Manager Name-", "-اختر مدير القسم-"));
+            if (_rv != null) { _rv.InitialValue = "-1"; }
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -964,25 +1008,25 @@ public class CtrlFun : DataLayerBase
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public DataSet FillDepTreeDS(string pBrcID, string ActiveVersion, string loginUserName)
-    {
-        string sql;
+    //public DataSet FillDepTreeDS_ByBrcID(string pBrcID, string ActiveVersion, string DepList)
+    //{
+    //    string sql;
 
-        string DQ = "";
-        if (ActiveVersion == "BorderGuard")
-        {
-            DQ = " SELECT DISTINCT DepID,DepParentID,DepName" + General.Msg("En", "Ar") + " AS DepNameEn,dbo.GetDepPerm(DepID,'" + loginUserName + "') AS DepCheck FROM Department WHERE BrcID= " + pBrcID + "";
-        }
-        else // (ActiveVersion == "General")
-        {
-            DQ = " SELECT DISTINCT DepID,DepParentID,FullName" + General.Msg("En", "Ar") + " AS DepNameEn,dbo.GetDepPerm(DepID,'" + loginUserName + "') AS DepCheck FROM DepartmentLevelView WHERE BrcID= " + pBrcID + "";
-        }
+    //    string DQ = "";
+    //    if (ActiveVersion == "BorderGuard")
+    //    {
+    //        DQ = " SELECT DISTINCT DepID,DepParentID,DepName" + General.Msg("En", "Ar") + " AS DepNameEn,dbo.GetDepPerm(DepID,'" + DepList + "') AS DepCheck FROM Department WHERE BrcID= " + pBrcID + "";
+    //    }
+    //    else // (ActiveVersion == "General")
+    //    {
+    //        DQ = " SELECT DISTINCT DepID,DepParentID,FullName" + General.Msg("En", "Ar") + " AS DepNameEn,dbo.GetDepPerm(DepID,'" + DepList + "') AS DepCheck FROM DepartmentLevelView WHERE BrcID= " + pBrcID + "";
+    //    }
 
-        DataSet ds = new DataSet();
-        ds = (DataSet)FetchDepartmentDataSet(sql = DQ);
+    //    DataSet ds = new DataSet();
+    //    ds = (DataSet)FetchDepartmentDataSet(sql = DQ);
 
-        return ds;
-    }
+    //    return ds;
+    //}
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public DataSet FillDepTreeDS(string pBrcID, string ActiveVersion, string loginUserName, string DepList)
@@ -992,11 +1036,11 @@ public class CtrlFun : DataLayerBase
         string DQ = "";
         if (ActiveVersion == "BorderGuard")
         {
-            DQ = " SELECT DISTINCT DepID,DepParentID,DepName" + General.Msg("En", "Ar") + " AS DepNameEn,dbo.GetDepPerm(DepID,'" + loginUserName + "') AS DepCheck FROM Department WHERE BrcID = " + pBrcID + " AND DepID IN (" + DepList + ") ";
+            DQ = " SELECT DISTINCT DepID,DepParentID,DepName" + General.Msg("En", "Ar") + " AS DepNameEn,dbo.GetDepPerm(DepID,'" + DepList + "') AS DepCheck FROM Department WHERE BrcID = " + pBrcID + " AND DepID IN (" + DepList + ") ";
         }
         else // (ActiveVersion == "General")
         {
-            DQ = " SELECT DISTINCT DepID,DepParentID,FullName" + General.Msg("En", "Ar") + " AS DepNameEn,dbo.GetDepPerm(DepID,'" + loginUserName + "') AS DepCheck FROM DepartmentLevelView WHERE BrcID = " + pBrcID + " AND DepID IN (" + DepList + ") ";
+            DQ = " SELECT DISTINCT DepID,DepParentID,FullName" + General.Msg("En", "Ar") + " AS DepNameEn,dbo.GetDepPerm(DepID,'" + DepList + "') AS DepCheck FROM DepartmentLevelView WHERE BrcID = " + pBrcID + " AND DepID IN (" + DepList + ") ";
         }
 
         DataSet ds = new DataSet();

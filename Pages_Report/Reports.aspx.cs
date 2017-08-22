@@ -65,6 +65,12 @@ public partial class Reports : BasePage
             pgCs.FillSession();
             /*** Fill Session ************************************/
 
+            if (ViewState["pnlshow"] != null)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "showPopup('" + DivPopup.ClientID + "','" + pnlDate.ClientID + "','" + pnlDateFromTo.ClientID + "','" + ViewState["pnlshow"].ToString() + "');", true);
+            }
+
+
             if (!IsPostBack)
             {
                 /*** Common Code ************************************/
@@ -212,6 +218,8 @@ public partial class Reports : BasePage
         ddlMonth.SelectedIndex = ddlMonth.Items.IndexOf(ddlMonth.Items.FindByValue(DTCs.FindCurrentMonth()));
         ddlYear.SelectedIndex = ddlYear.Items.IndexOf(ddlYear.Items.FindByValue(DTCs.FindCurrentYear()));
 
+        ViewState["pnlshow"] = null;
+
         RepParametersPro RepProCs = new RepParametersPro();
         RepProCs.RepID = RepID;
         RepProCs.RepLang = pgCs.Lang;
@@ -254,7 +262,7 @@ public partial class Reports : BasePage
         pnlDaysCount.Visible = CheckBitWise(RepPanels, 4096);
 
         btnEventsEnable(true);
-
+        ViewState["pnlshow"] = pnlshow;
         ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "showPopup('" + DivPopup.ClientID + "','" + pnlDate.ClientID + "','" + pnlDateFromTo.ClientID + "','" + pnlshow + "');", true);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -947,7 +955,7 @@ public partial class Reports : BasePage
     protected void FillTree(string pBrcID)
     {
         DataSet ds = new DataSet();
-        CtrlCs.FillDepTreeDS(pBrcID, pgCs.Version, pgCs.LoginID, (Session["DepartmentList"] != null ? pgCs.DepList : "0"));
+        ds = CtrlCs.FillDepTreeDS(pBrcID, pgCs.Version, pgCs.LoginID, (Session["DepartmentList"] != null ? pgCs.DepList : "0"));
         xmlDataSource2.Data = ds.GetXml();
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

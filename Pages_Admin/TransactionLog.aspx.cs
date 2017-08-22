@@ -11,20 +11,20 @@ using System.Text;
 using System.Globalization;
 using System.Data.SqlClient;
 
-public partial class RoundPatrolTransaction : BasePage
+public partial class Pages_Admin_TransactionLog : BasePage
 {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    PageFun pgCs   = new PageFun();
-    General GenCs  = new General();
-    DBFun   DBCs   = new DBFun();
+    PageFun pgCs = new PageFun();
+    General GenCs = new General();
+    DBFun DBCs = new DBFun();
     CtrlFun CtrlCs = new CtrlFun();
-    DTFun   DTCs   = new DTFun();
+    DTFun DTCs = new DTFun();
 
     string sortDirection = "ASC";
     string sortExpression = "";
-    
-    string MainQuery = " SELECT * FROM RoundPatrolTransactionInfoView ";
+
+    string MainQuery = " SELECT * FROM TransactionLogInfoView ";
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void Page_Load(object sender, EventArgs e)
@@ -32,19 +32,19 @@ public partial class RoundPatrolTransaction : BasePage
         try
         {
             /*** Fill Session ************************************/
-            pgCs.FillSession(); 
+            pgCs.FillSession();
             CtrlCs.RefreshGridEmpty(ref grdData);
             /*** Fill Session ************************************/
-            
+
             if (!IsPostBack)
             {
                 /*** Common Code ************************************/
-                /*** Check AMS License ***/ pgCs.CheckAMSLicense();  
-                if ( LicDf.FetchLic("RP") == "0" ) { Server.Transfer("login.aspx"); }
-                
-                /*** get Permission    ***/ ViewState["ht"] = pgCs.getPerm(Request.Url.AbsolutePath);  
+                /*** Check AMS License ***/ pgCs.CheckAMSLicense();
+                /*** get Permission    ***/ ViewState["ht"] = pgCs.getPerm(Request.Url.AbsolutePath);
                 BtnStatus("1");
+                UIEnabled(true);
                 UILang();
+                FillList();
                 btnFilter_Click(null, null);
                 ViewState["CommandName"] = "";
                 /*** Common Code ************************************/
@@ -54,79 +54,78 @@ public partial class RoundPatrolTransaction : BasePage
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+    public void FillList()
+    {
+        DataTable DT1 = DBCs.FetchData(new SqlCommand(" SELECT DISTINCT LogTableName, TableNameEn, TableNameAr FROM TransactionLogInfoView "));
+        if (!DBCs.IsNullOrEmpty(DT1))
+        {
+            CtrlCs.PopulateDDL(ddlLogTableName, DT1, General.Msg("TableNameEn", "TableNameAr"), "LogTableName", General.Msg("-Select Table-", "-اختر الجدول-"));
+        }
+
+        DataTable DT2 = DBCs.FetchData(new SqlCommand(" SELECT DISTINCT LogTransactionBy FROM TransactionLogInfoView "));
+        if (!DBCs.IsNullOrEmpty(DT2))
+        {
+            CtrlCs.PopulateDDL(ddlLogTransactionBy, DT2, "LogTransactionBy", "LogTransactionBy", General.Msg("-Select User-", "-اختر المستخدم-"));
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
     #region Search Events
 
-    protected void btnFilter_Click(object sender, ImageClickEventArgs e)
+    protected void btnFilter_Click(object sender, EventArgs e)
     {
         try
         {
             SqlCommand cmd = new SqlCommand();
-            string sql = MainQuery + " WHERE DepID IN (" + pgCs.DepList + ") ";
-        
-            if (ddlFilter.SelectedValue == "TrnDate")
+            bool find = false;
+            string sql = MainQuery + " WHERE LogID = LogID ";
+
+            if (ddlLogTableName.SelectedIndex > 0)
             {
-                if (!string.IsNullOrEmpty(calStartDate.getGDate()))
-                {
-                    DateTime fromDate = Convert.ToDateTime(calStartDate.getGDate());
-                    if (!String.IsNullOrEmpty(calEndDate.getGDate()))
-                    {
-                        DateTime ToDate = Convert.ToDateTime(calEndDate.getGDate());
-                        sql += " AND TrnDate BETWEEN @FromDate AND @ToDate";
-                        cmd.Parameters.AddWithValue("@FromDate", calStartDate.getGDate());
-                        cmd.Parameters.AddWithValue("@ToDate"  , String.Format("{0:MM/dd/yyyy}", ToDate));
-                    }
-                    else
-                    {
-                        sql += " AND TrnDate = @FromDate";                    
-                        cmd.Parameters.AddWithValue("@FromDate"  , String.Format("{0:MM/dd/yyyy}", fromDate));
-                    }
-                }
+                sql += " AND LogTableName = @TableName";
+                cmd.Parameters.AddWithValue("@TableName", ddlLogTableName.SelectedValue);
+                find = true;
             }
-            else if (ddlFilter.SelectedValue == "EmpID" || ddlFilter.SelectedValue == "MacID")
+
+            if (ddlLogTransactionType.SelectedIndex > 0)
             {
-                if (!string.IsNullOrEmpty(txtFilter.Text.Trim()))
-                {
-                    sql += " AND " + ddlFilter.SelectedValue + " LIKE @P1";
-                    cmd.Parameters.AddWithValue("@P1", txtFilter.Text.Trim());
-                }
+                sql += " AND LogTransactionType = @TransactionType";
+                cmd.Parameters.AddWithValue("@TransactionType", ddlLogTransactionType.SelectedValue);
+                find = true;
             }
-            else if (ddlFilter.SelectedValue == "EmpNameAr" || ddlFilter.SelectedValue == "EmpNameEn")
+
+            if (ddlLogTransactionBy.SelectedIndex > 0)
             {
-                if (!string.IsNullOrEmpty(txtFilter.Text.Trim()))
-                {
-                    sql += " AND " + ddlFilter.SelectedValue + " LIKE @P1";
-                    cmd.Parameters.AddWithValue("@P1", "%" + txtFilter.Text.Trim() + "%");
-                }
+                sql += " AND LogTransactionBy = @TransactionBy";
+                cmd.Parameters.AddWithValue("@TransactionBy", ddlLogTransactionBy.SelectedValue);
+                find = true;
             }
-        
+
+            if (!string.IsNullOrEmpty(calStartDate.getGDate()))
+            {
+                find = true;
+                DateTime fromDate = DTCs.ConvertToDatetime(calStartDate.getGDate(), "Gregorian");
+                DateTime ToDate   = fromDate;
+
+                if (!string.IsNullOrEmpty(calEndDate.getGDate()))
+                {
+                    ToDate = DTCs.ConvertToDatetime(calEndDate.getGDate(), "Gregorian");
+                }
+                
+                sql += " AND LogTransactionDate BETWEEN @FromDate AND @ToDate";
+                cmd.Parameters.AddWithValue("@FromDate", String.Format("{0:MM/dd/yyyy}", fromDate) + " 00:00:00");
+                cmd.Parameters.AddWithValue("@ToDate", String.Format("{0:MM/dd/yyyy}", ToDate) + " 23:59:59");
+            }
+            
             BtnStatus("1");
             grdData.SelectedIndex = -1;
-            cmd.CommandText = sql;
+            if (find) { cmd.CommandText = sql; } else { cmd.CommandText = MainQuery + " WHERE LogID = -1 "; }
             FillGrid(cmd);
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void ddlFilter_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        txtFilter.Text = string.Empty;
-        calStartDate.ClearDate();
-        calEndDate.ClearDate();
-
-        if (ddlFilter.SelectedValue.ToString() == "TrnDate")
-        {
-            divtxt.Visible = false;
-            divdate.Visible = true;
-        }
-        else
-        {
-            divtxt.Visible = true;
-            divdate.Visible = false;
-        }
     }
 
     #endregion
@@ -144,25 +143,30 @@ public partial class RoundPatrolTransaction : BasePage
     {
         if (pgCs.LangEn)
         {
-            
+
         }
         else
         {
             grdData.Columns[2].Visible = false;
-            ddlFilter.Items.FindByValue("EmpNameEn").Enabled = false;
         }
 
         if (pgCs.LangAr)
         {
-            
+
         }
         else
         {
             grdData.Columns[1].Visible = false;
-            ddlFilter.Items.FindByValue("EmpNameAr").Enabled = false;
         }
     }
-    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void UIEnabled(bool pStatus)
+    {
+        calStartDate.SetEnabled(pStatus);
+        calEndDate.SetEnabled(pStatus);
+    }
+
     #endregion
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
@@ -176,10 +180,10 @@ public partial class RoundPatrolTransaction : BasePage
 
     protected void BtnStatus(string Status) //string pBtn = [Search]
     {
-        Hashtable Permht = (Hashtable)ViewState["ht"];
+        //Hashtable Permht = (Hashtable)ViewState["ht"];
         btnFilter.Enabled = GenCs.FindStatus(Status[0]);
 
-        if (Status[0] != '0') { btnFilter.Enabled = Permht.ContainsKey("Search"); }
+        //if (Status[0] != '0') { btnFilter.Enabled = Permht.ContainsKey("Search"); }
     }
 
     #endregion
@@ -188,7 +192,7 @@ public partial class RoundPatrolTransaction : BasePage
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
     #region GridView Events
@@ -208,9 +212,9 @@ public partial class RoundPatrolTransaction : BasePage
                         pagerTable.Rows[0].Cells.Add(CtrlCs.PagerCell(_ddlPager));
                         break;
                     }
-                 default:
+                default:
                     {
-                         e.Row.Cells[1].Visible = false;
+                        //e.Row.Cells[1].Visible = false;
                         break;
                     }
             }
@@ -223,7 +227,7 @@ public partial class RoundPatrolTransaction : BasePage
     {
         grdData.PageSize = int.Parse(((DropDownList)sender).SelectedValue);
         grdData.PageIndex = 0;
-        btnFilter_Click(null,null);
+        btnFilter_Click(null, null);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -235,7 +239,7 @@ public partial class RoundPatrolTransaction : BasePage
             {
                 case DataControlRowType.DataRow:
                     {
-                        e.Row.Attributes["onclick"] = ClientScript.GetPostBackClientHyperlink(this.grdData, "Select$" + e.Row.RowIndex);
+                        //e.Row.Attributes["onclick"] = ClientScript.GetPostBackClientHyperlink(this.grdData, "Select$" + e.Row.RowIndex);
                         break;
                     }
             }
@@ -298,7 +302,7 @@ public partial class RoundPatrolTransaction : BasePage
     {
         grdData.PageIndex = e.NewPageIndex;
         grdData.SelectedIndex = -1;
-        btnFilter_Click(null,null);
+        btnFilter_Click(null, null);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -322,6 +326,23 @@ public partial class RoundPatrolTransaction : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void grdData_PreRender(object sender, EventArgs e) { CtrlCs.GridRender((GridView)sender); }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public static string GrdDisplayType(object ID)
+    {
+        try
+        {
+            if      (ID.ToString() == "I") { return General.Msg("Add", "إضافة"); }
+            else if (ID.ToString() == "U") { return General.Msg("Update", "تعديل"); }
+            else if (ID.ToString() == "D") { return General.Msg("Delete", "حذف"); }
+            else { return string.Empty; }
+        }
+        catch (Exception e1)
+        {
+            ErrorSignal.FromCurrentContext().Raise(e1);
+            return string.Empty;
+        }
+    }
 
     #endregion
     /*#############################################################################################################################*/

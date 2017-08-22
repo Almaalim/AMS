@@ -26,18 +26,21 @@ public partial class EmployeeFingerPrint : BasePage
             {
                 /*** Common Code ************************************/
                 /*** Check AMS License ***/ pgCs.CheckAMSLicense();  
-                /*** get Permission    ***/ ViewState["ht"] = pgCs.getPerm(Request.Url.AbsolutePath);  
+                /*** get Permission    ***/ ViewState["ht"] = pgCs.getPerm(Request.Url.AbsolutePath);
                 /*** Common Code ************************************/
 
-                //"http://localhost/AMS_WSFingerprintTools/WSFingerprintTools.asmx"; //
-                hfdConnStr.Value   = General.UrlWSFingerprintTools; /* for AMS fingerprint tools activeX with webservice */
-                
-                //hfdConnStr.Value   = General.ConnString.Replace("\\","....");
-                hfdLoginUser.Value = pgCs.LoginID.Replace("\\","....");
-                hfdLang.Value      = pgCs.Lang;
-                hfdPage.Value      = Request.Url.AbsolutePath;
+                //http://localhost/AIC-AMS/Service/Fingerprint_WS.asmx
+                //http://localhost:3333/Service/Fingerprint_WS.asmx
 
-                string ID = hfdConnStr.Value + "," + hfdLoginUser.Value + "," + hfdLang.Value + "," + hfdPage.Value;
+                string ApplicationPath = (string.IsNullOrEmpty(Request.ApplicationPath) || Request.ApplicationPath == "/") ? "" : Request.ApplicationPath;
+                string URL = Request.Url.Scheme + "://" + Request.Url.Authority + ApplicationPath + "/Service/Fingerprint_WS.asmx";
+
+                hfdConn.Value = URL;
+                hfdLoginID.Value = pgCs.LoginID.Replace("\\", "....");
+                hfdLang.Value = pgCs.Lang;
+                hfdEmpID.Value = "";
+
+                string ID = hfdConn.Value + "," + hfdLoginID.Value + "," + hfdEmpID.Value + "," + hfdLang.Value;
                 ClientScript.RegisterStartupScript(this.GetType(), "key", "javascript:Connect('" + ID + "');", true);
             }
         }

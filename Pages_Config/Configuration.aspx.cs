@@ -18,7 +18,6 @@ public partial class Configuration : BasePage
     CtrlFun CtrlCs = new CtrlFun();
     DTFun   DTCs   = new DTFun();
     
-    //DataTable dt;  
     string MainQuery = "SELECT * FROM Configuration";
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
@@ -28,7 +27,7 @@ public partial class Configuration : BasePage
         {
             /*** Fill Session ************************************/
             pgCs.FillSession();
-            for (int i = 1; i <= 14; i++)
+            for (int i = 1; i <= 13; i++)
             {
                 AjaxControlToolkit.AnimationExtender aniExtShow = (AjaxControlToolkit.AnimationExtender)this.Master.FindControl("ContentPlaceHolder1").FindControl("AnimationExtenderShow" + i.ToString());
                 AjaxControlToolkit.AnimationExtender aniExtClose = (AjaxControlToolkit.AnimationExtender)this.Master.FindControl("ContentPlaceHolder1").FindControl("AnimationExtenderClose" + i.ToString());
@@ -117,12 +116,6 @@ public partial class Configuration : BasePage
                 {
                     for (int i = 0; i < cblFormRequest.Items.Count; i++) { cblFormRequest.Items[i].Selected = false; }
                 }
-
-                if (DT.Rows[0]["cfgSessionDuration"] != DBNull.Value) { txtSessionDuration.SetTime(Convert.ToInt32(DT.Rows[0]["cfgSessionDuration"]), TextTimeServerControl.TextTime.TimeTypeEnum.Seconds); }
-                //txtDepartmentLevels.Text = dr["cfgDepartmentLevels"].ToString();
-                //chkActiveDirectoryValidationUser.Checked = Convert.ToBoolean(dr["cfgActiveDirectoryValidationUser"]);
-                //chkActiveDirectoryValidationEmployee.Checked = Convert.ToBoolean(dr["cfgActiveDirectoryValidationEmployee"]);
-                rdlDataLang.SelectedIndex = rdlDataLang.Items.IndexOf(rdlDataLang.Items.FindByValue(DT.Rows[0]["cfgDataLang"].ToString()));
             }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
@@ -158,9 +151,6 @@ public partial class Configuration : BasePage
         txtOTOutOfShiftInterval.Enabled = pStatus;
         txtOTVacationInterval.Enabled = pStatus;
         cblFormRequest.Enabled = pStatus;
-
-        txtSessionDuration.Enabled = pStatus;
-        rdlDataLang.Enabled = pStatus;
 
         calVacResetDate.SetEnabled(pStatus);
         txtcfgApprovalsMonthCount.Enabled = pStatus;
@@ -210,13 +200,9 @@ public partial class Configuration : BasePage
                 if (cblFormRequest.Items[i].Selected) { if (string.IsNullOrEmpty(FormReq)) {  FormReq += cblFormRequest.Items[i].Value; }  else { FormReq += "," + cblFormRequest.Items[i].Value; } }
             }
             ProCs.cfgFormReq = FormReq;
-
-            if (txtSessionDuration.getTimeInSecond() == -1) { ProCs.cfgSessionDuration = null; } else { ProCs.cfgSessionDuration = txtSessionDuration.getTimeInSecond().ToString(); }
-
+         
             if (!string.IsNullOrEmpty(txtcfgApprovalsMonthCount.Text)) { ProCs.cfgApprovalsMonthCount = txtcfgApprovalsMonthCount.Text; }
             if (!string.IsNullOrEmpty(txtcfgTransInDaysCount.Text))    { ProCs.cfgTransInDaysCount    = txtcfgTransInDaysCount.Text; }
-
-            if (rdlDataLang.SelectedIndex == -1) { ProCs.cfgDataLang = "E"; } else { ProCs.cfgDataLang = rdlDataLang.SelectedValue.ToString(); }
 
             ProCs.TransactionBy = pgCs.LoginID;
         }
@@ -257,9 +243,6 @@ public partial class Configuration : BasePage
 
             for (int i = 0; i < cblFormRequest.Items.Count; i++) { cblFormRequest.Items[i].Selected = false; }
  
-            txtSessionDuration.SetTime(10, TextTimeServerControl.TextTime.TimeTypeEnum.Minutes);
-            rdlDataLang.SelectedIndex = 0;
-
             txtcfgApprovalsMonthCount.Text = "";
             txtcfgTransInDaysCount.Text    = "";
         }

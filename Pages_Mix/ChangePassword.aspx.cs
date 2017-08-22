@@ -50,8 +50,7 @@ public partial class ChangePassword : BasePage
         {
             if (!CtrlCs.PageIsValid(this, vsSave)) { return; }
 
-            string EncPass = txtNewpassword.Text;
-            //string EncPass = CryptorEngine.Encrypt(txtNewpassword.Text, true);
+            string EncPass = CryptorEngine.Encrypt(txtNewpassword.Text, true);
 
             if (pgCs.LoginType == "EMP") { EmpSqlCs.Employee_Update_Password(pgCs.LoginID, EncPass, pgCs.LoginID); }
             else { UsrSqlCs.AppUser_Update_Pass(pgCs.LoginID, EncPass); }
@@ -98,14 +97,32 @@ public partial class ChangePassword : BasePage
                     DataTable DT = new DataTable();
                     if (pgCs.LoginType == "EMP")
                     {
-                        DT = DBCs.FetchData(" SELECT * FROM Employee WHERE EmpID = @P1 AND EmpPWD = @P2 AND ISNULL(EmpDeleted,0) = 0 ", new string[] { pgCs.LoginID, txtOldpassword.Text });
+                        DT = DBCs.FetchData(" SELECT EmpPWD FROM Employee WHERE EmpID = @P1 AND ISNULL(EmpDeleted,0) = 0 ", new string[] { pgCs.LoginID });
+                        if (!DBCs.IsNullOrEmpty(DT))
+                        {
+                            if (DT.Rows[0][0] != DBNull.Value)
+                            {
+                                string DecPass = CryptorEngine.Decrypt(DT.Rows[0][0].ToString(), true);
+                                if (DecPass != txtOldpassword.Text) { e.IsValid = false; }
+                            }
+                            else { e.IsValid = false; }
+                        }
+                        else { e.IsValid = false; }
                     }
                     else
                     {
-                        DT = DBCs.FetchData(" SELECT * FROM AppUser WHERE UsrName = @P1 AND UsrPassword = @P2 AND ISNULL(UsrDeleted,0) = 0 ", new string[] { pgCs.LoginID, txtOldpassword.Text });
+                        DT = DBCs.FetchData(" SELECT UsrPassword FROM AppUser WHERE UsrName = @P1 AND ISNULL(UsrDeleted,0) = 0 ", new string[] { pgCs.LoginID });
+                        if (!DBCs.IsNullOrEmpty(DT))
+                        {
+                            if (DT.Rows[0][0] != DBNull.Value)
+                            {
+                                string DecPass = CryptorEngine.Decrypt(DT.Rows[0][0].ToString(), true);
+                                if (DecPass != txtOldpassword.Text) { e.IsValid = false; }
+                            }
+                            else { e.IsValid = false; }
+                        }
+                        else { e.IsValid = false; }
                     }
-
-                    if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = true; } else { e.IsValid = false; }
                 }
             }
         }

@@ -31,7 +31,7 @@
     <link href="../CSS/MasterPageStyle.css" rel="stylesheet" type="text/css" />
     <link href="../CSS/buttonStyle.css" rel="stylesheet" type="text/css" />
     <link href="../CSS/validationStyle.css" rel="stylesheet" type="text/css" />--%>
-    <link href="../CSS/Metro/Metro.css" rel="stylesheet" />
+    <link href="~/CSS/Metro/Metro.css" rel="stylesheet" runat="server" id="LanguageSwitch" />
     <%--stylesheet--%>
     <script type="text/javascript">
         $(document).ready(function () {
