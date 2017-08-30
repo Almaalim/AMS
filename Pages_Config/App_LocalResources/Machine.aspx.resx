@@ -519,9 +519,24 @@
     <value>?</value>
   </data>
   <data name="ddlMacTypeResource1.Text" xml:space="preserve">
-    <value>Select Transaction Type</value>
+    <value>-Select IN\OUT Type-</value>
   </data>
   <data name="MacTrnTypeResource.Text" xml:space="preserve">
-    <value>Machine Transaction Type :</value>
+    <value>IN\OUT Type :</value>
+  </data>
+  <data name="AttendanceListItemResource1.Text" xml:space="preserve">
+    <value>Attendance</value>
+  </data>
+  <data name="INListItemResource1.Text" xml:space="preserve">
+    <value>IN</value>
+  </data>
+  <data name="InspectionToursItemResource1.Text" xml:space="preserve">
+    <value>Inspection Tours</value>
+  </data>
+  <data name="OUTItemResource1.Text" xml:space="preserve">
+    <value>OUT</value>
+  </data>
+  <data name="RoundPatrolListItemResource1.Text" xml:space="preserve">
+    <value>Round Patrol</value>
   </data>
 </root>

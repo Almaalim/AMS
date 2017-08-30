@@ -144,13 +144,13 @@
                     </div>
                     <div class="col2">
                         <span id="Span2" runat="server" class="RequiredField">*</span>
-                        <asp:Label ID="lblMacTrnType" runat="server" meta:resourcekey="MacTrnTypeResource">Machine Transaction Type :</asp:Label>
+                        <asp:Label ID="lblMacTrnType" runat="server" Text="IN\OUT Type :" meta:resourcekey="MacTrnTypeResource"></asp:Label>
                     </div>
                     <div class="col4">
                         <asp:DropDownList ID="ddlMacTrnType" runat="server" Enabled="False">
-                            <asp:ListItem Text="Select Type" Value="2" meta:resourcekey="ddlMacTypeResource1"></asp:ListItem>
-                            <asp:ListItem Value="1">IN</asp:ListItem>
-                            <asp:ListItem Value="0">OUT</asp:ListItem>
+                            <asp:ListItem Value="2"  Text="-Select IN\OUT Type-" meta:resourcekey="ddlMacTypeResource1"></asp:ListItem>
+                            <asp:ListItem Value="1"  Text="IN" meta:resourcekey="INListItemResource1"></asp:ListItem>
+                            <asp:ListItem Value="0"  Text="OUT" meta:resourcekey="OUTItemResource1"></asp:ListItem>
                         </asp:DropDownList>
                         <%--<asp:RequiredFieldValidator ID="rfvMacTrnType" runat="server" ControlToValidate="ddlMacTrnType"
                                         EnableClientScript="False" Text="&lt;img src='../images/Exclamation.gif' title='Machine Transaction Type is required!' /&gt;"
@@ -165,26 +165,16 @@
                         <asp:CheckBox ID="chkStatus" runat="server" Enabled="False" Text="Active" meta:resourcekey="chkStatusResource1" />
                     </div>
                     <div class="col2">
+                    
+                        <span id="spnMacTransactionType" runat="server" class="RequiredField">*</span>
+                        <asp:Label ID="lblMacTransactionType" runat="server" Text="Transactions Type :" meta:resourcekey="MacTransactionTypeResource"></asp:Label>
                     </div>
                     <div class="col4">
-                        <asp:CheckBox ID="chkIsRound" runat="server" Enabled="False" Text="Round Patrol Device"
-                            AutoPostBack="True" OnCheckedChanged="chkIsRound_CheckedChanged" meta:resourcekey="chkIsRoundResource1" />
-                        &nbsp;
-                                    <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow1" runat="server" TargetControlID="lnkShow1">
-                                    </ajaxToolkit:AnimationExtender>
-                        <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose1" runat="server" TargetControlID="lnkClose1">
-                        </ajaxToolkit:AnimationExtender>
-                        <asp:ImageButton ID="lnkShow1" runat="server" meta:resourcekey="lnkButtonResouce"
-                            OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
-                        <div id="pnlInfo1" class="flyOutDiv">
-                            <asp:LinkButton ID="lnkClose1" runat="server" Text="X" OnClientClick="return false;"
-                                CssClass="flyOutDivCloseX glyphicon glyphicon-remove" />
-                            <p>
-                                <br />
-                                <asp:Label ID="lblHint1" runat="server" Text="Enable Portable attendance device option"
-                                    meta:resourcekey="lblRoundResource"></asp:Label>
-                            </p>
-                        </div>
+                        <asp:DropDownList ID="ddlMacTransactionType" runat="server" Enabled="False" AutoPostBack="true" OnSelectedIndexChanged="ddlMacTransactionType_SelectedIndexChanged" >
+                            <asp:ListItem Value="AT" Text="Attendance" Selected="True" meta:resourcekey="AttendanceListItemResource1"></asp:ListItem>
+                            <asp:ListItem Value="RP" Text="Round Patrol" meta:resourcekey="RoundPatrolListItemResource1"></asp:ListItem>
+                            <asp:ListItem Value="IT" Text="Inspection Tours" meta:resourcekey="InspectionToursItemResource1"></asp:ListItem>
+                        </asp:DropDownList>
                     </div>
                 </div>
 

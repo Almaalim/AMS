@@ -143,7 +143,7 @@
                         <RowStyle CssClass="row" />
                     </asp:GridView>
                     <%--Custom Grid Pager--%>
-                    <table>
+                    <%--<table>
                         <tr class="GridPagerStyle">
                             <td colspan="4">
                                 <table border="0">
@@ -167,7 +167,7 @@
 
                             </td>
                         </tr>
-                    </table>
+                    </table>--%>
                     <%--Custom Grid Pager--%>
                 </div>
             </div>

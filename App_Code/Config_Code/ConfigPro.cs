@@ -5,37 +5,6 @@ using System.Web;
 
 public class ConfigPro
 {
-    //cfgAutoIn	bit	Checked
-    //cfgIsTakeAutoIn	bit	Checked
-    //cfgAutoOut	bit	Checked
-    //cfgIsTakeAutoOut	bit	Checked
-    //cfgMaxPercOT	int	Checked
-    
-    //cfgVacResetDate	        datetime	Checked
-    //cfgICApprovalPercent	    int	Checked   
-    //cfgRedundantInSelection	char(1)	Checked
-    //cfgRedundantOutSelection	char(1)	Checked
-    
-    //cfgOTBeginEarlyFlag	bit	Checked
-    //cfgOTOutLateFlag	bit	Checked
-    //cfgOTOutOfShiftFlag	bit	Checked
-    //cfgOTNoShiftFlag	bit	Checked
-    //cfgOTBeginEarlyInterval	int	Checked
-    //cfgOTOutLateInterval	int	Checked
-    //cfgOTOutOfShiftInterval	int	Checked
-    //cfgOTNoShiftInterval	int	Checked
-    
-    //cfgMiddleGapCount	int	Checked
-    //cfgFormReq	varchar(500)	Checked
-    //cfgAutoTransaction	bit	Checked
-    //cfgApprovalsMonthCount	int	Checked
-    //cfgTransInDaysCount	int	Checked
-    //cfgFlexHours	int	Checked
-    //cfgDaysLimitReqVac	int	Checked
-    //cfgOrderTransType	varchar(10)	Checked
-    
-    //cfgOTInVacInterval	int	Checked
-    //cfgOTInVacFlag	bit	Checked
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     bool _cfgAutoIn;
@@ -115,6 +84,9 @@ public class ConfigPro
 
     string _cfgOrderTransType;
     public string cfgOrderTransType { get { return _cfgOrderTransType; } set { if (_cfgOrderTransType != value) { _cfgOrderTransType = value; } } }
+
+    string _CfgPeriodDifferenceInInspectionTours;
+    public string CfgPeriodDifferenceInInspectionTours { get { return _CfgPeriodDifferenceInInspectionTours; } set { if (_CfgPeriodDifferenceInInspectionTours != value) { _CfgPeriodDifferenceInInspectionTours = value; } } }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private string _TransactionBy;

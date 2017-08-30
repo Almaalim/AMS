@@ -120,4 +120,37 @@ public class AdminSql : DataLayerBase
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public bool SMSConfig_InsertUpdate(AdminPro Pro)
+    {
+        SqlCommand Sqlcmd = new SqlCommand("dbo.[SMSConfig_InsertUpdate]", MainConnection);
+        Sqlcmd.CommandType = CommandType.StoredProcedure;
+
+        try
+        {
+            Sqlcmd.Parameters.Add(new SqlParameter("@SmsGateway" , VchDB, 1000, IN, false, 0, 0, "", DRV, Pro.SmsGateway));
+            Sqlcmd.Parameters.Add(new SqlParameter("@SmsSenderID", VchDB, 1000, IN, false, 0, 0, "", DRV, Pro.SmsSenderID));
+            Sqlcmd.Parameters.Add(new SqlParameter("@SmsSenderNo", VchDB, 1000, IN, false, 0, 0, "", DRV, Pro.SmsSenderNo));
+            Sqlcmd.Parameters.Add(new SqlParameter("@SmsUser"    , VchDB, 1000, IN, false, 0, 0, "", DRV, Pro.SmsUser));
+            Sqlcmd.Parameters.Add(new SqlParameter("@SmsPass"    , VchDB, 1000, IN, false, 0, 0, "", DRV, Pro.SmsPass));
+
+            Sqlcmd.Parameters.Add(new SqlParameter("@IsExecute", IntDB, 10, OU, false, 0, 0, "", DRV, 0));
+            Sqlcmd.Parameters.Add(new SqlParameter("@TransactionBy", VchDB, 15, IN, false, 0, 0, "", DRV, Pro.TransactionBy));
+
+            MainConnection.Open();
+            Sqlcmd.ExecuteNonQuery();
+            if (Convert.ToInt32(Sqlcmd.Parameters["@IsExecute"].Value) == -1) { throw new Exception(General.ProcedureMsg(), null); }
+            return true;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message, ex);
+        }
+        finally
+        {
+            MainConnection.Close();
+            Sqlcmd.Dispose();
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

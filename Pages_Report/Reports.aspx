@@ -651,14 +651,14 @@
                           
                             <div class="col2">
                                 <span id="spnFavNameEn" runat="server" class="RequiredField">*</span>
-                                <asp:Label ID="lblFavNameEn" runat="server" Text="Name (En) :"></asp:Label>
+                                <asp:Label ID="lblFavNameEn" runat="server" Text="Name (En) :" meta:resourcekey="lblFavNameEnResource1"></asp:Label>
                                   </div>
                             <div class="col2">
                                 <asp:TextBox ID="txtFavNameEn" runat="server" AutoCompleteType="Disabled" Enabled="False" ></asp:TextBox>
                                   </div>
                             <div class="col2">
                                 <span id="spnFavNameAr" runat="server" class="RequiredField">*</span>
-                                <asp:Label ID="lblFavNameAr" runat="server" Text="Name (Ar) :"></asp:Label>
+                                <asp:Label ID="lblFavNameAr" runat="server" Text="Name (Ar) :" meta:resourcekey="lblFavNameArResource1"></asp:Label>
                                  </div>
                             <div class="col2">
                                 <asp:TextBox ID="txtFavNameAr" runat="server" AutoCompleteType="Disabled" Enabled="False" ></asp:TextBox>
@@ -671,11 +671,11 @@
                                     Text="&lt;img src=&quot;../images/Button_Icons/page_show.png&quot; /&gt; Add Favorite Report"  
                                     ValidationGroup="vgFav" meta:resourcekey="btnAddFavoriteResource1"></asp:LinkButton>
                                 <asp:LinkButton ID="btnFavSave" runat="server" ValidationGroup="vgShow" CssClass="GenButton glyphicon glyphicon-floppy-disk" OnClick="btnFavSave_Click" 
-                                Text="&lt;img src=&quot;../images/Button_Icons/button_storage.png&quot; /&gt; Save"></asp:LinkButton>
+                                Text="&lt;img src=&quot;../images/Button_Icons/button_storage.png&quot; /&gt; Save" meta:resourcekey="btnFavSaveResource1"></asp:LinkButton>
                            
                                 
                                 <asp:LinkButton ID="btnFavCancel" runat="server" CssClass="GenButton glyphicon glyphicon-remove-circle" OnClick="btnFavCancel_Click"
-                                     Text="&lt;img src=&quot;../images/Button_Icons/button_Cancel.png&quot; /&gt; Cancel"></asp:LinkButton>
+                                     Text="&lt;img src=&quot;../images/Button_Icons/button_Cancel.png&quot; /&gt; Cancel" meta:resourcekey="btnFavCancelResource1"></asp:LinkButton>
                             </div>
                         </div>
 

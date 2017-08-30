@@ -36,7 +36,6 @@ public partial class Machine : BasePage
         {
             /*** Fill Session ************************************/
             pgCs.FillSession(); 
-            CtrlCs.Animation(ref AnimationExtenderShow1, ref AnimationExtenderClose1, ref lnkShow1, "1");
             CtrlCs.RefreshGridEmpty(ref grdData);
             /*** Fill Session ************************************/
 
@@ -53,8 +52,6 @@ public partial class Machine : BasePage
 
                 ViewState["CommandName"] = "";
                 /*** Common Code ************************************/
-
-                SpnVisible(chkIsRound.Checked);
             }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
@@ -161,28 +158,23 @@ public partial class Machine : BasePage
         txtMachineIP.Enabled = pStatus;
         calMachineInsDate.SetEnabled(pStatus);
         chkStatus.Enabled = pStatus;
-        chkIsRound.Enabled = pStatus;
+        ddlMacTransactionType.Enabled = pStatus;
 
-        if (LicDf.FetchLic("RP") == "0") { chkIsRound.Enabled = false; } 
+        if (LicDf.FetchLic("RP") == "0") { ddlMacTransactionType.Items.FindByValue("RP").Enabled = false; } 
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void SpnVisible(bool isChecked)
+    public void SpnVisible(bool show)
     {
-        if (isChecked)
+        if (show)
         {
             spnMacIp.Visible = false;
             spnMacPort.Visible = false;
-            spnMacLocEn.Visible = false;
-            spnMacLocAr.Visible = false;
         }
         else
         {
             spnMacIp.Visible = true;
             spnMacPort.Visible = true;
-
-            if (pgCs.LangEn) { spnMacLocEn.Visible = true; }
-            if (pgCs.LangAr) { spnMacLocAr.Visible = true; }
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -191,20 +183,19 @@ public partial class Machine : BasePage
     {
         try
         {
-            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-
             if (!string.IsNullOrEmpty(txtID.Text)) { ProCs.MacID = txtID.Text; }
             ProCs.MtpID = ddlMacType.SelectedValue;
 
             if (ddlMacTrnType.SelectedIndex > 0) { ProCs.MacInOutType = Convert.ToBoolean(Convert.ToInt32(ddlMacTrnType.SelectedValue)); }
+            ProCs.MacTransactionType = ddlMacTransactionType.SelectedValue;
 
-            ProCs.MacLocationAr = txtMacLocAr.Text;
-            ProCs.MacLocationEn = txtMacLocEn.Text;
+            if (!string.IsNullOrEmpty(txtMacLocAr.Text)) { ProCs.MacLocationAr = txtMacLocAr.Text; }
+            if (!string.IsNullOrEmpty(txtMacLocEn.Text)) { ProCs.MacLocationEn = txtMacLocEn.Text; }
 
             if (!string.IsNullOrEmpty(txtMachineNo.Text)) { ProCs.MacNo = txtMachineNo.Text; }
 
-            ProCs.MacPort = txtMachinePort.Text;
-            ProCs.MacIP = txtMachineIP.Text;
+            if (!string.IsNullOrEmpty(txtMachinePort.Text)) { ProCs.MacPort = txtMachinePort.Text; }
+            if (!string.IsNullOrEmpty(txtMachineIP.Text)) { ProCs.MacIP = txtMachineIP.Text; }
             ProCs.MacInstallDate = calMachineInsDate.getGDateDBFormat();
 
             // if dev num more than lincense, the status will be false
@@ -226,6 +217,7 @@ public partial class Machine : BasePage
             
             ddlMacType.SelectedIndex = 0;
             ddlMacTrnType.SelectedIndex = 0;
+            ddlMacTransactionType.SelectedIndex = 0;
             txtMacLocAr.Text = "";
             txtMacLocEn.Text = "";
             txtMachineNo.Text = "";
@@ -233,13 +225,17 @@ public partial class Machine : BasePage
             txtMachineIP.Text = "";
             calMachineInsDate.ClearDate();
             chkStatus.Checked = false;
-            chkIsRound.Checked = false;
+
+            SpnVisible(false);
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void chkIsRound_CheckedChanged(object sender, EventArgs e) { SpnVisible(chkIsRound.Checked); }
+    protected void ddlMacTransactionType_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (ddlMacTransactionType.SelectedValue == "RP") { SpnVisible(false); } else { SpnVisible(true); }
+    }
 
     #endregion
     /*#############################################################################################################################*/
@@ -431,6 +427,8 @@ public partial class Machine : BasePage
                     QDel.Append(" SELECT MacID FROM Trans WHERE MacID = @P1 ");
                     QDel.Append(" UNION ");
                     QDel.Append(" SELECT MacID FROM RoundPatrolTransaction WHERE MacID = @P1 ");
+                    QDel.Append(" UNION ");
+                    QDel.Append(" SELECT MacID FROM InspectionToursTrans WHERE MacID = @P1 ");
 
                     DataTable DT = DBCs.FetchData(QDel.ToString(), new string[] { ID });
                     if (!DBCs.IsNullOrEmpty(DT))
@@ -550,7 +548,10 @@ public partial class Machine : BasePage
                 if (DRs[0]["MacInOutType"].ToString() == "True") { ddlMacTrnType.SelectedIndex = 1; } else { ddlMacTrnType.SelectedIndex = 2; }
             }
             else { ddlMacTrnType.SelectedIndex = 0; }
-            
+
+            ddlMacTransactionType.SelectedIndex = ddlMacTransactionType.Items.IndexOf(ddlMacTransactionType.Items.FindByValue(DRs[0]["MacTransactionType"].ToString()));
+            if (ddlMacTransactionType.SelectedValue == "RP") { SpnVisible(false); } else { SpnVisible(true); }
+
             txtMacLocAr.Text    = DRs[0]["MacLocationAr"].ToString();
             txtMacLocEn.Text    = DRs[0]["MacLocationEn"].ToString();
             txtMachineNo.Text   = DRs[0]["MacNo"].ToString();
@@ -559,7 +560,6 @@ public partial class Machine : BasePage
 
             calMachineInsDate.SetGDate(DRs[0]["MacInstallDate"], pgCs.DateFormat);
             if (DRs[0]["MacStatus"] != DBNull.Value) { chkStatus.Checked = Convert.ToBoolean(DRs[0]["MacStatus"]); }
-            if (DRs[0]["MacIsRoundPatrolDevice"] != DBNull.Value) { chkIsRound.Checked = Convert.ToBoolean(DRs[0]["MacIsRoundPatrolDevice"]); }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
@@ -601,34 +601,14 @@ public partial class Machine : BasePage
             string UQ = string.Empty;
             if (ViewState["CommandName"].ToString() == "EDIT") { UQ = " AND MacID != @P2 "; }
 
-            if (source.Equals(cvMachineNo))
-            {
-                if (!String.IsNullOrEmpty(txtMachineNo.Text))
-                {
-                    CtrlCs.ValidMsg(this, ref cvMachineNo, true, General.Msg("Entered Machine Number exist already,Please enter another Number", "رقم الجهاز تم إدخاله مسبقا ، الرجاء إدخال رقم آخر")); 
-                    
-                    DataTable DT = DBCs.FetchData("SELECT * FROM Machine WHERE MacNo = @P1 AND ISNULL(MacDeleted,0) = 0 " + UQ, new string[] { txtMachineNo.Text, txtID.Text });
-                    if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
-                }
-            }
-            if (source.Equals(cvMacIP) && !chkIsRound.Checked)
-            {
-                CtrlCs.ValidMsg(this, ref cvMacIP, false, General.Msg("IP Adress Is Required", "عنوان IP مطلوب")); 
-                if (string.IsNullOrEmpty(txtMachineIP.Text)) { e.IsValid = false; }
-            }
-            if (source.Equals(cvMacPort) && !chkIsRound.Checked)
-            {
-                CtrlCs.ValidMsg(this, ref cvMacPort, false, General.Msg("Port Is Required", "رقم المنفذ مطلوب"));
-                if (string.IsNullOrEmpty(txtMachinePort.Text)) { e.IsValid = false; }
-            }
-            if (source.Equals(cvMacLocEn) && !chkIsRound.Checked)
+            if (source.Equals(cvMacLocEn))
             {
                 if (pgCs.LangEn)
                 {
                     CtrlCs.ValidMsg(this, ref cvMacLocEn, false, General.Msg("Location (En) Is Required", "اسم الجهاز بالإنجليزي مطلوب"));
                     if (string.IsNullOrEmpty(txtMacLocEn.Text)) { e.IsValid = false; }
                 }
-                
+
                 if (!string.IsNullOrEmpty(txtMacLocEn.Text))
                 {
                     CtrlCs.ValidMsg(this, ref cvMacLocEn, true, General.Msg("Entered Machine English Name exist already,Please enter another name", "إسم الجهاز بالإنجليزي مدخل مسبقا ، الرجاء إدخال إسم آخر"));
@@ -637,7 +617,8 @@ public partial class Machine : BasePage
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }
-            if (source.Equals(cvMacLocAr) && !chkIsRound.Checked)
+
+            if (source.Equals(cvMacLocAr))
             {
                 if (pgCs.LangAr)
                 {
@@ -651,17 +632,39 @@ public partial class Machine : BasePage
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }
+
+            if (source.Equals(cvMachineNo))
+            {
+                if (!String.IsNullOrEmpty(txtMachineNo.Text))
+                {
+                    CtrlCs.ValidMsg(this, ref cvMachineNo, true, General.Msg("Entered Machine Number exist already,Please enter another Number", "رقم الجهاز تم إدخاله مسبقا ، الرجاء إدخال رقم آخر")); 
+                    
+                    DataTable DT = DBCs.FetchData("SELECT * FROM Machine WHERE MacNo = @P1 AND ISNULL(MacDeleted,0) = 0 " + UQ, new string[] { txtMachineNo.Text, txtID.Text });
+                    if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
+                }
+            }
+
+            if (ddlMacTransactionType.SelectedValue != "RP")
+            {
+                if (source.Equals(cvMacIP))
+                {
+                    CtrlCs.ValidMsg(this, ref cvMacIP, false, General.Msg("IP Adress Is Required", "عنوان IP مطلوب"));
+                    if (string.IsNullOrEmpty(txtMachineIP.Text)) { e.IsValid = false; }
+                }
+                if (source.Equals(cvMacPort))
+                {
+                    CtrlCs.ValidMsg(this, ref cvMacPort, false, General.Msg("Port Is Required", "رقم المنفذ مطلوب"));
+                    if (string.IsNullOrEmpty(txtMachinePort.Text)) { e.IsValid = false; }
+                } 
+            }
         }
-        catch
-        {
-            e.IsValid = false;
-        }
+        catch { e.IsValid = false; }
     }
 
     #endregion
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
-    
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

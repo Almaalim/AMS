@@ -112,7 +112,7 @@ public partial class Reports : BasePage
             DTCs.YearPopulateList(ref ddlYear);
             DTCs.MonthPopulateList(ref ddlMonth);
 
-            CtrlCs.FillMachineList(ref ddlLocation, null, false, true, "A");
+            CtrlCs.FillMachineList(ref ddlLocation, null, false, true, "A", "A");
             CtrlCs.FillBranchList(ref ddlBranchID, null, false);
             CtrlCs.FillWorkTypeList(ref ddlWtpID, null, false);
             CtrlCs.FillCategoryList(ref ddlCatName, null, true);
@@ -605,7 +605,7 @@ public partial class Reports : BasePage
         ProCs.RepID = Session["RepID"].ToString();
         ProCs.RepTemp = RepTemp;
         ProCs.RepLang = pgCs.Lang;
-        ProCs.TransactionBy = pgCs.LoginID;
+        ProCs.TransactionBy = Session["UserName"].ToString();
 
         try
         {

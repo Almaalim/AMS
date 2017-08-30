@@ -5,20 +5,6 @@ using System.Web;
 
 public class MachinesPro
 {
-    //MacID	int	Unchecked
-    //MtpID	tinyint	Checked
-    //MacLocationAr	varchar(50)	Checked
-    //MacLocationEn	varchar(50)	Checked
-    //MacInstallDate	datetime	Checked
-    //MacIP	varchar(50)	Checked
-    //MacPort	varchar(5)	Checked
-    //MacStatus	bit	Unchecked
-    //MacNo	tinyint	Checked
-    //MacLastConDate	datetime	Checked
-    //MacRecCount	int	Checked
-    //MacIsRoundPatrolDevice	bit	Checked
-    //MacInOutType	bit	Checked
-    //MacVirtualType	varchar(50)	
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     string _MacID;
@@ -53,9 +39,9 @@ public class MachinesPro
 
     string _MacVirtualType;
     public string MacVirtualType { get { return _MacVirtualType; } set { if (_MacVirtualType != value) { _MacVirtualType = value; } } }
-    
-    bool _MacIsRoundPatrolDevice;
-    public bool MacIsRoundPatrolDevice { get { return _MacIsRoundPatrolDevice; } set { if (_MacIsRoundPatrolDevice != value) { _MacIsRoundPatrolDevice = value; } } }
+
+    string _MacTransactionType;
+    public string MacTransactionType { get { return _MacTransactionType; } set { if (_MacTransactionType != value) { _MacTransactionType = value; } } }
 
     bool _MacInOutType;
     public bool MacInOutType { get { return _MacInOutType; } set { if (_MacInOutType != value) { _MacInOutType = value; } } }

@@ -34,7 +34,7 @@
       </xsl:attribute>
 
       <xsl:attribute name="Value">
-        <xsl:value-of select="MnuPermissionID"/>
+        <xsl:value-of select="MnuNumber"/>
       </xsl:attribute>
       
         

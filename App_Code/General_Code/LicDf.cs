@@ -55,7 +55,7 @@ public class LicDf : DataLayerBase
     public static string FindLicPage()
     {
         //string ClientPCName = getClientPCName();
-        //string ClientPCName = ""; 
+        //string ClientPCName = "";
         string ClientPCName = "Ameen.Almaalim.local";
         return AMSLic.FindAMSLicPage(General.ConnString, ClientPCName);
     }

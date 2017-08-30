@@ -353,12 +353,28 @@ public class CtrlFun : DataLayerBase
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void FillMachineList(ref DropDownList _ddl, RequiredFieldValidator _rv, bool isClear, bool isAll, string Type) // type = "A" , "I", "O"
+    public void FillMachineList(ref DropDownList _ddl, RequiredFieldValidator _rv, bool isClear, bool isAll, string InOu, string Type) // InOu = "A" , "I", "O" - Type = "A" (All), "AT", "RP", "IT"
     {
         if (isClear) { _ddl.Items.Clear(); }
 
         string All = (isAll) ? "A" : "N";
-        DataTable DT = DBCs.FetchData(" SELECT MacID, MacLocationEn, MacLocationAr FROM Machine WHERE ISNULL(MacDeleted,0) = 0 AND MacStatus = (CASE WHEN @P1 = 'A' THEN MacStatus ELSE 'True' END) AND (MacInOutType = (CASE WHEN @P2 = 'I' THEN 'True' WHEN @P1 = 'O' THEN 'False' ELSE MacInOutType END) OR MacInOutType IS NULL) ", new string[] { All, Type });
+        DataTable DT = DBCs.FetchData(" SELECT MacID, MacLocationEn, MacLocationAr FROM Machine WHERE ISNULL(MacDeleted,0) = 0 AND MacTransactionType = (CASE WHEN @P3 = 'A' THEN MacTransactionType ELSE @P3 END) AND MacStatus = (CASE WHEN @P1 = 'A' THEN MacStatus ELSE 'True' END) AND (MacInOutType = (CASE WHEN @P2 = 'I' THEN 'True' WHEN @P1 = 'O' THEN 'False' ELSE MacInOutType END) OR MacInOutType IS NULL) ", new string[] { All, InOu, Type });
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            PopulateDDL(_ddl, DT, General.Msg("MacLocationEn", "MacLocationAr"), "MacID", General.Msg("-Select Location-", "-اختر الموقع-"));
+            if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void FillVirtualMachineList(ref DropDownList _ddl, RequiredFieldValidator _rv, bool isClear, string Type) 
+    {
+        if (isClear) { _ddl.Items.Clear(); }
+
+        string MacVirtual = "";
+        if (Type == "IN") { MacVirtual = "AddTransIN"; } else if (Type == "OUT") { MacVirtual = "AddTransOUT"; }
+
+        DataTable DT = DBCs.FetchData(" SELECT MacID, MacLocationEn, MacLocationAr FROM Machine WHERE ISNULL(MacDeleted,0) = 0 AND MacVirtualType = @P1 ", new string[] { MacVirtual });
         if (!DBCs.IsNullOrEmpty(DT))
         {
             PopulateDDL(_ddl, DT, General.Msg("MacLocationEn", "MacLocationAr"), "MacID", General.Msg("-Select Location-", "-اختر الموقع-"));
@@ -777,7 +793,7 @@ public class CtrlFun : DataLayerBase
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void ShowAdminMsg(Page pg, ValidationSummary vs, CustomValidator cv, string VG, string pMsg, string pEx)
     {
-        string errMsg = Regex.Replace(pEx, @"[&\/\\#,+()$~%.':*?<>{ }]", " ");
+        string errMsg = Regex.Replace(pEx, @"[&\/\\#,+()$~%.':*?<>{ }\r\n]", " "); 
         string DMsg = General.Msg("<a style=\"color:Blue\" href='#' onclick=\"alert('" + errMsg + "');\">To find out the error details Click here </a> ", "<a style=\"color:Blue\" href='#' onclick=\"alert('" + errMsg + "')\">لمعرفة تفاصيل الخطأ اضغط هنا </a> ");
 
         vs.ValidationGroup = VG;       

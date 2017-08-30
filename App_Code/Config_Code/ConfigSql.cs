@@ -54,7 +54,8 @@ public class ConfigSql : DataLayerBase
             Sqlcmd.Parameters.Add(new SqlParameter("@cfgApprovalsMonthCount" , IntDB, 10,  IN, false, 0, 0, "", DRV, Pro.cfgApprovalsMonthCount));
             Sqlcmd.Parameters.Add(new SqlParameter("@cfgTransInDaysCount"    , IntDB, 10,  IN, false, 0, 0, "", DRV, Pro.cfgTransInDaysCount));
             Sqlcmd.Parameters.Add(new SqlParameter("@cfgDaysLimitReqVac"     , IntDB, 10,  IN, false, 0, 0, "", DRV, Pro.cfgDaysLimitReqVac));
-            
+            Sqlcmd.Parameters.Add(new SqlParameter("@CfgPeriodDifferenceInInspectionTours", IntDB, 10, IN, false, 0, 0, "", DRV, Pro.CfgPeriodDifferenceInInspectionTours));
+
             Sqlcmd.Parameters.Add(new SqlParameter("@IsExecute"    , IntDB, 10, OU, false, 0, 0, "", DRV, 0));
             Sqlcmd.Parameters.Add(new SqlParameter("@TransactionBy", VchDB, 15, IN, false, 0, 0, "", DRV, Pro.TransactionBy));
 

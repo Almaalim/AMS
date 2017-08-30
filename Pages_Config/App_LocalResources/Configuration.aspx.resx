@@ -595,4 +595,10 @@
   <data name="txtOTVacationIntervalResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="lblCfgPeriodDifferenceInInspectionToursResource1.Text" xml:space="preserve">
+    <value>Period Difference In Inspection Tours :</value>
+  </data>
+  <data name="lblDayTypeResource1.Text" xml:space="preserve">
+    <value> Days </value>
+  </data>
 </root>

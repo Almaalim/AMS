@@ -576,4 +576,10 @@
   <data name="lblUsrADUserResource1.Text" xml:space="preserve">
     <value>Active Directory User :</value>
   </data>
+  <data name="chkAdminMiniLoggerResource1.Text" xml:space="preserve">
+    <value>Admin Mini Logger</value>
+  </data>
+  <data name="lblHintResource.Text" xml:space="preserve">
+    <value>If checked makes current user In active and Acting user Active</value>
+  </data>
 </root>

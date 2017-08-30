@@ -295,7 +295,7 @@
     <value />
   </data>
   <data name="lblDepMangerID0Resource1.Text" xml:space="preserve">
-    <value>: مدير الفرع    </value>
+    <value>مدير الفرع :</value>
   </data>
   <data name="lblDepMangerID0Resource1.ToolTip" xml:space="preserve">
     <value />
@@ -309,26 +309,14 @@
   <data name="ListItemResource1.Text" xml:space="preserve">
     <value>[غير محدد]</value>
   </data>
-  <data name="ListItemResource1.Value" xml:space="preserve">
-    <value>[None]</value>
-  </data>
   <data name="ListItemResource2.Text" xml:space="preserve">
     <value>اسم الفرع (ع)</value>
-  </data>
-  <data name="ListItemResource2.Value" xml:space="preserve">
-    <value>BrcNameAr</value>
   </data>
   <data name="ListItemResource3.Text" xml:space="preserve">
     <value>اسم الفرع (E)</value>
   </data>
-  <data name="ListItemResource3.Value" xml:space="preserve">
-    <value>BrcNameEn</value>
-  </data>
   <data name="ListItemResource4.Text" xml:space="preserve">
     <value>المدينة</value>
-  </data>
-  <data name="ListItemResource4.Value" xml:space="preserve">
-    <value>BrcCity</value>
   </data>
   <data name="PageResource1.Title" xml:space="preserve">
     <value>الفروع</value>

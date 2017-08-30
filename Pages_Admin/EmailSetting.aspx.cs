@@ -47,7 +47,6 @@ public partial class EmailSetting : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void Populate()
 	{
-        //DataTable DT = DBCs.FetchData(new SqlCommand(" SELECT AppEMailServer,AppEmailPort,AppSenderEMailID,AppSenderEMailPassword,AppEmailSsl,AppEmailCredential FROM ApplicationSetup "));
         DataTable DT = DBCs.FetchData(new SqlCommand(" SELECT * FROM EmailConfig "));
         if (!DBCs.IsNullOrEmpty(DT))
         {
@@ -55,7 +54,7 @@ public partial class EmailSetting : BasePage
             txtPortNo.Text   = DT.Rows[0]["EmlPortNo"].ToString();
 
             txtSenderEmailID.Text = DT.Rows[0]["EmlSenderEmail"].ToString();
-            txtSenderEmailPassword.Attributes["value"] = DT.Rows[0]["EmlSenderPassword"].ToString();
+            txtSenderEmailPassword.Attributes["value"] = CryptorEngine.Decrypt(DT.Rows[0]["EmlSenderPassword"].ToString(), true);
 
             chkEmailCredential.Checked = false;
             if (DT.Rows[0]["EmlCredential"] != DBNull.Value) { chkEmailCredential.Checked = Convert.ToBoolean(DT.Rows[0]["EmlCredential"]); }
@@ -89,8 +88,7 @@ public partial class EmailSetting : BasePage
             ProCs.EmlServerID       = txtServerID.Text;
             ProCs.EmlPortNo         = txtPortNo.Text;
             if (!string.IsNullOrEmpty(txtSenderEmailID.Text))       { ProCs.EmlSenderEmail    = txtSenderEmailID.Text; }
-            if (!string.IsNullOrEmpty(txtSenderEmailPassword.Text)) { ProCs.EmlSenderPassword = txtSenderEmailPassword.Text; }
-            //CryptorEngine.Encrypt(txtSenderEmailPassword.Text, true);
+            if (!string.IsNullOrEmpty(txtSenderEmailPassword.Text)) { ProCs.EmlSenderPassword = CryptorEngine.Encrypt(txtSenderEmailPassword.Text, true); }
             ProCs.EmlCredential     = chkEmailCredential.Checked;
             ProCs.EmlSsl            = chkEnableSSL.Checked;
             

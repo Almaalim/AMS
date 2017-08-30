@@ -238,7 +238,7 @@ public partial class UnstyleShift : BasePage
             _txtEmpID.Text = (e.Row.DataItem as DataRowView).Row["EmpID"].ToString();
             e.Row.Cells[2].Controls.Add(_txtEmpID);
 
-            DataTable DT = DBCs.FetchData(new SqlCommand(" SELECT WktID, WktNameAr, WktNameEn FROM WorkingTime "));
+            DataTable DT = DBCs.FetchData(new SqlCommand(" SELECT WktID," + General.Msg("WktNameEn", "WktNameAr") + " AS WktName FROM WorkingTime WHERE ISNULL(" + General.Msg("WktNameEn", "WktNameAr") + ",'') != '' "));
             if (!DBCs.IsNullOrEmpty(DT))
             {
                 DropDownList _ddl = new DropDownList();
@@ -248,7 +248,7 @@ public partial class UnstyleShift : BasePage
                     _ddl.ID = "ddl" + i.ToString();
                     _ddl.Width = 150;
                     _ddl.DataSource = DT;
-                    _ddl.DataTextField = General.Msg("WktNameEn", "WktNameAr");
+                    _ddl.DataTextField = "WktName";
                     _ddl.DataValueField = "WktID";
                     _ddl.DataBind();
                     _ddl.Items.Insert(0, new ListItem(General.Msg("- Select Worktime -", "- اختر جدول العمل -"), "0"));

@@ -24,7 +24,7 @@ public partial class EmployeeExcuseDay : BasePage
     string sortDirection = "ASC";
     string sortExpression = "";
     
-    string MainQuery = " SELECT * FROM EmployeeExcuseDayRelInfoView WHERE ExrID = ExrID ";
+    string MainQuery = "";
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void Page_Load(object sender, EventArgs e)
@@ -36,7 +36,7 @@ public partial class EmployeeExcuseDay : BasePage
             CtrlCs.RefreshGridEmpty(ref grdData);
             /*** Fill Session ************************************/
             
-            MainQuery += " AND DepID IN (" + pgCs.DepList + ") ";
+            MainQuery = "SELECT * FROM EmployeeExcuseDayRelInfoView WHERE DepID IN (" + pgCs.DepList + ") ";
 
             if (!IsPostBack)
             {

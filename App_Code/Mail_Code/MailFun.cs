@@ -56,7 +56,7 @@ public class MailFun
                     if (DT.Rows[0]["EmlServerID"]       != DBNull.Value) { EmailServer     = DT.Rows[0]["EmlServerID"].ToString(); }
                     if (DT.Rows[0]["EmlPortNo"]         != DBNull.Value) { EmailPort       = Convert.ToInt32(DT.Rows[0]["EmlPortNo"]); }
                     if (DT.Rows[0]["EmlSenderEmail"]    != DBNull.Value) { SenderEmailID   = DT.Rows[0]["EmlSenderEmail"].ToString(); }
-                    if (DT.Rows[0]["EmlSenderPassword"] != DBNull.Value) { SenderEmailPass = DT.Rows[0]["EmlSenderPassword"].ToString(); }
+                    if (DT.Rows[0]["EmlSenderPassword"] != DBNull.Value) { SenderEmailPass = CryptorEngine.Decrypt(DT.Rows[0]["EmlSenderPassword"].ToString(), true); }
                     if (DT.Rows[0]["EmlSsl"]            != DBNull.Value) { EmailSsl        = Convert.ToBoolean(DT.Rows[0]["EmlSsl"]); }
                     if (DT.Rows[0]["EmlCredential"]     != DBNull.Value) { EmailCredential = Convert.ToBoolean(DT.Rows[0]["EmlCredential"]); } 
                 }

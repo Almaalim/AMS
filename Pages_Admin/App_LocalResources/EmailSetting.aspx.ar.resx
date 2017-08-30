@@ -214,7 +214,7 @@
     <value />
   </data>
   <data name="rvPortNoResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title=رقم المنفذ مطلوب' /&gt;</value>
+    <value>&lt;img src='../images/Exclamation.gif' title='رقم المنفذ مطلوب' /&gt;</value>
   </data>
   <data name="rvPortNoResource1.ToolTip" xml:space="preserve">
     <value />

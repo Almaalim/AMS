@@ -642,4 +642,19 @@
   <data name="lblDaysCountResource1.Text" xml:space="preserve">
     <value>عدد الأيام :</value>
   </data>
+  <data name="btnAddFavoriteResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Button_Icons/page_show.png" /&gt; إضافة تقرير مفضل</value>
+  </data>
+  <data name="btnFavCancelResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Button_Icons/button_Cancel.png" /&gt; إلغاء</value>
+  </data>
+  <data name="btnFavSaveResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Button_Icons/button_storage.png" /&gt; حفظ</value>
+  </data>
+  <data name="lblFavNameArResource1.Text" xml:space="preserve">
+    <value>الإسم (ع)</value>
+  </data>
+  <data name="lblFavNameEnResource1.Text" xml:space="preserve">
+    <value>الإسم (E) :</value>
+  </data>
 </root>

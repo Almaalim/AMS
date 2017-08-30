@@ -140,11 +140,10 @@ public class PageFun
         System.IO.FileInfo PageFileInfo = new System.IO.FileInfo(UrlPath);
         
         QPerm.Remove(0, QPerm.Length);
-        QPerm.Append("SELECT MnuTextEn FROM Menu WHERE MnuVisible = 'True' AND MnuType ='Command' AND MnuParentID IN ( SELECT MnuPermissionID FROM Menu ");
-        QPerm.Append(" WHERE MnuURL = '" +  PageFileInfo.Name + QSPath + "' AND MnuParentID > 0 )");
-        QPerm.Append(" AND MnuPermissionID IN (" );
-        QPerm.Append(pUserPermissions);
-        QPerm.Append(" )");
+        QPerm.Append("SELECT MnuTextEn FROM Menu ");
+        QPerm.Append(" WHERE MnuVisible = 'True' AND MnuType ='Command' AND MnuParentID > 0 ");
+        QPerm.Append(" AND MnuPermissionID IN (SELECT MnuPermissionID FROM Menu WHERE MnuURL = '" +  PageFileInfo.Name + QSPath + "') ");
+        QPerm.Append(" AND MnuNumber IN (" + pUserPermissions + ")" );
         
         DataTable DT = DBCs.FetchData(new SqlCommand(QPerm.ToString()));
         if (!DBCs.IsNullOrEmpty(DT))

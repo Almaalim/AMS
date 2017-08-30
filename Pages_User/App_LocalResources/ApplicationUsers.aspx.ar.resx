@@ -367,7 +367,7 @@
     <value>عربي</value>
   </data>
   <data name="PageResource1.Title" xml:space="preserve">
-    <value>مستخدمو النظام</value>
+    <value>مستخدمي النظام</value>
   </data>
   <data name="PasswordResource2.ErrorMessage" xml:space="preserve">
     <value />
@@ -575,5 +575,11 @@
   </data>
   <data name="lblUsrADUserResource1.Text" xml:space="preserve">
     <value>مستخدم Active Directory :</value>
+  </data>
+  <data name="chkAdminMiniLoggerResource1.Text" xml:space="preserve">
+    <value>مدير التحضير المصغر</value>
+  </data>
+  <data name="lblHintResource.Text" xml:space="preserve">
+    <value>إذا كان محددا يجعل المستخدم الحالي غير نشط والمستخدم بالنيابة نشطا</value>
   </data>
 </root>

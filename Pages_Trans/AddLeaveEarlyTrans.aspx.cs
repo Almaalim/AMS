@@ -64,7 +64,7 @@ public partial class AddLeaveEarlyTrans : BasePage
     {
         try
         {
-            CtrlCs.FillMachineList(ref ddlLocation, rfvLocation, false, false, "O");
+            CtrlCs.FillVirtualMachineList(ref ddlLocation, rfvLocation, false, "OUT"); 
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }

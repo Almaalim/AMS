@@ -390,8 +390,6 @@
                                      <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow1" runat="server" TargetControlID="lnkShow1"></ajaxToolkit:AnimationExtender>
                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose1" runat="server" TargetControlID="lnkClose1"></ajaxToolkit:AnimationExtender>
                         <asp:ImageButton ID="lnkShow1" runat="server" OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
-
-                        <%--<asp:Button ID="lnkShow1" runat="server" Text="?" meta:resourcekey="lnkButtonResouce" OnClientClick="return false;" Height="21px" Font-Bold="True" />--%>
                         <div id="pnlInfo1" class="flyOutDiv">
                             <asp:LinkButton ID="lnkClose1" runat="server" Text="" OnClientClick="return false;" CssClass="flyOutDivCloseX glyphicon glyphicon-remove" />
                             <p>
@@ -407,11 +405,11 @@
                     <div class="col2">
                     </div>
                     <div class="col4">
-                        <asp:CheckBox ID="chkAdminMiniLogger" runat="server" Enabled="False" Text="Admin Mini Logger" meta:resourcekey="chkAdminMiniLoggerResource1" />
+                        <asp:CheckBox ID="chkAdminMiniLogger" runat="server" Enabled="False" Text="Admin Mini Logger" meta:resourcekey="chkAdminMiniLoggerResource1" Visible="false" />
 
                     </div>
                     <div class="col2">
-                        <asp:Label ID="lblDescription" runat="server" Text="Description :" meta:resourcekey="lblDescriptionResource1"></asp:Label>
+                        <asp:Label ID="lblDescription" runat="server" Text="Description :" meta:resourcekey="lblDescriptionResource1" ></asp:Label>
                     </div>
                     <div class="col4">
                         <asp:TextBox ID="txtDescription" runat="server" AutoCompleteType="Disabled"

@@ -96,6 +96,22 @@ public class AdminPro
     public string StatusIDs { get { return _StatusIDs; } set { if (_StatusIDs != value) { _StatusIDs = value; } } }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    string _SmsGateway;
+    public string SmsGateway { get { return _SmsGateway; } set { if (_SmsGateway != value) { _SmsGateway = value; } } }
+
+    string _SmsSenderID;
+    public string SmsSenderID { get { return _SmsSenderID; } set { if (_SmsSenderID != value) { _SmsSenderID = value; } } }
+
+    string _SmsSenderNo;
+    public string SmsSenderNo { get { return _SmsSenderNo; } set { if (_SmsSenderNo != value) { _SmsSenderNo = value; } } }
+
+    string _SmsUser;
+    public string SmsUser { get { return _SmsUser; } set { if (_SmsUser != value) { _SmsUser = value; } } }
+
+    string _SmsPass;
+    public string SmsPass { get { return _SmsPass; } set { if (_SmsPass != value) { _SmsPass = value; } } }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private string _TransactionBy;
     public string TransactionBy { get { return _TransactionBy; } set { _TransactionBy = value; } }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

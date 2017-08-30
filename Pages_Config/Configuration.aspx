@@ -515,6 +515,16 @@
                             meta:resourcekey="txtcfgTransInDaysCountResource1"></asp:TextBox>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col2">
+                        <asp:Label ID="lblCfgPeriodDifferenceInInspectionTours" runat="server"
+                            Text="Period Difference In Inspection Tours :"
+                            meta:resourcekey="lblCfgPeriodDifferenceInInspectionToursResource1"></asp:Label>
+                    </div>
+                    <div class="col4">
+                        <Almaalim:TextTime ID="ttlCfgPeriodDifferenceInInspectionTours" runat="server" FormatTime="mm" />
+                    </div>
+                </div>
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>

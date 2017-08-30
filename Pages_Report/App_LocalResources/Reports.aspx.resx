@@ -463,7 +463,7 @@
     <value />
   </data>
   <data name="lblFavPageResource1.Text" xml:space="preserve">
-    <value>Report</value>
+    <value>Report Page</value>
   </data>
   <data name="lblFavPageResource1.ToolTip" xml:space="preserve">
     <value />
@@ -641,5 +641,20 @@
   </data>
   <data name="lblDaysCountResource1.Text" xml:space="preserve">
     <value>Days Count :</value>
+  </data>
+  <data name="btnAddFavoriteResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Button_Icons/page_show.png" /&gt; Add Favorite Report</value>
+  </data>
+  <data name="btnFavCancelResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Button_Icons/button_Cancel.png" /&gt; Cancel</value>
+  </data>
+  <data name="btnFavSaveResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Button_Icons/button_storage.png" /&gt; Save</value>
+  </data>
+  <data name="lblFavNameArResource1.Text" xml:space="preserve">
+    <value>Name (Ar) :</value>
+  </data>
+  <data name="lblFavNameEnResource1.Text" xml:space="preserve">
+    <value>Name (En) :</value>
   </data>
 </root>

@@ -207,4 +207,13 @@
   <data name="txtSearchByDepResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="lblSearchByResource1.Text" xml:space="preserve">
+    <value>بحث بواسطة :</value>
+  </data>
+  <data name="ListItemDepResource3.Text" xml:space="preserve">
+    <value>القسم</value>
+  </data>
+  <data name="ListItemEmpIDResource2.Text" xml:space="preserve">
+    <value>رقم الموظف</value>
+  </data>
 </root>

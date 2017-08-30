@@ -33,7 +33,7 @@ public class MachineSql : DataLayerBase
             Sqlcmd.Parameters.Add(new SqlParameter("@MacLocationEn", VchDB, 50, IN, false, 0, 0, "", DRV, Pro.MacLocationEn));
             Sqlcmd.Parameters.Add(new SqlParameter("@MacIP"        , VchDB, 15, IN, false, 0, 0, "", DRV, Pro.MacIP));
             Sqlcmd.Parameters.Add(new SqlParameter("@MacPort"      , VchDB, 5,  IN, false, 0, 0, "", DRV, Pro.MacPort));
-            Sqlcmd.Parameters.Add(new SqlParameter("@MacIsRoundPatrolDevice", BitDB, 1,  IN, false, 0, 0, "", DRV, Pro.MacIsRoundPatrolDevice));
+            Sqlcmd.Parameters.Add(new SqlParameter("@MacTransactionType", VchDB, 5,  IN, false, 0, 0, "", DRV, Pro.MacTransactionType));
             Sqlcmd.Parameters.Add(new SqlParameter("@MacInstallDate", DtDB,  20, IN, false, 0, 0, "", DRV, Pro.MacInstallDate));
             Sqlcmd.Parameters.Add(new SqlParameter("@MacInOutType"  , IntDB, 10, IN, false, 0, 0, "", DRV, Pro.MacInOutType));
             Sqlcmd.Parameters.Add(new SqlParameter("@MacStatus"     , BitDB, 1,  IN, false, 0, 0, "", DRV, Pro.MacStatus));
@@ -72,7 +72,7 @@ public class MachineSql : DataLayerBase
             Sqlcmd.Parameters.Add(new SqlParameter("@MacLocationEn", VchDB, 50, IN, false, 0, 0, "", DRV, Pro.MacLocationEn));
             Sqlcmd.Parameters.Add(new SqlParameter("@MacIP"        , VchDB, 15, IN, false, 0, 0, "", DRV, Pro.MacIP));
             Sqlcmd.Parameters.Add(new SqlParameter("@MacPort"      , VchDB, 5,  IN, false, 0, 0, "", DRV, Pro.MacPort));
-            Sqlcmd.Parameters.Add(new SqlParameter("@MacIsRoundPatrolDevice", BitDB, 1,  IN, false, 0, 0, "", DRV, Pro.MacIsRoundPatrolDevice));
+            Sqlcmd.Parameters.Add(new SqlParameter("@MacTransactionType", VchDB, 5, IN, false, 0, 0, "", DRV, Pro.MacTransactionType));
             Sqlcmd.Parameters.Add(new SqlParameter("@MacInstallDate", DtDB,  20, IN, false, 0, 0, "", DRV, Pro.MacInstallDate));
             Sqlcmd.Parameters.Add(new SqlParameter("@MacInOutType"  , IntDB, 10, IN, false, 0, 0, "", DRV, Pro.MacInOutType));
             Sqlcmd.Parameters.Add(new SqlParameter("@MacStatus"     , BitDB, 1,  IN, false, 0, 0, "", DRV, Pro.MacStatus));

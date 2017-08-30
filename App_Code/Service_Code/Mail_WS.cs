@@ -264,10 +264,25 @@ public class Mail_WS : System.Web.Services.WebService
     {
         try
         {
-            if (!DBCs.isConnect())    { return null; }
+            if (!DBCs.isConnect()) { return null; }
             if (!CheckUser(UWS, PWS)) { return null; }
 
-            return DBCs.GetData("SELECT * FROM EmailConfig", null);
+            DataSet DS = new DataSet();
+
+            DataTable DT = DBCs.FetchData(new SqlCommand("SELECT * FROM EmailConfig"));
+            if (!DBCs.IsNullOrEmpty(DT))
+            {
+                foreach (DataRow DR in DT.Rows)
+                {
+                    string Pass = CryptorEngine.Decrypt(DR["EmlSenderPassword"].ToString(), true);
+                    DR["EmlSenderPassword"] = Pass;
+                }
+
+                DS.Tables.Add(DT);
+                DS.Tables[0].TableName = "Data";
+            }
+
+            return DS;
         }
         catch (Exception ex)
         {

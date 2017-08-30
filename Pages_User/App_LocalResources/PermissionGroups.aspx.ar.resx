@@ -306,30 +306,6 @@
   <data name="TreeNodeBindingResource2.Value" xml:space="preserve">
     <value />
   </data>
-  <data name="trvMenuResource1.CollapseImageToolTip" xml:space="preserve">
-    <value>Collapse {0}</value>
-  </data>
-  <data name="trvMenuResource1.ExpandImageToolTip" xml:space="preserve">
-    <value>Expand {0}</value>
-  </data>
-  <data name="trvMenuResource1.SkipLinkText" xml:space="preserve">
-    <value>Skip Navigation Links.</value>
-  </data>
-  <data name="trvMenuResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="trvReportResource1.CollapseImageToolTip" xml:space="preserve">
-    <value>Collapse {0}</value>
-  </data>
-  <data name="trvReportResource1.ExpandImageToolTip" xml:space="preserve">
-    <value>Expand {0}</value>
-  </data>
-  <data name="trvReportResource1.SkipLinkText" xml:space="preserve">
-    <value>Skip Navigation Links.</value>
-  </data>
-  <data name="trvReportResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="txtGroupDescriptionResource1.Text" xml:space="preserve">
     <value />
   </data>
@@ -353,5 +329,8 @@
   </data>
   <data name="vsumAllResource1.ToolTip" xml:space="preserve">
     <value />
+  </data>
+  <data name="lblHintResource.Text" xml:space="preserve">
+    <value>إذا تم تحديد الخيار نماذج، فإنه يسمح لإنشاء صلاحيات للنماذج، إذا تم تحديد الخيار تقارير يسمح بإنشاء صلاحيات للتقارير</value>
   </data>
 </root>

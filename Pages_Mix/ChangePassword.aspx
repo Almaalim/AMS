@@ -29,7 +29,7 @@
                                     <asp:TextBox ID="txtOldpassword" runat="server" TextMode="Password" meta:resourcekey="txtOldpasswordResource1"
                                         AutoCompleteType="Disabled"></asp:TextBox>
                                     <asp:RequiredFieldValidator runat="server" ID="reqOldpassword" ControlToValidate="txtOldpassword" CssClass="CustomValidator"
-                                        Text="<img src='../images/Exclamation.gif' title='Oldpassword is required!' />"
+                                        Text="<img src='../images/Exclamation.gif' title='Old password is required' />"
                                         ValidationGroup="vgSave" EnableClientScript="False" Display="Dynamic" SetFocusOnError="True"
                                         meta:resourcekey="reqOldpasswordResource1"></asp:RequiredFieldValidator>
                                     <asp:CustomValidator ID="cvOldpassword" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='Old password is not correct!' /&gt;"
@@ -48,7 +48,7 @@
                     <div class="col4">
                                     <asp:TextBox ID="txtNewpassword" runat="server" TextMode="Password" meta:resourcekey="txtNewpasswordResource1" AutoCompleteType="Disabled"></asp:TextBox>
                                     <asp:RequiredFieldValidator runat="server" ID="reqNew" ControlToValidate="txtNewpassword"
-                                        Text="<img src='../images/Exclamation.gif' title='Newpassword is required!' />" CssClass="CustomValidator"
+                                        Text="<img src='../images/Exclamation.gif' title='New password is required' />" CssClass="CustomValidator"
                                         ValidationGroup="vgSave" EnableClientScript="False" Display="Dynamic" SetFocusOnError="True"
                                         meta:resourcekey="reqNewpasswordResource1">
                                     </asp:RequiredFieldValidator>
@@ -70,7 +70,7 @@
                                    <asp:TextBox ID="txtConfirmpassword" runat="server" TextMode="Password" meta:resourcekey="txtConfirmpasswordResource1"
                                         AutoCompleteType="Disabled"></asp:TextBox>
                                     <asp:RequiredFieldValidator runat="server" ID="rfvConfirmpassword" ControlToValidate="txtConfirmpassword"
-                                        Text="<img src='../images/Exclamation.gif' title='Confirmpassword is required!' />" CssClass="CustomValidator"
+                                        Text="<img src='../images/Exclamation.gif' title='Confirm password is required' />" CssClass="CustomValidator"
                                         ValidationGroup="vgSave" EnableClientScript="False" Display="Dynamic" SetFocusOnError="True"
                                         meta:resourcekey="reqConfirmpasswordResource1"></asp:RequiredFieldValidator>
                                         <asp:CustomValidator ID="cvConfirmpassword" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='New and Confirm passwords are not same!' /&gt;"

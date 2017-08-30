@@ -9,6 +9,7 @@ using System.Data;
 using System.Collections;
 using System.Text;
 using System.Globalization;
+using System.Data.SqlClient;
 
 public partial class RequestMaster : BasePage
 {
@@ -31,8 +32,10 @@ public partial class RequestMaster : BasePage
             if (!IsPostBack)
             {
                 /*** Common Code ************************************/                
-                /*** Check ERS License ***/ pgCs.CheckERSLicense();   
+                /*** Check ERS License ***/ pgCs.CheckERSLicense();
                 /*** Common Code ************************************/
+
+                SetPageTitel();
 
                 if (Request.QueryString["Type"] != null)
                 {
@@ -50,7 +53,40 @@ public partial class RequestMaster : BasePage
             }
         }
         catch (Exception ex) { }     
-    }  
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void SetPageTitel()
+    {
+        try
+        {
+            System.IO.FileInfo PageFileInfo = new System.IO.FileInfo(Request.Url.AbsolutePath);
+            string QS = (Request.QueryString.Count != 0) ? Request.QueryString.ToString() : "";
+            string PageName = PageFileInfo.Name + (!string.IsNullOrEmpty(QS) ? "?" + QS : "");
+
+            DataTable DT = new DataTable();
+
+            if (Session["MenuTitelDT"] == null)
+            {
+                DT = DBCs.FetchData(new SqlCommand(" SELECT * FROM Menu "));
+                Session["MenuTitelDT"] = DT;
+            }
+            else
+            {
+                DT = (DataTable)Session["MenuTitelDT"];
+            }
+
+            if (!DBCs.IsNullOrEmpty(DT))
+            {
+                DataRow[] DRs = DT.Select("MnuURL LIKE '" + PageName + "' OR MnuURL LIKE '" + PageFileInfo.Name + "'");
+                foreach (DataRow DR in DRs)
+                {
+                    if (DR["MnuTextEn"] != DBNull.Value) { Page.Title = General.Msg(DR["MnuTextEn"].ToString(), DR["MnuTextAr"].ToString()); }
+                }
+            }
+        }
+        catch (Exception e1) { }
+    }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

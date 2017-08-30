@@ -529,7 +529,7 @@
     <value />
   </data>
   <data name="ListItemResource1.Text" xml:space="preserve">
-    <value>[None]</value>
+    <value>[غير محدد]</value>
   </data>
   <data name="ListItemResource2.Text" xml:space="preserve">
     <value>اسم وردية التدوير (ع)</value>
@@ -553,7 +553,7 @@
     <value />
   </data>
   <data name="PageResource1.Title" xml:space="preserve">
-    <value>Untitled Page</value>
+    <value>الورديات المتناوبة</value>
   </data>
   <data name="RegularExpressionValidator1Resource1.ErrorMessage" xml:space="preserve">
     <value>أدخل فقط أرقام</value>

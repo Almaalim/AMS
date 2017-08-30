@@ -41,12 +41,11 @@
                     <as:GridViewKeyBoardPagerExtender ID="gridviewextender" runat="server" TargetControlID="grdData"
                         NextRowSelectKey="Add" PrevRowSelectKey="PageDown" NextPageKey="PageUp" />
                     <asp:GridView ID="grdData" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                        BorderWidth="0px" CellPadding="0" CssClass="datatable" DataKeyNames="ExrID"
+                        BorderWidth="0px" CellPadding="0" CssClass="datatable" DataKeyNames="ExrID" SelectedIndex="0" ShowFooter="True"
                         GridLines="None" OnPageIndexChanging="grdData_PageIndexChanging" OnRowCommand="grdData_RowCommand"
                         OnRowDataBound="grdData_RowDataBound" OnSelectedIndexChanged="grdData_SelectedIndexChanged"
-                        OnSorting="grdData_Sorting" SelectedIndex="0" ShowFooter="True" OnRowCreated="grdData_RowCreated"
+                        OnSorting="grdData_Sorting"  OnRowCreated="grdData_RowCreated"
                         OnPreRender="grdData_PreRender" meta:resourcekey="grdDataResource1">
-
 
                         <PagerSettings FirstPageImageUrl="~/images/first.png" FirstPageText="First" LastPageImageUrl="~/images/last.png"
                             LastPageText="Last" Mode="NextPreviousFirstLast" NextPageImageUrl="~/images/next.png"
@@ -62,20 +61,11 @@
                                 meta:resourcekey="BoundFieldResource5" />
                             <asp:BoundField DataField="ExcNameEn" HeaderText="Excuse Type (En)" SortExpression="ExcNameEn"
                                 meta:resourcekey="BoundFieldResource6" />
-                            <%--<asp:BoundField DataField="WktNameAr" HeaderText="Work Time (Ar)" 
-                                    SortExpression="WktNameAr" meta:resourcekey="BoundFieldResource7"  />
-                                <asp:BoundField DataField="WktNameEn" HeaderText="Work Time (En)" 
-                                    SortExpression="WktNameEn" meta:resourcekey="BoundFieldResource8"  />--%>
                             <asp:TemplateField HeaderText="Date" SortExpression="ExrStartDate" meta:resourcekey="TemplateFieldResource1">
                                 <ItemTemplate>
                                     <%# DisplayFun.GrdDisplayDate(Eval("ExrStartDate"))%>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <%--<asp:TemplateField HeaderText="End Date" SortExpression="ExrEndDate" meta:resourcekey="TemplateFieldResource2" >
-                                    <ItemTemplate>
-                                        <%# General.GrdDisplayDate(Eval("ExrEndDate"), Session["dateType"], Session["DateFormat"])%>
-                                    </ItemTemplate>
-                                </asp:TemplateField>--%>
                             <asp:TemplateField HeaderText="Start Time" SortExpression="ExrStartTime" meta:resourcekey="TemplateFieldResource3">
                                 <ItemTemplate>
                                     <%# DisplayFun.GrdDisplayTime(Eval("ExrStartTime"))%>

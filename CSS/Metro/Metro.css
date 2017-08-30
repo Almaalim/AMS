@@ -5801,3 +5801,13 @@ a.level2.dynamic.JobCategory:before {
 
 
 .hidden { display: none; }
+
+.SMSSetting:before , .icon634:before {
+    content: "\E2A2";
+    font-family: 'icomoon' !important;
+}
+
+.InspectionTours:before , .icon629:before {
+    content: "\E31D";
+    font-family: 'icomoon' !important;
+}

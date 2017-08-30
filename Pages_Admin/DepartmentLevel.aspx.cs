@@ -24,9 +24,11 @@ public partial class DepartmentLevel : BasePage
         try
         {
             /*** Fill Session ************************************/
-            pgCs.FillSession(); 
+            pgCs.FillSession();
             /*** Fill Session ************************************/
-            
+            if (!string.IsNullOrEmpty(hdnNameEn.Value)) { FillLevelFromHide(); }
+
+
             if (!IsPostBack)
             {
                 /*** Common Code ************************************/
@@ -66,8 +68,7 @@ public partial class DepartmentLevel : BasePage
                 if (string.IsNullOrEmpty(NameArs)) { NameArs = DT.Rows[i]["DplArabicName"].ToString();  } else { NameArs += "," + DT.Rows[i]["DplArabicName"].ToString(); }
             }
         }
-
-        FillLevel(NameEns,NameArs,Convert.ToInt32(ddlCount.SelectedValue));
+        if (!string.IsNullOrEmpty(ddlCount.SelectedValue)) { FillLevel(NameEns, NameArs, Convert.ToInt32(ddlCount.SelectedValue)); }
 	}
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

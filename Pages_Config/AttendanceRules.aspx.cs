@@ -573,7 +573,6 @@ public partial class AttendanceRules : BasePage
 
             //if (DRs[0]["MacInstallDate"]  != DBNull.Value) { calMachineInsDate.txtSelectedDate.Text = General.ToAnyFormat(SessionCs.DateType, SessionCs.DateFormat, DRs[0]["MacInstallDate"]); }
             //if (DRs[0]["MacStatus"] != DBNull.Value) { chkStatus.Checked = Convert.ToBoolean(DRs[0]["MacStatus"]); }
-            //if (DRs[0]["MacIsRoundPatrolDevice"] != DBNull.Value) { chkIsRound.Checked = Convert.ToBoolean(DRs[0]["MacIsRoundPatrolDevice"]); }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }

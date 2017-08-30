@@ -93,6 +93,9 @@ public partial class Configuration : BasePage
                 if (DT.Rows[0]["cfgApprovalsMonthCount"] != DBNull.Value) { txtcfgApprovalsMonthCount.Text = DT.Rows[0]["cfgApprovalsMonthCount"].ToString(); }
                 if (DT.Rows[0]["cfgTransInDaysCount"]    != DBNull.Value) { txtcfgTransInDaysCount.Text    = DT.Rows[0]["cfgTransInDaysCount"].ToString(); }
 
+                if (DT.Rows[0]["CfgPeriodDifferenceInInspectionTours"] != DBNull.Value) { ttlCfgPeriodDifferenceInInspectionTours.SetTime(Convert.ToInt32(DT.Rows[0]["CfgPeriodDifferenceInInspectionTours"]), TextTimeServerControl.TextTime.TimeTypeEnum.Seconds); }
+                else { ttlCfgPeriodDifferenceInInspectionTours.SetTime(0, TextTimeServerControl.TextTime.TimeTypeEnum.Seconds); }
+               
                 DataTable RDT = DBCs.FetchData(new SqlCommand(" SELECT RetID,RetNameEn,RetNameAr FROM RequestType ORDER BY RetOrder "));
                 if (!DBCs.IsNullOrEmpty(RDT))
                 {
@@ -155,7 +158,7 @@ public partial class Configuration : BasePage
         calVacResetDate.SetEnabled(pStatus);
         txtcfgApprovalsMonthCount.Enabled = pStatus;
         txtcfgTransInDaysCount.Enabled = pStatus;
-
+        ttlCfgPeriodDifferenceInInspectionTours.Enabled = pStatus;
         //limitDayToReqVac
         txtDaysLimitReqVac.Enabled = pStatus;
     }
@@ -189,6 +192,8 @@ public partial class Configuration : BasePage
             if (txtOTOutLateInterval.getTimeInSecond() == -1) { ProCs.cfgOTOutLateInterval = null; } else { ProCs.cfgOTOutLateInterval = txtOTOutLateInterval.getTimeInSecond().ToString(); }
             if (txtOTOutOfShiftInterval.getTimeInSecond() == -1) { ProCs.cfgOTOutOfShiftInterval = null; } else { ProCs.cfgOTOutOfShiftInterval = txtOTOutOfShiftInterval.getTimeInSecond().ToString(); }
             if (txtOTVacationInterval.getTimeInSecond() == -1) { ProCs.cfgOTInVacInterval = null; } else { ProCs.cfgOTInVacInterval = txtOTVacationInterval.getTimeInSecond().ToString(); }
+
+            if (ttlCfgPeriodDifferenceInInspectionTours.getTimeInSecond() == -1) { ProCs.CfgPeriodDifferenceInInspectionTours = "0"; } else { ProCs.CfgPeriodDifferenceInInspectionTours = ttlCfgPeriodDifferenceInInspectionTours.getTimeInSecond().ToString(); }
 
             ProCs.cfgVacResetDate = calVacResetDate.getGDateDBFormat();
 
@@ -237,6 +242,8 @@ public partial class Configuration : BasePage
             txtOTOutLateInterval.ClearTime();
             txtOTOutOfShiftInterval.ClearTime();
             txtOTVacationInterval.ClearTime();
+
+            ttlCfgPeriodDifferenceInInspectionTours.ClearTime();
 
             calVacResetDate.ClearDate();
             txtDaysLimitReqVac.Text = "0";

@@ -66,8 +66,8 @@ public partial class AppendingTransactions : BasePage
             DTCs.YearPopulateList(ref ddlYear);
             DTCs.MonthPopulateList(ref ddlMonth);
 
-            CtrlCs.FillMachineList(ref ddlINLocation, rvINLocation, false, false, "I");
-            CtrlCs.FillMachineList(ref ddlOUTLocation, rvOUTLocation, false, false, "O");
+            CtrlCs.FillVirtualMachineList(ref ddlINLocation, rvINLocation, false, "IN");
+            CtrlCs.FillVirtualMachineList(ref ddlOUTLocation, rvOUTLocation, false, "OUT");
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }

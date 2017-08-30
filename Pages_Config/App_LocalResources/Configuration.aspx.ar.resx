@@ -595,4 +595,10 @@
   <data name="txtOTVacationIntervalResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="lblCfgPeriodDifferenceInInspectionToursResource1.Text" xml:space="preserve">
+    <value>فرق الفترة في الجولة التفتيشية :</value>
+  </data>
+  <data name="lblDayTypeResource1.Text" xml:space="preserve">
+    <value> يوم/أيام </value>
+  </data>
 </root>

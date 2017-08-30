@@ -31,6 +31,7 @@ public partial class Excuse : BasePage
             /*** Fill Session ************************************/
             pgCs.FillSession(); 
             CtrlCs.Animation(ref AnimationExtenderShow1, ref AnimationExtenderClose1, ref lnkShow1, "1");
+            CtrlCs.Animation(ref AnimationExtenderShow2, ref AnimationExtenderClose2, ref lnkShow2, "2");
             CtrlCs.RefreshGridEmpty(ref grdData);
             /*** Fill Session ************************************/
 

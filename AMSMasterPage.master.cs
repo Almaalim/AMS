@@ -61,22 +61,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
 
                 Label_Chosen_noResult = General.Msg("Oops, nothing found!", "لا يوجد نتائج");
                 rtl_Chosen = (pgCs.Lang == "AR") ? true : false;
-                if (pgCs.LoginType == "USR")
-                {
-                    lnkShortcut.Enabled = true;
-                }
-                else if (pgCs.LoginType == "EMP")
-                {
-                    lnkShortcut.Enabled = false;
-
-                    //DataTable DT = DBCs.FetchData(" SELECT * FROM EmpInfoView WHERE EmpID =  @P1 ", new string[] { pgCs.LoginEmpID });
-                    //if (!DBCs.IsNullOrEmpty(DT))
-                    //{
-                    //    string lan = (pgCs.Lang == "AR") ? "Ar" : "En";
-                    //    if (DT.Rows[0]["EmpName" + lan] != DBNull.Value) { lblEmpNameVal.Text = DT.Rows[0]["EmpName" + lan].ToString(); }
-                    //    if (DT.Rows[0]["DepName" + lan] != DBNull.Value) { lblDepNameVal.Text = DT.Rows[0]["DepName" + lan].ToString(); }
-                    //}
-                }
+                if (pgCs.LoginType == "USR") { lnkShortcut.Enabled = true; } else if (pgCs.LoginType == "EMP") { lnkShortcut.Enabled = false; }
             }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
@@ -84,21 +69,9 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
 
         ///Added by Abbas
         string CurrentLanguage = Session["Language"].ToString();
-        if (CurrentLanguage == "EN")
-        {
-
-            LanguageSwitch.Href = "CSS/Metro/Metro.css";
-
-
-        }
-        else if (CurrentLanguage == "AR")
-        {
-
-            LanguageSwitch.Href = "CSS/Metro/MetroAr.css";
-
-        }
+        if (CurrentLanguage == "EN") { LanguageSwitch.Href = "CSS/Metro/Metro.css"; } else if (CurrentLanguage == "AR") { LanguageSwitch.Href = "CSS/Metro/MetroAr.css"; }
         ///Added by Abbas End
-        ///
+
         ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "PostbackFunction();", true);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -128,17 +101,24 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
             string PageName = PageFileInfo.Name + (!string.IsNullOrEmpty(QS) ? "?" + QS : "");
             //string sURL = Request.Url.ToString().ToLower();
 
-            DataTable DT = DBCs.FetchData(" SELECT * FROM Menu WHERE MnuURL like @P1 ", new string[] { PageName });
-            if (!DBCs.IsNullOrEmpty(DT))
+            DataTable DT = new DataTable();
+
+            if (Session["MenuTitelDT"] == null)
             {
-                if (DT.Rows[0]["MnuTextEn"] != DBNull.Value) { lblPageTitel.Text = General.Msg(DT.Rows[0]["MnuTextEn"].ToString(), DT.Rows[0]["MnuTextAr"].ToString()); }
+                DT = DBCs.FetchData(new SqlCommand(" SELECT * FROM Menu "));
+                Session["MenuTitelDT"] = DT;
             }
             else
             {
-                DataTable DT1 = DBCs.FetchData(" SELECT * FROM Menu WHERE MnuURL like @P1 ", new string[] { PageFileInfo.Name });
-                if (!DBCs.IsNullOrEmpty(DT1))
+                DT = (DataTable)Session["MenuTitelDT"];
+            }
+
+            if (!DBCs.IsNullOrEmpty(DT))
+            {
+                DataRow[] DRs = DT.Select("MnuURL LIKE '" + PageName + "' OR MnuURL LIKE '" + PageFileInfo.Name + "'");
+                foreach (DataRow DR in DRs)
                 {
-                    if (DT1.Rows[0]["MnuTextEn"] != DBNull.Value) { lblPageTitel.Text = General.Msg(DT1.Rows[0]["MnuTextEn"].ToString(), DT1.Rows[0]["MnuTextAr"].ToString()); }
+                    if (DR["MnuTextEn"] != DBNull.Value) { lblPageTitel.Text = General.Msg(DR["MnuTextEn"].ToString(), DR["MnuTextAr"].ToString()); }
                 }
             }
         }
