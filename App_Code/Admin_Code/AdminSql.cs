@@ -153,4 +153,35 @@ public class AdminSql : DataLayerBase
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public bool DepLevel_InsertUpdate(AdminPro Pro)
+    {
+        SqlCommand Sqlcmd = new SqlCommand("dbo.[DepLevel_InsertUpdate]", MainConnection);
+        Sqlcmd.CommandType = CommandType.StoredProcedure;
+
+        try
+        {
+            //Sqlcmd.Parameters.Add(new SqlParameter("@DplIDs"    , VchDB, 8000, IN, false, 0, 0, "", DRV, Pro.DplIDs));
+            Sqlcmd.Parameters.Add(new SqlParameter("@DplNameArs", VchDB, 8000, IN, false, 0, 0, "", DRV, Pro.DplNameArs));
+            Sqlcmd.Parameters.Add(new SqlParameter("@DplNameEns", VchDB, 8000, IN, false, 0, 0, "", DRV, Pro.DplNameEns));
+
+            Sqlcmd.Parameters.Add(new SqlParameter("@IsExecute", IntDB, 10, OU, false, 0, 0, "", DRV, 0));
+            Sqlcmd.Parameters.Add(new SqlParameter("@TransactionBy", VchDB, 15, IN, false, 0, 0, "", DRV, Pro.TransactionBy));
+
+            MainConnection.Open();
+            Sqlcmd.ExecuteNonQuery();
+            if (Convert.ToInt32(Sqlcmd.Parameters["@IsExecute"].Value) == -1) { throw new Exception(General.ProcedureMsg(), null); }
+            return true;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message, ex);
+        }
+        finally
+        {
+            MainConnection.Close();
+            Sqlcmd.Dispose();
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

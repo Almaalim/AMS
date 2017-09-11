@@ -5820,6 +5820,10 @@ a.level2.dynamic.JobCategory:before {
 
 .hidden { display: none; }
 
+.tb_without_border {
+ border: none;
+}
+
 .SMSSetting:before , .icon634:before {
     content: "\E2A2";
     font-family: 'icomoon' !important;

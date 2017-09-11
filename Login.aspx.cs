@@ -135,7 +135,7 @@ public partial class Login : BasePage
         if (Type == "DB")    { QU.Append(" WHERE UsrName = @P1 "); }  
         if (Type == "AD")    { QU.Append(" WHERE UsrAD   = @P1 "); }
         if (Type == "DB_AD") { QU.Append(" WHERE UsrName = @P1 AND UsrAD IS NULL "); }      
-        //QU.Append(" AND GETDATE() <= '2017-09-16 00:00:00' ");
+        //QU.Append(" AND GETDATE() <= '2017-10-15 00:00:00' ");
 
         DataTable DT = DBCs.FetchData(QU.ToString(), new string[] { loginName });
         if (!DBCs.IsNullOrEmpty(DT)) 

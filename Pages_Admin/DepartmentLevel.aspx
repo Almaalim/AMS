@@ -1,38 +1,20 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true" CodeFile="DepartmentLevel.aspx.cs" Inherits="DepartmentLevel" meta:resourcekey="PageResource1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
-    <script type="text/javascript">
-        function CreateName() {
-            document.getElementById('<%=hdnNameEn.ClientID%>').value = '';
-            document.getElementById('<%=hdnNameAr.ClientID%>').value = '';
-
-            var itemCount = document.getElementById('<%=ddlCount.ClientID%>').value;
-
-            var nameEn = '';
-            var nameAr = '';
-            for (var x = 0; x < itemCount; x++) {
-                var TXTEN_ID = "ctl00_ContentPlaceHolder1_txtLevelEn_" + x;
-                var TXTAR_ID = "ctl00_ContentPlaceHolder1_txtLevelAr_" + x;
-
-                if (nameEn == '') { nameEn = document.getElementById(TXTEN_ID).value } else { nameEn = nameEn + ',' + document.getElementById(TXTEN_ID).value.toString().trim() }
-                if (nameAr == '') { nameAr = document.getElementById(TXTAR_ID).value } else { nameAr = nameAr + ',' + document.getElementById(TXTAR_ID).value.toString().trim() }
-
-                // alert(nameEn);
-            }
-            document.getElementById('<%=hdnNameEn.ClientID%>').value = nameEn;
-            document.getElementById('<%=hdnNameAr.ClientID%>').value = nameAr;
-        }
-    </script>
-
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="row">
                 <div class="col12">
                     <asp:ValidationSummary ID="vsShowMsg" runat="server" CssClass="MsgSuccess"
-                        EnableClientScript="False" ValidationGroup="ShowMsg" meta:resourcekey="vsShowMsgResource1" />
+                        EnableClientScript="False" ValidationGroup="vgShowMsg" meta:resourcekey="vsShowMsgResource1" />
                 </div>
             </div>
+            <div class="row">
+                    <div class="col12">
+                        <asp:ValidationSummary runat="server" ID="vsSave" ValidationGroup="vgSave" EnableClientScript="False"
+                            CssClass="MsgValidation" ShowSummary="False" meta:resourcekey="vsSaveResource1" />
+                    </div>
+                </div>
             <div class="row">
                 <div class="col8">
                     <asp:LinkButton ID="btnModify" runat="server" CssClass="GenButton  glyphicon glyphicon-edit" OnClick="btnModify_Click"
@@ -42,7 +24,7 @@
                     <asp:LinkButton ID="btnSave" runat="server" CssClass="GenButton glyphicon glyphicon-floppy-disk"
                         OnClick="btnSave_Click"
                         Text="&lt;img src=&quot;../images/Button_Icons/button_storage.png&quot; /&gt; Save"
-                        ValidationGroup="Groups" meta:resourcekey="btnSaveResource1"></asp:LinkButton>
+                        ValidationGroup="vgSave" meta:resourcekey="btnSaveResource1"></asp:LinkButton>
 
                     <asp:LinkButton ID="btnCancel" runat="server" CssClass="GenButton glyphicon glyphicon-remove-circle" OnClick="btnCancel_Click"
                         Text="&lt;img src=&quot;../images/Button_Icons/button_Cancel.png&quot; /&gt; Cancel"
@@ -53,29 +35,23 @@
                         Width="10px" meta:resourcekey="txtCustomValidatorResource1"></asp:TextBox>
 
                     <asp:CustomValidator ID="cvShowMsg" runat="server" Display="None"
-                        ValidationGroup="ShowMsg" OnServerValidate="ShowMsg_ServerValidate"
+                        ValidationGroup="vgShowMsg" OnServerValidate="ShowMsg_ServerValidate"
                         EnableClientScript="False" ControlToValidate="txtValid" meta:resourcekey="cvShowMsgResource1"></asp:CustomValidator>
 
-                    <asp:HiddenField ID="hdnDepCount" runat="server" />
-                    <asp:HiddenField ID="hdnNameEn" runat="server" />
-                    <asp:HiddenField ID="hdnNameAr" runat="server" />
+                    <asp:CustomValidator ID="cvValid" runat="server" Display="None" CssClass="CustomValidator"
+                            ValidationGroup="vgSave" OnServerValidate="Valid_ServerValidate"
+                            EnableClientScript="False" ControlToValidate="txtValid"></asp:CustomValidator>
                 </div>
             </div>
+           
             <div class="row">
-                <div class="col12">
-                    <asp:Table ID="tblLevel" runat="server" Width="100%" CssClass="TableLevel">
-                        <asp:TableRow runat="server">
-                            <asp:TableCell runat="server">
-                                <asp:Label ID="lblCount" runat="server" Text="Level Count:"></asp:Label>
-                            </asp:TableCell>
-                            <asp:TableCell runat="server">
-                                <asp:DropDownList ID="ddlCount" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlCount_SelectedIndexChanged" meta:resourcekey="ddlCountResource1"></asp:DropDownList>
-                            </asp:TableCell>
-                        </asp:TableRow>
-                    </asp:Table>
-                    
+                    <div class="col12">   
+                        <asp:GridView ID="grdAddData" runat="server" AutoGenerateColumns="False"
+                            OnRowDataBound="grdAddData_RowDataBound"
+                            OnRowCommand="grdAddData_RowCommand" ShowFooter="True" meta:resourcekey="grdAddDataResource1">
+                        </asp:GridView>
+                    </div>
                 </div>
-            </div>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

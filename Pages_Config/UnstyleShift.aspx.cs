@@ -128,8 +128,7 @@ public partial class UnstyleShift : BasePage
         try
         {
             ViewState["CurrentTable"] = null;
-            FirstGridViewRow();
-            
+            FirstGridViewRow();        
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
