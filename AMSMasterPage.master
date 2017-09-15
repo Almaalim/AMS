@@ -73,6 +73,15 @@
             //    }
 
             //});
+            $(window).scroll(function () {
+                var scroll = $(window).scrollTop();
+
+                if (scroll >= 53) {
+                    $(".taptap-menu-button-wrapper").addClass("fixed");
+                } else {
+                    $(".taptap-menu-button-wrapper").removeClass("fixed");
+                }
+            });
             var Notifi = $(".NotificationsPopup");
             if ($(window).width() < 874) {
                 $(".NotificationsPopup").addClass("NotificationsMobile");
@@ -197,6 +206,7 @@
                 $(".NotificationsPopup").removeClass("NotificationsActive");
 
             });
+            $("#ctl00_divMenu").css("display", "block");
         }
         $(document).click(function (e) {
             var container = $(".taptap-menu-active, .taptap-main-wrapper-active, .NotificationsPopup");
@@ -337,6 +347,7 @@
         $(window).load(function () {
 
             w = $(window).width();
+            
 
         });
         $(window).resize(function () {
@@ -544,10 +555,11 @@
                     <div class="taptap-main-inner-inner">
                         <div class="taptap-contents-wrapper">
                             <div class="NotificationsWrapper">
+                                <div style="display:none">
                                 <asp:Image ID="UserImg" runat="server" ImageUrl="~/CSS/Metro/Images/UserImg.png" CssClass="UserImg" />
                                 <asp:Label ID="lblWelcome" runat="server" Text="Welcome" meta:resourcekey="lblWelcomeResource1" Visible="false"></asp:Label>
-
-                                <asp:Label ID="lblUserName" runat="server" meta:resourcekey="lblUserNameResource1"></asp:Label>
+                                
+                                <asp:Label ID="lblUserName" runat="server" meta:resourcekey="lblUserNameResource1"></asp:Label></div>
                                 <div class="NotificationsIcon">
                                     <span id="spnNotificationsNo" runat="server" class="NotificationsNumber">999</span>
                                 </div>
@@ -632,6 +644,7 @@
                             </div>
 
                             <div class="UtilityLinks">
+                                <asp:LinkButton ID="LnkUser" runat="server" Style="color: #C3D8D5; text-decoration: none;">User Name</asp:LinkButton>
                                 <asp:LinkButton ID="LnkChangePassword" runat="server" Style="color: #C3D8D5; text-decoration: none;"
                                     OnClick="LnkChangePassword_Click" meta:resourcekey="LnkChangePasswordResource11">Change Password</asp:LinkButton>
 
