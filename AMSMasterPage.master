@@ -555,11 +555,7 @@
                     <div class="taptap-main-inner-inner">
                         <div class="taptap-contents-wrapper">
                             <div class="NotificationsWrapper">
-                                <div style="display:none">
-                                <asp:Image ID="UserImg" runat="server" ImageUrl="~/CSS/Metro/Images/UserImg.png" CssClass="UserImg" />
-                                <asp:Label ID="lblWelcome" runat="server" Text="Welcome" meta:resourcekey="lblWelcomeResource1" Visible="false"></asp:Label>
                                 
-                                <asp:Label ID="lblUserName" runat="server" meta:resourcekey="lblUserNameResource1"></asp:Label></div>
                                 <div class="NotificationsIcon">
                                     <span id="spnNotificationsNo" runat="server" class="NotificationsNumber">999</span>
                                 </div>
@@ -644,7 +640,10 @@
                             </div>
 
                             <div class="UtilityLinks">
-                                <asp:LinkButton ID="LnkUser" runat="server" Style="color: #C3D8D5; text-decoration: none;">User Name</asp:LinkButton>
+                                  <asp:Image ID="UserImg" runat="server" ImageUrl="~/CSS/Metro/Images/UserImg.png" CssClass="UserImg" />
+                                <asp:Label ID="lblWelcome" runat="server" Text="Welcome" meta:resourcekey="lblWelcomeResource1" Visible="false"></asp:Label>
+                                 <asp:Label ID="lblUserName" runat="server" meta:resourcekey="lblUserNameResource1"></asp:Label>
+                                
                                 <asp:LinkButton ID="LnkChangePassword" runat="server" Style="color: #C3D8D5; text-decoration: none;"
                                     OnClick="LnkChangePassword_Click" meta:resourcekey="LnkChangePasswordResource11">Change Password</asp:LinkButton>
 
