@@ -4775,7 +4775,7 @@ a.level2.dynamic.JobCategory:before {
 }
 
 @media (max-width:1540px) {
-    a.static {
+  /*  a.static {
         width: 65px;
         height: 60px;
         font-size: 9px;
@@ -4804,7 +4804,7 @@ a.level2.dynamic.JobCategory:before {
         font-size: 13px;
         margin: 5px 16px 8px;
         line-height: 25px !important;
-    }
+    }*/
 
     .UtilityLinks a {
         margin-left: 20px;
@@ -4818,7 +4818,40 @@ a.level2.dynamic.JobCategory:before {
 
     
 }
+@media (max-width:1385px)
+{
+    .Logo {
+        width: 185px;
+        height: 50px;
+        background-size: cover;
+        margin-top: 20px;
+    }/*
+     a.static {
+        width: 65px;
+        height: 60px;
+        font-size: 9px;
+    }
 
+
+   
+
+    li.static {
+        height: 60px;
+    }
+
+    a.level2.dynamic {
+        font-size: 10px;
+    }
+
+    a.static:before {
+        width: 30px;
+        height: 30px;
+        margin: 6px 15px 8px;
+        font-size: 13px;
+        margin: 5px 16px 8px;
+        line-height: 25px !important;
+    }*/
+}
 @media (max-width:1295px) {
 
 
@@ -4854,7 +4887,7 @@ a.level2.dynamic.JobCategory:before {
         margin: 5px 16px 8px;
         line-height: 25px !important;
     }
-
+      
     .UserDetails > a[id$="lnkSetting"]:before {
         font-size: 16px;
         content: "\e20d";
