@@ -4821,8 +4821,8 @@ a.level2.dynamic.JobCategory:before {
 @media (max-width:1385px)
 {
     .Logo {
-        width: 185px;
-        height: 50px;
+        width: 150px;
+        height: 41px;
         background-size: cover;
         margin-top: 20px;
     }/*
@@ -4852,7 +4852,7 @@ a.level2.dynamic.JobCategory:before {
         line-height: 25px !important;
     }*/
 }
-@media (max-width:1295px) {
+@media (max-width:1225px) {
 
 
     .monthSummaryDiv {
@@ -4868,7 +4868,7 @@ a.level2.dynamic.JobCategory:before {
 
 
     .Logo {
-        margin-top: 5px;
+        margin-top: 9px;
     }
 
     li.static {
