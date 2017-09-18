@@ -13,8 +13,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <script type="text/javascript" src="../Script/jquery-1.7.1.min.js"></script>
 
-    <script src="../Script/jquery-ui-1.8.17.custom.min.js" type="text/javascript" ></script>
-    <script src="../Script/SessionScript.js" type="text/javascript" ></script>
+    <script src="../Script/jquery-ui-1.8.17.custom.min.js" type="text/javascript"></script>
+    <script src="../Script/SessionScript.js" type="text/javascript"></script>
     <script src="../Script/jquery.mousewheel.js"></script>
     <link href="CSS/Metro/Metro.css" rel="stylesheet" runat="server" id="LanguageSwitch" />
 
@@ -122,7 +122,7 @@
                     $(this).parents("span:first").addClass('CustomValidator');
                 }
             });
-            
+
             //$(".flyOutDiv").each(function () {
             //    var peraH = $(this).find("p").height();
             //    $(this).height(peraH);
@@ -152,8 +152,8 @@
                     }
 
                 });
-                
-               
+
+
             }
 
             $("div[class*='col']").each(function () {
@@ -188,7 +188,7 @@
             $("ul.level2.dynamic").each(function (i) {
                 $(this).css('background-color', '#' + colors[i % colors.length]);
             });
-            
+
             $("ul.level1.static>li").each(function (i) {
                 $(this).css('background-color', '#' + colors[i % colors.length]);
             });
@@ -209,10 +209,10 @@
             $("#ctl00_divMenu").css("display", "block");
         }
         $(document).click(function (e) {
-            var container = $(".taptap-menu-active, .taptap-main-wrapper-active, .NotificationsPopup");
+            var container = $(".taptap-menu-active, .taptap-main-wrapper-active");
             if (!container.is(e.target) && container.has(e.target).length === 0) {
                 $(".taptap-menu-active").removeClass("taptap-menu-active");
-                $(".NotificationsPopup").removeClass("NotificationsActive");
+                // $(".NotificationsPopup").removeClass("NotificationsActive");
                 $(".taptap-main-wrapper").removeClass("taptap-main-wrapper-active");
                 $("body").css("overflow", "auto");
             }
@@ -347,7 +347,7 @@
         $(window).load(function () {
 
             w = $(window).width();
-            
+
 
         });
         $(window).resize(function () {
@@ -546,19 +546,14 @@
     <%--onload="StartTimers();" onmousemove="ResetTimers();"--%>
     <%--onunload="bodyUnload();"--%>
     <form id="form1" runat="server">
-        <div id="divNotifications" runat="server" class="NotificationsPopup">
-        </div>
+
         <%--side Menu--%>
         <div class="taptap-main-wrapper">
             <div class="taptap-main-inner">
                 <div class="taptap-main">
                     <div class="taptap-main-inner-inner">
                         <div class="taptap-contents-wrapper">
-                            <div class="NotificationsWrapper">
-                                
-                                <div class="NotificationsIcon">
-                                    <span id="spnNotificationsNo" runat="server" class="NotificationsNumber">999</span>
-                                </div>
+                            <div class="NotificationsWrapper" style="display: none">
                             </div>
                             <div class="UserDetails">
 
@@ -625,6 +620,7 @@
                                 <div class="taptap-main-menu-button-middle"></div>
                             </div>
                         </div>
+
                         <div class="clearfix"></div>
 
 
@@ -640,10 +636,11 @@
                             </div>
 
                             <div class="UtilityLinks">
-                                  <asp:Image ID="UserImg" runat="server" ImageUrl="~/CSS/Metro/Images/UserImg.png" CssClass="UserImg" />
+
+                                <asp:Image ID="UserImg" runat="server" ImageUrl="~/CSS/Metro/Images/UserImg.png" CssClass="UserImg" />
                                 <asp:Label ID="lblWelcome" runat="server" Text="Welcome" meta:resourcekey="lblWelcomeResource1" Visible="false"></asp:Label>
-                                 <asp:Label ID="lblUserName" runat="server" meta:resourcekey="lblUserNameResource1"></asp:Label>
-                                
+                                <asp:Label ID="lblUserName" runat="server" meta:resourcekey="lblUserNameResource1"></asp:Label>
+
                                 <asp:LinkButton ID="LnkChangePassword" runat="server" Style="color: #C3D8D5; text-decoration: none;"
                                     OnClick="LnkChangePassword_Click" meta:resourcekey="LnkChangePasswordResource11">Change Password</asp:LinkButton>
 
@@ -663,7 +660,11 @@
                                     OnClick="lnkLanguage_Click" meta:resourcekey="lnkLanguageResource1">Language</asp:LinkButton>
 
                             </div>
-
+                            <div class="NotificationsIcon">
+                                <span id="spnNotificationsNo" runat="server" class="NotificationsNumber">999</span>
+                            </div>
+                            <div id="divNotifications" runat="server" class="NotificationsPopup">
+                            </div>
                         </div>
                         <hr class="Sep" />
                     </div>
@@ -796,12 +797,12 @@
 
                     if (result) {
                         document.getElementById('<%= hdnFavID.ClientID %>').value = FavID;
-                    document.getElementById('<%= btnDeleteForm.ClientID %>').click();
+                        document.getElementById('<%= btnDeleteForm.ClientID %>').click();
+                    }
                 }
-            }
             </script>
-            <script> 
-                function pageLoad() { 
+            <script>
+                function pageLoad() {
                     $(".chosen-select").chosen({
                         allow_single_deselect: true,
                         disable_search_threshold: 10,
@@ -810,7 +811,7 @@
                         rtl: "<%=rtl_Chosen %>",
                         width: "100%"
                     });
-                } 
+                }
             </script>
     </form>
     <div class="LoadingWrapper">
