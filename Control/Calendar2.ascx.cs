@@ -176,7 +176,15 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
                 {
                     //to manage multiple instances of user control postback, incase the postback happend due to culture changeed in current control,
                     //the other user contrls culture drop down list to be changed accordingly. Also year and month dropdown lists according to culture 
-                    if (strPostBackControlName != "" && strPostBackControlName.Substring(strPostBackControlName.LastIndexOf("$")) == "$ddlLocaleChoice")
+
+                    string str = "";
+                    int i = strPostBackControlName.LastIndexOf("$");
+                    if (i >= 0)
+                    {
+                        str = strPostBackControlName.Substring(strPostBackControlName.LastIndexOf("$"));
+                    }
+
+                    if (strPostBackControlName != "" && str == "$ddlLocaleChoice")
                     {
                         if (ddlLocaleChoice.SelectedValue == HCulture.Name)
                         {
@@ -208,7 +216,7 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
                 selected_culture = new System.Globalization.CultureInfo(ddlLocaleChoice.SelectedValue);
                 System.Threading.Thread.CurrentThread.CurrentCulture = selected_culture;
             }
-            catch { }
+            catch (Exception ex) { }
         }       
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

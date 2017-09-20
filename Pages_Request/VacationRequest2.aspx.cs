@@ -96,6 +96,8 @@ public partial class VacationRequest2 : BasePage
             }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
+
+        ScriptManager.RegisterStartupScript(this.Page, this.GetType(), "script", "PostbackFunction();", true);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -187,6 +189,8 @@ public partial class VacationRequest2 : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void ddlVacType_SelectedIndexChanged(object sender, EventArgs e)
     {
+
+
         spVacHospitalType.Visible = lblVacHospitalType.Visible = ddlVacHospitalType.Visible = rvVacHospitalType.Enabled = false;
 
         if (ddlVacType.SelectedIndex > 0)

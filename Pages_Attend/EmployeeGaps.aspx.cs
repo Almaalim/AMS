@@ -379,7 +379,7 @@ public partial class EmployeeGaps : BasePage
                     if (FindApprovalSequence("EXC"))
                     {
                         lblNamePopup.Text = General.Msg("Excuse Request", "طلب استئذان");
-                        ifrmPopup.Attributes.Add("src", "ExcuseRequest2.aspx?ID=" + e.CommandArgument.ToString());
+                        ifrmPopup.Attributes.Add("src", "../Pages_Request/ExcuseRequest2.aspx?ID=" + e.CommandArgument.ToString());
                         Session["ERSRefreshMonth"] = ddlMonth.SelectedValue;
                         Session["ERSRefreshYear"] = ddlYear.SelectedValue;
                         Session["ParentExcuseRequest"] = "EmployeeGaps.aspx";

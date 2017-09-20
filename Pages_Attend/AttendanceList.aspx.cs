@@ -164,14 +164,17 @@ public partial class AttendanceList : BasePage
                 if (!DBCs.IsNullOrEmpty(DT))
                 {
                     DataRow[] DRs = DT.Select("DsmDate = '" + GDateDT + "'");
-                    MonthRow["SsmShift"]     = DRs[0]["SsmShift"].ToString();
-                    MonthRow["SsmPunchIn"]   = DisplayFun.GrdDisplayTime(DRs[0]["SsmPunchIn"]);
-                    MonthRow["SsmPunchOut"]  = DisplayFun.GrdDisplayTime(DRs[0]["SsmPunchOut"]);
-                    MonthRow["SsmBeginLate"] = DRs[0]["SsmBeginLate"].ToString();
-                    MonthRow["SsmOutEarly"]  = DRs[0]["SsmOutEarly"].ToString();
-                    MonthRow["SsmGapDur_MG"] = DRs[0]["SsmGapDur_MG"].ToString();
-                    MonthRow["AnyStatus"]    = DRs[0]["AnyStatus"].ToString();
-                    MonthRow["AnyExcID"]     = DRs[0]["AnyExcID"].ToString();
+                    if (DRs.Length > 0)
+                    {
+                        MonthRow["SsmShift"]     = DRs[0]["SsmShift"].ToString();
+                        MonthRow["SsmPunchIn"]   = DisplayFun.GrdDisplayTime(DRs[0]["SsmPunchIn"]);
+                        MonthRow["SsmPunchOut"]  = DisplayFun.GrdDisplayTime(DRs[0]["SsmPunchOut"]);
+                        MonthRow["SsmBeginLate"] = DRs[0]["SsmBeginLate"].ToString();
+                        MonthRow["SsmOutEarly"]  = DRs[0]["SsmOutEarly"].ToString();
+                        MonthRow["SsmGapDur_MG"] = DRs[0]["SsmGapDur_MG"].ToString();
+                        MonthRow["AnyStatus"]    = DRs[0]["AnyStatus"].ToString();
+                        MonthRow["AnyExcID"]     = DRs[0]["AnyExcID"].ToString();
+                    }
                 }
 
                 string[] StatusValue = FindStatusValue(DT, GDateDT, TodayDate, ReqPermVac || ReqPermCom || ReqPermJob, ReqPermESH);
@@ -505,12 +508,12 @@ public partial class AttendanceList : BasePage
                     if (AnyStatus == "D")
                     {
                         lblNamePopup.Text = General.Msg("Absent Day Request", "طلب غياب يوم");
-                        ifrmPopup.Attributes.Add("src", "VacationRequest2.aspx?ID=" + DateDay + "&Type=ALL");
+                        ifrmPopup.Attributes.Add("src", "../Pages_Request/VacationRequest2.aspx?ID=" + DateDay + "&Type=ALL");
                     }
                     else if (AnyStatus == "S") 
                     {
                         lblNamePopup.Text = General.Msg("Shift Excuse Request", "طلب استئذان وردية");
-                        ifrmPopup.Attributes.Add("src", "ShiftExcuseRequest2.aspx?ID=" + DateDay + "&SID=" + ShiftID + "");
+                        ifrmPopup.Attributes.Add("src", "../Pages_Request/ShiftExcuseRequest2.aspx?ID=" + DateDay + "&SID=" + ShiftID + "");
                     }
 
                     Session["ERSRefreshMonth"] = ddlMonth.SelectedValue;

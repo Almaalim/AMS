@@ -167,7 +167,7 @@
                     <div class="col2">
                     
                         <span id="spnMacTransactionType" runat="server" class="RequiredField">*</span>
-                        <asp:Label ID="lblMacTransactionType" runat="server" Text="Transactions Type :" meta:resourcekey="MacTransactionTypeResource"></asp:Label>
+                        <asp:Label ID="lblMacTransactionType" runat="server" Text="Transactions Type :" meta:resourcekey="lblMacTransactionTypeResource"></asp:Label>
                     </div>
                     <div class="col4">
                         <asp:DropDownList ID="ddlMacTransactionType" runat="server" Enabled="False" AutoPostBack="true" OnSelectedIndexChanged="ddlMacTransactionType_SelectedIndexChanged" >

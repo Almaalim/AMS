@@ -574,7 +574,7 @@
     <value />
   </data>
   <data name="lblUsrADUserResource1.Text" xml:space="preserve">
-    <value>مستخدم Active Directory :</value>
+    <value>مستخدم الدليل النشط :</value>
   </data>
   <data name="chkAdminMiniLoggerResource1.Text" xml:space="preserve">
     <value>مدير التحضير المصغر</value>

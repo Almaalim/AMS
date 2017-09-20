@@ -12,7 +12,7 @@
     <%--script--%>
     <link href="../CSS/validationStyle.css" rel="stylesheet" type="text/css" />
 
-    <asp:UpdateProgress ID="upWaiting" runat="server" DynamicLayout="true" AssociatedUpdatePanelID="UpdatePanel1">
+    <%--<asp:UpdateProgress ID="upWaiting" runat="server" DynamicLayout="true" AssociatedUpdatePanelID="UpdatePanel1">
         <ProgressTemplate>
             <div class="row">
                 <div class="col12">
@@ -20,7 +20,7 @@
                 </div>
             </div>
         </ProgressTemplate>
-    </asp:UpdateProgress>
+    </asp:UpdateProgress>--%>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <Triggers>

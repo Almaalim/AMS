@@ -72,7 +72,7 @@ public partial class PermissionGroups : BasePage
         try
         {
             DataSet RepDS = new DataSet();
-            RepDS = GenCs.FillRepTree(pgCs.Version);
+            RepDS = GenCs.FillRepTree(pgCs.Lang, pgCs.Version);
             xmlReportSource.Data = RepDS.GetXml();
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
@@ -450,6 +450,8 @@ public partial class PermissionGroups : BasePage
         try
         {
             UIClear();
+            UIEnabled(false);
+            BtnStatus("1000");
 
             if (CtrlCs.isGridEmpty(grdData.SelectedRow.Cells[1].Text) && grdData.SelectedRow.Cells.Count == 1)
             {

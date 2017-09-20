@@ -246,7 +246,7 @@
                         <asp:Label ID="lblShift1From" runat="server" Text="From :" meta:resourcekey="lblShift1FromResource1"></asp:Label>
                     </div>
                     <div class="col4">
-                        <Almaalim:TimePicker ID="tpShift1From" runat="server" FormatTime="HHmm" meta:resourcekey="tpShift1FromResource1"
+                        <Almaalim:TimePicker ID="tpShift1From" runat="server" FormatTime="HHmm" style="direction:ltr;"
                             CssClass="TimeCss" TimePickerValidationGroup="vgSave" TimePickerValidationText="&lt;img src='../images/Exclamation.gif' title='Time Shift 1 From is required!' /&gt;" />
                     </div>
                     <div class="col2">

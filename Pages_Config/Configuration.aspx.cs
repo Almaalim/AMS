@@ -107,12 +107,15 @@ public partial class Configuration : BasePage
 
                 try
                 {
-                    string FormReq = DT.Rows[0]["cfgFormReq"].ToString();
-                    string[] ArrFormReq = FormReq.Split(',');
-                    for (int i = 0; i < ArrFormReq.Length; i++)
+                    if (!GenCs.IsNullOrEmptyDB(DT.Rows[0]["cfgFormReq"]))
                     {
-                        int index = cblFormRequest.Items.IndexOf(cblFormRequest.Items.FindByValue(ArrFormReq[i]));
-                        if (index > -1) { cblFormRequest.Items[index].Selected = true; } else { cblFormRequest.Items[index].Selected = false; }
+                        string FormReq = DT.Rows[0]["cfgFormReq"].ToString();
+                        string[] ArrFormReq = FormReq.Split(',');
+                        for (int i = 0; i < ArrFormReq.Length; i++)
+                        {
+                            int index = cblFormRequest.Items.IndexOf(cblFormRequest.Items.FindByValue(ArrFormReq[i]));
+                            if (index > -1) { cblFormRequest.Items[index].Selected = true; } else { cblFormRequest.Items[index].Selected = false; }
+                        }
                     }
                 }
                 catch (Exception ex)

@@ -539,4 +539,7 @@
   <data name="RoundPatrolListItemResource1.Text" xml:space="preserve">
     <value>Round Patrol</value>
   </data>
+  <data name="lblMacTransactionTypeResource.Text" xml:space="preserve">
+    <value>Transactions Type :</value>
+  </data>
 </root>

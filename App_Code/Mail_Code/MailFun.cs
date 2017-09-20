@@ -148,12 +148,12 @@ public class MailFun
                     else if (PKList[i].Contains("STATUSAR_")) 
                     { 
                         if (Body.IndexOf("[STATUSAR_REQ]") > 0) { Body = Body.Replace("[STATUSAR_REQ]", ShowStatus("AR", DR[PKList[i]].ToString())); }
-                        if (Body.IndexOf("[COLOR_TYPE]")   > 0) { Body = Body.Replace("[STATUSAR_REQ]", ShowColor(DR[PKList[i]].ToString())); }
+                        if (Body.IndexOf("[COLOR_TYPE]")   > 0) { Body = Body.Replace("[COLOR_TYPE]", ShowColor(DR[PKList[i]].ToString())); }
                     }
                     else if (PKList[i].Contains("STATUSEN_")) 
                     { 
                         if (Body.IndexOf("[STATUSEN_REQ]") > 0) { Body = Body.Replace("[STATUSEN_REQ]", ShowStatus("EN", DR[PKList[i]].ToString())); }
-                        if (Body.IndexOf("[COLOR_TYPE]")   > 0) { Body = Body.Replace("[STATUSAR_REQ]", ShowColor(DR[PKList[i]].ToString())); }
+                        if (Body.IndexOf("[COLOR_TYPE]")   > 0) { Body = Body.Replace("[COLOR_TYPE]", ShowColor(DR[PKList[i]].ToString())); }
                     }
                 }
             }

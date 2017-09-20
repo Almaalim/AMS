@@ -298,7 +298,7 @@ public partial class ERS_EmployeeOvertime : BasePage
                     //if (FindApprovalSequence("EXC"))
                     //{
                         lblNamePopup.Text = General.Msg("Overtime Request", "طلب وقت إضافي");
-                        ifrmPopup.Attributes.Add("src", "OverTimeRequest2.aspx?ID=" + e.CommandArgument.ToString());
+                        ifrmPopup.Attributes.Add("src", "../Pages_Request/OverTimeRequest2.aspx?ID=" + e.CommandArgument.ToString());
                         Session["ERSRefreshMonth"] = ddlMonth.SelectedValue;
                         Session["ERSRefreshYear"]  = ddlYear.SelectedValue;
                         Session["ParentExcuseRequest"] = "ERS_EmployeeOvertime.aspx";
