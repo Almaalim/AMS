@@ -193,7 +193,7 @@ public partial class OverTimeRequest2 : BasePage
             BtnStatus("11");
 
             Session["ERSRefresh"] = "Update";
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "hideparentPopupSave('divPopup2','ERS_EmployeeOvertime.aspx');", true);
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "hideparentPopupSave('divPopup2','../Pages_Attend/ERS_EmployeeOvertime.aspx');", true);
             //ShowMsg("Request details saved successfully", "تم حفظ الطلب");
         }
         catch (Exception ex) 
@@ -210,7 +210,7 @@ public partial class OverTimeRequest2 : BasePage
         UIClear();
         BtnStatus("11");
         Session["ERSRefresh"] = "Update";
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "hideparentPopupSave('divPopup2','ERS_EmployeeOvertime.aspx');", true);
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "hideparentPopupSave('divPopup2','../Pages_Attend/ERS_EmployeeOvertime.aspx');", true);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -82,11 +82,9 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
         {
             FillMenu();
 
-            if (pgCs.LoginType == "USR")
-            {
-                FillFavForm();
-                ShowNotifications();
-            }
+            if (pgCs.LoginType == "USR") { FillFavForm(); }
+
+            ShowNotifications();
         }
         catch (Exception e1) { }
     }
@@ -543,8 +541,8 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
             spnNotificationsNo.InnerText = "";
 
             if (ShowIsExistingRequest(out text, out count)) { strItems += CreateNotificationsItem(text, count, "../Pages_ERS/RequestApproval.aspx?ID=ALL"); /**/ ShowCountNotifications(); }
-            if (FindGapsForCurrentMonth(out text, out count)) { strItems += CreateNotificationsItem(text, count, "../Pages_ERS/EmployeeGaps.aspx");           /**/ ShowCountNotifications(); }
-            if (FindAbsentForCurrentMonth(out text, out count)) { strItems += CreateNotificationsItem(text, count, "../Pages_ERS/AttendanceList.aspx");         /**/ ShowCountNotifications(); }
+            if (FindGapsForCurrentMonth(out text, out count)) { strItems += CreateNotificationsItem(text, count, "../Pages_Attend/EmployeeGaps.aspx");           /**/ ShowCountNotifications(); }
+            if (FindAbsentForCurrentMonth(out text, out count)) { strItems += CreateNotificationsItem(text, count, "../Pages_Attend/AttendanceList.aspx");         /**/ ShowCountNotifications(); }
 
             //if (!string.IsNullOrEmpty(strItems))
             //{
@@ -570,7 +568,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
         {
             string ERSLic = LicDf.FetchLic("ER");
 
-            if (ERSLic == "1")
+            if (ERSLic == "1" && pgCs.LoginType == "USR")
             {
                 DataTable DT = DBCs.FetchData(" SELECT COUNT(ErqID) ReqNo FROM EmpRequest WHERE ErqID IN ( SELECT E.ReqID FROM EmpRequestApprovalStatus E WHERE @P1 IN (SELECT * FROM UF_CSVToTable(E.MgrID)) AND E.EraStatus = 0 ) ", new string[] { pgCs.LoginID });
                 if (!DBCs.IsNullOrEmpty(DT))

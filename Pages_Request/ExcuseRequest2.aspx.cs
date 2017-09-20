@@ -136,8 +136,8 @@ public partial class ExcuseRequest2 : BasePage
 
         ProCs.ErqStartDate  = calStartDate.getGDateDBFormat();
         ProCs.ErqEndDate    = ProCs.ErqStartDate;
-        ProCs.ErqStartTime  = tpFrom.getDateTime(ProCs.ErqStartDate).ToString();
-        ProCs.ErqEndTime    = tpTo.getDateTime(ProCs.ErqEndDate).ToString();
+        ProCs.ErqStartTime  = tpFrom.getDateTime(calStartDate.getGDate()).ToString();
+        ProCs.ErqEndTime    = tpTo.getDateTime(calStartDate.getGDate()).ToString();
         ProCs.ErqReason     = txtDesc.Text;
         ProCs.ErqReqStatus  = "0";
         ProCs.ErqStatusTime = ViewState["ErqStatusTime"].ToString();

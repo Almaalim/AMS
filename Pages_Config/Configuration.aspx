@@ -307,6 +307,24 @@
                 </div>
 
                 <div class="row">
+                    <div class="col2"></div>
+                    <div class="col4">
+                        <asp:CheckBox ID="chkOTBeginEarlyFlag" runat="server" Enabled="False"
+                            Text="Begin Early overtime"
+                            meta:resourcekey="chkOTBeginEarlyFlagResource1" />
+                        <div class="flyoutWrap">
+                            <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow9" runat="server" TargetControlID="lnkShow9"></ajaxToolkit:AnimationExtender>
+                            <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose9" runat="server" TargetControlID="lnkClose9"></ajaxToolkit:AnimationExtender>
+                            <asp:ImageButton ID="lnkShow9" runat="server" OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
+                            <div id="pnlInfo9" class="flyOutDiv">
+                                <asp:LinkButton ID="lnkClose9" runat="server" Text="X" OnClientClick="return false;" CssClass="flyOutDivCloseX glyphicon glyphicon-remove" />
+                                <p>
+                                    <br />
+                                    <asp:Label ID="lblHint9" runat="server" Text="When selected early attendance is calculated as overtime for employees" meta:resourcekey="lblHint9Resource"></asp:Label>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col2">
                         <asp:Label ID="lblOTBeginEarlyInterval" runat="server"
                             Text="Begin Early Interval :"
@@ -324,24 +342,6 @@
                                 <p>
                                     <br />
                                     <asp:Label ID="lblHint10" runat="server" Text="Less duration can be calculated as overtime early attendance and who is after this period." meta:resourcekey="lblHint10Resource"></asp:Label>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col4">
-                        <asp:CheckBox ID="chkOTBeginEarlyFlag" runat="server" Enabled="False"
-                            Text="Begin Early overtime"
-                            meta:resourcekey="chkOTBeginEarlyFlagResource1" />
-                        <div class="flyoutWrap">
-                            <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow9" runat="server" TargetControlID="lnkShow9"></ajaxToolkit:AnimationExtender>
-                            <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose9" runat="server" TargetControlID="lnkClose9"></ajaxToolkit:AnimationExtender>
-                            <asp:ImageButton ID="lnkShow9" runat="server" OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
-                            <div id="pnlInfo9" class="flyOutDiv">
-                                <asp:LinkButton ID="lnkClose9" runat="server" Text="X" OnClientClick="return false;" CssClass="flyOutDivCloseX glyphicon glyphicon-remove" />
-                                <p>
-                                    <br />
-                                    <asp:Label ID="lblHint9" runat="server" Text="When selected early attendance is calculated as overtime for employees" meta:resourcekey="lblHint9Resource"></asp:Label>
                                 </p>
                             </div>
                         </div>

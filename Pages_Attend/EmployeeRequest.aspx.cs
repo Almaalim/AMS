@@ -337,9 +337,10 @@ public partial class EmployeeRequest : BasePage
                         else if (Status == "1") { StatusButton.ImageUrl = "~/images/ERS_Images/approve.png"; }
                         else if (Status == "2") { StatusButton.ImageUrl = "~/images/ERS_Images/reject.png"; }
 
-                        ImageButton DeleteButton = (ImageButton)e.Row.Cells[13].Controls[1];
-                        DataTable DT = DBCs.FetchData(" SELECT * FROM EmpRequestApprovalStatus WHERE EraStatus IN (1,2) AND ReqID ", new string[] { e.Row.Cells[1].Text });
-                        if (!DBCs.IsNullOrEmpty(DT)) { DeleteButton.Enabled = false; } else { DeleteButton.Enabled = true; }
+                        ImageButton _btnDelete = (ImageButton)e.Row.Cells[13].Controls[1];
+                        _btnDelete.Attributes.Add("OnClick", CtrlCs.ConfirmDeleteMsg());
+                        DataTable DT = DBCs.FetchData(" SELECT * FROM EmpRequestApprovalStatus WHERE EraStatus IN (1,2) AND ReqID = @P1 ", new string[] { e.Row.Cells[1].Text });
+                        if (!DBCs.IsNullOrEmpty(DT)) { _btnDelete.Enabled = false; } else { _btnDelete.Enabled = true; }
 
                         e.Row.Attributes["onclick"] = ClientScript.GetPostBackClientHyperlink(this.grdData, "Select$" + e.Row.RowIndex);
                         break;
@@ -356,7 +357,7 @@ public partial class EmployeeRequest : BasePage
         {
             switch (e.CommandName)
             {
-                case ("Delete1"):
+                case ("Delete_Command"):
                     string ID = e.CommandArgument.ToString();
                     
                     DataTable DT = DBCs.FetchData(" SELECT * FROM EmpRequestApprovalStatus WHERE EraStatus IN (1,2) AND ReqID = @P1 ", new string[] { ID });

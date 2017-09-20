@@ -150,11 +150,16 @@ public partial class EmployeeGaps : BasePage
     {
         try
         {
-            GregorianCalendar Grn = new GregorianCalendar();
-            string dayNameEn = Grn.GetDayOfWeek(Convert.ToDateTime(pGDate)).ToString();
-            string dayNameAr = convertDayToArabic(Convert.ToDateTime(pGDate).ToString("ddd"));
+            if (pGDate != null)
+            {
+                GregorianCalendar Grn = new GregorianCalendar();
+                string dayNameEn = Grn.GetDayOfWeek(Convert.ToDateTime(pGDate)).ToString();
+                string dayNameAr = convertDayToArabic(Convert.ToDateTime(pGDate).ToString("ddd"));
 
-            return General.Msg(dayNameEn, dayNameAr);
+                return General.Msg(dayNameEn, dayNameAr);
+            }
+
+            return string.Empty;
         }
         catch (Exception ex) 
         { 
@@ -382,7 +387,7 @@ public partial class EmployeeGaps : BasePage
                         ifrmPopup.Attributes.Add("src", "../Pages_Request/ExcuseRequest2.aspx?ID=" + e.CommandArgument.ToString());
                         Session["ERSRefreshMonth"] = ddlMonth.SelectedValue;
                         Session["ERSRefreshYear"] = ddlYear.SelectedValue;
-                        Session["ParentExcuseRequest"] = "EmployeeGaps.aspx";
+                        Session["ParentExcuseRequest"] = "../Pages_Attend/EmployeeGaps.aspx";
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "showPopup();", true);
                     }
 

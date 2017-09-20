@@ -301,7 +301,6 @@ public partial class ERS_EmployeeOvertime : BasePage
                         ifrmPopup.Attributes.Add("src", "../Pages_Request/OverTimeRequest2.aspx?ID=" + e.CommandArgument.ToString());
                         Session["ERSRefreshMonth"] = ddlMonth.SelectedValue;
                         Session["ERSRefreshYear"]  = ddlYear.SelectedValue;
-                        Session["ParentExcuseRequest"] = "ERS_EmployeeOvertime.aspx";
                         ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "showPopup();", true);
                     //}
 
