@@ -161,19 +161,35 @@ box-shadow: 2px 2px 9px 2px rgba(206,220,223,0);
 }
 .TreeViewStyle
 {
-    border:1px solid #005683;
+    border:1px solid #dfdfdf;
     padding:0 30px;
-        background-color: #971728;
+           background-color: #f0f0f0;
 }
 
 
 .TreeViewStyle a , .TreeViewStyle span
 {
-    color:#f9f9f9 !important;
+    color:#2b2b2b !important;
+}
+.TreeViewStyle>table:first-child
+{
+    margin-top:30px;
+}
+.TreeViewStyle>a:after
+{
+    margin-bottom:30px;
+    display:block;
+    content:"";
+    
 }
 iframe#ifrmProgress {
    
     height: 100vH !important;
+}
+.TreeViewStyle td img
+{
+    height:24px;
+    width:18px;
 }
 .GridRowStyle:hover td, .GridAlterNative:hover td
 {

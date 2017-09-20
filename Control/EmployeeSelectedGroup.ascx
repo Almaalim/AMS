@@ -7,7 +7,7 @@
         <div runat="server" id="MainTable">
 
 
-            <asp:Panel ID="pnlEmloyeeSelected" runat="server" Width="760px"
+            <asp:Panel ID="pnlEmloyeeSelected" runat="server" 
                 meta:resourcekey="pnlEmloyeeSelectedResource1">
                 <div class="row">
                     <div class="col2">
@@ -101,8 +101,6 @@
                                                      meta:resourcekey="btnDeSelectEmpResource1" />
                                              </div>
                         </div>
-
-                    </div>
                     <div class="col5">
                         <div class="GreySetion">
                            <div class="row">
@@ -167,6 +165,8 @@
 </div>
                         </div>
                     </div>
+                    
+                  
             </asp:Panel>
 
 
