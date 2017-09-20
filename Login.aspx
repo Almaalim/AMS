@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Force Work Web" Language="C#" MasterPageFile="~/LoginMasterPage.master" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Login" meta:resourcekey="PageResource1" %>
+﻿<%@ Page Title="Work Force Web" Language="C#" MasterPageFile="~/LoginMasterPage.master" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Login" meta:resourcekey="PageResource1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:Panel ID="pnlMain" runat="server" DefaultButton="btnLogin" CssClass="LoginPanel"
@@ -29,13 +29,13 @@
             <div class="LoginRight">
                 <div class="row">
                     <div class="col12 h2">
-                        Login
+                        <asp:Label ID="lblLoginTitel" runat="server" Text="Login" meta:resourcekey="lblLoginTitelResource1"></asp:Label>
                     </div>
 
                 </div>
                 <div class="row">
                     <div class="col12 h3">
-                        Attendance System
+                        <asp:Label ID="lblTitel" runat="server" Text="Attendance System" meta:resourcekey="lblTitelResource1"></asp:Label>
                     </div>
 
                 </div>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,13 +12,24 @@ public partial class LoginMasterPage : System.Web.UI.MasterPage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["Language"] != null)
+        if (Application["LoginLang"] != null)
         {
-            string Language = Session["Language"].ToString();
-            if (Language == "AR") { form1.Attributes.Add("dir", "rtl"); } else { form1.Attributes.Add("dir", "ltr"); }
+            string Language = Application["LoginLang"].ToString();
+            if (Language == "AR") { form1.Attributes.Add("dir", "rtl"); } else { form1.Attributes.Add("dir", "ltr");  }
+            if (Language == "AR") { LanguageSwitch.Href = "CSS/Metro/MetroAr.css"; } else { LanguageSwitch.Href = "CSS/Metro/Metro.css"; }
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo((Language == "AR") ? "ar-Sa" : "en-US");
         }
         
         lblcurrentYear.Text = DateTime.Now.Year.ToString();
+
+        //if (!IsPostBack)
+        //{
+        //    if (Application["LoginLang"] != null)
+        //    {
+        //        string Language = Application["LoginLang"].ToString();
+        //        if (Language == "AR") { lnkLanguage.Text = "E"; } else { lnkLanguage.Text = "ع"; }
+        //    }
+        //}
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -27,5 +39,11 @@ public partial class LoginMasterPage : System.Web.UI.MasterPage
     protected void lnkPolicy_Click(object sender, EventArgs e) { Response.Redirect(@"~/Policies.aspx"); }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+    protected void lnkLanguage_Click(object sender, EventArgs e)
+    {
+        if (Application["LoginLang"].ToString() == "AR") { Application["LoginLang"] = "EN"; } else { Application["LoginLang"] = "AR"; }
+        Response.Redirect(Request.FilePath);
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

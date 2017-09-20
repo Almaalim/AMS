@@ -5892,3 +5892,8 @@ a.level2.dynamic.JobCategory:before {
     content: "\E31D";
     font-family: 'icomoon' !important;
 }
+
+.TimeCss
+{
+    direction: ltr;
+}
