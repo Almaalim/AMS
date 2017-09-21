@@ -119,10 +119,10 @@ public partial class OverTimeRequest2 : BasePage
         ProCs.RetID        = "OVT";
         ProCs.EmpID        = pgCs.LoginEmpID;
         ProCs.GapOvtID     = txtOvtID.Text;
-        ProCs.ErqStartDate = DTCs.ToDefFormat(txtDate.Text, pgCs.DateType);
-        ProCs.ErqStartTime = tpFrom.getDateTime(DTCs.GetGregDateFromCurrDateType(ProCs.ErqStartDate, "dd/MM/yyyy")).ToString();
-        ProCs.ErqEndDate   = DTCs.ToDefFormat(txtDate.Text, pgCs.DateType);
-        ProCs.ErqEndTime   = tpTo.getDateTime(DTCs.GetGregDateFromCurrDateType(ProCs.ErqStartDate, "dd/MM/yyyy")).ToString();
+        ProCs.ErqStartDate = DTCs.ToDBFormat(txtDate.Text, pgCs.DateType);
+        ProCs.ErqStartTime = tpFrom.getDateTime(DTCs.GetGregDateFromCurrDateType(DTCs.ToDefFormat(txtDate.Text, pgCs.DateType), "dd/MM/yyyy")).ToString();
+        ProCs.ErqEndDate   = DTCs.ToDBFormat(txtDate.Text, pgCs.DateType);
+        ProCs.ErqEndTime   = tpTo.getDateTime(DTCs.GetGregDateFromCurrDateType(DTCs.ToDefFormat(txtDate.Text, pgCs.DateType), "dd/MM/yyyy")).ToString();
         ProCs.ErqReason    = txtDesc.Text;
         ProCs.ErqReqStatus = "0";
 

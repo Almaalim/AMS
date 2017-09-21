@@ -32,6 +32,7 @@ function hideparentPopup(devName) {
 }
 
 function hideparentPopupSave(devName, parentName) {
+    //debugger;
 
     try {
         window.parent.document.close();
@@ -49,5 +50,5 @@ function hideparentPopupSave(devName, parentName) {
         //        window.opener.history.go(0); 
 
     }
-    catch (e) { }
+    catch (e) {}
 }

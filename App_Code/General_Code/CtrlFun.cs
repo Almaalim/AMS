@@ -253,7 +253,7 @@ public class CtrlFun : DataLayerBase
         DataTable DT = DBCs.FetchData(" SELECT ExcID, ExcNameAr, ExcNameEn FROM ExcuseType WHERE ISNULL(ExcDeleted,0) = 0 AND ExcStatus = (CASE WHEN @P1 = 'A' THEN ExcStatus ELSE 'True' END) AND ExcCategory IS NULL ", new string[] { All });
         if (!DBCs.IsNullOrEmpty(DT))
         {
-            PopulateDDL(_ddl, DT, General.Msg("ExcNameAr", "ExcNameAr"), "ExcID", General.Msg("-Select Excuse Type-", "-اختر نوع الإستئذان-"));
+            PopulateDDL(_ddl, DT, General.Msg("ExcNameEn", "ExcNameAr"), "ExcID", General.Msg("-Select Excuse Type-", "-اختر نوع الإستئذان-"));
             if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
         }
     }

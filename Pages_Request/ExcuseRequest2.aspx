@@ -12,11 +12,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <script language="javascript" type="text/javascript">
-        function showWait() {
-            //if ($get('fudReqFile').value.length > 0) {
-            $get('upWaiting').style.display = 'block';
-            //}
-        }
+        //function showWait() {
+        //    //if ($get('fudReqFile').value.length > 0) {
+        //    $get('upWaiting').style.display = 'block';
+        //    //}
+        //}
     </script>
     <script type="text/javascript">
         function PostbackFunction() {
@@ -351,11 +351,6 @@
     <script type="text/javascript" src="../Script/DivPopup.js"></script>
     <%--script--%>
     <%--stylesheet--%>
-    <%-- <link href="../CSS/ModalPopup.css"      rel="stylesheet" type="text/css" />
-    <link href="../CSS/MasterPageStyle.css" rel="stylesheet" type="text/css" />
-    <link href="../CSS/buttonStyle.css"     rel="stylesheet" type="text/css" />
-    <link href="../CSS/validationStyle.css" rel="stylesheet" type="text/css" />
-    <link href="../CSS/progressCss.css"     rel="stylesheet" type="text/css" />--%>
     <link href="~/CSS/Metro/Metro.css" rel="stylesheet" runat="server" id="LanguageSwitch" />
     <%--stylesheet--%>
      <script type="text/javascript" src="../Script/jquery-1.7.1.min.js"></script>
@@ -445,10 +440,10 @@
                                 <Cal:Calendar2 ID="calStartDate" runat="server" CalendarType="System" ValidationRequired="true" ValidationGroup="vgSave" />
                             </div>
                             <div class="col2">
-                                <asp:Label ID="lblEndDate" runat="server" Text="End Date:" meta:resourcekey="lblEndDateResource1"></asp:Label>
+                               <%-- <asp:Label ID="lblEndDate" runat="server" Text="End Date:" meta:resourcekey="lblEndDateResource1"></asp:Label>--%>
                             </div>
                             <div class="col4">
-                                <Cal:Calendar2 ID="calEndDate" runat="server" CalendarType="System" ValidationRequired="true" ValidationGroup="vgSave" />
+                                <%--<Cal:Calendar2 ID="calEndDate" runat="server" CalendarType="System" ValidationRequired="true" ValidationGroup="vgSave" />--%>
                             </div>
                         </div>
                         <div class="row">

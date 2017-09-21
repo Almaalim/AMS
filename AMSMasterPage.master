@@ -575,8 +575,8 @@
             </div>
         </div>
         <%--side Menu--%>
-        <iframe id="Defib" src="~/Pages_Mix/KeepSessionAlive.aspx"
-            width="0" height="0" runat="server" frameborder="0" visible="True" style="display: none"></iframe>
+        <%--<iframe id="Defib" src="~/Pages_Mix/KeepSessionAlive.aspx"
+            width="0" height="0" runat="server" frameborder="0" visible="True" style="display: none"></iframe>--%>
         <asp:ScriptManager ID="Scriptmanager1" runat="server" EnablePageMethods="true">
             <Services>
                 <asp:ServiceReference Path="~/Service/AutoComplete.asmx" />

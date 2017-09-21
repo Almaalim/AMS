@@ -122,7 +122,7 @@ public class MailFun
         {
             if (!string.IsNullOrEmpty(Body))
             {
-                if (Body.IndexOf("[VAL_AMSURL]")     > 0) { Body = Body.Replace("[VAL_AMSURL]", ""); }
+                if (Body.IndexOf("[VAL_AMSURL]")     > 0) { Body = Body.Replace("[VAL_AMSURL]", "http://50.62.35.11/WFAlmaalim/Login.aspx"); }
                 if (Body.IndexOf("[MONTHAR_NAMEAR]") > 0) { Body = Body.Replace("[MONTHAR_NAMEAR]", DTCs.GetMonthName(CalendarType, "AR")); }
                 if (Body.IndexOf("[MONTHAR_NAMEEN]") > 0) { Body = Body.Replace("[MONTHAR_NAMEEN]", DTCs.GetMonthName(CalendarType, "EN")); }
 

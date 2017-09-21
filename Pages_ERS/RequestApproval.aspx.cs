@@ -659,7 +659,7 @@ public partial class RequestApproval : BasePage
 
             if (RetID == "EXC" || RetID == "OVT")
             {
-                txtGapOrOVTID.Text = DRs[0]["GapOvtID"].ToString();
+                txtGapOrOVTID.Text = Convert.ToString(DRs[0]["GapOvtID"]);
 
                 divTimeFrom.Visible = true;
                 divTimeTo.Visible = true;

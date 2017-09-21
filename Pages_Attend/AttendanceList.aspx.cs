@@ -477,16 +477,51 @@ public partial class AttendanceList : BasePage
 
             if (Status == "A" )
             {
-                int ReqStatus = 3;
-                bool isESHFound = FoundShiftExcuseRequest(strGDate, ShiftID, out ReqStatus);
-                if (isESHFound)
+                if (AnyStatus == "D")
                 {
-                    StatusReqButton.ImageUrl = FindIconStatus("EmpRequest", ReqStatus);
-                    if (ReqStatus != 2)
+                    string DReqBy = "";
+                    string DReqType = "";
+                    int DReqStatus = 3;
+
+                    DateTime GDate = DTCs.ConvertToDatetime(strGDate, "Gregorian");
+                    bool isVacFound = FoundAbsentDayRequest(GDate, out DReqBy, out DReqType, out DReqStatus);
+                    if (isVacFound)
                     {
-                        StatusButton.Enabled = false;
-                        StatusButton.ToolTip = "";
-                        StatusButton.ImageUrl = FindIconStatus("SendRequest", 0);
+                        if (DReqBy == "EMP")
+                        {
+                            StatusReqButton.ImageUrl = FindIconStatus("EmpRequest", DReqStatus);
+                            if (DReqStatus != 2)
+                            {
+                                StatusButton.Enabled = false;
+                                StatusButton.ToolTip = "";
+                                //StatusButton.ImageUrl = FindIconStatus("SendRequest", 0);
+                            }
+                        }
+                        else if (DReqBy == "USR")
+                        {
+                            StatusReqButton.ImageUrl = FindIconStatus("EmpRequest", DReqStatus);
+                            if (DReqStatus != 2)
+                            {
+                                StatusButton.Enabled = false;
+                                StatusButton.ToolTip = "";
+                                StatusButton.ImageUrl = FindIconStatus("UsrRequest", 0);
+                            }
+                        }
+                    }
+                }
+                else if (AnyStatus == "S")
+                {
+                    int ReqStatus = 3;
+                    bool isESHFound = FoundShiftExcuseRequest(strGDate, ShiftID, out ReqStatus);
+                    if (isESHFound)
+                    {
+                        StatusReqButton.ImageUrl = FindIconStatus("EmpRequest", ReqStatus);
+                        if (ReqStatus != 2)
+                        {
+                            StatusButton.Enabled = false;
+                            StatusButton.ToolTip = "";
+                            StatusButton.ImageUrl = FindIconStatus("SendRequest", 0);
+                        }
                     }
                 }
             }

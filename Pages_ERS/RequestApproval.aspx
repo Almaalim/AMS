@@ -282,7 +282,7 @@
                             <Cal:Calendar2 ID="calEndDate2" runat="server" CalendarType="System" />
                         </div>
                     </div>
-
+                </div>
                     <div runat="server" id="divWorkTime">
                         <div class="row">
                             <div class="col2">
@@ -444,7 +444,6 @@
                     </div>
 
                 </div>
-            </div>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

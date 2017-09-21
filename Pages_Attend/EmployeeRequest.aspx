@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="col12">
                     <asp:ValidationSummary ID="vsShowMsg" runat="server" CssClass="MsgSuccess"
-                        EnableClientScript="False" ValidationGroup="ShowMsg" />
+                        EnableClientScript="False" ValidationGroup="vgShowMsg" />
                 </div>
             </div>
 
@@ -193,7 +193,7 @@
                         Width="10px" meta:resourcekey="txtCustomValidatorResource1"></asp:TextBox>
 
                     <asp:CustomValidator ID="cvShowMsg" runat="server" Display="None" CssClass="CustomValidator"
-                        ValidationGroup="ShowMsg" OnServerValidate="ShowMsg_ServerValidate"
+                        ValidationGroup="vgShowMsg" OnServerValidate="ShowMsg_ServerValidate"
                         EnableClientScript="False" ControlToValidate="txtValid">
                     </asp:CustomValidator>
                 </div>

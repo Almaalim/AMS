@@ -51,7 +51,7 @@ public partial class ExcuseRequest2 : BasePage
                 {
                     ViewState["ErqStatusTime"] = "P";
                     UIEnabled(true,false);
-                    lblEndDate.Visible = calEndDate.Visible = false;
+                    //lblEndDate.Visible = calEndDate.Visible = false;
                     
                     DataTable DT = DBCs.FetchData(" SELECT G.EmpID,G.GapDate,G.GapStartTime,G.GapEndTime,E.EmpNameAr,E.EmpNameEn From Gap G,Employee E WHERE G.EmpID = E.EmpID AND GapID = @P1 ", new string[] { Request.QueryString["ID"].ToString() });
                     if (!DBCs.IsNullOrEmpty(DT)) 
@@ -71,7 +71,7 @@ public partial class ExcuseRequest2 : BasePage
                     lblGapID.Visible = false;
                     txtGapID.Visible = false;
                     divName.Visible  = false;
-                    lblEndDate.Visible = calEndDate.Visible = false;
+                    //lblEndDate.Visible = calEndDate.Visible = false;
                 }
 
                 Session["AttendanceListMonth"] = DTCs.FindCurrentMonth();
@@ -191,22 +191,18 @@ public partial class ExcuseRequest2 : BasePage
             catch { }
 
             int ID = SqlCs.Insert(ProCs);
-            
-            //        mailCs.SendMailToMGR(DT.Rows[0]["EalMgrID"].ToString(), ID.ToString(), pgCs.DateType, pgCs.Lang, mailCs.FindLoginUrl(Request.Url));
-            //        //EmailRequest mail = new EmailRequest();
-            //        mail.Insert("ExcRequest", ID.ToString(),DT.Rows[0]["EalMgrID"].ToString());
-            
+
             UIClear();
             BtnStatus("11");
             if (Request.QueryString["ID"] != null)
             {
                 Session["ERSRefresh"] = "Update";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "hideparentPopupSave('','" + Session["ParentExcuseRequest"].ToString() + "');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "hideparentPopupSave('divPopup','../Pages_Attend/EmployeeGaps.aspx');", true);
             }
             else
             {
                 CtrlCs.ShowMsg(this, vsShowMsg, cvShowMsg, CtrlFun.TypeMsg.Success, "vgShowMsg", General.Msg("Saved data successfully", "تم حفظ البيانات بنجاح"));
-            }      
+            }
         }
         catch (Exception ex) 
         { 

@@ -368,7 +368,6 @@ public partial class EmployeeRequest : BasePage
                     }
                     
                     bool delete = EmpReqSqlCs.Delete(ID, pgCs.LoginID);
-                    if (delete) { SqlCs.Delete(ID, pgCs.LoginID); }
                     
                     btnFilter_Click(null,null);
 

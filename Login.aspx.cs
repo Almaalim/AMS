@@ -19,14 +19,10 @@ public partial class Login : BasePage
     DTFun   DTCs   = new DTFun();
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void Page_PreInit(object sender, EventArgs e) 
-    { 
-        //string Applang = (Session["Language"] != null) ? Session["Language"].ToString() : getAppLanguage();
-        //Session["Language"] = Applang;
-        //System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo((Applang == "AR") ? "ar-Sa" : "en-US");
-    
-        string Applang = (ViewState["Language"] != null) ? ViewState["Language"].ToString() : getAppLanguage();
-        ViewState["Language"] = Applang;
+    protected void Page_PreInit(object sender, EventArgs e)
+    {
+        string Applang = (Application["LoginLang"] != null) ? Application["LoginLang"].ToString() : getAppLanguage();
+        Application["LoginLang"] = Applang;
         System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo((Applang == "AR") ? "ar-Sa" : "en-US");
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -56,9 +52,9 @@ public partial class Login : BasePage
         //txtname.Text = "admin";
         //txtpass.Attributes["value"] = "admin";
 
-        if (ViewState["Language"] != null)
+        if (Application["LoginLang"] != null)
         {
-            string Language = ViewState["Language"].ToString();
+            string Language = Application["LoginLang"].ToString();
             if (Language == "AR") { pnlMain.Attributes.Add("dir", "rtl"); } else { pnlMain.Attributes.Add("dir", "ltr"); }
         }
 
@@ -143,8 +139,9 @@ public partial class Login : BasePage
             //////////////////////////////////////////////////////////////
             if (Type == "DB" || Type == "DB_AD")
             {
+                //isLogin = true;
                 string DecPass = CryptorEngine.Decrypt(DT.Rows[0]["UsrPass"].ToString(), true);
-                if (DecPass == loginPass && DT.Rows[0]["UsrName"].ToString().Trim() == loginName) { isLogin = true; } else { return false; }         
+                if (DecPass == loginPass && DT.Rows[0]["UsrName"].ToString().Trim() == loginName) { isLogin = true; } else { return false; }
             }
             else if (Type == "AD") { isLogin = true; }
 

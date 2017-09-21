@@ -454,7 +454,9 @@ public partial class EmployeeCommission : BasePage
     protected void FillGrid(SqlCommand cmd)
     {
         System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-        
+
+        cmd.CommandText += " ORDER BY EvrStartDate DESC ";
+
         DataTable GDT = DBCs.FetchData(cmd);
         if (!DBCs.IsNullOrEmpty(GDT))
         {

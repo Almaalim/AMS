@@ -307,7 +307,7 @@ public partial class VacationRequest2 : BasePage
             if (Request.QueryString["ID"] != null)
             {
                 Session["ERSRefresh"] = "Update";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "hideparentPopupSave('','AttendanceList.aspx');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "hideparentPopupSave('','../Pages_Attend/AttendanceList.aspx');", true);
             }
             else
             {
