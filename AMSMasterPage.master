@@ -222,11 +222,11 @@
             // Animate loader off screen
             $(".LoadingWrapper").delay(1500).fadeOut("slow", 0);
 
-            $('.collapseToggle').on("click", function () {
-                $('#collapse').toggleClass('show');
-                $('.collapseToggle').toggleClass('open');
+            //$('.collapseToggle').on("click", function () {
+            //    $('#collapse').toggleClass('show');
+            //    $('.collapseToggle').toggleClass('open');
                 
-            });
+            //});
 
         });
         $(document).ready(function () {
@@ -364,6 +364,7 @@
         });
         // $(window).resize(MobileListResize);
     </script>
+   
     <script type="text/javascript">
         // Set timeout variables.
         var timoutWarning = 600000; // Display warning in 1sec = 1000.

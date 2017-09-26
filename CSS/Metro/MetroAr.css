@@ -838,6 +838,23 @@ a:active {
     width: 50%;
     float: left;
 }
+.h3.collapseToggle:before
+{
+        content: "\e079";
+    font-family: 'Glyphicons Halflings';
+    color:#fff;
+    margin:0 10px;
+    float:right;
+    transition: transform 0.3s ease-in-out;
+}
+.h3.collapseToggle.open:before
+{
+    content: "\e114";
+    font-family: 'Glyphicons Halflings';
+    color:#fff;
+    margin:0 10px;
+    transition: transform 0.3s ease-in-out;
+}
 .flyoutWrap {
     display: inline-block;
     width: 19px;

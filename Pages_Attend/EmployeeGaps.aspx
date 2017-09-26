@@ -158,7 +158,7 @@
                     </asp:GridView>
                 </div>
             </div>
-            
+
             <div class="h3 collapseToggle">Summery</div>
             <div class="row" id="collapse">
                 <div class="GapSummeryDiv">
@@ -284,7 +284,7 @@
                     </span>
                 </div>
             </div>
-           
+
             <div id='divBackground'></div>
             <div id='divPopup' class="divPopup" style="height: 500px; width: 680px;">
                 <div id='divPopupHead' class="divPopupHead">
@@ -292,7 +292,7 @@
                         runat="server" CssClass="lblNamePopup"
                         meta:resourcekey="lblNamePopupResource1"></asp:Label>
                 </div>
-                <div id='divClosePopup' class="divClosePopup" onclick="hidePopup('divPopup')"><ahref='#'>X</a></div>
+                <div id='divClosePopup' class="divClosePopup" onclick="hidePopup('divPopup')"><a href='#'>X</a></div>
                 <div id='divPopupContent' class="divPopupContent">
                     <center>
                       <iframe id="ifrmPopup" runat="server"  height="500px" width="670px"  scrolling="no" frameborder="0" style="margin-left:10px; background-color:#4E6877"></iframe> 
@@ -306,13 +306,29 @@
                         runat="server" CssClass="lblNamePopup"
                         meta:resourcekey="lblNamePopup2Resource1"></asp:Label>
                 </div>
-                <div id='divClosePopup2' class="divClosePopup" onclick="hidePopup('divPopup2')"><ahref='#'>X</a></div>
+                <div id='divClosePopup2' class="divClosePopup" onclick="hidePopup('divPopup2')"><a href='#'>X</a></div>
                 <div id='divPopupContent2' class="divPopupContent">
                     <center>
                       <iframe id="ifrmPopup2" runat="server"  height="500px" width="670px"  scrolling="no" frameborder="0" style="margin-left:10px; background-color:#4E6877"></iframe> 
                    </center>
                 </div>
             </div>
+            <script>
+                var acc = document.getElementsByClassName("collapseToggle ");
+                var i;
+
+                for (i = 0; i < acc.length; i++) {
+                    acc[i].onclick = function () {
+                        this.classList.toggle("open");
+                        var panel = this.nextElementSibling;
+                        if (panel.style.maxHeight) {
+                            panel.style.maxHeight = null;
+                        } else {
+                            panel.style.maxHeight = panel.scrollHeight + "px";
+                        }
+                    }
+                }
+            </script>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
