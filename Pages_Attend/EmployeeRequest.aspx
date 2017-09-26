@@ -215,7 +215,7 @@
                 <div class="col2">
                     <Cal:Calendar2 ID="calStartDate" runat="server" CalendarType="System" />
                 </div>
-
+                </div>
                 <div runat="server" id="divEndDate" class="row">
                     <div class="col1">
                         <asp:Label ID="lblEndDate" runat="server" Text="End Date :"
@@ -225,7 +225,7 @@
                         <Cal:Calendar2 ID="calEndDate" runat="server" CalendarType="System" />
                     </div>
                 </div>
-            </div>
+            
 
 
             <div runat="server" id="divEmp2">

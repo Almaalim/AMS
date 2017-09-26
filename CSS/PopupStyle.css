@@ -15,7 +15,7 @@ opacity:.6;
 
 .divPopup{ 
     position: fixed;
-    top: 40%;
+    top: 7%;
     left: 50%;
     margin-top: -81px;
     margin-left: -35vW;
@@ -39,7 +39,7 @@ opacity:.6;
 top:0; 
 left:0; 
 width:100%; 
-background-color:#6C8695; 
+background-color: #005683;
 color:#f9f9f9; 
 font-size:18px;
 padding:15px;

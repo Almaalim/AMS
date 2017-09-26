@@ -304,7 +304,7 @@ body {
     border-radius: 99px;
     margin-right: 10px;
     margin-left: 27px;
-        width: 32px;
+        width: 23px;
 }
 
 li.static {
@@ -549,6 +549,7 @@ ul.level2 > li {
     float: left;
     position: relative;
     padding-left: 18px;
+        margin-top: 4px;
 }
 
     .breadcrumb:before {
@@ -825,22 +826,39 @@ a:active {
     position: absolute;
 }
 .flyOutDiv {
-    position: absolute;
+   position: absolute;
     z-index: 999;
-    background-color: #fff;
-    border: 1px solid #009ad7;
+    background-color: rgba(51, 50, 48, 0.8);
+    color: #fff !important;
+    border: 0 !important;
     padding: 15px;
     font-size: 14px;
     -moz-box-shadow: 0px 0px 10px #c6c6c6;
     -webkit-box-shadow: 0px 0px 10px #c6c6c6;
     box-shadow: 0px 0px 10px #c6c6c6;
     display: none;
-    right: 0;
+    right: 0 !important;
     left: inherit !important;
     top: 25px !important;
-    height:auto !important;
+    height: auto !important;
+    font-size: 18px;
 }
-
+.h3.collapseToggle:before
+{
+    content: "\e080";
+    font-family: 'Glyphicons Halflings';
+    color:#fff;
+    margin:0 10px;
+    transition: transform 0.3s ease-in-out;
+}
+.h3.collapseToggle.open:before
+{
+    content: "\e114";
+    font-family: 'Glyphicons Halflings';
+    color:#fff;
+    margin:0 10px;
+    transition: transform 0.3s ease-in-out;
+}
 fieldset > legend > select, fieldset > legend {
     width: auto;
     position: relative;
@@ -1501,8 +1519,20 @@ body.loginPage > #aspnetForm {
     top: 0px;
     right: 50%;
     margin-right: -25%;
+    -webkit-box-shadow: 0px 0px 26px -3px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 26px -3px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 26px -3px rgba(0,0,0,0.75);
 }
-
+.NotificationsPopup:before
+{
+    display:block;
+    content:"Notification";
+    font-size:18px;
+    padding:7px;
+    text-align:left;
+    background-color: #005683;
+    color: #f9f9f9;
+}
 @-webkit-keyframes fadeIn {
     from {
         opacity: 0;
@@ -1522,7 +1552,25 @@ body.loginPage > #aspnetForm {
         opacity: 1;
     }
 }
+@-webkit-keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
 
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
 .NotificationsActive {
     display: block;
     opacity: 1;
@@ -1531,28 +1579,25 @@ body.loginPage > #aspnetForm {
 }
 
 .NotificationsPopupClose {
-    display: inline-block;
+       display: inline-block;
     text-align: center;
     cursor: pointer;
-    margin-right: 10px;
+    margin-left: 10px;
     speak: none;
     position: absolute;
     top: 0px;
-    right: -11px;
+    right: 0px;
     color: #fff;
-    font-size: 16px;
-    line-height: 23px;
+    font-size: 23px;
+    line-height: 37px;
     background-color: rgb(82, 82, 82);
-    padding: 0px 4px;
-    /*-webkit-border-radius: 50px;
-    -moz-border-radius: 50px;
-    border-radius: 50px;*/
+    padding: 0px 8px;
 }
 .NotificationsMobile {
-    position: relative;
-    right: 0px !important;
-    top:0 !important;
-    width: calc(100% + 30px);
+    z-index: 99999;
+    left: 15px !important;
+    top:15 !important;
+    width: calc(100% - 15px);
     margin-right: -15px;
 }
 
@@ -1587,13 +1632,15 @@ body.loginPage > #aspnetForm {
 .NotificationsTime {
     float: right;
     font-size: 12px;
-    color: #999;
+    color: #fff;
+    background-color: #525252;
+    padding: 2px 10px;
 }
 
 .NotificationsIcon {
    position: absolute;
     right: 19px;
-    top: 7px;
+    top: 3px;
     cursor: pointer;
     display: inline-block;
    
@@ -1798,6 +1845,7 @@ body.loginPage > #aspnetForm {
 
 .icon-users:before, a.Employees:before  {
     content: "\f0c0";
+    font-family: 'icomoon' !important;
 }
 
 .ico-cabinet:before {
@@ -3422,7 +3470,7 @@ a.Requests:before {
     }
 
 .LoginRight {
-    margin: 50px 125px 0px 0px;
+    margin: 40px 125px 0px 0px;
     float: right;
     width: 309px;
 }
@@ -4011,12 +4059,12 @@ p {
 .taptap-contents-wrapper {
     width: 100% !important;
     height: 100%;
-    padding-top: 45px;
+    /*padding-top: 45px;*/
 }
 
 .taptap-main-wrapper-active .UserDetails {
     width: calc(33.333% - 22.5px);
-    padding: 15px 7.5px 15px 15px;
+        padding: 0px 33px 0px 15px;
     float: left;
     direction: ltr;
 }
@@ -5009,7 +5057,14 @@ a.level2.dynamic.JobCategory:before {
     .breadcrumb {
         margin: 10px 0;
     }
-
+     .UtilityLinks
+    {
+    margin-right: 45px;
+    }
+     .NotificationsIcon
+     {
+         top:10px;
+     }
     .UtilityLinks a {
         font-size: 0;
         margin: 3px;
@@ -5148,7 +5203,7 @@ a.level2.dynamic.JobCategory:before {
     }
 
     .NotificationsIcon {
-        margin-right: 60px;
+        margin-right: 0px;
     }
 
     .longlinkfolder {

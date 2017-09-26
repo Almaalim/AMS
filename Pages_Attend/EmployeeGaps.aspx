@@ -158,7 +158,9 @@
                     </asp:GridView>
                 </div>
             </div>
-            <div class="row">
+            
+            <div class="h3 collapseToggle">Summery</div>
+            <div class="row" id="collapse">
                 <div class="GapSummeryDiv">
                     <asp:Label ID="lblGaps" runat="server" Text="Gaps"
                         meta:resourcekey="lblGapsResource1"></asp:Label>
@@ -282,7 +284,7 @@
                     </span>
                 </div>
             </div>
-
+           
             <div id='divBackground'></div>
             <div id='divPopup' class="divPopup" style="height: 500px; width: 680px;">
                 <div id='divPopupHead' class="divPopupHead">

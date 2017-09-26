@@ -86,12 +86,13 @@
             if ($(window).width() < 874) {
                 $(".NotificationsPopup").addClass("NotificationsMobile");
 
-                $(".NotificationsWrapper").after(Notifi);
+               // $(".NotificationsWrapper").after(Notifi);
             }
             else {
                 $(".NotificationsPopup").removeClass("NotificationsMobile");
-                $("#aspnetForm").prepend(Notifi);
+               
             }
+            $("#aspnetForm").prepend(Notifi);
             $("[id*='iFrame']").load(function () {
                 $(this).height($(this).contents().find("html").height());
             });
@@ -220,6 +221,12 @@
         $(window).ready(function () {
             // Animate loader off screen
             $(".LoadingWrapper").delay(1500).fadeOut("slow", 0);
+
+            $('.collapseToggle').on("click", function () {
+                $('#collapse').toggleClass('show');
+                $('.collapseToggle').toggleClass('open');
+                
+            });
 
         });
         $(document).ready(function () {
