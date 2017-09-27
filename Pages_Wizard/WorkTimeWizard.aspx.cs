@@ -23,6 +23,7 @@ public partial class WorkTimeWizard : BasePage
     DBFun   DBCs   = new DBFun();
     CtrlFun CtrlCs = new CtrlFun();
     DTFun   DTCs   = new DTFun();
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void Page_Load(object sender, EventArgs e)
@@ -32,9 +33,9 @@ public partial class WorkTimeWizard : BasePage
             /*** Fill Session ************************************/
             pgCs.FillSession(); 
             /*** Fill Session ************************************/
-            
+       
             if (!IsPostBack)
-            {
+            {               
                 /*** Common Code ************************************/
                 /*** Check AMS License ***/ pgCs.CheckAMSLicense();  
                 /*** get Permission    ***/ ViewState["ht"] = pgCs.getPerm(Request.Url.AbsolutePath);  
@@ -272,7 +273,7 @@ public partial class WorkTimeWizard : BasePage
     {
         try
         {
-            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+            //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             DateTime StartDate = DTCs.ConvertToDatetime(pStartDate, "Gregorian"); 
             DateTime EndDate   = DTCs.ConvertToDatetime(pEndDate, "Gregorian");
             DateTime Date = StartDate;
@@ -320,9 +321,6 @@ public partial class WorkTimeWizard : BasePage
             e.IsValid = false;
         }
     }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void ShowMsg_ServerValidate(Object source, ServerValidateEventArgs e) { e.IsValid = false; }
 
     #endregion
     /*#############################################################################################################################*/

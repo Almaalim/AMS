@@ -582,4 +582,10 @@
   <data name="lblHintResource.Text" xml:space="preserve">
     <value>إذا كان محددا يجعل المستخدم الحالي غير نشط والمستخدم بالنيابة نشطا</value>
   </data>
+  <data name="ListItemResource345.Text" xml:space="preserve">
+    <value>رقم الموظف</value>
+  </data>
+  <data name="BoundFieldResource2345.HeaderText" xml:space="preserve">
+    <value>رقم الموظف</value>
+  </data>
 </root>

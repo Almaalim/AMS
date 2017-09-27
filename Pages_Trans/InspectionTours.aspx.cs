@@ -199,7 +199,7 @@ public partial class InspectionTours : BasePage
         tpItmTimeFrom.ClearTime();
         tpItmTimeTo.ClearTime();
         ddlItmMacType.SelectedIndex = 0;
-        ddlItmMacIDs.SelectedIndex = 0;
+        if (ddlItmMacIDs.Items.Count > 0) { ddlItmMacIDs.SelectedIndex = 0; } 
         chkItmIsSend.Checked = false;
         chkItmIsProcess.Checked = false;
         txtItmDescription.Text = "";
@@ -216,7 +216,7 @@ public partial class InspectionTours : BasePage
         tpItmTimeFrom_WZ.ClearTime();
         tpItmTimeTo_WZ.ClearTime();
         ddlItmMacType_WZ.SelectedIndex = 0;
-        ddlItmMacIDs_WZ.SelectedIndex = 0;
+        if (ddlItmMacIDs_WZ.Items.Count > 0) { ddlItmMacIDs_WZ.SelectedIndex = 0; } 
         txtItmDescription_WZ.Text = "";
 
         ucEmployeeSelected_WZ.Clear();
@@ -225,7 +225,11 @@ public partial class InspectionTours : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void ddlItmMacType_WZ_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (ddlItmMacType_WZ.SelectedValue == "1") { DivMac1_WZ.Visible = DivMac2_WZ.Visible = rvItmMacIDs_WZ.Enabled = false; ddlItmMacIDs_WZ.SelectedIndex = 0; }
+        if (ddlItmMacType_WZ.SelectedValue == "1")
+        {
+            DivMac1_WZ.Visible = DivMac2_WZ.Visible = rvItmMacIDs_WZ.Enabled = false;
+            if (ddlItmMacIDs_WZ.Items.Count > 0) { ddlItmMacIDs_WZ.SelectedIndex = 0; } 
+        }
         else if (ddlItmMacType_WZ.SelectedValue == "2") { DivMac1_WZ.Visible = DivMac2_WZ.Visible = rvItmMacIDs_WZ.Enabled = true; }
     }
 

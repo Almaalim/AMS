@@ -214,6 +214,7 @@
                         <asp:ListItem Selected="True" meta:resourcekey="ListItemResource1">[None]</asp:ListItem>
                         <asp:ListItem Text="User Name" Value="UsrName" meta:resourcekey="ListItemResource2"></asp:ListItem>
                         <asp:ListItem Text="User Full Name" Value="UsrFullName" meta:resourcekey="ListItemResource3"></asp:ListItem>
+                        <asp:ListItem Text="Employee ID" Value="EmpID" meta:resourcekey="ListItemResource345"></asp:ListItem>
                     </asp:DropDownList>
                 </div>
                 <div class="col2">
@@ -247,6 +248,8 @@
                             </asp:BoundField>
                             <asp:BoundField HeaderText="User Full Name" DataField="UsrFullName" SortExpression="UsrFullName"
                                 meta:resourcekey="BoundFieldResource2" />
+                            <asp:BoundField HeaderText="Employee ID" DataField="EmpID" SortExpression="EmpID"
+                                meta:resourcekey="BoundFieldResource2345" />
                             <asp:TemplateField HeaderText="Start Date" SortExpression="UsrStartDate" meta:resourcekey="TemplateFieldResource1">
                                 <ItemTemplate>
                                     <%# DisplayFun.GrdDisplayDate(Eval("UsrStartDate"))%>

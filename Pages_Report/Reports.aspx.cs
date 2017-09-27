@@ -132,9 +132,9 @@ public partial class Reports : BasePage
     protected void FillReport()
     {
         StringBuilder RQ = new StringBuilder();
-        RQ.Append(" SELECT * FROM Report WHERE RgpID = @P1 ");
-        RQ.Append(" AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX(@P2,VerID) > 0) ");
-        RQ.Append(" AND RepID NOT IN (SELECT RepGeneralID FROM Report WHERE RepGeneralID IS NOT NULL AND CHARINDEX(@P2,VerID) > 0 )");
+        RQ.Append(" SELECT * FROM Report WHERE RgpID = @P1 AND RepVisible = 'True' ");
+        RQ.Append(" AND (CHARINDEX('General',VerID) > 0 OR CHARINDEX(@P2,VerID) > 0) ");
+        RQ.Append(" AND RepID NOT IN (SELECT RepGeneralID FROM Report WHERE RepGeneralID IS NOT NULL AND CHARINDEX(@P2,VerID) > 0)");
 
         DataTable DT = DBCs.FetchData(RQ.ToString(), new string[] { ViewState["grpRep"].ToString(), pgCs.Version });
         if (!DBCs.IsNullOrEmpty(DT))

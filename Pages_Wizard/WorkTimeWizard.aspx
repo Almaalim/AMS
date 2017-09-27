@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Worktime Wizard" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true" CodeFile="WorkTimeWizard.aspx.cs" Inherits="WorkTimeWizard" Culture="auto" meta:resourcekey="PageResource1" UICulture="auto" %>
+﻿<%@ Page Title="Worktime Wizard" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true" CodeFile="WorkTimeWizard.aspx.cs" Inherits="WorkTimeWizard" meta:resourcekey="PageResource1" Culture="auto" UICulture="auto" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <%@ Register Assembly="AjaxSamples" Namespace="AjaxSamples" TagPrefix="as" %>

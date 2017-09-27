@@ -28,7 +28,7 @@ public class MailSendFun
                 if (isAttachment && Attachment == null) { Err = "Attachment Is Null"; return false; }
                 if (isAttachment) { msgMail.Attachments.Add(Attachment); }
  
-                MailAddress FromMail = new MailAddress(MailCs.SenderEmailID);
+                MailAddress FromMail = new MailAddress(MailCs.SenderEmailID,MailCs.SenderName);
                 msgMail.Body         = body;
                 msgMail.Subject      = Subject;
                 msgMail.To.Add(ToEmail);

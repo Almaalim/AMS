@@ -54,6 +54,8 @@ public partial class EmailSetting : BasePage
             txtPortNo.Text   = DT.Rows[0]["EmlPortNo"].ToString();
 
             txtSenderEmailID.Text = DT.Rows[0]["EmlSenderEmail"].ToString();
+            txtSenderName.Text = DT.Rows[0]["EmlSenderName"].ToString();
+            
             txtSenderEmailPassword.Attributes["value"] = CryptorEngine.Decrypt(DT.Rows[0]["EmlSenderPassword"].ToString(), true);
 
             chkEmailCredential.Checked = false;
@@ -74,10 +76,11 @@ public partial class EmailSetting : BasePage
     {
         txtServerID.Enabled            = pStatus;
         txtPortNo.Enabled              = pStatus;
-        chkEmailCredential.Enabled     = pStatus;
         txtSenderEmailID.Enabled       = pStatus;
+        txtSenderName.Enabled          = pStatus;
         txtSenderEmailPassword.Enabled = pStatus;
         chkEnableSSL.Enabled           = pStatus;
+        chkEmailCredential.Enabled     = pStatus;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -88,6 +91,7 @@ public partial class EmailSetting : BasePage
             ProCs.EmlServerID       = txtServerID.Text;
             ProCs.EmlPortNo         = txtPortNo.Text;
             if (!string.IsNullOrEmpty(txtSenderEmailID.Text))       { ProCs.EmlSenderEmail    = txtSenderEmailID.Text; }
+            if (!string.IsNullOrEmpty(txtSenderName.Text))          { ProCs.EmlSenderName    = txtSenderName.Text; }
             if (!string.IsNullOrEmpty(txtSenderEmailPassword.Text)) { ProCs.EmlSenderPassword = CryptorEngine.Encrypt(txtSenderEmailPassword.Text, true); }
             ProCs.EmlCredential     = chkEmailCredential.Checked;
             ProCs.EmlSsl            = chkEnableSSL.Checked;
@@ -179,7 +183,7 @@ public partial class EmailSetting : BasePage
             msgMail.Body    = "<b>Test Email</b>";             
                
             msgMail.To.Add(txtSendToEmail.Text.Trim());
-            msgMail.From = new MailAddress(txtSenderEmailID.Text.Trim());
+            msgMail.From = new MailAddress(txtSenderEmailID.Text.Trim(),txtSenderName.Text);
             msgMail.IsBodyHtml = true;
             msgMail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
 
@@ -217,8 +221,6 @@ public partial class EmailSetting : BasePage
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
     #region Custom Validate Events
-
-    protected void ShowMsg_ServerValidate(Object source, ServerValidateEventArgs e) { e.IsValid = false; }
 
     #endregion
     /*#############################################################################################################################*/

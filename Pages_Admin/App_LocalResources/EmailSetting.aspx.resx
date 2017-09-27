@@ -153,15 +153,6 @@
   <data name="chkEnableSSLResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="CustomValidator1Resource1.ErrorMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="CustomValidator1Resource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="CustomValidator1Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="cvShowMsgResource1.ErrorMessage" xml:space="preserve">
     <value />
   </data>
@@ -183,10 +174,16 @@
   <data name="lblSenderEmailIDResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lblSenderEmailPasswordResource1.Text" xml:space="preserve">
+  <data name="lblSenderEmailPassword1Resource1.Text" xml:space="preserve">
     <value>Sender Email Password :</value>
   </data>
-  <data name="lblSenderEmailPasswordResource1.ToolTip" xml:space="preserve">
+  <data name="lblSenderEmailPassword1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblSenderNameResource1.Text" xml:space="preserve">
+    <value>Sender Name :</value>
+  </data>
+  <data name="lblSenderNameResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblSendTestEmailResource1.Text" xml:space="preserve">
@@ -214,7 +211,7 @@
     <value />
   </data>
   <data name="rvPortNoResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title=Port No. is required' /&gt;</value>
+    <value>&lt;img src='../images/Exclamation.gif' title='Port No. is required' /&gt;</value>
   </data>
   <data name="rvPortNoResource1.ToolTip" xml:space="preserve">
     <value />
@@ -235,6 +232,15 @@
     <value>&lt;img src='../images/Exclamation.gif' title='Sender Email Password is required' /&gt;</value>
   </data>
   <data name="rvSenderEmailPasswordResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rvSenderNameResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rvSenderNameResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='Sender Name is required' /&gt;</value>
+  </data>
+  <data name="rvSenderNameResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="rvServerIDResource1.ErrorMessage" xml:space="preserve">
@@ -268,6 +274,12 @@
     <value />
   </data>
   <data name="txtSenderEmailPasswordResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtSenderNameResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtSenderNameResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="txtSendToEmailResource1.Text" xml:space="preserve">

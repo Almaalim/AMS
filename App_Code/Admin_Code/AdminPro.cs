@@ -43,6 +43,9 @@ public class AdminPro
     string _EmlSenderEmail;
     public string EmlSenderEmail { get { return _EmlSenderEmail; } set { if (_EmlSenderEmail != value) { _EmlSenderEmail = value; } } }
 
+    string _EmlSenderName;
+    public string EmlSenderName { get { return _EmlSenderName; } set { if (_EmlSenderName != value) { _EmlSenderName = value; } } }
+    
     string _EmlSenderPassword;
     public string EmlSenderPassword { get { return _EmlSenderPassword; } set { if (_EmlSenderPassword != value) { _EmlSenderPassword = value; } } }
 
