@@ -362,12 +362,17 @@
         });
     </script>
     <style>
+        .col2 , .col4
+        {
+            max-width:50% !important;
+        }
         @media (max-width: 1012px)
         {
             .col2
             {
                 width:25% !important;
             }
+
         }
 
     </style>

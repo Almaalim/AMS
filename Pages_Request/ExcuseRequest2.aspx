@@ -367,7 +367,13 @@
             });
         });
     </script>
- 
+ <style>
+      .col2 , .col4
+        {
+            max-width:50% !important;
+        }
+
+ </style>
 </head>
 <body>
     <form id="form1" runat="server">
