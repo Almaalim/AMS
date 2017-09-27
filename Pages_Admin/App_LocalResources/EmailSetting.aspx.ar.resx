@@ -124,7 +124,7 @@
     <value />
   </data>
   <data name="btnModifyResource1.Text" xml:space="preserve">
-    <value>&lt;img src="../images/Button_Icons/button_edit.png" /&gt;تعديل</value>
+    <value>&lt;img src="../images/Button_Icons/button_edit.png" /&gt; تعديل</value>
   </data>
   <data name="btnModifyResource1.ToolTip" xml:space="preserve">
     <value />
@@ -153,15 +153,6 @@
   <data name="chkEnableSSLResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="CustomValidator1Resource1.ErrorMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="CustomValidator1Resource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="CustomValidator1Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="cvShowMsgResource1.ErrorMessage" xml:space="preserve">
     <value />
   </data>
@@ -183,14 +174,20 @@
   <data name="lblSenderEmailIDResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lblSenderEmailPasswordResource1.Text" xml:space="preserve">
+  <data name="lblSenderEmailPassword1Resource1.Text" xml:space="preserve">
     <value>كلمة مرور البريد الالكتروني للمرسل :</value>
   </data>
-  <data name="lblSenderEmailPasswordResource1.ToolTip" xml:space="preserve">
+  <data name="lblSenderEmailPassword1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblSenderNameResource1.Text" xml:space="preserve">
+    <value>اسم المرسل :</value>
+  </data>
+  <data name="lblSenderNameResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblSendTestEmailResource1.Text" xml:space="preserve">
-    <value>تجربة إرسال بريد الالكترونية</value>
+    <value>تجربة إرسال بريد الكتروني</value>
   </data>
   <data name="lblSendTestEmailResource1.ToolTip" xml:space="preserve">
     <value />
@@ -237,6 +234,15 @@
   <data name="rvSenderEmailPasswordResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="rvSenderNameResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rvSenderNameResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='اسم المرسل مطلوب' /&gt;</value>
+  </data>
+  <data name="rvSenderNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="rvServerIDResource1.ErrorMessage" xml:space="preserve">
     <value />
   </data>
@@ -268,6 +274,12 @@
     <value />
   </data>
   <data name="txtSenderEmailPasswordResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtSenderNameResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtSenderNameResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="txtSendToEmailResource1.Text" xml:space="preserve">

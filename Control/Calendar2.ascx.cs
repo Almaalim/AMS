@@ -104,8 +104,6 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("ar-SA");
         }
 
-        //ScriptManager.RegisterStartupScript(CalendarUpdatePanel, typeof(string), "ShowPopup" + this.DivCal.ClientID, "document.getElementById('" + this.DivCal.ClientID + "').style.display = 'none'; ", true);
-
         if (!Page.IsPostBack)
         {
             try
@@ -248,14 +246,14 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
     {
         if (ddlLocaleChoice.SelectedValue == HCulture.Name)
         {
-            //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(ddlLocaleChoice.SelectedValue);
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(ddlLocaleChoice.SelectedValue);
             this.txtHDate.Text = CalDate.SelectedDate.ToString("dd/MM/yyyy");
             this.txtGDate.Text = DTCs.HijriToGreg(this.txtHDate.Text, "dd/MM/yyyy");
             CalDate.SelectedDates.Clear();
         }
         else if (ddlLocaleChoice.SelectedValue == GCulture.Name)
         {
-            //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(ddlLocaleChoice.SelectedValue);
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(ddlLocaleChoice.SelectedValue);
             this.txtGDate.Text = CalDate.SelectedDate.ToString("dd/MM/yyyy");
             this.txtHDate.Text = DTCs.GregToHijri(this.txtGDate.Text, "dd/MM/yyyy");
             CalDate.SelectedDates.Clear();
@@ -390,7 +388,7 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void SetGDate(object Date, string format)
     {
-        //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
         if (Date != DBNull.Value)
         {
             DateTime DT = (DateTime)Date;
@@ -416,7 +414,7 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
     {
         try
         {
-            //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             this.txtGDate.Text = DTCs.GDateNow("dd/MM/yyyy");
             this.txtHDate.Text = DTCs.GregToHijri(this.txtGDate.Text, "dd/MM/yyyy");
         }

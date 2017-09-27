@@ -66,6 +66,7 @@ public class AdminSql : DataLayerBase
             Sqlcmd.Parameters.Add(new SqlParameter("@EmlServerID"      , VchDB, 100, IN, false, 0, 0, "", DRV, Pro.EmlServerID));
             Sqlcmd.Parameters.Add(new SqlParameter("@EmlPortNo"        , IntDB, 10,  IN, false, 0, 0, "", DRV, Pro.EmlPortNo));
             Sqlcmd.Parameters.Add(new SqlParameter("@EmlSenderEmail"   , VchDB, 200, IN, false, 0, 0, "", DRV, Pro.EmlSenderEmail));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EmlSenderName"    , VchDB, 1000, IN, false, 0, 0, "", DRV, Pro.EmlSenderName));
             Sqlcmd.Parameters.Add(new SqlParameter("@EmlSenderPassword", VchDB, 100, IN, false, 0, 0, "", DRV, Pro.EmlSenderPassword));
             Sqlcmd.Parameters.Add(new SqlParameter("@EmlSsl"           , BitDB, 1,   IN, false, 0, 0, "", DRV, Pro.EmlSsl));
             Sqlcmd.Parameters.Add(new SqlParameter("@EmlCredential"    , BitDB, 1,   IN, false, 0, 0, "", DRV, Pro.EmlCredential));

@@ -672,6 +672,8 @@ public partial class ApplicationUsers : BasePage
             ddlPermissionGroup.SelectedIndex    = ddlPermissionGroup.Items.IndexOf(ddlPermissionGroup.Items.FindByValue(DRs[0]["GrpID"].ToString()));
             ddlRepPermissionGroup.SelectedIndex = ddlRepPermissionGroup.Items.IndexOf(ddlRepPermissionGroup.Items.FindByValue(DRs[0]["ReportGrpID"].ToString()));
             
+            txtEmpID.Text                       = DRs[0]["UsrStartDate"].ToString();
+
             calStartDate.SetGDate(DRs[0]["UsrStartDate"], pgCs.DateFormat);
             calEndDate.SetGDate(DRs[0]["UsrExpireDate"],  pgCs.DateFormat);
 

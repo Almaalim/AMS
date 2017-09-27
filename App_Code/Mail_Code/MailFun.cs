@@ -20,6 +20,9 @@ public class MailFun
     string _SenderEmailID;
     public string SenderEmailID { get { return _SenderEmailID; } set { _SenderEmailID = value; } }
 
+    string _SenderName;
+    public string SenderName { get { return _SenderName; } set { _SenderName = value; } }
+
     string _SenderEmailPass;
     public string SenderEmailPass { get { return _SenderEmailPass; } set { _SenderEmailPass = value; } }
 
@@ -44,6 +47,7 @@ public class MailFun
             {
                 EmailServer     = string.Empty;
                 SenderEmailID   = string.Empty;
+                SenderName      = string.Empty;
                 SenderEmailPass = string.Empty;
                 EmailPort       = 25;
                 EmailSsl        = false;
@@ -56,6 +60,7 @@ public class MailFun
                     if (DT.Rows[0]["EmlServerID"]       != DBNull.Value) { EmailServer     = DT.Rows[0]["EmlServerID"].ToString(); }
                     if (DT.Rows[0]["EmlPortNo"]         != DBNull.Value) { EmailPort       = Convert.ToInt32(DT.Rows[0]["EmlPortNo"]); }
                     if (DT.Rows[0]["EmlSenderEmail"]    != DBNull.Value) { SenderEmailID   = DT.Rows[0]["EmlSenderEmail"].ToString(); }
+                    if (DT.Rows[0]["EmlSenderName"]     != DBNull.Value) { SenderName      = DT.Rows[0]["EmlSenderName"].ToString(); }
                     if (DT.Rows[0]["EmlSenderPassword"] != DBNull.Value) { SenderEmailPass = CryptorEngine.Decrypt(DT.Rows[0]["EmlSenderPassword"].ToString(), true); }
                     if (DT.Rows[0]["EmlSsl"]            != DBNull.Value) { EmailSsl        = Convert.ToBoolean(DT.Rows[0]["EmlSsl"]); }
                     if (DT.Rows[0]["EmlCredential"]     != DBNull.Value) { EmailCredential = Convert.ToBoolean(DT.Rows[0]["EmlCredential"]); } 
@@ -66,6 +71,7 @@ public class MailFun
                     
                 if (string.IsNullOrEmpty(EmailServer))     { return false; }
                 if (string.IsNullOrEmpty(SenderEmailID))   { return false; }
+                if (string.IsNullOrEmpty(SenderName))      { return false; }
                 if (string.IsNullOrEmpty(SenderEmailPass)) { return false; }
 
                 return true; 

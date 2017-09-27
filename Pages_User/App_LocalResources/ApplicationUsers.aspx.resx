@@ -582,4 +582,10 @@
   <data name="lblHintResource.Text" xml:space="preserve">
     <value>If checked makes current user In active and Acting user Active</value>
   </data>
+  <data name="ListItemResource345.Text" xml:space="preserve">
+    <value>Employee ID</value>
+  </data>
+  <data name="BoundFieldResource2345.HeaderText" xml:space="preserve">
+    <value>Employee ID</value>
+  </data>
 </root>
