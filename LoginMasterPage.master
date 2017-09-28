@@ -8,7 +8,13 @@
     <link href="CSS/Metro/Metro.css" rel="stylesheet" runat="server" id="LanguageSwitch" />
     <title>Untitled Page</title>
 <%--    <script type="text/javascript" src="<%=ResolveUrl("~/Script/jquery-1.7.1.min.js")%>"></script>--%>
-    <script type="text/javascript">
+    
+</head>
+<body class="loginPage">
+    <form id="form1" runat="server">
+
+        <div id="main_block">
+            <script type="text/javascript">
         $(document).ready(function () {
 
             $("div[class*='col']").each(function () {
@@ -18,11 +24,6 @@
         });
 
     </script>
-</head>
-<body class="loginPage">
-    <form id="form1" runat="server">
-
-        <div id="main_block">
             <div id="innerblock" class="loginWrapper">
                 <asp:LinkButton ID="lnkLanguage" runat="server" CssClass="LoginLanguageBtn" OnClick="lnkLanguage_Click" meta:resourcekey="lnkLanguageResource1"></asp:LinkButton>
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
