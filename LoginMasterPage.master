@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <link href="CSS/Metro/Metro.css" rel="stylesheet" runat="server" id="LanguageSwitch" />
     <title>Untitled Page</title>
-    <script type="text/javascript" src="/Script/jquery-1.7.1.min.js"></script>
+<%--    <script type="text/javascript" src="<%=ResolveUrl("~/Script/jquery-1.7.1.min.js")%>"></script>--%>
     <script type="text/javascript">
         $(document).ready(function () {
 

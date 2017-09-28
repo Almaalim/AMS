@@ -12,6 +12,7 @@ public partial class LoginMasterPage : System.Web.UI.MasterPage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void Page_Load(object sender, EventArgs e)
     {
+        Page.ClientScript.RegisterClientScriptInclude("scw4tj2", Page.ResolveUrl("~/Script/jquery-1.7.1.min.js"));
         if (Application["LoginLang"] != null)
         {
             string Language = Application["LoginLang"].ToString();
