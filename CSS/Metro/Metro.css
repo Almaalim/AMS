@@ -3446,8 +3446,9 @@ a.Requests:before {
     overflow-y: auto;
     overflow-x: hidden;
     height: 80vh;
-    padding: 40px;
+    padding: 5px;
 }
+
 /* Close Button */
 .popup-close {
     width: 30px;
@@ -4422,7 +4423,20 @@ a.colord13f2a:before {
     margin: 0;
     padding: 5px;
 }
-
+.GenButtonsmall.backbtn
+{
+    background-color: #428bca;
+    color:#fff;
+}
+.GenButtonsmall.backbtn img
+{
+    display:none;
+}
+.GenButtonsmall.backbtn:before
+{
+    content: "\e091";
+    font-family: 'Glyphicons Halflings';
+}
 .rp_servlnk2:active, .rp_servlnk1:active {
     color: #fff;
     text-decoration: none;
@@ -4892,7 +4906,12 @@ a.level2.dynamic.JobCategory:before {
         height: 41px;
         background-size: cover;
         margin-top: 20px;
-    }/*
+    }
+    div[class*="col"]
+    {
+        font-size:13px;
+    }
+    /*
      a.static {
         width: 65px;
         height: 60px;
@@ -5053,6 +5072,10 @@ a.level2.dynamic.JobCategory:before {
 @media (max-width: 1030px) {
     .col1, .col2, .col3, .col4, .col5, .col6, .col7, .col8, .col9, .col10, col11, .col12, .row > .col4:nth-child(2), .row > .col4:nth-child(4), .row > .col2:nth-child(1), .row > .col2:nth-child(3), .left, .right, .rp_Search > span > span {
         width: 100%;
+    }
+    div[class*="col"]
+    {
+        font-size:15px;
     }
     .Header {
         background-size: 100%;
