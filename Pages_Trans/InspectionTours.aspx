@@ -174,9 +174,10 @@
                                 <Cal:Calendar2 ID="calItmDate" runat="server" CalendarType="System" />
                             </div>
                             <div class="col2">
-                                <asp:CheckBox ID="chkItmIsSend" runat="server" Text="Send" Enabled="False" meta:resourcekey="chkItmIsSendResource1"/>
+                                
                             </div>
                             <div class="col2">
+                                <asp:CheckBox ID="chkItmIsSend" runat="server" Text="Send" Enabled="False" meta:resourcekey="chkItmIsSendResource1"/>
                                 <asp:CheckBox ID="chkItmIsProcess" runat="server" Text="Process" Enabled="False" meta:resourcekey="chkItmIsProcessResource1"/>
                             </div>
                         </div>

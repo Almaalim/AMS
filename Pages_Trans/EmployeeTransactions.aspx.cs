@@ -77,19 +77,9 @@ public partial class EmployeeTransactions : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void UILang()
     {
-        if (pgCs.Lang == "AR")
-        {
-            TabContainer1.Tabs[0].HeaderText = "تفاصيل الوردية";
-            TabContainer1.Tabs[1].HeaderText = "تفاصيل الحركات";
-            TabContainer1.Tabs[2].HeaderText = "تفاصيل الثغرات";
-        }
-        else
-        {
-                 
-            TabContainer1.Tabs[0].HeaderText = "Shift Details";
-            TabContainer1.Tabs[1].HeaderText = "Transaction Details";
-            TabContainer1.Tabs[2].HeaderText = "Gap Details";
-        }
+        TabContainer1.Tabs[0].HeaderText = General.Msg("Shift Details","تفاصيل الوردية");
+        TabContainer1.Tabs[1].HeaderText = General.Msg("Transaction Details","تفاصيل الحركات");
+        TabContainer1.Tabs[2].HeaderText = General.Msg("Gap Details","تفاصيل الثغرات");
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -175,10 +165,9 @@ public partial class EmployeeTransactions : BasePage
     {
         try
         {
-            //UIClear();
-            ClearShiftTab();
-            ClearTransTab();
-            ClearGapTab();
+            UIShiftClear();
+            UITransClear();
+            UIGapClear();
 
             if (CtrlCs.isGridEmpty(grdShift.SelectedRow.Cells[0].Text) && grdShift.SelectedRow.Cells.Count == 1)
             {
@@ -188,31 +177,14 @@ public partial class EmployeeTransactions : BasePage
             }
             else
             {
-                PopulateShiftUI(grdShift.SelectedRow.Cells[1].Text);
+                UIShiftPopulate(grdShift.SelectedRow.Cells[2].Text);
             }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void PopulateShiftUI(string pID)
-    {
-        try
-        {
-            Label lblDate = (Label)grdShift.SelectedRow.Cells[0].FindControl("lblShiftDate");
-            string strDate = DTCs.GetGregDateFromCurrDateType(lblDate.Text, "MM/dd/yyyy");
-
-            int shiftID = Convert.ToInt16(grdShift.SelectedRow.Cells[1].Text);
-            hdnShiftID.Value = Convert.ToString(shiftID);
-
-            lblShtTabDateV.Text = lblDate.Text;
-            
-            FillShiftTab(strDate, shiftID);
-            FillTransGrid(strDate, shiftID);
-            FillGapsGrid(strDate, shiftID);
-        }
-        catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
-    }
+    protected void grdShift_PreRender(object sender, EventArgs e) { CtrlCs.GridRender((GridView)sender); }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void FillShiftGrid()
@@ -225,18 +197,14 @@ public partial class EmployeeTransactions : BasePage
 
             if (!string.IsNullOrEmpty(txtEmployeeID.Text))
             {
-                string empString = txtEmployeeID.Text;
-                string[] empstr = empString.Split('-');
+                string EmpID = txtEmployeeID.Text.Split('-')[0];
                 
                 DateTime SDate;
                 DateTime EDate;
                 DTCs.FindMonthDates(ddlYear.SelectedItem.Value, ddlMonth.SelectedItem.Value, out SDate, out EDate);
 
-                string strFilter = MainShiftQuery;
-                strFilter += " AND (SsmDate BETWEEN '" + SDate + "' AND '" + EDate + "')";
-                strFilter += " AND EmpID = '" + empstr[0].ToString() + "'";
-
-                DataTable DT = DBCs.FetchData(new SqlCommand(strFilter));
+                string Q = MainShiftQuery + " AND EmpID = @P1 AND (SsmDate BETWEEN @P2 AND @P3)";
+                DataTable DT = DBCs.FetchData(Q, new string[] { EmpID, SDate.ToString(), EDate.ToString() });
                 if (!DBCs.IsNullOrEmpty(DT))
                 {
                     grdShift.DataSource = (DataTable)DT;
@@ -247,8 +215,94 @@ public partial class EmployeeTransactions : BasePage
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
+    protected void UIShiftPopulate(string pID)
+    {
+        try
+        {
+            Label lblDate = (Label)grdShift.SelectedRow.Cells[0].FindControl("lblShiftDate");
+            string strDate = DTCs.GetGregDateFromCurrDateType(lblDate.Text, "MM/dd/yyyy");
+
+            int shiftID = Convert.ToInt16(pID);
+            hdnShiftID.Value = Convert.ToString(shiftID);
+
+            FillShiftTab(lblDate.Text, strDate, shiftID);
+            FillTransGrid(strDate, shiftID);
+            FillGapsGrid(strDate, shiftID);
+        }
+        catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
+    }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void grdShift_PreRender(object sender, EventArgs e) { CtrlCs.GridRender((GridView)sender); }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void FillShiftTab(string displayDate, string strDate, int shiftID)
+    {
+        try
+        {
+            UIShiftClear();
+
+            if (!string.IsNullOrEmpty(txtEmployeeID.Text))
+            {
+                string EmpID = txtEmployeeID.Text.Split('-')[0];
+                
+                string Q = MainShiftQuery + " AND EmpID = @P1 AND SsmShift = @P2 AND CONVERT(CHAR(12),SsmDate, 101) = CONVERT(CHAR(12),@P3, 101)";
+                DataTable DT = DBCs.FetchData(Q, new string[] { EmpID, shiftID.ToString(), strDate.ToString() });
+
+                if (!DBCs.IsNullOrEmpty(DT))
+                {
+                    lbl_ST_V_Date.Text              = displayDate;
+                    lbl_ST_V_ShiftID.Text           = DT.Rows[0]["SsmShift"].ToString();
+                    lbl_ST_V_SsmStatus.Text         = DisplayFun.GrdDisplayShiftStatus(DT.Rows[0]["SsmStatus"]);
+                    lbl_ST_V_SsmShiftDuration.Text  = DisplayFun.GrdDisplayDuration(DT.Rows[0]["SsmShiftDuration"].ToString());   
+                    lbl_ST_V_SsmWorkDuration.Text   = DisplayFun.GrdDisplayDuration(DT.Rows[0]["SsmWorkDuration"].ToString());
+                    lbl_ST_V_SsmWorkDurWithET.Text  = DisplayFun.GrdDisplayDuration(DT.Rows[0]["SsmWorkDurWithET"].ToString());
+                    lbl_ST_V_SsmStartShiftTime.Text = DisplayFun.GrdDisplayTime(DT.Rows[0]["SsmStartShiftTime"]);
+                    lbl_ST_V_SsmEndShiftTime.Text   = DisplayFun.GrdDisplayTime(DT.Rows[0]["SsmEndShiftTime"]);
+                    lbl_ST_V_SsmPunchIn.Text        = DisplayFun.GrdDisplayTime(DT.Rows[0]["SsmPunchIn"]);
+                    lbl_ST_V_SsmPunchOut.Text       = DisplayFun.GrdDisplayTime(DT.Rows[0]["SsmPunchOut"]);
+                    lbl_ST_V_SsmBeginEarly.Text     = DisplayFun.GrdDisplayDuration(DT.Rows[0]["SsmBeginEarly"].ToString());
+                    lbl_ST_V_SsmBeginLate.Text      = DisplayFun.GrdDisplayDuration(DT.Rows[0]["SsmBeginLate"].ToString());
+                    lbl_ST_V_SsmOutEarly.Text       = DisplayFun.GrdDisplayDuration(DT.Rows[0]["SsmOutEarly"].ToString());
+                    lbl_ST_V_SsmOutLate.Text        = DisplayFun.GrdDisplayDuration(DT.Rows[0]["SsmOutLate"].ToString());
+                    bl_ST_V_SsmExtraTimeDur.Text    = DisplayFun.GrdDisplayDuration(DT.Rows[0]["SsmExtraTimeDur"].ToString());
+                    bl_ST_V_SsmOverTimeDur.Text     = DisplayFun.GrdDisplayDuration(DT.Rows[0]["SsmOverTimeDur"].ToString());
+
+                    lbl_ST_V_SsmGapDur_WithoutExc.Text = DisplayFun.GrdDisplayDuration(DT.Rows[0]["SsmGapDur_WithoutExc"].ToString());
+                    lbl_ST_V_SsmGapDur_PaidExc.Text    = DisplayFun.GrdDisplayDuration(DT.Rows[0]["SsmGapDur_PaidExc"].ToString());
+                    lbl_ST_V_SsmGapDur_UnPaidExc.Text  = DisplayFun.GrdDisplayDuration(DT.Rows[0]["SsmGapDur_UnPaidExc"].ToString());
+                    lbl_ST_V_SsmGapDur_Grace.Text      = DisplayFun.GrdDisplayDuration(DT.Rows[0]["SsmGapDur_Grace"].ToString());
+                    lbl_ST_V_SsmGapDur_MG.Text         = DisplayFun.GrdDisplayDuration(DT.Rows[0]["SsmGapDur_MG"].ToString());            
+                }
+            }
+        }
+        catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    void UIShiftClear()
+    {
+        lbl_ST_V_Date.Text              = "";
+        lbl_ST_V_ShiftID.Text           = "";
+        lbl_ST_V_SsmStatus.Text         = "";
+        lbl_ST_V_SsmShiftDuration.Text  = ""; 
+        lbl_ST_V_SsmWorkDuration.Text   = "";
+        lbl_ST_V_SsmWorkDurWithET.Text  = "";
+        lbl_ST_V_SsmStartShiftTime.Text = "";
+        lbl_ST_V_SsmEndShiftTime.Text   = "";
+        lbl_ST_V_SsmPunchIn.Text        = "";
+        lbl_ST_V_SsmPunchOut.Text       = "";
+        lbl_ST_V_SsmBeginEarly.Text     = "";
+        lbl_ST_V_SsmBeginLate.Text      = "";
+        lbl_ST_V_SsmOutEarly.Text       = "";
+        lbl_ST_V_SsmOutLate.Text        = "";
+        bl_ST_V_SsmExtraTimeDur.Text    = "";
+        bl_ST_V_SsmOverTimeDur.Text     = "";
+
+        lbl_ST_V_SsmGapDur_WithoutExc.Text = "";
+        lbl_ST_V_SsmGapDur_PaidExc.Text    = "";
+        lbl_ST_V_SsmGapDur_UnPaidExc.Text  = "";
+        lbl_ST_V_SsmGapDur_Grace.Text      = "";
+        lbl_ST_V_SsmGapDur_MG.Text         = "";
+    }
 
     #endregion
     /*#############################################################################################################################*/
@@ -289,9 +343,8 @@ public partial class EmployeeTransactions : BasePage
     {
         try
         {
-            //UIClear();
-            ClearTransTab();
-            ClearGapTab();
+            UITransClear();
+            UIGapClear();
 
             if (CtrlCs.isGridEmpty(grdTrans.SelectedRow.Cells[0].Text) && grdTrans.SelectedRow.Cells.Count == 1)
             {
@@ -302,33 +355,9 @@ public partial class EmployeeTransactions : BasePage
             }
             else
             {
-                PopulateTransUI();
+                UITransPopulate();
+                TabContainer1.ActiveTabIndex = 1;
             }
-        }
-        catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void PopulateTransUI()
-    {
-        try
-        {
-            Label lblDate = (Label)grdTrans.SelectedRow.Cells[0].FindControl("lblTransDate");
-            string strDate = DTCs.GetGregDateFromCurrDateType(lblDate.Text, "MM/dd/yyyy");
-
-            Int16 shiftID = Convert.ToInt16(hdnShiftID.Value);
-
-            lblTrnTabDateV.Text = lblDate.Text;
-
-            Label lblTime = (Label)grdTrans.SelectedRow.Cells[0].FindControl("lblTranstime");
-            lblTrnTabTimeV.Text = lblTime.Text;
-
-            Label lblType = (Label)grdTrans.SelectedRow.Cells[0].FindControl("lblTranstype");
-            lblTrnTabTypeV.Text = lblType.Text;
-
-            FillGapsGrid(strDate, shiftID);
-
-            TabContainer1.ActiveTabIndex = 1;
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
@@ -350,7 +379,7 @@ public partial class EmployeeTransactions : BasePage
                 query.Append(MainTransQuery);
                 query.Append(" AND EmpID = '" + empstr[0].ToString() + "'");
                 query.Append(" AND TrnShift = " + shiftID + "");
-                query.Append(" AND CONVERT(CHAR(12),TrnDate, 103) = CONVERT(CHAR(12)," + "'" + date + "'" + ", 103)");
+                query.Append(" AND CONVERT(CHAR(12),TrnDate, 101) = CONVERT(CHAR(12)," + "'" + date + "'" + ", 101)");
                 query.Append(" ORDER BY TrnTime ASC");
 
                 
@@ -363,6 +392,75 @@ public partial class EmployeeTransactions : BasePage
             }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //public void FillTransTab(string date, int shiftID)
+    //{
+    //    try
+    //    {
+    //        ClearTransTab();
+
+    //        if (!string.IsNullOrEmpty(txtEmployeeID.Text))
+    //        {
+    //            string empString = txtEmployeeID.Text;
+    //            string[] empstr = empString.Split('-');
+
+    //            StringBuilder query = new StringBuilder();
+    //            query.Append(MainTransQuery);
+    //            query.Append(" AND EmpID = '" + empstr[0].ToString() + "'");
+    //            query.Append(" AND TrnShift = " + shiftID + "");
+    //            query.Append(" AND CONVERT(CHAR(12),TrnDate, 101) = CONVERT(CHAR(10)," + "'" + date + "'" + ", 101)");
+    //            query.Append(" ORDER BY TrnTime ASC");
+
+    //            DataTable DT = DBCs.FetchData(new SqlCommand(query.ToString()));
+    //            if (!DBCs.IsNullOrEmpty(DT))
+    //            {
+    //                //lblShtWorkingtimeV.Text = dr["SsmWorkDuration"].ToString();
+    //                //lblShtPeriodV.Text = dr["SsmShiftDuration"].ToString();
+    //                //lblActDurationV.Text = dr["SsmActualWorkDuration"].ToString();
+    //                //lblWorkDurationV.Text = dr["SsmWorkDuration"].ToString();
+    //                //lblShiftDurationV.Text = dr["SsmShiftDuration"].ToString();
+    //                //lblBeginEarlyV.Text = dr["SsmBeginEarly"].ToString();
+    //                //lblBeginLateV.Text = dr["SsmBeginLate"].ToString();
+    //                //lblOvertimeAmtV.Text = dr["SsmOverTimeAmount"].ToString();
+    //                //lblOutEarlyV.Text = dr["SsmOutEarly"].ToString();
+    //                //lblOutLateV.Text = dr["SsmOutLate"].ToString();
+    //                //lblOverTimePercentV.Text = dr["SsmOverTime"].ToString();
+    //            }
+    //        }
+
+    //    }
+    //    catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
+    //}
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
+    protected void UITransPopulate()
+    {
+        try
+        {
+            Label lblDate = (Label)grdTrans.SelectedRow.Cells[0].FindControl("lblTransDate");
+            string strDate = DTCs.GetGregDateFromCurrDateType(lblDate.Text, "MM/dd/yyyy");
+
+            Int16 shiftID = Convert.ToInt16(hdnShiftID.Value);
+
+            lblTrnTabDateV.Text = lblDate.Text;
+
+            Label lblTime = (Label)grdTrans.SelectedRow.Cells[0].FindControl("lblTranstime");
+            lblTrnTabTimeV.Text = lblTime.Text;
+
+            Label lblType = (Label)grdTrans.SelectedRow.Cells[0].FindControl("lblTranstype");
+            lblTrnTabTypeV.Text = lblType.Text;           
+        }
+        catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    void UITransClear()
+    {
+        lblTrnTabDateV.Text = "";
+        lblTrnTabTimeV.Text = "";
+        lblTrnTabTypeV.Text = "";
     }
 
     #endregion
@@ -426,8 +524,7 @@ public partial class EmployeeTransactions : BasePage
     {
         try
         {
-            //UIClear();
-            ClearGapTab();
+            UIGapClear();
 
             if (CtrlCs.isGridEmpty(grdGap.SelectedRow.Cells[0].Text) && grdGap.SelectedRow.Cells.Count == 1)
             {
@@ -438,29 +535,9 @@ public partial class EmployeeTransactions : BasePage
             }
             else
             {
-                PopulateGapUI();
+                UIGapPopulate();
+                TabContainer1.ActiveTabIndex = 2;
             }
-        }
-        catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void PopulateGapUI()
-    {
-        try
-        {
-            Label lblDate = (Label)grdGap.SelectedRow.Cells[0].FindControl("lblGapDate1");
-            lblGapTabDateV.Text = lblDate.Text;
-
-            Label lblStartTime = (Label)grdGap.SelectedRow.Cells[0].FindControl("lblGapStartTime1");
-            lblGapTabStartTimeV.Text = lblStartTime.Text;
-
-            Label lblEndTime = (Label)grdGap.SelectedRow.Cells[0].FindControl("lblGapEndTime1");
-            lblGapTabEndTimeV.Text = lblEndTime.Text;
-
-            TabContainer1.ActiveTabIndex = 2;
-            int gapID = Convert.ToInt32(grdGap.SelectedRow.Cells[4].Text);
-            FillGapTab(gapID);
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
@@ -474,17 +551,9 @@ public partial class EmployeeTransactions : BasePage
 
             if (!string.IsNullOrEmpty(txtEmployeeID.Text))
             {
-                string empString = txtEmployeeID.Text;
-                string[] empstr = empString.Split('-');
-               
-                StringBuilder query = new StringBuilder();
-                query.Append(MainGapQuery);
-                query.Append(" AND EmpID = '" + empstr[0].ToString() + "'");
-                query.Append(" AND GapShift = " + shiftID + "");
-                query.Append(" AND CONVERT(CHAR(12),GapDate, 101) = CONVERT(CHAR(12)," + "'" + date + "'" + ", 101)");
-                query.Append(" ORDER BY GapStartTime ASC");
-                
-                DataTable DT = DBCs.FetchData(new SqlCommand(query.ToString()));
+                string EmpID = txtEmployeeID.Text.Split('-')[0];
+                string Q = MainGapQuery + " AND EmpID = @P1 AND GapShift = @P2 AND CONVERT(CHAR(12),GapDate, 101) = CONVERT(CHAR(12), @P3 , 101) ORDER BY GapStartTime ASC";
+                DataTable DT = DBCs.FetchData(Q, new string[] { EmpID, shiftID.ToString(), date });
                 if (!DBCs.IsNullOrEmpty(DT))
                 {
                     grdGap.DataSource = (DataTable)DT;
@@ -494,110 +563,30 @@ public partial class EmployeeTransactions : BasePage
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
-
-    #endregion
-    /*#############################################################################################################################*/
-    /*#############################################################################################################################*/
-
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    /*#############################################################################################################################*/
-    /*#############################################################################################################################*/
-    #region Tabs Events
-
-    public void FillShiftTab(string strDate, int shiftID)
+    protected void UIGapPopulate()
     {
         try
         {
-            ClearShiftTab();
+            Label lblDate = (Label)grdGap.SelectedRow.Cells[0].FindControl("lblGapDate1");
+            lblGapTabDateV.Text = lblDate.Text;
 
-            if (!string.IsNullOrEmpty(txtEmployeeID.Text))
-            {
-                string empString = txtEmployeeID.Text;
-                string[] empstr = empString.Split('-');
-                
-                StringBuilder query = new StringBuilder();
-                query.Append(MainShiftQuery);
-                query.Append(" AND EmpID = '" + empstr[0].ToString() + "'");
-                query.Append(" AND SsmShift = " + shiftID + "");
-                query.Append(" AND CONVERT(CHAR(12),SsmDate, 101) = CONVERT(CHAR(12)," + "'" + strDate + "'" + ", 101)");
+            Label lblStartTime = (Label)grdGap.SelectedRow.Cells[0].FindControl("lblGapStartTime1");
+            lblGapTabStartTimeV.Text = lblStartTime.Text;
 
-                DataTable DT = DBCs.FetchData(new SqlCommand(query.ToString()));
-                if (!DBCs.IsNullOrEmpty(DT))
-                {
-                    lblShtTabWorkingtimeV.Text   = DisplayFun.GrdDisplayDuration(DT.Rows[0]["SsmWorkDuration"].ToString());
-                    lblShtTabPeriodV.Text        = DisplayFun.GrdDisplayDuration(DT.Rows[0]["SsmShiftDuration"].ToString());
-                    lblShtTabActDurationV.Text   = DisplayFun.GrdDisplayDuration(DT.Rows[0]["SsmActualWorkDuration"].ToString());
-                    lblShtTabWorkDurationV.Text  = DisplayFun.GrdDisplayDuration(DT.Rows[0]["SsmWorkDuration"].ToString());
-                    lblShtTabShiftDurationV.Text = DisplayFun.GrdDisplayDuration(DT.Rows[0]["SsmShiftDuration"].ToString());
-                    lblShtTabBeginEarlyV.Text    = DisplayFun.GrdDisplayDuration(DT.Rows[0]["SsmBeginEarly"].ToString());
-                    lblShtTabBeginLateV.Text     = DisplayFun.GrdDisplayDuration(DT.Rows[0]["SsmBeginLate"].ToString());
-                    lblShtTabOvertimeV.Text      = DisplayFun.GrdDisplayDuration(DT.Rows[0]["SsmOverTime"].ToString());
-                    lblShtTabOutEarlyV.Text      = DisplayFun.GrdDisplayDuration(DT.Rows[0]["SsmOutEarly"].ToString());
-                    lblShtTabOutLateV.Text       = DisplayFun.GrdDisplayDuration(DT.Rows[0]["SsmOutLate"].ToString());
-                    lblShtTabExtraTimeV.Text     = DisplayFun.GrdDisplayDuration(DT.Rows[0]["SsmExtratime"].ToString());
-                }
-            }
-        }
-        catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void FillTransTab(string date, int shiftID)
-    {
-        try
-        {
-            ClearTransTab();
+            Label lblEndTime = (Label)grdGap.SelectedRow.Cells[0].FindControl("lblGapEndTime1");
+            lblGapTabEndTimeV.Text = lblEndTime.Text;
 
-            if (!string.IsNullOrEmpty(txtEmployeeID.Text))
-            {
-                string empString = txtEmployeeID.Text;
-                string[] empstr = empString.Split('-');
-                
-                StringBuilder query = new StringBuilder();
-                query.Append(MainTransQuery);
-                query.Append(" AND EmpID = '" + empstr[0].ToString() + "'");
-                query.Append(" AND TrnShift = " + shiftID + "");
-                query.Append(" AND CONVERT(CHAR(12),TrnDate, 101) = CONVERT(CHAR(10)," + "'" + date + "'" + ", 101)");
-                query.Append(" ORDER BY TrnTime ASC");
-
-                DataTable DT = DBCs.FetchData(new SqlCommand(query.ToString()));
-                if (!DBCs.IsNullOrEmpty(DT))
-                {
-                    //lblShtWorkingtimeV.Text = dr["SsmWorkDuration"].ToString();
-                    //lblShtPeriodV.Text = dr["SsmShiftDuration"].ToString();
-                    //lblActDurationV.Text = dr["SsmActualWorkDuration"].ToString();
-                    //lblWorkDurationV.Text = dr["SsmWorkDuration"].ToString();
-                    //lblShiftDurationV.Text = dr["SsmShiftDuration"].ToString();
-                    //lblBeginEarlyV.Text = dr["SsmBeginEarly"].ToString();
-                    //lblBeginLateV.Text = dr["SsmBeginLate"].ToString();
-                    //lblOvertimeAmtV.Text = dr["SsmOverTimeAmount"].ToString();
-                    //lblOutEarlyV.Text = dr["SsmOutEarly"].ToString();
-                    //lblOutLateV.Text = dr["SsmOutLate"].ToString();
-                    //lblOverTimePercentV.Text = dr["SsmOverTime"].ToString();
-                }
-            }
-
-        }
-        catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    void FillGapTab(int gapID)
-    {
-        try
-        {
-            ClearGapTab();
-
-            StringBuilder query = new StringBuilder();
-            query.Append("SELECT DISTINCT GapDesc ,GapDuration,(SELECT " + General.Msg("ExcNameEn","ExcNameAr") + " FROM ExcuseType WHERE ExcID = g.ExcID) AS excusetype FROM Gap g WHERE GapID = " + gapID + "");
+            int gapID = Convert.ToInt32(grdGap.SelectedRow.Cells[4].Text);
+            StringBuilder SQ = new StringBuilder();
+            SQ.Append("SELECT DISTINCT GapDesc ,GapDuration,ExcID,(SELECT " + General.Msg("ExcNameEn","ExcNameAr") + " FROM ExcuseType WHERE ExcID = g.ExcID) AS excusetype FROM Gap g WHERE GapID = " + gapID + "");
             
-
-            DataTable DT = DBCs.FetchData(new SqlCommand(query.ToString()));
+            DataTable DT = DBCs.FetchData(new SqlCommand(SQ.ToString()));
             if (!DBCs.IsNullOrEmpty(DT))
             {
                 lblGapTabExcuseTypeV.Text  = DT.Rows[0]["excusetype"].ToString();
+                if (GenCs.IsNullOrEmptyDB(DT.Rows[0]["ExcID"])) { lblGapTabExcuseTypeV.Text = General.Msg("There is no excuse","لا يوجد إستذان"); }
                 lblGapTabGapDurationV.Text = DisplayFun.GrdDisplayDuration(DT.Rows[0]["GapDuration"].ToString());
             }
         }
@@ -605,29 +594,7 @@ public partial class EmployeeTransactions : BasePage
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    void ClearShiftTab()
-    {
-        lblShtTabDateV.Text = "";
-        lblShtTabWorkingtimeV.Text = "";
-        lblShtTabPeriodV.Text = "";
-        lblShtTabActDurationV.Text = "";
-        lblShtTabShiftDurationV.Text = "";
-        lblShtTabWorkDurationV.Text = "";
-        lblShtTabBeginEarlyV.Text = "";
-        lblShtTabBeginLateV.Text = "";
-        lblShtTabExtraTimeV.Text = "";
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    void ClearTransTab()
-    {
-        lblTrnTabDateV.Text = "";
-        lblTrnTabTimeV.Text = "";
-        lblTrnTabTypeV.Text = "";
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    void ClearGapTab()
+    void UIGapClear()
     {
         lblGapTabDateV.Text = "";
         lblGapTabStartTimeV.Text = "";

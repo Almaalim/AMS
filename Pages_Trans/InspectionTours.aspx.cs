@@ -852,9 +852,12 @@ public partial class InspectionTours : BasePage
 
                     if (e.IsValid)
                     {
+                        string mPeriod = "0";
                         int iPeriodSec = 0;
                         if (string.IsNullOrEmpty(ViewState["PeriodCondetion"].ToString())) { iPeriodSec = GetPeriodCondetion(); } else { iPeriodSec = Convert.ToInt32(ViewState["PeriodCondetion"]); }
-                        CtrlCs.ValidMsg(this, ref cvTime_WZ, true, General.Msg("The period between start and end time should not exceed 5 minutes", "الفترة بين وقت البداية و النهاية يجب أن لا تتجاوز 5  دقيقة/دقائق"));
+                        if (iPeriodSec > 0) { mPeriod = (iPeriodSec / 60).ToString(); }
+
+                        CtrlCs.ValidMsg(this, ref cvTime_WZ, true, General.Msg("The period between start and end time should not exceed " + mPeriod + " minutes", "الفترة بين وقت البداية و النهاية يجب أن لا تتجاوز " + mPeriod + " دقيقة/دقائق"));
 
                         int FromTimeSec = tpItmTimeFrom_WZ.getTimeInSeconds();
                         int ToTimeSec   = tpItmTimeTo_WZ.getTimeInSeconds();

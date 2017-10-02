@@ -203,7 +203,7 @@ public class Fingerprint_WS : System.Web.Services.WebService
             if (DT.Rows[0]["PGrpPermissions"] != DBNull.Value) { GrpPermissions = CryptorEngine.Decrypt(DT.Rows[0]["PGrpPermissions"].ToString(), true); }
             if (!string.IsNullOrEmpty(GrpPermissions))
             {
-                string Q = "SELECT MnuTextEn FROM Menu WHERE MnuVisible = 'True' AND MnuType = 'Command' AND MnuPermissionID = 552 AND MnuPermissionID IN (" + GrpPermissions + ")";
+                string Q = "SELECT MnuTextEn FROM Menu WHERE MnuVisible = 'True' AND MnuType = 'Command' AND MnuPermissionID = 621 AND MnuPermissionID IN (" + GrpPermissions + ")";
                 return DBCs.GetData(Q, null);
             }
         }

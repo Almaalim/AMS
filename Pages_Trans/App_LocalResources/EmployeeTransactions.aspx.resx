@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BoundFieldResource1.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -124,7 +124,7 @@
     <value />
   </data>
   <data name="BoundFieldResource1.HeaderText" xml:space="preserve">
-    <value>Shift Number</value>
+    <value>Shift ID</value>
   </data>
   <data name="BoundFieldResource2.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -637,7 +637,7 @@
     <value />
   </data>
   <data name="TemplateFieldResource5.HeaderText" xml:space="preserve">
-    <value>Gap Total</value>
+    <value>Gaps</value>
   </data>
   <data name="TemplateFieldResource6.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -646,7 +646,7 @@
     <value />
   </data>
   <data name="TemplateFieldResource6.HeaderText" xml:space="preserve">
-    <value>Gap UnPaid</value>
+    <value>Excuse Unpaid</value>
   </data>
   <data name="TemplateFieldResource7.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -655,7 +655,7 @@
     <value />
   </data>
   <data name="TemplateFieldResource7.HeaderText" xml:space="preserve">
-    <value>Gap Paid</value>
+    <value>Excuse Paid</value>
   </data>
   <data name="TemplateFieldResource8.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -674,5 +674,41 @@
   </data>
   <data name="TemplateFieldResource9.HeaderText" xml:space="preserve">
     <value>Overtime</value>
+  </data>
+  <data name="lbl_ST_ShiftIDResource1.Text" xml:space="preserve">
+    <value>Shift ID :</value>
+  </data>
+  <data name="lbl_ST_SsmEndShiftTimeResource1.Text" xml:space="preserve">
+    <value>End Shift Time :</value>
+  </data>
+  <data name="lbl_ST_SsmGapDur_GraceResource1.Text" xml:space="preserve">
+    <value>Shift Grace :</value>
+  </data>
+  <data name="lbl_ST_SsmGapDur_MGResource1.Text" xml:space="preserve">
+    <value>Middle Grace :</value>
+  </data>
+  <data name="lbl_ST_SsmGapDur_PaidExcResource1.Text" xml:space="preserve">
+    <value>Paid Excuse :</value>
+  </data>
+  <data name="lbl_ST_SsmGapDur_UnPaidExcResource1.Text" xml:space="preserve">
+    <value>Unpaid Excuse :</value>
+  </data>
+  <data name="lbl_ST_SsmGapDur_WithoutExcResource1.Text" xml:space="preserve">
+    <value>Gaps :</value>
+  </data>
+  <data name="lbl_ST_SsmPunchInTimeResource1.Text" xml:space="preserve">
+    <value>Punch In :</value>
+  </data>
+  <data name="lbl_ST_SsmPunchOutTimeResource1.Text" xml:space="preserve">
+    <value>Punch Out :</value>
+  </data>
+  <data name="lbl_ST_SsmStartShiftTimeResource1.Text" xml:space="preserve">
+    <value>Start Shift Time :</value>
+  </data>
+  <data name="lbl_ST_SsmStatusResource1.Text" xml:space="preserve">
+    <value>Shift Status :</value>
+  </data>
+  <data name="TemplateFieldStatusResource.HeaderText" xml:space="preserve">
+    <value>Status</value>
   </data>
 </root>

@@ -69,23 +69,8 @@
             <div class="row">
                 <div class="col12">
                     <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdShift" />
-
-                    <%--<div style="width: 800px; height: 230px; overflow: scroll">--%>
-                    <%--    <asp:GridView ID="grdData" runat="server" CssClass="datatable"
-                                                        SelectedIndex="1" AutoGenerateColumns="False"
-                                                        AllowPaging="True" CellPadding="0" BorderWidth="0px" GridLines="None" DataKeyNames="EmpID"
-                                                        ShowFooter="True" OnPageIndexChanging="grdData_PageIndexChanging"
-                                                        OnRowCreated="grdData_RowCreated" OnRowDataBound="grdData_RowDataBound" OnSelectedIndexChanged="grdData_SelectedIndexChanged"
-                                                        OnPreRender="grdData_PreRender" Width="800px" EnableModelValidation="True" 
-                                                             meta:resourcekey="grdDataResource1">
-                                                        <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-                                                        <PagerSettings Mode="NextPreviousFirstLast" FirstPageText="First"
-                                                            FirstPageImageUrl="~/images/first.png" LastPageText="Last" LastPageImageUrl="~/images/last.png"
-                                                            NextPageText="Next" NextPageImageUrl="~/images/next.png"   PreviousPageText="Prev"
-                                                            PreviousPageImageUrl="~/images/prev.png" />--%>
-
                     <asp:GridView ID="grdShift" runat="server" CssClass="datatable"
-                        SelectedIndex="1" AutoGenerateColumns="False"
+                        AutoGenerateColumns="False"
                         BorderWidth="0px" GridLines="None" ShowFooter="True"
                         OnPageIndexChanging="grdShift_PageIndexChanging" OnRowCreated="grdShift_RowCreated"
                         OnRowDataBound="grdShift_RowDataBound"
@@ -106,10 +91,16 @@
                                         Text='<%# DisplayFun.GrdDisplayDate(Eval("SsmDate")) %>'
                                         meta:resourcekey="lblShiftDateResource1"></asp:Label>
                                 </ItemTemplate>
-
-
                             </asp:TemplateField>
-                            <asp:BoundField HeaderText="Shift Number" DataField="SsmShift"
+                            <asp:TemplateField HeaderText="Status" InsertVisible="False"
+                                SortExpression="SsmStatus" meta:resourcekey="TemplateFieldStatusResource">
+                                <ItemTemplate>
+                                    <%# DisplayFun.GrdDisplayShiftStatus(Eval("SsmStatus")) %>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            
+                            <asp:BoundField HeaderText="Shift ID" DataField="SsmShift"
                                 InsertVisible="False" ReadOnly="True" meta:resourcekey="BoundFieldResource1"></asp:BoundField>
 
                             <asp:TemplateField HeaderText="Shift Duration"
@@ -127,61 +118,36 @@
                             </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Actual Duration"
-                                SortExpression="SsmActualWorkDuration"
+                                SortExpression="SsmWorkDurWithET"
                                 meta:resourcekey="TemplateFieldResource4">
                                 <ItemTemplate>
-                                    <%# DisplayFun.GrdDisplayDuration(Eval("SsmActualWorkDuration"))%>
+                                    <%# DisplayFun.GrdDisplayDuration(Eval("SsmWorkDurWithET"))%>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Gap Total" SortExpression="SsmGapDuration"
+                            <asp:TemplateField HeaderText="Gaps" SortExpression="SsmGapDur_WithoutExc"
                                 meta:resourcekey="TemplateFieldResource5">
                                 <ItemTemplate>
-                                    <%# DisplayFun.GrdDisplayDuration(Eval("SsmGapDuration"))%>
+                                    <%# DisplayFun.GrdDisplayDuration(Eval("SsmGapDur_WithoutExc"))%>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Gap UnPaid"
-                                SortExpression="SsmGapUnpaidDuration" meta:resourcekey="TemplateFieldResource6">
-                                <ItemTemplate>
-                                    <%# DisplayFun.GrdDisplayDuration(Eval("SsmGapUnpaidDuration"))%>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-
-                            <asp:TemplateField HeaderText="Gap Paid" SortExpression="SsmGapPaidDuration"
+                             <asp:TemplateField HeaderText="Excuse Paid" SortExpression="SsmGapDur_PaidExc"
                                 meta:resourcekey="TemplateFieldResource7">
                                 <ItemTemplate>
-                                    <%# DisplayFun.GrdDisplayDuration(Eval("SsmGapPaidDuration"))%>
+                                    <%# DisplayFun.GrdDisplayDuration(Eval("SsmGapDur_PaidExc"))%>
                                 </ItemTemplate>
                             </asp:TemplateField>
-
-                            <asp:TemplateField HeaderText="Extratime" SortExpression="SsmExtratime"
-                                meta:resourcekey="TemplateFieldResource8">
-                                <ItemTemplate>
-                                    <%# DisplayFun.GrdDisplayDuration(Eval("SsmExtratime"))%>
-                                </ItemTemplate>
-                            </asp:TemplateField>
-
-                            <asp:TemplateField HeaderText="Overtime" SortExpression="SsmOverTime"
+                            <asp:TemplateField HeaderText="Overtime" SortExpression="SsmOverTimeDur"
                                 meta:resourcekey="TemplateFieldResource9">
                                 <ItemTemplate>
-                                    <%# DisplayFun.GrdDisplayDuration(Eval("SsmOverTime"))%>
+                                    <%# DisplayFun.GrdDisplayDuration(Eval("SsmOverTimeDur"))%>
                                 </ItemTemplate>
                             </asp:TemplateField>
-
-
                         </Columns>
-
-
                     </asp:GridView>
 
-                    <%--</div>--%>
-
-
                     <asp:HiddenField ID="hdnShiftID" runat="server" />
-
-
-
                 </div>
             </div>
             <div class="GreySetion">
@@ -197,7 +163,7 @@
 
                             <asp:Panel ID="pnlGrdTrans" runat="server">
                                 <asp:GridView ID="grdTrans" runat="server" CssClass="datatable"
-                                    SelectedIndex="1" AutoGenerateColumns="False"
+                                    AutoGenerateColumns="False"
                                     PageSize="3" CellPadding="0" BorderWidth="0px" GridLines="None" DataKeyNames="UsrName"
                                     ShowFooter="True" OnPageIndexChanging="grdTrans_PageIndexChanging"
                                     OnRowDataBound="grdTrans_RowDataBound"
@@ -257,8 +223,8 @@
                             <as:GridViewKeyBoardPagerExtender runat="server" ID="GridViewKeyBoardPagerExtender2" TargetControlID="grdGap" />
 
                             <asp:GridView ID="grdGap" runat="server" CssClass="datatable"
-                                SelectedIndex="1" AutoGenerateColumns="False"
-                                PageSize="3" CellPadding="0" BorderWidth="0px" GridLines="None" DataKeyNames="UsrName"
+                                AutoGenerateColumns="False"
+                                PageSize="3" CellPadding="0" BorderWidth="0px" GridLines="None" DataKeyNames="GapID"
                                 ShowFooter="True" OnPageIndexChanging="grdGap_PageIndexChanging" OnRowCreated="grdGap_RowCreated"
                                 OnRowDataBound="grdGap_RowDataBound"
                                 OnSelectedIndexChanged="grdGap_SelectedIndexChanged"
@@ -310,134 +276,196 @@
 
 
                             </asp:GridView>
-
-
-
-                            <!-- Notice this is outside the GridView -->
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>
             </div>
 
-
-
-            <ajaxToolkit:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0"
-                Height="120px" Width="100%" meta:resourcekey="TabContainer1Resource1">
-                <ajaxToolkit:TabPanel ID="TabPanel1" runat="server" HeaderText="Shift Details"
-                    meta:resourcekey="TabPanel1Resource1">
+            <ajaxToolkit:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="0" Width="100%" meta:resourcekey="TabContainer1Resource1">
+                <ajaxToolkit:TabPanel ID="TabShift" runat="server" HeaderText="Shift Details" meta:resourcekey="TabPanel1Resource1">
                     <ContentTemplate>
                         <div class="row">
                             <div class="col2">
-                                <asp:Label ID="lblShtTabDate" runat="server" Text="Date :" Font-Bold="True"
+                                <asp:Label ID="lbl_ST_Date" runat="server" Text="Date :" Font-Bold="True"
                                     meta:resourcekey="lblShtTabDateResource1"></asp:Label>
                             </div>
-                            <div class="col4">
-                                <asp:Label ID="lblShtTabDateV" runat="server"
-                                    meta:resourcekey="lblShtTabDateVResource1"></asp:Label>
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_V_Date" runat="server"></asp:Label>
                             </div>
                             <div class="col2">
-                                <asp:Label ID="lblShtTabWorkingtime" runat="server" Text="Working Time : "
-                                    Font-Bold="True" meta:resourcekey="lblShtTabWorkingtimeResource1"></asp:Label>
+                                <asp:Label ID="lbl_ST_ShiftID" runat="server" Text="Shift ID : "
+                                    Font-Bold="True" meta:resourcekey="lbl_ST_ShiftIDResource1"></asp:Label>
                             </div>
-                            <div class="col4">
-                                <asp:Label ID="lblShtTabWorkingtimeV" runat="server"
-                                    meta:resourcekey="lblShtTabWorkingtimeVResource1"></asp:Label>
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_V_ShiftID" runat="server"></asp:Label>
+                            </div>
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_SsmStatus" runat="server" Text="Shift Status : "
+                                    Font-Bold="True" meta:resourcekey="lbl_ST_SsmStatusResource1"></asp:Label>
+                            </div>
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_V_SsmStatus" runat="server"></asp:Label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col2">
-                                <asp:Label ID="lblShtTabPeriod" runat="server" Text="Shift Period : "
-                                    Font-Bold="True" meta:resourcekey="lblShtTabPeriodResource1"></asp:Label>
-                            </div>
-                            <div class="col4">
-                                <asp:Label ID="lblShtTabPeriodV" runat="server"
-                                    meta:resourcekey="lblShtTabPeriodVResource1"></asp:Label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col2">
-                                <asp:Label ID="lblShtTabActDuration" runat="server" Text="Actual Duration :"
-                                    Font-Bold="True" meta:resourcekey="lblShtTabActDurationResource1"></asp:Label>
-                            </div>
-                            <div class="col4">
-                                <asp:Label ID="lblShtTabActDurationV" runat="server"
-                                    meta:resourcekey="lblShtTabActDurationVResource1"></asp:Label>
-                            </div>
-
-                            <div class="col2">
-                                <asp:Label ID="lblShtTabWorkDuration" runat="server" Text="Work Duration :"
-                                    Font-Bold="True" meta:resourcekey="lblShtTabWorkDurationResource1"></asp:Label>
-                            </div>
-                            <div class="col4">
-                                <asp:Label ID="lblShtTabWorkDurationV" runat="server"
-                                    meta:resourcekey="lblShtTabWorkDurationVResource1"></asp:Label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col2">
-                                <asp:Label ID="lblShtTabShiftDuration" runat="server" Text="Shift Duration : "
+                                <asp:Label ID="lbl_ST_SsmShiftDuration" runat="server" Text="Shift Duration : "
                                     Font-Bold="True" meta:resourcekey="lblShtTabShiftDurationResource1"></asp:Label>
                             </div>
-                            <div class="col4">
-                                <asp:Label ID="lblShtTabShiftDurationV" runat="server"
-                                    meta:resourcekey="lblShtTabShiftDurationVResource1"></asp:Label>
-                            </div>
-                        </div>
-                        <div class="row">
                             <div class="col2">
-                                <asp:Label ID="lblShtTabBeginEarly" runat="server" Text="Begin Early :"
-                                    Font-Bold="True" meta:resourcekey="lblShtTabBeginEarlyResource1"></asp:Label>
-                            </div>
-                            <div class="col4">
-                                <asp:Label ID="lblShtTabBeginEarlyV" runat="server"
-                                    meta:resourcekey="lblShtTabBeginEarlyVResource1"></asp:Label>
+                                <asp:Label ID="lbl_ST_V_SsmShiftDuration" runat="server"></asp:Label>
                             </div>
 
                             <div class="col2">
-                                <asp:Label ID="lblShtTabBeginLate" runat="server" Text="BeginLate : "
+                                <asp:Label ID="lbl_ST_SsmWorkDuration" runat="server" Text="Work Duration :"
+                                    Font-Bold="True" meta:resourcekey="lblShtTabWorkDurationResource1"></asp:Label>
+                            </div>
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_V_SsmWorkDuration" runat="server"></asp:Label>
+                            </div>
+
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_SsmWorkDurWithET" runat="server" Text="Actual Duration :"
+                                    Font-Bold="True" meta:resourcekey="lblShtTabActDurationResource1"></asp:Label>
+                            </div>
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_V_SsmWorkDurWithET" runat="server"></asp:Label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_SsmStartShiftTime" runat="server" Text="Start Shift Time :"
+                                    Font-Bold="True" meta:resourcekey="lbl_ST_SsmStartShiftTimeResource1"></asp:Label>
+                            </div>
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_V_SsmStartShiftTime" runat="server"></asp:Label>
+                            </div>
+
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_SsmEndShiftTime" runat="server" Text="End Shift Time : "
+                                    Font-Bold="True" meta:resourcekey="lbl_ST_SsmEndShiftTimeResource1"></asp:Label>
+                            </div>
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_V_SsmEndShiftTime" runat="server"></asp:Label>
+                            </div>
+                            <div class="col2"></div>
+                            <div class="col2"></div>
+                        </div>                      
+                        <div class="row">
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_SsmPunchIn" runat="server" Text="Punch In :"
+                                    Font-Bold="True" meta:resourcekey="lbl_ST_SsmPunchInTimeResource1"></asp:Label>
+                            </div>
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_V_SsmPunchIn" runat="server"></asp:Label>
+                            </div>
+
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_SsmPunchOut" runat="server" Text="Punch Out : "
+                                    Font-Bold="True" meta:resourcekey="lbl_ST_SsmPunchOutTimeResource1"></asp:Label>
+                            </div>
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_V_SsmPunchOut" runat="server"></asp:Label>
+                            </div>
+                            <div class="col2"></div>
+                            <div class="col2"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_SsmBeginEarly" runat="server" Text="Begin Early :"
+                                    Font-Bold="True" meta:resourcekey="lblShtTabBeginEarlyResource1"></asp:Label>
+                            </div>
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_V_SsmBeginEarly" runat="server"></asp:Label>
+                            </div>
+
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_SsmBeginLate" runat="server" Text="BeginLate : "
                                     Font-Bold="True" meta:resourcekey="lblShtTabBeginLateResource1"></asp:Label>
                             </div>
-                            <div class="col4">
-                                <asp:Label ID="lblShtTabBeginLateV" runat="server"
-                                    meta:resourcekey="lblShtTabBeginLateVResource1"></asp:Label>
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_V_SsmBeginLate" runat="server"></asp:Label>
                             </div>
+                            <div class="col2"></div>
+                            <div class="col2"></div>
                         </div>
                         <div class="row">
                             <div class="col2">
-                                <asp:Label ID="lblShtTabExtraTime" runat="server" Text="ExtraTime : "
-                                    Font-Bold="True" meta:resourcekey="lblShtTabExtraTimeResource1"></asp:Label>
-                            </div>
-                            <div class="col4">
-                                <asp:Label ID="lblShtTabExtraTimeV" runat="server"
-                                    meta:resourcekey="lblShtTabExtraTimeVResource1"></asp:Label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col2">
-                                <asp:Label ID="lblShtTabOutEarly" runat="server" Text="Out Early :"
+                                <asp:Label ID="lbl_ST_SsmOutEarly" runat="server" Text="Out Early :"
                                     Font-Bold="True" meta:resourcekey="lblShtTabOutEarlyResource1"></asp:Label>
                             </div>
-                            <div class="col4">
-                                <asp:Label ID="lblShtTabOutEarlyV" runat="server"
-                                    meta:resourcekey="lblShtTabOutEarlyVResource1"></asp:Label>
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_V_SsmOutEarly" runat="server"></asp:Label>
                             </div>
                             <div class="col2">
-                                <asp:Label ID="lblShtTabOutLate" runat="server" Text="Out Late : "
+                                <asp:Label ID="lbl_ST_SsmOutLate" runat="server" Text="Out Late : "
                                     Font-Bold="True" meta:resourcekey="lblShtTabOutLateResource1"></asp:Label>
                             </div>
-                            <div class="col4">
-                                <asp:Label ID="lblShtTabOutLateV" runat="server"
-                                    meta:resourcekey="lblShtTabOutLateVResource1"></asp:Label>
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_V_SsmOutLate" runat="server"></asp:Label>
+                            </div>
+                            <div class="col2"></div>
+                            <div class="col2"></div>
+                        </div>                       
+                        <div class="row">
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_SsmExtraTimeDur" runat="server" Text="ExtraTime : "
+                                    Font-Bold="True" meta:resourcekey="lblShtTabExtraTimeResource1"></asp:Label>
+                            </div>
+                            <div class="col2">
+                                <asp:Label ID="bl_ST_V_SsmExtraTimeDur" runat="server"></asp:Label>
+                            </div>
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_SsmOverTimeDur" runat="server" Text="Overtime :"
+                                    Font-Bold="True" meta:resourcekey="lblShtTabOvertimeResource1"></asp:Label>
+                            </div>
+                            <div class="col2">
+                                <asp:Label ID="bl_ST_V_SsmOverTimeDur" runat="server"></asp:Label>
+                            </div>
+                            <div class="col2"></div>
+                            <div class="col2"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_SsmGapDur_WithoutExc" runat="server" Text="Gaps : "
+                                    Font-Bold="True" meta:resourcekey="lbl_ST_SsmGapDur_WithoutExcResource1"></asp:Label>
+                            </div>
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_V_SsmGapDur_WithoutExc" runat="server"></asp:Label>
+                            </div>
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_SsmGapDur_PaidExc" runat="server" Text="Paid Excuse :"
+                                    Font-Bold="True" meta:resourcekey="lbl_ST_SsmGapDur_PaidExcResource1"></asp:Label>
+                            </div>
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_V_SsmGapDur_PaidExc" runat="server"></asp:Label>
+                            </div>
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_SsmGapDur_UnPaidExc" runat="server" Text="Unpaid Excuse :"
+                                    Font-Bold="True" meta:resourcekey="lbl_ST_SsmGapDur_UnPaidExcResource1"></asp:Label>
+                            </div>
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_V_SsmGapDur_UnPaidExc" runat="server"></asp:Label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col2">
-                                <asp:Label ID="lblShtTabOvertime" runat="server" Text="Overtime :"
-                                    Font-Bold="True" meta:resourcekey="lblShtTabOvertimeResource1"></asp:Label>
+                                <asp:Label ID="lbl_ST_SsmGapDur_Grace" runat="server" Text="Shift Grace : "
+                                    Font-Bold="True" meta:resourcekey="lbl_ST_SsmGapDur_GraceResource1"></asp:Label>
                             </div>
-                            <div class="col4">
-                                <asp:Label ID="lblShtTabOvertimeV" runat="server"
-                                    meta:resourcekey="lblShtTabOvertimeVResource1"></asp:Label>
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_V_SsmGapDur_Grace" runat="server"></asp:Label>
+                            </div>
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_SsmGapDur_MG" runat="server" Text="Middle Grace :"
+                                    Font-Bold="True" meta:resourcekey="lbl_ST_SsmGapDur_MGResource1"></asp:Label>
+                            </div>
+                            <div class="col2">
+                                <asp:Label ID="lbl_ST_V_SsmGapDur_MG" runat="server"></asp:Label>
+                            </div>
+                            <div class="col2">
+                            </div>
+                            <div class="col2">
                             </div>
                         </div>
                     </ContentTemplate>
@@ -483,45 +511,45 @@
                                 <asp:Label ID="lblGapTabDate" runat="server" Text="Date :" Font-Bold="True"
                                     meta:resourcekey="lblGapTabDateResource1"></asp:Label>
                             </div>
-                            <div class="col4">
+                            <div class="col2">
                                 <asp:Label ID="lblGapTabDateV" runat="server"
                                     meta:resourcekey="lblGapTabDateVResource1"></asp:Label>
-                            </div>
-                            <div class="col2">
-                                <asp:Label ID="lblGapTabStartTime" runat="server" Text="Start Time : "
-                                    Font-Bold="True" meta:resourcekey="lblGapTabStartTimeResource1"></asp:Label>
-                            </div>
-                            <div class="col4">
-                                <asp:Label ID="lblGapTabStartTimeV" runat="server"
-                                    meta:resourcekey="lblGapTabStartTimeVResource1"></asp:Label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col2">
-                                <asp:Label ID="lblGapTabEndTime" runat="server" Text="End Time : "
-                                    Font-Bold="True" meta:resourcekey="lblGapTabEndTimeResource1"></asp:Label>
-                            </div>
-                            <div class="col4">
-                                <asp:Label ID="lblGapTabEndTimeV" runat="server"
-                                    meta:resourcekey="lblGapTabEndTimeVResource1"></asp:Label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col2">
-                                <asp:Label ID="lblGapTabGapDuration" runat="server" Text="Gap Duration :"
-                                    Font-Bold="True" meta:resourcekey="lblGapTabGapDurationResource1"></asp:Label>
-                            </div>
-                            <div class="col4">
-                                <asp:Label ID="lblGapTabGapDurationV" runat="server"
-                                    meta:resourcekey="lblGapTabGapDurationVResource1"></asp:Label>
                             </div>
                             <div class="col2">
                                 <asp:Label ID="lblGapTabExcuseType" runat="server" Text="Excuse Type :"
                                     Font-Bold="True" meta:resourcekey="lblGapTabExcuseTypeResource1"></asp:Label>
                             </div>
-                            <div class="col4">
+                            <div class="col2">
                                 <asp:Label ID="lblGapTabExcuseTypeV" runat="server"
                                     meta:resourcekey="lblGapTabExcuseTypeVResource1"></asp:Label>
+                            </div>
+                            <div class="col2"></div>
+                            <div class="col2"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col2">
+                                <asp:Label ID="lblGapTabStartTime" runat="server" Text="Start Time : "
+                                    Font-Bold="True" meta:resourcekey="lblGapTabStartTimeResource1"></asp:Label>
+                            </div>
+                            <div class="col2">
+                                <asp:Label ID="lblGapTabStartTimeV" runat="server"
+                                    meta:resourcekey="lblGapTabStartTimeVResource1"></asp:Label>
+                            </div>
+                            <div class="col2">
+                                <asp:Label ID="lblGapTabEndTime" runat="server" Text="End Time : "
+                                    Font-Bold="True" meta:resourcekey="lblGapTabEndTimeResource1"></asp:Label>
+                            </div>
+                            <div class="col2">
+                                <asp:Label ID="lblGapTabEndTimeV" runat="server"
+                                    meta:resourcekey="lblGapTabEndTimeVResource1"></asp:Label>
+                            </div>
+                             <div class="col2">
+                                <asp:Label ID="lblGapTabGapDuration" runat="server" Text="Gap Duration :"
+                                    Font-Bold="True" meta:resourcekey="lblGapTabGapDurationResource1"></asp:Label>
+                            </div>
+                            <div class="col2">
+                                <asp:Label ID="lblGapTabGapDurationV" runat="server"
+                                    meta:resourcekey="lblGapTabGapDurationVResource1"></asp:Label>
                             </div>
                         </div>
                     </ContentTemplate>

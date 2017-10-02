@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BoundFieldResource1.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -637,7 +637,7 @@
     <value />
   </data>
   <data name="TemplateFieldResource5.HeaderText" xml:space="preserve">
-    <value>مجموع الثغرة</value>
+    <value>الثغرات</value>
   </data>
   <data name="TemplateFieldResource6.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -646,7 +646,7 @@
     <value />
   </data>
   <data name="TemplateFieldResource6.HeaderText" xml:space="preserve">
-    <value>الثغرة الغير مدفوعة</value>
+    <value>الإستئذان غير المدفوع</value>
   </data>
   <data name="TemplateFieldResource7.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -655,7 +655,7 @@
     <value />
   </data>
   <data name="TemplateFieldResource7.HeaderText" xml:space="preserve">
-    <value>الثغرة المدفوعة</value>
+    <value>الإستئذان المدفوع</value>
   </data>
   <data name="TemplateFieldResource8.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -674,5 +674,41 @@
   </data>
   <data name="TemplateFieldResource9.HeaderText" xml:space="preserve">
     <value>ساعات العمل الإضافية</value>
+  </data>
+  <data name="lbl_ST_ShiftIDResource1.Text" xml:space="preserve">
+    <value>رقم الوردية :</value>
+  </data>
+  <data name="lbl_ST_SsmEndShiftTimeResource1.Text" xml:space="preserve">
+    <value>نهاية الوردية :</value>
+  </data>
+  <data name="lbl_ST_SsmGapDur_GraceResource1.Text" xml:space="preserve">
+    <value>ثغرات وقت السماح :</value>
+  </data>
+  <data name="lbl_ST_SsmGapDur_MGResource1.Text" xml:space="preserve">
+    <value>ثغرات السماح الوسطى :</value>
+  </data>
+  <data name="lbl_ST_SsmGapDur_PaidExcResource1.Text" xml:space="preserve">
+    <value>الاستئذان المدفوع :</value>
+  </data>
+  <data name="lbl_ST_SsmGapDur_UnPaidExcResource1.Text" xml:space="preserve">
+    <value>الاستئذان غير المدفوع :</value>
+  </data>
+  <data name="lbl_ST_SsmGapDur_WithoutExcResource1.Text" xml:space="preserve">
+    <value>الثغرات :</value>
+  </data>
+  <data name="lbl_ST_SsmPunchInTimeResource1.Text" xml:space="preserve">
+    <value>وقت الدخول :</value>
+  </data>
+  <data name="lbl_ST_SsmPunchOutTimeResource1.Text" xml:space="preserve">
+    <value>وقت الخروج :</value>
+  </data>
+  <data name="lbl_ST_SsmStartShiftTimeResource1.Text" xml:space="preserve">
+    <value>بداية الوردية :</value>
+  </data>
+  <data name="lbl_ST_SsmStatusResource1.Text" xml:space="preserve">
+    <value>الحالة :</value>
+  </data>
+  <data name="TemplateFieldStatusResource.HeaderText" xml:space="preserve">
+    <value>الحالة</value>
   </data>
 </root>

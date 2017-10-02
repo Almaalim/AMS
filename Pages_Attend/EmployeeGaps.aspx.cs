@@ -58,16 +58,16 @@ public partial class EmployeeGaps : BasePage
                 
                 if (Session["ERSRefresh"].ToString() == "Update")
                 {
-                    FillGapTable(Convert.ToInt32(Session["ERSRefreshMonth"]), Convert.ToInt32(Session["ERSRefreshYear"]));
                     ddlMonth.SelectedIndex = ddlMonth.Items.IndexOf(ddlMonth.Items.FindByValue(Session["ERSRefreshMonth"].ToString()));
                     ddlYear.SelectedIndex  = ddlYear.Items.IndexOf(ddlYear.Items.FindByValue(Session["ERSRefreshYear"].ToString()));
+                    FillGapTable(Convert.ToInt32(Session["ERSRefreshMonth"]), Convert.ToInt32(Session["ERSRefreshYear"]));
                     Session["ERSRefresh"] = "NotUpdate";
                 }
                 else
                 {
-                    FillGapTable(Convert.ToInt32(CurrentMonth), Convert.ToInt32(CurrentYear));
                     ddlMonth.SelectedIndex = ddlMonth.Items.IndexOf(ddlMonth.Items.FindByValue(CurrentMonth));
                     ddlYear.SelectedIndex  = ddlYear.Items.IndexOf(ddlYear.Items.FindByValue(CurrentYear));
+                    FillGapTable(Convert.ToInt32(CurrentMonth), Convert.ToInt32(CurrentYear));
                 }
 
                 Session["AttendanceListMonth"] = CurrentMonth;
