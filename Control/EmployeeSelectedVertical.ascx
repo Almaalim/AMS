@@ -18,7 +18,7 @@
                         <div class="col3">
                             <asp:Label ID="lblEmpTypeID" runat="server" Text="Employee Type:" meta:resourcekey="lblEmpTypeIDResource1"></asp:Label>
                         </div>
-                        <div class="col5">
+                        <div class="col4">
                             <asp:DropDownList ID="ddlEmpTypeID" runat="server" AutoPostBack="true"
                                 meta:resourcekey="ddlEmpTypeIDResource1"
                                 OnSelectedIndexChanged="ddlEmpTypeID_SelectedIndexChanged">
@@ -43,7 +43,7 @@
                                 GroupName="SelectOption" AutoPostBack="True"
                                 OnCheckedChanged="rdoSelectByID_CheckedChanged" meta:resourcekey="rdoSelectByIDResource1" />
                         </div>
-                        <div class="col5">
+                        <div class="col4">
 
                             <asp:TextBox ID="txtSearchByID" runat="server" Enabled="False"></asp:TextBox>
                             <asp:CustomValidator ID="cvSearchByID" runat="server"
@@ -78,7 +78,7 @@
                                 GroupName="SelectOption" AutoPostBack="True"
                                 OnCheckedChanged="rdoSelectByName_CheckedChanged" meta:resourcekey="rdoSelectByNameResource1" />
                         </div>
-                        <div class="col5">
+                        <div class="col4">
                             <asp:TextBox ID="txtSearchByName" runat="server" Enabled="False"></asp:TextBox>
 
                             <asp:CustomValidator ID="cvSelectByName" runat="server"
@@ -113,7 +113,7 @@
                                 GroupName="SelectOption" AutoPostBack="True"
                                 OnCheckedChanged="rdoSelectDep_CheckedChanged" meta:resourcekey="rdoSelectDepResource1" />
                         </div>
-                        <div class="col5">
+                        <div class="col4">
                             <asp:TextBox ID="txtSearchByDep" runat="server" Enabled="False"></asp:TextBox>
                             <asp:ImageButton ID="btnFilter" runat="server" OnClick="btnFilter_Click" ImageUrl="../images/Button_Icons/button_magnify.png" CssClass="LeftOverlay" />
 
@@ -137,7 +137,7 @@
                     </div>
                     <div class="row">
                         <div class="col3"></div>
-                        <div class="col5">
+                        <div class="col4">
                             <asp:DropDownList ID="ddlDepartment" runat="server" 
                                 AutoPostBack="True"
                                 OnSelectedIndexChanged="ddlDepartment_SelectedIndexChanged"

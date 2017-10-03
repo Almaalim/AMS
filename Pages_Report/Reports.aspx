@@ -345,9 +345,9 @@
                     <div class="popup-wrap">
                     <div class="row">
                         <div class="col12">
-                            <asp:TextBox ID="txtDescReport" runat="server" Height="60px" TextMode="MultiLine"
-                                Width="100%" meta:resourcekey="txtDescReportResource1" BackColor="#DCE7E1"
-                                Enabled="False"></asp:TextBox>
+                            <asp:Label ID="txtDescReport" runat="server" CssClass="h3"
+                                Width="100%" meta:resourcekey="txtDescReportResource1"  
+                                Enabled="False"></asp:Label>
                         </div>
                     </div>
                     <div class="row">
