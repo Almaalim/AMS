@@ -292,22 +292,7 @@
                     <asp:Label ID="lblVMsmDays_Absent_WithRule" runat="server" Text="0" meta:resourcekey="lblVMsmDays_Absent_WithRuleResource1"></asp:Label>
                 </div>
             </div>
-              <script>
-                var acc = document.getElementsByClassName("collapseToggle ");
-                var i;
-
-                for (i = 0; i < acc.length; i++) {
-                    acc[i].onclick = function () {
-                        this.classList.toggle("open");
-                        var panel = this.nextElementSibling;
-                        if (panel.style.maxHeight) {
-                            panel.style.maxHeight = null;
-                        } else {
-                            panel.style.maxHeight = panel.scrollHeight + "px";
-                        }
-                    }
-                }
-            </script>
+         
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>
