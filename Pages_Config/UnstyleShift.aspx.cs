@@ -108,6 +108,7 @@ public partial class UnstyleShift : BasePage
     {
         try
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             int Year  = Convert.ToInt32(ddlYear.SelectedValue);
             int Month = Convert.ToInt32(ddlMonth.SelectedValue);
             int DayCount = DTCs.FindLastDay(Month, Year);

@@ -44,7 +44,9 @@ public class Mail_WS : System.Web.Services.WebService
         if (!DBCs.isConnect())          { return "Error : Can not connect to the database"; }
         if (!CheckUser(UWS, PWS))       { return "Error : You do not have permission to run this property"; }
         if (!MailCs.FillEmailSetting()) { return "Error : When read setting Email"; }
-        
+
+        //return "OK"; 
+
         try
         {
             bool isSend = false;
@@ -59,19 +61,19 @@ public class Mail_WS : System.Web.Services.WebService
             DataTable DT = DBCs.FetchData(new SqlCommand(MQ.ToString()));
             foreach (DataRow DR in DT.Rows)
             {
-                string MailReqID         = (DR["MailReqID"]         != DBNull.Value) ? DR["MailReqID"].ToString()         : "";
-                string MailCode          = (DR["MailCode"]          != DBNull.Value) ? DR["MailCode"].ToString()          : "";
-                string MailJoinID        = (DR["MailJoinID"]        != DBNull.Value) ? DR["MailJoinID"].ToString()        : "";
+                string MailReqID = (DR["MailReqID"] != DBNull.Value) ? DR["MailReqID"].ToString() : "";
+                string MailCode = (DR["MailCode"] != DBNull.Value) ? DR["MailCode"].ToString() : "";
+                string MailJoinID = (DR["MailJoinID"] != DBNull.Value) ? DR["MailJoinID"].ToString() : "";
                 string MailSendingToList = (DR["MailSendingToList"] != DBNull.Value) ? DR["MailSendingToList"].ToString() : "";
-                string MailNameAr        = (DR["MailNameAr"]        != DBNull.Value) ? DR["MailNameAr"].ToString()        : "";
-                string MailNameEn        = (DR["MailNameEn"]        != DBNull.Value) ? DR["MailNameEn"].ToString()        : "";
-                string MailTemp          = (DR["MailTemp"]          != DBNull.Value) ? DR["MailTemp"].ToString()          : "";
-                string MailViewName      = (DR["MailViewName"]      != DBNull.Value) ? DR["MailViewName"].ToString()      : "";
-                string MailPKList        = (DR["MailPKList"]        != DBNull.Value) ? DR["MailPKList"].ToString()        : "";
+                string MailNameAr = (DR["MailNameAr"] != DBNull.Value) ? DR["MailNameAr"].ToString() : "";
+                string MailNameEn = (DR["MailNameEn"] != DBNull.Value) ? DR["MailNameEn"].ToString() : "";
+                string MailTemp = (DR["MailTemp"] != DBNull.Value) ? DR["MailTemp"].ToString() : "";
+                string MailViewName = (DR["MailViewName"] != DBNull.Value) ? DR["MailViewName"].ToString() : "";
+                string MailPKList = (DR["MailPKList"] != DBNull.Value) ? DR["MailPKList"].ToString() : "";
                 //string MailPKList        = (DR["MailPKList"]        != DBNull.Value) ? CryptorEngine.Decrypt(DDT.Rows[0]["MailPKList"].ToString(),true)) : "";
-                string MailSendType      = (DR["MailSendType"]      != DBNull.Value) ? DR["MailSendType"].ToString()      : "";
-                string Err               = null;
- 
+                string MailSendType = (DR["MailSendType"] != DBNull.Value) ? DR["MailSendType"].ToString() : "";
+                string Err = null;
+
                 string Subject = MailNameAr + "   " + MailNameEn;
                 string[] PKList = MailPKList.Split(',');
 
@@ -85,10 +87,10 @@ public class Mail_WS : System.Web.Services.WebService
                     {
                         Err = null;
                         string email = MailCs.FindEmail(Emails[i], MailSendType);
-                        if (!string.IsNullOrEmpty(email)) 
-                        { 
-                            isSend = MailSendCs.Send(MailCs, email, Subject, body, false, null, out Err); 
-                            int LogID = MailSqlCs.MailLog_Request_Insert(MailCode,MailReqID.ToString(),isSend,Emails[i],null,Err);
+                        if (!string.IsNullOrEmpty(email))
+                        {
+                            isSend = MailSendCs.Send(MailCs, email, Subject, body, false, null, out Err);
+                            int LogID = MailSqlCs.MailLog_Request_Insert(MailCode, MailReqID.ToString(), isSend, Emails[i], null, Err);
                         }
                     }
 
@@ -96,7 +98,7 @@ public class Mail_WS : System.Web.Services.WebService
                 }
             }
 
-            return "";    
+            return "";
         }
         catch (Exception ex) { return ex.Message; }
     }

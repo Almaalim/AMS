@@ -176,6 +176,7 @@ public partial class EmployeeExcusePermit : BasePage
     {
         try
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             if (!string.IsNullOrEmpty(txtID.Text)) { ProCs.EmpID = txtID.Text; }
 
             ProCs.EmpID = txtEmpID.Text;

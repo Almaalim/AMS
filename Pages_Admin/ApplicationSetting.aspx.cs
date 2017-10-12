@@ -118,6 +118,7 @@ public partial class ApplicationSetting : BasePage
     {
         try
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             ProCs.AppCompany = txtAppCompany.Text;
             ProCs.AppDisplay = txtAppDisplay.Text;
             if (!string.IsNullOrEmpty(txtAppCountry.Text))  { ProCs.AppCountry  = txtAppCountry.Text;  }

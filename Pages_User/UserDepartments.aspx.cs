@@ -155,6 +155,7 @@ public partial class UserDepartments : BasePage
     {
         try
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             string commandName = ViewState["CommandName"].ToString();
             if (commandName == string.Empty) { return; }
 

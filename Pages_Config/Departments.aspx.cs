@@ -108,6 +108,7 @@ public partial class Departments : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     void FillPropeties(string pAction)
     {
+        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
         if (!string.IsNullOrEmpty(txtID.Text)) { ProCs.DepID = txtID.Text; }
         
         ProCs.DepNameAr = txtNameAr.Text.Trim();

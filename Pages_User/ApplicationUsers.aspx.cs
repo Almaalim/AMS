@@ -178,6 +178,7 @@ public partial class ApplicationUsers : BasePage
     {
         try
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             ProCs.UsrName            = txtUsername.Text.Trim();
             ProCs.UsrFullName        = txtFullname.Text.Trim();
             ProCs.EmpID              = txtEmpID.Text.Trim();

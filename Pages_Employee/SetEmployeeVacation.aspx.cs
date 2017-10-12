@@ -112,6 +112,7 @@ public partial class SetEmployeeVacation : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     void FillPropeties()
     {
+        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
         if (!string.IsNullOrEmpty(txtID.Text)) { ProCs.EvsID = txtID.Text; } 
         ProCs.EmpID = txtEmpID.Text;
         ProCs.VtpID = ddlVtpType.SelectedValue;

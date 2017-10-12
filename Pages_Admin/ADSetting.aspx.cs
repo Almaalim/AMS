@@ -99,6 +99,7 @@ public partial class ADSetting : BasePage
     {
         try
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             ProCs.ADEnabled = CryptorEngine.Encrypt((chkADEnabled.Checked) ? "1" : "0", true);
             
             ProCs.ADJoinMethod = ddlADJoinMethod.SelectedValue;

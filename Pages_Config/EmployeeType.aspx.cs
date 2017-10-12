@@ -126,6 +126,7 @@ public partial class EmployeeType : BasePage
     {
         try
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             if (!string.IsNullOrEmpty(txtID.Text)) { ProCs.EtpID = txtID.Text; }
 
             ProCs.EtpNameAr = txtEtpNameAr.Text;

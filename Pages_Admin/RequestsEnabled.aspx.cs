@@ -106,7 +106,7 @@ public partial class RequestsEnabled : BasePage
         {
             //if (!CtrlCs.PageIsValid(this, vsSave)) { return; }
             if (!Page.IsValid) { return; }
-            
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             UpdateReqStatus();
 
             UIEnabled(false);

@@ -195,6 +195,7 @@ public partial class AutoOutWizard : BasePage
     {
         try
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             if (!Page.IsValid) { return; }
 
             DataTable EmployeeInsertdt = ucEmployeeSelected.EmpSelected;

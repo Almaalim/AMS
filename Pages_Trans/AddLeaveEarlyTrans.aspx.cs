@@ -204,6 +204,7 @@ public partial class AddLeaveEarlyTrans : BasePage
     {
         try
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             ProCs.EmpID    = txtEmpID.Text;
             ProCs.TrnDate  = calDate.getGDateDefFormat();
             ProCs.TrnTime  = tpickerTime.getDateTime().ToString();

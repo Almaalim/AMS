@@ -141,7 +141,7 @@ public partial class ConnString : BasePage
         {
             //if (!CtrlCs.PageIsValid(this, vsSave)) { return; }
             if (!Page.IsValid) { return; }
-            
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             string conn = "";
             bool isConn = Find(out conn);
         

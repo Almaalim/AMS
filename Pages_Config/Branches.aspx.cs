@@ -163,6 +163,7 @@ public partial class Branches : BasePage
     {
         try
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             if (!string.IsNullOrEmpty(txtID.Text)) { ProCs.BrcID = txtID.Text; }
 
             ProCs.BrcNameAr  = txtNameAr.Text;

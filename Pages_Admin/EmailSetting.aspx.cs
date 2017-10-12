@@ -88,6 +88,7 @@ public partial class EmailSetting : BasePage
     {
         try
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             ProCs.EmlServerID       = txtServerID.Text;
             ProCs.EmlPortNo         = txtPortNo.Text;
             if (!string.IsNullOrEmpty(txtSenderEmailID.Text))       { ProCs.EmlSenderEmail    = txtSenderEmailID.Text; }

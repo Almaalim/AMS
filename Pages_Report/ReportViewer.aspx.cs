@@ -25,15 +25,13 @@ public partial class ReportViewer : BasePage
     CtrlFun   CtrlCs = new CtrlFun();
     DTFun     DTCs   = new DTFun();
     ReportFun RepCs  = new ReportFun();
-
-    string appDirectory = HttpContext.Current.Server.MapPath(string.Empty);
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void Page_Load(object sender, EventArgs e)
     {
         //StiWebViewerFxOptions.Toolbar.ShowOpenButton = false;
         //StiWebViewerFxOptions.Toolbar.ShowSaveButton = false;
-
+ 
         try
         {
             /*** Fill Session ************************************/

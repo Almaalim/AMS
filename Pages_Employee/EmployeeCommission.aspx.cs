@@ -152,6 +152,7 @@ public partial class EmployeeCommission : BasePage
     {
         try
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             if (!string.IsNullOrEmpty(txtID.Text)) { ProCs.EvrID = txtID.Text; }
 
             ProCs.EmpIDs = txtEmpID.Text;

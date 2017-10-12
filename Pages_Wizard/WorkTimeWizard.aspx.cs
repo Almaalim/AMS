@@ -229,7 +229,7 @@ public partial class WorkTimeWizard : BasePage
         try
         {
             if (!Page.IsValid) { return; }
-
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             DataTable EmployeeInsertdt = ucEmployeeSelected.EmpSelected;
             
             if (!DBCs.IsNullOrEmpty(EmployeeInsertdt))

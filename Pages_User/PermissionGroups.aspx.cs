@@ -151,6 +151,7 @@ public partial class PermissionGroups : BasePage
     {
         try
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             if (!string.IsNullOrEmpty(txtGrpID.Text)) { ProCs.GrpID = txtGrpID.Text; }
             ProCs.GrpNameEn      = txtGroupNameEn.Text;
             ProCs.GrpNameAr      = txtGroupNameArb.Text;

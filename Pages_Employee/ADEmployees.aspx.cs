@@ -145,7 +145,7 @@ public partial class ADEmployees : BasePage
         try
         {
             if (!CtrlCs.PageIsValid(this, vsSave)) { return; }
-
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             DataTable ADDT = (DataTable)ViewState["grdDataDT"];
             DataRow[] DRs = ADDT.Select("EmpADUser <> '' OR EmpADUser IS NOT NULL");
 

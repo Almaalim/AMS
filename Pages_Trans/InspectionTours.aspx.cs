@@ -166,6 +166,7 @@ public partial class InspectionTours : BasePage
     {
         try
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             if (!string.IsNullOrEmpty(txtItmNameEn_WZ.Text)) { ProCs.ItmNameEn = txtItmNameEn_WZ.Text; }
             if (!string.IsNullOrEmpty(txtItmNameAr_WZ.Text)) { ProCs.ItmNameAr = txtItmNameAr_WZ.Text; }
             ProCs.ItmDate = calItmDate_WZ.getGDateDBFormat();

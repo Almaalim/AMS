@@ -26,6 +26,7 @@ public class MachineSql : DataLayerBase
         
         try
         {
+            //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             Sqlcmd.Parameters.Add(new SqlParameter("@MacID"        , IntDB, 10, OU, false, 0, 0, "", DRV, Pro.MacID));
             Sqlcmd.Parameters.Add(new SqlParameter("@MtpID"        , IntDB, 10, IN, false, 0, 0, "", DRV, Pro.MtpID));
             Sqlcmd.Parameters.Add(new SqlParameter("@MacNo"        , IntDB, 10, IN, false, 0, 0, "", DRV, Pro.MacNo));            
@@ -34,7 +35,7 @@ public class MachineSql : DataLayerBase
             Sqlcmd.Parameters.Add(new SqlParameter("@MacIP"        , VchDB, 15, IN, false, 0, 0, "", DRV, Pro.MacIP));
             Sqlcmd.Parameters.Add(new SqlParameter("@MacPort"      , VchDB, 5,  IN, false, 0, 0, "", DRV, Pro.MacPort));
             Sqlcmd.Parameters.Add(new SqlParameter("@MacTransactionType", VchDB, 5,  IN, false, 0, 0, "", DRV, Pro.MacTransactionType));
-            Sqlcmd.Parameters.Add(new SqlParameter("@MacInstallDate", DtDB,  20, IN, false, 0, 0, "", DRV, Pro.MacInstallDate));
+            Sqlcmd.Parameters.Add(new SqlParameter("@MacInstallDate", DtDB,  14, IN, false, 0, 0, "", DRV, Pro.MacInstallDate));
             Sqlcmd.Parameters.Add(new SqlParameter("@MacInOutType"  , IntDB, 10, IN, false, 0, 0, "", DRV, Pro.MacInOutType));
             Sqlcmd.Parameters.Add(new SqlParameter("@MacStatus"     , BitDB, 1,  IN, false, 0, 0, "", DRV, Pro.MacStatus));
 

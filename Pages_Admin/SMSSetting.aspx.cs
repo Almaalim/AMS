@@ -82,6 +82,7 @@ public partial class SMSSetting : BasePage
     {
         try
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             ProCs.SmsGateway  = txtSmsGateway.Text;
             ProCs.SmsSenderID = txtSmsSenderID.Text;
             if (!string.IsNullOrEmpty(txtSmsSenderNo.Text)) { ProCs.SmsSenderNo = txtSmsSenderNo.Text; }

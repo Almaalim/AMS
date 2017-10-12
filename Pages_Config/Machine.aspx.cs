@@ -183,6 +183,7 @@ public partial class Machine : BasePage
     {
         try
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             if (!string.IsNullOrEmpty(txtID.Text)) { ProCs.MacID = txtID.Text; }
             ProCs.MtpID = ddlMacType.SelectedValue;
 

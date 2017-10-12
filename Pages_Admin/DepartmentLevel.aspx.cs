@@ -64,6 +64,7 @@ public partial class DepartmentLevel : BasePage
     {
         try
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             //ProCs.DplIDs     = ViewState["DplIDs"].ToString();
             ProCs.DplNameArs = ViewState["DplNameArs"].ToString();
             ProCs.DplNameEns = ViewState["DplNameEns"].ToString();

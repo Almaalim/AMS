@@ -170,6 +170,7 @@ public partial class AppendingTransactions : BasePage
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             ProCs.EmpIDs     = txtEmpID.Text;
             ProCs.TrnDate    = calDate.getGDateDBFormat();
+            ProCs.TransactionBy = pgCs.LoginID;
 
             if (Type == "IN")
             {

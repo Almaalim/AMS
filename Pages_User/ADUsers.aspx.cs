@@ -110,6 +110,7 @@ public partial class ADUsers : BasePage
     {
         try
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             if (!CtrlCs.PageIsValid(this, vsSave)) { return; }
              
             DataTable ADDT = (DataTable)ViewState["grdDataDT"];

@@ -246,6 +246,7 @@ public partial class EmployeeMaster : BasePage
     {
         try
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             ProCs.EmpID         = txtEmployeeID.Text;
             ProCs.EmpNameAr     = txtEmpNameAr.Text;
             ProCs.EmpNameEn     = txtEmpNameEn.Text;

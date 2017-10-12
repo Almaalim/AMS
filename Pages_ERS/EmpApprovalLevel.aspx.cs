@@ -626,6 +626,7 @@ public partial class EmpApprovalLevel : BasePage
     {
         try
         {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             string commandName = Convert.ToString(ViewState["CommandName"]);
             if (commandName == string.Empty) { return; }
             if (!Page.IsValid) { return; }

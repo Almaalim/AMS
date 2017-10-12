@@ -99,7 +99,7 @@ public partial class EmployeeAttendanceRules : BasePage
         {
             //string commandName = ViewState["CommandName"].ToString();
             //if (commandName == string.Empty) { return; }
-
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             if (!CtrlCs.PageIsValid(this, vsSave)) { return; }
 
             DataTable EmployeeInsertdt = ucEmployeeSelected.EmpSelected;
