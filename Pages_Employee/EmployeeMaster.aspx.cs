@@ -489,7 +489,7 @@ public partial class EmployeeMaster : BasePage
 
             if (!MailCs.FillEmailSetting()) 
             { 
-                CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Validation, General.Msg("Not to enter the e-mail settings, you can not modify the password", "لم يتم إدخال إعدادات لبريد الالكتروني,لا يمكن تعديل كلمة المرور"));
+                CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Validation, General.Msg("Not to enter the e-mail settings, you can not modify the password", "لم يتم إدخال إعدادات البريد الالكتروني,لا يمكن تعديل كلمة المرور"));
                 return; 
             }
              

@@ -295,8 +295,8 @@ public partial class InspectionTours : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void SendSMS(string ID, string from, string to, string EmpIDs)
     {
-        string msgEn = "عزيزي الموظف ,يجب أن تقوم بإثبات وجودك من الساعة " + from + " إلى الساعة " +  to;
-        string msgAr = "Dear employee, you must prove your presence from the hour " + from + " to hour " +  to;
+        string msgAr = "عزيزي الموظف ,يجب أن تقوم بإثبات وجودك من الساعة " + from + " إلى الساعة " +  to;
+        string msgEn = "Dear employee, you must prove your presence from the hour " + from + " to hour " +  to;
 
         string res = SmsSendCs.SendSMS(msgEn, msgAr, EmpIDs);
         if (res == "1")

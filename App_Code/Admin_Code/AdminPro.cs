@@ -107,6 +107,26 @@ public class AdminPro
     public string DplNameEns { get { return _DplNameEns; } set { if (_DplNameEns != value) { _DplNameEns = value; } } }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     /* ImportSetting */
+    bool _IpsRunProcess;
+    public bool IpsRunProcess { get { return _IpsRunProcess; } set { if (_IpsRunProcess != value) { _IpsRunProcess = value; } } }
+
+    bool _IpsRunTodayProcess;
+    public bool IpsRunTodayProcess { get { return _IpsRunTodayProcess; } set { if (_IpsRunTodayProcess != value) { _IpsRunTodayProcess = value; } } }
+
+    bool _IpsSaveTransInFile;
+    public bool IpsSaveTransInFile { get { return _IpsSaveTransInFile; } set { if (_IpsSaveTransInFile != value) { _IpsSaveTransInFile = value; } } }
+
+    bool _IpsEncryptTransInFile;
+    public bool IpsEncryptTransInFile { get { return _IpsEncryptTransInFile; } set { if (_IpsEncryptTransInFile != value) { _IpsEncryptTransInFile = value; } } }
+
+    string _IpsImportScheduleTimes;
+    public string IpsImportScheduleTimes { get { return _IpsImportScheduleTimes; } set { if (_IpsImportScheduleTimes != value) { _IpsImportScheduleTimes = value; } } }
+
+    string _IpsProcessScheduleTimes;
+    public string IpsProcessScheduleTimes { get { return _IpsProcessScheduleTimes; } set { if (_IpsProcessScheduleTimes != value) { _IpsProcessScheduleTimes = value; } } }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private string _TransactionBy;
     public string TransactionBy { get { return _TransactionBy; } set { _TransactionBy = value; } }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

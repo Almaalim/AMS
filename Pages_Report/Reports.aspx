@@ -293,11 +293,12 @@
         if (dev1 != '') { document.getElementById(dev1).style.visibility = 'hidden'; document.getElementById(dev1).style.display = 'none'; }
         if (dev2 != '') { document.getElementById(dev2).style.visibility = 'hidden'; document.getElementById(dev2).style.display = 'none'; }
         if (dev3 != '') { document.getElementById(dev3).style.visibility = 'hidden'; document.getElementById(dev3).style.display = 'none'; }
+        //document.getElementById('<%= hdnShow.ClientID %>').value = null;
     }
 
     </script>
 
-    <asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Conditional">
+    <asp:UpdatePanel ID="UpdatePanel3" runat="server">
         <Triggers>
             <asp:PostBackTrigger ControlID="btnEditReport" />
             <asp:PostBackTrigger ControlID="btnExportRecord" />
@@ -305,6 +306,7 @@
         <ContentTemplate>
             <div class="row">
                 <div class="col12">
+                    <asp:HiddenField ID="hdnShow" runat="server" />
                     <asp:Label ID="lblTitleReport" runat="server"  meta:resourcekey="lblTitleReportResource1" CssClass="h4"></asp:Label>
                 </div>
             </div>
@@ -341,7 +343,7 @@
             <%--Popup--%>
             <div id="DivPopup" class="popup" data-popup="popup-1" runat="server">  
                 <div class="popup-inner">
-                    <a class="popup-close" data-popup-close="popup-1" href="#" onclick="hidePopup('ctl00_ContentPlaceHolder1_DivPopup','','')">x</a>
+                    <a class="popup-close" data-popup-close="popup-1" href="#" onclick="hidePopup('ctl00_ContentPlaceHolder1_DivPopup','ctl00_ContentPlaceHolder1_pnlDate','ctl00_ContentPlaceHolder1_pnlDateFromTo')">x</a>
                     <div class="popup-wrap">
                     <div class="row">
                         <div class="col12">
@@ -614,8 +616,7 @@
                         <asp:Panel ID="pnlEmployee" runat="server" meta:resourcekey="pnlUsersResource1">
                             <div class="row">
                                 <div class="col12">
-                                    <ucEmp:EmployeeSelectedVertical ID="ucEmployeeSelected" runat="server" ValidationGroupName="vgShow"
-                                        ClientIDMode="Inherit" />
+                                    <ucEmp:EmployeeSelectedVertical ID="ucEmployeeSelected" runat="server" ValidationGroupName="vgShow"/>
                                 </div>
                             </div>
                         </asp:Panel>

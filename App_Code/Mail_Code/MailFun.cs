@@ -34,6 +34,9 @@ public class MailFun
         
     bool _EmailCredential;
     public bool EmailCredential { get { return _EmailCredential; } set { _EmailCredential = value; } }
+    
+    string _EmlWFUrl;
+    public string EmlWFUrl { get { return _EmlWFUrl; } set { _EmlWFUrl = value; } }
 
     string _CalendarType;
     public string CalendarType { get { return _CalendarType; } set { _CalendarType = value; } }
@@ -64,6 +67,7 @@ public class MailFun
                     if (DT.Rows[0]["EmlSenderPassword"] != DBNull.Value) { SenderEmailPass = CryptorEngine.Decrypt(DT.Rows[0]["EmlSenderPassword"].ToString(), true); }
                     if (DT.Rows[0]["EmlSsl"]            != DBNull.Value) { EmailSsl        = Convert.ToBoolean(DT.Rows[0]["EmlSsl"]); }
                     if (DT.Rows[0]["EmlCredential"]     != DBNull.Value) { EmailCredential = Convert.ToBoolean(DT.Rows[0]["EmlCredential"]); } 
+                    if (DT.Rows[0]["EmlWFUrl"]          != DBNull.Value) { EmlWFUrl        = DT.Rows[0]["EmlWFUrl"].ToString(); } 
                 }
                 else { return false; }
                 
@@ -120,7 +124,7 @@ public class MailFun
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public string CreateBodyMail(string BodyTemp, string[] PKList, DataRow DR, string CalendarType) 
+    public string CreateBodyMail(string BodyTemp, string[] PKList, DataRow DR, string CalendarType, string URL) 
     {
         string Body = BodyTemp;
 
@@ -128,7 +132,7 @@ public class MailFun
         {
             if (!string.IsNullOrEmpty(Body))
             {
-                if (Body.IndexOf("[VAL_AMSURL]")     > 0) { Body = Body.Replace("[VAL_AMSURL]", "http://50.62.35.11/WFAlmaalim/Login.aspx"); }
+                if (Body.IndexOf("[VAL_AMSURL]")     > 0) { Body = Body.Replace("[VAL_AMSURL]", URL); }
                 if (Body.IndexOf("[MONTHAR_NAMEAR]") > 0) { Body = Body.Replace("[MONTHAR_NAMEAR]", DTCs.GetMonthName(CalendarType, "AR")); }
                 if (Body.IndexOf("[MONTHAR_NAMEEN]") > 0) { Body = Body.Replace("[MONTHAR_NAMEEN]", DTCs.GetMonthName(CalendarType, "EN")); }
 

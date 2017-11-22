@@ -240,7 +240,7 @@ public partial class ExcuseRequest2 : BasePage
 
     protected void MaxTime_ServerValidate(Object source, ServerValidateEventArgs e)
     {
-        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+        //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
         string ReqSum = "";
         string GapSum = "";
         try
@@ -249,8 +249,20 @@ public partial class ExcuseRequest2 : BasePage
             {
                 if (!string.IsNullOrEmpty(calStartDate.getGDate()) && ddlExcType.SelectedIndex >0 )
                 {
-                    string Month = DTCs.GetGDatePart("M", calStartDate.getGDate(), pgCs.DateFormat);
-                    string Year  = DTCs.GetGDatePart("Y", calStartDate.getGDate(), pgCs.DateFormat);
+                    string Month = "";
+                    string Year  = "";
+
+                    if (pgCs.DateType == "Hijri")
+                    {
+                        Month = DTCs.GetHDatePart("M", calStartDate.getGDate(), pgCs.DateFormat);
+                        Year  = DTCs.GetHDatePart("Y", calStartDate.getGDate(), pgCs.DateFormat);
+                    }
+                    else
+                    {
+                        Month = DTCs.GetGDatePart("M", calStartDate.getGDate(), pgCs.DateFormat);
+                        Year  = DTCs.GetGDatePart("Y", calStartDate.getGDate(), pgCs.DateFormat);
+                    }
+                    
                     
                     DateTime SDate = DateTime.Now;
                     DateTime EDate = DateTime.Now;

@@ -2,7 +2,7 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
-<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+<asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" >
     <ContentTemplate>
         <div runat="server" id="MainTable">
 
@@ -34,7 +34,7 @@
                     <div class="row" id="divAllEmp" runat="server" visible="false">
                         <div class="col12">
                             <asp:RadioButton ID="rdoSelectAll" runat="server" Text="Select All Employess" GroupName="SelectOption" AutoPostBack="True"
-                                OnCheckedChanged="rdoSelectAll_CheckedChanged" meta:resourcekey="rdoSelectAllResource1" />
+                                OnCheckedChanged="rdoSelectAll_CheckedChanged" meta:resourcekey="rdoSelectAllResource1"  />
                         </div>
                     </div>
                     <div class="row">

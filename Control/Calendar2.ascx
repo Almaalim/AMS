@@ -126,10 +126,10 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <asp:Calendar ID="CalDate" runat="server" BackColor="White" Width="265px" DayNameFormat="FirstLetter"
+                                    <asp:Calendar ID="CalDate" runat="server" BackColor="White" Width="265px" DayNameFormat="Short"
                                         ForeColor="Black" Height="160px" Font-Size="8pt" Font-Names="Verdana" BorderColor="#CCCCCC"
                                         CellPadding="4" OnSelectionChanged="CalDate_SelectionChanged" 
-                                        ShowNextPrevMonth="False" ShowTitle="False">
+                                        ShowNextPrevMonth="False" ShowTitle="False" FirstDayOfWeek="Sunday" OnDayRender="CalDate_DayRender">
                                         <TodayDayStyle ForeColor="Black" BackColor="#CCCCCC"></TodayDayStyle>
                                         <SelectorStyle BackColor="#CCCCCC"></SelectorStyle>
                                         <NextPrevStyle VerticalAlign="Bottom"></NextPrevStyle>

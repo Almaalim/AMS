@@ -350,8 +350,8 @@ public partial class EmployeeSelectedVertical : System.Web.UI.UserControl
     protected void rdoSelectByID_CheckedChanged(object sender, EventArgs e)
     {
         Clear(false);
-        txtSearchByID.Enabled   = true;   txtSearchByID.Text   = "";
-        txtSearchByName.Enabled = false;  txtSearchByName.Text = "";
+        txtSearchByID.Enabled = true; txtSearchByID.Text = "";
+        txtSearchByName.Enabled = false; txtSearchByName.Text = "";
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

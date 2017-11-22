@@ -80,7 +80,7 @@ public class Mail_WS : System.Web.Services.WebService
                 DataTable DDT = DBCs.FetchData(" SELECT * FROM " + MailViewName + " WHERE VAL_PKID = @P1 ", new string[] { MailJoinID });
                 if (!DBCs.IsNullOrEmpty(DDT))
                 {
-                    string body = MailCs.CreateBodyMail(MailTemp, PKList, DDT.Rows[0], MailCs.CalendarType);
+                    string body = MailCs.CreateBodyMail(MailTemp, PKList, DDT.Rows[0], MailCs.CalendarType, MailCs.EmlWFUrl);
                     ///////////////////////////////////////////////
                     string[] Emails = MailSendingToList.Split(',');
                     for (int i = 0; i < Emails.Length; i++)
@@ -166,7 +166,7 @@ public class Mail_WS : System.Web.Services.WebService
                 DataTable DDT = DBCs.FetchData(VQ);
                 foreach (DataRow DDR in DDT.Rows)
                 {
-                    string body = MailCs.CreateBodyMail(MailTemp, PKList, DDT.Rows[0], MailCs.CalendarType);
+                    string body = MailCs.CreateBodyMail(MailTemp, PKList, DDT.Rows[0], MailCs.CalendarType, MailCs.EmlWFUrl);
                     ///////////////////////////////////////////////
                     string SendTo = (MailSendType == "MGR" ? DDR["USRID"].ToString() : DDR["EMPID"].ToString()) ;
 

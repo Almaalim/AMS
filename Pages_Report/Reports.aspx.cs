@@ -55,7 +55,7 @@ public partial class Reports : BasePage
         System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(CurrentCulture);
         base.InitializeCulture();
     }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -65,11 +65,18 @@ public partial class Reports : BasePage
             pgCs.FillSession();
             /*** Fill Session ************************************/
 
-            if (ViewState["pnlshow"] != null)
+            //if (ViewState["pnlshow"] != null) 
+            if (!string.IsNullOrEmpty(hdnShow.Value)) 
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "showPopup('" + DivPopup.ClientID + "','" + pnlDate.ClientID + "','" + pnlDateFromTo.ClientID + "','" + ViewState["pnlshow"].ToString() + "');", true);
+                //string ss = hdnShow.Value;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "hidePopup('','" + pnlDate.ClientID + "','" + pnlDateFromTo.ClientID + "');", true);
+                //hdnShow.Value = ss;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "key1", "showPopup('" + DivPopup.ClientID + "','" + pnlDate.ClientID + "','" + pnlDateFromTo.ClientID + "','" + hdnShow.Value + "');", true);
             }
-
+            else
+            {
+                 ScriptManager.RegisterStartupScript(this, this.GetType(), "key33", "hidePopup('','" + pnlDate.ClientID + "','" + pnlDateFromTo.ClientID + "');", true);
+            }
 
             if (!IsPostBack)
             {
@@ -80,7 +87,7 @@ public partial class Reports : BasePage
                 if (Request.QueryString.Count != 0) { QS = "?" + Request.QueryString.ToString(); }
                 /*** get Permission    ***/
                 ViewState["ht"] = pgCs.getPerm(Request.Url.AbsolutePath + QS);
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "hidePopup('" + DivPopup.ClientID + "','" + pnlDate.ClientID + "','" + pnlDateFromTo.ClientID + "');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "key55", "hidePopup('" + DivPopup.ClientID + "','" + pnlDate.ClientID + "','" + pnlDateFromTo.ClientID + "');", true);
                 FillList();
                 /*** Common Code ************************************/
 
@@ -195,19 +202,19 @@ public partial class Reports : BasePage
         ViewState["RepID"] = Session["RepID"] = RepID;
 
         /////////////////Change Style
-        foreach (DataListItem item in dltReport.Items)
-        {
-            System.Web.UI.WebControls.LinkButton lnkRef = (System.Web.UI.WebControls.LinkButton)item.FindControl("lnkBtnEn");
-            System.Web.UI.WebControls.Image imgRef = (System.Web.UI.WebControls.Image)item.FindControl("Image1");
-            if (lnkRef != null && imgRef != null)
-            {
-                lnkRef.Font.Bold = false;
-            }
-        }
+        //foreach (DataListItem item in dltReport.Items)
+        //{
+        //    System.Web.UI.WebControls.LinkButton lnkRef = (System.Web.UI.WebControls.LinkButton)item.FindControl("lnkBtnEn");
+        //    System.Web.UI.WebControls.Image imgRef = (System.Web.UI.WebControls.Image)item.FindControl("Image1");
+        //    if (lnkRef != null && imgRef != null)
+        //    {
+        //        lnkRef.Font.Bold = false;
+        //    }
+        //}
 
-        System.Web.UI.WebControls.LinkButton lnkCurrRef = (System.Web.UI.WebControls.LinkButton)e.Item.FindControl("lnkBtnEn");
-        System.Web.UI.WebControls.Image imgCurrRef = (System.Web.UI.WebControls.Image)e.Item.FindControl("Image1");
-        lnkCurrRef.Font.Bold = true;
+        //System.Web.UI.WebControls.LinkButton lnkCurrRef = (System.Web.UI.WebControls.LinkButton)e.Item.FindControl("lnkBtnEn");
+        //System.Web.UI.WebControls.Image imgCurrRef = (System.Web.UI.WebControls.Image)e.Item.FindControl("Image1");
+        //lnkCurrRef.Font.Bold = true;
         /////////////////
         string pnlshow = "";
         Clear();
@@ -262,8 +269,10 @@ public partial class Reports : BasePage
         pnlDaysCount.Visible = CheckBitWise(RepPanels, 4096);
 
         btnEventsEnable(true);
+
+        hdnShow.Value = pnlshow;
         ViewState["pnlshow"] = pnlshow;
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "showPopup('" + DivPopup.ClientID + "','" + pnlDate.ClientID + "','" + pnlDateFromTo.ClientID + "','" + pnlshow + "');", true);
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "key22", "showPopup('" + DivPopup.ClientID + "','" + pnlDate.ClientID + "','" + pnlDateFromTo.ClientID + "','" + pnlshow + "');", true);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

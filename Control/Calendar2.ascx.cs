@@ -242,6 +242,22 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void CalDate_DayRender(object sender, DayRenderEventArgs e)
+    {
+        if (e.Day.Date.DayOfWeek == DayOfWeek.Sunday)
+        {
+            e.Cell.BackColor = System.Drawing.Color.White;
+        }
+
+        if (e.Day.Date.DayOfWeek == DayOfWeek.Friday || e.Day.Date.DayOfWeek == DayOfWeek.Saturday)
+        {
+            e.Cell.BackColor = System.Drawing.Color.LightSteelBlue;
+            
+            //e.Cell.BackColor = System.Drawing.ColorTranslator.FromHtml("#EE8A1D");
+        }        
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void CalDate_SelectionChanged(object sender, System.EventArgs e)
     {
         if (ddlLocaleChoice.SelectedValue == HCulture.Name)
@@ -280,14 +296,28 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
             if (DTType == "G")
             {
                 System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(ddlLocaleChoice.SelectedValue);
-                CalDate.TodaysDate = new DateTime(Convert.ToInt32(ddlYears.SelectedValue), Convert.ToInt32(ddlMonths.SelectedValue), 1);
-                //CalDate.SelectedDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
+
+                if (ddlYears.SelectedValue == DTCs.GDateNow("yyyy") && Convert.ToInt32(ddlMonths.SelectedValue) == Convert.ToInt32(DTCs.GDateNow("MM")))
+                {
+                    CalDate.TodaysDate = new DateTime(Convert.ToInt32(ddlYears.SelectedValue), Convert.ToInt32(ddlMonths.SelectedValue), Convert.ToInt32(DTCs.GDateNow("dd")));
+                }
+                else
+                {
+                    CalDate.TodaysDate = new DateTime(Convert.ToInt32(ddlYears.SelectedValue), Convert.ToInt32(ddlMonths.SelectedValue), 1);
+                }
             }
             else if (DTType == "H")
             {
                 System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(ddlLocaleChoice.SelectedValue);
-                CalDate.TodaysDate = new DateTime(Convert.ToInt32(ddlYears.SelectedValue), Convert.ToInt32(ddlMonths.SelectedValue), 1, Umq);
-                //CalDate.SelectedDate = new DateTime(Convert.ToInt32(ddlYears.SelectedValue), Convert.ToInt32(ddlMonths.SelectedValue), 1, Umq);
+                
+                if (ddlYears.SelectedValue == DTCs.HDateNow("yyyy") && Convert.ToInt32(ddlMonths.SelectedValue) == Convert.ToInt32(DTCs.HDateNow("MM")))
+                {
+                    CalDate.TodaysDate = new DateTime(Convert.ToInt32(ddlYears.SelectedValue), Convert.ToInt32(ddlMonths.SelectedValue), Convert.ToInt32(DTCs.HDateNow("dd")), Umq);
+                }
+                else
+                {
+                    CalDate.TodaysDate = new DateTime(Convert.ToInt32(ddlYears.SelectedValue), Convert.ToInt32(ddlMonths.SelectedValue), 1, Umq);
+                }
             }
         }
         catch (Exception ex) { }

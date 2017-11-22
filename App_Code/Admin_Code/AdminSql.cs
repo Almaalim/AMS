@@ -185,4 +185,38 @@ public class AdminSql : DataLayerBase
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public bool ImportSetting_InsertUpdate(AdminPro Pro)
+    {
+        SqlCommand Sqlcmd = new SqlCommand("dbo.[ImportSetting_InsertUpdate]", MainConnection);
+        Sqlcmd.CommandType = CommandType.StoredProcedure;
+        
+        try
+        {
+            Sqlcmd.Parameters.Add(new SqlParameter("@IpsRunProcess"          , BitDB, 1   , IN, false, 0, 0, "", DRV, Pro.IpsRunProcess));
+            Sqlcmd.Parameters.Add(new SqlParameter("@IpsRunTodayProcess"     , BitDB, 1   , IN, false, 0, 0, "", DRV, Pro.IpsRunTodayProcess));
+            Sqlcmd.Parameters.Add(new SqlParameter("@IpsSaveTransInFile"     , BitDB, 1   , IN, false, 0, 0, "", DRV, Pro.IpsSaveTransInFile));
+            Sqlcmd.Parameters.Add(new SqlParameter("@IpsEncryptTransInFile"  , BitDB, 1   , IN, false, 0, 0, "", DRV, Pro.IpsEncryptTransInFile));
+            Sqlcmd.Parameters.Add(new SqlParameter("@IpsImportScheduleTimes" , VchDB, 8000, IN, false, 0, 0, "", DRV, Pro.IpsImportScheduleTimes));
+            Sqlcmd.Parameters.Add(new SqlParameter("@IpsProcessScheduleTimes", VchDB, 8000, IN, false, 0, 0, "", DRV, Pro.IpsProcessScheduleTimes));
+           
+            Sqlcmd.Parameters.Add(new SqlParameter("@IsExecute"    , IntDB, 10, OU, false, 0, 0, "", DRV, 0));
+            Sqlcmd.Parameters.Add(new SqlParameter("@TransactionBy", VchDB, 15, IN, false, 0, 0, "", DRV, Pro.TransactionBy));
+            
+            MainConnection.Open();
+            Sqlcmd.ExecuteNonQuery();
+            if (Convert.ToInt32(Sqlcmd.Parameters["@IsExecute"].Value) == -1) { throw new Exception(General.ProcedureMsg(), null); }
+            return true; 
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message, ex);
+        }
+        finally
+        {
+            MainConnection.Close();
+            Sqlcmd.Dispose();
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

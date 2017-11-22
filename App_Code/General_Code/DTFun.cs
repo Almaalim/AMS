@@ -677,6 +677,38 @@ public class DTFun
 	}
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public string GetHDatePart(string part, string date, string format) // part = D,M,Y
+	{
+		if (date.Length <= 0)
+		{	
+			cur.Trace.Warn("Format :Date String is Empty");
+			return "";
+		}
+		try
+		{
+            string HD = GregToHijri(date, format);
+
+            string[] Dates = HD.Split('/');
+            string Y = Dates[2];
+            string M = Dates[1];
+            string D = Dates[0];
+
+			//DateTime tempDate = DateTime.ParseExact(date,allFormats,arCul.DateTimeFormat,DateTimeStyles.AllowWhiteSpaces);
+            if      (part == "D") { return Dates[0]; }
+            else if (part == "M") { return Dates[1]; }
+            else if (part == "Y") { return Dates[2]; }
+            
+            return "";
+							
+		}
+		catch (Exception ex)
+		{
+			cur.Trace.Warn("Date :\n"+ex.Message);
+			return "";
+		}
+	}
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public DateTime ConvertToDatetime(string Date, string DateType)
 	{
         System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");

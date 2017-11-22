@@ -118,7 +118,7 @@ public partial class AttendanceList : BasePage
             Session["AttendanceListYear"]  = pYear.ToString();
 
             //Literal1.Text = General.Msg("Attendance List : ", "الحضور : ") + pMonth.ToString("00") + "/" + pYear.ToString();
-
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             GregorianCalendar Grn = new GregorianCalendar();
             UmAlQuraCalendar Umq = new UmAlQuraCalendar();
             DataTable MonthDT = EmptyMonthTable();
@@ -156,39 +156,83 @@ public partial class AttendanceList : BasePage
 
                 if (i == 1) { Session["AttendanceListStartDate"] = GDate; }
                 //////////////////////////////////////////////////////////////////
-                MonthRow = MonthDT.NewRow();
-                MonthRow["DayName"]  = General.Msg(dayNameEn,dayNameAr);
-                MonthRow["DayGDate"] = GDate;
-                MonthRow["DayHDate"] = HDate;
-
                 if (!DBCs.IsNullOrEmpty(DT))
                 {
-                    DataRow[] DRs = DT.Select("DsmDate = '" + GDateDT + "'");
+                    //string d = GDateDT.ToString("MM/dd/yyyy hh:mm:ss tt");
+                    DataRow[] DRs = DT.Select("DsmDate = '" + GDateDT.ToString("MM/dd/yyyy hh:mm:ss tt") + "'");
                     if (DRs.Length > 0)
                     {
-                        MonthRow["SsmShift"]     = DRs[0]["SsmShift"].ToString();
-                        MonthRow["SsmPunchIn"]   = DisplayFun.GrdDisplayTime(DRs[0]["SsmPunchIn"]);
-                        MonthRow["SsmPunchOut"]  = DisplayFun.GrdDisplayTime(DRs[0]["SsmPunchOut"]);
-                        MonthRow["SsmBeginLate"] = DRs[0]["SsmBeginLate"].ToString();
-                        MonthRow["SsmOutEarly"]  = DRs[0]["SsmOutEarly"].ToString();
-                        MonthRow["SsmGapDur_MG"] = DRs[0]["SsmGapDur_MG"].ToString();
-                        MonthRow["AnyStatus"]    = DRs[0]["AnyStatus"].ToString();
-                        MonthRow["AnyExcID"]     = DRs[0]["AnyExcID"].ToString();
+                        //string dd = DRs[0]["DsmDate"].ToString();
+
+                        foreach(DataRow DR in DRs)
+                        { 
+                            MonthRow = MonthDT.NewRow();
+                            MonthRow["DayName"] = General.Msg(dayNameEn,dayNameAr);
+                            MonthRow["DayGDate"] = GDate;
+                            MonthRow["DayHDate"] = HDate;
+
+                            MonthRow["SsmShift"]     = DR["SsmShift"].ToString();
+                            MonthRow["SsmPunchIn"]   = DisplayFun.GrdDisplayTime(DR["SsmPunchIn"]);
+                            MonthRow["SsmPunchOut"]  = DisplayFun.GrdDisplayTime(DR["SsmPunchOut"]);
+                            MonthRow["SsmBeginLate"] = DR["SsmBeginLate"].ToString();
+                            MonthRow["SsmOutEarly"]  = DR["SsmOutEarly"].ToString();
+                            MonthRow["SsmGapDur_MG"] = DR["SsmGapDur_MG"].ToString();
+                            MonthRow["AnyStatus"]    = DR["AnyStatus"].ToString();
+                            MonthRow["AnyExcID"]     = DR["AnyExcID"].ToString();
+
+                            string[] StatusValue1 = FindStatusValue(DT, GDateDT, DR["SsmShift"].ToString(), TodayDate, ReqPermVac || ReqPermCom || ReqPermJob, ReqPermESH);
+                            MonthRow["Status"]     = StatusValue1[0];
+                            MonthRow["StatusName"] = StatusValue1[1];
+                            MonthRow["SVisible"]   = StatusValue1[2];
+                            MonthRow["SEnabled"]   = StatusValue1[3];
+                            MonthRow["SImage"]     = StatusValue1[4];
+                            MonthRow["SToolTip"]   = StatusValue1[5];
+                            MonthRow["RVisible"]   = StatusValue1[6];
+                            MonthRow["RImage"]     = StatusValue1[7];
+
+                            MonthDT.Rows.Add(MonthRow);
+                            MonthDT.AcceptChanges();
+                        }
+                    }
+                    else
+                    {
+                        string[] StatusValue = FindStatusValue(DT, GDateDT, "", TodayDate, ReqPermVac || ReqPermCom || ReqPermJob, ReqPermESH);
+                        MonthRow = MonthDT.NewRow();
+                        MonthRow["DayName"]  = General.Msg(dayNameEn,dayNameAr);
+                        MonthRow["DayGDate"] = GDate;
+                        MonthRow["DayHDate"] = HDate;
+                        MonthRow["Status"]     = StatusValue[0];
+                        MonthRow["StatusName"] = StatusValue[1];
+                        MonthRow["SVisible"]   = StatusValue[2];
+                        MonthRow["SEnabled"]   = StatusValue[3];
+                        MonthRow["SImage"]     = StatusValue[4];
+                        MonthRow["SToolTip"]   = StatusValue[5];
+                        MonthRow["RVisible"]   = StatusValue[6];
+                        MonthRow["RImage"]     = StatusValue[7];
+
+                        MonthDT.Rows.Add(MonthRow);
+                        MonthDT.AcceptChanges();
                     }
                 }
+                else
+                {
+                    string[] StatusValue = FindStatusValue(DT, GDateDT, "", TodayDate, ReqPermVac || ReqPermCom || ReqPermJob, ReqPermESH);
+                    MonthRow = MonthDT.NewRow();
+                    MonthRow["DayName"]  = General.Msg(dayNameEn,dayNameAr);
+                    MonthRow["DayGDate"] = GDate;
+                    MonthRow["DayHDate"] = HDate;
+                    MonthRow["Status"]     = StatusValue[0];
+                    MonthRow["StatusName"] = StatusValue[1];
+                    MonthRow["SVisible"]   = StatusValue[2];
+                    MonthRow["SEnabled"]   = StatusValue[3];
+                    MonthRow["SImage"]     = StatusValue[4];
+                    MonthRow["SToolTip"]   = StatusValue[5];
+                    MonthRow["RVisible"]   = StatusValue[6];
+                    MonthRow["RImage"]     = StatusValue[7];
 
-                string[] StatusValue = FindStatusValue(DT, GDateDT, TodayDate, ReqPermVac || ReqPermCom || ReqPermJob, ReqPermESH);
-                MonthRow["Status"]     = StatusValue[0];
-                MonthRow["StatusName"] = StatusValue[1];
-                MonthRow["SVisible"]   = StatusValue[2];
-                MonthRow["SEnabled"]   = StatusValue[3];
-                MonthRow["SImage"]     = StatusValue[4];
-                MonthRow["SToolTip"]   = StatusValue[5];
-                MonthRow["RVisible"]   = StatusValue[6];
-                MonthRow["RImage"]     = StatusValue[7];
-
-                MonthDT.Rows.Add(MonthRow);
-                MonthDT.AcceptChanges();
+                    MonthDT.Rows.Add(MonthRow);
+                    MonthDT.AcceptChanges();
+                }
                 //////////////////////////////////////////////////////////////////
             }     
             Session["MonthDT"] = (DataTable)MonthDT;
@@ -223,15 +267,17 @@ public partial class AttendanceList : BasePage
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public string[] FindStatusValue(DataTable DT,DateTime GDayDate, DateTime TodayDate, bool VacPerm, bool ESHPerm)
-    {
+    public string[] FindStatusValue(DataTable DT,DateTime GDayDate, string ShiftID, DateTime TodayDate, bool VacPerm, bool ESHPerm)
+    { 
         try
         {
             bool isFind = false;
             //MonthRow["Status"],MonthRow["StatusName"],MonthRow["SVisible"],MonthRow["SEnabled"],MonthRow["SImage"],MonthRow["SToolTip"],MonthRow["RVisible"],MonthRow["RImage"]
             if (!DBCs.IsNullOrEmpty(DT))
             {
-                DataRow[] DRs = DT.Select("DsmDate = '" + GDayDate + "'");
+                string ShiftCon = !string.IsNullOrEmpty(ShiftID) ? " SsmShift = " + ShiftID + "" : " SsmShift IS NULL ";
+
+                DataRow[] DRs = DT.Select("DsmDate = '" + GDayDate.ToString("MM/dd/yyyy hh:mm:ss tt") + "' AND " + ShiftCon);
                 if (DRs.Count() > 0)
                 {
                     isFind = true;

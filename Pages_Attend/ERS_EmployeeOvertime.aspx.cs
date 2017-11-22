@@ -96,7 +96,7 @@ public partial class ERS_EmployeeOvertime : BasePage
             StringBuilder FQ = new StringBuilder();
             FQ.Append(MainQuery);
             FQ.Append(" AND OvtDate BETWEEN @SDate AND @EDate ");
-            //FQ.Append(" ORDER BY OvtDate,OvtShift,OvtStartTime ");
+            FQ.Append(" ORDER BY OvtDate,OvtShift,OvtStartTime ");
                 
             cmd.Parameters.AddWithValue("@SDate", SDate);
             cmd.Parameters.AddWithValue("@EDate", EDate);

@@ -45,8 +45,6 @@ public class SMSSendFun
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public string SendMessage(string username, string password, string msg, string sender, string numbers)
     {
-        //int temp = '0';
-
         HttpWebRequest req = (HttpWebRequest)
         WebRequest.Create("http://www.mobily.ws/api/msgSend.php");
         req.Method = "POST";
@@ -58,7 +56,7 @@ public class SMSSendFun
         stOut.Write(postData);
         stOut.Close();
         // Do the request to get the response
-        string strResponse;
+        string strResponse = "";
         StreamReader stIn = new StreamReader(req.GetResponse().GetResponseStream());
         strResponse = stIn.ReadToEnd();
         stIn.Close();
