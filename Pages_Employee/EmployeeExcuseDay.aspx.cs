@@ -35,7 +35,7 @@ public partial class EmployeeExcuseDay : BasePage
             pgCs.FillSession(); 
             CtrlCs.RefreshGridEmpty(ref grdData);
             /*** Fill Session ************************************/
-            
+
             MainQuery = "SELECT * FROM EmployeeExcuseDayRelInfoView WHERE DepID IN (" + pgCs.DepList + ") ";
 
             if (!IsPostBack)
@@ -44,9 +44,10 @@ public partial class EmployeeExcuseDay : BasePage
                 /*** Check AMS License ***/ pgCs.CheckAMSLicense();  
                 /*** get Permission    ***/ ViewState["ht"] = pgCs.getPerm(Request.Url.AbsolutePath);  
                 BtnStatus("1000");
-                UIEnabled(false);
+                UIEnabled(false);   
                 UILang();
-                FillGrid(new SqlCommand(MainQuery));
+                //FillGrid(new SqlCommand(MainQuery));
+                CtrlCs.FillGridEmpty(ref grdData, 50); 
                 FillList();
                 ViewState["CommandName"] = "";
                 /*** Common Code ************************************/
@@ -312,7 +313,7 @@ public partial class EmployeeExcuseDay : BasePage
                         pagerTable.Rows[0].Cells.Add(CtrlCs.PagerCell(_ddlPager));
                         break;
                     }
-                 default:
+                default:
                     {
                         e.Row.Cells[1].Visible = false; //To hide ID column in grid view
                         break;
@@ -327,7 +328,7 @@ public partial class EmployeeExcuseDay : BasePage
     {
         grdData.PageSize = int.Parse(((DropDownList)sender).SelectedValue);
         grdData.PageIndex = 0;
-        btnFilter_Click(null,null);
+        btnFilter_Click(null, null);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -341,7 +342,10 @@ public partial class EmployeeExcuseDay : BasePage
                     {
                         ImageButton delBtn = (ImageButton)e.Row.FindControl("imgbtnDelete");
                         Hashtable ht = (Hashtable)ViewState["ht"];
-                        if (ht.ContainsKey("Delete")) { delBtn.Enabled = true; } else { delBtn.Enabled = false; }
+                        if (ht.ContainsKey("Delete"))
+                        { delBtn.Enabled = true; }
+                        else
+                        { delBtn.Enabled = false; }
                         delBtn.Attributes.Add("OnClick", CtrlCs.ConfirmDeleteMsg());
                         e.Row.Attributes["onclick"] = ClientScript.GetPostBackClientHyperlink(this.grdData, "Select$" + e.Row.RowIndex);
                         break;
@@ -367,10 +371,10 @@ public partial class EmployeeExcuseDay : BasePage
                         CtrlCs.ShowDelMsg(this, false);
                         return;
                     }
-                    
+
                     SqlCs.Day_Delete_WithUpdateSummary(ID, pgCs.LoginID);
 
-                    btnFilter_Click(null,null);
+                    btnFilter_Click(null, null);
 
                     CtrlCs.ShowDelMsg(this, true);
                     break;
@@ -438,7 +442,7 @@ public partial class EmployeeExcuseDay : BasePage
     {
         grdData.PageIndex = e.NewPageIndex;
         grdData.SelectedIndex = -1;
-        btnFilter_Click(null,null);
+        btnFilter_Click(null, null);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

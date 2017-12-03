@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="Employee Excuse (Day)" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true"
-    CodeFile="EmployeeExcuseDay.aspx.cs" Inherits="EmployeeExcuseDay" meta:resourcekey="PageResource1" %>
+    CodeFile="EmployeeExcuseDay.aspx.cs" Inherits="EmployeeExcuseDay" meta:resourcekey="PageResource1" Culture="auto" UICulture="auto"  %>
 
 <%@ Register Assembly="TimePickerServerControl" Namespace="TimePickerServerControl" TagPrefix="Almaalim" %>
 <%@ Register Assembly="System.Web.DynamicData, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.DynamicData" TagPrefix="cc1" %>
