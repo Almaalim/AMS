@@ -1254,7 +1254,7 @@ body.loginPage > #aspnetForm {
 }
 
 .loginWrapper {
-    width: 1073px;
+    width: 992px;
     height: 509px;
     margin: 0 auto;
     background-color: #fff;
@@ -3479,7 +3479,7 @@ a.Requests:before {
     }
 
 .LoginRight {
-    margin: 40px 125px 0px 0px;
+    margin: 40px 75px 0px 0px;
     float: right;
     width: 309px;
 }
@@ -5011,7 +5011,7 @@ a.level2.dynamic.JobCategory:before {
         margin:5px 15px;
     }
 }
-@media (max-width: 1073px) {
+@media (max-width: 992px) {
     .loginPage > #aspnetForm > #main_block
     {
         display:block;
