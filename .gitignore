@@ -241,3 +241,8 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /App_Data/PublishProfiles
+/Control/Caltest.ascx.cs
+/Control/Caltest.ascx
+/Pages_User/Test.aspx.cs
+/Pages_User/Test.aspx
+/RequestsFiles/1153-Monday, December 25, 201715-35-16-VAC.txt

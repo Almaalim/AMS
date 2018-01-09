@@ -258,11 +258,11 @@
                         </div>
                         <div class="col2">
                             <asp:Label ID="lblEmpName" runat="server" Text="Employee Name :"
-                                Visible="False" meta:resourcekey="lblEmpNameResource1"></asp:Label>
+                                meta:resourcekey="lblEmpNameResource1"></asp:Label>
                         </div>
                         <div class="col4">
                             <asp:TextBox ID="txtEmpName" runat="server" AutoCompleteType="Disabled"
-                                Enabled="False"  Visible="False"
+                                Enabled="False"
                                 meta:resourcekey="txtEmpNameResource1"></asp:TextBox>
                         </div>
                     </div>
@@ -274,13 +274,8 @@
                         <div class="col4">
                             <Cal:Calendar2 ID="calStartDate2" runat="server" CalendarType="System" />
                         </div>
-                        <div class="col2">
-                            <asp:Label ID="lblEndDate2" runat="server" Text="End Date :"
-                                meta:resourcekey="lblEndDate2Resource1"></asp:Label>
-                        </div>
-                        <div class="col4">
-                            <Cal:Calendar2 ID="calEndDate2" runat="server" CalendarType="System" />
-                        </div>
+                        <div class="col2"></div>
+                        <div class="col4"></div>
                     </div>
                 </div>
                     <div runat="server" id="divWorkTime">

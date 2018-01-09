@@ -51,8 +51,7 @@ public partial class Login : BasePage
 
         //txtname.Text = "admin";
         //txtpass.Attributes["value"] = "admin";
-        //string DecPass = CryptorEngine.Decrypt("aKIQdTVCKKY=", true);
-
+        //string DecPass = CryptorEngine.Encrypt("1,2,3,4", true);
 
         if (Application["LoginLang"] != null)
         {
@@ -133,7 +132,7 @@ public partial class Login : BasePage
         if (Type == "DB")    { QU.Append(" WHERE UsrName = @P1 "); }  
         if (Type == "AD")    { QU.Append(" WHERE UsrAD   = @P1 "); }
         if (Type == "DB_AD") { QU.Append(" WHERE UsrName = @P1 AND UsrAD IS NULL "); }      
-        //QU.Append(" AND GETDATE() <= '2017-11-23 23:59:59' ");
+        //QU.Append(" AND GETDATE() <= '2017-12-31 23:59:59' ");
 
         DataTable DT = DBCs.FetchData(QU.ToString(), new string[] { loginName });
         if (!DBCs.IsNullOrEmpty(DT)) 

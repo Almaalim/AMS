@@ -107,7 +107,7 @@
 
 
                             <asp:GridView ID="grdData" runat="server" CssClass="datatable"
-                                SelectedIndex="1" AutoGenerateColumns="False"
+                                AutoGenerateColumns="False"
                                 AllowPaging="True" CellPadding="0" BorderWidth="0px" GridLines="None" DataKeyNames="EmpID"
                                 ShowFooter="True" OnPageIndexChanging="grdData_PageIndexChanging"
                                 OnRowCreated="grdData_RowCreated" OnRowDataBound="grdData_RowDataBound" OnSelectedIndexChanged="grdData_SelectedIndexChanged"
@@ -125,17 +125,17 @@
                                             <%# DisplayFun.GrdDisplayTime(Eval("TrnTime"))%>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Type" InsertVisible="False"
+                                    <%--<asp:TemplateField HeaderText="Type" InsertVisible="False"
                                         SortExpression="TrnType" meta:resourcekey="TemplateFieldResource2">
                                         <ItemTemplate>
                                             <%# DisplayFun.GrdDisplayTypeTrans(Eval("TrnType"))%>
                                         </ItemTemplate>
-                                    </asp:TemplateField>
-                                    <asp:BoundField HeaderText="Location(En)" DataField="LocationEn"
-                                        ReadOnly="True" SortExpression="Location"
+                                    </asp:TemplateField>--%>
+                                    <asp:BoundField HeaderText="Location(En)" DataField="MacLocationEn"
+                                        ReadOnly="True" SortExpression="MacLocationEn"
                                         meta:resourcekey="BoundFieldResource1"></asp:BoundField>
-                                    <asp:BoundField HeaderText="Location(Ar)" DataField="LocationAr"
-                                        ReadOnly="True" SortExpression="Location"
+                                    <asp:BoundField HeaderText="Location(Ar)" DataField="MacLocationAr"
+                                        ReadOnly="True" SortExpression="MacLocationAr"
                                         meta:resourcekey="BoundFieldResource2"></asp:BoundField>
                                     <asp:BoundField HeaderText="User Name" DataField="UsrName" ReadOnly="True"
                                         SortExpression="UsrName" meta:resourcekey="BoundFieldResource3"></asp:BoundField>
@@ -144,8 +144,6 @@
 
                                     <asp:BoundField HeaderText="ID" DataField="EmpID" SortExpression="EmpID"
                                         meta:resourcekey="BoundFieldResource5">
-                                        <HeaderStyle CssClass="first" />
-                                        <ItemStyle CssClass="first" />
                                     </asp:BoundField>
                                     <asp:TemplateField HeaderText="Date" InsertVisible="False"
                                         SortExpression="TrnDate" meta:resourcekey="TemplateFieldResource3">
@@ -213,9 +211,9 @@
                         EnableClientScript="False" ControlToValidate="txtValid">
                     </asp:CustomValidator>
                     <asp:CustomValidator ID="cvIsAdd" runat="server" ValidationGroup="vgADD" Display="None"
-                        ErrorMessage="You must be the last Transactions is a IN Transactions" CssClass="CustomValidator"
+                        CssClass="CustomValidator"
                         OnServerValidate="IsAdd_ServerValidate" EnableClientScript="False"
-                        ControlToValidate="txtValid" meta:resourcekey="cvIsAddResource1"></asp:CustomValidator>
+                        ControlToValidate="txtValid"></asp:CustomValidator>
                 </div>
             </div>
             <div class="GreySetion">
@@ -272,13 +270,13 @@
                             Text="Time :" meta:resourcekey="lblTimeResource1"></asp:Label>
                     </div>
                     <div class="col4">
-                        <Almaalim:TimePicker ID="tpickerTime" runat="server" FormatTime="HHmmss"
+                        <Almaalim:TimePicker ID="tpOUTTime" runat="server" FormatTime="HHmmss"
                             CssClass="TimeCss" meta:resourcekey="tpickerTimeResource1"
                             TimePickerValidationGroup="" TimePickerValidationText="" />
-                        <asp:CustomValidator ID="cvtpickerTime" runat="server" CssClass="CustomValidator"
-                            Text="&lt;img src='../images/Exclamation.gif' title='Time is required!' /&gt;"
+                        <asp:CustomValidator ID="cvtpOUTTime" runat="server" CssClass="CustomValidator"
+                            Text="&lt;img src='../images/Exclamation.gif' title='Time is required' /&gt;"
                             ValidationGroup="vgSave"
-                            OnServerValidate="TpickerTime_ServerValidate"
+                            OnServerValidate="tpOUTTime_ServerValidate"
                             EnableClientScript="False"
                             ControlToValidate="txtValid"
                             meta:resourcekey="cvtpickerTimeResource1"></asp:CustomValidator>

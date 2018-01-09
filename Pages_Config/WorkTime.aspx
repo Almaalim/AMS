@@ -158,6 +158,31 @@
 
                 <div class="row">
                     <div class="col2">
+                        <span id="spnWktInitialAr" runat="server" visible="False" class="RequiredField">*</span>
+                        <asp:Label ID="lblWktInitialAr" runat="server" Text="Initial (Ar) :" meta:resourcekey="lblWktInitialArResource1"></asp:Label>
+                    </div>
+                    <div class="col4">
+                        <asp:TextBox ID="txtWktInitialAr" runat="server" AutoCompleteType="Disabled" meta:resourcekey="txtWktInitialArResource1" MaxLength="3"></asp:TextBox>
+                        <asp:CustomValidator ID="cvInitialAr" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='' /&gt;"
+                            ValidationGroup="vgSave" OnServerValidate="WorkTimeValidate_ServerValidate" EnableClientScript="False"
+                            ControlToValidate="txtValid" meta:resourcekey="cvInitialArResource1" CssClass="CustomValidator"></asp:CustomValidator>
+                    </div>
+                    <div class="col2">
+                        <span id="spnWktInitialEn" runat="server" visible="False" class="RequiredField">*</span>
+                        <asp:Label ID="lblWktInitialEn" runat="server" Text="Initial (En) :" meta:resourcekey="lblWktInitialEnResource1"></asp:Label>
+                    </div>
+                    <div class="col4">
+                        <asp:TextBox ID="txtWktInitialEn" runat="server" AutoCompleteType="Disabled"
+                            meta:resourcekey="txtWktInitialEnResource1" MaxLength="3"></asp:TextBox>
+                        <asp:CustomValidator ID="cvInitialEn" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='' /&gt;"
+                            ValidationGroup="vgSave" OnServerValidate="WorkTimeValidate_ServerValidate" EnableClientScript="False"
+                            ControlToValidate="txtValid" meta:resourcekey="cvInitialEnResource1" CssClass="CustomValidator"></asp:CustomValidator>
+                    </div>
+                </div>
+                
+
+                <div class="row">
+                    <div class="col2">
                         <span class="RequiredField">*</span>
                         <asp:Label ID="Label19" runat="server" Text="Work Type :" meta:resourcekey="Label19Resource1"></asp:Label>
                     </div>

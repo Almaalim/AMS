@@ -1,6 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="EmployeeSelected.ascx.cs" Inherits="EmployeeSelected" %>
 
-
 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
     <ContentTemplate>
         <div runat="server" id="MainTable" cellpadding="0" cellspacing="0">

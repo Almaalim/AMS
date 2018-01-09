@@ -4545,6 +4545,11 @@ a.colord13f2a:before {
     font-family: FontAwesome !important;
 }
 
+.WorktimeTable:before , .icon644:before {
+    content: "\f0ce";
+    font-family: FontAwesome !important;
+}
+
 .EmployeeJobAssignment:before , .icon572:before {
     content: "\f0ae";
     font-family: FontAwesome !important;
@@ -4740,7 +4745,7 @@ a.colord13f2a:before {
     font-family: FontAwesome !important;
 }
 
-.MachineErrors:before , .icon605:before {
+.MachineLog:before , .icon605:before {
     content: "\e107";
     font-family: 'Glyphicons Halflings' !important;
 }
@@ -4792,6 +4797,11 @@ a.colord13f2a:before {
 }
 
 .ShiftSwapRequest:before , .icon596:before {
+    content: "\e110";
+    font-family: 'Glyphicons Halflings' !important;
+}
+
+.EmployeeSwapShift:before , .icon516:before {
     content: "\e110";
     font-family: 'Glyphicons Halflings' !important;
 }

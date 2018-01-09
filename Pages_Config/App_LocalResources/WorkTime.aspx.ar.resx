@@ -930,4 +930,10 @@
   <data name="cvShift1OvernightResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="lblWktInitialArResource1.Text" xml:space="preserve">
+    <value>الرمز (ع) :</value>
+  </data>
+  <data name="lblWktInitialEnResource1.Text" xml:space="preserve">
+    <value>الرمز (E) :</value>
+  </data>
 </root>

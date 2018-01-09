@@ -5,54 +5,6 @@ using System.Web;
 
 public class WorkTimePro
 {
-    //WktID	int	Unchecked
-    //WktNameAr	varchar(100)	Checked
-    //WktNameEn	varchar(100)	Checked
-    //WktDesc	varchar(255)	Checked
-    //WtpID	int	Checked
-    //WktShiftCount	int	Checked
-    //WktShift1NameAr	varchar(50)	Checked
-    //WktShift1NameEn	varchar(50)	Checked
-    //WktShift1From	datetime	Checked
-    //WktShift1To	datetime	Checked
-    //WktShift1Duration	int	Checked
-    //WktShift1Grace	int	Checked
-    //WktShift1MiddleGrace	int	Checked
-    //WktShift1EndGrace	int	Checked
-    //WktShift1IsOverNight	bit	Checked
-    //WktShift1IsOptional	bit	Checked
-    //WktShift1FTHours	int	Checked
-    //WktShift1AddPercentOverNight	int	Checked
-    //WktShift2NameAr	varchar(50)	Checked
-    //WktShift2NameEn	varchar(50)	Checked
-    //WktShift2From	datetime	Checked
-    //WktShift2To	datetime	Checked
-    //WktShift2Duration	int	Checked
-    //WktShift2Grace	int	Checked
-    //WktShift2MiddleGrace	int	Checked
-    //WktShift2EndGrace	int	Checked
-    //WktShift2IsOverNight	bit	Checked
-    //WktShift2IsOptional	bit	Checked
-    //WktShift2FTHours	int	Checked
-    //WktShift2AddPercentOverNight	int	Checked
-    //WktShift3NameAr	varchar(50)	Checked
-    //WktShift3NameEn	varchar(50)	Checked
-    //WktShift3From	datetime	Checked
-    //WktShift3To	datetime	Checked
-    //WktShift3Duration	int	Checked
-    //WktShift3Grace	int	Checked
-    //WktShift3MiddleGrace	int	Checked
-    //WktShift3EndGrace	int	Checked
-    //WktShift3IsOverNight	bit	Checked
-    //WktShift3IsOptional	bit	Checked
-    //WktShift3FTHours	int	Checked
-    //WktShift3AddPercentOverNight	int	Checked
-    //WktIsActive	bit	Checked
-    //WktAddPercent	int	Checked
-    //WktShift1FTSet	int	Checked
-    //WktShift2FTSet	int	Checked
-    //WktShift3FTSet	int	Checked
-
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     string _WktID;
@@ -63,6 +15,12 @@ public class WorkTimePro
 
     string _WktNameEn;
 	public string WktNameEn { get { return _WktNameEn; } set { if (_WktNameEn != value) { _WktNameEn = value; } } }
+
+    string _WktInitialAr;
+    public string WktInitialAr { get { return _WktInitialAr; } set { if (_WktInitialAr != value) { _WktInitialAr = value; } } }
+
+    string _WktInitialEn;
+	public string WktInitialEn { get { return _WktInitialEn; } set { if (_WktInitialEn != value) { _WktInitialEn = value; } } }
 
     string _WktDesc;
 	public string WktDesc { get { return _WktDesc; } set { if (_WktDesc != value) { _WktDesc = value; } } }

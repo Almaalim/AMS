@@ -290,18 +290,14 @@ public partial class VacationRequest2 : BasePage
                     string name = nameArr[0];
                     string type = nameArr[1];
                     string NewFileName = pgCs.LoginEmpID + "-" + dateFile + "-VAC." + type;
-                    fudReqFile.PostedFile.SaveAs(Server.MapPath(@"./RequestsFiles/") + NewFileName);
-                    ProCs.ErqReqFilePath = NewFileName;
-                    //empReq.ErqReqFilePath = "\\\\" + ipServer + "\\" + Server.MapPath(@"./RequestsFiles/" + FileName).ToString().Substring(3);
+                    fudReqFile.PostedFile.SaveAs(Server.MapPath(@"../RequestsFiles/") + NewFileName);
+                    ProCs.ErqReqFilePath = NewFileName;                  
                 }
             }
-            catch { }
+            catch (Exception ex) { throw new Exception(ex.Message, ex); }
 
             int ID = SqlCs.Insert(ProCs);
-            //mailCs.SendMailToMGR(DT.Rows[0]["EalMgrID"].ToString(), ID.ToString(), pgCs.DateType, pgCs.Lang, mailCs.FindLoginUrl(Request.Url));
-            //mail.Insert(MailRequest, ID.ToString(), Reqdt.Rows[0]["EalMgrID"].ToString());
-            
-           
+ 
             UIClear();
             BtnStatus("11");
             if (Request.QueryString["ID"] != null)
@@ -426,33 +422,35 @@ public partial class VacationRequest2 : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void Days_ServerValidate(Object source, ServerValidateEventArgs e)
     {
-        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-        if (source.Equals(cvDays))
-        {
-            if (!string.IsNullOrEmpty(calStartDate.getGDate()) && !string.IsNullOrEmpty(calEndDate.getGDate()))
+        try
+        { 
+
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+            if (source.Equals(cvDays))
             {
-                bool WorkDays = IsWorkDays(calStartDate.getGDate(), calEndDate.getGDate(), pgCs.LoginEmpID);
-                if (!WorkDays)
+                if (!string.IsNullOrEmpty(calStartDate.getGDate()) && !string.IsNullOrEmpty(calEndDate.getGDate()))
                 {
-                    CtrlCs.ValidMsg(this, ref cvDays, true, General.Msg("You do not have a Worktime in the given period", "لا يوجد لديك عمل في الفترة المحددة"));
-                    e.IsValid = false;
+                    bool WorkDays = IsWorkDays(calStartDate.getGDate(), calEndDate.getGDate(), pgCs.LoginEmpID);
+                    if (!WorkDays)
+                    {
+                        CtrlCs.ValidMsg(this, ref cvDays, true, General.Msg("You do not have a Worktime in the given period", "لا يوجد لديك عمل في الفترة المحددة"));
+                        e.IsValid = false;
+                    }
+                    e.IsValid = true;
                 }
-                e.IsValid = true;
             }
-        }
-        else if (source.Equals(cvReqDate))
+            else if (source.Equals(cvReqDate))
             {
                 if (!string.IsNullOrEmpty(calStartDate.getGDate()) && !string.IsNullOrEmpty(calEndDate.getGDate()))
                 {
                     int DaysLimit = GetDayslimit();
                     if (DaysLimit > 0)
                     {
-                        DateTime today = DTCs.ConvertToDatetime(DateTime.Now.ToString("dd/MM/yyyy"), "Gregorian"); 
+                        DateTime today = DTCs.ConvertToDatetime(DTCs.GDateNow("dd/MM/yyyy"), "Gregorian"); 
                         DateTime End   = DTCs.ConvertToDatetime(calEndDate.getGDate(), "Gregorian"); 
                         DateTime Last = End.AddDays(DaysLimit);
-
-                        int itoday = DTCs.ConvertDateTimeToInt("Gregorian", today.ToString("dd/MM/yyyy"));
-                        int iLast = DTCs.ConvertDateTimeToInt("Gregorian", Last.ToString("dd/MM/yyyy"));
+                        int itoday = DTCs.ConvertDateTimeToInt(today.ToString("dd/MM/yyyy"),"Gregorian");
+                        int iLast  = DTCs.ConvertDateTimeToInt(Last.ToString("dd/MM/yyyy"),"Gregorian");
                         if (itoday > iLast)
                         {
                             CtrlCs.ValidMsg(this, ref cvReqDate, true, General.Msg("You can not leave request, have exceeded " + DaysLimit.ToString() + " days from the date of the end of the vacation", "لا يمكنك طلب إجازة, لقد تجاوزت " + DaysLimit.ToString() + " ايام من تاريخ نهاية الاجازة"));
@@ -463,6 +461,11 @@ public partial class VacationRequest2 : BasePage
                     else { e.IsValid = true; }
                 }
             }
+        }
+        catch(Exception ex)
+        {
+            CtrlCs.ShowMsg(this, vsShowMsg, cvShowMsg, CtrlFun.TypeMsg.Error, "vgShowMsg", ex.Message);
+        }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

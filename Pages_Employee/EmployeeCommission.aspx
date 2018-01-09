@@ -4,7 +4,6 @@
 <%@ Register Assembly="AjaxSamples" Namespace="AjaxSamples" TagPrefix="as" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <%@ Register Src="~/Control/Calendar2.ascx" TagName="Calendar2" TagPrefix="Cal" %>
-<%@ Register Src="~/Control/Calendar3.ascx" TagName="Calendar3" TagPrefix="Cal3" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <%--script--%>

@@ -84,6 +84,33 @@ public class CtrlFun : DataLayerBase
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public bool PopulateDDL2(DropDownList ddl, DataTable dt, string Text, string Value, string Msg)
+    {
+        try
+        {
+            if (DBCs.IsNullOrEmpty(dt)) { return false; }
+
+            ddl.DataSource = null;
+            ddl.Items.Clear();
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(dt.Rows[i][Text].ToString()))
+                {
+                    ListItem ls = new ListItem(dt.Rows[i][Text].ToString(), dt.Rows[i][Value].ToString());
+                    ddl.Items.Add(ls);
+                }
+            }
+
+            ListItem lsMsg = new ListItem(Msg, "0");
+            ddl.Items.Insert(0, lsMsg);
+
+            return true;
+        }
+        catch (Exception e1) { throw e1; }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public bool PopulateDDL(DropDownList ddl, DataTable dt, string Text1, string Text2, string Value, string Msg)
     {
         try
@@ -280,6 +307,21 @@ public class CtrlFun : DataLayerBase
         string All = (isAll) ? "A" : "N";
 
         DataTable DT = DBCs.FetchData(" SELECT WktID, WktNameAr, WktNameEn FROM WorkingTime WHERE ISNULL(WktDeleted,0) = 0 AND WtpID IN (SELECT WtpID FROM WorkType WHERE WtpInitial !='RO') AND WktIsActive = (CASE WHEN @P1 = 'A' THEN WktIsActive ELSE 'True' END) ", new string[] { All });
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            PopulateDDL(_ddl, DT, General.Msg("WktNameEn", "WktNameAr"), "WktID", General.Msg("- Select Worktime -", "- اختر جدول العمل-"));
+            if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void FillWorkingTimeList1Sift(ref DropDownList _ddl, RequiredFieldValidator _rv, bool isClear, bool isAll)
+    {
+        if (isClear) { _ddl.Items.Clear(); }
+
+        string All = (isAll) ? "A" : "N";
+
+        DataTable DT = DBCs.FetchData(" SELECT WktID, WktNameAr, WktNameEn FROM WorkingTime WHERE ISNULL(WktDeleted,0) = 0 AND WktShiftCount = 1 AND WtpID IN (SELECT WtpID FROM WorkType WHERE WtpInitial !='RO') AND WktIsActive = (CASE WHEN @P1 = 'A' THEN WktIsActive ELSE 'True' END) ", new string[] { All });
         if (!DBCs.IsNullOrEmpty(DT))
         {
             PopulateDDL(_ddl, DT, General.Msg("WktNameEn", "WktNameAr"), "WktID", General.Msg("- Select Worktime -", "- اختر جدول العمل-"));
@@ -783,11 +825,14 @@ public class CtrlFun : DataLayerBase
         ValidationSummary vs = pg.Master.FindControl("ContentPlaceHolder1").FindControl("vsShowMsg") as ValidationSummary;
         CustomValidator cv = pg.Master.FindControl("ContentPlaceHolder1").FindControl("cvShowMsg") as CustomValidator;
 
-        string msg = "";
-
-        if (isDel) { msg = General.Msg("detail deleted successfully", "تم حذف البيانات بنجاح"); } else { msg = General.Msg("Unable to delete because of relationship with other data", "لا يمكنك حذف هذا السجل لانه مرتبط ببيانات أخرى"); }
-
-        ShowMsg(pg, vs, cv, TypeMsg.Validation, VG, msg);
+        if (isDel)
+        {
+            ShowMsg(pg, vs, cv, TypeMsg.Success, VG, General.Msg("detail deleted successfully", "تم حذف البيانات بنجاح"));
+        }
+        else
+        {
+            ShowMsg(pg, vs, cv, TypeMsg.Validation, VG, General.Msg("Unable to delete because of relationship with other data", "لا يمكنك حذف هذا السجل لانه مرتبط ببيانات أخرى"));
+        }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

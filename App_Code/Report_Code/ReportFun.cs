@@ -51,9 +51,20 @@ public class ReportFun
 
             /////// Fill Parameters to Report
             if (!string.IsNullOrEmpty(RepProCs.Date))        { Rep["ParamDate"]      = DTCs.ConvertToDatetime(RepProCs.Date,"Gregorian"); }
-            if (!string.IsNullOrEmpty(RepProCs.DateFrom))    { Rep["ParamDateFrom"]  = DTCs.ConvertToDatetime(RepProCs.DateFrom,"Gregorian"); }
-            if (!string.IsNullOrEmpty(RepProCs.DateTo))      { Rep["ParamDateTo"]    = DTCs.ConvertToDatetime( RepProCs.DateTo,"Gregorian"); }
-            if (!string.IsNullOrEmpty(RepProCs.MonthDate))   { Rep["ParamMonthDate"] = RepProCs.MonthDate; }
+
+            if (!string.IsNullOrEmpty(RepProCs.MonthDate))
+            {
+                Rep["ParamMonthDate"] = RepProCs.MonthDate;
+                if (!string.IsNullOrEmpty(RepProCs.DateFrom)) { Rep["ParamDateFrom"] = DTCs.ConvertToDatetime2(RepProCs.DateFrom, "Gregorian"); }
+                if (!string.IsNullOrEmpty(RepProCs.DateTo)) { Rep["ParamDateTo"] = DTCs.ConvertToDatetime2(RepProCs.DateTo, "Gregorian"); }
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(RepProCs.DateFrom)) { Rep["ParamDateFrom"] = DTCs.ConvertToDatetime(RepProCs.DateFrom, "Gregorian"); }
+                if (!string.IsNullOrEmpty(RepProCs.DateTo)) { Rep["ParamDateTo"] = DTCs.ConvertToDatetime(RepProCs.DateTo, "Gregorian"); }
+
+            }
+
             if (!string.IsNullOrEmpty(RepProCs.YearDate))    { Rep["ParamYearDate"]  = RepProCs.YearDate; } 
             if (!string.IsNullOrEmpty(RepProCs.WktID))       { Rep["WktID"]          = RepProCs.WktID; }
             if (!string.IsNullOrEmpty(RepProCs.MacID))       { Rep["MacID"]          = RepProCs.MacID; }

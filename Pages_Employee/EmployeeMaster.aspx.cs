@@ -481,18 +481,21 @@ public partial class EmployeeMaster : BasePage
         try
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+            string lang    = ddlLanguage.SelectedValue.ToString();
             string empid   = txtEmployeeID.Text;
-            string empPass = GeneratPass(empid);
-            string lang = ddlLanguage.SelectedValue.ToString();
+            string empPass = (pgCs.Version == "Al_JoufUN") ? empid : GeneratPass(empid);
 
             string EncPass = CryptorEngine.Encrypt(empPass, true);
 
-            if (!MailCs.FillEmailSetting()) 
-            { 
-                CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Validation, General.Msg("Not to enter the e-mail settings, you can not modify the password", "لم يتم إدخال إعدادات البريد الالكتروني,لا يمكن تعديل كلمة المرور"));
-                return; 
+            if (pgCs.Version != "Al_JoufUN")
+            {
+                if (!MailCs.FillEmailSetting()) 
+                { 
+                    CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Validation, General.Msg("Not to enter the e-mail settings, you can not modify the password", "لم يتم إدخال إعدادات البريد الالكتروني,لا يمكن تعديل كلمة المرور"));
+                    return; 
+                }
             }
-             
+
             SqlCs.Employee_Update_Password(empid, EncPass, pgCs.LoginID);
             CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Success, General.Msg("password changed successfully, new password sent it to employee Email", "تم تغيير كلمة المرور بنجاح، وارسلت للبريد الإلكتروني للموظف،"));
             

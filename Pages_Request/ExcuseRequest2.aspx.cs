@@ -10,7 +10,7 @@ using System.Collections;
 using System.Text;
 using System.Globalization;
 using System.Threading;
-using System.Data.SqlClient;
+using System.Data.SqlClient; 
 
 public partial class ExcuseRequest2 : BasePage
 {
@@ -184,11 +184,11 @@ public partial class ExcuseRequest2 : BasePage
                     string type = nameArr[1];
                     string NewFileName = GapID + "-EXC." + type;
                     if (string.IsNullOrEmpty(GapID)) { NewFileName = pgCs.LoginEmpID + "-" + dateFile + "-EXC." + type; }
-                    fudReqFile.PostedFile.SaveAs(Server.MapPath(@"./RequestsFiles/") + NewFileName);
+                    fudReqFile.PostedFile.SaveAs(Server.MapPath(@"../RequestsFiles/") + NewFileName);
                     ProCs.ErqReqFilePath = NewFileName;
                 }
             }
-            catch { }
+            catch (Exception ex) { throw new Exception(ex.Message, ex); }
 
             int ID = SqlCs.Insert(ProCs);
 
@@ -247,7 +247,7 @@ public partial class ExcuseRequest2 : BasePage
         {
             if (source.Equals(cvMaxTime))
             {
-                if (!string.IsNullOrEmpty(calStartDate.getGDate()) && ddlExcType.SelectedIndex >0 )
+                if (!string.IsNullOrEmpty(calStartDate.getGDate()) && ddlExcType.SelectedIndex > 0 )
                 {
                     string Month = "";
                     string Year  = "";

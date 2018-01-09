@@ -238,7 +238,18 @@ public partial class UnstyleShift : BasePage
             _txtEmpID.Text = (e.Row.DataItem as DataRowView).Row["EmpID"].ToString();
             e.Row.Cells[2].Controls.Add(_txtEmpID);
 
-            DataTable DT = DBCs.FetchData(new SqlCommand(" SELECT WktID," + General.Msg("WktNameEn", "WktNameAr") + " AS WktName FROM WorkingTime WHERE ISNULL(" + General.Msg("WktNameEn", "WktNameAr") + ",'') != '' "));
+            DataTable DT;
+
+            if (ViewState["WktInfo"] == null)
+            {
+                DT = DBCs.FetchData(new SqlCommand(" SELECT WktID," + General.Msg("WktNameEn", "WktNameAr") + " AS WktName FROM WorkingTime WHERE ISNULL(" + General.Msg("WktNameEn", "WktNameAr") + ",'') != '' "));
+                ViewState["WktInfo"] = DT;
+            }
+            else
+            {
+                DT = (DataTable)ViewState["WktInfo"];
+            }
+           
             if (!DBCs.IsNullOrEmpty(DT))
             {
                 DropDownList _ddl = new DropDownList();

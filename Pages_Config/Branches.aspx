@@ -29,15 +29,15 @@
                 <div class="col2">
                     <asp:TextBox ID="txtFilter" runat="server" AutoCompleteType="Disabled" meta:resourcekey="txtFilterResource1"></asp:TextBox>
                     &nbsp;
-                                    <asp:ImageButton ID="btnFilter" runat="server" OnClick="btnFilter_Click" ImageUrl="../images/Button_Icons/button_magnify.png" CssClass="LeftOverlay"
-                                        meta:resourcekey="btnFilterResource1" />
+                    <asp:ImageButton ID="btnFilter" runat="server" OnClick="btnFilter_Click" ImageUrl="../images/Button_Icons/button_magnify.png" CssClass="LeftOverlay"
+                        meta:resourcekey="btnFilterResource1" />
                 </div>
             </div>
 
             <div class="row">
                 <div class="col12">
                     <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData" />
-                    <asp:GridView ID="grdData" runat="server" CssClass="datatable" SelectedIndex="0"
+                    <asp:GridView ID="grdData" runat="server" CssClass="datatable"
                         AutoGenerateColumns="False" AllowPaging="True" CellPadding="0" AllowSorting="True"
                         BorderWidth="0px" GridLines="None" DataKeyNames="BrcID" ShowFooter="True" OnPageIndexChanging="grdData_PageIndexChanging"
                         OnRowCreated="grdData_RowCreated" OnRowDataBound="grdData_RowDataBound"
@@ -83,9 +83,7 @@
             </div>
             <div class="row">
                 <div class="col12">
-                    <asp:ValidationSummary ID="vsSave" runat="server" ValidationGroup="vgSave"
-                        EnableClientScript="False" CssClass="MsgValidation"
-                        meta:resourcekey="vsumAllResource1" />
+                    <asp:ValidationSummary ID="vsSave" runat="server" ValidationGroup="vgSave" EnableClientScript="False" CssClass="MsgValidation"/>
                 </div>
             </div>
             <div class="row">

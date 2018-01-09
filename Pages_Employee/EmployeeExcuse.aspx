@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="Employee Excuse" Language="C#" MasterPageFile="~/AMSMasterPage.master"
-    AutoEventWireup="true" CodeFile="EmployeeExcuse.aspx.cs" Inherits="EmployeeExcuse"
+    AutoEventWireup="true" CodeFile="EmployeeExcuse.aspx.cs" Inherits="EmployeeExcuse" 
     Culture="auto" meta:resourcekey="PageResource1" UICulture="auto" %>
 
 <%@ Register Assembly="Stimulsoft.Report.WebFx" Namespace="Stimulsoft.Report.WebFx" TagPrefix="cc2" %>

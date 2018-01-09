@@ -177,17 +177,13 @@ public partial class OverTimeRequest2 : BasePage
                     //FileContent.InnerHtml = MyFile.PostedFile.ContentType 
                     //FileSize.InnerHtml = MyFile.PostedFile.ContentLength
                     //UploadDetails.visible = True
-                    fudReqFile.PostedFile.SaveAs(Server.MapPath(@"./RequestsFiles/") + NewFileName);
+                    fudReqFile.PostedFile.SaveAs(Server.MapPath(@"../RequestsFiles/") + NewFileName);
                     ProCs.ErqReqFilePath = NewFileName;
-                    //empReq.ErqReqFilePath = "\\\\" + ipServer + "\\" + Server.MapPath(@"./RequestsFiles/" + FileName).ToString().Substring(3);
                 }
             }
-            catch { }
+            catch (Exception ex) { throw new Exception(ex.Message, ex); }
 
             int ID = SqlCs.Insert(ProCs);
-            
-            //mailCs.SendMailToMGR(DT.Rows[0]["EalMgrID"].ToString(), ID.ToString(), pgCs.DateType, pgCs.Lang, mailCs.FindLoginUrl(Request.Url)); 
-            ////mail.Insert("OvtRequest", ID.ToString(), DT.Rows[0]["EalMgrID"].ToString());
 
             UIClear();
             BtnStatus("11");

@@ -15,9 +15,10 @@ public class DTFun
     
     private HttpContext cur;
 	private const int startGreg = 1900;
-	private const int endGreg = 2100;
-	private string[] allFormats = {"yyyy/MM/dd","yyyy/M/d","dd/MM/yyyy","d/M/yyyy","dd/M/yyyy","d/MM/yyyy","yyyy-MM-dd","yyyy-M-d","dd-MM-yyyy","d-M-yyyy","dd-M-yyyy","d-MM-yyyy","yyyy MM dd","yyyy M d","dd MM yyyy","d M yyyy","dd M yyyy","d MM yyyy"};
-	private CultureInfo arCul;
+	private const int endGreg = 2100; //"MM/dd/yyyy",
+    private string[] allFormats = {"yyyy/MM/dd","yyyy/M/d","dd/MM/yyyy","d/M/yyyy","dd/M/yyyy","d/MM/yyyy","yyyy-MM-dd","yyyy-M-d","dd-MM-yyyy","d-M-yyyy","dd-M-yyyy","d-MM-yyyy","yyyy MM dd","yyyy M d","dd MM yyyy","d M yyyy","dd M yyyy","d MM yyyy"};
+    private string[] allFormats2 = { "MM/dd/yyyy", "yyyy/MM/dd", "yyyy/M/d", "dd/MM/yyyy", "d/M/yyyy", "dd/M/yyyy", "d/MM/yyyy", "yyyy-MM-dd", "yyyy-M-d", "dd-MM-yyyy", "d-M-yyyy", "dd-M-yyyy", "d-MM-yyyy", "yyyy MM dd", "yyyy M d", "dd MM yyyy", "d M yyyy", "dd M yyyy", "d MM yyyy" };
+    private CultureInfo arCul;
 	private CultureInfo enCul;
 
     private UmAlQuraCalendar Umq;
@@ -41,11 +42,11 @@ public class DTFun
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	
 	public DTFun()
 	{
-		cur = HttpContext.Current;
-		arCul=new CultureInfo("ar-SA");
-		enCul=new CultureInfo("en-US");
-        Umq = new UmAlQuraCalendar();
-		Grn = new GregorianCalendar(GregorianCalendarTypes.USEnglish);
+		cur   = HttpContext.Current;
+		arCul = new CultureInfo("ar-SA");
+		enCul = new CultureInfo("en-US");
+        Umq   = new UmAlQuraCalendar();
+		Grn   = new GregorianCalendar(GregorianCalendarTypes.USEnglish);
 		arCul.DateTimeFormat.Calendar = Umq;	
 	}
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -427,22 +428,18 @@ public class DTFun
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void YearGPopulateList(ref DropDownList ddl)
     {
-        //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-        //pgCs.FillDTSession();
         YearPopulateList(ref ddl, "Gregorian", false);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void YearHPopulateList(ref DropDownList ddl)
     {
-        //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
         YearPopulateList(ref ddl, "Hijri", false);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void YearPopulateList(ref DropDownList ddl)
     {
-        //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
         pgCs.FillDTSession();
         YearPopulateList(ref ddl, pgCs.DateType, false);
     }
@@ -518,9 +515,7 @@ public class DTFun
     {
         try
         {
-            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             pgCs.FillDTSession();
-
             if (pgCs.DateType == "Gregorian") { return GDateNow(DateFormat); } else if (pgCs.DateType == "Hijri") { return HDateNow(DateFormat); }
 
             return "0";
@@ -544,9 +539,7 @@ public class DTFun
     {
         try
         {
-            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-            if (DateType == "Gregorian") { return Grn.GetYear(DateTime.Now).ToString(); } else if (DateType == "Hijri") { return Umq.GetYear(DateTime.Now).ToString(); }
-
+            if (DateType == "Gregorian") { return GDateNow("yyyy"); } else if (DateType == "Hijri") { return HDateNow("yyyy"); }
             return "0";
         }
         catch (Exception ex)
@@ -568,9 +561,7 @@ public class DTFun
     {
         try
         {
-            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-            if (DateType == "Gregorian") { return Grn.GetMonth(DateTime.Now).ToString(); } else if (DateType == "Hijri") { return Umq.GetMonth(DateTime.Now).ToString(); }
-
+            if (DateType == "Gregorian") { return GDateNow("MM"); } else if (DateType == "Hijri") { return HDateNow("MM"); }
             return "0";
         }
         catch (Exception ex)
@@ -711,7 +702,7 @@ public class DTFun
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public DateTime ConvertToDatetime(string Date, string DateType)
 	{
-        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+        //////System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
 
         if (DateType == "Gregorian")
         {
@@ -720,6 +711,23 @@ public class DTFun
         else if (DateType == "Hijri")
         {
             return DateTime.ParseExact(Date,allFormats,arCul.DateTimeFormat,DateTimeStyles.AllowWhiteSpaces);
+        }
+
+        return new DateTime();
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public DateTime ConvertToDatetime2(string Date, string DateType)
+    {
+        //////System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+
+        if (DateType == "Gregorian")
+        {
+            return DateTime.ParseExact(Date, allFormats2, enCul.DateTimeFormat, DateTimeStyles.AllowWhiteSpaces);
+        }
+        else if (DateType == "Hijri")
+        {
+            return DateTime.ParseExact(Date, allFormats2, arCul.DateTimeFormat, DateTimeStyles.AllowWhiteSpaces);
         }
 
         return new DateTime();
@@ -736,15 +744,17 @@ public class DTFun
     {
         System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
         if (Date != DBNull.Value) 
-        { 
+        {
             DateTime DT = (DateTime)Date;
             
             if (HttpContext.Current.Session["DateType"].ToString() == "Gregorian") 
             {
+                
                 return FormatGreg(DT.ToString("dd/MM/yyyy"), format);
             } 
             else 
-            { 
+            {
+                string GD = FormatGreg(Date.ToString(), "dd/MM/yyyy");
                 return GregToHijri(Convert.ToDateTime(DT).ToString("dd/MM/yyyy"), format);
             }
         }
@@ -762,10 +772,12 @@ public class DTFun
 
             if (DateType == "Gregorian")
             {
+                string GD = FormatGreg(Date.ToString(), "dd/MM/yyyy");
                 return FormatGreg(DT.ToString("dd/MM/yyyy"), format);
             }
             else
             {
+                string GD = FormatGreg(Date.ToString(), "dd/MM/yyyy");
                 return GregToHijri(Convert.ToDateTime(DT).ToString("dd/MM/yyyy"), format);
             }
         }

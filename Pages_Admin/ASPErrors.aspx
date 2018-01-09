@@ -25,7 +25,7 @@
             </div>
             <div class="row">
                 <div class="col12">
-                    <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData"
+                    <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData" 
                         PrevRowSelectKey="Subtract" NextRowSelectKey="Add" NextPageKey="PageUp"
                         PreviousPageKey="PageDown" />
 

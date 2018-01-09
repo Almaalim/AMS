@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BoundFieldResource1.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -230,5 +230,11 @@
   </data>
   <data name="TemplateFieldResource6.HeaderText" xml:space="preserve">
     <value>           </value>
+  </data>
+  <data name="BoundFieldResource568.HeaderText" xml:space="preserve">
+    <value>الاسم (ع)</value>
+  </data>
+  <data name="BoundFieldResource569.HeaderText" xml:space="preserve">
+    <value>الاسم (E)</value>
   </data>
 </root>

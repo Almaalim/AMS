@@ -29,7 +29,36 @@ function AutoCompleteNameSearchItemSelected() {
     //document.getElementById('ctl00_ContentPlaceHolder1_txtEmpID').value = FullValue[1];
 }
 
+function AutoCompleteIDItemSelectedWithoutMaster() {
+    var txtValue = document.getElementById('txtEmpID2').value;
+    var FullValue = txtValue.split("-");
+    document.getElementById('txtEmpID2').value = FullValue[0];
 
+    if (document.getElementById('txtEmpName2') != null) {
+        document.getElementById('txtEmpName2').value = FullValue[1];
+    }
+}
+
+function AutoCompleteItemSelected_EmpID1() {
+    var txtValue = document.getElementById('ctl00_ContentPlaceHolder1_txtEmpID1').value;
+    var FullValue = txtValue.split("-");
+    document.getElementById('ctl00_ContentPlaceHolder1_txtEmpID1').value = FullValue[0];
+
+    //if (document.getElementById('ctl00_ContentPlaceHolder1_txtEmpName') != null) {
+    //    document.getElementById('ctl00_ContentPlaceHolder1_txtEmpName').value = FullValue[1];
+    //}
+}
+
+
+function AutoCompleteItemSelected_EmpID2() {
+    var txtValue = document.getElementById('ctl00_ContentPlaceHolder1_txtEmpID2').value;
+    var FullValue = txtValue.split("-");
+    document.getElementById('ctl00_ContentPlaceHolder1_txtEmpID2').value = FullValue[0];
+
+    //if (document.getElementById('ctl00_ContentPlaceHolder1_txtEmpName') != null) {
+    //    document.getElementById('ctl00_ContentPlaceHolder1_txtEmpName').value = FullValue[1];
+    //}
+}
 
 
 function AutoCompleteDepNameItemSelected() {

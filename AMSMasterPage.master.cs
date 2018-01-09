@@ -330,7 +330,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
         string ERSLic = LicDf.FetchLic("ER");
         if (ERSLic == "1") { listPage += ",'ERS_LMainMenu','ERS_LMenu'"; }
         if (ERSLic == "1" && Reqht.ContainsKey("VAC")) { listPage += ",'ERS_VACMenu'"; }
-        if (ERSLic == "1" && Reqht.ContainsKey("VAC")) { listPage += ",'ERS_VACMenu'"; }
+        //if (ERSLic == "1" && Reqht.ContainsKey("VAC")) { listPage += ",'ERS_VACMenu'"; }
         if (ERSLic == "1" && Reqht.ContainsKey("COM")) { listPage += ",'ERS_COMMenu'"; }
         if (ERSLic == "1" && Reqht.ContainsKey("JOB")) { listPage += ",'ERS_JOBMenu'"; }
         if (ERSLic == "1" && Reqht.ContainsKey("EXC")) { listPage += ",'ERS_EXCMenu'"; }
@@ -541,8 +541,8 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
             spnNotificationsNo.InnerText = "";
 
             if (ShowIsExistingRequest(out text, out count)) { strItems += CreateNotificationsItem(text, count, "../Pages_ERS/RequestApproval.aspx?ID=ALL"); /**/ ShowCountNotifications(); }
-            if (FindGapsForCurrentMonth(out text, out count)) { strItems += CreateNotificationsItem(text, count, "../Pages_Attend/EmployeeGaps.aspx");           /**/ ShowCountNotifications(); }
-            if (FindAbsentForCurrentMonth(out text, out count)) { strItems += CreateNotificationsItem(text, count, "../Pages_Attend/AttendanceList.aspx");         /**/ ShowCountNotifications(); }
+            if (FindGapsForCurrentMonth(out text, out count)) { strItems += CreateNotificationsItem(text, count, "../Pages_Attend/EmployeeGaps.aspx");      /**/ ShowCountNotifications(); }
+            if (FindAbsentForCurrentMonth(out text, out count)) { strItems += CreateNotificationsItem(text, count, "../Pages_Attend/AttendanceList.aspx");  /**/ ShowCountNotifications(); }
 
             //if (!string.IsNullOrEmpty(strItems))
             //{
@@ -606,7 +606,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
                 DateTime EDate;
                 DTCs.FindMonthDates(DTCs.FindCurrentYear(), DTCs.FindCurrentMonth(), out SDate, out EDate);
 
-                DataTable DT = DBCs.FetchData(" SELECT MsmGapDur_WithoutExc FROM MonthSummary WHERE EmpID = @P1 AND CONVERT(VARCHAR(12),MsmStartDate,103) = CONVERT(VARCHAR(12),@P2,103) ", new string[] { pgCs.LoginEmpID, SDate.ToString("dd/MM/yyyy") });
+                DataTable DT = DBCs.FetchData(" SELECT ISNULL(MsmGapDur_WithoutExc,0) FROM MonthSummary WHERE EmpID = @P1 AND CONVERT(VARCHAR(12),MsmStartDate,103) = CONVERT(VARCHAR(12),@P2,103) ", new string[] { pgCs.LoginEmpID, SDate.ToString("dd/MM/yyyy") });
                 if (!DBCs.IsNullOrEmpty(DT))
                 {
                     string No = DT.Rows[0]["MsmGapDur_WithoutExc"].ToString();
@@ -642,7 +642,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
                 DateTime EDate;
                 DTCs.FindMonthDates(DTCs.FindCurrentYear(), DTCs.FindCurrentMonth(), out SDate, out EDate);
 
-                DataTable DT = DBCs.FetchData(" SELECT MsmDays_Absent_WithoutVac FROM MonthSummary WHERE EmpID = @P1 AND CONVERT(VARCHAR(12),MsmStartDate,103) = CONVERT(VARCHAR(12),@P2,103) ", new string[] { pgCs.LoginEmpID, SDate.ToString("dd/MM/yyyy") });
+                DataTable DT = DBCs.FetchData(" SELECT ISNULL(MsmDays_Absent_WithoutVac,0) FROM MonthSummary WHERE EmpID = @P1 AND CONVERT(VARCHAR(12),MsmStartDate,103) = CONVERT(VARCHAR(12),@P2,103) ", new string[] { pgCs.LoginEmpID, SDate.ToString("dd/MM/yyyy") });
                 if (!DBCs.IsNullOrEmpty(DT))
                 {
                     string No = DT.Rows[0]["MsmDays_Absent_WithoutVac"].ToString();
@@ -681,7 +681,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
     {
         string No = spnNotificationsNo.InnerText;
 
-        if (string.IsNullOrEmpty(No)) { No = "1"; } else { No = (Convert.ToInt32(No) + 1).ToString(); }
+        if (string.IsNullOrEmpty(No)) { No = "1"; } //else { No = (Convert.ToInt32(No) + 1).ToString(); }
 
         spnNotificationsNo.InnerText = No;
     }

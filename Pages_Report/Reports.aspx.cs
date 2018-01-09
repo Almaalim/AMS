@@ -11,6 +11,7 @@ using Stimulsoft.Report.Web;
 using System.IO;
 using System.Xml;
 using Ionic.Zip;
+using System.Globalization;
 
 public partial class Reports : BasePage
 {
@@ -48,13 +49,13 @@ public partial class Reports : BasePage
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected override void InitializeCulture()
-    {
-        UICulture = CurrentCulture;
-        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-        System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(CurrentCulture);
-        base.InitializeCulture();
-    }
+    //protected override void InitializeCulture()
+    //{
+    //    //UICulture = CurrentCulture;
+    //    //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+    //    //System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(CurrentCulture);
+    //    //base.InitializeCulture();
+    //}
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void Page_Load(object sender, EventArgs e)
@@ -65,28 +66,28 @@ public partial class Reports : BasePage
             pgCs.FillSession();
             /*** Fill Session ************************************/
 
-            //if (ViewState["pnlshow"] != null) 
-            if (!string.IsNullOrEmpty(hdnShow.Value)) 
+            if (ViewState["pnlshow"] != null)
             {
-                //string ss = hdnShow.Value;
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "hidePopup('','" + pnlDate.ClientID + "','" + pnlDateFromTo.ClientID + "');", true);
-                //hdnShow.Value = ss;
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "key1", "showPopup('" + DivPopup.ClientID + "','" + pnlDate.ClientID + "','" + pnlDateFromTo.ClientID + "','" + hdnShow.Value + "');", true);
-            }
-            else
-            {
-                 ScriptManager.RegisterStartupScript(this, this.GetType(), "key33", "hidePopup('','" + pnlDate.ClientID + "','" + pnlDateFromTo.ClientID + "');", true);
+                if (!string.IsNullOrEmpty(hdnShow.Value))
+                {
+                    //string ss = hdnShow.Value;
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "key", "hidePopup('','" + pnlDate.ClientID + "','" + pnlDateFromTo.ClientID + "');", true);
+                    //hdnShow.Value = ss;
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "key1", "showPopup('" + DivPopup.ClientID + "','" + pnlDate.ClientID + "','" + pnlDateFromTo.ClientID + "','" + hdnShow.Value + "');", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "key33", "hidePopup('','" + pnlDate.ClientID + "','" + pnlDateFromTo.ClientID + "');", true);
+                }
             }
 
             if (!IsPostBack)
             {
                 /*** Common Code ************************************/
-                /*** Check AMS License ***/
-                pgCs.CheckAMSLicense();
+                /*** Check AMS License ***/ pgCs.CheckAMSLicense();
                 string QS = "";
                 if (Request.QueryString.Count != 0) { QS = "?" + Request.QueryString.ToString(); }
-                /*** get Permission    ***/
-                ViewState["ht"] = pgCs.getPerm(Request.Url.AbsolutePath + QS);
+                /*** get Permission    ***/ ViewState["ht"] = pgCs.getPerm(Request.Url.AbsolutePath + QS);
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "key55", "hidePopup('" + DivPopup.ClientID + "','" + pnlDate.ClientID + "','" + pnlDateFromTo.ClientID + "');", true);
                 FillList();
                 /*** Common Code ************************************/
@@ -105,7 +106,6 @@ public partial class Reports : BasePage
                 calDate.SetEnabled(true);
                 calStartDate.SetEnabled(true);
                 calEndDate.SetEnabled(true);
-
             }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
@@ -222,7 +222,8 @@ public partial class Reports : BasePage
         calStartDate.SetValidationEnabled(false);
         calEndDate.SetValidationEnabled(false);
 
-        ddlMonth.SelectedIndex = ddlMonth.Items.IndexOf(ddlMonth.Items.FindByValue(DTCs.FindCurrentMonth()));
+        string M = Convert.ToInt16(DTCs.FindCurrentMonth()).ToString();
+        ddlMonth.SelectedIndex = ddlMonth.Items.IndexOf(ddlMonth.Items.FindByValue(M));
         ddlYear.SelectedIndex = ddlYear.Items.IndexOf(ddlYear.Items.FindByValue(DTCs.FindCurrentYear()));
 
         ViewState["pnlshow"] = null;
@@ -345,7 +346,8 @@ public partial class Reports : BasePage
     protected string Employee()
     {
         DataTable EmployeeInsertdt = ucEmployeeSelected.getEmpSelected();
-        return GenCs.CreateIDsNumber("EmpID", EmployeeInsertdt);
+        //return GenCs.CreateIDsNumber("EmpID", EmployeeInsertdt);
+        return GenCs.CreateIDsString("EmpID", EmployeeInsertdt);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -397,7 +399,7 @@ public partial class Reports : BasePage
         if (!DBCs.IsNullOrEmpty(DT))
         {
             string cipherText;
-            cipherText = DT.Rows[0].ToString();
+            cipherText = DT.Rows[0][0].ToString();
             permID = CryptorEngine.Decrypt(cipherText, true);
         }
 
@@ -429,7 +431,7 @@ public partial class Reports : BasePage
         SqlCommand cmd = new SqlCommand();
         StringBuilder FQ = new StringBuilder();
         FQ.Append(" SELECT ExcID FROM ExcuseType WHERE 1 = 1 ");
-        if (ddlVacType.SelectedIndex > 0) { FQ.Append(" AND ExcID LIKE @ID "); /**/ cmd.Parameters.AddWithValue("@ID", ddlVacType.SelectedValue); }
+        if (ddlExcType.SelectedIndex > 0) { FQ.Append(" AND ExcID LIKE @ID "); /**/ cmd.Parameters.AddWithValue("@ID", ddlExcType.SelectedValue); }
 
         cmd.CommandText = FQ.ToString();
         DataTable DT = DBCs.FetchData(cmd);
@@ -466,11 +468,11 @@ public partial class Reports : BasePage
             DateTime EDate = DateTime.Now;
             DTCs.FindMonthDates(ddlYear.SelectedValue, ddlMonth.SelectedValue, out SDate, out EDate);
 
-            RepProCs.DateFrom = SDate.ToString("dd/MM/yyyy");
-            RepProCs.DateTo = EDate.ToString("dd/MM/yyyy");
+            RepProCs.DateFrom = SDate.ToString("MM/dd/yyyy");
+            RepProCs.DateTo   = EDate.ToString("MM/dd/yyyy");
 
             RepProCs.MonthDate = ddlMonth.SelectedValue;
-            RepProCs.YearDate = ddlYear.SelectedValue;
+            RepProCs.YearDate  = ddlYear.SelectedValue;
         }
 
         if (pnlWorkTime.Visible) { RepProCs.WktID = ViewState["WorkTimeParam"].ToString(); }
@@ -1147,7 +1149,7 @@ public partial class Reports : BasePage
 
         if (source.Equals(cvExcType))
         {
-            if (pnlMachine.Visible && ExcuseType() == "")
+            if (pnlExcType.Visible && ExcuseType() == "")
             {
                 CtrlCs.ValidMsg(this, ref cvMachine, true, General.Msg("Fill at least one feild in Excuse Type filters!", "يجب ملء حقل واحد على الأقل في حقول نوع الاستئذان"));
                 e.IsValid = false;

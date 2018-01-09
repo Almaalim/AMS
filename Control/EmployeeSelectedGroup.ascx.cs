@@ -8,6 +8,7 @@ using System.Data;
 using System.Globalization;
 using Elmah;
 using System.Data.SqlClient;
+using System.Text;
 
 public partial class EmployeeSelectedGroup : System.Web.UI.UserControl
 {
@@ -31,12 +32,22 @@ public partial class EmployeeSelectedGroup : System.Web.UI.UserControl
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    private string _ValidationType = "ALL";
+    public string ValidationType
+    {
+        get { return _ValidationType; }
+        set { if (_ValidationType != value) { _ValidationType = value; } }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void Page_Load(object sender, EventArgs e)
     {
         try
         {
             /*** Fill Session ************************************/
             pgCs.FillSession(); 
+            CtrlCs.RefreshGridEmpty(ref grdLeftGrid);
+            CtrlCs.RefreshGridEmpty(ref grdRightGrid);
             /*** Fill Session ************************************/
             
             btnSelectEmp.ImageUrl   = General.Msg("images/Control_Images/next.png","images/Control_Images/back.png");
@@ -47,13 +58,58 @@ public partial class EmployeeSelectedGroup : System.Web.UI.UserControl
                 /*** Common Code ************************************/
                 /*** Common Code ************************************/
 
-                CtrlCs.PopulateDepartmentList(ref ddlDepartment, pgCs.DepList, pgCs.Version);
+                FillList();
                 CtrlCs.FillGridEmpty(ref grdLeftGrid, 50);
                 CtrlCs.FillGridEmpty(ref grdRightGrid, 50);
 
                 cvSelectEmployees.ValidationGroup = ValidationGroupName;
             }
   
+        }
+        catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void FillList()
+    {
+        try
+        {
+            CtrlCs.PopulateDepartmentList(ref ddlDepartment, pgCs.DepList, pgCs.Version);
+        }
+        catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void FillRotation(string RwtID)
+    {
+        try
+        {
+            Random randNum = new Random();
+            string GroupIDs   = "";
+            string GroupNames = "";
+            string EmpGroup   = "";
+            ViewState["EmpGroup"] = "";
+
+            DataTable DT = DBCs.FetchData(" SELECT * FROM RotationWorkTime_GrpRel WHERE RwtID = @P1 ORDER BY OrderID ", new string[] { RwtID });
+            foreach (DataRow DR in DT.Rows)
+            {
+                ListItem _ls = new ListItem();
+                _ls.Value = randNum.Next(99).ToString();
+                _ls.Text  = DR["GrpName"].ToString();
+                AddGruop(_ls);
+
+                string p1 = (string.IsNullOrEmpty(GroupIDs)) ? "" : ",";
+                GroupIDs += p1 + _ls.Value;
+
+                string p2 = (string.IsNullOrEmpty(GroupNames)) ? "" : ",";
+                GroupNames += p2 + _ls.Text;
+
+                string perifx = (string.IsNullOrEmpty(EmpGroup)) ? "" : ",";
+                EmpGroup += perifx + "'" + DR["EmpIDs_All"].ToString().Replace(",", "','") + "'";
+            }
+
+            ViewState["GroupsInfo"] = GroupIDs + "-" + GroupNames;
+            ViewState["EmpGroup"]   = EmpGroup;
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
@@ -74,14 +130,20 @@ public partial class EmployeeSelectedGroup : System.Web.UI.UserControl
                 {
                     if (ViewState["dtEmpIds_" + ddlGrpName.Items[k].Value] != null)
                     {
-                        if (IN == "") { IN += ViewState["dtEmpIds_" + ddlGrpName.Items[k].Value]; }
-                        else { IN += "," + ViewState["dtEmpIds_" + ddlGrpName.Items[k].Value]; }
+                        string perifx = (string.IsNullOrEmpty(IN)) ? "" : ",";
+                        IN += perifx + ViewState["dtEmpIds_" + ddlGrpName.Items[k].Value];
                     }
                 }
-                if (IN != "") { IN = " AND E.EmpID NOT IN (" + IN + ")"; } 
 
-                string Q = "SELECT E.EmpID, " + General.Msg("E.EmpNameEn", "E.EmpNameAr") + " AS EmpName FROM Employee E,Department D WHERE EmpStatus ='True' AND ISNULL(EmpDeleted,0) = 0 AND E.DepID = D.DepID AND D.DepID = " + ddlDepartment.SelectedValue.ToString() + IN;
-                dtLeft = DBCs.FetchData(new SqlCommand(Q));
+                string lang = (pgCs.Lang == "AR") ? "Ar" : "En";
+                StringBuilder Q = new StringBuilder();
+                Q.Append(" SELECT EmpID, EmpName" + lang + " AS EmpName ");
+                Q.Append(" FROM spActiveEmployeeView ");
+                Q.Append(" WHERE DepID = " + ddlDepartment.SelectedValue.ToString() + "");
+                if (!string.IsNullOrEmpty(IN)) { Q.Append(" AND EmpID NOT IN (" + IN + ")"); }
+                if (!string.IsNullOrEmpty(Convert.ToString(ViewState["EmpGroup"]))) { Q.Append(" AND EmpID NOT IN (" + Convert.ToString(ViewState["EmpGroup"]) + ")"); }
+
+                dtLeft = DBCs.FetchData(new SqlCommand(Q.ToString()));
                 if (!DBCs.IsNullOrEmpty(dtLeft))
                 {
                     grdLeftGrid.DataSource = (DataTable)dtLeft;
@@ -202,13 +264,14 @@ public partial class EmployeeSelectedGroup : System.Web.UI.UserControl
                 grdRightGrid.DataSource = (DataTable)dtRight;
                 grdRightGrid.DataBind();
 
-                string EmpIds = "";
+                string IDs = "";
                 for (int i = 0; i < dtRight.Rows.Count; i++)
                 {
-                    DataRow dRowEmp = dtRight.Rows[i];
-                    if (i == 0) { EmpIds += dRowEmp["EmpID"].ToString(); } else { EmpIds += "," + dRowEmp["EmpID"].ToString(); }
+                    string perifx = (string.IsNullOrEmpty(IDs)) ? "" : ",";
+                    IDs += perifx + "'" + dtRight.Rows[i]["EmpID"].ToString() + "'";
                 }
-                ViewState["dtEmpIds_" + ddlGrpName.SelectedValue.ToString()] = EmpIds;
+                ViewState["dtEmpIds_" + ddlGrpName.SelectedValue.ToString()] = IDs;
+
             }
             else
             {
@@ -281,13 +344,13 @@ public partial class EmployeeSelectedGroup : System.Web.UI.UserControl
                 grdRightGrid.DataSource = (DataTable)dtRight;
                 grdRightGrid.DataBind();
 
-                string EmployeeSelecteID = "";
+                string IDs = "";
                 for (int i = 0; i < dtRight.Rows.Count; i++)
                 {
-                    DataRow dRowEmp = dtRight.Rows[i];
-                    if (i == 0) { EmployeeSelecteID += dRowEmp["EmpID"].ToString(); } else { EmployeeSelecteID += "," + dRowEmp["EmpID"].ToString(); }
+                    string perifx = (string.IsNullOrEmpty(IDs)) ? "" : ",";
+                    IDs += perifx + "'" + dtRight.Rows[i]["EmpID"].ToString() + "'";
                 }
-                ViewState["dtEmpIds_" + ddlGrpName.SelectedValue.ToString()] = EmployeeSelecteID;
+                ViewState["dtEmpIds_" + ddlGrpName.SelectedValue.ToString()] = IDs;
             }
             else
             {
@@ -335,7 +398,7 @@ public partial class EmployeeSelectedGroup : System.Web.UI.UserControl
     {
         if (ddlGrpName.SelectedIndex > -1)
         {
-            ddlDepartment.SelectedIndex = -1;
+            //ddlDepartment.SelectedIndex = -1;
             if (ViewState["dtRight_" + ddlGrpName.SelectedValue.ToString()] != null)
             {
                 grdRightGrid.DataSource = (DataTable)ViewState["dtRight_" + ddlGrpName.SelectedValue.ToString()];
@@ -358,6 +421,9 @@ public partial class EmployeeSelectedGroup : System.Web.UI.UserControl
     public DataTable getEmpSelected(string pGroupName) { return (DataTable)ViewState["dtRight_" + pGroupName]; }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public ListItemCollection getGroupList() { return ddlGrpName.Items; }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
@@ -367,6 +433,7 @@ public partial class EmployeeSelectedGroup : System.Web.UI.UserControl
     {
         try
         {
+            bool isSelect = false;
             string strGroup = "";
             if (ddlGrpName.Items.Count != 0)
             {
@@ -377,21 +444,51 @@ public partial class EmployeeSelectedGroup : System.Web.UI.UserControl
                     {
                         if (strGroup == "") { strGroup += ddlGrpName.Items[i].Text; } else { strGroup += "," + ddlGrpName.Items[i].Text; }
                     }
+                    else
+                    {
+                        if (ValidationType == "ONE")
+                        {
+                            isSelect = true;
+                        }
+                    }
                 }
-                if (String.IsNullOrEmpty(strGroup))
+
+                if (ValidationType == "ALL")
                 {
-                    e.IsValid = true;
+                    if (!string.IsNullOrEmpty(strGroup))
+                    {
+                        ValidMsg(ref cvSelectEmployees, true, General.Msg("Select Employees for Gruops : " + strGroup, "يجب إختيار موظفين للمجموعات :" + strGroup));
+                        e.IsValid = false;
+                    }
                 }
                 else
                 {
-                    cvSelectEmployees.ErrorMessage = "Select Employees for Gruop : " + strGroup;
-                    e.IsValid = false;
+                    if (!isSelect)
+                    {
+                        ValidMsg(ref cvSelectEmployees, true, General.Msg("At least one employee must be selected", "يجب إختيار موظف واحد على الأقل"));
+                        e.IsValid = false;
+                    }
                 }
             }
         }
         catch
         {
             e.IsValid = false;
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void ValidMsg(ref CustomValidator cv, bool isShow, string pMsg)
+    {
+        if (isShow)
+        {
+            cv.ErrorMessage = pMsg;
+            cv.Text = Server.HtmlDecode("&lt;img src='../App_Themes/ThemeEn/Images/Validation/message_exclamation.png' title='" + pMsg + "' /&gt;");
+        }
+        else
+        {
+            cv.ErrorMessage = "";
+            cv.Text = Server.HtmlDecode("&lt;img src='../App_Themes/ThemeEn/Images/Validation/Exclamation.gif' title='" + pMsg + "' /&gt;");
         }
     }
 

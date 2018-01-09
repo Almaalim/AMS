@@ -21,20 +21,19 @@ public class SwapSql : DataLayerBase
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public int Insert(SwapPro Pro)
     {
-        SqlCommand Sqlcmd = new SqlCommand("dbo.[Swap_Insert]", MainConnection);
+        SqlCommand Sqlcmd = new SqlCommand("dbo.[EmployeeSwap_Insert]", MainConnection);
         Sqlcmd.CommandType = CommandType.StoredProcedure;
         
         try
         {
-            Sqlcmd.Parameters.Add(new SqlParameter("@SwpID"        , IntDB, 10,  OU, false, 0, 0, "", DRV, Pro.SwpID));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EmpID"        , VchDB, 15,  IN, false, 0, 0, "", DRV, Pro.EmpID));
-            Sqlcmd.Parameters.Add(new SqlParameter("@SwpStartDate" , DtDB,  10,  IN, false, 0, 0, "", DRV, Pro.SwpStartDate));
-            Sqlcmd.Parameters.Add(new SqlParameter("@SwpEndDate"   , DtDB,  10,  IN, false, 0, 0, "", DRV, Pro.SwpEndDate));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EmpID2"       , VchDB, 15,  IN, false, 0, 0, "", DRV, Pro.EmpID2));
-            Sqlcmd.Parameters.Add(new SqlParameter("@SwpStartDate2", DtDB,  10,  IN, false, 0, 0, "", DRV, Pro.SwpStartDate2));
-            Sqlcmd.Parameters.Add(new SqlParameter("@SwpEndDate2"  , DtDB,  10,  IN, false, 0, 0, "", DRV, Pro.SwpEndDate2)); 
-            Sqlcmd.Parameters.Add(new SqlParameter("@WktID"        , IntDB, 100, IN, false, 0, 0, "", DRV, Pro.WktID));
-            Sqlcmd.Parameters.Add(new SqlParameter("@SwpType"      , VchDB, 15,  IN, false, 0, 0, "", DRV, Pro.SwpType));
+            Sqlcmd.Parameters.Add(new SqlParameter("@SwpID"        , IntDB, 10,   OU, false, 0, 0, "", DRV, Pro.SwpID));
+            Sqlcmd.Parameters.Add(new SqlParameter("@SwpType"      , IntDB, 1,    IN, false, 0, 0, "", DRV, Pro.SwpType));
+            Sqlcmd.Parameters.Add(new SqlParameter("@SwpEmpID1"    , VchDB, 15,   IN, false, 0, 0, "", DRV, Pro.SwpEmpID1));
+            Sqlcmd.Parameters.Add(new SqlParameter("@SwpStartDate1", DtDB,  10,   IN, false, 0, 0, "", DRV, Pro.SwpStartDate1));
+            Sqlcmd.Parameters.Add(new SqlParameter("@SwpEmpID2"    , VchDB, 15,   IN, false, 0, 0, "", DRV, Pro.SwpEmpID2));
+            Sqlcmd.Parameters.Add(new SqlParameter("@SwpStartDate2", DtDB,  10,   IN, false, 0, 0, "", DRV, Pro.SwpStartDate2));          
+            Sqlcmd.Parameters.Add(new SqlParameter("@SwpDesc"      , VchDB, 8000, IN, false, 0, 0, "", DRV, Pro.SwpDesc));
+            Sqlcmd.Parameters.Add(new SqlParameter("@SwpAddBy"     , ChrDB, 3,    IN, false, 0, 0, "", DRV, Pro.SwpAddBy));
 
             Sqlcmd.Parameters.Add(new SqlParameter("@IsExecute"    , IntDB, 10, OU, false, 0, 0, "", DRV, 0));
             Sqlcmd.Parameters.Add(new SqlParameter("@TransactionBy", VchDB, 15, IN, false, 0, 0, "", DRV, Pro.TransactionBy));
@@ -58,7 +57,7 @@ public class SwapSql : DataLayerBase
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public bool Delete(string ID, string TransactionBy)
     {
-        SqlCommand Sqlcmd = new SqlCommand("dbo.[Swap_Delete]", MainConnection);
+        SqlCommand Sqlcmd = new SqlCommand("dbo.[EmployeeSwap_Delete]", MainConnection);
         Sqlcmd.CommandType = CommandType.StoredProcedure;
         
         try

@@ -36,7 +36,7 @@ public partial class EmployeeRequest : BasePage
             /*** Fill Session ************************************/
             pgCs.FillSession(); 
             CtrlCs.RefreshGridEmpty(ref grdData);
-            MainQuery += " SELECT * FROM EmpRequestInfo WHERE EmpID = '" + pgCs.LoginEmpID + "'";
+            MainQuery += " SELECT * FROM EmployeeRequestInfoView WHERE EmpID = '" + pgCs.LoginEmpID + "'";
             /*** Fill Session ************************************/
 
             if (!IsPostBack)
@@ -227,7 +227,6 @@ public partial class EmployeeRequest : BasePage
         calStartDate.SetEnabled(pStatus);
         calEndDate.SetEnabled(pStatus);
         calStartDate2.SetEnabled(pStatus);
-        calEndDate2.SetEnabled(pStatus);
         txtEmpID2.Enabled               = pStatus;
         txtEmpName.Enabled              = pStatus;
         txtShiftID.Enabled              = pStatus;
@@ -249,7 +248,6 @@ public partial class EmployeeRequest : BasePage
         calStartDate.ClearDate();
         calEndDate.ClearDate();
         calStartDate2.ClearDate();
-        calEndDate2.ClearDate();
         txtEmpID2.Text = "";
         txtEmpName.Text = "";
         txtShiftID.Text = "";
@@ -466,7 +464,7 @@ public partial class EmployeeRequest : BasePage
     {
         try
         {
-            DataTable DT = DBCs.FetchData(" SELECT * FROM EmpRequestInfo WHERE ErqID = @P1 ", new string[] { pID });
+            DataTable DT = DBCs.FetchData(" SELECT * FROM EmployeeRequestInfoView WHERE ErqID = @P1 ", new string[] { pID });
             if (!DBCs.IsNullOrEmpty(DT)) 
             {
                 string RetID = DT.Rows[0]["RetID"].ToString();
@@ -481,6 +479,9 @@ public partial class EmployeeRequest : BasePage
                 {
                     divVacType.Visible = true;
                     ddlVacType.SelectedIndex = ddlVacType.Items.IndexOf(ddlVacType.Items.FindByValue(DT.Rows[0]["ErqTypeID"].ToString()));
+
+                    divEndDate.Visible = true;
+                    calEndDate.SetGDate(DT.Rows[0]["ErqEndDate"], pgCs.DateFormat);
 
                     lblVacHospitalType.Visible = ddlVacHospitalType.Visible = false;
 
@@ -497,11 +498,11 @@ public partial class EmployeeRequest : BasePage
                     }
                 }
 
-                if (RetID == "VAC" || RetID == "SWP")
-                {
-                    divEndDate.Visible = true;
-                    calEndDate.SetGDate(DT.Rows[0]["ErqEndDate"], pgCs.DateFormat);
-                }
+                //if (RetID == "VAC")
+                //{
+                //    divEndDate.Visible = true;
+                //    calEndDate.SetGDate(DT.Rows[0]["ErqEndDate"], pgCs.DateFormat);
+                //}
 
                 if (RetID == "EXC")
                 {
@@ -549,16 +550,16 @@ public partial class EmployeeRequest : BasePage
                 if (RetID == "SWP")
                 {
                     divFileReq.Visible = false;
-                    divType.Visible = true;
-                    divEmp2.Visible = true;
+                    divType.Visible    = true;
+                    divEmp2.Visible    = true;
 
-                    if (DT.Rows[0]["ErqTypeID"].ToString() == "1") { txtType.Text = "Working Day(s)"; } else if (DT.Rows[0]["ErqTypeID"].ToString() == "2") { txtType.Text = "Off Day(s)"; }
+                    if (DT.Rows[0]["ErqTypeID"].ToString() == "1") { txtType.Text = General.Msg("Working Day with Working Day","يوم عمل مع يوم عمل"); }
+                    else if (DT.Rows[0]["ErqTypeID"].ToString() == "2") { General.Msg("Working Day with Off Day","يوم عمل مع يوم إجازة"); }
+                    else if (DT.Rows[0]["ErqTypeID"].ToString() == "3") { General.Msg("Off Day with Working Day","يوم إجازة مع يوم عمل"); }
 
                     txtEmpID2.Text = DT.Rows[0]["EmpID2"].ToString();
-                    if (pgCs.Lang == "AR") { txtEmpName.Text = DT.Rows[0]["Emp2NameAr"].ToString(); } else { txtEmpName.Text = DT.Rows[0]["Emp2NameEn"].ToString(); }
-
+                    txtEmpName.Text = Convert.ToString(DT.Rows[0][General.Msg("EmpNameEn2","EmpNameAr2")]);
                     calStartDate2.SetGDate(DT.Rows[0]["ErqStartDate2"], pgCs.DateFormat);
-                    calEndDate2.SetGDate(DT.Rows[0]["ErqEndDate2"], pgCs.DateFormat);
                 }
 
                 if (RetID == "COM" || RetID == "JOB")

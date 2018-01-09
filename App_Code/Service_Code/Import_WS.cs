@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -127,6 +128,28 @@ public class Import_WS : System.Web.Services.WebService
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    [WebMethod]
+    public DataSet ProcessInfo(string WS, out string Err)
+    {
+        Err = "";
+
+        try
+        {
+            if (!CheckUser(WS, out Err)) { return null; }
+
+            StringBuilder SQ = new StringBuilder();
+            SQ.Append(" SELECT * FROM ImportSetting");
+
+            DataSet DS = DBCs.GetData(SQ.ToString(), null);
+
+            if (DS == null) { Err = "WS_Fetch_Setting Message :There are no data"; }
+
+            return DS;
+        }
+        catch (Exception ex) { Err = String.Format("WS_Fetch_Setting Error: {0}", ex.Message); /**/ return null; }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
@@ -221,6 +244,130 @@ public class Import_WS : System.Web.Services.WebService
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /*#############################################################################################################################*/
+    /*#############################################################################################################################*/
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    [WebMethod]
+    public bool StartProcess(string WS, out string Err)
+    {
+        SqlConnectionStringBuilder connectionBuilder = new SqlConnectionStringBuilder(General.ConnString)
+        {
+            ConnectTimeout = 4000,
+            AsynchronousProcessing = true
+        };
+
+        SqlConnection conn = new SqlConnection(connectionBuilder.ConnectionString);
+        SqlCommand cmd = new SqlCommand(" EXECUTE spAttendanceProcess ", conn);
+
+        try
+        {
+            conn.Open();
+
+            //The actual T-SQL execution happens in a separate work thread.
+            cmd.BeginExecuteReader(new AsyncCallback(ProcessCallbackFunction), cmd);
+
+            Err = "";
+            return true;
+        }
+        catch (SqlException se)
+        {
+            Err = String.Format("WS_StartProcess Error: {0}", se.Message);
+            return false;
+        }
+        catch (Exception ex)
+        {
+            Err = String.Format("WS_StartProcess Error: {0}", ex.Message);
+            return false;
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+    private void ProcessCallbackFunction(IAsyncResult asyncResult)
+    {
+        try
+        {
+            ////un-box the AsynState back to the SqlCommand
+            //SqlCommand cmd = (SqlCommand)asyncResult.AsyncState;
+            //SqlDataReader reader = cmd.EndExecuteReader(asyncResult);
+            //while (reader.Read())
+            //{
+            //    Dispatcher.BeginInvoke(new delegateAddTextToListbox(AddTextToListbox),
+            //                            reader.GetString(0));
+            //}
+            //if (cmd.Connection.State.Equals(ConnectionState.Open))
+            //{
+            //    cmd.Connection.Close();
+            //}
+        }
+        catch (Exception ex)
+        {
+            //ToDo : Swallow exception log
+        }
+    }   
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+    [WebMethod]
+    public bool StartTodayProcess(string WS, out string Err)
+    {
+        SqlConnectionStringBuilder connectionBuilder = new SqlConnectionStringBuilder(General.ConnString)
+        {
+            ConnectTimeout = 4000,
+            AsynchronousProcessing = true
+        };
+
+        SqlConnection conn = new SqlConnection(connectionBuilder.ConnectionString);
+        SqlCommand cmd = new SqlCommand(" EXECUTE spTodayStateProcess ", conn);
+
+        try
+        {
+            conn.Open();
+
+            //The actual T-SQL execution happens in a separate work thread.
+            cmd.BeginExecuteReader(new AsyncCallback(TodayProcessCallbackFunction), cmd);
+
+            Err = "";
+            return true;
+        }
+        catch (SqlException se)
+        {
+            Err = String.Format("WS_StartTodayProcess Error: {0}", se.Message);
+            return false;
+        }
+        catch (Exception ex)
+        {
+            Err = String.Format("WS_StartTodayProcess Error: {0}", ex.Message);
+            return false;
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+    private void TodayProcessCallbackFunction(IAsyncResult asyncResult)
+    {
+        try
+        {
+            ////un-box the AsynState back to the SqlCommand
+            //SqlCommand cmd = (SqlCommand)asyncResult.AsyncState;
+            //SqlDataReader reader = cmd.EndExecuteReader(asyncResult);
+            //while (reader.Read())
+            //{
+            //    Dispatcher.BeginInvoke(new delegateAddTextToListbox(AddTextToListbox),
+            //                            reader.GetString(0));
+            //}
+            //if (cmd.Connection.State.Equals(ConnectionState.Open))
+            //{
+            //    cmd.Connection.Close();
+            //}
+        }
+        catch (Exception ex)
+        {
+            //ToDo : Swallow exception log
+        }
+    }   
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
 
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/

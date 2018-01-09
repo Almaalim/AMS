@@ -152,19 +152,19 @@
                 </div>
             </div>
             <div class="row" runat="server" id="divVacType">
-                <div class="col1">
+                <div class="col2">
                     <asp:Label ID="lblVacType" runat="server" Text="Vacation Type :"
                         meta:resourcekey="lblVacTypeResource1"></asp:Label>
                 </div>
-                <div class="col2">
+                <div class="col4">
                     <asp:DropDownList ID="ddlVacType" runat="server"
                         meta:resourcekey="ddlVacTypeResource1" Enabled="False">
                     </asp:DropDownList>
                 </div>
-                <div class="col1">
+                <div class="col2">
                     <asp:Label ID="lblVacHospitalType" runat="server" Text="Hospital Type :" Visible="false" meta:resourcekey="lblVacHospitalTypeResource1"></asp:Label>
                 </div>
-                <div class="col2">
+                <div class="col4">
                     <asp:DropDownList ID="ddlVacHospitalType" runat="server"
                         Visible="false" meta:resourcekey="ddlVacHospitalTypeResource1" Enabled="False">
                         <asp:ListItem Text="-Select Hospital Type-" Value="N" meta:resourcekey="liSelectHospitalTypeResource"></asp:ListItem>
@@ -174,11 +174,11 @@
                 </div>
             </div>
             <div class="row" runat="server" id="divExcType">
-                <div class="col1">
+                <div class="col2">
                     <asp:Label ID="lblExcType" runat="server" Text="Excuse Type :"
                         meta:resourcekey="lblExcTypeResource1"></asp:Label>
                 </div>
-                <div class="col2">
+                <div class="col4">
                     <asp:DropDownList ID="ddlExcType" runat="server"
                         meta:resourcekey="ddlExcTypeResource1" Enabled="False">
                     </asp:DropDownList>
@@ -188,7 +188,7 @@
                         Enabled="False" Visible="False"
                         meta:resourcekey="txtGapOrOVTIDResource1"></asp:TextBox>
                 </div>
-                <div class="col2">
+                <div class="col4">
                     <asp:TextBox ID="txtValid" runat="server" Text="02120" Visible="False"
                         Width="10px" meta:resourcekey="txtCustomValidatorResource1"></asp:TextBox>
 
@@ -199,166 +199,157 @@
                 </div>
             </div>
             <div class="row" runat="server" id="divType">
-                <div class="col1">
-                    <asp:Label ID="lblType" runat="server" Text="Type :"
-                        meta:resourcekey="lblTypeResource1"></asp:Label>
-                </div>
                 <div class="col2">
+                    <asp:Label ID="lblType" runat="server" Text="Type :" meta:resourcekey="lblTypeResource1"></asp:Label>
+                </div>
+                <div class="col4">
                     <asp:TextBox ID="txtType" runat="server" AutoCompleteType="Disabled" meta:resourcekey="txtTypeResource1"></asp:TextBox>
                 </div>
+                <div class="col2"></div>
+                <div class="col4"></div>
             </div>
             <div class="row" runat="server" id="divDate">
-                <div class="col1">
+                <div class="col2">
                     <asp:Label ID="lblStartDate" runat="server"
                         meta:resourcekey="lblStartDateResource1">Start Date :</asp:Label>
                 </div>
-                <div class="col2">
+                <div class="col4">
                     <Cal:Calendar2 ID="calStartDate" runat="server" CalendarType="System" />
                 </div>
+                <div class="col2"></div>
+                <div class="col4"></div>
+            </div>           
+            <div runat="server" id="divEndDate" class="row">
+                <div class="col2">
+                    <asp:Label ID="lblEndDate" runat="server" Text="End Date :"
+                        meta:resourcekey="lblEndDateResource1"></asp:Label>
                 </div>
-                <div runat="server" id="divEndDate" class="row">
-                    <div class="col1">
-                        <asp:Label ID="lblEndDate" runat="server" Text="End Date :"
-                            meta:resourcekey="lblEndDateResource1"></asp:Label>
-                    </div>
-                    <div class="col2">
-                        <Cal:Calendar2 ID="calEndDate" runat="server" CalendarType="System" />
-                    </div>
+                <div class="col4">
+                    <Cal:Calendar2 ID="calEndDate" runat="server" CalendarType="System" />
                 </div>
-            
-
-
+                <div class="col2"></div>
+                <div class="col4"></div>
+            </div>            
             <div runat="server" id="divEmp2">
                 <div class="row">
-                    <div class="col1">
+                    <div class="col2">
                         <asp:Label ID="lblEmpID2" runat="server" Text="Swap With Employee ID:"
                             meta:resourcekey="lblEmpID2Resource1"></asp:Label>
                     </div>
-                    <div class="col2">
+                    <div class="col4">
                         <asp:TextBox ID="txtEmpID2" runat="server" AutoCompleteType="Disabled" meta:resourcekey="txtEmpID2Resource1" Enabled="False"></asp:TextBox>
                     </div>
-                    <div class="col1">
-                        <asp:Label ID="lblEmpName" runat="server" Text="Employee Name :"
-                            Visible="False" meta:resourcekey="lblEmpNameResource1"></asp:Label>
-                    </div>
                     <div class="col2">
+                        <asp:Label ID="lblEmpName" runat="server" Text="Employee Name :"
+                            meta:resourcekey="lblEmpNameResource1"></asp:Label>
+                    </div>
+                    <div class="col4">
                         <asp:TextBox ID="txtEmpName" runat="server" AutoCompleteType="Disabled"
-                            Enabled="False" Visible="False"
+                            Enabled="False"
                             meta:resourcekey="txtEmpNameResource1"></asp:TextBox>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col1">
+                    <div class="col2">
                         <asp:Label ID="lblStartDate2" runat="server" Text="Start Date :"
                             meta:resourcekey="lblStartDate2Resource1"></asp:Label>
                     </div>
-                    <div class="col2">
+                    <div class="col4">
                         <Cal:Calendar2 ID="calStartDate2" runat="server" CalendarType="System" />
                     </div>
-                    <div class="col1">
-                        <asp:Label ID="lblEndDate2" runat="server" Text="End Date :"
-                            meta:resourcekey="lblEndDate2Resource1"></asp:Label>
-                    </div>
-                    <div class="col2">
-                        <Cal:Calendar2 ID="calEndDate2" runat="server" CalendarType="System" />
-                    </div>
+                    <div class="col2"></div>
+                    <div class="col4"></div>
                 </div>
             </div>
-
             <div runat="server" id="divWorkTime">
                 <div class="row">
-                    <div class="col1">
+                    <div class="col2">
                         <asp:Label ID="lblWorkTimeName" runat="server" Text="Worktime Name :"
                             meta:resourcekey="lblWorkTimeNameResource1"></asp:Label>
                     </div>
-                    <div class="col2">
+                    <div class="col4">
                         <asp:TextBox ID="txtWorkTimeName" runat="server" AutoCompleteType="Disabled"
                             Enabled="False"   meta:resourcekey="txtWorkTimeNameResource1"></asp:TextBox>
                     </div>
-                    <div class="col1">
+                    <div class="col2">
                         <asp:Label ID="lblWorkTimeID" runat="server" Text="Worktime ID :"
                             meta:resourcekey="lblWorkTimeIDResource1"></asp:Label>
                     </div>
-                    <div class="col2">
+                    <div class="col4">
                         <asp:TextBox ID="txtWorkTimeID" runat="server" AutoCompleteType="Disabled"
                             Enabled="False"   meta:resourcekey="txtWorkTimeIDResource1"></asp:TextBox>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col1">
+                    <div class="col2">
                         <asp:Label ID="lblShiftName" runat="server" Text="Shift Name :"
                             meta:resourcekey="lblShiftNameResource1"></asp:Label>
                     </div>
-                    <div class="col2">
+                    <div class="col4">
                         <asp:TextBox ID="txtShiftName" runat="server" AutoCompleteType="Disabled"
                             Enabled="False"   meta:resourcekey="txtShiftNameResource1"></asp:TextBox>
                     </div>
-                    <div class="col1">
+                    <div class="col2">
                         <asp:Label ID="lblShiftID" runat="server" Text="Shift ID :"
                             meta:resourcekey="lblShiftIDResource1"></asp:Label>
                     </div>
-                    <div class="col2">
+                    <div class="col4">
                         <asp:TextBox ID="txtShiftID" runat="server" AutoCompleteType="Disabled"
                             Enabled="False"   meta:resourcekey="txtShiftIDResource1"></asp:TextBox>
                     </div>
                 </div>
             </div>
-
             <div runat="server" id="divTimeFrom">
                 <div class="row">
-                    <div class="col1">
+                    <div class="col2">
                         <asp:Label ID="lblTimeFrom" runat="server" Text="Time from :" meta:resourcekey="lblTimeFromResource1"></asp:Label>
                     </div>
-                    <div class="col2">
+                    <div class="col4">
                         <Almaalim:TimePicker ID="tpFrom" runat="server" FormatTime="HHmmss"
                             CssClass="TimeCss" meta:resourcekey="tpFromResource1" Enabled="False" />
                     </div>
-                    <div class="col1">
+                    <div class="col2">
                         <asp:Label ID="lblTimeTo" runat="server" Text="Time To :" meta:resourcekey="lblTimeToResource1"></asp:Label>
                     </div>
-                    <div class="col2">
+                    <div class="col4">
                         <Almaalim:TimePicker ID="tpTo" runat="server" FormatTime="HHmmss"
                             CssClass="TimeCss" meta:resourcekey="tpToResource1" Enabled="False" />
                     </div>
                 </div>
             </div>
-
-
             <div runat="server" id="divFileReq">
                 <div class="row">
-                    <div class="col1">
+                    <div class="col2">
                         <asp:Label ID="lblReqFile" runat="server" Text="Request File :"
                             meta:resourcekey="lblReqFileResource1"></asp:Label>
                     </div>
-                    <div class="col2">
+                    <div class="col4">
                         <asp:Button ID="btnReqFile" runat="server" Text="Download" CssClass="buttonBG"
                              
                             meta:resourcekey="btnReqFileResource1" OnClick="btnReqFile_Click" />
                     </div>
-                    <div class="col1">
-                    </div>
                     <div class="col2">
+                    </div>
+                    <div class="col4">
                         <asp:TextBox ID="txtReqFile" runat="server" AutoCompleteType="Disabled"
                             Enabled="False"   Visible="False"
                             meta:resourcekey="txtReqFileResource1"></asp:TextBox></td>
                     </div>
                 </div>
             </div>
-
             <div runat="server" id="divReason">
                 <div class="row">
-                    <div class="col1">
+                    <div class="col2">
                         <asp:Label ID="lblDesc" runat="server" Text="Request Reason :"
                             meta:resourcekey="lblDescResource1"></asp:Label>
                     </div>
-                    <div class="col5">
+                    <div class="col4">
                         <asp:TextBox ID="txtDesc" runat="server" AutoCompleteType="Disabled"
                             TextMode="MultiLine"   Enabled="False"
                             meta:resourcekey="txtDescResource1"></asp:TextBox>
                     </div>
                 </div>
             </div>
-
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

@@ -35,6 +35,8 @@ public class WorkTimeSql : DataLayerBase
             Sqlcmd.Parameters.Add(new SqlParameter("@WktID"        , IntDB, 10 , OU, false, 0, 0, "", DRV, Pro.WktID));
             Sqlcmd.Parameters.Add(new SqlParameter("@WktNameAr"    , VchDB, 100, IN, false, 0, 0, "", DRV, Pro.WktNameAr));
             Sqlcmd.Parameters.Add(new SqlParameter("@WktNameEn"    , VchDB, 100, IN, false, 0, 0, "", DRV, Pro.WktNameEn));
+            Sqlcmd.Parameters.Add(new SqlParameter("@WktInitialAr" , VchDB, 10,  IN, false, 0, 0, "", DRV, Pro.WktInitialAr));
+            Sqlcmd.Parameters.Add(new SqlParameter("@WktInitialEn" , VchDB, 10,  IN, false, 0, 0, "", DRV, Pro.WktInitialEn));
             Sqlcmd.Parameters.Add(new SqlParameter("@WktDesc"      , VchDB, 255, IN, false, 0, 0, "", DRV, Pro.WktDesc));
             Sqlcmd.Parameters.Add(new SqlParameter("@WtpID"        , IntDB, 10 , IN, false, 0, 0, "", DRV, Pro.WtpID));
             Sqlcmd.Parameters.Add(new SqlParameter("@WktIsActive"  , BitDB, 1  , IN, false, 0, 0, "", DRV, Pro.WktIsActive));
@@ -116,6 +118,8 @@ public class WorkTimeSql : DataLayerBase
             Sqlcmd.Parameters.Add(new SqlParameter("@WktID"        , IntDB, 10 , IN , false, 0, 0, "", DRV, Pro.WktID));
             Sqlcmd.Parameters.Add(new SqlParameter("@WktNameAr"    , VchDB, 100, IN , false, 0, 0, "", DRV, Pro.WktNameAr));
             Sqlcmd.Parameters.Add(new SqlParameter("@WktNameEn"    , VchDB, 100, IN , false, 0, 0, "", DRV, Pro.WktNameEn));
+            Sqlcmd.Parameters.Add(new SqlParameter("@WktInitialAr" , VchDB, 10,  IN, false, 0, 0, "", DRV, Pro.WktInitialAr));
+            Sqlcmd.Parameters.Add(new SqlParameter("@WktInitialEn" , VchDB, 10,  IN, false, 0, 0, "", DRV, Pro.WktInitialEn));
             Sqlcmd.Parameters.Add(new SqlParameter("@WktDesc"      , VchDB, 255, IN , false, 0, 0, "", DRV, Pro.WktDesc));
             Sqlcmd.Parameters.Add(new SqlParameter("@WtpID"        , IntDB, 10 , IN , false, 0, 0, "", DRV, Pro.WtpID));
             Sqlcmd.Parameters.Add(new SqlParameter("@WktIsActive"  , BitDB, 1  , IN , false, 0, 0, "", DRV, Pro.WktIsActive));

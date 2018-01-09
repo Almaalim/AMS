@@ -293,12 +293,12 @@ public partial class ShiftExcuseRequest2 : BasePage
                     string name = nameArr[0];
                     string type = nameArr[1];
                     string NewFileName = pgCs.LoginEmpID + "-" + dateFile + "-ESH" + "." + type;
-                    fudReqFile.PostedFile.SaveAs(Server.MapPath(@"./RequestsFiles/") + NewFileName);
+                    fudReqFile.PostedFile.SaveAs(Server.MapPath(@"../RequestsFiles/") + NewFileName);
                     ProCs.ErqReqFilePath = NewFileName;
                     //empReq.ErqReqFilePath = "\\\\" + ipServer + "\\" + Server.MapPath(@"./RequestsFiles/" + FileName).ToString().Substring(3);
                 }
             }
-            catch { }
+            catch (Exception ex) { throw new Exception(ex.Message, ex); }
 
 
             int ID = SqlCs.Insert(ProCs);

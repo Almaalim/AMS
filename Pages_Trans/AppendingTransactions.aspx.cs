@@ -165,8 +165,8 @@ public partial class AppendingTransactions : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     void FillPropeties(string Type)
     {
-        try
-        {
+        //try
+        //{
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             ProCs.EmpIDs     = txtEmpID.Text;
             ProCs.TrnDate    = calDate.getGDateDBFormat();
@@ -188,11 +188,11 @@ public partial class AppendingTransactions : BasePage
                         string FileName = System.IO.Path.GetFileName(fudINReqFile.PostedFile.FileName);
                         string[] names = FileName.Split('.');
                         string NewFileName = txtEmpID.Text + "-" + dateFile + "-INATR." + names[1];
-                        fudINReqFile.PostedFile.SaveAs(Server.MapPath(@"./RequestsFiles/") + NewFileName);
+                        fudINReqFile.PostedFile.SaveAs(Server.MapPath(@"../RequestsFiles/") + NewFileName);
                         ProCs.TrnFilePath = NewFileName;
                     }
                 }
-                catch(Exception ex) { }
+                catch (Exception ex) { throw new Exception(ex.Message, ex); }
             }
             
             if (Type == "OUT")
@@ -211,14 +211,14 @@ public partial class AppendingTransactions : BasePage
                         string FileName = System.IO.Path.GetFileName(fudOUTReqFile.PostedFile.FileName);
                         string[] names = FileName.Split('.');
                         string NewFileName = txtEmpID.Text + "-" + dateFile + "-OUTATR." + names[1];
-                        fudOUTReqFile.PostedFile.SaveAs(Server.MapPath(@"./RequestsFiles/") + NewFileName);
+                        fudOUTReqFile.PostedFile.SaveAs(Server.MapPath(@"../RequestsFiles/") + NewFileName);
                         ProCs.TrnFilePath = NewFileName;
                     }
                 }
-                catch(Exception ex) { }
+                catch (Exception ex) { throw new Exception(ex.Message, ex); }
             }
-        }
-        catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
+        //}
+        //catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

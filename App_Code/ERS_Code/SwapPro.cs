@@ -5,43 +5,34 @@ using System.Web;
 
 public class SwapPro
 {
-    //SwpID	int	Unchecked
-    //EmpID	varchar(15)	Checked
-    //SwpStartDate	datetime	Checked
-    //SwpEndDate	datetime	Checked
-    //EmpID2	varchar(15)	Checked
-    //SwpStartDate2	datetime	Checked
-    //SwpEndDate2	datetime	Checked
-    //WktID	int	Checked
-    //SwpType	varchar(15)	Checked
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     string _SwpID;
 	public string SwpID { get { return _SwpID; } set { if (_SwpID != value) { _SwpID = value; } } }
 
-    string _EmpID;
-    public string EmpID { get { return _EmpID; } set { if (_EmpID != value) { _EmpID = value; } } }
+    string _SwpEmpID1;
+    public string SwpEmpID1 { get { return _SwpEmpID1; } set { if (_SwpEmpID1 != value) { _SwpEmpID1 = value; } } }
 
-    string _SwpStartDate;
-	public string SwpStartDate { get { return _SwpStartDate; } set { if (_SwpStartDate != value) { _SwpStartDate = value; } } }
+    string _SwpStartDate1;
+	public string SwpStartDate1 { get { return _SwpStartDate1; } set { if (_SwpStartDate1 != value) { _SwpStartDate1 = value; } } }
 
     string _SwpEndDate;
 	public string SwpEndDate { get { return _SwpEndDate; } set { if (_SwpEndDate != value) { _SwpEndDate = value; } } }
 
-    string _EmpID2;
-    public string EmpID2 { get { return _EmpID2; } set { if (_EmpID2 != value) { _EmpID2 = value; } } }
+    string _SwpEmpID2;
+    public string SwpEmpID2 { get { return _SwpEmpID2; } set { if (_SwpEmpID2 != value) { _SwpEmpID2 = value; } } }
     
     string _SwpStartDate2;
 	public string SwpStartDate2 { get { return _SwpStartDate2; } set { if (_SwpStartDate2 != value) { _SwpStartDate2 = value; } } }
 
-    string _SwpEndDate2;
-    public string SwpEndDate2 { get { return _SwpEndDate2; } set { if (_SwpEndDate2 != value) { _SwpEndDate2 = value; } } }
-
-    string _WktID;
-    public string WktID { get { return _WktID; } set { if (_WktID != value) { _WktID = value; } } }
-
     string _SwpType;
     public string SwpType { get { return _SwpType; } set { if (_SwpType != value) { _SwpType = value; } } }
+
+    string _SwpDesc;
+    public string SwpDesc { get { return _SwpDesc; } set { if (_SwpDesc != value) { _SwpDesc = value; } } }
+
+    string _SwpAddBy;
+    public string SwpAddBy { get { return _SwpAddBy; } set { if (_SwpAddBy != value) { _SwpAddBy = value; } } }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private string _TransactionBy;

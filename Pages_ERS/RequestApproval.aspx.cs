@@ -223,7 +223,6 @@ public partial class RequestApproval : BasePage
         calStartDate.SetEnabled(pStatus);
         calEndDate.SetEnabled(pStatus);
         calStartDate2.SetEnabled(pStatus);
-        calEndDate2.SetEnabled(pStatus);
         txtEmpID2.Enabled               = pStatus;
         txtEmpName.Enabled              = pStatus;
         txtShiftID.Enabled              = pStatus;
@@ -248,7 +247,6 @@ public partial class RequestApproval : BasePage
         calStartDate.ClearDate();
         calEndDate.ClearDate();
         calStartDate2.ClearDate();
-        calEndDate2.ClearDate();
         txtEmpID2.Text       = "";
         txtEmpName.Text      = "";
         txtShiftID.Text      = "";
@@ -288,7 +286,7 @@ public partial class RequestApproval : BasePage
     {
         try
         {
-            string filePath = ServerMapPath("RequestsFiles/") + txtReqFile.Text;
+            string filePath = ServerMapPath("../RequestsFiles/") + txtReqFile.Text;
             string[] fileNameArr = txtReqFile.Text.Split('\\');
             string fileName = fileNameArr[fileNameArr.Length - 1];
             HttpResponse res = GetHttpResponse();
@@ -630,6 +628,9 @@ public partial class RequestApproval : BasePage
                 divVacType.Visible = true;
                 ddlVacType.SelectedIndex = ddlVacType.Items.IndexOf(ddlVacType.Items.FindByValue(DRs[0]["ErqTypeID"].ToString()));
 
+                divEndDate.Visible = true;
+                calEndDate.SetGDate(DRs[0]["ErqEndDate"], pgCs.DateFormat);
+
                 lblVacHospitalType.Visible = ddlVacHospitalType.Visible = false;
 
                 if (pgCs.Version == "Al_JoufUN")
@@ -645,12 +646,6 @@ public partial class RequestApproval : BasePage
                 }
             }
 
-            if (RetID == "VAC" || RetID == "SWP")
-            {
-                divEndDate.Visible = true;
-                calEndDate.SetGDate(DRs[0]["ErqEndDate"], pgCs.DateFormat);
-            }
-            
             if (RetID == "EXC")
             {
                 divExcType.Visible = true;
@@ -699,12 +694,13 @@ public partial class RequestApproval : BasePage
                 divType.Visible    = true;
                 divEmp2.Visible    = true;
 
-                if (DRs[0]["ErqTypeID"].ToString() == "1") { txtType.Text = "Working Day(s)"; } else if (DRs[0]["ErqTypeID"].ToString() == "2") { txtType.Text = "Off Day(s)"; }
+                if (DRs[0]["ErqTypeID"].ToString() == "1") { txtType.Text = General.Msg("Working Day with Working Day","يوم عمل مع يوم عمل"); }
+                else if (DRs[0]["ErqTypeID"].ToString() == "2") { General.Msg("Working Day with Off Day","يوم عمل مع يوم إجازة"); }
+                else if (DRs[0]["ErqTypeID"].ToString() == "3") { General.Msg("Off Day with Working Day","يوم إجازة مع يوم عمل"); }
                 
                 txtEmpID2.Text = DRs[0]["EmpID2"].ToString();
-                txtEmpName.Text = DRs[0][General.Msg("Emp2NameEn","Emp2NameAr")].ToString();
+                txtEmpName.Text = Convert.ToString(DRs[0][General.Msg("EmpNameEn2","EmpNameAr2")]);
                 calStartDate2.SetGDate(DRs[0]["ErqStartDate2"], pgCs.DateFormat);
-                calEndDate2.SetGDate(DRs[0]["ErqEndDate2"], pgCs.DateFormat);
             }
 
             if (RetID == "COM" || RetID == "JOB")

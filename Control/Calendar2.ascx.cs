@@ -386,7 +386,7 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
 
             imgClear.Attributes.Remove("onclick");
         }
-
+        
         //imgbtnClear.Enabled = Status;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

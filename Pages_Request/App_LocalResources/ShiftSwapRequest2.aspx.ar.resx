@@ -117,82 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnAddResource1.Text" xml:space="preserve">
-    <value>&lt;img src="../images/Button_Icons/button_add.png" /&gt; إضافة</value>
-  </data>
-  <data name="btnAddResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="btnCancelResource1.Text" xml:space="preserve">
     <value>&lt;img src="../images/Button_Icons/button_Cancel.png" /&gt; إلغاء</value>
   </data>
   <data name="btnCancelResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="btnModifyResource1.Text" xml:space="preserve">
-    <value>&lt;img src="../images/Button_Icons/button_edit.png" /&gt; تعديل</value>
-  </data>
-  <data name="btnModifyResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="btnSaveResource1.Text" xml:space="preserve">
     <value>&lt;img src="../images/Button_Icons/button_storage.png" /&gt; حفظ</value>
   </data>
   <data name="btnSaveResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="cvCalEndDate1EmptyResource1.ErrorMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="cvCalEndDate1EmptyResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='حقل تاريخ الإنتهاء إجباري!' /&gt;</value>
-  </data>
-  <data name="cvCalEndDate1EmptyResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="cvCalEndDate2EmptyResource1.ErrorMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="cvCalEndDate2EmptyResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='حقل تاريخ الإنتهاء إجباري!' /&gt;</value>
-  </data>
-  <data name="cvCalEndDate2EmptyResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="cvCalStartDate1EmptyResource1.ErrorMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="cvCalStartDate1EmptyResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='حقل تاريخ البدء إجباري!' /&gt;</value>
-  </data>
-  <data name="cvCalStartDate1EmptyResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="cvCalStartDate2EmptyResource1.ErrorMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="cvCalStartDate2EmptyResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='حقل تاريخ البدء إجباري!' /&gt;</value>
-  </data>
-  <data name="cvCalStartDate2EmptyResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="cvCompareDates1Resource1.ErrorMessage" xml:space="preserve">
-    <value>تاريخ البدء أكبر من تاريخ الإنتهاء!</value>
-  </data>
-  <data name="cvCompareDates1Resource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/message_exclamation.png' title='تاريخ البدء أكبر من تاريخ الإنتهاء!' /&gt;</value>
-  </data>
-  <data name="cvCompareDates1Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="cvCompareDates2Resource1.ErrorMessage" xml:space="preserve">
-    <value>تاريخ البدء أكبر من تاريخ الإنتهاء!</value>
-  </data>
-  <data name="cvCompareDates2Resource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/message_exclamation.png' title='تاريخ البدء أكبر من تاريخ الإنتهاء!' /&gt;</value>
-  </data>
-  <data name="cvCompareDates2Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="cvDays1Resource1.ErrorMessage" xml:space="preserve">
@@ -213,58 +147,52 @@
   <data name="cvDays2Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="cvDaysCountResource1.ErrorMessage" xml:space="preserve">
+  <data name="cvEmployee2Resource1.ErrorMessage" xml:space="preserve">
     <value />
   </data>
-  <data name="cvDaysCountResource1.Text" xml:space="preserve">
+  <data name="cvEmployee2Resource1.Text" xml:space="preserve">
     <value>&lt;img src='../images/message_exclamation.png' title='' /&gt;</value>
   </data>
-  <data name="cvDaysCountResource1.ToolTip" xml:space="preserve">
+  <data name="cvEmployee2Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="cvEmployeeResource1.ErrorMessage" xml:space="preserve">
-    <value>لايوجد موظف بهذا الرقم!</value>
-  </data>
-  <data name="cvEmployeeResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/message_exclamation.png' title='لايوجد موظف بهذا الرقم!' /&gt;</value>
-  </data>
-  <data name="cvEmployeeResource1.ToolTip" xml:space="preserve">
+  <data name="cvShowMsgResource1.ErrorMessage" xml:space="preserve">
     <value />
   </data>
-  <data name="cvWorkTimeResource1.ErrorMessage" xml:space="preserve">
+  <data name="cvShowMsgResource1.Text" xml:space="preserve">
     <value />
   </data>
-  <data name="cvWorkTimeResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/message_exclamation.png' title='' /&gt;</value>
+  <data name="cvShowMsgResource1.ToolTip" xml:space="preserve">
+    <value />
   </data>
-  <data name="cvWorkTimeResource1.ToolTip" xml:space="preserve">
+  <data name="ddlCatIDResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="ddlTypeResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="lblCatIDResource1.Text" xml:space="preserve">
+    <value>التصنيف :</value>
+  </data>
+  <data name="lblCatIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="lblDescResource1.Text" xml:space="preserve">
-    <value>سبب الطلب :</value>
+    <value>السبب :</value>
   </data>
   <data name="lblDescResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="lblEmpID1Resource1.Text" xml:space="preserve">
+    <value>رقم الموظف :</value>
+  </data>
+  <data name="lblEmpID1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="lblEmpID2Resource1.Text" xml:space="preserve">
-    <value>تبديل مع رقم الموظف :</value>
+    <value>التبادل مع الموظف :</value>
   </data>
   <data name="lblEmpID2Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblEndDate1Resource1.Text" xml:space="preserve">
-    <value>تاريخ الإنتهاء :</value>
-  </data>
-  <data name="lblEndDate1Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="lblEndDate2Resource1.Text" xml:space="preserve">
-    <value>تاريخ الإنتهاء :</value>
-  </data>
-  <data name="lblEndDate2Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblNameResource1.Text" xml:space="preserve">
@@ -274,13 +202,13 @@
     <value />
   </data>
   <data name="lblStartDate1Resource1.Text" xml:space="preserve">
-    <value>تاريخ البدء :</value>
+    <value>التاريخ 1 :</value>
   </data>
   <data name="lblStartDate1Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblStartDate2Resource1.Text" xml:space="preserve">
-    <value>تاريخ البدء :</value>
+    <value>التاريخ 2 :</value>
   </data>
   <data name="lblStartDate2Resource1.ToolTip" xml:space="preserve">
     <value />
@@ -292,42 +220,42 @@
     <value />
   </data>
   <data name="ListItemResource1.Text" xml:space="preserve">
-    <value>إختر النوع</value>
+    <value>-اختر النوع-</value>
   </data>
   <data name="ListItemResource2.Text" xml:space="preserve">
-    <value>أيام العمل</value>
+    <value>يوم عمل مع يوم عمل</value>
   </data>
   <data name="ListItemResource3.Text" xml:space="preserve">
-    <value>أيام الراحة</value>
+    <value>يوم عمل مع يوم إجازة</value>
+  </data>
+  <data name="ListItemResource4.Text" xml:space="preserve">
+    <value>يوم إجازة مع يوم عمل</value>
   </data>
   <data name="PageResource1.Title" xml:space="preserve">
-    <value>طلب تبديل وردية</value>
+    <value>صفحة طلب تبادل وردية</value>
   </data>
-  <data name="RequiredFieldValidator6Resource1.ErrorMessage" xml:space="preserve">
+  <data name="pnlauID2Resource1.GroupingText" xml:space="preserve">
     <value />
   </data>
-  <data name="RequiredFieldValidator6Resource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='حقل الوصف إجباري!' /&gt;</value>
-  </data>
-  <data name="RequiredFieldValidator6Resource1.ToolTip" xml:space="preserve">
+  <data name="pnlauID2Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="rfvddlTypeResource1.ErrorMessage" xml:space="preserve">
+  <data name="rvddlTypeResource1.ErrorMessage" xml:space="preserve">
     <value />
   </data>
-  <data name="rfvddlTypeResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='إختيار النوع إجباري!' /&gt;</value>
+  <data name="rvddlTypeResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='النوع مطلوب' /&gt;</value>
   </data>
-  <data name="rfvddlTypeResource1.ToolTip" xml:space="preserve">
+  <data name="rvddlTypeResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="rfvEmpID2Resource1.ErrorMessage" xml:space="preserve">
+  <data name="rvtxtDescResource1.ErrorMessage" xml:space="preserve">
     <value />
   </data>
-  <data name="rfvEmpID2Resource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='التبديل مع رقم الموظف إحباري!' /&gt;</value>
+  <data name="rvtxtDescResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='السبب مطلوب' /&gt;</value>
   </data>
-  <data name="rfvEmpID2Resource1.ToolTip" xml:space="preserve">
+  <data name="rvtxtDescResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="txtDescResource1.Text" xml:space="preserve">
@@ -336,22 +264,28 @@
   <data name="txtDescResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="txtEmpID1Resource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtEmpID1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="txtEmpID2Resource1.Text" xml:space="preserve">
     <value />
   </data>
   <data name="txtEmpID2Resource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="txtWorktimeResource1.Text" xml:space="preserve">
+  <data name="vsSaveResource1.HeaderText" xml:space="preserve">
     <value />
   </data>
-  <data name="txtWorktimeResource1.ToolTip" xml:space="preserve">
+  <data name="vsSaveResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="vsumAllResource1.HeaderText" xml:space="preserve">
+  <data name="vsShowMsgResource1.HeaderText" xml:space="preserve">
     <value />
   </data>
-  <data name="vsumAllResource1.ToolTip" xml:space="preserve">
+  <data name="vsShowMsgResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
 </root>

@@ -624,7 +624,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col12">
-                                                    <uc:EmployeeSelectedGroup runat="server" ID="ucEmployeeSelectedGroup" ValidationGroupName="VGFinish" />
+                                                    <uc:EmployeeSelectedGroup runat="server" ID="ucEmployeeSelectedGroup" ValidationGroupName="VGFinish" ValidationType="ALL"/>
                                                 </div>
                                             </div>
                                         </asp:WizardStep>

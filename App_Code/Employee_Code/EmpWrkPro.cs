@@ -84,6 +84,9 @@ public class EmpWrkPro
     string _WktIDs;
 	public string WktIDs { get { return _WktIDs; } set { if (_WktIDs != value) { _WktIDs = value; } } }
 
+    string _DayNos;
+	public string DayNos { get { return _DayNos; } set { if (_DayNos != value) { _DayNos = value; } } }
+
     string _FirstDayDate;
 	public string FirstDayDate { get { return _FirstDayDate; } set { if (_FirstDayDate != value) { _FirstDayDate = value; } } }
 

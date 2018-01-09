@@ -17,7 +17,7 @@
                 <cc1:StiWebViewerFx ID="StiWebViewerFx1" runat="server" Width="100%" Height="800px" Background="White" />
             </div>--%>
             <%--<div class="col12">--%>
-                <cc2:StiWebViewer ID="StiWebViewerFx1" runat="server" Width="100%"  Height="800px" Background="White" ServerTimeOut="00:30:00"   />
+                <cc2:StiWebViewer ID="StiWebViewerFx1" runat="server" Width="100%"  Background="White" ServerTimeOut="00:30:00"   />
             <%--</div>
         </div>--%>
     </div>

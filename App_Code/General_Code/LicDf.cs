@@ -33,7 +33,6 @@ public class LicDf : DataLayerBase
 
         try
         {
-
             IPAddress myIP = IPAddress.Parse(HttpContext.Current.Request.UserHostName);
             IPHostEntry GetIPHost = Dns.GetHostEntry(myIP);
             ClientPCName = GetIPHost.HostName.ToString();

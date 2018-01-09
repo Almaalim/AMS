@@ -1,6 +1,5 @@
 ﻿<%@ Page Title="Report" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true"
-    CodeFile="Reports.aspx.cs" Inherits="Reports" Culture="auto" meta:resourcekey="PageResource2"
-    UICulture="auto" %>
+    CodeFile="Reports.aspx.cs" Inherits="Reports" Culture="auto" UICulture="auto" meta:resourcekey="PageResource2" %>
 
 <%@ Register Assembly="Stimulsoft.Report.WebDesign" Namespace="Stimulsoft.Report.Web" TagPrefix="cc2" %>
 <%@ Register Assembly="System.Web.DynamicData, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.DynamicData" TagPrefix="cc1" %>
@@ -17,7 +16,7 @@
     <script type="text/javascript" src="../Script/CheckKey.js"></script>
     <script type="text/javascript" src="../Script/TabContainer.js"></script>    
     <link href="../CSS/WizardStyle.css" rel="stylesheet" type="text/css" />
-    <script language="javascript" type="text/javascript">
+    <script type="text/javascript">
         //************************** Treeview Parent-Child check behaviour ****************************//  
 
         function OnTreeClick(evt) {
@@ -285,8 +284,8 @@
     <script type="text/javascript">
         function showPopup(dev1, dev2, dev3, devShow) {
             hidePopup('', dev2, dev3);
-            document.getElementById(devShow).style.visibility = 'visible'; document.getElementById(devShow).style.display = 'block';
-            document.getElementById(dev1).style.visibility = 'visible'; document.getElementById(dev1).style.display = 'block';
+            if (devShow != '') { document.getElementById(devShow).style.visibility = 'visible'; document.getElementById(devShow).style.display = 'block'; }
+            if (dev1 != '') { document.getElementById(dev1).style.visibility = 'visible'; document.getElementById(dev1).style.display = 'block'; }
         }
 
     function hidePopup(dev1, dev2, dev3) {
@@ -633,7 +632,7 @@
                                     meta:resourcekey="btnEditReportResource1"></asp:LinkButton>
 
                                 <asp:LinkButton ID="btnSetAsDefault" runat="server" CssClass="GenButton glyphicon glyphicon-refresh"
-                                    OnClick="btnSetAsDefault_Click" OnClientClick="return confirm('if you click 'ok' you will lost all did changes on report');"
+                                    OnClick="btnSetAsDefault_Click" OnClientClick="return confirm('if you click ok you will lost all did changes on report');"
                                     Text="&lt;img src=&quot;../images/Button_Icons/page_refresh.png&quot; /&gt; Return Default"
                                     meta:resourcekey="btnSetAsDefaultResource1"></asp:LinkButton>
                             </div>

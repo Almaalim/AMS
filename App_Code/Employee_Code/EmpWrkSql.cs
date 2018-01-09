@@ -373,4 +373,45 @@ public class EmpWrkSql : DataLayerBase
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /*#############################################################################################################################*/
+    /*#############################################################################################################################*/
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public bool Wkt_Insert_Table(EmpWrkPro Pro)
+    {
+        SqlCommand Sqlcmd = new SqlCommand("dbo.[EmpWrkRel_Insert_Table]", MainConnection);
+        Sqlcmd.CommandType = CommandType.StoredProcedure;
+    
+        try
+        {
+            Sqlcmd.Parameters.Add(new SqlParameter("@FirstDayDate", DtDB,  14,   IN, false, 0, 0, "", DRV, Pro.FirstDayDate));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EmpIDs"      , VchDB, 8000, IN, false, 0, 0, "", DRV, Pro.EmpIDs)); 
+            Sqlcmd.Parameters.Add(new SqlParameter("@DayNos"      , VchDB, 8000, IN, false, 0, 0, "", DRV, Pro.DayNos)); 
+            Sqlcmd.Parameters.Add(new SqlParameter("@WktIDs"      , VchDB, 8000, IN, false, 0, 0, "", DRV, Pro.WktIDs)); 
+
+            Sqlcmd.Parameters.Add(new SqlParameter("@IsExecute"    , IntDB, 10, OU, false, 0, 0, "", DRV, 0));
+            Sqlcmd.Parameters.Add(new SqlParameter("@TransactionBy", VchDB, 15, IN, false, 0, 0, "", DRV, Pro.TransactionBy));
+            
+            MainConnection.Open();
+            Sqlcmd.ExecuteNonQuery();
+            if (Convert.ToInt32(Sqlcmd.Parameters["@IsExecute"].Value) == -1) { throw new Exception(General.ProcedureMsg(), null); }
+            return true;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message, ex);
+        }
+        finally
+        {
+            MainConnection.Close();
+            Sqlcmd.Dispose();
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /*#############################################################################################################################*/
+    /*#############################################################################################################################*/
 }

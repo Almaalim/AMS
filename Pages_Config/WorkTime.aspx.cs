@@ -130,6 +130,7 @@ public partial class WorkTime : BasePage
         if (pgCs.LangEn)
         {
             spnNameEn.Visible = true;
+            spnWktInitialEn.Visible = true;
             spnShift1NameEn.Visible = true;
             spnShift2NameEn.Visible = true;
             spnShift3NameEn.Visible = true;
@@ -145,6 +146,7 @@ public partial class WorkTime : BasePage
         if (pgCs.LangAr)
         {
             spnNameAr.Visible = true;
+            spnWktInitialAr.Visible = true;
             spnShift1NameAr.Visible = true;
             spnShift2NameAr.Visible = true;
             spnShift3NameAr.Visible = true;
@@ -163,8 +165,10 @@ public partial class WorkTime : BasePage
     {
         txtID.Enabled = txtID.Visible = false;
         
-        txtNameAr.Enabled = pStatus;
-        txtNameEn.Enabled = pStatus;
+        txtNameAr.Enabled         = pStatus;
+        txtNameEn.Enabled         = pStatus;
+        txtWktInitialAr.Enabled   = pStatus;
+        txtWktInitialEn.Enabled   = pStatus;
         txtWorkTimeDesc.Enabled   = pStatus;
         ddlWtpID.Enabled          = pStatus;
         txtMaxPercOT.Enabled      = pStatus;
@@ -220,6 +224,8 @@ public partial class WorkTime : BasePage
     {
         txtID.Enabled = txtID.Visible = false;
 
+        txtNameAr.Enabled = pStatus;
+        txtNameEn.Enabled = pStatus;
         txtNameAr.Enabled = pStatus;
         txtNameEn.Enabled = pStatus;
         txtWorkTimeDesc.Enabled = pStatus;
@@ -284,6 +290,9 @@ public partial class WorkTime : BasePage
             if (!string.IsNullOrEmpty(txtID.Text)) { ProCs.WktID = txtID.Text; }
             ProCs.WktNameAr      = txtNameAr.Text;
             ProCs.WktNameEn      = txtNameEn.Text;
+            ProCs.WktInitialAr   = txtWktInitialAr.Text;   
+            ProCs.WktInitialEn   = txtWktInitialEn.Text;
+
             ProCs.WktDesc        = txtWorkTimeDesc.Text;
             int AddPercent    = txtMaxPercOT.getTimeInSecond(); /****/ ProCs.WktAddPercent = (AddPercent > 0) ? AddPercent.ToString() : "0";
             ProCs.WktIsActive    = chkWrtStatus.Checked;
@@ -357,6 +366,8 @@ public partial class WorkTime : BasePage
 
         txtNameAr.Text = "";
         txtNameEn.Text = "";
+        txtWktInitialAr.Text = "";   
+        txtWktInitialEn.Text = "";
         txtWorkTimeDesc.Text = "";
         ddlWtpID.SelectedIndex = 0;
 
@@ -882,8 +893,11 @@ public partial class WorkTime : BasePage
             DataRow[] DRs = DT.Select("WktID =" + pID + "");
 
             txtID.Text     = DRs[0]["WktID"].ToString();
-            txtNameAr.Text = DRs[0]["WktNameAr"].ToString();
-            txtNameEn.Text = DRs[0]["WktNameEn"].ToString();
+            txtNameAr.Text = Convert.ToString(DRs[0]["WktNameAr"]);
+            txtNameEn.Text = Convert.ToString(DRs[0]["WktNameEn"]);
+
+            txtWktInitialAr.Text = Convert.ToString(DRs[0]["WktInitialAr"]);
+            txtWktInitialEn.Text = Convert.ToString(DRs[0]["WktInitialEn"]);
             txtWorkTimeDesc.Text   = DRs[0]["WktDesc"].ToString();
             ddlWtpID.SelectedIndex = ddlWtpID.Items.IndexOf(ddlWtpID.Items.FindByValue(DRs[0]["WtpID"].ToString()));
             if (DRs[0]["WktIsActive"]   != DBNull.Value) { chkWrtStatus.Checked = Convert.ToBoolean(DRs[0]["WktIsActive"]); }
@@ -1015,6 +1029,22 @@ public partial class WorkTime : BasePage
 
                     DataTable DT = DBCs.FetchData("SELECT * FROM WorkingTime WHERE WktNameAr = @P1 AND ISNULL(WktDeleted,0) = 0 " + UQ, new string[] { txtNameAr.Text, txtID.Text });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
+                }
+            }
+            else if (source.Equals(cvInitialEn))
+            {
+                if (pgCs.LangEn)
+                {
+                    CtrlCs.ValidMsg(this, ref cvInitialEn, false, General.Msg("Initial (En) Is Required", "الرمز بالإنجليزي مطلوب"));
+                    if (string.IsNullOrEmpty(txtWktInitialEn.Text)) { e.IsValid = false; }
+                }
+            }
+            else if (source.Equals(cvInitialAr))
+            {
+                if (pgCs.LangAr)
+                {
+                    CtrlCs.ValidMsg(this, ref cvInitialAr, false, General.Msg("Initial (Ar) Is Required", "الرمز بالعربي مطلوب"));
+                    if (string.IsNullOrEmpty(txtWktInitialAr.Text)) { e.IsValid = false; }
                 }
             }
         }

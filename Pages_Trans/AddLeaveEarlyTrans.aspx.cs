@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Elmah;
 using System.Data.SqlClient;
 using System.Data;
-using System.Globalization;
 using System.Text;
 using System.Collections;
 
@@ -28,7 +24,7 @@ public partial class AddLeaveEarlyTrans : BasePage
     string sortDirection = "ASC";
     string sortExpression = "";
     
-    //string MainQuery = " SELECT * FROM Branch WHERE ISNULL(BrcDeleted,0) = 0 ";
+    string MainQuery = " SELECT * FROM TransDumpInfoView ";
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void Page_Load(object sender, EventArgs e)
@@ -70,40 +66,6 @@ public partial class AddLeaveEarlyTrans : BasePage
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected string FindDep()
-    {
-        string DepID = "";
-
-        DataTable DT = DBCs.FetchData(" SELECT DepID FROM Employee WHERE EmpID = @P1 ", new string[] { txtEmpID.Text });
-        if (!DBCs.IsNullOrEmpty(DT)) { DepID = DT.Rows[0]["DepID"].ToString(); }
-
-        return DepID;
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public void ExecuteProc()
-    {
-        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-
-        SqlConnection con = new SqlConnection(General.ConnString);
-        SqlDataAdapter da = new SqlDataAdapter();
-
-        da.SelectCommand = new SqlCommand();
-        da.SelectCommand.CommandType = CommandType.StoredProcedure;
-        da.SelectCommand.CommandText = "spOrderTransactionToday";
-        da.SelectCommand.Connection = con;
-
-        da.SelectCommand.Parameters.Add(new SqlParameter("@ipFromDate", SqlDbType.DateTime, 14, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, DateTime.Now.ToString("MM/dd/yyyy")));
-        da.SelectCommand.Parameters.Add(new SqlParameter("@ipUsrName" , SqlDbType.VarChar, 15, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, pgCs.LoginID));
-        da.SelectCommand.Parameters.Add(new SqlParameter("@ipDepIDSTR", SqlDbType.VarChar, 100, ParameterDirection.Input, false, 0, 0, "", DataRowVersion.Proposed, FindDep()));
-
-        con.Open();
-        da.SelectCommand.ExecuteNonQuery();
-        con.Close();
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
@@ -111,7 +73,6 @@ public partial class AddLeaveEarlyTrans : BasePage
 
     protected void btnFilter_Click(object sender, ImageClickEventArgs e)
     {
-        //UIClear();
         BtnStatus("1000");
         UIEnabled(false);
         CtrlCs.FillGridEmpty(ref grdData, 50);
@@ -128,32 +89,35 @@ public partial class AddLeaveEarlyTrans : BasePage
             if (txtEmpIDSearch.Text.Trim().Length > 1) { txtEmpID.Text = (txtEmpIDSearch.Text.Split('-'))[0].ToString(); }
             else { txtEmpID.Text = (txtEmpNameSearch.Text.Split('-'))[1].ToString(); }
         }
-        catch { return; }
+        catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); return; }
         
-        SqlCommand cmd = new SqlCommand();
-        StringBuilder FQ = new StringBuilder();
-
-        if (!string.IsNullOrEmpty(txtEmpID.Text))
+        try
         {
-            ExecuteProc();
+            SqlCommand cmd = new SqlCommand();
+            string sql = MainQuery + " WHERE EmpID = '0' ";
 
-            FQ.Append(" SELECT TrnDate, TrnTime, EmpID, MacID, TrnType, UsrName, TrnDesc ");
-            FQ.Append(" ,(SELECT MacLocationEn FROM Machine WHERE MacID = e.MacID) AS LocationEn ");
-            FQ.Append(" ,(SELECT MacLocationAr FROM Machine WHERE MacID = e.MacID) AS LocationAr ");
-            FQ.Append(" FROM TransDumpToday e ");
-            FQ.Append(" WHERE EmpID = @EmpID ");
-            FQ.Append(" AND CONVERT(CHAR(10), e.TrnDate, 101) = CONVERT(CHAR(10), GETDATE(), 101)");
-            FQ.Append(" AND UsrProcess = @LoginID ");
-            FQ.Append(" AND ISNULL(TrnDesc,'') != 'Ignore'");
-            FQ.Append(" ORDER BY TrnTime ");
+            if (!string.IsNullOrEmpty(txtEmpID.Text))
+            {
+                StringBuilder FQ = new StringBuilder();
+                FQ.Append(MainQuery);
+                FQ.Append(" WHERE DepID IN (" + pgCs.DepList + ") ");
+                FQ.Append(" AND EmpID = @EmpID");
+                FQ.Append(" AND CONVERT(CHAR(10), TrnDate, 101) = CONVERT(CHAR(10), GETDATE(), 101)");
+                //FQ.Append(" AND UsrName IS NOT NULL");
+                FQ.Append(" ORDER BY TrnTime ");
 
-            cmd.Parameters.AddWithValue("@EmpID", txtEmpID.Text);
-            cmd.Parameters.AddWithValue("@LoginID", pgCs.LoginID);
-        
+                sql = FQ.ToString();
+                cmd.Parameters.AddWithValue("@EmpID", txtEmpID.Text);
+            }
+
+            //UIClear();
+            BtnStatus("1000");
+            UIEnabled(false);
             grdData.SelectedIndex = -1;
-            cmd.CommandText = FQ.ToString();
+            cmd.CommandText = sql;
             FillGrid(cmd);
         }
+        catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
 
     #endregion
@@ -195,7 +159,7 @@ public partial class AddLeaveEarlyTrans : BasePage
         txtEmpName.Enabled        = false;
         calDate.SetEnabled(false);
         ddlType.Enabled           = false;
-        tpickerTime.Enabled       = pStatus;
+        tpOUTTime.Enabled       = pStatus;
         ddlLocation.Enabled       = pStatus;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -206,12 +170,13 @@ public partial class AddLeaveEarlyTrans : BasePage
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             ProCs.EmpID    = txtEmpID.Text;
-            ProCs.TrnDate  = calDate.getGDateDefFormat();
-            ProCs.TrnTime  = tpickerTime.getDateTime().ToString();
+            ProCs.TrnDate  = calDate.getGDateDBFormat();
+            ProCs.TrnTime  = tpOUTTime.getDateTime().ToString();
             ProCs.TrnType  = ddlType.SelectedValue;
             ProCs.MacID    = ddlLocation.SelectedValue;
             ProCs.UsrName  = pgCs.LoginID;
             ProCs.TrnAddBy = "OE";
+            ProCs.TransactionBy = pgCs.LoginID;
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
@@ -223,7 +188,7 @@ public partial class AddLeaveEarlyTrans : BasePage
         txtEmpName.Text = "";
         calDate.ClearDate();
         ddlType.ClearSelection();
-        tpickerTime.ClearTime();
+        tpOUTTime.ClearTime();
         ddlLocation.ClearSelection();
     }
 
@@ -240,6 +205,8 @@ public partial class AddLeaveEarlyTrans : BasePage
 
     protected void btnAdd_Click(object sender, EventArgs e)
     {
+        if (!Page.IsValid) { return; }
+        
         //UIClear();
         ViewState["CommandName"] = "ADD";
         UIEnabled(true);
@@ -263,7 +230,7 @@ public partial class AddLeaveEarlyTrans : BasePage
 
             if (commandName == "ADD") { SqlCs.Insert(ProCs); }
 
-            string TransTime = string.Format("{0:00}", tpickerTime.getHours()) + ":" + string.Format("{0:00}", tpickerTime.getMinutes()) + ":" + string.Format("{0:00}", tpickerTime.getSeconds());
+            //string TransTime = string.Format("{0:00}", tpOUTTime.getHours()) + ":" + string.Format("{0:00}", tpOUTTime.getMinutes()) + ":" + string.Format("{0:00}", tpOUTTime.getSeconds());
             ////sendEmail.SendAddTransMailToEmp(txtEmpID.Text, calDate.getGDateDefFormat(), TransTime, pgCs.Lang);  
 
             Search();
@@ -280,7 +247,7 @@ public partial class AddLeaveEarlyTrans : BasePage
     protected void btnCancel_Click(object sender, EventArgs e)
     {
         //UIClear();
-        tpickerTime.ClearTime();
+        tpOUTTime.ClearTime();
         ddlLocation.ClearSelection();
         BtnStatus("1000");
         UIEnabled(false);
@@ -327,8 +294,8 @@ public partial class AddLeaveEarlyTrans : BasePage
                     }
                  default:
                     {
+                        e.Row.Cells[5].Visible = false; //To hide ID column in grid view
                         e.Row.Cells[6].Visible = false; //To hide ID column in grid view
-                        e.Row.Cells[7].Visible = false; //To hide ID column in grid view
                         break;
                     }
             }
@@ -444,40 +411,17 @@ public partial class AddLeaveEarlyTrans : BasePage
     /*#############################################################################################################################*/
     #region Custom Validate Events
 
-    protected void TpickerTime_ServerValidate(Object source, ServerValidateEventArgs e)
+    protected void tpOUTTime_ServerValidate(Object source, ServerValidateEventArgs e)
     {
         try
         {
-            if (source.Equals(cvtpickerTime))
+            if (source.Equals(cvtpOUTTime))
             {
-                if (tpickerTime.getHours() == -1 || tpickerTime.getMinutes() == -1 || tpickerTime.getSeconds() == -1) 
-                { 
-                    CtrlCs.ValidMsg(this, ref cvtpickerTime, false, General.Msg("Time is required", "الوقت مطلوب"));
-                    e.IsValid = false; 
-                }
-                else 
+                if (tpOUTTime.getIntTime()  < 0)
                 {
-                    StringBuilder SQ = new StringBuilder();
-                    SQ.Append(" SELECT TrnTime FROM TransDumpToday WHERE EmpID = @P1 ");
-                    SQ.Append(" AND CONVERT(CHAR(10), TrnDate, 101) = CONVERT(CHAR(10), GETDATE(), 101)");
-                    SQ.Append(" AND ISNULL(TrnDesc,'') != 'Ignore'"); 
-                    SQ.Append(" ORDER BY TrnTime DESC");
-
-                    DataTable DT = DBCs.FetchData(SQ.ToString(), new string[] { txtEmpID.Text });
-                    if (!DBCs.IsNullOrEmpty(DT))
-                    {
-                        DateTime TrnTime = (DateTime)DT.Rows[0]["TrnTime"];
-                        string LastTime = string.Format("{0:00}", TrnTime.Hour)  + string.Format("{0:00}", TrnTime.Minute) + string.Format("{0:00}", TrnTime.Second);
-                        
-                        int OutTime = tpickerTime.getIntTime(); 
-                        if ( Convert.ToInt64(LastTime) >= OutTime ) 
-                        { 
-                            CtrlCs.ValidMsg(this, ref cvtpickerTime, true, General.Msg("You must be a OUT time is greater than the IN time of the last IN Transaction", "يجب أن يكون وقت الخروج أكبر من وقت الدخول  في أخر حركة  دخول"));
-                            e.IsValid = false; 
-                        }
-                    } 
-                    else { e.IsValid = false; }
-                }            
+                    CtrlCs.ValidMsg(this, ref cvtpOUTTime, false, General.Msg("Time is required", "الوقت مطلوب"));
+                    e.IsValid = false;
+                }
             }
         }
         catch { e.IsValid = false; }
@@ -495,14 +439,17 @@ public partial class AddLeaveEarlyTrans : BasePage
                     UIClear();
                     txtEmpID.Text = (txtEmpIDSearch.Text.Split('-'))[0].ToString();
                     
-                    DataTable DT = DBCs.FetchData(" SELECT EmpID,EmpNameAr,EmpNameEn FROM Employee WHERE EmpID = @P1 AND DepID IN (" + pgCs.DepList + ") ", new string[] { txtEmpID.Text });
-                    if (!DBCs.IsNullOrEmpty(DT))
+                    if (!string.IsNullOrEmpty(txtEmpID.Text))
                     {
-                        txtEmpName.Text = General.Msg(DT.Rows[0]["EmpNameEn"].ToString(), DT.Rows[0]["EmpNameAr"].ToString());
-                        calDate.SetTodayDate();
-                        e.IsValid = true;
+                        DataTable DT = DBCs.FetchData("SELECT EmpID,EmpNameAr,EmpNameEn FROM Employee WHERE EmpStatus ='True' AND ISNULL(EmpDeleted, 0) = 0 AND EmpID = @P1 AND DepID IN (" + pgCs.DepList + ") ", new string[] { txtEmpID.Text });
+                        if (!DBCs.IsNullOrEmpty(DT))
+                        {
+                            txtEmpName.Text = General.Msg(DT.Rows[0]["EmpNameEn"].ToString(), DT.Rows[0]["EmpNameAr"].ToString());
+                            calDate.SetTodayDate();
+                            e.IsValid = true;
+                        }
+                        else { e.IsValid = false; UIClear(); }
                     }
-                    else { e.IsValid = false; UIClear(); }
                 }
                 else { e.IsValid = true; }
             }
@@ -514,14 +461,17 @@ public partial class AddLeaveEarlyTrans : BasePage
                     UIClear();
                     txtEmpID.Text = (txtEmpNameSearch.Text.Split('-'))[1].ToString();
                     
-                    DataTable DT = DBCs.FetchData(" SELECT EmpID,EmpNameAr,EmpNameEn FROM Employee WHERE EmpID = @P1 AND DepID IN (" + pgCs.DepList + ") ", new string[] { txtEmpID.Text });
-                    if (!DBCs.IsNullOrEmpty(DT))
+                    if (!string.IsNullOrEmpty(txtEmpID.Text))
                     {
-                        txtEmpName.Text = General.Msg(DT.Rows[0]["EmpNameEn"].ToString(), DT.Rows[0]["EmpNameAr"].ToString());
-                        calDate.SetTodayDate();
-                        e.IsValid = true;
+                        DataTable DT = DBCs.FetchData("SELECT EmpID,EmpNameAr,EmpNameEn FROM Employee WHERE EmpStatus ='True' AND ISNULL(EmpDeleted, 0) = 0 AND EmpID = @P1 AND DepID IN (" + pgCs.DepList + ") ", new string[] { txtEmpID.Text });
+                        if (!DBCs.IsNullOrEmpty(DT))
+                        {
+                            txtEmpName.Text = General.Msg(DT.Rows[0]["EmpNameEn"].ToString(), DT.Rows[0]["EmpNameAr"].ToString());
+                            calDate.SetTodayDate();
+                            e.IsValid = true;
+                        }
+                        else { e.IsValid = false; UIClear(); }
                     }
-                    else { e.IsValid = false; UIClear(); }
                 }
                 else { e.IsValid = true; }
             }
@@ -534,31 +484,41 @@ public partial class AddLeaveEarlyTrans : BasePage
     {
         try
         {
-            //if (!string.IsNullOrEmpty(txtEmpID.Text))
-            //{
-            //    StringBuilder SQ = new StringBuilder();
-            //    SQ.Append(" SELECT TrnType ");
-            //    SQ.Append(" FROM TransDumpToday ");
-            //    SQ.Append(" WHERE EmpID = @P1 ");
-            //    SQ.Append(" AND CONVERT(CHAR(10), TrnDate, 101) = CONVERT(CHAR(10), GETDATE(), 101)");
-            //    SQ.Append(" AND ISNULL(TrnDesc,'') != 'Ignore'"); 
-            //    SQ.Append(" ORDER BY TrnTime DESC");
+            if (!string.IsNullOrEmpty(txtEmpID.Text))
+            {
+                StringBuilder SQ = new StringBuilder();
+                SQ.Append(" SELECT COUNT(TrnDate) TrnCount,  COUNT(CASE WHEN (TrnAddBy = 'OE') THEN TrnDate ELSE NULL END) OECount");
+                SQ.Append(" FROM TransDumpInfoView ");
+                SQ.Append(" WHERE EmpID = @P1 ");
+                SQ.Append(" AND CONVERT(CHAR(10), TrnDate, 101) = CONVERT(CHAR(10), GETDATE(), 101)");
 
-            //    DataTable DT = DBCs.FetchData(SQ.ToString(), new string[] { txtEmpID.Text });
-            //    if (!DBCs.IsNullOrEmpty(DT))
-            //    {
-            //        string TrnType = DT.Rows[0]["TrnType"].ToString();
-            //        if (TrnType != "1") { e.IsValid = false; }
-            //    }
-            //    else { e.IsValid = false; }
-            //}
-            //else { e.IsValid = false; }
+                DataTable DT = DBCs.FetchData(SQ.ToString(), new string[] { txtEmpID.Text });
+                if (!DBCs.IsNullOrEmpty(DT))
+                {
+                    int TrnCount = Convert.ToInt32(DT.Rows[0]["TrnCount"]);
+                    int OECount  = Convert.ToInt32(DT.Rows[0]["OECount"]);
+
+                    if (TrnCount == 0)
+                    {
+                        CtrlCs.ValidMsg(this, ref cvIsAdd, true, General.Msg("This employee does not have transaction this day, can not add an early leave transaction", "هذا الموظف لا يملك حركات هذا اليوم,لا يمكن إضافة حركة خروج مبكر"));
+                        e.IsValid = false;
+                    }
+                    else if (OECount > 0)
+                    {
+                        CtrlCs.ValidMsg(this, ref cvIsAdd, true, General.Msg("An early leave transaction has been added to this employee, can not add an early leave transaction", "تمت إضافة حركة خروج مبكر لهذا الموظف ,لا يمكن إضافة حركة خروج مبكر"));
+                        e.IsValid = false;
+                    }
+                }
+                else { e.IsValid = false; }
+            }
+            else
+            {
+                CtrlCs.ValidMsg(this, ref cvIsAdd, true, General.Msg("You must search an employee first", "يجب البحث عن موظف أولا"));
+                e.IsValid = false;
+            }
         }
         catch { e.IsValid = false; }
     }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void ShowMsg_ServerValidate(Object source, ServerValidateEventArgs e) { e.IsValid = false; }
 
     #endregion
     /*#############################################################################################################################*/

@@ -54,7 +54,7 @@ public class PageFun
         try
         {
             System.Web.SessionState.HttpSessionState SS = HttpContext.Current.Session;
-            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo((SS["PreferedCulture"] != null) ? SS["PreferedCulture"].ToString() : "en-US");
+            //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo((SS["PreferedCulture"] != null) ? SS["PreferedCulture"].ToString() : "en-US");
 
             if (SS["Language"]       != null) { Lang          = SS["Language"].ToString(); } else { Lang = "EN"; }
             if (SS["DateType"]       != null) { DateType      = SS["DateType"].ToString(); }

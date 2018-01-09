@@ -152,7 +152,7 @@ public partial class AttendanceList : BasePage
 
                 DateTime GDateDT = DTCs.ConvertToDatetime(GDate, "Gregorian");
                 string dayNameEn = Grn.GetDayOfWeek(GDateDT).ToString();
-                string dayNameAr = convertDayToArabic(GDateDT.ToString("ddd"));
+                string dayNameAr = GenCs.convertDayToArabic(GDateDT.ToString("ddd"));
 
                 if (i == 1) { Session["AttendanceListStartDate"] = GDate; }
                 //////////////////////////////////////////////////////////////////
@@ -370,23 +370,6 @@ public partial class AttendanceList : BasePage
             ErrorSignal.FromCurrentContext().Raise(e1);
             return new string[] { "", "", "", "", "", "", "", "" };
         }
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    private string convertDayToArabic(string day)
-    {
-        string arDay = "";
-        switch (day)
-        {
-            case "Sat": arDay = "السبت";   break;
-            case "Sun": arDay = "الأحد";    break;
-            case "Mon": arDay = "الاثنين";  break;
-            case "Tue": arDay = "الثلاثاء"; break;
-            case "Wed": arDay = "الأربعاء"; break;
-            case "Thu": arDay = "الخميس";  break;
-            case "Fri": arDay = "الجمعة";  break;
-        }
-        return arDay;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
