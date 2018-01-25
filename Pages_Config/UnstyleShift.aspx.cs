@@ -75,23 +75,8 @@ public partial class UnstyleShift : BasePage
 
     public void UILang()
     {
-        if (pgCs.LangEn)
-        {
-           
-        }
-        else
-        {
-
-        }
-
-        if (pgCs.LangAr)
-        {
-            
-        }
-        else
-        {
-
-        }
+        if (pgCs.LangEn) { } else { }
+        if (pgCs.LangAr) { } else { }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -242,7 +227,7 @@ public partial class UnstyleShift : BasePage
 
             if (ViewState["WktInfo"] == null)
             {
-                DT = DBCs.FetchData(new SqlCommand(" SELECT WktID," + General.Msg("WktNameEn", "WktNameAr") + " AS WktName FROM WorkingTime WHERE ISNULL(" + General.Msg("WktNameEn", "WktNameAr") + ",'') != '' "));
+                DT = DBCs.FetchData(new SqlCommand(" SELECT WktID," + General.Msg("WktNameEn", "WktNameAr") + " AS WktName FROM WorkingTime WHERE ISNULL(WktDeleted,0) = 0 AND WktIsActive = 'True' AND WtpID IN (SELECT WtpID FROM WorkType WHERE WtpInitial !='RO') AND ISNULL(" + General.Msg("WktNameEn", "WktNameAr") + ",'') != '' "));
                 ViewState["WktInfo"] = DT;
             }
             else
@@ -528,7 +513,7 @@ public partial class UnstyleShift : BasePage
         {
             if (source.Equals(cvValid))
             {
-                if (!ReadGrdData()) {  e.IsValid = false; }
+                if (!ReadGrdData()) { e.IsValid = false; }
             }
         }
         catch
@@ -551,6 +536,7 @@ public partial class UnstyleShift : BasePage
             string WktIDs = "";
             string EmpID  = "";
             string WktID  = "";
+            bool isEmpty = false;
 
             if (count > 0)
             {
@@ -562,10 +548,19 @@ public partial class UnstyleShift : BasePage
                     if (!GenCs.isEmpID(EmpID)) { CtrlCs.ValidMsg(this, ref cvValid, true, General.Msg("Employee ID " + EmpID + " does not exist already,Please enter another ID", "رقم الموظف " + EmpID + " غير موجود,أدخل رقما آخر")); return false; }
 
                     WktID = "";
+                    isEmpty = false;
+
                     for (int k = 1; k < Convert.ToInt16(ViewState["DayCount"]); k++)
                     {
                         string WktVal = Request.Form["ctl00$ContentPlaceHolder1$grdAddData$ctl" + CtrlIndex.ToString("00") + "$ddl" + k.ToString()];
+                        if (WktVal != "0") { isEmpty = true; }
                         if (string.IsNullOrEmpty(WktID)) { WktID = WktVal; } else { WktID += "," + WktVal; }
+                    }
+
+                    if (!isEmpty)
+                    {
+                        CtrlCs.ValidMsg(this, ref cvValid, true, General.Msg("At least one working time must be entered for the employee: " + EmpID, "يجب إدخال وقت عمل واحد على الأقل للموظف : " + EmpID));
+                        return false;
                     }
 
                     CtrlIndex++;

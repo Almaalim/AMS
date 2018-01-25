@@ -430,7 +430,8 @@
     <value />
   </data>
   <data name="lblMaxOverTimePercentResource1.Text" xml:space="preserve">
-    <value>Max OverTime Percent:</value>
+    <value>Maximum Overtime Hours:</value>
+    <comment>Maximum Overtime Hours:</comment>
   </data>
   <data name="lblMaxOverTimePercentResource1.ToolTip" xml:space="preserve">
     <value />

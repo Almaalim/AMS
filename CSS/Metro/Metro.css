@@ -4572,7 +4572,7 @@ a.colord13f2a:before {
     font-family: FontAwesome !important;
 }
 
-.EmployeeAttendanceRule:before , .icon441:before {
+.AttendanceRuleWizard:before , .icon441:before {
     content: "\f036";
     font-family: FontAwesome !important;
 }

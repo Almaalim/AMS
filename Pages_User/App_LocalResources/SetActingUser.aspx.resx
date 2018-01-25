@@ -129,7 +129,40 @@
   <data name="btnSaveResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="cvADUserResource11.ErrorMessage" xml:space="preserve">
+  <data name="cvADUserResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvADUserResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/message_exclamation.png' title='Active Directory User already exists!' /&gt;</value>
+  </data>
+  <data name="cvADUserResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvEmailResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvEmailResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='Email ID is required!' /&gt;</value>
+  </data>
+  <data name="cvEmailResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvEmpIDResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvEmpIDResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='EmpID do not exist!' /&gt;</value>
+  </data>
+  <data name="cvEmpIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvShowMsgResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvShowMsgResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvShowMsgResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblEmpIDResource1.Text" xml:space="preserve">
@@ -163,7 +196,7 @@
     <value />
   </data>
   <data name="PageResource1.Title" xml:space="preserve">
-    <value>Set Acting User Page</value>
+    <value />
   </data>
   <data name="PasswordResource2.ErrorMessage" xml:space="preserve">
     <value />
@@ -183,13 +216,16 @@
   <data name="reqUsernameResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="txtCustomValidatorResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="txtEmpIDResource1.Text" xml:space="preserve">
     <value />
   </data>
   <data name="txtEmpIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtIDResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtIDResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="txtPasswordResource1.Text" xml:space="preserve">
@@ -216,10 +252,16 @@
   <data name="txtUsrADActUserResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="vsumAllResource1.HeaderText" xml:space="preserve">
+  <data name="vsSaveResource1.HeaderText" xml:space="preserve">
     <value />
   </data>
-  <data name="vsumAllResource1.ToolTip" xml:space="preserve">
+  <data name="vsSaveResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="vsShowMsgResource1.HeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="vsShowMsgResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
 </root>

@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col12">
                     <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData" />
-                    <asp:GridView ID="grdData" runat="server" CssClass="datatable" SelectedIndex="0"
+                    <asp:GridView ID="grdData" runat="server" CssClass="datatable"
                         AutoGenerateColumns="False" AllowPaging="True" CellPadding="0"
                         BorderWidth="0px" GridLines="None" ShowFooter="True" OnPageIndexChanging="grdData_PageIndexChanging"
                         OnRowCreated="grdData_RowCreated" OnRowDataBound="grdData_RowDataBound"
@@ -116,6 +116,23 @@
                 </div>
                 <div class="row">
                     <div class="col2">
+                        <asp:Label ID="lblMailSendMethod" runat="server" Text="Method Send :" meta:resourcekey="lblMailSendMethodResource1"></asp:Label>
+                    </div>
+                    <div class="col4">
+                        <asp:CheckBoxList ID="cblMailSendMethod" runat="server" RepeatLayout="Flow" meta:resourcekey="chkMailSendMethodResource1" RepeatColumns="2" RepeatDirection="Horizontal">
+                            <asp:ListItem Text="Email" Value="E" meta:resourcekey="EmailListItemResource1"></asp:ListItem>
+                            <asp:ListItem Text="SMS"   Value="S" meta:resourcekey="SMSListItemResource1"></asp:ListItem>
+                        </asp:CheckBoxList>
+                        <asp:CustomValidator id="cvSendMethod" runat="server"
+                            Text="&lt;img src='../images/message_exclamation.png' title='Please Select Atleast one Method Send' /&gt;" 
+                            ValidationGroup="vgSave"
+                            ErrorMessage="Please Select Atleast one Method Send" CssClass="CustomValidator"
+                            OnServerValidate="SendMethod_ServerValidate" 
+                            EnableClientScript="False"
+                            ControlToValidate="txtValid" meta:resourcekey="cvSendMethodResource1">
+                        </asp:CustomValidator>
+                    </div>
+                    <div class="col2">
                         <asp:TextBox ID="txtID" runat="server" Enabled="False" Visible="False" meta:resourcekey="txtIDResource1"></asp:TextBox>
                     </div>
                     <div class="col4">
@@ -202,6 +219,7 @@
                         </fieldset>
                     </div>
                 </div>
+            </div>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

@@ -305,14 +305,19 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
 
         QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText,MnuTextEn as MnuTextEn,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder,MnuPermissionID AS MnuDepth ");
         QMuen.Append(" FROM Menu WHERE MnuVisible = 'True' AND MnuType IN ('Menu') ");
+        if (pgCs.LoginID != "admin") { QMuen.Append(" AND MnuID IN (" + MPerm + ") "); }
+       
+        QMuen.Append(" UNION ALL ");
+        QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText,MnuTextEn as MnuTextEn,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder,MnuPermissionID AS MnuDepth ");
+        QMuen.Append(" FROM Menu WHERE MnuVisible = 'True' AND MnuType IN (" + listPage + ") ");
+        if (pgCs.LoginID != "admin") { QMuen.Append(" AND MnuID IN (" + MPerm + ") "); }
+        if (pgCs.Version != "ALL") { QMuen.Append(" AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + pgCs.Version + "',VerID) > 0) "); }
 
         QMuen.Append(" UNION ALL ");
         QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText,MnuTextEn as MnuTextEn,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder,MnuPermissionID AS MnuDepth ");
-        QMuen.Append(" FROM Menu WHERE MnuVisible = 'True' AND MnuType IN (" + listPage + ") AND MnuID IN (" + MPerm + ") AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + pgCs.Version + "',VerID) > 0) ");
-
-        QMuen.Append(" UNION ALL ");
-        QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText,MnuTextEn as MnuTextEn,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder,MnuPermissionID AS MnuDepth ");
-        QMuen.Append(" FROM Menu WHERE  MnuVisible ='True' AND MnuType IN ('Reports') AND RgpID IN (" + RPerm + ") AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + pgCs.Version + "',VerID) > 0) ");
+        QMuen.Append(" FROM Menu WHERE  MnuVisible ='True' AND MnuType IN ('Reports') ");
+        if (pgCs.LoginID != "admin") { QMuen.Append(" AND RgpID IN (" + RPerm + ") "); }
+        if (pgCs.Version != "ALL") { QMuen.Append(" AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + pgCs.Version + "',VerID) > 0) "); }
 
         return QMuen.ToString();
     }
@@ -338,7 +343,8 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
         if (ERSLic == "1" && LicDf.FetchLic("SS") == "1" && Reqht.ContainsKey("SWP")) { listPage += ",'ERS_SWPMenu'"; }
 
         QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText,MnuTextEn as MnuTextEn,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder,MnuPermissionID AS MnuDepth ");
-        QMuen.Append(" FROM Menu WHERE MnuVisible = 'True' AND MnuType IN (" + listPage + ") AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + pgCs.Version + "',VerID) > 0) ");
+        QMuen.Append(" FROM Menu WHERE MnuVisible = 'True' AND MnuType IN (" + listPage + ") ");
+        if (pgCs.Version != "ALL") { QMuen.Append(" AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + pgCs.Version + "',VerID) > 0) "); }
 
         return QMuen.ToString();
     }

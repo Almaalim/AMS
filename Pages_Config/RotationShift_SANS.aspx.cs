@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Elmah;
 using System.Data;
 using System.Collections;
-using System.Text;
-using System.Globalization;
 using System.Data.SqlClient;
 
 public partial class RotationShift_SANS : BasePage
@@ -44,10 +39,10 @@ public partial class RotationShift_SANS : BasePage
             ImageButton _NextStep       = this.WizardData.FindControl("StepNavigationTemplateContainerID").FindControl("viw2_btnNextStep") as ImageButton;
             ImageButton _FinishBackStep = this.WizardData.FindControl("FinishNavigationTemplateContainerID").FindControl("viw2_btnFinishBackStep") as ImageButton;
             
-            _StartStep.ImageUrl      = "~/images/Wizard_Image/" + General.Msg("step_next.png", "step_previous.png");
-            _BackStep.ImageUrl       = "~/images/Wizard_Image/" + General.Msg("step_previous.png", "step_next.png");
-            _NextStep.ImageUrl       = "~/images/Wizard_Image/" + General.Msg("step_next.png", "step_previous.png");
-            _FinishBackStep.ImageUrl = "~/images/Wizard_Image/" + General.Msg("step_previous.png", "step_next.png");
+            _StartStep.ImageUrl      = "../images/Wizard_Image/" + General.Msg("step_next.png", "step_previous.png");
+            _BackStep.ImageUrl       = "../images/Wizard_Image/" + General.Msg("step_previous.png", "step_next.png");
+            _NextStep.ImageUrl       = "../images/Wizard_Image/" + General.Msg("step_next.png", "step_previous.png");
+            _FinishBackStep.ImageUrl = "../images/Wizard_Image/" + General.Msg("step_previous.png", "step_next.png");
             
             if (!IsPostBack)
             {
@@ -186,17 +181,6 @@ public partial class RotationShift_SANS : BasePage
             ProCs.WktIDs   = GenCs.CreateIDsNumber("V", viw2_lstWorkTime);
             ProCs.GrpIDs   = GenCs.CreateIDsNumber("T", viw2_lstRotationGrp);
             ProCs.GrpUsers = GenCs.CreateIDsNumber("T", viw2_lstRotationUsr);
-
-            if (viw2_lstRotationGrp.Items.Count/(ProCs.RwtWorkDaysCount/ProCs.RwtRotationDaysCount) == 1)
-            {
-                ProCs.GrpBasicLen = viw2_lstRotationGrp.Items.Count;
-                ProCs.IsDouble    = false;
-            }
-            else if (viw2_lstRotationGrp.Items.Count/(ProCs.RwtWorkDaysCount/ProCs.RwtRotationDaysCount) == 2)
-            {
-                ProCs.GrpBasicLen = viw2_lstRotationGrp.Items.Count/2;
-                ProCs.IsDouble    = true;
-            }
 
             string EmpIDs = "";
             for (int lG = 0; lG < viw2_lstRotationGrp.Items.Count; lG++)
@@ -683,10 +667,10 @@ public partial class RotationShift_SANS : BasePage
             WebControl stepNavTemplate = this.WizardData.FindControl("StepNavigationTemplateContainerID") as WebControl;
             if (stepNavTemplate != null)
             {
-                ImageButton save = stepNavTemplate.FindControl("btnNextStep") as ImageButton;
+                ImageButton save = stepNavTemplate.FindControl("viw2_btnNextStep") as ImageButton;
                 if (save != null)
                 {
-                    save.ValidationGroup = "VGStep" + step.ToString();
+                    save.ValidationGroup = "vgStep" + step.ToString();
                 }
             }
         }
@@ -1085,12 +1069,12 @@ public partial class RotationShift_SANS : BasePage
                 CtrlCs.ValidMsg(this, ref viw2_cvlstRotationGroup, false, General.Msg("Group Name is required", "يجب إدخال أسماء المجموعات"));
                 e.IsValid = false;
             }
-            else if (!string.IsNullOrEmpty(viw2_txtRwtWorkDaysCount.Text) && !string.IsNullOrEmpty(viw2_txtRwtRotationDaysCount.Text))
+            else if (!string.IsNullOrEmpty(viw2_txtRwtWorkDaysCount.Text) && !string.IsNullOrEmpty(viw2_txtRwtNotWorkDaysCount.Text) && !string.IsNullOrEmpty(viw2_txtRwtRotationDaysCount.Text))
             {
-                int RotCount = Convert.ToInt32(viw2_txtRwtWorkDaysCount.Text) / Convert.ToInt32(viw2_txtRwtRotationDaysCount.Text);
-                if (RotCount != viw2_lstRotationGrp.Items.Count && RotCount * 2 != viw2_lstRotationGrp.Items.Count)
+                int GrpCount = (Convert.ToInt32(viw2_txtRwtWorkDaysCount.Text) + Convert.ToInt32(viw2_txtRwtNotWorkDaysCount.Text)) / Convert.ToInt32(viw2_txtRwtRotationDaysCount.Text);
+                if (GrpCount != viw2_lstRotationGrp.Items.Count)
                 {
-                    CtrlCs.ValidMsg(this, ref viw2_cvlstRotationGroup, true, General.Msg("You must enter " + RotCount.ToString() + " or " + (RotCount * 2).ToString() + " Groups", "يجب إدخال " + RotCount.ToString() + "  أو " + (RotCount * 2).ToString() + " مجموعات"));
+                    CtrlCs.ValidMsg(this, ref viw2_cvlstRotationGroup, true, General.Msg("You must enter " + GrpCount.ToString() + " Groups", "يجب إدخال " + GrpCount.ToString() + " مجموعات"));
                     e.IsValid = false;
                 }
             }

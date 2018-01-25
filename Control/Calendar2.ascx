@@ -24,14 +24,18 @@
 <script type="text/javascript">
     //To Show hide the div when user click on calendar image or the date text boxes
     function showHide(div) {
-        if (document.getElementById(div).style.display == "none") {
-            document.getElementById(div).style.display = "block";
+        if (document.getElementById(div) != 'undefined' && document.getElementById(div) != null) {
+            if (document.getElementById(div).style.display == "none") {
+                document.getElementById(div).style.display = "block";
+            }
+            else {
+                document.getElementById(div).style.display = "none";
+            }
         }
-        else { document.getElementById(div).style.display = "none"; }
     }
 
     function Clear(div, Gtxt, Htxt, GD, HD) {
-        document.getElementById(div).style.display = "none";
+        if (document.getElementById(div) != 'undefined' && document.getElementById(div) != null) { document.getElementById(div).style.display = "none"; }
         document.getElementById(Gtxt).value = GD;
         document.getElementById(Htxt).value = HD;
     }

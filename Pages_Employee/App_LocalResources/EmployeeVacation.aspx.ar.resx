@@ -325,7 +325,7 @@
     <value>نوع الإجازة (E)</value>
   </data>
   <data name="PageResource1.Title" xml:space="preserve">
-    <value>إجازات الموظف</value>
+    <value>إجازات الموظفين</value>
   </data>
   <data name="reqBranchManager1Resource1.ErrorMessage" xml:space="preserve">
     <value />

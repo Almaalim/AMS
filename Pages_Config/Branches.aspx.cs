@@ -56,9 +56,9 @@ public partial class Branches : BasePage
     {
         try
         {
-            CtrlCs.FillMgrsChosenList(ref ddlBranchManagerID, null, false);
+            //CtrlCs.FillMgrsChosenList(ref ddlBranchManagerID, null, false);
 
-            //CtrlCs.FillMgrsList(ref ddlBranchManagerID, null, false);
+            CtrlCs.FillMgrsList2(ref ddlBranchManagerID, null, false);
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
@@ -214,6 +214,8 @@ public partial class Branches : BasePage
 
     protected void btnAdd_Click(object sender, EventArgs e)
     {
+        if (!FindDemoCount()) { return; }
+
         UIClear();
         ViewState["CommandName"] = "ADD";
         UIEnabled(true);
@@ -233,6 +235,8 @@ public partial class Branches : BasePage
     {
         try
         {
+            if (!FindDemoCount()) { return; }
+
             if (GenCs.IsNullOrEmpty(ViewState["CommandName"])) { return; }
 
             // for Branch Lincense /////////////////////////////////////////////////////////////////////////////////
@@ -549,6 +553,27 @@ public partial class Branches : BasePage
         {
             e.IsValid = false;
         }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected bool FindDemoCount()
+    {
+        bool Found = false;
+
+        try
+        {
+            if (pgCs.Version != "DEMO") { Found = true; }
+            DataTable DT = DBCs.FetchData(new SqlCommand(" SELECT COUNT(BrcID) DemoCount FROM Branch WHERE ISNULL(BrcDeleted,0) = 0 HAVING COUNT(BrcID) <= 1 "));
+            if (!DBCs.IsNullOrEmpty(DT)) { Found = true; }
+        }
+        catch {  }
+
+        if (!Found)
+        {
+            CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Warning, General.Msg("Can not add more than one Branch, this version is Demo", "لا يمكن إضافة أكثر من فرع واحد، هذه النسخة للعرض"));
+        }
+
+        return Found;
     }
 
     #endregion

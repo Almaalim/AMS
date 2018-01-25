@@ -58,9 +58,9 @@ public partial class Departments : BasePage
         {
             FillDepParent();
             CtrlCs.FillBranchList(ref ddlBrcParentName, rfvBrcParentName, false);
-            //CtrlCs.FillMgrsList(ref ddlDepManagerID, rfDepMng, false);
+            CtrlCs.FillMgrsList2(ref ddlDepManagerID, rfDepMng, false);
 
-            CtrlCs.FillMgrsChosenList(ref ddlDepManagerID, rfDepMng, false);
+            //CtrlCs.FillMgrsChosenList(ref ddlDepManagerID, rfDepMng, false);
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
@@ -326,6 +326,8 @@ public partial class Departments : BasePage
         try
         {
             UIClear(false);
+            if (!FindDemoCount()) { return; }
+            
             //if (trvDept.SelectedNode != null) { trvDept.SelectedNode.Selected = false; }
             UIEnabled(true, true);
             BtnStatus("00110");
@@ -344,6 +346,8 @@ public partial class Departments : BasePage
     {
         try
         {
+            if (!FindDemoCount()) { return; }
+
             if (GenCs.IsNullOrEmpty(ViewState["CommandName"])) { return; }
 
             if (!CtrlCs.PageIsValid(this, vsSave)) { return; }
@@ -620,6 +624,27 @@ public partial class Departments : BasePage
         {
             e.IsValid = false;
         }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected bool FindDemoCount()
+    {
+        bool Found = false;
+
+        try
+        {
+            if (pgCs.Version != "DEMO") { Found = true; }
+            DataTable DT = DBCs.FetchData(new SqlCommand("SELECT COUNT(DepID) DemoCount FROM Department WHERE ISNULL(DepDeleted,0) = 0 HAVING COUNT(DepID) <= 5 "));
+            if (!DBCs.IsNullOrEmpty(DT)) { Found = true; }
+        }
+        catch {  }
+
+        if (!Found)
+        {
+            CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Warning, General.Msg("Can not add more than five Department, this version is Demo", "لا يمكن إضافة أكثر من خمسة أقسام، هذه النسخة للعرض"));
+        }
+
+        return Found;
     }
 
     #endregion

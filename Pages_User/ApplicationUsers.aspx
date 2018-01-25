@@ -211,7 +211,7 @@
                 </div>
                 <div class="col2">
                     <asp:DropDownList ID="ddlFilter" runat="server" meta:resourcekey="ddlFilterResource1">
-                        <asp:ListItem Selected="True" meta:resourcekey="ListItemResource1">[None]</asp:ListItem>
+                        <asp:ListItem Selected="True" meta:resourcekey="ListItemResource1" Text="[None]"></asp:ListItem>
                         <asp:ListItem Text="User Name" Value="UsrName" meta:resourcekey="ListItemResource2"></asp:ListItem>
                         <asp:ListItem Text="User Full Name" Value="UsrFullName" meta:resourcekey="ListItemResource3"></asp:ListItem>
                         <asp:ListItem Text="Employee ID" Value="EmpID" meta:resourcekey="ListItemResource345"></asp:ListItem>
@@ -226,15 +226,13 @@
             </div>
             <div class="row">
                 <div class="col12">
-                    <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData"
-                        PrevRowSelectKey="Subtract" NextRowSelectKey="Add" NextPageKey="PageUp"
-                        PreviousPageKey="PageDown" />
+                    <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData"/>
                     <asp:GridView ID="grdData" runat="server" CssClass="datatable"
                         AutoGenerateColumns="False" AllowPaging="True" CellPadding="0" BorderWidth="0px"
                         GridLines="None" DataKeyNames="UsrName" ShowFooter="True" OnPageIndexChanging="grdData_PageIndexChanging"
                         OnRowCreated="grdData_RowCreated" OnRowDataBound="grdData_RowDataBound" OnSorting="grdData_Sorting"
                         OnSelectedIndexChanged="grdData_SelectedIndexChanged" OnRowCommand="grdData_RowCommand"
-                        OnPreRender="grdData_PreRender" AllowSorting="True" EnableModelValidation="True"
+                        OnPreRender="grdData_PreRender" AllowSorting="True"
                         meta:resourcekey="grdDataResource1">
 
                         <PagerSettings Mode="NextPreviousFirstLast" FirstPageText="First" FirstPageImageUrl="~/images/first.png"
@@ -279,7 +277,7 @@
             <div class="row">
                 <div class="col12">
                     <asp:ValidationSummary ID="vsShowMsg" runat="server" CssClass="MsgSuccess"
-                        EnableClientScript="False" ValidationGroup="ShowMsg" />
+                        EnableClientScript="False" ValidationGroup="ShowMsg" meta:resourcekey="vsShowMsgResource1" />
                 </div>
             </div>
             <div class="row">
@@ -316,7 +314,7 @@
                     &nbsp;
                     <asp:CustomValidator ID="cvShowMsg" runat="server" Display="None"
                         ValidationGroup="ShowMsg" OnServerValidate="ShowMsg_ServerValidate"
-                        EnableClientScript="False" ControlToValidate="txtValid" CssClass="CustomValidator"></asp:CustomValidator>
+                        EnableClientScript="False" ControlToValidate="txtValid" CssClass="CustomValidator" meta:resourcekey="cvShowMsgResource1"></asp:CustomValidator>
                 </div>
             </div>
             <div class="GreySetion">
@@ -367,9 +365,9 @@
                     <div class="col4">
                         <asp:DropDownList ID="ddlLanguage" runat="server" ValidationGroup="vgSave"
                             Enabled="False" meta:resourcekey="ddlLanguageResource1">
-                            <asp:ListItem Selected="True" meta:resourcekey="ListItemResource4">Select Language</asp:ListItem>
-                            <asp:ListItem Value="EN" meta:resourcekey="ListItemResource5">English</asp:ListItem>
-                            <asp:ListItem Value="AR" meta:resourcekey="ListItemResource6">Arabic</asp:ListItem>
+                            <asp:ListItem Selected="True" meta:resourcekey="ListItemResource4" Text="-Select Language-"></asp:ListItem>
+                            <asp:ListItem Value="EN" meta:resourcekey="ListItemResource5" Text="English"></asp:ListItem>
+                            <asp:ListItem Value="AR" meta:resourcekey="ListItemResource6" Text="Arabic"></asp:ListItem>
                         </asp:DropDownList>
                         <asp:RequiredFieldValidator runat="server" ID="rfvLanguage" ControlToValidate="ddlLanguage"
                             InitialValue="Select Language" EnableClientScript="False" Text="<img src='../images/Exclamation.gif' title='Language is required!' />"
@@ -390,11 +388,11 @@
                             meta:resourcekey="chkActUserResource1" />
 
                         &nbsp;
-                                     <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow1" runat="server" TargetControlID="lnkShow1"></ajaxToolkit:AnimationExtender>
-                        <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose1" runat="server" TargetControlID="lnkClose1"></ajaxToolkit:AnimationExtender>
-                        <asp:ImageButton ID="lnkShow1" runat="server" OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
+                        <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow1" runat="server" TargetControlID="lnkShow1" Enabled="True"></ajaxToolkit:AnimationExtender>
+                        <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose1" runat="server" TargetControlID="lnkClose1" Enabled="True"></ajaxToolkit:AnimationExtender>
+                        <asp:ImageButton ID="lnkShow1" runat="server" OnClientClick="return false;" ImageUrl="~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" meta:resourcekey="lnkShow1Resource1" />
                         <div id="pnlInfo1" class="flyOutDiv">
-                            <asp:LinkButton ID="lnkClose1" runat="server" Text="" OnClientClick="return false;" CssClass="flyOutDivCloseX glyphicon glyphicon-remove" />
+                            <asp:LinkButton ID="lnkClose1" runat="server" OnClientClick="return false;" CssClass="flyOutDivCloseX glyphicon glyphicon-remove" meta:resourcekey="lnkClose1Resource1" />
                             <p>
                                 <br />
                                 <asp:Label ID="lblHint1" runat="server" Text="If checked makes current user In active and Acting user Active" meta:resourcekey="lblHintResource"></asp:Label>
@@ -403,12 +401,11 @@
                     </div>
                 </div>
 
-
-                <div id="divML" runat="server" visible="false" class="row">
+                <div id="divML" runat="server" visible="False" class="row">
                     <div class="col2">
                     </div>
                     <div class="col4">
-                        <asp:CheckBox ID="chkAdminMiniLogger" runat="server" Enabled="False" Text="Admin Mini Logger" meta:resourcekey="chkAdminMiniLoggerResource1" Visible="false" />
+                        <asp:CheckBox ID="chkAdminMiniLogger" runat="server" Enabled="False" Text="Admin Mini Logger" meta:resourcekey="chkAdminMiniLoggerResource1" Visible="False" />
 
                     </div>
                     <div class="col2">
@@ -466,7 +463,7 @@
                     </div>
 
                     <div class="col2">
-                        <asp:Label ID="lblEmail" runat="server" Text="*" Visible="false" CssClass="RequiredField"></asp:Label>
+                        <asp:Label ID="lblEmail" runat="server" Text="*" Visible="False" CssClass="RequiredField" meta:resourcekey="lblEmailResource1"></asp:Label>
                         <asp:Label ID="lblEmailID" runat="server" Text="Email ID :" meta:resourcekey="lblEmailIDResource1"></asp:Label>
                     </div>
                     <div class="col4">
@@ -479,7 +476,7 @@
                 </div>
                 <div class="row">
                     <div class="col2">
-                        <asp:Label ID="lblMob" runat="server" Text="*" Visible="false" CssClass="RequiredField"></asp:Label>
+                        <asp:Label ID="lblMob" runat="server" Text="*" Visible="False" CssClass="RequiredField" meta:resourcekey="lblMobResource1"></asp:Label>
                         <asp:Label ID="lblMobileNo" runat="server" Text="Mobile No. :" meta:resourcekey="lblMobileNoResource1"></asp:Label>
                     </div>
                     <div class="col4">
@@ -496,7 +493,7 @@
                     <div class="col4">
                         <asp:TextBox ID="txtUsrADUser" runat="server" AutoCompleteType="Disabled"
                             Enabled="False" meta:resourcekey="txtUsrADUserResource1"></asp:TextBox>
-                        <asp:ImageButton ID="btnGetADUsr" runat="server" OnClick="btnGetADUsr_Click" Enabled="false" ImageUrl="../images/Button_Icons/button_magnify.png"
+                        <asp:ImageButton ID="btnGetADUsr" runat="server" OnClick="btnGetADUsr_Click" Enabled="False" ImageUrl="../images/Button_Icons/button_magnify.png"
                             meta:resourcekey="btnGetADUsrResource1" CssClass="LeftOverlay" />
                         <asp:CustomValidator ID="cvADUser" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='Active Directory User already exists!' /&gt;"
                             ValidationGroup="vgSave" OnServerValidate="ADUser_ServerValidate" EnableClientScript="False" CssClass="CustomValidator"
@@ -516,7 +513,7 @@
 
 
 
-                <div id="Div1" runat="server" visible="false" class="row">
+                <div id="Div1" runat="server" visible="False" class="row">
                     <div class="col2">
                         <asp:Label ID="lblDomainName" runat="server" Text="Domain Name :" meta:resourcekey="lblDomainNameResource1"></asp:Label>
                     </div>
@@ -573,21 +570,20 @@
             </div>
 
 
-            <%--Popup--%>
-            <div id="DivPopup" class="popup" data-popup="popup-1" runat="server" visible="false">  
+            <div id="DivPopup" class="popup" data-popup="popup-1" runat="server" visible="False">  
                 <div class="popup-inner">
                     <a class="popup-close" data-popup-close="popup-1" href="#" onclick="hidePopup('ctl00_ContentPlaceHolder1_DivPopup')">x</a>
                     <div class="popup-wrap">
                     <div class="row">
                         <div class="col12">
                             <asp:ValidationSummary ID="vsShowMsg2" runat="server" CssClass="MsgSuccess"
-                                EnableClientScript="False" ValidationGroup="vgShowMsg2" />
+                                EnableClientScript="False" ValidationGroup="vgShowMsg2" meta:resourcekey="vsShowMsg2Resource1" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col12">
                             <asp:ValidationSummary ID="vsSave2" runat="server" ValidationGroup="vgSave2"
-                                EnableClientScript="False" CssClass="MsgValidation"/>
+                                EnableClientScript="False" CssClass="MsgValidation" meta:resourcekey="vsSave2Resource1"/>
                         </div>
                     </div>
                          
@@ -595,83 +591,81 @@
                         <div class="row">
                             <div class="col2">
                                 <span class="RequiredField">*</span>
-                                <asp:Label ID="lblActLoginName" runat="server" Text="Login Name :"></asp:Label>
+                                <asp:Label ID="lblActLoginName" runat="server" Text="Login Name :" meta:resourcekey="lblActLoginNameResource1"></asp:Label>
                             </div>
                             <div class="col4">
-                                <asp:TextBox ID="txtActLoginName" runat="server" AutoCompleteType="Disabled"></asp:TextBox>
+                                <asp:TextBox ID="txtActLoginName" runat="server" AutoCompleteType="Disabled" meta:resourcekey="txtActLoginNameResource1"></asp:TextBox>
                                 <asp:RequiredFieldValidator runat="server" ID="rvActLoginName" ControlToValidate="txtActLoginName"
                                     Text="<img src='../images/Exclamation.gif' title='Username is required' />" ValidationGroup="vgSave2"
-                                    EnableClientScript="False" Display="Dynamic" SetFocusOnError="True" CssClass="CustomValidator"></asp:RequiredFieldValidator>
+                                    EnableClientScript="False" Display="Dynamic" SetFocusOnError="True" CssClass="CustomValidator" meta:resourcekey="rvActLoginNameResource1"></asp:RequiredFieldValidator>
                             </div>
                             <div class="col2">
                                 <span class="RequiredField">*</span>
-                                <asp:Label ID="lblActPassword" runat="server" Text="Password :"></asp:Label>
+                                <asp:Label ID="lblActPassword" runat="server" Text="Password :" meta:resourcekey="lblActPasswordResource1"></asp:Label>
                             </div>
                             <div class="col4">
-                                <asp:TextBox ID="txtActPassword" runat="server" AutoCompleteType="Disabled" TextMode="Password"></asp:TextBox>
+                                <asp:TextBox ID="txtActPassword" runat="server" AutoCompleteType="Disabled" TextMode="Password" meta:resourcekey="txtActPasswordResource1"></asp:TextBox>
                                 <asp:RequiredFieldValidator runat="server" ID="rvActPassword" ControlToValidate="txtActPassword"
                                     Text="<img src='../images/Exclamation.gif' title='Password is required!' />" ValidationGroup="vgSave2"
-                                    EnableClientScript="False"></asp:RequiredFieldValidator>
+                                    EnableClientScript="False" meta:resourcekey="rvActPasswordResource1"></asp:RequiredFieldValidator>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col2">
-                                <asp:Label ID="lblActEmpID" runat="server" Text="Emp ID :"></asp:Label>
+                                <asp:Label ID="lblActEmpID" runat="server" Text="Emp ID :" meta:resourcekey="lblActEmpIDResource1"></asp:Label>
                             </div>
                             <div class="col4">
-                                <asp:TextBox ID="txtActEmpID" runat="server" AutoCompleteType="Disabled"></asp:TextBox>
+                                <asp:TextBox ID="txtActEmpID" runat="server" AutoCompleteType="Disabled" meta:resourcekey="txtActEmpIDResource1"></asp:TextBox>
                                 <asp:CustomValidator ID="cvActEmpID" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='EmpID do not exist' /&gt;"
                                     ValidationGroup="vgSave2" OnServerValidate="ActEmpID_ServerValidate"
-                                    EnableClientScript="False" ControlToValidate="txtValid" CssClass="CustomValidator"></asp:CustomValidator>
+                                    EnableClientScript="False" ControlToValidate="txtValid" CssClass="CustomValidator" meta:resourcekey="cvActEmpIDResource1"></asp:CustomValidator>
                             </div>
                             <div class="col2">
-                                <asp:Label ID="lblActEmailID" runat="server" Text="Email ID :"></asp:Label>
+                                <asp:Label ID="lblActEmailID" runat="server" Text="Email ID :" meta:resourcekey="lblActEmailIDResource1"></asp:Label>
                             </div>
                             <div class="col4">
-                                <asp:TextBox ID="txtActEmailID" runat="server" AutoCompleteType="Disabled"></asp:TextBox>
+                                <asp:TextBox ID="txtActEmailID" runat="server" AutoCompleteType="Disabled" meta:resourcekey="txtActEmailIDResource1"></asp:TextBox>
                                 <asp:CustomValidator ID="cvActEmailID" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='Email ID is required' /&gt;"
                                     ValidationGroup="vgSave2" OnServerValidate="ActEmail_ServerValidate" EnableClientScript="False"
-                                    ControlToValidate="txtValid" CssClass="CustomValidator"></asp:CustomValidator>
+                                    ControlToValidate="txtValid" CssClass="CustomValidator" meta:resourcekey="cvActEmailIDResource1"></asp:CustomValidator>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col2">
-                                <asp:Label ID="lblActADUser" runat="server" Text="Active Directory User :"></asp:Label>
+                                <asp:Label ID="lblActADUser" runat="server" Text="Active Directory User :" meta:resourcekey="lblActADUserResource1"></asp:Label>
                             </div>
                             <div class="col4">
-                                <asp:TextBox ID="txtActADUser" runat="server" AutoCompleteType="Disabled"></asp:TextBox>
-                                <asp:ImageButton ID="btnActADUser" runat="server" OnClick="btnActADUser_Click" ImageUrl="../images/Button_Icons/button_magnify.png" CssClass="LeftOverlay" />
+                                <asp:TextBox ID="txtActADUser" runat="server" AutoCompleteType="Disabled" meta:resourcekey="txtActADUserResource1"></asp:TextBox>
+                                <asp:ImageButton ID="btnActADUser" runat="server" OnClick="btnActADUser_Click" ImageUrl="../images/Button_Icons/button_magnify.png" CssClass="LeftOverlay" meta:resourcekey="btnActADUserResource1" />
                                 <asp:CustomValidator ID="cvActADUser" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='Active Directory User already exists!' /&gt;"
                                     ValidationGroup="vgSave2" OnServerValidate="ActADUser_ServerValidate" EnableClientScript="False"
-                                    ControlToValidate="txtValid" CssClass="CustomValidator"></asp:CustomValidator>
+                                    ControlToValidate="txtValid" CssClass="CustomValidator" meta:resourcekey="cvActADUserResource1"></asp:CustomValidator>
                             </div>
                             <div class="col2">
                             </div>
                             <div class="col4">
-                                <asp:TextBox ID="txtActID" runat="server" AutoCompleteType="Disabled" Enabled="False" Visible="false" Width="15px"></asp:TextBox>
+                                <asp:TextBox ID="txtActID" runat="server" AutoCompleteType="Disabled" Enabled="False" Visible="False" Width="15px" meta:resourcekey="txtActIDResource1"></asp:TextBox>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col8">
                                 <asp:LinkButton ID="btnActSave" runat="server" CssClass="GenButton glyphicon glyphicon-floppy-disk" OnClick="btnActSave_Click"
                                     Text="&lt;img src=&quot;../images/Button_Icons/button_storage.png&quot; /&gt; Save"
-                                    ValidationGroup="vgSave2"></asp:LinkButton>
+                                    ValidationGroup="vgSave2" meta:resourcekey="btnActSaveResource1"></asp:LinkButton>
 
                                 <asp:LinkButton ID="btnActCancel" runat="server" CssClass="GenButton glyphicon glyphicon-remove-circle" OnClick="btnActCancel_Click"
-                                    Text="&lt;img src=&quot;../images/Button_Icons/button_Cancel.png&quot; /&gt; Cancel"></asp:LinkButton>
+                                    Text="&lt;img src=&quot;../images/Button_Icons/button_Cancel.png&quot; /&gt; Cancel" meta:resourcekey="btnActCancelResource1"></asp:LinkButton>
                             </div>
                             <div class="col2">
                                 <asp:CustomValidator ID="cvShowMsg2" runat="server" Display="None"
                                     ValidationGroup="vgShowMsg2" OnServerValidate="ShowMsg2_ServerValidate"
-                                    EnableClientScript="False" ControlToValidate="txtValid">
-                                </asp:CustomValidator>
+                                    EnableClientScript="False" ControlToValidate="txtValid" meta:resourcekey="cvShowMsg2Resource1"></asp:CustomValidator>
                             </div>
                         </div>
                     </div>
                     </div>
                 </div>               
             </div>
-            <%--Popup--%>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

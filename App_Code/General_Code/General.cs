@@ -244,6 +244,19 @@ public class General
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public bool isEmpID(string ID, string DepList)
+    {
+        DBFun DBCs = new DBFun();
+
+        try
+        {
+            DataTable DT = DBCs.FetchData(" SELECT * FROM spActiveEmployeeView WHERE EmpID = @P1 AND ISNULL(EmpDeleted,0) = 0 AND DepID IN (" + DepList + ") ", new string[] { ID });
+            if (!DBCs.IsNullOrEmpty(DT)) { return true; } else { return false; }
+        }
+        catch { return false; }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public bool FindEmpApprovalSequence(string ReqType, string EmpID)
     {
         DBFun DBCs = new DBFun();
@@ -326,7 +339,7 @@ public class General
         MQ.Append(" FROM Menu WHERE  MnuVisible = 'True' AND MnuType IN (" + listPage + ") ");
         MQ.Append(" AND MnuPermissionID IN (SELECT MnuNumber FROM Menu WHERE  MnuVisible = 'True' AND MnuType IN (" + listPage + "))");
         if (!string.IsNullOrEmpty(PermSet)) { MQ.Append(" AND MnuNumber IN (" + PermSet + ")"); }
-        MQ.Append(" AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + Version + "',VerID) > 0) ");
+        if (Version != "ALL") { MQ.Append(" AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + Version + "',VerID) > 0) "); }
         MQ.Append(" ORDER BY MnuOrder ");
             
         return DBCs.FetchMenuData(MQ.ToString());
@@ -345,7 +358,7 @@ public class General
         RQ.Append(" WHERE ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + Version + "',VerID) > 0) ");
         RQ.Append(" UNION ");
         RQ.Append(" SELECT RepID," + lang2 + " AS RepNameEn,CONVERT(CHAR(10),RgpID) AS RgpID FROM Report WHERE ISNULL(RepDeleted,0) = 0  ");
-        RQ.Append(" AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + Version + "',VerID) > 0) ");
+        if (Version != "ALL") { RQ.Append(" AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + Version + "',VerID) > 0) "); }
 
         return DBCs.FetchReportData(RQ.ToString());
     }
@@ -362,7 +375,7 @@ public class General
         RQ.Append(" AND RgpID IN (" + PermSet + ") ");
         RQ.Append(" UNION ");
         RQ.Append(" SELECT RepID,RepNameAr,RepNameEn,CONVERT(CHAR(10),RgpID) AS RgpID FROM Report WHERE ISNULL(RepDeleted,0) = 0  ");
-        RQ.Append(" AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + Version + "',VerID) > 0) ");
+        if (Version != "ALL") { RQ.Append(" AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + Version + "',VerID) > 0) "); }
         RQ.Append(" AND RgpID IN (" + PermSet + ") ");
 
         return DBCs.FetchReportData(RQ.ToString());

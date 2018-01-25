@@ -271,16 +271,29 @@ public class CtrlFun : DataLayerBase
     //CtrlCs.FillVacationTypeList(ref ddlVacType, rfvddlVacType, false, true, "VAC");
     //CtrlCs.FillWorkingTimeList(ref ddlWktID, rfvddlWktID, false, true);
 
-
     public void FillExcuseTypeList(ref DropDownList _ddl, RequiredFieldValidator _rv, bool isClear, bool isAll)
     {
         if (isClear) { _ddl.Items.Clear(); }
 
         string All = (isAll) ? "A" : "N";
-        DataTable DT = DBCs.FetchData(" SELECT ExcID, ExcNameAr, ExcNameEn FROM ExcuseType WHERE ISNULL(ExcDeleted,0) = 0 AND ExcStatus = (CASE WHEN @P1 = 'A' THEN ExcStatus ELSE 'True' END) AND ExcCategory IS NULL ", new string[] { All });
+        DataTable DT = DBCs.FetchData(" SELECT ExcID, ExcStatus, ExcNameAr, ExcNameEn FROM ExcuseType WHERE ISNULL(ExcDeleted,0) = 0 AND ExcStatus = (CASE WHEN @P1 = 'A' THEN ExcStatus ELSE 'True' END) AND ExcCategory IS NULL ", new string[] { All });
         if (!DBCs.IsNullOrEmpty(DT))
         {
             PopulateDDL(_ddl, DT, General.Msg("ExcNameEn", "ExcNameAr"), "ExcID", General.Msg("-Select Excuse Type-", "-اختر نوع الإستئذان-"));
+            if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
+
+            //tempServicesItem.Attributes.Add("disabled", "disabled");
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void FillExcuseTypeList(DDLAttributes.DropDownListAttributes _ddl, RequiredFieldValidator _rv, bool isAll)
+    {
+        string All = (isAll) ? "A" : "N";
+        DataTable DT = DBCs.FetchData(" SELECT ExcID, ExcStatus, ExcNameAr, ExcNameEn FROM ExcuseType WHERE ISNULL(ExcDeleted,0) = 0 AND ExcStatus = (CASE WHEN @P1 = 'A' THEN ExcStatus ELSE 'True' END) AND ExcCategory IS NULL ", new string[] { All });
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            _ddl.Populate(DT, General.Msg("ExcNameEn", "ExcNameAr"), "ExcID", "ExcStatus", General.Msg("-Select Excuse Type-", "-اختر نوع الإستئذان-"));
             if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
         }
     }
@@ -291,13 +304,25 @@ public class CtrlFun : DataLayerBase
         if (isClear) { _ddl.Items.Clear(); }
 
         string All = (isAll) ? "A" : "N";
-        DataTable DT = DBCs.FetchData(" SELECT VtpID, VtpNameAr, VtpNameEn FROM VacationType WHERE ISNULL(VtpDeleted,0) = 0 AND VtpCategory = (CASE WHEN @P1 = 'ALL' THEN VtpCategory ELSE @P1 END) AND VtpStatus = (CASE WHEN @P2 = 'A' THEN VtpStatus ELSE 'True' END) ", new string[] { Category, All });
+        DataTable DT = DBCs.FetchData(" SELECT VtpID, VtpStatus, VtpNameAr, VtpNameEn FROM VacationType WHERE ISNULL(VtpDeleted,0) = 0 AND VtpCategory = (CASE WHEN @P1 = 'ALL' THEN VtpCategory ELSE @P1 END) AND VtpStatus = (CASE WHEN @P2 = 'A' THEN VtpStatus ELSE 'True' END) ", new string[] { Category, All });
         if (!DBCs.IsNullOrEmpty(DT))
         {
             PopulateDDL(_ddl, DT, General.Msg("VtpNameEn", "VtpNameAr"), "VtpID", General.Msg("-Select Vacation type-", "-اختر نوع الإجازة-"));
             if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
         }
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void FillVacationTypeList(DDLAttributes.DropDownListAttributes _ddl, RequiredFieldValidator _rv, bool isAll, string Category)
+    {
+        string All = (isAll) ? "A" : "N";
+        DataTable DT = DBCs.FetchData(" SELECT VtpID, VtpStatus, VtpNameAr, VtpNameEn FROM VacationType WHERE ISNULL(VtpDeleted,0) = 0 AND VtpCategory = (CASE WHEN @P1 = 'ALL' THEN VtpCategory ELSE @P1 END) AND VtpStatus = (CASE WHEN @P2 = 'A' THEN VtpStatus ELSE 'True' END) ", new string[] { Category, All });
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            _ddl.Populate(DT, General.Msg("VtpNameEn", "VtpNameAr"), "VtpID", "VtpStatus", General.Msg("-Select Vacation type-", "-اختر نوع الإجازة-"));
+            if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
+        }
+    }  
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void FillWorkingTimeList(ref DropDownList _ddl, RequiredFieldValidator _rv, bool isClear, bool isAll)
@@ -309,10 +334,22 @@ public class CtrlFun : DataLayerBase
         DataTable DT = DBCs.FetchData(" SELECT WktID, WktNameAr, WktNameEn FROM WorkingTime WHERE ISNULL(WktDeleted,0) = 0 AND WtpID IN (SELECT WtpID FROM WorkType WHERE WtpInitial !='RO') AND WktIsActive = (CASE WHEN @P1 = 'A' THEN WktIsActive ELSE 'True' END) ", new string[] { All });
         if (!DBCs.IsNullOrEmpty(DT))
         {
-            PopulateDDL(_ddl, DT, General.Msg("WktNameEn", "WktNameAr"), "WktID", General.Msg("- Select Worktime -", "- اختر جدول العمل-"));
+            PopulateDDL(_ddl, DT, General.Msg("WktNameEn", "WktNameAr"), "WktID", General.Msg("-Select Worktime-", "-اختر جدول العمل-"));
             if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
         }
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void FillWorkingTimeList(DDLAttributes.DropDownListAttributes _ddl, RequiredFieldValidator _rv, bool isAll)
+    {
+        string All = (isAll) ? "A" : "N";
+        DataTable DT = DBCs.FetchData(" SELECT WktID, WktIsActive, WktNameAr, WktNameEn FROM WorkingTime WHERE ISNULL(WktDeleted,0) = 0 AND WtpID IN (SELECT WtpID FROM WorkType WHERE WtpInitial !='RO') AND WktIsActive = (CASE WHEN @P1 = 'A' THEN WktIsActive ELSE 'True' END) ", new string[] { All });
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            _ddl.Populate(DT, General.Msg("WktNameEn", "WktNameAr"), "WktID", "WktIsActive", General.Msg("-Select Worktime-", "-اختر جدول العمل-"));
+            if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
+        }
+    }  
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void FillWorkingTimeList1Sift(ref DropDownList _ddl, RequiredFieldValidator _rv, bool isClear, bool isAll)
@@ -745,12 +782,12 @@ public class CtrlFun : DataLayerBase
         if (isShow)
         {
             cv.ErrorMessage = pMsg;
-            cv.Text = pg.Server.HtmlDecode("&lt;img src='../App_Themes/ThemeEn/Images/Validation/message_exclamation.png' title='" + pMsg + "' /&gt;");
+            cv.Text = pg.Server.HtmlDecode("&lt;img src='../images/Exclamation.gif' title='" + pMsg + "' /&gt;");
         }
         else
         {
             cv.ErrorMessage = "";
-            cv.Text = pg.Server.HtmlDecode("&lt;img src='../App_Themes/ThemeEn/Images/Validation/Exclamation.gif' title='" + pMsg + "' /&gt;");
+            cv.Text = pg.Server.HtmlDecode("&lt;img src='../images/Exclamation.gif' title='" + pMsg + "' /&gt;");
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -758,7 +795,7 @@ public class CtrlFun : DataLayerBase
     public void ValidMsg(Page pg, ref RequiredFieldValidator rv, string pMsg)
     {
         rv.ErrorMessage = "";
-        rv.Text = pg.Server.HtmlDecode("&lt;img src='../App_Themes/ThemeEn/Images/Validation/Exclamation.gif' title='" + pMsg + "' /&gt;");
+        rv.Text = pg.Server.HtmlDecode("&lt;img src='../images/Exclamation.gif' title='" + pMsg + "' /&gt;");
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -931,7 +968,7 @@ public class CtrlFun : DataLayerBase
 
         return "<OnClick Position='absolute'>"
                      + "<Sequence>"
-                       + "<EnableAction Enabled='false'></EnableAction>"
+                       + "<EnableAction Enabled='true'></EnableAction>"
                             + "<StyleAction AnimationTarget='pnlInfo" + pID + "' Attribute='display' Value='block'/>"
                             + "<Parallel AnimationTarget='pnlInfo" + pID + "' Duration='.2' Fps='25'>"
                                 + "<Move Horizontal='" + Horizontal + "' Vertical='" + Vertical + "' />"

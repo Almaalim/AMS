@@ -180,7 +180,7 @@ public partial class EmailSetting : BasePage
         try
         {
             System.Net.Mail.MailMessage msgMail = new System.Net.Mail.MailMessage();
-            msgMail.Subject = "Test Email From AMS WEB Scheduling Reports ";
+            msgMail.Subject = "Test Email From Workforce WEB ";
             msgMail.Body    = "<b>Test Email</b>";             
                
             msgMail.To.Add(txtSendToEmail.Text.Trim());

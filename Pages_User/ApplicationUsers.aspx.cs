@@ -354,6 +354,8 @@ public partial class ApplicationUsers : BasePage
     {
         try
         {
+            if (!FindDemoCount()) { return; }
+
             // Verifying from license for the number of users allowed
             int AllowedUsers = Convert.ToInt32(LicDf.FetchLic("UN"));
 
@@ -415,6 +417,8 @@ public partial class ApplicationUsers : BasePage
     {
         try
         {
+            if (!FindDemoCount()) { return; }
+
             if (GenCs.IsNullOrEmpty(ViewState["CommandName"])) { return; }
             string CommandName = ViewState["CommandName"].ToString();
 
@@ -963,6 +967,27 @@ public partial class ApplicationUsers : BasePage
         }
         catch { e.IsValid = false; }
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected bool FindDemoCount()
+    {
+        bool Found = false;
+
+        try
+        {
+            if (pgCs.Version != "DEMO") { Found = true; }
+            DataTable DT = DBCs.FetchData(new SqlCommand("SELECT COUNT(UsrName) DemoCount FROM AppUser WHERE ISNULL(UsrDeleted,0) = 0 HAVING COUNT(UsrName) <= 10 "));
+            if (!DBCs.IsNullOrEmpty(DT)) { Found = true; }
+        }
+        catch {  }
+
+        if (!Found)
+        {
+            CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Warning, General.Msg("Can not add more than ten Users, this version is Demo", "لا يمكن إضافة أكثر من عشرة مستخدمين، هذه النسخة للعرض"));
+        }
+
+        return Found;
+    }
 
     #endregion
     /*#############################################################################################################################*/
@@ -1075,7 +1100,6 @@ public partial class ApplicationUsers : BasePage
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
     /*******************************************************************************************************************************/
     /*******************************************************************************************************************************/

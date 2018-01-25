@@ -182,12 +182,12 @@
                             <asp:Label ID="lblDepMangerID" runat="server" Text="Manager Name :" meta:resourcekey="lblDepMangerIDResource1"></asp:Label>
                         </div>
                         <div class="col9">
-                            <asp:DropDownList ID="ddlDepManagerID" runat="server" class="chosen-select" data-placeholder="Choose" >
-                            </asp:DropDownList>
-                            
-                            <%--<asp:DropDownList ID="ddlDepManagerID" runat="server" Enabled="False"
-                                meta:resourcekey="ddlDepManagerIDResource1">
+                            <%--<asp:DropDownList ID="ddlDepManagerID" runat="server" class="chosen-select" data-placeholder="Choose" >
                             </asp:DropDownList>--%>
+                            
+                            <asp:DropDownList ID="ddlDepManagerID" runat="server" Enabled="False"
+                                meta:resourcekey="ddlDepManagerIDResource1">
+                            </asp:DropDownList>
                             <asp:RequiredFieldValidator ID="rfDepMng" runat="server" ControlToValidate="ddlDepManagerID" CssClass="CustomValidator"
                                 EnableClientScript="False" meta:resourcekey="rfvWtpIDResource1" Text="&lt;img src='../images/Exclamation.gif' title='Manager Name is required!' /&gt;"
                                 ValidationGroup="vgSave"></asp:RequiredFieldValidator>

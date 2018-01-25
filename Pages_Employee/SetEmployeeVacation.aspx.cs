@@ -37,6 +37,7 @@ public partial class SetEmployeeVacation : BasePage
         {
             /*** Fill Session ************************************/
             pgCs.FillSession(); 
+             if (pgCs.Lang == "AR") { LanguageSwitch.Href = "~/CSS/Metro/MetroAr.css"; } else { LanguageSwitch.Href = "~/CSS/Metro/Metro.css"; }
             CtrlCs.Animation(ref AnimationExtenderShow1, ref AnimationExtenderClose1, ref lnkShow1, "1");
             CtrlCs.RefreshGridEmpty(ref grdData);
             /*** Fill Session ************************************/
@@ -45,7 +46,7 @@ public partial class SetEmployeeVacation : BasePage
             {
                 /*** Common Code ************************************/
                 /*** Check AMS License ***/ pgCs.CheckAMSLicense();  
-                /*** get Permission    ***/ ViewState["ht"] = pgCs.getPerm(Request.Url.AbsolutePath);  
+                /*** get Permission    ***/ //ViewState["ht"] = pgCs.getPerm(Request.Url.AbsolutePath);  
                 BtnStatus("1000");
                 UIEnabled(false);
                 UILang();

@@ -46,14 +46,13 @@
 
             <div class="row">
                 <div class="col12">
-                    <as:GridViewKeyBoardPagerExtender ID="gridviewextender" runat="server" TargetControlID="grdData" NextRowSelectKey="Add"
-                        PrevRowSelectKey="Subtract" />
+                    <as:GridViewKeyBoardPagerExtender ID="gridviewextender" runat="server" TargetControlID="grdData"/>
                     <asp:GridView ID="grdData" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                         BorderWidth="0px" CellPadding="0" CssClass="datatable"
                         DataKeyNames="EvrID" GridLines="None" OnPreRender="grdData_PreRender"
                         OnPageIndexChanging="grdData_PageIndexChanging" OnRowCommand="grdData_RowCommand"
                         OnRowCreated="grdData_RowCreated" OnRowDataBound="grdData_RowDataBound" OnSelectedIndexChanged="grdData_SelectedIndexChanged"
-                        OnSorting="grdData_Sorting" SelectedIndex="0" ShowFooter="True"
+                        OnSorting="grdData_Sorting" ShowFooter="True"
                         EnableModelValidation="True" meta:resourcekey="grdDataResource1">
 
                         <PagerSettings Mode="NextPreviousFirstLast" FirstPageText="First"
@@ -103,7 +102,7 @@
             <div class="row">
                 <div class="col12">
                     <asp:ValidationSummary ID="vsShowMsg" runat="server" CssClass="MsgSuccess"
-                        EnableClientScript="False" ValidationGroup="ShowMsg" />
+                        EnableClientScript="False" ValidationGroup="vgShowMsg" />
                 </div>
             </div>
             <div class="row">
@@ -133,7 +132,7 @@
                         Width="10px" meta:resourcekey="txtCustomValidatorResource1"></asp:TextBox>
 
                     <asp:CustomValidator ID="cvShowMsg" runat="server" Display="None" CssClass="CustomValidator"
-                        ValidationGroup="ShowMsg" OnServerValidate="ShowMsg_ServerValidate"
+                        ValidationGroup="vgShowMsg" OnServerValidate="ShowMsg_ServerValidate"
                         EnableClientScript="False" ControlToValidate="txtValid"> </asp:CustomValidator>
                     </div>
                         </div>
@@ -162,17 +161,10 @@
                                     CompletionListItemCssClass="AutoExtenderList"
                                     CompletionListHighlightedItemCssClass="AutoExtenderHighlight"
                                     CompletionSetCount="12" />
-                                <asp:RequiredFieldValidator ID="reqBranchManager1" runat="server" ControlToValidate="txtEmpID" CssClass="CustomValidator"
-                                    EnableClientScript="False" Text="&lt;img src='../images/Exclamation.gif' title='Emloyee ID is required!' /&gt;"
-                                    ValidationGroup="vgSave" meta:resourcekey="reqBranchManager1Resource1"></asp:RequiredFieldValidator>
-                                <asp:CustomValidator ID="cvFindEmp" runat="server"
-                                    Text="&lt;img src='../images/message_exclamation.png' title='Employee Not found!' /&gt;"
-                                    ErrorMessage="Employee Not found!"
-                                    ValidationGroup="vgSave" CssClass="CustomValidator"
-                                    OnServerValidate="FindEmp_ServerValidate"
-                                    EnableClientScript="False"
-                                    ControlToValidate="txtValid"
-                                    meta:resourcekey="cvFindEmpResource1"></asp:CustomValidator>
+                                <asp:CustomValidator ID="cvEmpID" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='' /&gt;"
+                                    ValidationGroup="vgSave" OnServerValidate="EmpID_ServerValidate" CssClass="CustomValidator"
+                                    EnableClientScript="False" ControlToValidate="txtValid">
+                                </asp:CustomValidator>
                             </div>
                             <div class="col2">
                                 <span class="RequiredField">*</span>
@@ -180,15 +172,17 @@
                                     meta:resourcekey="lblVacationTypeResource1"></asp:Label>
                             </div>
                             <div class="col4">
-                                <asp:DropDownList ID="ddlVacType" runat="server"
+                                <%--<asp:DropDownList ID="ddlVacType" runat="server"
                                     meta:resourcekey="ddlVacTypeResource1" AutoPostBack="True"
                                     OnSelectedIndexChanged="ddlVacType_SelectedIndexChanged">
-                                </asp:DropDownList>
-                                <asp:RequiredFieldValidator ID="rfvddlVacType" runat="server" ControlToValidate="ddlVacType" CssClass="CustomValidator"
-                                    EnableClientScript="False" Text="&lt;img src='../images/Exclamation.gif' title='Vacation Type is required!' /&gt;"
+                                </asp:DropDownList>--%>
+                                <asp:DropDownListAttributes ID="ddlVacType" runat="server"></asp:DropDownListAttributes>
+
+                                <asp:RequiredFieldValidator ID="rvVacType" runat="server" ControlToValidate="ddlVacType" CssClass="CustomValidator"
+                                    EnableClientScript="False" Text="&lt;img src='../images/Exclamation.gif' title='Vacation Type is required' /&gt;"
                                     ValidationGroup="vgSave" meta:resourcekey="rfvddlVacTypeResource1"></asp:RequiredFieldValidator>
-                                <asp:CustomValidator ID="cvMaxDays" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='MaxDays!' /&gt;"
-                                    ValidationGroup="vgSave" ErrorMessage="MaxDays!" OnServerValidate="MaxDays_ServerValidate"
+                                <asp:CustomValidator ID="cvMaxDays" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='MaxDays' /&gt;"
+                                    ValidationGroup="vgSave" ErrorMessage="MaxDays" OnServerValidate="MaxDays_ServerValidate"
                                     EnableClientScript="False" ControlToValidate="txtValid" CssClass="CustomValidator"
                                     meta:resourcekey="cvMaxDaysResource1"></asp:CustomValidator>
                             </div>

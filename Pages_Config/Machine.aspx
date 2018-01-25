@@ -31,15 +31,15 @@
                 <div class="col2">
                     <asp:TextBox ID="txtFilter" runat="server" AutoCompleteType="Disabled" meta:resourcekey="txtFilterResource1"></asp:TextBox>
                     &nbsp;
-                                    <asp:ImageButton ID="btnFilter" runat="server" ImageUrl="../images/Button_Icons/button_magnify.png" CssClass="LeftOverlay"
-                                        meta:resourcekey="btnFilterResource1" OnClick="btnFilter_Click" />
+                    <asp:ImageButton ID="btnFilter" runat="server" ImageUrl="../images/Button_Icons/button_magnify.png" CssClass="LeftOverlay"
+                        meta:resourcekey="btnFilterResource1" OnClick="btnFilter_Click" />
                 </div>
             </div>
 
             <div class="row">
                 <div class="col12">
                     <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData" />
-                    <asp:GridView ID="grdData" runat="server" CssClass="datatable" SelectedIndex="0"
+                    <asp:GridView ID="grdData" runat="server" CssClass="datatable"
                         AutoGenerateColumns="False" AllowPaging="True" CellPadding="0" BorderWidth="0px"
                         GridLines="None" DataKeyNames="MacID" ShowFooter="True" OnPageIndexChanging="grdData_PageIndexChanging"
                         OnRowCreated="grdData_RowCreated" OnRowDataBound="grdData_RowDataBound"
@@ -123,10 +123,10 @@
                    </div>
                 <div class="col4">
 
-                                    <asp:CustomValidator ID="cvShowMsg" runat="server" Display="None"
-                                        ValidationGroup="ShowMsg" OnServerValidate="ShowMsg_ServerValidate"
-                                        EnableClientScript="False" ControlToValidate="txtValid">
-                                    </asp:CustomValidator>
+                    <asp:CustomValidator ID="cvShowMsg" runat="server" Display="None"
+                        ValidationGroup="ShowMsg" OnServerValidate="ShowMsg_ServerValidate"
+                        EnableClientScript="False" ControlToValidate="txtValid">
+                    </asp:CustomValidator>
                 </div>
             </div>
             <div class="GreySetion">
@@ -167,7 +167,7 @@
                     <div class="col2">
                     
                         <span id="spnMacTransactionType" runat="server" class="RequiredField">*</span>
-                        <asp:Label ID="lblMacTransactionType" runat="server" Text="Transactions Type :" meta:resourcekey="lblMacTransactionTypeResource"></asp:Label>
+                        <asp:Label ID="lblMacTransactionType" runat="server" Text="Attendance Type :" meta:resourcekey="lblMacTransactionTypeResource"></asp:Label>
                     </div>
                     <div class="col4">
                         <asp:DropDownList ID="ddlMacTransactionType" runat="server" Enabled="False" AutoPostBack="true" OnSelectedIndexChanged="ddlMacTransactionType_SelectedIndexChanged" >

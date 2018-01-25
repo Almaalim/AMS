@@ -5,9 +5,12 @@
     Namespace="System.Web.DynamicData" TagPrefix="cc1" %>
 <%@ Register Assembly="AjaxSamples" Namespace="AjaxSamples" TagPrefix="as" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <title>Set Emplyee Vacation</title>
 
     <%--script--%>
@@ -15,8 +18,8 @@
     <script type="text/javascript" src="../Script/CheckKey.js"></script>
     <script type="text/javascript" src="../Script/ModalPopup.js"></script>
     <script type="text/javascript" src="../Script/DivPopup.js"></script>
-     <script type="text/javascript" src="../Script/jquery-1.7.1.min.js"></script>
-      <script type="text/javascript">
+    <script type="text/javascript" src="../Script/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript">
         $(document).ready(function () {
             $("div[class*='col']").each(function () {
                 if ($(this).children(".RequiredField").length > 0) {
@@ -31,28 +34,28 @@
     </script>
     <%--script--%>
     <%--stylesheet--%>
-    <link href="../CSS/Metro/Metro.css" rel="stylesheet" />
+     <link href="~/CSS/Metro/Metro.css" rel="stylesheet" runat="server" id="LanguageSwitch" />
     <%--stylesheet--%>
 </head>
-<body  >
-    <form id="form1" runat="server"  >
+<body>
+    <form id="form1" runat="server">
         <div>
             <asp:ScriptManager ID="Scriptmanager1" runat="server" EnablePageMethods="True">
             </asp:ScriptManager>
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>
 
-                     <div class="row">
+                    <div class="row">
                         <div class="col12">
                             <asp:Label ID="lblName" runat="server" Text="" CssClass="h4"></asp:Label>
                         </div>
                     </div>
-                    
-                    
+
+
                     <div class="row">
                         <div class="col12">
                             <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData" />
-                            <asp:GridView ID="grdData" runat="server" CssClass="datatable" SelectedIndex="0"
+                            <asp:GridView ID="grdData" runat="server" CssClass="datatable"
                                 AutoGenerateColumns="False" PageSize="5" AllowPaging="false"
                                 GridLines="None" DataKeyNames="EvsID" ShowFooter="True" OnPageIndexChanging="grdData_PageIndexChanging"
                                 OnRowDataBound="grdData_RowDataBound" OnSorting="grdData_Sorting" OnSelectedIndexChanged="grdData_SelectedIndexChanged"
@@ -66,7 +69,7 @@
                                     <asp:BoundField HeaderText="Employee ID" DataField="EmpID" SortExpression="EmpID"
                                         meta:resourcekey="BoundFieldResource1" />
                                     <asp:BoundField HeaderText="ID" DataField="EvsID" SortExpression="EvsID" meta:resourcekey="BoundFieldResource2" />
-                                     <asp:BoundField HeaderText="Vacation Name (Ar)" DataField="VtpNameAr" SortExpression="VtpNameAr"
+                                    <asp:BoundField HeaderText="Vacation Name (Ar)" DataField="VtpNameAr" SortExpression="VtpNameAr"
                                         meta:resourcekey="BoundFieldResource3" />
                                     <asp:BoundField HeaderText="Vacation Name (En)" DataField="VtpNameEn" SortExpression="VtpNameEn"
                                         meta:resourcekey="BoundFieldResource4" />
@@ -109,9 +112,9 @@
                                 OnClick="btnModify_Click" Text="&lt;img src=&quot;../images/Button_Icons/button_edit.png&quot; /&gt; Modify"
                                 meta:resourcekey="btnModifyResource1"></asp:LinkButton>
 
-                            <asp:LinkButton ID="btnSave" runat="server" CssClass="GenButton glyphicon glyphicon-floppy-disk"   OnClick="btnSave_Click"
+                            <asp:LinkButton ID="btnSave" runat="server" CssClass="GenButton glyphicon glyphicon-floppy-disk" OnClick="btnSave_Click"
                                 Text="&lt;img src=&quot;../images/Button_Icons/button_storage.png&quot; /&gt; Save"
-                                ValidationGroup="vgSave"   meta:resourcekey="btnSaveResource1"></asp:LinkButton>
+                                ValidationGroup="vgSave" meta:resourcekey="btnSaveResource1"></asp:LinkButton>
 
                             <asp:LinkButton ID="btnCancel" runat="server" CssClass="GenButton glyphicon glyphicon-remove-circle"
                                 OnClick="btnCancel_Click" Text="&lt;img src=&quot;../images/Button_Icons/button_Cancel.png&quot; /&gt; Cancel"
@@ -161,7 +164,7 @@
                                 EnableClientScript="False" ErrorMessage=" Enter Only Numbers" ValidationExpression="^\d+$" CssClass="CustomValidator"
                                 ValidationGroup="vgSave" meta:resourcekey="RegularExpressionValidator7Resource1"><img src="../images/Exclamation.gif" 
                                                    title="Enter Only Numbers!" /></asp:RegularExpressionValidator>
-                             <asp:CustomValidator ID="cvMaxDays" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='Max Days is required!' /&gt;"
+                            <asp:CustomValidator ID="cvMaxDays" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='Max Days is required!' /&gt;"
                                 ValidationGroup="vgSave" OnServerValidate="MaxDaysValidate_ServerValidate" CssClass="CustomValidator"
                                 EnableClientScript="False" ControlToValidate="txtValid" meta:resourcekey="cvMaxDaysResource1"></asp:CustomValidator>
                             <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow1" runat="server" TargetControlID="lnkShow1" />
@@ -179,7 +182,6 @@
                             </div>
                         </div>
                         <div class="col1">
-                           
                         </div>
                     </div>
                 </ContentTemplate>

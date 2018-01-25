@@ -173,8 +173,10 @@
                             meta:resourcekey="lblDepMangerID0Resource1"></asp:Label>
                     </div>
                     <div class="col4">
-                        <asp:DropDownList ID="ddlBranchManagerID" runat="server" Enabled="False" class="chosen-select">
-                        </asp:DropDownList>
+                        <%--<asp:DropDownList ID="ddlBranchManagerID" runat="server" Enabled="False" class="chosen-select">
+                        </asp:DropDownList>--%>
+
+                        <asp:DropDownList ID="ddlBranchManagerID" runat="server" Enabled="False"></asp:DropDownList>
                     </div>
 
                     <div class="col2">

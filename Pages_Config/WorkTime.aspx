@@ -37,10 +37,8 @@
 
             <div class="row">
                 <div class="col12">
-                    <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData"
-                        PrevRowSelectKey="Subtract" NextRowSelectKey="Add" NextPageKey="PageUp"
-                        PreviousPageKey="PageDown" />
-                    <asp:GridView ID="grdData" runat="server" CssClass="datatable" SelectedIndex="0"
+                    <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData"/>
+                    <asp:GridView ID="grdData" runat="server" CssClass="datatable"
                         AutoGenerateColumns="False" AllowPaging="True" CellPadding="0" BorderWidth="0px"
                         GridLines="None" DataKeyNames="WktID" ShowFooter="True" OnPageIndexChanging="grdData_PageIndexChanging"
                         OnRowCreated="grdData_RowCreated" OnRowDataBound="grdData_RowDataBound" OnSelectedIndexChanged="grdData_SelectedIndexChanged"
@@ -247,7 +245,7 @@
                         <asp:CustomValidator ID="cvArShift1Name" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='Shift 1 Name Arabic is required!' /&gt;"
                             ValidationGroup="vgSave" OnServerValidate="Shift1Validate_ServerValidate" EnableClientScript="False"
                             ControlToValidate="txtValid" meta:resourcekey="cvArShift1NameResource1" CssClass="CustomValidator"></asp:CustomValidator>
-                        <asp:CustomValidator ID="cvShift1Overnight" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='shift 1 must not be Overnight' /&gt;"
+                        <asp:CustomValidator ID="cvShift1Overnight" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='shift 1 must not be Overnight' /&gt;"
                             ErrorMessage="shift 1 must not be Overnight!" ValidationGroup="vgSave" OnServerValidate="Shift1Validate_ServerValidate"
                             EnableClientScript="False" ControlToValidate="txtValid" meta:resourcekey="cvShift1OvernightResource1">
                         </asp:CustomValidator>
@@ -281,11 +279,11 @@
                     <div class="col4">
                         <Almaalim:TimePicker ID="tpShift1To" runat="server" FormatTime="HHmm" meta:resourcekey="tpShift1ToResource1"
                             CssClass="TimeCss" TimePickerValidationGroup="vgSave" TimePickerValidationText="&lt;img src='../images/Exclamation.gif' title='Time Shift 1 To is required!' /&gt;" />
-                        <asp:CustomValidator ID="cvShift1Time" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='Enter correct Shift 1 Time' /&gt;"
+                        <asp:CustomValidator ID="cvShift1Time" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='Enter correct Shift 1 Time' /&gt;"
                             ErrorMessage="Enter correct Shift 1 Time!" ValidationGroup="vgSave" OnServerValidate="Shift1Validate_ServerValidate" CssClass="CustomValidator"
                             EnableClientScript="False" ControlToValidate="txtValid" meta:resourcekey="cvShift1TimeResource1">
                         </asp:CustomValidator>
-                        <asp:CustomValidator ID="cvShift1Cal" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='Enter correct Shift 1 Time' /&gt;"
+                        <asp:CustomValidator ID="cvShift1Cal" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='Enter correct Shift 1 Time' /&gt;"
                             ErrorMessage="Enter correct Shift 1 Time!" ValidationGroup="vgCalShift" OnServerValidate="Shift1Validate_ServerValidate" CssClass="CustomValidator"
                             EnableClientScript="False" ControlToValidate="txtValid" meta:resourcekey="cvShift1TimeResource1">
                         </asp:CustomValidator>
@@ -310,13 +308,13 @@
                             </p>
                         </div>
 
-                        <asp:CustomValidator ID="cvShift1Duration" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='Shift 1 Duration is required!' /&gt;"
-                            ValidationGroup="vgSave" OnServerValidate="Shift1Validate_ServerValidate" EnableClientScript="False"
-                            ControlToValidate="txtValid" meta:resourcekey="cvShift1DurationResource1" CssClass="CustomValidator"></asp:CustomValidator>
-
                         <asp:ImageButton ID="btnCalShift1Duration" runat="server" OnClick="btnCalShift1Duration_Click" CssClass="LeftOverlay1"
                             ImageUrl="~/images/Button_Icons/button_calculator.png" Enabled="False" ValidationGroup="vgCalShift" meta:resourcekey="btnCalShift1DurationResource1"
                             ToolTip="Calculater Shift 1 Duration" />
+
+                         <asp:CustomValidator ID="cvShift1Duration" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='Shift 1 Duration is required!' /&gt;"
+                            ValidationGroup="vgSave" OnServerValidate="Shift1Validate_ServerValidate" EnableClientScript="False"
+                            ControlToValidate="txtValid" meta:resourcekey="cvShift1DurationResource1" CssClass="CustomValidator"></asp:CustomValidator>
                     </div>
                     <div class="row" runat="server" visible="false" id="divFT1">
                     <div class="col2">
@@ -406,7 +404,7 @@
                         <asp:CustomValidator ID="cvArShift2Name" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='Shift 2 Name Arabic is required!' /&gt;"
                             ValidationGroup="vgSave" OnServerValidate="Shift2Validate_ServerValidate" EnableClientScript="False"
                             ControlToValidate="txtValid" meta:resourcekey="cvArShift2NameResource1" CssClass="CustomValidator"></asp:CustomValidator>
-                        <asp:CustomValidator ID="cvOrderShfit2" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='Shifts must be ordered by time' /&gt;"
+                        <asp:CustomValidator ID="cvOrderShfit2" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='Shifts must be ordered by time' /&gt;"
                             ErrorMessage="Shifts must be ordered by time!" ValidationGroup="vgSave" OnServerValidate="Shift2Validate_ServerValidate"
                             EnableClientScript="False" ControlToValidate="txtValid" meta:resourcekey="cvOrderShfit2Resource1">
                         </asp:CustomValidator>
@@ -446,10 +444,10 @@
                         <asp:CustomValidator ID="cvShift2ToRequired" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='Time Shift 2 To is required!' /&gt;"
                             ValidationGroup="vgSave" OnServerValidate="Shift2Validate_ServerValidate" EnableClientScript="False"
                             ControlToValidate="txtValid" meta:resourcekey="cvShift2ToRequiredResource1" CssClass="CustomValidator"></asp:CustomValidator>
-                        <asp:CustomValidator ID="cvShift2Time" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='Enter correct Shift 2 Time' /&gt;"
+                        <asp:CustomValidator ID="cvShift2Time" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='Enter correct Shift 2 Time' /&gt;"
                             ErrorMessage="Enter correct Shift 2 Time!" ValidationGroup="vgSave" OnServerValidate="Shift2Validate_ServerValidate" CssClass="CustomValidator"
                             EnableClientScript="False" ControlToValidate="txtValid" meta:resourcekey="cvShift2TimeResource1"></asp:CustomValidator>
-                        <asp:CustomValidator ID="cvShift2Cal" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='Enter correct Shift 2 Time' /&gt;"
+                        <asp:CustomValidator ID="cvShift2Cal" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='Enter correct Shift 2 Time' /&gt;"
                             ErrorMessage="Enter correct Shift 2 Time!" ValidationGroup="vgCalShift" OnServerValidate="Shift2Validate_ServerValidate" CssClass="CustomValidator"
                             EnableClientScript="False" ControlToValidate="txtValid" meta:resourcekey="cvShift2TimeResource1"></asp:CustomValidator>
                     </div>
@@ -549,7 +547,7 @@
                             OnServerValidate="Shift3Validate_ServerValidate"
                             Text="&lt;img src='../images/Exclamation.gif' title='Shift 3 Name Arabic is required!' /&gt;"
                             ValidationGroup="vgSave" CssClass="CustomValidator"></asp:CustomValidator>
-                        <asp:CustomValidator ID="cvOrderShfit3" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='Shifts must be ordered by time' /&gt;"
+                        <asp:CustomValidator ID="cvOrderShfit3" runat="server" Text="&lt;img src='../images/Exclamation.gif' title='Shifts must be ordered by time' /&gt;"
                             ErrorMessage="Shifts must be ordered by time!" ValidationGroup="vgSave" OnServerValidate="Shift3Validate_ServerValidate" CssClass="CustomValidator"
                             EnableClientScript="False" ControlToValidate="txtValid" meta:resourcekey="cvOrderShfit3Resource1">
                         </asp:CustomValidator>
@@ -604,14 +602,14 @@
                             ErrorMessage="Enter correct Shift 3 Time!"
                             meta:resourcekey="cvShift3TimeResource1"
                             OnServerValidate="Shift3Validate_ServerValidate"
-                            Text="&lt;img src='../images/message_exclamation.png' title='Enter correct Shift 3 Time' /&gt;"
+                            Text="&lt;img src='../images/Exclamation.gif' title='Enter correct Shift 3 Time' /&gt;"
                             ValidationGroup="vgSave" CssClass="CustomValidator"></asp:CustomValidator>
                         <asp:CustomValidator ID="cvShift3Cal" runat="server"
                             ControlToValidate="txtValid" EnableClientScript="False"
                             ErrorMessage="Enter correct Shift 3 Time!"
                             meta:resourcekey="cvShift3TimeResource1"
                             OnServerValidate="Shift3Validate_ServerValidate"
-                            Text="&lt;img src='../images/message_exclamation.png' title='Enter correct Shift 3 Time' /&gt;"
+                            Text="&lt;img src='../images/Exclamation.gif' title='Enter correct Shift 3 Time' /&gt;"
                             ValidationGroup="vgCalShift" CssClass="CustomValidator"></asp:CustomValidator>
                     </div>
                 </div>

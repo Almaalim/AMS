@@ -82,7 +82,7 @@
                 <div class="col12">
                     <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData" />
                     <div>
-                        <asp:GridView ID="grdData" runat="server" CssClass="datatable" SelectedIndex="0"
+                        <asp:GridView ID="grdData" runat="server" CssClass="datatable"
                             AutoGenerateColumns="False" AllowSorting="False" AllowPaging="True" CellPadding="0"
                             BorderWidth="0px" GridLines="None" ShowFooter="True" OnPageIndexChanging="grdData_PageIndexChanging"
                             OnRowCreated="grdData_RowCreated" OnRowDataBound="grdData_RowDataBound" OnSorting="grdData_Sorting"
@@ -198,7 +198,8 @@
 
                 <div class="row">
                     <div class="col2">
-                        <span class="RequiredField">*</span> &nbsp;<asp:Label ID="lblRuleUnits" runat="server"
+                        <span class="RequiredField">*</span>
+                        <asp:Label ID="lblRuleUnits" runat="server"
                             Text="Rule Units :" meta:resourcekey="lblRuleUnitsResource1"></asp:Label>
                     </div>
                     <div class="col4">

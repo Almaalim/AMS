@@ -48,12 +48,10 @@
 
             <div class="row">
                 <div class="col12">
-                    <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender"
-                        TargetControlID="grdData" NextRowSelectKey="Add"
-                        PrevRowSelectKey="Subtract" />
+                    <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData"/>
                     <%--<div style="width: 800px">--%>
                     <asp:GridView ID="grdData" runat="server" CssClass="datatable"
-                        SelectedIndex="0" AutoGenerateColumns="False" AllowPaging="True"
+                        AutoGenerateColumns="False" AllowPaging="True"
                         CellPadding="0" BorderWidth="0px" GridLines="None" DataKeyNames="EmpID"
                         OnPageIndexChanging="grdData_PageIndexChanging" OnRowDataBound="grdData_RowDataBound"
                         OnSorting="grdData_Sorting" OnSelectedIndexChanged="grdData_SelectedIndexChanged"
@@ -179,6 +177,11 @@
                             OnServerValidate="EmployeeIDLen_ServerValidate" EnableClientScript="False"
                             ControlToValidate="txtValid"
                             meta:resourcekey="cvEmployeeIDLenResource1">
+                        </asp:CustomValidator>
+                        <asp:CustomValidator ID="cvEmpID" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='' /&gt;" CssClass="CustomValidator"
+                            ValidationGroup="vgSave"
+                            OnServerValidate="EmpID_ServerValidate" EnableClientScript="False"
+                            ControlToValidate="txtValid">
                         </asp:CustomValidator>
                     </div>
                     <div class="col2">
@@ -518,7 +521,7 @@
                 <div class="row">
                     <div class="col2">
                         <asp:Label ID="lblMaxOverTimePercent" runat="server"
-                            Text="Maximum OverTime :" meta:resourcekey="lblMaxOverTimePercentResource1"></asp:Label>
+                            Text="Maximum Overtime Hours:" meta:resourcekey="lblMaxOverTimePercentResource1"></asp:Label>
                     </div>
                     <div class="col4">
                         <Almaalim:TextTime ID="txtMaxPercentOT" runat="server" FormatTime="hhmm"

@@ -358,10 +358,16 @@ public partial class PermissionGroups : BasePage
                         CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Validation, General.Msg("You can not delete the main Permission Groups", "لا يمكن حذف مجموعات الصلاحيات الرئيسية"));
                         return;
                     }
-                    
-                    bool isDel = SqlCs.PermissionGroup_Delete(ID, pgCs.LoginID);
-                    
-                    if (isDel) { CtrlCs.ShowDelMsg(this, true); } else { CtrlCs.ShowDelMsg(this, false); }
+
+                    DataTable DT = DBCs.FetchData("SELECT * FROM AppUser WHERE ISNULL(UsrDeleted,0) = 0 AND (GrpID = @P1 OR ReportGrpID = @P1) ", new string[] { ID });
+                    if (!DBCs.IsNullOrEmpty(DT))
+                    {
+                        CtrlCs.ShowDelMsg(this, false);
+                        return;
+                    }
+                
+                    SqlCs.PermissionGroup_Delete(ID, pgCs.LoginID);                  
+                    CtrlCs.ShowDelMsg(this, true);
 
                     UIClear();
                     FillGrid(new SqlCommand(MainQuery));

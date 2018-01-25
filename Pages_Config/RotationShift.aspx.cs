@@ -57,10 +57,10 @@ public partial class RotationShift : BasePage
             ImageButton NextStep = this.WizardData.FindControl("StepNavigationTemplateContainerID").FindControl("btnNextStep") as ImageButton;
             ImageButton FinishBackStep = this.WizardData.FindControl("FinishNavigationTemplateContainerID").FindControl("btnFinishBackStep") as ImageButton;
             
-            StartStep.ImageUrl = "~/images/Wizard_Image/" + General.Msg("step_next.png", "step_previous.png");
-            BackStep.ImageUrl = "images/Wizard_Image/" + General.Msg("step_previous.png", "step_next.png");
-            NextStep.ImageUrl = "~/images/Wizard_Image/" + General.Msg("step_next.png", "step_previous.png");
-            FinishBackStep.ImageUrl = "images/Wizard_Image/" + General.Msg("step_previous.png", "step_next.png");
+            StartStep.ImageUrl      = "../images/Wizard_Image/" + General.Msg("step_next.png", "step_previous.png");
+            BackStep.ImageUrl       = "../images/Wizard_Image/" + General.Msg("step_previous.png", "step_next.png");
+            NextStep.ImageUrl       = "../images/Wizard_Image/" + General.Msg("step_next.png", "step_previous.png");
+            FinishBackStep.ImageUrl = "../images/Wizard_Image/" + General.Msg("step_previous.png", "step_next.png");
             
             if (!IsPostBack)
             {

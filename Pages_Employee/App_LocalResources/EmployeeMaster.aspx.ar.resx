@@ -431,7 +431,7 @@
     <value />
   </data>
   <data name="lblMaxOverTimePercentResource1.Text" xml:space="preserve">
-    <value>نسبة ساعات العمل الإضافية :</value>
+    <value> الحد الأقصى لساعات العمل الإضافية :</value>
   </data>
   <data name="lblMaxOverTimePercentResource1.ToolTip" xml:space="preserve">
     <value />

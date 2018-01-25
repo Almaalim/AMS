@@ -73,8 +73,7 @@
                         OnPageIndexChanging="grdData_PageIndexChanging" OnPreRender="grdData_PreRender"
                         OnRowCommand="grdData_RowCommand" OnRowCreated="grdData_RowCreated"
                         OnRowDataBound="grdData_RowDataBound"
-                        OnSelectedIndexChanged="grdData_SelectedIndexChanged"
-                        SelectedIndex="0" ShowFooter="True">
+                        OnSelectedIndexChanged="grdData_SelectedIndexChanged" ShowFooter="True">
 
                         <PagerSettings FirstPageImageUrl="~/images/first.png" FirstPageText="First"
                             LastPageImageUrl="~/images/last.png" LastPageText="Last"

@@ -135,10 +135,37 @@
   <data name="BoundFieldResource2.HeaderText" xml:space="preserve">
     <value>الإسم الكامل</value>
   </data>
+  <data name="BoundFieldResource2345.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource2345.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BoundFieldResource2345.HeaderText" xml:space="preserve">
+    <value>رقم الموظف</value>
+  </data>
+  <data name="btnActADUserResource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnActADUserResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnActCancelResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Button_Icons/button_Cancel.png" /&gt; إلغاء</value>
+  </data>
+  <data name="btnActCancelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="btnActingUserResource1.Text" xml:space="preserve">
-    <value>تحديد المستخدم النائب</value>
+    <value>&lt;img src="../images/Button_Icons/button_reset_Password.png" /&gt; تحديد المستخدم النائب</value>
   </data>
   <data name="btnActingUserResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnActSaveResource1.Text" xml:space="preserve">
+    <value>&lt;img src="../images/Button_Icons/button_storage.png" /&gt; حفظ</value>
+  </data>
+  <data name="btnActSaveResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="btnAddResource1.Text" xml:space="preserve">
@@ -157,6 +184,12 @@
     <value />
   </data>
   <data name="btnFilterResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnGetADUsrResource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnGetADUsrResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="btnModifyResource1.Text" xml:space="preserve">
@@ -183,6 +216,12 @@
   <data name="chkActUserResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="chkAdminMiniLoggerResource1.Text" xml:space="preserve">
+    <value>مدير التحضير المصغر</value>
+  </data>
+  <data name="chkAdminMiniLoggerResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="chkEmailAlertResource1.Text" xml:space="preserve">
     <value>تنبيه بالإيميل</value>
   </data>
@@ -195,31 +234,49 @@
   <data name="chkMobileAlertResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="cvCalEndDateEmptyResource1.ErrorMessage" xml:space="preserve">
+  <data name="cvActEmailIDResource1.ErrorMessage" xml:space="preserve">
     <value />
   </data>
-  <data name="cvCalEndDateEmptyResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='Work Type is required!' /&gt;</value>
+  <data name="cvActEmailIDResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='حقل  البريد الإلكتروني إجباري!' /&gt;</value>
   </data>
-  <data name="cvCalEndDateEmptyResource1.ToolTip" xml:space="preserve">
+  <data name="cvActEmailIDResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="cvCalStartDateEmptyResource1.ErrorMessage" xml:space="preserve">
+  <data name="cvActEmpIDResource1.ErrorMessage" xml:space="preserve">
     <value />
   </data>
-  <data name="cvCalStartDateEmptyResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='Work Type is required!' /&gt;</value>
-  </data>
-  <data name="cvCalStartDateEmptyResource1.ToolTip" xml:space="preserve">
+  <data name="cvArWorkTimeNameResource1.ErrorMessage" xml:space="preserve">
     <value />
   </data>
-  <data name="cvCompareDatesResource1.ErrorMessage" xml:space="preserve">
-    <value>تاريخ البدء أكبر من تاريخ النهاية!</value>
+  <data name="cvArWorkTimeNameResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='حقل  البريد الإلكتروني إجباري!' /&gt;</value>
   </data>
-  <data name="cvCompareDatesResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/message_exclamation.png' title='تاريخ البدء أكبر من تاريخ النهاية!!' /&gt;</value>
+  <data name="cvMobileNoResource1.ErrorMessage" xml:space="preserve">
+    <value />
   </data>
-  <data name="cvCompareDatesResource1.ToolTip" xml:space="preserve">
+  <data name="cvMobileNoResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='حقل رقم الجوال إجباري!' /&gt;</value>
+  </data>
+  <data name="cvMobileNoResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvShowMsg2Resource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvShowMsg2Resource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvShowMsg2Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvShowMsgResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvShowMsgResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cvShowMsgResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="ddlFilterResource1.ToolTip" xml:space="preserve">
@@ -238,7 +295,7 @@
     <value />
   </data>
   <data name="FullnameResource2.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='حقل الإسم الكامل إجباري!' /&gt;</value>
+    <value>&lt;img src='../images/Exclamation.gif' title='حقل الإسم الكامل إجباري' /&gt;</value>
   </data>
   <data name="FullnameResource2.ToolTip" xml:space="preserve">
     <value />
@@ -256,6 +313,36 @@
     <value />
   </data>
   <data name="imgbtnDeleteResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblActADUserResource1.Text" xml:space="preserve">
+    <value>مستخدم الدليل النشط :</value>
+  </data>
+  <data name="lblActADUserResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblActEmailIDResource1.Text" xml:space="preserve">
+    <value>البريد الإلكتروني :</value>
+  </data>
+  <data name="lblActEmailIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblActEmpIDResource1.Text" xml:space="preserve">
+    <value>رقم الموظف :</value>
+  </data>
+  <data name="lblActEmpIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblActLoginNameResource1.Text" xml:space="preserve">
+    <value>إسم المستخدم :</value>
+  </data>
+  <data name="lblActLoginNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblActPasswordResource1.Text" xml:space="preserve">
+    <value>كلمة المرور :</value>
+  </data>
+  <data name="lblActPasswordResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblDateEndResource1.Text" xml:space="preserve">
@@ -282,6 +369,12 @@
   <data name="lblEmailIDResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="lblEmailResource1.Text" xml:space="preserve">
+    <value>*</value>
+  </data>
+  <data name="lblEmailResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="lblEmpIDResource1.Text" xml:space="preserve">
     <value>رقم الموظف :</value>
   </data>
@@ -292,6 +385,12 @@
     <value>الإسم الكامل :</value>
   </data>
   <data name="lblFullnameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblHintResource.Text" xml:space="preserve">
+    <value>إذا كان محددا يجعل المستخدم الحالي غير نشط والمستخدم بالنيابة نشطا</value>
+  </data>
+  <data name="lblHintResource.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="lblIDFilterResource1.Text" xml:space="preserve">
@@ -318,6 +417,12 @@
   <data name="lblMobileNoResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="lblMobResource1.Text" xml:space="preserve">
+    <value>*</value>
+  </data>
+  <data name="lblMobResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="lblPasswordResource1.Text" xml:space="preserve">
     <value>كلمة المرور :</value>
   </data>
@@ -337,7 +442,7 @@
     <value />
   </data>
   <data name="lblStartDateResource1.Text" xml:space="preserve">
-    <value>تاريخ البدء :</value>
+    <value>تاريخ البداية :</value>
   </data>
   <data name="lblStartDateResource1.ToolTip" xml:space="preserve">
     <value />
@@ -346,6 +451,12 @@
     <value>إسم المستخدم :</value>
   </data>
   <data name="lblUsernameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblUsrADUserResource1.Text" xml:space="preserve">
+    <value>مستخدم الدليل النشط :</value>
+  </data>
+  <data name="lblUsrADUserResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="ListItemResource1.Text" xml:space="preserve">
@@ -357,14 +468,29 @@
   <data name="ListItemResource3.Text" xml:space="preserve">
     <value>الإسم الكامل</value>
   </data>
+  <data name="ListItemResource345.Text" xml:space="preserve">
+    <value>رقم الموظف</value>
+  </data>
   <data name="ListItemResource4.Text" xml:space="preserve">
-    <value>إختر اللغة</value>
+    <value>-إختر اللغة-</value>
   </data>
   <data name="ListItemResource5.Text" xml:space="preserve">
     <value>English</value>
   </data>
   <data name="ListItemResource6.Text" xml:space="preserve">
     <value>عربي</value>
+  </data>
+  <data name="lnkClose1Resource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lnkClose1Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lnkShow1Resource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lnkShow1Resource1.ToolTip" xml:space="preserve">
+    <value />
   </data>
   <data name="PageResource1.Title" xml:space="preserve">
     <value>مستخدمي النظام</value>
@@ -378,24 +504,6 @@
   <data name="PasswordResource2.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="RequiredFieldValidator11Resource1.ErrorMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="RequiredFieldValidator11Resource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='حقل  البريد الإلكتروني إجباري!' /&gt;</value>
-  </data>
-  <data name="RequiredFieldValidator11Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="RequiredFieldValidator12Resource1.ErrorMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="RequiredFieldValidator12Resource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='حقل رقم الجوال إجباري!' /&gt;</value>
-  </data>
-  <data name="RequiredFieldValidator12Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
   <data name="reqUsernameResource1.ErrorMessage" xml:space="preserve">
     <value />
   </data>
@@ -403,15 +511,6 @@
     <value>&lt;img src='../images/Exclamation.gif' title='حقل إسم المستخدم إجباري!' /&gt;</value>
   </data>
   <data name="reqUsernameResource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="rfvddlPermissionGroupResource1.ErrorMessage" xml:space="preserve">
-    <value />
-  </data>
-  <data name="rfvddlPermissionGroupResource1.Text" xml:space="preserve">
-    <value>&lt;img src='../images/Exclamation.gif' title='تحديد صلاحيات التقرير إجباري!' /&gt;</value>
-  </data>
-  <data name="rfvddlPermissionGroupResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="rfvLanguageResource1.ErrorMessage" xml:space="preserve">
@@ -423,6 +522,24 @@
   <data name="rfvLanguageResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="rvActLoginNameResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rvActLoginNameResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='حقل إسم المستخدم إجباري!' /&gt;</value>
+  </data>
+  <data name="rvActLoginNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rvActPasswordResource1.ErrorMessage" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rvActPasswordResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/Exclamation.gif' title='حقل كلمة المرور إجباري!' /&gt;</value>
+  </data>
+  <data name="rvActPasswordResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="TemplateFieldResource1.AccessibleHeaderText" xml:space="preserve">
     <value />
   </data>
@@ -430,7 +547,7 @@
     <value />
   </data>
   <data name="TemplateFieldResource1.HeaderText" xml:space="preserve">
-    <value>تاريخ البدء</value>
+    <value>تاريخ البداية</value>
   </data>
   <data name="TemplateFieldResource2.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -513,6 +630,42 @@
   <data name="trvReportResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="txtActADUserResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtActADUserResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtActEmailIDResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtActEmailIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtActEmpIDResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtActEmpIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtActIDResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtActIDResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtActLoginNameResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtActLoginNameResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtActPasswordResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtActPasswordResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="txtDescriptionResource1.Text" xml:space="preserve">
     <value />
   </data>
@@ -567,25 +720,34 @@
   <data name="txtUsernameResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="txtUsrADUserResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtUsrADUserResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="vsSave2Resource1.HeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="vsSave2Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="vsShowMsg2Resource1.HeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="vsShowMsg2Resource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="vsShowMsgResource1.HeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="vsShowMsgResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
   <data name="vsumAllResource1.HeaderText" xml:space="preserve">
     <value />
   </data>
   <data name="vsumAllResource1.ToolTip" xml:space="preserve">
     <value />
-  </data>
-  <data name="lblUsrADUserResource1.Text" xml:space="preserve">
-    <value>مستخدم الدليل النشط :</value>
-  </data>
-  <data name="chkAdminMiniLoggerResource1.Text" xml:space="preserve">
-    <value>مدير التحضير المصغر</value>
-  </data>
-  <data name="lblHintResource.Text" xml:space="preserve">
-    <value>إذا كان محددا يجعل المستخدم الحالي غير نشط والمستخدم بالنيابة نشطا</value>
-  </data>
-  <data name="ListItemResource345.Text" xml:space="preserve">
-    <value>رقم الموظف</value>
-  </data>
-  <data name="BoundFieldResource2345.HeaderText" xml:space="preserve">
-    <value>رقم الموظف</value>
   </data>
 </root>

@@ -16,7 +16,7 @@ public class SMSSendFun
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public string SendSMS(string SMSmsgEn, string SMSMsgAr, string EmpIDs)
     {
-        if (!SMSCs.FillSMSSetting()) { return "Error : When read setting Email"; }
+        if (!SMSCs.FillSMSSetting()) { return "Error : When read setting SMS"; }
 
         try
         {
@@ -40,6 +40,20 @@ public class SMSSendFun
 
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); return ex.Message; }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public bool SendSMS(SMSFun SMSCs, string MobileNO, string Msg, out string Err)
+    {
+        Err = null;
+
+        try
+        {
+            string reSendEn = SendMessage(SMSCs.SMSUser, SMSCs.SMSPass, Msg, SMSCs.SMSSenderID, MobileNO);
+           
+            if (reSendEn == "1" ) { return true; } else { return false; }
+        }
+        catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); Err = ex.Message; return false; }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

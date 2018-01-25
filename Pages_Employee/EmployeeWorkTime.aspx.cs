@@ -50,7 +50,8 @@ public partial class EmployeeWorkTime : BasePage
                 BtnStatus("1000");
                 UIEnabled(false);
                 UILang();
-                FillGrid(new SqlCommand(MainQuery));
+                //FillGrid(new SqlCommand(MainQuery));
+                CtrlCs.FillGridEmpty(ref grdData, 50);
                 FillList();
                 ViewState["CommandName"] = "";
                 /*** Common Code ************************************/
@@ -64,7 +65,7 @@ public partial class EmployeeWorkTime : BasePage
     {
         try
         {
-            CtrlCs.FillWorkingTimeList(ref ddlWktID, rfvddlWktID, false, true);
+            CtrlCs.FillWorkingTimeList(ddlWktID, rvWktID, true);
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
@@ -146,7 +147,6 @@ public partial class EmployeeWorkTime : BasePage
     {
         txtID.Enabled = txtID.Visible = false;
         txtEmpID.Enabled = pStatus;
-        txtEmpName.Enabled = pStatus;
         ddlWktID.Enabled = pStatus;        
         calStartDate.SetEnabled(pStatus);
         calEndDate.SetEnabled(pStatus);
@@ -194,7 +194,6 @@ public partial class EmployeeWorkTime : BasePage
         
         txtID.Text = "";
         txtEmpID.Text = "";
-        txtEmpName.Text = "";
         ddlWktID.SelectedIndex = -1;
         calStartDate.ClearDate();
         calEndDate.ClearDate();
@@ -205,19 +204,8 @@ public partial class EmployeeWorkTime : BasePage
         chkEwrWed.Checked = false;
         chkEwrThu.Checked = false;
         chkEwrFri.Checked = false;
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void ddlWktID_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (ddlWktID.SelectedIndex > 0)
-        {
-            DataTable DT = DBCs.FetchData(" SELECT WktIsActive FROM WorkingTime WHERE WktID = @P1 ", new string[] { ddlWktID.SelectedValue });
-            if (!DBCs.IsNullOrEmpty(DT)) 
-            {
-                if (!Convert.ToBoolean(DT.Rows[0]["WktIsActive"])) { ddlWktID.SelectedIndex = -1; }
-            }
-        }
+
+        ddlWktID.Show(DDLAttributes.DropDownListAttributes.ShowType.ALL);
     }
 
     #endregion
@@ -234,6 +222,7 @@ public partial class EmployeeWorkTime : BasePage
     protected void btnAdd_Click(object sender, EventArgs e)
     {
         UIClear();
+        ddlWktID.Show(DDLAttributes.DropDownListAttributes.ShowType.ActiveOnly);
         ViewState["CommandName"] = "ADD";
         UIEnabled(true);
         BtnStatus("0011");
@@ -253,9 +242,9 @@ public partial class EmployeeWorkTime : BasePage
         }
 
         ViewState["CommandName"] = "EDIT";
+        ddlWktID.Show(DDLAttributes.DropDownListAttributes.ShowType.ActiveOnly);
         UIEnabled(true);
         txtEmpID.Enabled   = false;
-        txtEmpName.Enabled = false;
         BtnStatus("0011");
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -498,8 +487,6 @@ public partial class EmployeeWorkTime : BasePage
 
             txtID.Text      = DRs[0]["EwrID"].ToString();
             txtEmpID.Text   = DRs[0]["EmpID"].ToString();
-            txtEmpName.Text = General.Msg(DRs[0]["EmpNameEn"].ToString(),DRs[0]["EmpNameAr"].ToString());
-            
             ddlWktID.SelectedIndex = ddlWktID.Items.IndexOf(ddlWktID.Items.FindByValue(DRs[0]["WktID"].ToString()));
 
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");

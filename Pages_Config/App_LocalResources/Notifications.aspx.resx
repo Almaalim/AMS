@@ -385,4 +385,19 @@
   <data name="tpStartTimeResource1.TimePickerValidationText" xml:space="preserve">
     <value>&lt;img src='../images/Exclamation.gif' title='Start Time is required' /&gt;</value>
   </data>
+  <data name="EmailListItemResource1.Text" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="lblMailSendMethodResource1.Text" xml:space="preserve">
+    <value>Method Send :</value>
+  </data>
+  <data name="SMSListItemResource1.Text" xml:space="preserve">
+    <value>SMS</value>
+  </data>
+  <data name="cvSendMethodResource1.ErrorMessage" xml:space="preserve">
+    <value>Please Select Atleast one Method Send</value>
+  </data>
+  <data name="cvSendMethodResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/message_exclamation.png' title='Please Select Atleast one Method Send' /&gt;</value>
+  </data>
 </root>

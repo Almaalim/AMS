@@ -81,12 +81,7 @@
                 <div class="col12">
                     <asp:UpdatePanel ID="updPanel" runat="server">
                         <ContentTemplate>
-                            <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender"
-                                TargetControlID="grdData" NextPageKey="PageUp" NextRowSelectKey="Add"
-                                PreviousPageKey="PageDown" PrevRowSelectKey="Subtract" />
-
-
-
+                            <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData"/>
                             <asp:GridView ID="grdData" runat="server" CssClass="datatable"
                                 SelectedIndex="1" AutoGenerateColumns="False"
                                 AllowPaging="True" CellPadding="0" BorderWidth="0px" GridLines="None" DataKeyNames="EmpID"

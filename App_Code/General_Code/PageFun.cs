@@ -115,6 +115,8 @@ public class PageFun
             if (HttpContext.Current.Session["MenuPermissions"] != null) 
             { 
                 ht = getPermission(HttpContext.Current.Session["MenuPermissions"].ToString(), UrlPage); 
+
+                //if (ht.Count == 0) { GoLogin(); }
             } 
             else { GoLogin(); }
 

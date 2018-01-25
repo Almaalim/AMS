@@ -47,10 +47,8 @@
                 <div class="col12">
                     <asp:UpdatePanel ID="updPanel" runat="server">
                         <ContentTemplate>
-                            <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData"
-                                NextRowSelectKey="Add" PrevRowSelectKey="Subtract" />
-
-                            <asp:GridView ID="grdData" runat="server" CssClass="datatable" SelectedIndex="0"
+                            <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData"/>
+                            <asp:GridView ID="grdData" runat="server" CssClass="datatable" 
                                 AutoGenerateColumns="False" AllowPaging="True" CellPadding="0" BorderWidth="0px"
                                 GridLines="None" DataKeyNames="EmpID" OnPageIndexChanging="grdData_PageIndexChanging"
                                 OnRowDataBound="grdData_RowDataBound" OnSorting="grdData_Sorting" OnSelectedIndexChanged="grdData_SelectedIndexChanged"

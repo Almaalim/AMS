@@ -18,6 +18,9 @@ public class Mail_WS : System.Web.Services.WebService
     MailFun     MailCs     = new MailFun();
     MailSql     MailSqlCs  = new MailSql();
     MailSendFun MailSendCs = new MailSendFun();
+
+    SMSFun      SMSCs      = new SMSFun();
+    SMSSendFun  SMSSendCs = new SMSSendFun();
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected bool CheckUser(string UWS,string PWS)
@@ -36,6 +39,12 @@ public class Mail_WS : System.Web.Services.WebService
         }
         catch (Exception ex) { return false; }
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /*#############################################################################################################################*/
+    /*#############################################################################################################################*/
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     [WebMethod]
@@ -90,8 +99,14 @@ public class Mail_WS : System.Web.Services.WebService
                         if (!string.IsNullOrEmpty(email))
                         {
                             isSend = MailSendCs.Send(MailCs, email, Subject, body, false, null, out Err);
-                            int LogID = MailSqlCs.MailLog_Request_Insert(MailCode, MailReqID.ToString(), isSend, Emails[i], null, Err);
                         }
+                        else
+                        {
+                            Err = "No e-mail";
+                            isSend = false;
+                        }
+
+                        int LogID = MailSqlCs.MailLog_Request_Insert(MailCode, MailReqID.ToString(), isSend, Emails[i], null, Err);
                     }
 
                     if (isSend) { MailSqlCs.Mail_Request_UpdateStatus(MailReqID); }
@@ -104,6 +119,12 @@ public class Mail_WS : System.Web.Services.WebService
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /*#############################################################################################################################*/
+    /*#############################################################################################################################*/
+    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     [WebMethod]
     public string Mail_Notification_Start(string UWS, string PWS)
     {
@@ -113,7 +134,7 @@ public class Mail_WS : System.Web.Services.WebService
             if (!CheckUser(UWS, PWS))       { return "Error : You do not have permission to run this property"; }
             if (!MailCs.FillEmailSetting()) { return "Error : When read setting Email"; }
 
-            DataTable DT = DBCs.FetchProcedureData("Mail_Notification_Select");      
+            DataTable DT = DBCs.FetchProcedureData("Mail_Notification_Select", new string[] { "@MailSendMethod" }, new string[] { "E" });      
             if (!DBCs.IsNullOrEmpty(DT))
             {
                 for (int i = 0; i < DT.Rows.Count; i++) { Mail_Notification_Process(MailCs, DT.Rows[i]["MailID"].ToString(), DT.Rows[i]["ShiftID"].ToString()); }
@@ -149,7 +170,8 @@ public class Mail_WS : System.Web.Services.WebService
                 string MailSendType      = (DR["MailSendType"]      != DBNull.Value) ? DR["MailSendType"].ToString()      : "";
                 string Err          = null;
 
-                int MailReqID = MailSqlCs.Mail_Notification_Insert(MailCode,ShiftID);
+                string MailSendMethod = "E";
+                int MailReqID = MailSqlCs.Mail_Notification_Insert(MailCode, ShiftID, MailSendMethod);
 
                 string Subject  = MailNameAr + "   " + MailNameEn;
                 string[] PKList = MailPKList.Split(',');
@@ -158,7 +180,7 @@ public class Mail_WS : System.Web.Services.WebService
                 StringBuilder QB = new StringBuilder();
                 QB.Append(" SELECT * FROM " + MailViewName + (!string.IsNullOrEmpty(MailViewCondition) ? " WHERE " + Condition + " " : ""));
                 QB.Append(" AND " + (MailSendType == "MGR" ? "VAL_USRID" :"VAL_EMPID") + " ");
-                QB.Append(" NOT IN (SELECT MailSendingTo FROM EmailNotificationLog WHERE ShiftID = [VAL_ShiftID] AND CAST (CONVERT(CHAR(10), MailCreatedDT, 101) AS DATETIME) = CAST (CONVERT(CHAR(10), GETDATE(), 101) AS DATETIME) AND MailIsSend = 'True' )");
+                QB.Append(" NOT IN (SELECT MailSendingTo FROM EmailNotificationLog WHERE ShiftID = [VAL_ShiftID] AND MailSendMethod = 'E' AND CAST (CONVERT(CHAR(10), MailCreatedDT, 101) AS DATETIME) = CAST (CONVERT(CHAR(10), GETDATE(), 101) AS DATETIME) AND MailIsSend = 'True' )");
 
                 string VQ = QB.ToString(); 
                 if (VQ.IndexOf("[VAL_ShiftID]") > 0) { VQ = VQ.Replace("[VAL_ShiftID]", ShiftID); }
@@ -168,20 +190,128 @@ public class Mail_WS : System.Web.Services.WebService
                 {
                     string body = MailCs.CreateBodyMail(MailTemp, PKList, DDT.Rows[0], MailCs.CalendarType, MailCs.EmlWFUrl);
                     ///////////////////////////////////////////////
-                    string SendTo = (MailSendType == "MGR" ? DDR["USRID"].ToString() : DDR["EMPID"].ToString()) ;
+                    string SendTo = (MailSendType == "MGR" ? DDR["USRID"].ToString() : DDR["EMPID"].ToString());
 
                     string email = pMailCs.FindEmail(SendTo, MailSendType); //"a.rabia@almaalim.com";
-                    if (!string.IsNullOrEmpty(email)) 
-                    { 
+                    if (!string.IsNullOrEmpty(email))
+                    {
                         Err = null;
-                        isSend = MailSendCs.Send(pMailCs, email, Subject, body, false, null, out Err); 
-                        int LogID = MailSqlCs.MailLog_Notification_Insert(MailCode,MailReqID.ToString(),isSend,SendTo,ShiftID,Err);
+                        isSend = MailSendCs.Send(pMailCs, email, Subject, body, false, null, out Err);
                     }
+                    else
+                    {
+                        Err = "No e-mail";
+                        isSend = false;
+                    }
+
+                    int LogID = MailSqlCs.MailLog_Notification_Insert(MailCode, MailReqID.ToString(), isSend, SendTo, ShiftID, Err, MailSendMethod);
                 }
             }
         }
         catch (Exception ex) { }
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /*#############################################################################################################################*/
+    /*#############################################################################################################################*/
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    [WebMethod]
+    public string SMS_Notification_Start(string UWS, string PWS)
+    {
+        try
+        {
+            if (!DBCs.isConnect())       { return "Error : Can not connect to the database"; }
+            if (!CheckUser(UWS, PWS))    { return "Error : You do not have permission to run this property"; }
+            if (!SMSCs.FillSMSSetting()) { return "Error : When read SMS setting"; }
+
+            DataTable DT = DBCs.FetchProcedureData("Mail_Notification_Select", new string[] { "@MailSendMethod" }, new string[] { "S" });      
+            if (!DBCs.IsNullOrEmpty(DT))
+            {
+                for (int i = 0; i < DT.Rows.Count; i++) { SMS_Notification_Process(SMSCs, DT.Rows[i]["MailID"].ToString(), DT.Rows[i]["ShiftID"].ToString()); }
+            }
+
+            return "";
+        }
+        catch (Exception ex)
+        {
+            return ex.Message;
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void SMS_Notification_Process(SMSFun pSMSCs, string MailID, string ShiftID)
+    {
+        try
+        {
+            bool isSend = false;
+
+            DataTable DT = DBCs.FetchData(" SELECT * FROM EmailType WHERE MailType = 'Notification' AND MailID = @P1", new string[] { MailID });      
+            foreach (DataRow DR in DT.Rows)
+            {
+                string MailCode          = (DR["MailCode"]          != DBNull.Value) ? DR["MailCode"].ToString()          : "";
+                string MailNameAr        = (DR["MailNameAr"]        != DBNull.Value) ? DR["MailNameAr"].ToString()        : "";
+                string MailNameEn        = (DR["MailNameEn"]        != DBNull.Value) ? DR["MailNameEn"].ToString()        : "";
+                string SMSTempEn         = (DR["SMSTempEn"]         != DBNull.Value) ? DR["SMSTempEn"].ToString()         : "";
+                string SMSTempAr         = (DR["SMSTempAr"]         != DBNull.Value) ? DR["SMSTempAr"].ToString()         : "";
+                string MailViewName      = (DR["MailViewName"]      != DBNull.Value) ? DR["MailViewName"].ToString()      : "";
+                string MailViewCondition = (DR["MailViewCondition"] != DBNull.Value) ? DR["MailViewCondition"].ToString() : "";
+                //string MailViewCondition = (DR["MailViewCondition"] != DBNull.Value) ? CryptorEngine.Decrypt(DDT.Rows[0]["MailViewCondition"].ToString(),true)) : "";       
+                string MailPKList        = (DR["MailPKList"]        != DBNull.Value) ? DR["MailPKList"].ToString()        : "";
+                //string MailPKList        = (DR["MailPKList"]        != DBNull.Value) ? CryptorEngine.Decrypt(DDT.Rows[0]["MailPKList"].ToString(),true)) : "";
+                string MailSendType      = (DR["MailSendType"]      != DBNull.Value) ? DR["MailSendType"].ToString()      : "";
+                string Err          = null;
+
+                string MailSendMethod = "S";
+                int MailReqID = MailSqlCs.Mail_Notification_Insert(MailCode, ShiftID, MailSendMethod);
+
+                string Subject  = MailNameAr + "   " + MailNameEn;
+                string[] PKList = MailPKList.Split(',');
+                string Condition = MailCs.CreateCondition(MailViewCondition, MailCs.CalendarType);
+
+                StringBuilder QB = new StringBuilder();
+                QB.Append(" SELECT * FROM " + MailViewName + (!string.IsNullOrEmpty(MailViewCondition) ? " WHERE " + Condition + " " : ""));
+                QB.Append(" AND " + (MailSendType == "MGR" ? "VAL_USRID" :"VAL_EMPID") + " ");
+                QB.Append(" NOT IN (SELECT MailSendingTo FROM EmailNotificationLog WHERE ShiftID = [VAL_ShiftID] AND MailSendMethod = 'S' AND CAST (CONVERT(CHAR(10), MailCreatedDT, 101) AS DATETIME) = CAST (CONVERT(CHAR(10), GETDATE(), 101) AS DATETIME) AND MailIsSend = 'True' )");
+
+                string VQ = QB.ToString(); 
+                if (VQ.IndexOf("[VAL_ShiftID]") > 0) { VQ = VQ.Replace("[VAL_ShiftID]", ShiftID); }
+                    
+                DataTable DDT = DBCs.FetchData(VQ);
+                foreach (DataRow DDR in DDT.Rows)
+                {
+                    string SendTo = (MailSendType == "MGR" ? DDR["USRID"].ToString() : DDR["EMPID"].ToString());
+                    string Lang = SMSCs.FindLang(SendTo, MailSendType);
+                    string Temp = (Lang == "AR" ? SMSTempAr : SMSTempEn);
+
+                    string body = MailCs.CreateBodyMail(Temp, PKList, DDT.Rows[0], MailCs.CalendarType, MailCs.EmlWFUrl);
+                    ///////////////////////////////////////////////                    
+                    string MobileNo = SMSCs.FindMobileNo(SendTo, MailSendType);
+                    if (!string.IsNullOrEmpty(MobileNo)) 
+                    { 
+                        Err = null;
+                        isSend = SMSSendCs.SendSMS(pSMSCs, MobileNo, body, out Err); 
+                    }
+                    else
+                    {
+                        Err = "No Mobile No.";
+                        isSend = false;
+                    }
+
+                    int LogID = MailSqlCs.MailLog_Notification_Insert(MailCode, MailReqID.ToString(), isSend, SendTo, ShiftID, Err, MailSendMethod);
+                }
+            }
+        }
+        catch (Exception ex) { }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /*#############################################################################################################################*/
+    /*#############################################################################################################################*/
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     [WebMethod]
@@ -243,6 +373,11 @@ public class Mail_WS : System.Web.Services.WebService
                         System.Net.Mail.Attachment attachment = MailSendCs.Create(RepID, Users[i], lang, ExportType, pMailCs.CalendarType);
                         isSend = MailSendCs.Send(pMailCs, email, Subject, body, true, attachment, out Err);
                     }
+                    else
+                    {
+                        Err = "No e-mail";
+                        isSend = false;
+                    }
 
                     if (isSend)
                     {
@@ -259,6 +394,12 @@ public class Mail_WS : System.Web.Services.WebService
         }
         catch (Exception ex) { }
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /*#############################################################################################################################*/
+    /*#############################################################################################################################*/
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     [WebMethod]
@@ -294,4 +435,7 @@ public class Mail_WS : System.Web.Services.WebService
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /*#############################################################################################################################*/
+    /*#############################################################################################################################*/
 }

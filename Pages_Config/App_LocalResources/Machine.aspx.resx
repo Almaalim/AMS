@@ -540,6 +540,6 @@
     <value>Round Patrol</value>
   </data>
   <data name="lblMacTransactionTypeResource.Text" xml:space="preserve">
-    <value>Transactions Type :</value>
+    <value>Attendance Type :</value>
   </data>
 </root>

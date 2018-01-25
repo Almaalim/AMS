@@ -30,33 +30,30 @@ public class RotationSql : DataLayerBase
 
         try
         {
-            Sqlcmd.Parameters.Add(new SqlParameter("@RwtID"               , IntDB, 10  , OU, false, 0, 0, "", DRV, Pro.RwtID));
-            Sqlcmd.Parameters.Add(new SqlParameter("@RwtNameAr"           , VchDB, 500 , IN, false, 0, 0, "", DRV, Pro.RwtNameAr));
-            Sqlcmd.Parameters.Add(new SqlParameter("@RwtNameEn"           , VchDB, 500 , IN, false, 0, 0, "", DRV, Pro.RwtNameEn));
-            Sqlcmd.Parameters.Add(new SqlParameter("@RwtFromDate"         , DtDB , 10  , IN, false, 0, 0, "", DRV, Pro.RwtFromDate));
-            Sqlcmd.Parameters.Add(new SqlParameter("@RwtToDate"           , DtDB , 10  , IN, false, 0, 0, "", DRV, Pro.RwtToDate));
-            Sqlcmd.Parameters.Add(new SqlParameter("@RwtWorkDaysCount"    , IntDB, 10  , IN, false, 0, 0, "", DRV, Pro.RwtWorkDaysCount));
-            Sqlcmd.Parameters.Add(new SqlParameter("@RwtNotWorkDaysCount" , IntDB, 10  , IN, false, 0, 0, "", DRV, Pro.RwtNotWorkDaysCount));
-            Sqlcmd.Parameters.Add(new SqlParameter("@RwtRotationDaysCount", IntDB, 10  , IN, false, 0, 0, "", DRV, Pro.RwtRotationDaysCount));
-            Sqlcmd.Parameters.Add(new SqlParameter("@RwtIsActive"         , BitDB, 1   , IN, false, 0, 0, "", DRV, Pro.RwtIsActive));
-            Sqlcmd.Parameters.Add(new SqlParameter("@RwtType"             , VchDB, 100 , IN, false, 0, 0, "", DRV, Pro.RwtType));
-            Sqlcmd.Parameters.Add(new SqlParameter("@RwtDesc"             , VchDB, 8000, IN, false, 0, 0, "", DRV, Pro.RwtDesc));
-            
-            Sqlcmd.Parameters.Add(new SqlParameter("@GrpBasicLen"         , IntDB, 10,   IN, false, 0, 0, "", DRV, Pro.GrpBasicLen));
-            Sqlcmd.Parameters.Add(new SqlParameter("@IsDouble"            , BitDB, 1,    IN, false, 0, 0, "", DRV, Pro.IsDouble));
-            Sqlcmd.Parameters.Add(new SqlParameter("@WktIDs"              , VchDB, 8000, IN, false, 0, 0, "", DRV, Pro.WktIDs));        
-            Sqlcmd.Parameters.Add(new SqlParameter("@GrpIDs"              , VchDB, 8000, IN, false, 0, 0, "", DRV, Pro.GrpIDs));
-            Sqlcmd.Parameters.Add(new SqlParameter("@GrpUsers"            , VchDB, 8000, IN, false, 0, 0, "", DRV, Pro.GrpUsers));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EmpIDs"              , VchDB, 8000, IN, false, 0, 0, "", DRV, Pro.EmpIDs));
+            Sqlcmd.Parameters.Add(new SqlParameter("@oRwtID"               , IntDB, 10  , OU, false, 0, 0, "", DRV, Pro.RwtID));
+            Sqlcmd.Parameters.Add(new SqlParameter("@iRwtNameAr"           , VchDB, 500 , IN, false, 0, 0, "", DRV, Pro.RwtNameAr));
+            Sqlcmd.Parameters.Add(new SqlParameter("@iRwtNameEn"           , VchDB, 500 , IN, false, 0, 0, "", DRV, Pro.RwtNameEn));
+            Sqlcmd.Parameters.Add(new SqlParameter("@iRwtFromDate"         , DtDB , 10  , IN, false, 0, 0, "", DRV, Pro.RwtFromDate));
+            Sqlcmd.Parameters.Add(new SqlParameter("@iRwtToDate"           , DtDB , 10  , IN, false, 0, 0, "", DRV, Pro.RwtToDate));
+            Sqlcmd.Parameters.Add(new SqlParameter("@iRwtWorkDaysCount"    , IntDB, 10  , IN, false, 0, 0, "", DRV, Pro.RwtWorkDaysCount));
+            Sqlcmd.Parameters.Add(new SqlParameter("@iRwtNotWorkDaysCount" , IntDB, 10  , IN, false, 0, 0, "", DRV, Pro.RwtNotWorkDaysCount));
+            Sqlcmd.Parameters.Add(new SqlParameter("@iRwtRotationDaysCount", IntDB, 10  , IN, false, 0, 0, "", DRV, Pro.RwtRotationDaysCount));
+            Sqlcmd.Parameters.Add(new SqlParameter("@iRwtIsActive"         , BitDB, 1   , IN, false, 0, 0, "", DRV, Pro.RwtIsActive));
+            Sqlcmd.Parameters.Add(new SqlParameter("@iRwtType"             , VchDB, 100 , IN, false, 0, 0, "", DRV, Pro.RwtType));
+            Sqlcmd.Parameters.Add(new SqlParameter("@iRwtDesc"             , VchDB, 8000, IN, false, 0, 0, "", DRV, Pro.RwtDesc));
+        
+            Sqlcmd.Parameters.Add(new SqlParameter("@iWktIDs"              , VchDB, 8000, IN, false, 0, 0, "", DRV, Pro.WktIDs));        
+            Sqlcmd.Parameters.Add(new SqlParameter("@iGrpIDs"              , VchDB, 8000, IN, false, 0, 0, "", DRV, Pro.GrpIDs));
+            Sqlcmd.Parameters.Add(new SqlParameter("@iGrpUsers"            , VchDB, 8000, IN, false, 0, 0, "", DRV, Pro.GrpUsers));
+            Sqlcmd.Parameters.Add(new SqlParameter("@iEmpIDs"              , VchDB, 8000, IN, false, 0, 0, "", DRV, Pro.EmpIDs));
 
-
-            Sqlcmd.Parameters.Add(new SqlParameter("@IsExecute"    , IntDB, 10, OU, false, 0, 0, "", DRV, 0));
-            Sqlcmd.Parameters.Add(new SqlParameter("@TransactionBy", VchDB, 10, IN, false, 0, 0, "", DRV, Pro.TransactionBy));
+            Sqlcmd.Parameters.Add(new SqlParameter("@oIsExecute"    , IntDB, 10, OU, false, 0, 0, "", DRV, 0));
+            Sqlcmd.Parameters.Add(new SqlParameter("@iTransactionBy", VchDB, 10, IN, false, 0, 0, "", DRV, Pro.TransactionBy));
             
             MainConnection.Open();
             int rows = Sqlcmd.ExecuteNonQuery();
-            if (Convert.ToInt32(Sqlcmd.Parameters["@IsExecute"].Value) == -1) { throw new Exception(General.ProcedureMsg(), null); }
-            return Convert.ToInt32(Sqlcmd.Parameters["@RwtID"].Value); 
+            if (Convert.ToInt32(Sqlcmd.Parameters["@oIsExecute"].Value) == -1) { throw new Exception(General.ProcedureMsg(), null); }
+            return Convert.ToInt32(Sqlcmd.Parameters["@oRwtID"].Value); 
         }
         catch (Exception ex)
         {

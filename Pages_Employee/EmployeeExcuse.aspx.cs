@@ -60,7 +60,7 @@ public partial class EmployeeExcuse : BasePage
                 ViewState["CommandName"] = "";
                 /*** Common Code ************************************/
 
-                FillWorkTimeList();
+                FillWorkTimeList(true);
             }
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
@@ -71,17 +71,18 @@ public partial class EmployeeExcuse : BasePage
     {
         try
         {
-            CtrlCs.FillExcuseTypeList(ref ddlExcType, rfvddlExcType, true, true);            
+            CtrlCs.FillExcuseTypeList(ddlExcType, rvExcType, true);            
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void FillWorkTimeList()
+    protected void FillWorkTimeList(bool isAll)
     {
         StringBuilder Q = new StringBuilder();
-        Q.Append(" SELECT WktID, WktNameAr, WktNameEn FROM WorkingTime WHERE ISNULL(WktDeleted, 0) = 0 ");
-        if (!string.IsNullOrEmpty(txtEmpID.Text)) {Q.Append(" AND WktID IN (SELECT WktID FROM EmpWrkRel WHERE EmpID = @P1)"); }
+        Q.Append(" SELECT WktID, WktIsActive, WktNameAr, WktNameEn FROM WorkingTime WHERE ISNULL(WktDeleted, 0) = 0 AND WtpID IN (SELECT WtpID FROM WorkType WHERE WtpInitial !='RO') ");
+        if (!isAll) {Q.Append(" AND WktIsActive = 'True' "); }
+        if (!string.IsNullOrEmpty(txtEmpID.Text)) {Q.Append(" AND WktID IN (SELECT WktID FROM EmpWrkRel WHERE EmpID = @P1) "); }
         
         ddlWktID.Items.Clear();
         DataTable WDT = DBCs.FetchData(Q.ToString(), new string[] { txtEmpID.Text.Trim() });
@@ -230,25 +231,12 @@ public partial class EmployeeExcuse : BasePage
         txtDesc.Text = "";
         chkExrIsOvernight.Checked = false;
         chkExrIsOT.Checked = false;
+
+        ddlExcType.Show(DDLAttributes.DropDownListAttributes.ShowType.ALL);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void ddlExcType_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        //////not allow chose unActive Excuse
-        DataTable DT = DBCs.FetchData("SELECT * FROM ExcuseType WHERE ExcID = @P1 ", new string[] { ddlExcType.SelectedValue.ToString() });
-        if (!DBCs.IsNullOrEmpty(DT))
-        {
-            if (Boolean.Parse(DT.Rows[0]["ExcStatus"].ToString()) == false)
-            {
-                ddlExcType.SelectedIndex = 0;
-                CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Validation, General.Msg("You can not select this excuse, because is unactive", "لا يمكن استخدام هذا النوع من الاستئذان، لأنه غير مفعل"));
-            }
-        }
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void txtEmpID_TextChanged(object sender, EventArgs e) { FillWorkTimeList(); }
+    protected void txtEmpID_TextChanged(object sender, EventArgs e) { FillWorkTimeList(false); }
 
     #endregion
     /*#############################################################################################################################*/
@@ -264,6 +252,8 @@ public partial class EmployeeExcuse : BasePage
     protected void btnAdd_Click(object sender, EventArgs e)
     {
         UIClear();
+        ddlExcType.Show(DDLAttributes.DropDownListAttributes.ShowType.ActiveOnly);
+        FillWorkTimeList(false);   
         ViewState["CommandName"] = "ADD";
         UIEnabled(true);
         BtnStatus("0011");
@@ -515,7 +505,7 @@ public partial class EmployeeExcuse : BasePage
             txtEmpID.Text            = DRs[0]["EmpID"].ToString();
             
             ddlExcType.SelectedIndex = ddlExcType.Items.IndexOf(ddlExcType.Items.FindByValue(DRs[0]["ExcID"].ToString()));
-            FillWorkTimeList();
+            FillWorkTimeList(true);
 
             ddlWktID.SelectedIndex = ddlWktID.Items.IndexOf(ddlWktID.Items.FindByValue(DRs[0]["WktID"].ToString()));
             txtDesc.Text = DRs[0]["ExrDesc"].ToString();

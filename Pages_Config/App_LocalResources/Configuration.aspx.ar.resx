@@ -295,7 +295,7 @@
     <value />
   </data>
   <data name="lblICApprovalPercentResource1.Text" xml:space="preserve">
-    <value>نسبة الموافقة للحركات غير الكتملة :</value>
+    <value>نسبة الموافقة للحركات غير المكتملة :</value>
   </data>
   <data name="lblICApprovalPercentResource1.ToolTip" xml:space="preserve">
     <value />

@@ -26,10 +26,7 @@
 
             <div class="row">
                 <div class="col12">
-                    <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData"
-                        PrevRowSelectKey="Subtract" NextRowSelectKey="Add" NextPageKey="PageUp"
-                        PreviousPageKey="PageDown" />
-
+                    <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData"/>
                     <asp:GridView ID="grdData" runat="server" CssClass="datatable"
                         AutoGenerateColumns="False" AllowPaging="True" CellPadding="0" BorderWidth="0px"
                         GridLines="None" DataKeyNames="IplID" ShowFooter="True" OnPageIndexChanging="grdData_PageIndexChanging"

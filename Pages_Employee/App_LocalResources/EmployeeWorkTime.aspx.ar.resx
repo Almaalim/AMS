@@ -346,7 +346,7 @@
     <value>[غير محدد]</value>
   </data>
   <data name="ListItemResource2.Text" xml:space="preserve">
-    <value>رقم الموظف :</value>
+    <value>رقم الموظف</value>
   </data>
   <data name="ListItemResource3.Text" xml:space="preserve">
     <value>إسم الموظف (ع)</value>

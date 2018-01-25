@@ -86,23 +86,10 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col2"></div>
                     <div class="col2">
-                    </div>
-                    <div class="col4">
                         <asp:CheckBox ID="chkAutoIn" runat="server" Enabled="False" Text="Auto In"
-                            AutoPostBack="True" OnCheckedChanged="chkAutoIn_CheckedChanged"
-                            meta:resourcekey="chkAutoInResource1" />
-
-                        <%--<ajaxToolkit:AnimationExtender ID="AnimationExtenderShow?" runat="server" TargetControlID="lnkShow?"></ajaxToolkit:AnimationExtender>
-                                        <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose?" runat="server" TargetControlID="lnkClose?"></ajaxToolkit:AnimationExtender>
-                                        <asp:ImageButton ID="lnkShow?" runat="server" OnClientClick="return false;" ImageUrl = "~/images/Hint_Image/HintEN.png" CssClass="LeftOverlay" />
-                                        <div id="pnlInfo?" class="flyOutDiv">
-                                            <asp:LinkButton ID="lnkClose?" runat="server" Text="X" OnClientClick="return false;" CssClass= "flyOutDivCloseX glyphicon glyphicon-remove" />
-                                            <p>
-                                                <br />
-                                                <asp:Label ID="lblHint?" runat="server" Text="You can initialize here" meta:resourcekey="lblHint?Resource"></asp:Label>
-                                            </p>
-                                        </div>--%>
+                            AutoPostBack="True" OnCheckedChanged="chkAutoIn_CheckedChanged" meta:resourcekey="chkAutoInResource1" />
                         <div class="flyoutWrap">
                             <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow1" runat="server" TargetControlID="lnkShow1"></ajaxToolkit:AnimationExtender>
                             <ajaxToolkit:AnimationExtender ID="AnimationExtenderClose1" runat="server" TargetControlID="lnkClose1"></ajaxToolkit:AnimationExtender>
@@ -116,11 +103,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col2">
-                    </div>
-                    <div class="col4">
                         <asp:CheckBox ID="chkIsTakeAutoIn" runat="server" Enabled="False"
                             Text="Auto In Priority" meta:resourcekey="chkIsTakeAutoInResource1" />
                         <div class="flyoutWrap">
@@ -136,11 +119,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
+                    <div class="col2"></div>
                     <div class="col2">
-                    </div>
-                    <div class="col4">
                         <asp:CheckBox ID="chkAutoOut" runat="server" Enabled="False" Text="Auto Out"
                             AutoPostBack="True" OnCheckedChanged="chkAutoOut_CheckedChanged"
                             meta:resourcekey="chkAutoOutResource1" />
@@ -158,8 +138,6 @@
                         </div>
                     </div>
                     <div class="col2">
-                    </div>
-                    <div class="col4">
                         <asp:CheckBox ID="chkIsTakeAutoOut" runat="server" Enabled="False"
                             Text="Auto Out Priority" meta:resourcekey="chkIsTakeAutoOutResource1" />
                         <div class="flyoutWrap">
@@ -175,6 +153,13 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="row">
+                    <div class="col2"></div>
+                    
+                    <div class="col2">
+                    </div>
+                    
                 </div>
                 <div class="row">
                     <div class="col2">

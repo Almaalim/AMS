@@ -41,13 +41,12 @@
 
             <div class="row">
                 <div class="col12">
-                    <as:GridViewKeyBoardPagerExtender ID="gridviewextender" runat="server" TargetControlID="grdData"
-                        NextRowSelectKey="Add" PrevRowSelectKey="PageDown" NextPageKey="PageUp" />
+                    <as:GridViewKeyBoardPagerExtender ID="gridviewextender" runat="server" TargetControlID="grdData"/>
                     <asp:GridView ID="grdData" runat="server" AllowPaging="True" AutoGenerateColumns="False"
                         BorderWidth="0px" CellPadding="0" CssClass="datatable" DataKeyNames="ExrID"
                         GridLines="None" OnPageIndexChanging="grdData_PageIndexChanging" OnRowCommand="grdData_RowCommand"
                         OnRowDataBound="grdData_RowDataBound" OnSelectedIndexChanged="grdData_SelectedIndexChanged"
-                        OnSorting="grdData_Sorting" SelectedIndex="0" ShowFooter="True" OnRowCreated="grdData_RowCreated"
+                        OnSorting="grdData_Sorting" ShowFooter="True" OnRowCreated="grdData_RowCreated"
                         EnableModelValidation="True" meta:resourcekey="grdDataResource1" OnPreRender="grdData_PreRender">
                         <PagerStyle HorizontalAlign="Left" />
 
@@ -174,11 +173,12 @@
                         <asp:Label ID="lblExcuseType" runat="server" Text="Excuse Type:" meta:resourcekey="lblExcuseTypeResource1"></asp:Label>
                     </div>
                     <div class="col4">
-                        <asp:DropDownList ID="ddlExcType" runat="server" meta:resourcekey="ddlExcTypeResource1"
+                        <asp:DropDownListAttributes ID="ddlExcType" runat="server" Enabled="False"></asp:DropDownListAttributes>
+                       <%-- <asp:DropDownList ID="ddlExcType" runat="server" meta:resourcekey="ddlExcTypeResource1"
                             AutoPostBack="True" OnSelectedIndexChanged="ddlExcType_SelectedIndexChanged">
-                        </asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="rfvddlExcType" runat="server" ControlToValidate="ddlExcType" CssClass="CustomValidator"
-                            EnableClientScript="False" Text="&lt;img src='../images/Exclamation.gif' title='Excuse Type is required!' /&gt;"
+                        </asp:DropDownList>--%>
+                        <asp:RequiredFieldValidator ID="rvExcType" runat="server" ControlToValidate="ddlExcType" CssClass="CustomValidator"
+                            EnableClientScript="False" Text="&lt;img src='../images/Exclamation.gif' title='Excuse Type is required' /&gt;"
                             ValidationGroup="vgSave" meta:resourcekey="rfvddlExcTypeResource1"></asp:RequiredFieldValidator>
                         <%--<asp:CustomValidator ID="cvMaxTimeExc" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='MaxTime!' /&gt;"
                             ValidationGroup="vgSave" ErrorMessage="MaxTimeExcuse!" OnServerValidate="MaxTimeExcuse_ServerValidate"

@@ -176,7 +176,7 @@ public class VactionDaysCal
             int Days = Convert.ToInt32((Date - SDate).TotalDays + 1);
 
             StringBuilder Q = new StringBuilder();
-            Q.Append(" SELECT EmpID FROM EmpRequest WHERE ErqReqStatus IN (0) AND EmpID = @P1 AND RetID = 'VAC' AND @P2 BETWEEN ErqStartDate AND ErqEndDate ");
+            Q.Append(" SELECT EmpID FROM EmpRequest WHERE ErqReqStatus IN (0) AND EmpID = @P1 AND RetID IN ('VAC','COM','JOB') AND @P2 BETWEEN ErqStartDate AND ErqEndDate ");
             Q.Append(" UNION ALL ");
             Q.Append(" SELECT EmpID FROM EmpVacRel WHERE EmpID = @P1 AND @P2 BETWEEN EvrStartDate AND EvrEndDate AND ISNULL(EvrDeleted,0) = 0 ");
 

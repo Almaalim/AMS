@@ -66,14 +66,14 @@ public partial class ExcuseWizard : BasePage
         if (pgCs.DateType == "AR")
         {
             //MainTable.Attributes.Add("dir", "rtl");
-            StartStep.ImageUrl = "~/images/Wizard_Image/step_previous.png";
-            FinishBackStep.ImageUrl = "images/Wizard_Image/step_next.png";
+            StartStep.ImageUrl = "../images/Wizard_Image/step_previous.png";
+            FinishBackStep.ImageUrl = "../images/Wizard_Image/step_next.png";
         }
         else
         {
             //MainTable.Attributes.Add("dir", "ltr");
-            StartStep.ImageUrl = "~/images/Wizard_Image/step_next.png";
-            FinishBackStep.ImageUrl = "images/Wizard_Image/step_previous.png";
+            StartStep.ImageUrl = "../images/Wizard_Image/step_next.png";
+            FinishBackStep.ImageUrl = "../images/Wizard_Image/step_previous.png";
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

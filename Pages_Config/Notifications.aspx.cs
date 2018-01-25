@@ -135,15 +135,16 @@ public partial class Pages_Config_Notifications : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void UIEnabled(bool pStatus)
     {
-        txtNameAr.Enabled       = pStatus;
-        txtNameEn.Enabled       = pStatus;
-        txtDescription.Enabled  = pStatus;
-        ddlMailSendType.Enabled = false;
-        chkStatus.Enabled       = pStatus;
-        ddlScheduleType.Enabled = pStatus;
-        cblDaysOfWeek.Enabled   = pStatus;
-        cblCalendarDays.Enabled = pStatus;
-        tpStartTime.Enabled     = pStatus;
+        txtNameAr.Enabled         = false;
+        txtNameEn.Enabled         = false;
+        txtDescription.Enabled    = pStatus;
+        ddlMailSendType.Enabled   = false;
+        cblMailSendMethod.Enabled = pStatus;
+        chkStatus.Enabled         = pStatus;
+        ddlScheduleType.Enabled   = pStatus;
+        cblDaysOfWeek.Enabled     = pStatus;
+        cblCalendarDays.Enabled   = pStatus;
+        tpStartTime.Enabled       = pStatus;
 
         txtID.Enabled = txtID.Visible = false;
     }
@@ -160,6 +161,13 @@ public partial class Pages_Config_Notifications : BasePage
             ProCs.MailNameEn = txtNameEn.Text.Trim();
             ProCs.MailDesc   = txtDescription.Text.Trim();
             ProCs.SchActive  = chkStatus.Checked;
+
+            string MailSendMethod = "";
+            for (int k = 0; k < cblMailSendMethod.Items.Count; k++)
+            {
+                if (cblMailSendMethod.Items[k].Selected) { MailSendMethod += string.IsNullOrEmpty(MailSendMethod) ? cblMailSendMethod.Items[k].Value : "," + cblMailSendMethod.Items[k].Value; }
+            }
+            ProCs.MailSendMethod  = MailSendMethod;
 
             string SchDays = null;
             if (ddlScheduleType.SelectedIndex > -1)
@@ -204,6 +212,8 @@ public partial class Pages_Config_Notifications : BasePage
             ddlMailSendType.SelectedIndex = -1;
             chkStatus.Checked = false;
             ddlScheduleType.SelectedIndex = -1;
+
+            for (int i = 0; i < cblMailSendMethod.Items.Count; i++) { cblMailSendMethod.Items[i].Selected = false; }
             for (int i = 0; i < cblDaysOfWeek.Items.Count; i++) { cblDaysOfWeek.Items[i].Selected = false; }
             for (int i = 0; i < cblCalendarDays.Items.Count; i++) { cblCalendarDays.Items[i].Selected = false; }
             tpStartTime.ClearTime();
@@ -531,6 +541,9 @@ public partial class Pages_Config_Notifications : BasePage
             ddlScheduleType.SelectedIndex = ddlScheduleType.Items.IndexOf(ddlScheduleType.Items.FindByValue(DRs[0]["SchType"].ToString()));
             if (DRs[0]["SchStartTimeShift1"] != DBNull.Value) { tpStartTime.SetTime(Convert.ToDateTime(DRs[0]["SchStartTimeShift1"])); }
             
+            if (DRs[0]["MailSendMethod"].ToString().Contains("E")) { cblMailSendMethod.Items[0].Selected = true; }
+            if (DRs[0]["MailSendMethod"].ToString().Contains("S")) { cblMailSendMethod.Items[1].Selected = true; }
+
             if (DRs[0]["SchDays"] != DBNull.Value) 
             { 
                 string SchDays = DRs[0]["SchDays"].ToString();
@@ -627,6 +640,22 @@ public partial class Pages_Config_Notifications : BasePage
                     DataTable DT = DBCs.FetchData("SELECT * FROM EmailType WHERE MailNameAr = @P1 " + UQ, new string[] { txtNameAr.Text, txtID.Text });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
+            }
+        }
+        catch
+        {
+            e.IsValid = false;
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void SendMethod_ServerValidate(Object source, ServerValidateEventArgs e)
+    {
+        try
+        {
+            if (source.Equals(cvSendMethod))
+            {
+                e.IsValid = cblMailSendMethod.SelectedItem != null;
             }
         }
         catch

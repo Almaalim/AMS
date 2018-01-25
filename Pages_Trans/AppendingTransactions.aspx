@@ -78,11 +78,7 @@
                 <div class="col12">
                     <asp:UpdatePanel ID="updPanel" runat="server">
                         <ContentTemplate>
-                            <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender"
-                                TargetControlID="grdData" NextPageKey="PageUp" NextRowSelectKey="Add"
-                                PreviousPageKey="PageDown" PrevRowSelectKey="Subtract" />
-
-
+                            <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData"/>
                             <asp:GridView ID="grdData" runat="server" CssClass="datatable"
                                 SelectedIndex="1" AutoGenerateColumns="False"
                                 AllowPaging="True" CellPadding="0" BorderWidth="0px" GridLines="None" DataKeyNames="EmpID"
@@ -243,9 +239,7 @@
                             meta:resourcekey="lblINTimeResource1"></asp:Label>
                     </div>
                     <div class="col4">
-                        <Almaalim:TimePicker ID="tpINTime" runat="server" CssClass="TimeCss"
-                            FormatTime="HHmmss" meta:resourcekey="tpINTimeResource1"
-                            TimePickerValidationGroup="" TimePickerValidationText="" />
+                        <Almaalim:TimePicker ID="tpINTime" runat="server" FormatTime="HHmmss"/>
                         <asp:CustomValidator ID="cvINTime" runat="server"
                             ControlToValidate="txtValid" EnableClientScript="False" CssClass="CustomValidator"
                             OnServerValidate="Time_ServerValidate"
@@ -316,13 +310,11 @@
                             meta:resourcekey="lblOUTTimeResource1"></asp:Label>
                     </div>
                     <div class="col4">
-                        <Almaalim:TimePicker ID="tpOUTTime" runat="server" CssClass="TimeCss"
-                            FormatTime="HHmmss" meta:resourcekey="tpOUTTimeResource1"
-                            TimePickerValidationGroup="" TimePickerValidationText="" />
+                        <Almaalim:TimePicker ID="tpOUTTime" runat="server" FormatTime="HHmmss"/>
                         <asp:CustomValidator ID="cvOUTTime" runat="server"
                             ControlToValidate="txtValid" EnableClientScript="False"
                             OnServerValidate="Time_ServerValidate" CssClass="CustomValidator"
-                            Text="&lt;img src='../images/Exclamation.gif' title='Time is required!' /&gt;"
+                            Text="&lt;img src='../images/Exclamation.gif' title='Time is required' /&gt;"
                             ValidationGroup="vgSave" meta:resourcekey="cvOUTTimeResource1"></asp:CustomValidator>
                     </div>
                     <div class="col2">

@@ -1,12 +1,6 @@
 ﻿<%@ Page Title="Employee Excuse (Day)" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true"
     CodeFile="EmployeeExcuseDay.aspx.cs" Inherits="EmployeeExcuseDay" meta:resourcekey="PageResource1" Culture="auto" UICulture="auto"  %>
 
-<%@ Register Assembly="TimePickerServerControl" Namespace="TimePickerServerControl" TagPrefix="Almaalim" %>
-<%@ Register Assembly="System.Web.DynamicData, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.DynamicData" TagPrefix="cc1" %>
-<%@ Register Assembly="AjaxSamples" Namespace="AjaxSamples" TagPrefix="as" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<%@ Register Src="~/Control/Calendar2.ascx" TagName="Calendar2" TagPrefix="Cal" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <%--script--%>
     <script type="text/javascript" src="../Script/GridEvent.js"></script>
@@ -38,10 +32,9 @@
 
             <div class="row">
                 <div class="col12">
-                    <as:GridViewKeyBoardPagerExtender ID="gridviewextender" runat="server" TargetControlID="grdData"
-                        NextRowSelectKey="Add" PrevRowSelectKey="PageDown" NextPageKey="PageUp" />
+                    <as:GridViewKeyBoardPagerExtender ID="gridviewextender" runat="server" TargetControlID="grdData"/>
                     <asp:GridView ID="grdData" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                        BorderWidth="0px" CellPadding="0" CssClass="datatable" DataKeyNames="ExrID" SelectedIndex="0" ShowFooter="True"
+                        BorderWidth="0px" CellPadding="0" CssClass="datatable" DataKeyNames="ExrID" ShowFooter="True"
                         GridLines="None" OnPageIndexChanging="grdData_PageIndexChanging" OnRowCommand="grdData_RowCommand"
                         OnRowDataBound="grdData_RowDataBound" OnSelectedIndexChanged="grdData_SelectedIndexChanged"
                         OnSorting="grdData_Sorting"  OnRowCreated="grdData_RowCreated"
@@ -136,8 +129,7 @@
                         <asp:Label ID="lblEmpID" runat="server" Text="Employee ID :" meta:resourcekey="lblEmpIDResource1"></asp:Label>
                     </div>
                     <div class="col4">
-                        <asp:TextBox ID="txtEmpID" runat="server" autocomplete="off" Enabled="False" Width="168px"
-                            AutoPostBack="True" OnTextChanged="txtEmpID_TextChanged" meta:resourcekey="txtEmpIDResource1"></asp:TextBox>
+                        <asp:TextBox ID="txtEmpID" runat="server" autocomplete="off" Enabled="False" meta:resourcekey="txtEmpIDResource1"></asp:TextBox>
                         <asp:Panel runat="server" ID="pnlauID" meta:resourcekey="pnlauIDResource1" />
                         <ajaxToolkit:AutoCompleteExtender runat="server" ID="auID" TargetControlID="txtEmpID"
                             ServicePath="~/Service/AutoComplete.asmx" ServiceMethod="GetEmployeeIDList" MinimumPrefixLength="1"
@@ -145,67 +137,53 @@
                             CompletionListCssClass="AutoExtender" CompletionListItemCssClass="AutoExtenderList"
                             CompletionListHighlightedItemCssClass="AutoExtenderHighlight" CompletionSetCount="12"
                             DelimiterCharacters="" Enabled="True" />
-                        <asp:RequiredFieldValidator ID="reqBranchManager1" runat="server" ControlToValidate="txtEmpID" CssClass="CustomValidator"
-                            EnableClientScript="False" Text="&lt;img src='../images/Exclamation.gif' title='Emloyee ID is required!' /&gt;"
-                            ValidationGroup="vgSave" meta:resourcekey="reqBranchManager1Resource1"></asp:RequiredFieldValidator>
-                        <asp:CustomValidator ID="cvFindEmp" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='Employee Not found!' /&gt;"
-                            ErrorMessage="Employee Not found!" ValidationGroup="vgSave" OnServerValidate="FindEmp_ServerValidate" CssClass="CustomValidator"
-                            EnableClientScript="False" ControlToValidate="txtValid" meta:resourcekey="cvFindEmpResource1"></asp:CustomValidator>
+                        <asp:CustomValidator ID="cvEmpID" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='' /&gt;"
+                            ValidationGroup="vgSave" OnServerValidate="EmpID_ServerValidate" CssClass="CustomValidator"
+                            EnableClientScript="False" ControlToValidate="txtValid"></asp:CustomValidator>
+                        
                     </div>
                     <div class="col2">
                         <span class="RequiredField">*</span>
                         <asp:Label ID="lblExcuseType" runat="server" Text="Excuse Type:" meta:resourcekey="lblExcuseTypeResource1"></asp:Label>
                     </div>
                     <div class="col4">
-                        <asp:DropDownList ID="ddlExcType" runat="server" Width="168px" AutoPostBack="True"
-                            OnSelectedIndexChanged="ddlExcType_SelectedIndexChanged" meta:resourcekey="ddlExcTypeResource1">
-                        </asp:DropDownList>
-                        <asp:RequiredFieldValidator ID="rfvddlExcType" runat="server" ControlToValidate="ddlExcType"
-                            EnableClientScript="False" Text="&lt;img src='../images/Exclamation.gif' title='Excuse Type is required!' /&gt;"
+                        <asp:DropDownListAttributes ID="ddlExcType" runat="server" Enabled="False"></asp:DropDownListAttributes>
+                        <asp:RequiredFieldValidator ID="rvExcType" runat="server" ControlToValidate="ddlExcType"
+                            EnableClientScript="False" Text="&lt;img src='../images/Exclamation.gif' title='Excuse Type is required' /&gt;"
                             ValidationGroup="vgSave" meta:resourcekey="rfvddlExcTypeResource1"></asp:RequiredFieldValidator>
                     </div>
                 </div>
-
                 <div class="row">
-                    <div class="col2">
-                        <asp:Label ID="lblWktID" runat="server" Text="Work Time:" Visible="False" meta:resourcekey="lblWktIDResource1"></asp:Label>
-                    </div>
-                    <div class="col4">
-                        <asp:DropDownList ID="ddlWktID" runat="server" Width="168px" Visible="False" meta:resourcekey="ddlWktIDResource1">
-                        </asp:DropDownList>
-                    </div>
                     <div class="col2">
                         <span class="RequiredField">*</span>
                         <asp:Label ID="lblStartDate" runat="server" Text="Date:" meta:resourcekey="lblStartDateResource1"></asp:Label>
                     </div>
                     <div class="col4">
-
-                        <Cal:Calendar2 ID="calStartDate" runat="server" CalendarType="System" ValidationRequired="true" ValidationGroup="vgSave" />
+                        <Cal:Calendar2 ID="calStartDate" runat="server" CalendarType="System" ValidationRequired="true" ValidationGroup="vgSave" InitialValue="true" />
                     </div>
+                    <div class="col2"></div>
+                    <div class="col4"></div>
                 </div>
-
                 <div class="row">
                     <div class="col2">
                         <span class="RequiredField">*</span>
                         <asp:Label ID="lblStartTime" runat="server" Text="Start Time:" meta:resourcekey="lblStartTimeResource1"></asp:Label>
                     </div>
                     <div class="col4">
-                        <Almaalim:TimePicker ID="tpStartTime" runat="server" FormatTime="HHmm" TimePickerValidationGroup="Users"
-                            CssClass="TimeCss" TimePickerValidationText="&lt;img src='../images/Exclamation.gif' title='Start Time Excuse is required!' /&gt;" />
+                        <Almaalim:TimePicker ID="tpStartTime" runat="server" FormatTime="HHmm" TimePickerValidationGroup="vgSave"/>
                     </div>
                     <div class="col2">
                         <span class="RequiredField">*</span>
                         <asp:Label ID="lblEndTime" runat="server" Text="End Time:" meta:resourcekey="lblEndTimeResource1"></asp:Label>
                     </div>
                     <div class="col4">
-                        <Almaalim:TimePicker ID="tpEndTime" runat="server" FormatTime="HHmm" TimePickerValidationGroup="Users"
-                            CssClass="TimeCss" TimePickerValidationText="&lt;img src='../images/Exclamation.gif' title='End time Excuse is required!' /&gt;" />
+                        <Almaalim:TimePicker ID="tpEndTime" runat="server" FormatTime="HHmm" TimePickerValidationGroup="vgSave"/>
+                        
                         <asp:CustomValidator ID="cvExcuseTime" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='Enter correct Excuse Time' /&gt;"
-                            ErrorMessage="Enter correct Excuse Time!" ValidationGroup="vgSave" OnServerValidate="ExcuseTimeValidate_ServerValidate" CssClass="CustomValidator"
+                            ErrorMessage="Enter correct Excuse Time" ValidationGroup="vgSave" OnServerValidate="ExcuseTimeValidate_ServerValidate" CssClass="CustomValidator"
                             EnableClientScript="False" ControlToValidate="txtValid" meta:resourcekey="cvExcuseTimeResource1"></asp:CustomValidator>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col2">
                         <asp:Label ID="lblDesc" runat="server" Text="Description:" meta:resourcekey="lblDescResource1"></asp:Label>

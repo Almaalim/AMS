@@ -385,4 +385,19 @@
   <data name="tpStartTimeResource1.TimePickerValidationText" xml:space="preserve">
     <value>&lt;img src='../images/Exclamation.gif' title='وقت البدء مطلوب' /&gt;</value>
   </data>
+  <data name="EmailListItemResource1.Text" xml:space="preserve">
+    <value>البريد الإلكتروني</value>
+  </data>
+  <data name="lblMailSendMethodResource1.Text" xml:space="preserve">
+    <value>طريقة الإرسال</value>
+  </data>
+  <data name="SMSListItemResource1.Text" xml:space="preserve">
+    <value>الرسائل القصيرة</value>
+  </data>
+  <data name="cvSendMethodResource1.ErrorMessage" xml:space="preserve">
+    <value>الرجاء اختيار طريقة إرسال واحدة على الأقل</value>
+  </data>
+  <data name="cvSendMethodResource1.Text" xml:space="preserve">
+    <value>&lt;img src='../images/message_exclamation.png' title='الرجاء اختيار طريقة إرسال واحدة على الأقل' /&gt;</value>
+  </data>
 </root>

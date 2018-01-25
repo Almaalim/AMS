@@ -20,17 +20,16 @@ public class AutoComplete : WebService
     public AutoComplete() { }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected string[] EmployeeIDList(string Type, bool isDep, bool isCon, string prefixText, int count)
+    protected string[] EmployeeIDList(string Type, bool isDep, bool isCon, string prefix, int count)
     {
         string lang    = (Convert.ToString(Session["Language"]) == "AR") ? "Ar" : "En";
         string DepList = string.IsNullOrEmpty(Convert.ToString(Session["DepartmentList"])) ? "0" : Session["DepartmentList"].ToString();
         string EmpCon  = string.IsNullOrEmpty(Convert.ToString(Session["EmpConSelect"])) ? "" : Session["EmpConSelect"].ToString();
 
-
         StringBuilder Q = new StringBuilder();
-        Q.Append(" SELECT EmpID + '-' + EmpName" + lang +" EmpName ");
+        Q.Append(" SELECT EmpID + '-' + EmpName" + lang + " EmpName ");
         Q.Append(" FROM spActiveEmployeeView ");
-        if (Type == "ID") { Q.Append(" WHERE EmpID LIKE '" + prefixText + "%' "); } else if (Type == "NAME") { Q.Append(" WHERE EmpName" + lang +" LIKE '%" + prefixText + "%'"); }
+        if (Type == "ID") { Q.Append(" WHERE EmpID + '-' + EmpName" + lang +" LIKE '%" + prefix + "%'"); } else if (Type == "NAME") { Q.Append(" WHERE EmpName" + lang +" LIKE '%" + prefix + "%'"); }
         if (isCon) { Q.Append(" AND DepID IN (" + DepList + ") "); }
         if (isCon) { Q.Append(" " + EmpCon + " "); }
 

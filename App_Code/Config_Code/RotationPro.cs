@@ -49,12 +49,6 @@
     public string RwtDesc { get { return _RwtDesc; } set { if (_RwtDesc != value) { _RwtDesc = value; } } }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    int _GrpBasicLen;
-	public int GrpBasicLen { get { return _GrpBasicLen; } set { if (_GrpBasicLen != value) { _GrpBasicLen = value; } } }
-    
-    bool _IsDouble;
-	public bool IsDouble { get { return _IsDouble; } set { if (_IsDouble != value) { _IsDouble = value; } } }
-
     string _EmpIDs;
     public string EmpIDs { get { return _EmpIDs; } set { if (_EmpIDs != value) { _EmpIDs = value; } } }
 

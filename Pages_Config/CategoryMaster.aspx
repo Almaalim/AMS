@@ -40,7 +40,7 @@
             <div class="row">
                 <div class="col12">
                     <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData" />
-                    <asp:GridView ID="grdData" runat="server" CssClass="datatable" SelectedIndex="0"
+                    <asp:GridView ID="grdData" runat="server" CssClass="datatable"
                         AutoGenerateColumns="False" AllowSorting="True" AllowPaging="True"
                         CellPadding="0" BorderWidth="0px" GridLines="None" DataKeyNames="CatID" ShowFooter="True"
                         OnPageIndexChanging="grdData_PageIndexChanging" OnRowCreated="grdData_RowCreated"

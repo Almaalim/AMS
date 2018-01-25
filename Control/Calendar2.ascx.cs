@@ -157,7 +157,7 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
             selected_culture = new System.Globalization.CultureInfo(ddlLocaleChoice.SelectedValue);
             System.Threading.Thread.CurrentThread.CurrentCulture = selected_culture;
 
-            ScriptManager.RegisterStartupScript(CalendarUpdatePanel, typeof(string), "ShowPopup" + this.DivCal.ClientID, "document.getElementById('" + this.DivCal.ClientID + "').style.display = 'none'; ", true);
+            ScriptManager.RegisterStartupScript(CalendarUpdatePanel, typeof(string), "ShowPopup" + this.DivCal.ClientID, "if (document.getElementById('" + this.DivCal.ClientID + "') != 'undefined' && document.getElementById('" + this.DivCal.ClientID + "') != null) { document.getElementById('" + this.DivCal.ClientID + "').style.display = 'none'; }", true);
         }
         else
         {
@@ -207,7 +207,7 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
                         }
                     }
                     //To hide the calendar div in case of any postback other than the three controls (Culture ddl, Year ddl, Month ddl)
-                    ScriptManager.RegisterStartupScript(CalendarUpdatePanel, typeof(string), "ShowPopup" + this.DivCal.ClientID, "document.getElementById('" + this.DivCal.ClientID + "').style.display = 'none';", true);
+                    ScriptManager.RegisterStartupScript(CalendarUpdatePanel, typeof(string), "ShowPopup" + this.DivCal.ClientID, "if (document.getElementById('" + this.DivCal.ClientID + "') != 'undefined' && document.getElementById('" + this.DivCal.ClientID + "') != null) { document.getElementById('" + this.DivCal.ClientID + "').style.display = 'none'; }", true);
                 }
 
                 //to keep the selected culture in case the post back triggered by any control    
@@ -345,7 +345,7 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void imgbtnClear_Click(object sender, ImageClickEventArgs e)
     {
-        ScriptManager.RegisterStartupScript(CalendarUpdatePanel, typeof(string), "ShowPopup" + this.DivCal.ClientID, "document.getElementById('" + this.DivCal.ClientID + "').style.display = 'none';", true);
+        ScriptManager.RegisterStartupScript(CalendarUpdatePanel, typeof(string), "ShowPopup" + this.DivCal.ClientID, "if (document.getElementById('" + this.DivCal.ClientID + "') != 'undefined' && document.getElementById('" + this.DivCal.ClientID + "') != null) { document.getElementById('" + this.DivCal.ClientID + "').style.display = 'none'; }", true);
         this.txtGDate.Text = this.txtHDate.Text = "";
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -400,8 +400,7 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void ClearDate()
     {
-        this.txtGDate.Text = "";
-        this.txtHDate.Text = "";
+        if (InitialValue) { SetTodayDate(); } else { this.txtGDate.Text = this.txtHDate.Text = ""; }      
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

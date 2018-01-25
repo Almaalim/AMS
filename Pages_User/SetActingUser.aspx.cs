@@ -69,7 +69,7 @@ public partial class SetActingUser : BasePage
     {
         try
         {
-            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+            //System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             ProCs.UsrName        = txtID.Text;
             ProCs.UsrActingUser  = true;
             ProCs.UsrActUserName = txtUsername.Text.Trim();

@@ -49,9 +49,7 @@
 
             <div class="row">
                 <div class="col12">
-                    <as:GridViewKeyBoardPagerExtender ID="gridviewextender" runat="server"
-                        TargetControlID="grdData" NextRowSelectKey="Add"
-                        PrevRowSelectKey="Subtract" />
+                    <as:GridViewKeyBoardPagerExtender ID="gridviewextender" runat="server" TargetControlID="grdData"/>
                     <asp:GridView ID="grdData" runat="server" AllowPaging="True"
                         AutoGenerateColumns="False" BorderWidth="0px" CellPadding="0"
                         CssClass="datatable" DataKeyNames="WktID" GridLines="None"

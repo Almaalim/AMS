@@ -533,7 +533,7 @@ public partial class WorkTime : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void btnCalShift1Duration_Click(object sender, EventArgs e)
     {
-        if (!Page.IsValid) { return; }
+        if (!CtrlCs.PageIsValid(this, vsCalShift)) { return; }
 
         string WorktimeType = FindWorktimeType();
         int Duration = 0;
@@ -567,7 +567,7 @@ public partial class WorkTime : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void btnCalShift2Duration_Click(object sender, EventArgs e)
     {
-        if (!Page.IsValid) { return; }
+        if (!CtrlCs.PageIsValid(this, vsCalShift)) { return; }
 
         string WorktimeType = FindWorktimeType();
         int Duration = 0;
@@ -601,7 +601,7 @@ public partial class WorkTime : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void btnCalShift3Duration_Click(object sender, EventArgs e)
     {
-        if (!Page.IsValid) { return; }
+        if (!CtrlCs.PageIsValid(this, vsCalShift)) { return; }
 
         string WorktimeType = FindWorktimeType();
         int Duration = 0;

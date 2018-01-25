@@ -61,7 +61,7 @@ public partial class EmployeeExcuseDay : BasePage
     {
         try
         {
-            CtrlCs.FillExcuseTypeList(ref ddlExcType, rfvddlExcType, true, true);
+            CtrlCs.FillExcuseTypeList(ddlExcType, rvExcType, true);
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
@@ -162,9 +162,7 @@ public partial class EmployeeExcuseDay : BasePage
             if (!string.IsNullOrEmpty(txtID.Text)) { ProCs.ExrID = txtID.Text; }
 
             ProCs.EmpID           = txtEmpID.Text;
-            if (ddlExcType.SelectedIndex > 0) { ProCs.ExcID = ddlExcType.SelectedValue; }
-            if (ddlWktID.SelectedIndex > 0) { ProCs.WktID = ddlWktID.SelectedValue; }
-            
+            if (ddlExcType.SelectedIndex > 0) { ProCs.ExcID = ddlExcType.SelectedValue; }         
             ProCs.ExrStartDate = calStartDate.getGDateDBFormat();
             ProCs.ExrEndDate   = calStartDate.getGDateDBFormat();
             
@@ -183,29 +181,14 @@ public partial class EmployeeExcuseDay : BasePage
     {
         ViewState["CommandName"] = "";
         
-        txtID.Text = "";
+        txtID.Text    = "";
         txtEmpID.Text = "";
-        ddlExcType.SelectedIndex = 0;
-        //ddlWktID.SelectedIndex = 0;
+        txtDesc.Text  = "";
         calStartDate.ClearDate();
         tpStartTime.ClearTime();
         tpEndTime.ClearTime();
-        txtDesc.Text = "";
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void ddlExcType_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        //////not allow chose unActive Excuse
-        DataTable DT = DBCs.FetchData("SELECT * FROM ExcuseType WHERE ExcID = @P1 ", new string[] { ddlExcType.SelectedValue.ToString() });
-        if (!DBCs.IsNullOrEmpty(DT))
-        {
-            if (Boolean.Parse(DT.Rows[0]["ExcStatus"].ToString()) == false)
-            {
-                ddlExcType.SelectedIndex = 0;
-                CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Validation, General.Msg("You can not select this excuse, because is unactive", "لا يمكن استخدام هذا النوع من الاستئذان، لأنه غير مفعل"));
-            }
-        }
+        
+        ddlExcType.Show(DDLAttributes.DropDownListAttributes.ShowType.ALL);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -225,12 +208,10 @@ public partial class EmployeeExcuseDay : BasePage
     protected void btnAdd_Click(object sender, EventArgs e)
     {
         UIClear();
+        ddlExcType.Show(DDLAttributes.DropDownListAttributes.ShowType.ActiveOnly);   
         ViewState["CommandName"] = "ADD";
         UIEnabled(true);
         BtnStatus("0011");
-
-        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-        calStartDate.SetTodayDate();
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -522,14 +503,19 @@ public partial class EmployeeExcuseDay : BasePage
     /*#############################################################################################################################*/
     #region Custom Validate Events
 
-    protected void FindEmp_ServerValidate(Object source, ServerValidateEventArgs e)
+    protected void EmpID_ServerValidate(Object source, ServerValidateEventArgs e)
     {
         try
         {
-            if (!string.IsNullOrEmpty(txtEmpID.Text))
+            if (string.IsNullOrEmpty(txtEmpID.Text))
             {
-                DataTable DT = DBCs.FetchData("SELECT EmpID FROM Employee WHERE EmpStatus ='True' AND ISNULL(EmpDeleted, 0) = 0 AND EmpID = @P1 AND DepID IN (" + pgCs.DepList + ") ", new string[] {  txtEmpID.Text });
-                if (DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
+                CtrlCs.ValidMsg(this, ref cvEmpID, false, General.Msg("Emloyee ID is required", "رقم الموظف مطلوب"));
+                e.IsValid = false;
+            }
+            else
+            {
+                CtrlCs.ValidMsg(this, ref cvEmpID, true, General.Msg("Employee ID does not exist", "رقم الموظف غير موجود"));
+                if (!GenCs.isEmpID(txtEmpID.Text, pgCs.DepList)) { e.IsValid = false; }
             }
         }
         catch { e.IsValid = false; }
@@ -542,10 +528,13 @@ public partial class EmployeeExcuseDay : BasePage
         {
             if (source.Equals(cvExcuseTime))
             {
-                int FromTime = tpStartTime.getIntTime();
-                int ToTime = tpEndTime.getIntTime();
+                if (!tpStartTime.isEmpty() && !tpEndTime.isEmpty())
+                {
+                    int FromTime = tpStartTime.getIntTime();
+                    int ToTime   = tpEndTime.getIntTime();
 
-                if (FromTime <= 0 || ToTime <= 0 || FromTime > ToTime) { e.IsValid = false; }
+                    if (FromTime > ToTime) { e.IsValid = false; }
+                }
             }
         }
         catch
@@ -553,9 +542,6 @@ public partial class EmployeeExcuseDay : BasePage
             e.IsValid = false;
         }
     }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void ShowMsg_ServerValidate(Object source, ServerValidateEventArgs e) { e.IsValid = false; }
 
     #endregion
     /*#############################################################################################################################*/

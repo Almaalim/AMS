@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="User Department" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true"
-    CodeFile="UserDepartments.aspx.cs" Inherits="UserDepartments" culture="auto" meta:resourcekey="PageResource1" uiculture="auto" %>
+    CodeFile="UserDepartments.aspx.cs" Inherits="UserDepartments" Culture="auto" meta:resourcekey="PageResource1" UICulture="auto" %>
 
-    <%@ Register Assembly="System.Web.DynamicData, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
+<%@ Register Assembly="System.Web.DynamicData, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
     Namespace="System.Web.DynamicData" TagPrefix="cc1" %>
 <%@ Register Assembly="AjaxSamples" Namespace="AjaxSamples" TagPrefix="as" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
@@ -97,7 +97,7 @@
             }
             return parent;
         }
-    
+
     </script>
     <script type="text/javascript">
         function OnCheckBoxCheckChanged(evt) {
@@ -178,7 +178,7 @@
                 parent = parent.parentNode;
             }
             return parent;
-        } 
+        }
     </script>
     <script type="text/javascript">
         var TREEVIEW_ID = "ctl00_ContentPlaceHolder1_TreeView1n0"; //the ID of the TreeView control
@@ -314,43 +314,43 @@
 
             <div class="row">
                 <div class="col12">
-                                            <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData" />
-                                            <asp:GridView ID="grdData" runat="server" CssClass="datatable"
-                                                SelectedIndex="0" AutoGenerateColumns="False"
-                                                AllowPaging="True" CellPadding="0" BorderWidth="0px" GridLines="None" DataKeyNames="UsrName"
-                                                ShowFooter="True" OnPageIndexChanging="grdData_PageIndexChanging" OnRowCreated="grdData_RowCreated"
-                                                 OnRowDataBound="grdData_RowDataBound" OnSorting="grdData_Sorting"
-                                                OnRowCommand="grdData_RowCommand" onprerender="grdData_PreRender" 
-                                                onselectedindexchanged="grdData_SelectedIndexChanged" meta:resourcekey="grdDataResource1">
-                                                 
-                                                <PagerSettings Mode="NextPreviousFirstLast" FirstPageText="First"
-                                                    FirstPageImageUrl="~/images/first.gif" LastPageText="Last" LastPageImageUrl="~/images/last.gif"
-                                                    NextPageText="Next" NextPageImageUrl="~/images/next.gif" PreviousPageText="Prev"
-                                                    PreviousPageImageUrl="~/images/prev.gif" />
-                                                <Columns>
-                                                    <asp:BoundField DataField="UsrName" HeaderText="User Name" 
-                                                        SortExpression="UsrName" meta:resourcekey="BoundFieldResource3" />
-                                                    <asp:BoundField DataField="UsrFullName" HeaderText="Full Name" SortExpression="UsrFullName" 
-                                                        meta:resourcekey="BoundFieldResource422" />
-                                                </Columns>
-                                               
-                                               
-                                            </asp:GridView>
-                                        </div>
-                                    </div>
-                                  <div class="row">
+                    <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData" />
+                    <asp:GridView ID="grdData" runat="server" CssClass="datatable"
+                        AutoGenerateColumns="False"
+                        AllowPaging="True" CellPadding="0" BorderWidth="0px" GridLines="None" DataKeyNames="UsrName"
+                        ShowFooter="True" OnPageIndexChanging="grdData_PageIndexChanging" OnRowCreated="grdData_RowCreated"
+                        OnRowDataBound="grdData_RowDataBound" OnSorting="grdData_Sorting"
+                        OnRowCommand="grdData_RowCommand" OnPreRender="grdData_PreRender"
+                        OnSelectedIndexChanged="grdData_SelectedIndexChanged" meta:resourcekey="grdDataResource1">
+
+                        <PagerSettings Mode="NextPreviousFirstLast" FirstPageText="First"
+                            FirstPageImageUrl="~/images/first.gif" LastPageText="Last" LastPageImageUrl="~/images/last.gif"
+                            NextPageText="Next" NextPageImageUrl="~/images/next.gif" PreviousPageText="Prev"
+                            PreviousPageImageUrl="~/images/prev.gif" />
+                        <Columns>
+                            <asp:BoundField DataField="UsrName" HeaderText="User Name"
+                                SortExpression="UsrName" meta:resourcekey="BoundFieldResource3" />
+                            <asp:BoundField DataField="UsrFullName" HeaderText="Full Name" SortExpression="UsrFullName"
+                                meta:resourcekey="BoundFieldResource422" />
+                        </Columns>
+
+
+                    </asp:GridView>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col12">
-                        <asp:ValidationSummary ID="vsShowMsg" runat="server"  CssClass="MsgSuccess" 
-                            EnableClientScript="False" ValidationGroup="ShowMsg" meta:resourcekey="vsShowMsgResource1"/>
-                       </div>
-                                    </div>
-                                  <div class="row">
+                    <asp:ValidationSummary ID="vsShowMsg" runat="server" CssClass="MsgSuccess"
+                        EnableClientScript="False" ValidationGroup="ShowMsg" meta:resourcekey="vsShowMsgResource1" />
+                </div>
+            </div>
+            <div class="row">
                 <div class="col12">
-                        <asp:ValidationSummary runat="server" ID="vsSave" ValidationGroup="vgSave" EnableClientScript="False"
-                            CssClass="MsgValidation" ShowSummary="False" meta:resourcekey="vsumAllResource1" />
-                     </div>
-                                    </div>
-                                   <div class="row">
+                    <asp:ValidationSummary runat="server" ID="vsSave" ValidationGroup="vgSave" EnableClientScript="False"
+                        CssClass="MsgValidation" ShowSummary="False" meta:resourcekey="vsumAllResource1" />
+                </div>
+            </div>
+            <div class="row">
                 <div class="col8">
                     <asp:LinkButton ID="btnModify" runat="server" CssClass="GenButton glyphicon glyphicon-edit"
                         OnClick="btnModify_Click"
@@ -366,8 +366,8 @@
                         OnClick="btnCancel_Click"
                         Text="&lt;img src=&quot;../images/Button_Icons/button_Cancel.png&quot; /&gt; Cancel"
                         meta:resourcekey="btnCancelResource1"></asp:LinkButton>
-                    </div>
-                    <div class="col8">
+                </div>
+                <div class="col8">
                     <asp:TextBox ID="txtValid" runat="server" Text="02120" Visible="False"
                         Width="10px" meta:resourcekey="txtCustomValidatorResource1"></asp:TextBox>
                     <asp:CustomValidator ID="cvShowMsg" runat="server" Display="None"
@@ -376,41 +376,40 @@
 
                 </div>
             </div>
-                                  <div class="row">
+            <div class="row">
                 <div class="col12">
-                        <span class="h3">
-                                    <asp:Label ID="lblDepartment" runat="server" Text="Department" 
-                                         meta:resourcekey="lblDepartmentResource1"></asp:Label></span>
-                                    <asp:CustomValidator id="cvDepartment" runat="server"
-                                                    
-                                                    ValidationGroup="vgSave"
-                                                    OnServerValidate="tree_ServerValidate"
-                                                    EnableClientScript="False" 
-                                                    ControlToValidate="txtValid" 
-                                        meta:resourcekey="cvDepartmentResource1"></asp:CustomValidator>
-                               </div>
-                                    </div>
-                                  <div class="row">
+                    <span class="h3">
+                        <asp:Label ID="lblDepartment" runat="server" Text="Department"
+                            meta:resourcekey="lblDepartmentResource1"></asp:Label></span>
+                    <asp:CustomValidator ID="cvDepartment" runat="server"
+                        ValidationGroup="vgSave"
+                        OnServerValidate="tree_ServerValidate"
+                        EnableClientScript="False"
+                        ControlToValidate="txtValid"
+                        meta:resourcekey="cvDepartmentResource1"></asp:CustomValidator>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col12">
-                                    <asp:XmlDataSource ID="xmlDataSource2" runat="server" TransformFile="~/XSL/DepTransformXSLT.xsl"
-                                        CacheExpirationPolicy="Sliding" XPath="MenuItems/MenuItem" EnableCaching="False" />
-                                    <asp:TreeView ID="trvDept" runat="server" LineImagesFolder="~/images/TreeLineImages" DataSourceID="xmlDataSource2"
-                                        ShowLines="True" ShowCheckBoxes="All" ondatabound="trvDept_DataBound" 
-                                        ontreenodedatabound="trvDept_TreeNodeDataBound"  ForeColor="#CAD2D6"
-                                        meta:resourcekey="trvDeptResource1">
-                                        <DataBindings>
-                                            <asp:TreeNodeBinding DataMember="MenuItem" TextField="Text" ValueField="Value" 
-                                                meta:resourcekey="TreeNodeBindingResource1" ImageUrlField="Check" />
-                                        </DataBindings>
-                                    </asp:TreeView>
-                                 </div>
-                                    </div>
-                                  <div class="row">
+                    <asp:XmlDataSource ID="xmlDataSource2" runat="server" TransformFile="~/XSL/DepTransformXSLT.xsl"
+                        CacheExpirationPolicy="Sliding" XPath="MenuItems/MenuItem" EnableCaching="False" />
+                    <asp:TreeView ID="trvDept" runat="server" LineImagesFolder="~/images/TreeLineImages" DataSourceID="xmlDataSource2"
+                        ShowLines="True" ShowCheckBoxes="All" OnDataBound="trvDept_DataBound"
+                        OnTreeNodeDataBound="trvDept_TreeNodeDataBound" ForeColor="#CAD2D6"
+                        meta:resourcekey="trvDeptResource1">
+                        <DataBindings>
+                            <asp:TreeNodeBinding DataMember="MenuItem" TextField="Text" ValueField="Value"
+                                meta:resourcekey="TreeNodeBindingResource1" ImageUrlField="Check" />
+                        </DataBindings>
+                    </asp:TreeView>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col12">
-                        <asp:TextBox ID="txtID" runat="server" AutoCompleteType="Disabled" Enabled="False" Visible="False" Width="15px" meta:resourcekey="txtIDResource1"></asp:TextBox>
-                    </div>
-                                    </div>
-                                  
+                    <asp:TextBox ID="txtID" runat="server" AutoCompleteType="Disabled" Enabled="False" Visible="False" Width="15px" meta:resourcekey="txtIDResource1"></asp:TextBox>
+                </div>
+            </div>
+
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

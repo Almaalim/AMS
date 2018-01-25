@@ -6,6 +6,7 @@ using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Net;
+using Elmah;
 
 public partial class Login : BasePage
 {
@@ -132,7 +133,7 @@ public partial class Login : BasePage
         if (Type == "DB")    { QU.Append(" WHERE UsrName = @P1 "); }  
         if (Type == "AD")    { QU.Append(" WHERE UsrAD   = @P1 "); }
         if (Type == "DB_AD") { QU.Append(" WHERE UsrName = @P1 AND UsrAD IS NULL "); }      
-        //QU.Append(" AND GETDATE() <= '2017-12-31 23:59:59' ");
+        //QU.Append(" AND GETDATE() <= '2018-02-02 23:59:59' ");
 
         DataTable DT = DBCs.FetchData(QU.ToString(), new string[] { loginName });
         if (!DBCs.IsNullOrEmpty(DT)) 
@@ -211,26 +212,28 @@ public partial class Login : BasePage
 
             logSqlCs.InOutLog_Insert(Session["UserName"].ToString(), clientPCName, IPAddress);
         }
-        catch (Exception e1) { }
+        catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
     public string GetIPAddress()
     {
         string IPAddress = "";
-        IPHostEntry Host = default(IPHostEntry);
-        string Hostname = null;
-        Hostname = System.Environment.MachineName;
-        Host = Dns.GetHostEntry(Hostname);
-        foreach (IPAddress IP in Host.AddressList)
-        {
-            if (IP.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-            {
-                IPAddress = Convert.ToString(IP);
-            }
-        }
-        return IPAddress;
 
+        try
+        {
+            IPHostEntry Host = default(IPHostEntry);
+            string Hostname = null;
+            Hostname = System.Environment.MachineName;
+            Host = Dns.GetHostEntry(Hostname);
+            foreach (IPAddress IP in Host.AddressList)
+            {
+                if (IP.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork) { IPAddress = Convert.ToString(IP); }
+            }          
+        }
+        catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
+
+        return IPAddress;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

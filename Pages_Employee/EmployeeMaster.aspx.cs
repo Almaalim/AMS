@@ -407,6 +407,8 @@ public partial class EmployeeMaster : BasePage
 
     protected void btnAdd_Click(object sender, EventArgs e)
     {
+        if (!FindDemoCount()) { return; }
+
         UIClear();
         ViewState["CommandName"] = "ADD";
         UIEnabled(true);
@@ -427,6 +429,8 @@ public partial class EmployeeMaster : BasePage
     {
         try
         {
+            if (!FindDemoCount()) { return; }
+
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
 
             string commandName = ViewState["CommandName"].ToString();
@@ -824,11 +828,38 @@ public partial class EmployeeMaster : BasePage
                         return; 
                     }
 
-                    if (ViewState["CommandName"].ToString() == "EDIT")
+                    if (ViewState["CommandName"].ToString() == "ADD")
                     {
                         CtrlCs.ValidMsg(this, ref cvEmployeeIDLen, true, General.Msg("this ID is there already ", "رقم الموظف موجود مسبقاً"));
 
-                        DataTable DT = DBCs.FetchData("SELECT EmpID FROM Employee WHERE EmpID = @P1 ", new string[] { txtEmployeeID.Text });
+                        DataTable DT = DBCs.FetchData(" SELECT EmpID FROM Employee WHERE EmpID = @P1 ", new string[] { txtEmployeeID.Text });
+                        if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
+                        
+                        return;
+                    }
+                }
+            }
+        }
+        catch
+        {
+            e.IsValid = false;
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     protected void EmpID_ServerValidate(Object source, ServerValidateEventArgs e)
+    {
+        try
+        {
+            if (source.Equals(cvEmpID))
+            {
+                if (!string.IsNullOrEmpty(txtEmployeeID.Text))
+                {
+                    if (ViewState["CommandName"].ToString() == "ADD")
+                    {
+                        CtrlCs.ValidMsg(this, ref cvEmpID, true, General.Msg("Employee ID already exists", "رقم الموظف موجود مسبقاً"));
+
+                        DataTable DT = DBCs.FetchData(" SELECT EmpID FROM Employee WHERE EmpID = @P1 ", new string[] { txtEmployeeID.Text });
                         if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                         
                         return;
@@ -866,8 +897,26 @@ public partial class EmployeeMaster : BasePage
         }
     }    
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void ShowMsg_ServerValidate(Object source, ServerValidateEventArgs e) { e.IsValid = false; }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+    protected bool FindDemoCount()
+    {
+        bool Found = false;
+
+        try
+        {
+            if (pgCs.Version != "DEMO") { Found = true; }
+            DataTable DT = DBCs.FetchData(new SqlCommand(" SELECT COUNT(EmpID) DemoCount FROM Employee WHERE ISNULL(EmpDeleted,0) = 0 HAVING COUNT(EmpID) <= 100 "));
+            if (!DBCs.IsNullOrEmpty(DT)) { Found = true; }
+        }
+        catch {  }
+
+        if (!Found)
+        {
+            CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Warning, General.Msg("Can not add more than one hundred employees, this version is Demo", "لا يمكن إضافة أكثر من مائة موظف، هذه النسخة للعرض"));
+        }
+
+        return Found;
+    }
 
     #endregion
     /*#############################################################################################################################*/

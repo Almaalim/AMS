@@ -6,7 +6,6 @@ using Elmah;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading;
-using System.Globalization;
 
 public partial class EmployeeVacation : BasePage
 {
@@ -62,7 +61,7 @@ public partial class EmployeeVacation : BasePage
     {
         try
         {
-            CtrlCs.FillVacationTypeList(ref ddlVacType, rfvddlVacType, false, true, "VAC");
+            CtrlCs.FillVacationTypeList(ddlVacType, rvVacType, true, "VAC");
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
@@ -182,27 +181,13 @@ public partial class EmployeeVacation : BasePage
         
         txtID.Text = "";
         txtEmpID.Text = "";
-        ddlVacType.SelectedIndex = 0;
         calStartDate.ClearDate();
         calEndDate.ClearDate();
         txtAvailable.Text = "";
         txtDesc.Text = "";
         txtPhoneNo.Text = "";
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void ddlVacType_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        //////not allow chose unActive Vacation
-        DataTable DT = DBCs.FetchData("SELECT * FROM VacationType WHERE VtpID = @P1 ", new string[] { ddlVacType.SelectedValue.ToString() });
-        if (!DBCs.IsNullOrEmpty(DT))
-        {
-            if (Boolean.Parse(DT.Rows[0]["VtpStatus"].ToString()) == false)
-            {
-                ddlVacType.SelectedIndex = 0;
-                CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Validation, General.Msg("You can not select this vacation, because is unactive", "لا يمكن استخدام هذا النوع من الإجازات، لأنه غير مفعل"));
-            }
-        }
+
+        ddlVacType.Show(DDLAttributes.DropDownListAttributes.ShowType.ALL);
     }
 
     #endregion
@@ -219,6 +204,7 @@ public partial class EmployeeVacation : BasePage
     protected void btnAdd_Click(object sender, EventArgs e)
     {
         UIClear();
+        ddlVacType.Show(DDLAttributes.DropDownListAttributes.ShowType.ActiveOnly);
         ViewState["CommandName"] = "ADD";
         UIEnabled(true);
         BtnStatus("0011");
@@ -556,13 +542,19 @@ public partial class EmployeeVacation : BasePage
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void FindEmp_ServerValidate(Object source, ServerValidateEventArgs e)
+     protected void EmpID_ServerValidate(Object source, ServerValidateEventArgs e)
     {
         try
         {
-            if (!string.IsNullOrEmpty(txtEmpID.Text))
+            if (string.IsNullOrEmpty(txtEmpID.Text))
             {
-                if (!GenCs.isEmpID(txtEmpID.Text)) { e.IsValid = false; }
+                CtrlCs.ValidMsg(this, ref cvEmpID, false, General.Msg("Emloyee ID is required", "رقم الموظف مطلوب"));
+                e.IsValid = false;
+            }
+            else
+            {
+                CtrlCs.ValidMsg(this, ref cvEmpID, true, General.Msg("Employee ID does not exist", "رقم الموظف غير موجود"));
+                if (!GenCs.isEmpID(txtEmpID.Text, pgCs.DepList)) { e.IsValid = false; }
             }
         }
         catch { e.IsValid = false; }

@@ -50,33 +50,33 @@ public class MailSql : DataLayerBase
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public int MailLog_Request_Insert(string MailCode, string MailReqID, bool MailIsSend, string MailSendingTo, string ShiftID, string ErrText)
-        {
-            SqlCommand Sqlcmd = new SqlCommand("dbo.[MailLog_Request_Insert]", MainConnection);
-            Sqlcmd.CommandType = CommandType.StoredProcedure;
+    {
+        SqlCommand Sqlcmd = new SqlCommand("dbo.[MailLog_Request_Insert]", MainConnection);
+        Sqlcmd.CommandType = CommandType.StoredProcedure;
             
-            try
-            {
-                Sqlcmd.Parameters.Add(new SqlParameter("@LogID"        , IntDB, 100 , OU,  false, 0, 0, "", DRV, 1));
-                Sqlcmd.Parameters.Add(new SqlParameter("@MailCode"     , VchDB, 100 , IN , false, 0, 0, "", DRV, MailCode));
-                Sqlcmd.Parameters.Add(new SqlParameter("@MailReqID"    , IntDB, 100 , IN , false, 0, 0, "", DRV, MailReqID));
-                Sqlcmd.Parameters.Add(new SqlParameter("@MailIsSend"   , BitDB, 1   , IN , false, 0, 0, "", DRV, MailIsSend));
-                Sqlcmd.Parameters.Add(new SqlParameter("@MailSendingTo", VchDB, 500 , IN , false, 0, 0, "", DRV, MailSendingTo));
-                Sqlcmd.Parameters.Add(new SqlParameter("@ErrText"      , TxtDB, 500 , IN , false, 0, 0, "", DRV, ErrText));
+        try
+        {
+            Sqlcmd.Parameters.Add(new SqlParameter("@LogID"        , IntDB, 100 , OU,  false, 0, 0, "", DRV, 1));
+            Sqlcmd.Parameters.Add(new SqlParameter("@MailCode"     , VchDB, 100 , IN , false, 0, 0, "", DRV, MailCode));
+            Sqlcmd.Parameters.Add(new SqlParameter("@MailReqID"    , IntDB, 100 , IN , false, 0, 0, "", DRV, MailReqID));
+            Sqlcmd.Parameters.Add(new SqlParameter("@MailIsSend"   , BitDB, 1   , IN , false, 0, 0, "", DRV, MailIsSend));
+            Sqlcmd.Parameters.Add(new SqlParameter("@MailSendingTo", VchDB, 500 , IN , false, 0, 0, "", DRV, MailSendingTo));
+            Sqlcmd.Parameters.Add(new SqlParameter("@ErrText"      , TxtDB, 500 , IN , false, 0, 0, "", DRV, ErrText));
                 
-                MainConnection.Open();
-                Sqlcmd.ExecuteNonQuery();
-                return Convert.ToInt32(Sqlcmd.Parameters["@LogID"].Value); 
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message, ex);
-            }
-            finally
-            {
-                MainConnection.Close();
-                Sqlcmd.Dispose();
-            }
+            MainConnection.Open();
+            Sqlcmd.ExecuteNonQuery();
+            return Convert.ToInt32(Sqlcmd.Parameters["@LogID"].Value); 
         }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message, ex);
+        }
+        finally
+        {
+            MainConnection.Close();
+            Sqlcmd.Dispose();
+        }
+    }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public bool Mail_Request_UpdateStatus(string MailReqID)
@@ -101,16 +101,17 @@ public class MailSql : DataLayerBase
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public Int32 Mail_Notification_Insert(string MailCode,string ShiftID)
+    public Int32 Mail_Notification_Insert(string MailCode,string ShiftID, string MailSendMethod)
     {
         SqlCommand Sqlcmd = new SqlCommand("dbo.[Mail_Notification_Insert]", MainConnection);
         Sqlcmd.CommandType = CommandType.StoredProcedure;
             
         try
         {
-            Sqlcmd.Parameters.Add(new SqlParameter("@MailReqID", IntDB, 100, OU, false, 0, 0, "", DRV, 1));
-            Sqlcmd.Parameters.Add(new SqlParameter("@MailCode" , VchDB, 100, IN, false, 0, 0, "", DRV, MailCode));
-            Sqlcmd.Parameters.Add(new SqlParameter("@ShiftID"  , IntDB, 100, IN, false, 0, 0, "", DRV, ShiftID));
+            Sqlcmd.Parameters.Add(new SqlParameter("@MailReqID"      , IntDB, 100, OU, false, 0, 0, "", DRV, 1));
+            Sqlcmd.Parameters.Add(new SqlParameter("@MailCode"       , VchDB, 100, IN, false, 0, 0, "", DRV, MailCode));
+            Sqlcmd.Parameters.Add(new SqlParameter("@ShiftID"        , IntDB, 100, IN, false, 0, 0, "", DRV, ShiftID));
+            Sqlcmd.Parameters.Add(new SqlParameter("@MailSendMethod" , VchDB, 10,  IN, false, 0, 0, "", DRV, MailSendMethod));
                
             MainConnection.Open();
             Sqlcmd.ExecuteNonQuery();
@@ -125,20 +126,21 @@ public class MailSql : DataLayerBase
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
-    public Int32 MailLog_Notification_Insert(string MailCode, string MailReqID, bool MailIsSend, string MailSendingTo, string ShiftID, string ErrText)
+    public Int32 MailLog_Notification_Insert(string MailCode, string MailReqID, bool MailIsSend, string MailSendingTo, string ShiftID, string ErrText, string MailSendMethod)
     {
         SqlCommand Sqlcmd = new SqlCommand("dbo.[MailLog_Notification_Insert]", MainConnection);
         Sqlcmd.CommandType = CommandType.StoredProcedure;
 
         try
         {
-            Sqlcmd.Parameters.Add(new SqlParameter("@LogID"        , IntDB, 100, OU, false, 0, 0, "", DRV, 1));
-            Sqlcmd.Parameters.Add(new SqlParameter("@MailCode"     , VchDB, 100, IN, false, 0, 0, "", DRV, MailCode));
-            Sqlcmd.Parameters.Add(new SqlParameter("@MailReqID"    , IntDB, 100, IN, false, 0, 0, "", DRV, MailReqID));
-            Sqlcmd.Parameters.Add(new SqlParameter("@MailIsSend"   , BitDB, 1  , IN, false, 0, 0, "", DRV, MailIsSend));
-            Sqlcmd.Parameters.Add(new SqlParameter("@MailSendingTo", VchDB, 500, IN, false, 0, 0, "", DRV, MailSendingTo));
-            Sqlcmd.Parameters.Add(new SqlParameter("@ShiftID"      , IntDB, 100, IN, false, 0, 0, "", DRV, ShiftID));
-            Sqlcmd.Parameters.Add(new SqlParameter("@ErrText"      , TxtDB, 500, IN, false, 0, 0, "", DRV, ErrText));
+            Sqlcmd.Parameters.Add(new SqlParameter("@LogID"          , IntDB, 100, OU, false, 0, 0, "", DRV, 1));
+            Sqlcmd.Parameters.Add(new SqlParameter("@MailCode"       , VchDB, 100, IN, false, 0, 0, "", DRV, MailCode));
+            Sqlcmd.Parameters.Add(new SqlParameter("@MailReqID"      , IntDB, 100, IN, false, 0, 0, "", DRV, MailReqID));
+            Sqlcmd.Parameters.Add(new SqlParameter("@MailIsSend"     , BitDB, 1  , IN, false, 0, 0, "", DRV, MailIsSend));
+            Sqlcmd.Parameters.Add(new SqlParameter("@MailSendingTo"  , VchDB, 500, IN, false, 0, 0, "", DRV, MailSendingTo));
+            Sqlcmd.Parameters.Add(new SqlParameter("@ShiftID"        , IntDB, 100, IN, false, 0, 0, "", DRV, ShiftID));
+            Sqlcmd.Parameters.Add(new SqlParameter("@ErrText"        , TxtDB, 500, IN, false, 0, 0, "", DRV, ErrText));
+            Sqlcmd.Parameters.Add(new SqlParameter("@MailSendMethod" , VchDB, 10,  IN, false, 0, 0, "", DRV, MailSendMethod));
                   
             MainConnection.Open();
             Sqlcmd.ExecuteNonQuery();
@@ -189,7 +191,8 @@ public class MailSql : DataLayerBase
             Sqlcmd.Parameters.Add(new SqlParameter("@SchType"           , VchDB, 20  , IN, false, 0, 0, "", DRV, Pro.SchType));        
             Sqlcmd.Parameters.Add(new SqlParameter("@SchDays"           , VchDB, 100 , IN, false, 0, 0, "", DRV, Pro.SchDays));
             Sqlcmd.Parameters.Add(new SqlParameter("@SchStartTimeShift1", DtDB , 100 , IN, false, 0, 0, "", DRV, Pro.SchStartTimeShift1));
-
+            Sqlcmd.Parameters.Add(new SqlParameter("@MailSendMethod"    , VchDB , 10 , IN, false, 0, 0, "", DRV, Pro.MailSendMethod));
+            
             Sqlcmd.Parameters.Add(new SqlParameter("@IsExecute"    , IntDB, 10, OU, false, 0, 0, "", DRV, 0));
             Sqlcmd.Parameters.Add(new SqlParameter("@TransactionBy", VchDB, 15, IN, false, 0, 0, "", DRV, Pro.TransactionBy));
             

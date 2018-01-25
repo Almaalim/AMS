@@ -5,25 +5,6 @@ using System.Web;
 
 public class MailPro
 {
-    //MailID	int	Unchecked
-    //MailCode	varchar(100)	Unchecked
-    //VerID	varchar(255)	Unchecked
-    //MailType	varchar(100)	Checked
-    //MailSendType	varchar(10)	Checked
-    //MailRequestType	char(3)	Checked
-    //MailNameAr	varchar(500)	Checked
-    //MailNameEn	varchar(500)	Checked
-    //MailTemp	text	Checked
-    //MailViewName	varchar(500)	Checked
-    //MailViewCondition	varchar(500)	Checked
-    //MailPKList	varchar(2000)	Checked
-    //SchType	varchar(20)	Checked
-    //SchDays	varchar(100)	Checked
-    //SchStartTimeShift1	datetime	Checked
-    //SchStartTimeShift2	datetime	Checked
-    //SchStartTimeShift3	datetime	Checked
-    //SchActive	bit	Checked
-    //MailDesc	varchar(MAX)	Checked
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     string _MailID;
@@ -73,6 +54,9 @@ public class MailPro
 
     bool _SchActive;
     public bool SchActive { get { return _SchActive; } set { if (_SchActive != value) { _SchActive = value; } } }
+
+    string _MailSendMethod;
+    public string MailSendMethod { get { return _MailSendMethod; } set { if (_MailSendMethod != value) { _MailSendMethod = value; } } }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private string _TransactionBy;
