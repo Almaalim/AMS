@@ -228,6 +228,7 @@ public class DisplayFun
             else if (pStatus.ToString().Trim() == "JB") { return General.Msg("Job Assignment" ,"مهمة عمل"); }
             else if (pStatus.ToString().Trim() == "T")  { return General.Msg("In Process" ,"تحت الإجراء"); }
             else if (pStatus.ToString().Trim() == "NP") { return General.Msg("Not Processed" ,"لم تتم المعالجة"); }
+            else if (pStatus.ToString().Trim() == "E")  { return General.Msg("Excused" ,"مستأذن"); }
 
             else if (pStatus.ToString().Trim() == "IN") { return General.Msg("IN Only" ,"دخول فقط"); }
             else if (pStatus.ToString().Trim() == "OU") { return General.Msg("OUT Only" ,"خروج فقط"); }

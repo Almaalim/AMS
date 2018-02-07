@@ -1,12 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ExcuseRequest2.aspx.cs" Inherits="ExcuseRequest2" Culture="auto" meta:resourcekey="PageResource1" UICulture="auto" %>
 
-<%@ Register Assembly="System.Web.DynamicData, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.DynamicData" TagPrefix="cc1" %>
-<%@ Register Assembly="AjaxSamples" Namespace="AjaxSamples" TagPrefix="as" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<%@ Register Assembly="TimePickerServerControl" Namespace="TimePickerServerControl" TagPrefix="Almaalim" %>
-
-<%@ Register Src="~/Control/Calendar2.ascx" TagName="Calendar2" TagPrefix="Cal" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -344,16 +337,9 @@
     </script>
     <title>Excuse Request </title>
 
-    <%--script--%>
-    <script type="text/javascript" src="../Script/GridEvent.js"></script>
-    <script type="text/javascript" src="../Script/CheckKey.js"></script>
-    <script type="text/javascript" src="../Script/ModalPopup.js"></script>
-    <script type="text/javascript" src="../Script/DivPopup.js"></script>
-    <%--script--%>
-    <%--stylesheet--%>
+    <script type="text/javascript" src="../Script/jquery-1.7.1.min.js"></script>
     <link href="~/CSS/Metro/Metro.css" rel="stylesheet" runat="server" id="LanguageSwitch" />
-    <%--stylesheet--%>
-     <script type="text/javascript" src="../Script/jquery-1.7.1.min.js"></script>
+    
      <script type="text/javascript">
         $(document).ready(function () {
             $("div[class*='col']").each(function () {

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Text;
-using System.Web;
 using System.Web.Services;
 
 [WebService(Namespace = "http://tempuri.org/")]
@@ -94,6 +91,7 @@ public class Import_WS : System.Web.Services.WebService
             SQ.Append(" SELECT MacID, MtpName, MacLocationAr, MacLocationEn, MacIP, MacPort, MacNo, MacUseKey, MacInKeys, MacOutKeys");
             SQ.Append(" FROM MachineInfoView ");
             SQ.Append(" WHERE MacStatus = 'True' AND MacVirtualType IS NULL AND ISNULL(MacDeleted,0) = 0 ");
+            SQ.Append(" AND MacID IN (16,17) ");
             SQ.Append(" ORDER BY MtpID ");
 
             DataSet DS = DBCs.GetData(SQ.ToString(), null);

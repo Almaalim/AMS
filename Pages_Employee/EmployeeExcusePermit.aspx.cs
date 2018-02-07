@@ -1,20 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls.WebParts;
 using System.Collections;
-using System.Configuration;
-using System.Web.Security;
 using Elmah;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using System.Threading;
-using System.Globalization;
 
 public partial class EmployeeExcusePermit : BasePage
 {
@@ -599,11 +591,13 @@ public partial class EmployeeExcusePermit : BasePage
 
         try
         {
-            if (source.Equals(cvCheckExcuseEmpID) && !string.IsNullOrEmpty(txtEmpID.Text))
+            string EmpID = txtEmpID.Text.Trim();
+
+            if (source.Equals(cvCheckExcuseEmpID) && !string.IsNullOrEmpty(EmpID))
             {
                 if (rblExprType.SelectedValue == "Vac")
                 {
-                    DataTable DT = DBCs.FetchData("SELECT * FROM EmpExcPermRel WHERE EmpID = @P1 AND @P2 BETWEEN ExprStartDate AND ExprEndDate ", new string[] { txtEmpID.Text, NowDate.ToString("MM/dd/yyyy") });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM EmpExcPermRel WHERE EmpID = @P1 AND @P2 BETWEEN ExprStartDate AND ExprEndDate ", new string[] { EmpID, NowDate.ToString("MM/dd/yyyy") });
                     if (!DBCs.IsNullOrEmpty(DT))
                     {
                         CtrlCs.ValidMsg(this, ref cvCheckExcuseEmpID, true, General.Msg("This employee already has license or permission for today, can not add other permit", "هذا الموظف لدية رخصة أو استئذان لهذا اليوم، لايمكن اضافة رخصة أخرى"));
@@ -611,7 +605,7 @@ public partial class EmployeeExcusePermit : BasePage
                     }
                     else 
                     { 
-                        bool Have = HaveTrans(txtEmpID.Text);
+                        bool Have = HaveTrans(EmpID);
                         if (Have)
                         {
                             CtrlCs.ValidMsg(this, ref cvCheckExcuseEmpID, true, General.Msg("There are Transaction on the date specified Please choose another date", "يوجد حركات في التاريخ المحدد الرجاء اختيار تاريخ آخر"));
@@ -625,7 +619,7 @@ public partial class EmployeeExcusePermit : BasePage
                     {
                         string pExprType = rblExprType.SelectedValue.ToString();
 
-                        DataTable DT1 = DBCs.FetchData("SELECT * FROM EmpExcPermRel WHERE EmpID = @P1 AND @P2 BETWEEN ExprStartDate AND ExprEndDate AND ExprType = 'Vac' ", new string[] { txtEmpID.Text, NowDate.ToString("MM/dd/yyyy") });
+                        DataTable DT1 = DBCs.FetchData("SELECT * FROM EmpExcPermRel WHERE EmpID = @P1 AND @P2 BETWEEN ExprStartDate AND ExprEndDate AND ExprType = 'Vac' ", new string[] { EmpID, NowDate.ToString("MM/dd/yyyy") });
                         if (!DBCs.IsNullOrEmpty(DT1))
                         {
                             CtrlCs.ValidMsg(this, ref cvCheckExcuseEmpID, true, General.Msg("This employee already has license for today, can not add other Excuse", "هذا الموظف لدية رخصة لهذا اليوم، لايمكن اضافة استئذان آخر"));
@@ -633,7 +627,7 @@ public partial class EmployeeExcusePermit : BasePage
                             return;
                         }
                         
-                        DataTable DT2 = DBCs.FetchData("SELECT * FROM EmpExcPermRel WHERE EmpID = @P1 AND @P2 BETWEEN ExprStartDate AND ExprEndDate AND ExprType = @P3 AND ExcType = @P4 ", new string[] { txtEmpID.Text, NowDate.ToString("MM/dd/yyyy"), pExprType,rblPeriodExc.SelectedValue });
+                        DataTable DT2 = DBCs.FetchData("SELECT * FROM EmpExcPermRel WHERE EmpID = @P1 AND @P2 BETWEEN ExprStartDate AND ExprEndDate AND ExprType = @P3 AND ExcType = @P4 ", new string[] { EmpID, NowDate.ToString("MM/dd/yyyy"), pExprType,rblPeriodExc.SelectedValue });
                         if (!DBCs.IsNullOrEmpty(DT2))
                         {
                             CtrlCs.ValidMsg(this, ref cvCheckExcuseEmpID, true, General.Msg("This employee already has same Excuse Type for today, can not add other Excuse", "هذا الموظف لدية استئذان لنفس النوع لهذا اليوم، لايمكن اضافة استئذان آخر"));
@@ -677,6 +671,5 @@ public partial class EmployeeExcusePermit : BasePage
     /*#############################################################################################################################*/
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
 }

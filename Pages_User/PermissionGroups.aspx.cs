@@ -644,6 +644,9 @@ public partial class PermissionGroups : BasePage
     {
         try
         {
+            string NameEn = txtGroupNameEn.Text.Trim();
+            string NameAr = txtGroupNameArb.Text.Trim();
+
             string UQ = string.Empty;
             if (ViewState["CommandName"].ToString() == "EDIT") { UQ = " AND GrpID != @P2"; }
 
@@ -652,14 +655,14 @@ public partial class PermissionGroups : BasePage
                 if (pgCs.LangEn)
                 {
                     CtrlCs.ValidMsg(this, ref cvGroupNameEn, false, General.Msg("Name (En) is required", "الاسم بالانجليزية مطلوب")); 
-                    if (String.IsNullOrEmpty(txtGroupNameEn.Text)) { e.IsValid = false; }
+                    if (string.IsNullOrEmpty(NameEn)) { e.IsValid = false; }
                 }
 
-                if (!String.IsNullOrEmpty(txtGroupNameEn.Text))
+                if (!string.IsNullOrEmpty(NameEn))
                 {
                     CtrlCs.ValidMsg(this, ref cvGroupNameEn, true, General.Msg("Entered Permission group English Name exist already,Please enter another name", "الاسم بالانجليزية لمجموعة الصلاحيات موجود مسبقا , الرجاء اختيار اسم آخر")); 
                     
-                    DataTable DT = DBCs.FetchData("SELECT * FROM PermissionGroup WHERE GrpNameEn = @P1 AND ISNULL(GrpDeleted,0) = 0 " + UQ, new string[] { txtGroupNameEn.Text, txtGrpID.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM PermissionGroup WHERE GrpNameEn = @P1 AND ISNULL(GrpDeleted,0) = 0 " + UQ, new string[] { NameEn, txtGrpID.Text });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }
@@ -668,14 +671,14 @@ public partial class PermissionGroups : BasePage
                 if (pgCs.LangAr)
                 {
                     CtrlCs.ValidMsg(this, ref cvGroupNameAr, false, General.Msg("Name (Ar) is required", "الاسم بالعربية مطلوب")); 
-                    if (String.IsNullOrEmpty(txtGroupNameArb.Text)) { e.IsValid = false; }
+                    if (string.IsNullOrEmpty(NameAr)) { e.IsValid = false; }
                 }
 
-                if (!String.IsNullOrEmpty(txtGroupNameArb.Text))
+                if (!string.IsNullOrEmpty(NameAr))
                 {
                     CtrlCs.ValidMsg(this, ref cvGroupNameAr, true, General.Msg("Entered Permission group Arabic Name exist already,Please enter another name", "الاسم بالعربية لمجموعة الصلاحيات موجود مسبقا , الرجاء اختيار اسم آخر")); 
                     
-                    DataTable DT = DBCs.FetchData("SELECT * FROM PermissionGroup WHERE GrpNameAr = @P1 AND ISNULL(GrpDeleted,0) = 0 " + UQ, new string[] { txtGroupNameArb.Text, txtGrpID.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM PermissionGroup WHERE GrpNameAr = @P1 AND ISNULL(GrpDeleted,0) = 0 " + UQ, new string[] { NameAr, txtGrpID.Text });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }

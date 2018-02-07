@@ -1,17 +1,8 @@
 ﻿<%@ Page Title="Worktime Wizard" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true" CodeFile="WorkTimeWizard.aspx.cs" Inherits="WorkTimeWizard" meta:resourcekey="PageResource1" Culture="auto" UICulture="auto" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<%@ Register Assembly="AjaxSamples" Namespace="AjaxSamples" TagPrefix="as" %>
 <%@ Register Src="~/Control/EmployeeSelected.ascx" TagName="EmployeeSelected" TagPrefix="ucEmp" %>
-<%@ Register Src="~/Control/Calendar2.ascx" TagName="Calendar2" TagPrefix="Cal" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
-    <%--script--%>
-    <script type="text/javascript" src="../Script/GridEvent.js"></script>
-    <script type="text/javascript" src="../Script/TabContainer.js"></script>
-    <%--script--%>
-
     <%--Style--%>
     <link href="../CSS/WizardStyle.css" rel="stylesheet" type="text/css" />
     <link href="../CSS/validationStyle.css" rel="stylesheet" type="text/css" />
@@ -132,50 +123,9 @@
                                     <asp:Label ID="lblWorkingdays" runat="server" Text="Working days :"
                                         meta:resourcekey="lblWorkingdaysResource1"></asp:Label>
                                 </div>
-                                <div class="col4">
-                                    <span class="daysChk">
-                                    <asp:CheckBox ID="chkEwrSat" runat="server" Text="Saturday"
-                                        meta:resourcekey="chkEwrSatResource1" />
-                                    </span>
-                                    <span class="daysChk">
-                                    <asp:CheckBox ID="chkEwrSun" runat="server" Text="Sunday"
-                                        meta:resourcekey="chkEwrSunResource1" />
-                                        </span>
-                                    <span class="daysChk">
-                                    <asp:CheckBox ID="chkEwrMon" runat="server" Text="Monday"
-                                        meta:resourcekey="chkEwrMonResource1" />
-                                        </span>
-                                    <span class="daysChk">
-                                    <asp:CheckBox ID="chkEwrTue" runat="server" Text="Tuesday"
-                                        meta:resourcekey="chkEwrTueResource1" />
-                                        </span>
-                                    <span class="daysChk">
-                                    <asp:CheckBox ID="chkEwrWed" runat="server" Text="Wednesday"
-                                        meta:resourcekey="chkEwrWedResource1" />
-                                        </span>
-                                    <span class="daysChk">
-                                    <asp:CheckBox ID="chkEwrThu" runat="server" Text="Thursday"
-                                        meta:resourcekey="chkEwrThuResource1" />
-                                        </span>
-                                    <span class="daysChk">
-                                    <asp:CheckBox ID="chkEwrFri" runat="server" Text="Friday"
-                                        meta:resourcekey="chkEwrFriResource1" />
-                                        </span>
-                                    <asp:TextBox ID="txtCustomValidator" runat="server" Text="02120"
-                                        Visible="False" Width="10px" meta:resourcekey="txtCustomValidatorResource1"></asp:TextBox>
-                                    <asp:CustomValidator ID="cvSelectWorkDays" runat="server"
-                                        Text="&lt;img src='../images/message_exclamation.png' title='Select Work Days!' /&gt;"
-                                        ValidationGroup="VGStart"
-                                        ErrorMessage="Select Work Days" CssClass="CustomValidator"
-                                        OnServerValidate="SelectWorkDays_ServerValidate"
-                                        EnableClientScript="False"
-                                        ControlToValidate="txtCustomValidator"
-                                        meta:resourcekey="cvSelectWorkDaysResource1"></asp:CustomValidator>
+                                <div> <%--class="col5"--%>
+                                    <AM:DaysChekboxlist id="dclDays" runat="server" ValidationGroup="VGStart"></AM:DaysChekboxlist>
                                 </div>
-                                <div class="col2">
-                                    
-                                </div>
-                                
                             </div>
                         </asp:WizardStep>
                         <asp:WizardStep ID="WizardStep2" runat="server" Title="2-Select Employees"

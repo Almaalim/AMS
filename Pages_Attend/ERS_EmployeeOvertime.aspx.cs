@@ -145,11 +145,15 @@ public partial class ERS_EmployeeOvertime : BasePage
     {
         try
         {
-            GregorianCalendar Grn = new GregorianCalendar();
-            string dayNameEn = Grn.GetDayOfWeek(Convert.ToDateTime(pGDate)).ToString();
-            string dayNameAr = convertDayToArabic(Convert.ToDateTime(pGDate).ToString("ddd"));
+            if (!string.IsNullOrEmpty(Convert.ToString(pGDate)))
+            {
+                GregorianCalendar Grn = new GregorianCalendar();
+                string dayNameEn = Grn.GetDayOfWeek(Convert.ToDateTime(pGDate)).ToString();
+                string dayNameAr = convertDayToArabic(Convert.ToDateTime(pGDate).ToString("ddd"));
 
-            return General.Msg(dayNameEn, dayNameAr);
+                return General.Msg(dayNameEn, dayNameAr);
+            }
+            return string.Empty;
         }
         catch (Exception ex) 
         { 

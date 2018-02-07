@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Elmah;
 using System.Data;
 using System.Collections;
-using System.Text;
-using System.Globalization;
 using System.Threading;
 using System.Data.SqlClient;
 
@@ -997,6 +992,9 @@ public partial class WorkTime : BasePage
     {
         try
         {
+            string NameEn = txtNameEn.Text.Trim();
+            string NameAr = txtNameAr.Text.Trim();
+
             string UQ = string.Empty;
             if (ViewState["CommandName"].ToString() == "EDIT") { UQ = " AND WktID != @P2 "; }
 
@@ -1005,14 +1003,14 @@ public partial class WorkTime : BasePage
                 if (pgCs.LangEn)
                 {
                     CtrlCs.ValidMsg(this, ref cvNameEn, false, General.Msg("Name (En) Is Required", "الاسم بالإنجليزي مطلوب"));
-                    if (string.IsNullOrEmpty(txtNameEn.Text)) { e.IsValid = false; }
+                    if (string.IsNullOrEmpty(NameEn)) { e.IsValid = false; }
                 }
                 
-                if (!string.IsNullOrEmpty(txtNameEn.Text))
+                if (!string.IsNullOrEmpty(NameEn))
                 {
                     CtrlCs.ValidMsg(this, ref cvNameEn, true, General.Msg("Entered Working Time English Name exist already,Please enter another name", "إسم وقت العمل بالإنجليزي مدخل مسبقا ، الرجاء إدخال إسم آخر"));
 
-                    DataTable DT = DBCs.FetchData("SELECT * FROM WorkingTime WHERE WktNameEn = @P1 AND ISNULL(WktDeleted,0) = 0 " + UQ, new string[] { txtNameEn.Text, txtID.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM WorkingTime WHERE WktNameEn = @P1 AND ISNULL(WktDeleted,0) = 0 " + UQ, new string[] { NameEn, txtID.Text });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }
@@ -1021,13 +1019,13 @@ public partial class WorkTime : BasePage
                 if (pgCs.LangAr)
                 {
                     CtrlCs.ValidMsg(this, ref cvNameAr, false, General.Msg("Name (Ar) Is Required", "الاسم بالعربي مطلوب"));
-                    if (string.IsNullOrEmpty(txtNameAr.Text)) { e.IsValid = false; }
+                    if (string.IsNullOrEmpty(NameAr)) { e.IsValid = false; }
                 }
-                if (!string.IsNullOrEmpty(txtNameAr.Text))
+                if (!string.IsNullOrEmpty(NameAr))
                 {
                     CtrlCs.ValidMsg(this, ref cvNameAr, true, General.Msg("Entered Working Time Arabic Name exist already,Please enter another name", "إسم وقت العمل بالعربي مدخل مسبقا ، الرجاء إدخال إسم آخر"));
 
-                    DataTable DT = DBCs.FetchData("SELECT * FROM WorkingTime WHERE WktNameAr = @P1 AND ISNULL(WktDeleted,0) = 0 " + UQ, new string[] { txtNameAr.Text, txtID.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM WorkingTime WHERE WktNameAr = @P1 AND ISNULL(WktDeleted,0) = 0 " + UQ, new string[] { NameAr, txtID.Text });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }
@@ -1036,7 +1034,7 @@ public partial class WorkTime : BasePage
                 if (pgCs.LangEn)
                 {
                     CtrlCs.ValidMsg(this, ref cvInitialEn, false, General.Msg("Initial (En) Is Required", "الرمز بالإنجليزي مطلوب"));
-                    if (string.IsNullOrEmpty(txtWktInitialEn.Text)) { e.IsValid = false; }
+                    if (string.IsNullOrEmpty(txtWktInitialEn.Text.Trim())) { e.IsValid = false; }
                 }
             }
             else if (source.Equals(cvInitialAr))
@@ -1044,7 +1042,7 @@ public partial class WorkTime : BasePage
                 if (pgCs.LangAr)
                 {
                     CtrlCs.ValidMsg(this, ref cvInitialAr, false, General.Msg("Initial (Ar) Is Required", "الرمز بالعربي مطلوب"));
-                    if (string.IsNullOrEmpty(txtWktInitialAr.Text)) { e.IsValid = false; }
+                    if (string.IsNullOrEmpty(txtWktInitialAr.Text.Trim())) { e.IsValid = false; }
                 }
             }
         }
@@ -1061,11 +1059,11 @@ public partial class WorkTime : BasePage
         {
             if (source.Equals(cvEnShift1Name))
             {
-                if (pgCs.LangEn) { if (string.IsNullOrEmpty(txtEnShift1Name.Text)) { e.IsValid = false; } }
+                if (pgCs.LangEn) { if (string.IsNullOrEmpty(txtEnShift1Name.Text.Trim())) { e.IsValid = false; } }
             }
             else if (source.Equals(cvArShift1Name))
             {
-                if (pgCs.LangAr) { if (string.IsNullOrEmpty(txtArShift1Name.Text)) { e.IsValid = false; } }
+                if (pgCs.LangAr) { if (string.IsNullOrEmpty(txtArShift1Name.Text.Trim())) { e.IsValid = false; } }
             }
             else if (source.Equals(cvShift1Duration))
             {
@@ -1113,11 +1111,11 @@ public partial class WorkTime : BasePage
             {
                 if (source.Equals(cvEnShift2Name))
                 {
-                    if (pgCs.LangEn) { if (string.IsNullOrEmpty(txtEnShift2Name.Text)) { e.IsValid = false; } }
+                    if (pgCs.LangEn) { if (string.IsNullOrEmpty(txtEnShift2Name.Text.Trim())) { e.IsValid = false; } }
                 }
                 else if (source.Equals(cvArShift2Name))
                 {
-                    if (pgCs.LangAr) { if (string.IsNullOrEmpty(txtArShift2Name.Text)) { e.IsValid = false; } }
+                    if (pgCs.LangAr) { if (string.IsNullOrEmpty(txtArShift2Name.Text.Trim())) { e.IsValid = false; } }
                 }
                 else if (source.Equals(cvShift2Duration))
                 {
@@ -1180,11 +1178,11 @@ public partial class WorkTime : BasePage
             {
                 if (source.Equals(cvEnShift3Name))
                 {
-                    if (pgCs.LangEn) { if (string.IsNullOrEmpty(txtEnShift3Name.Text)) { e.IsValid = false; } }
+                    if (pgCs.LangEn) { if (string.IsNullOrEmpty(txtEnShift3Name.Text.Trim())) { e.IsValid = false; } }
                 }
                 else if (source.Equals(cvArShift3Name))
                 {
-                    if (pgCs.LangAr) { if (string.IsNullOrEmpty(txtArShift3Name.Text)) { e.IsValid = false; } }
+                    if (pgCs.LangAr) { if (string.IsNullOrEmpty(txtArShift3Name.Text.Trim())) { e.IsValid = false; } }
                 }
                 else if (source.Equals(cvShift3Duration))
                 {

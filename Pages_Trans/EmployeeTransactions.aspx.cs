@@ -487,7 +487,7 @@ public partial class EmployeeTransactions : BasePage
                     }
                  default:
                     {
-                        e.Row.Cells[5].Visible = false; //To hide ID column in grid view
+                        e.Row.Cells[4].Visible = false; //To hide ID column in grid view
                         break;
                     }
             }

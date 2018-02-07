@@ -2,10 +2,6 @@
     CodeFile="EmployeeExcuseDay.aspx.cs" Inherits="EmployeeExcuseDay" meta:resourcekey="PageResource1" Culture="auto" UICulture="auto"  %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <%--script--%>
-    <script type="text/javascript" src="../Script/GridEvent.js"></script>
-    <script type="text/javascript" src="../Script/AutoComplete.js"></script>
-    <%--script--%>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="row">

@@ -68,7 +68,7 @@ public partial class RotationShift : BasePage
                 /*** Check AMS License ***/pgCs.CheckAMSLicense();
                 /*** get Permission    ***/ViewState["ht"] = pgCs.getPerm(Request.Url.AbsolutePath);
                 BtnStatus("10");
-                //UIEnabled(false);
+                UIEnabled(false);
                 UILang();
                 FillGrid(new SqlCommand(MainQuery));
                 FillList();
@@ -172,6 +172,8 @@ public partial class RotationShift : BasePage
         lstWorkTime.Enabled = status;
         lstRotationGroup.Enabled = status;
         lstEmployeeGroup.Enabled = status;
+        dclDays.Enabled(false);
+
 
         calStartDate_viw0.SetEnabled(status);
         calEndDate_viw0.SetEnabled(status);
@@ -190,13 +192,26 @@ public partial class RotationShift : BasePage
             ProCs.WktShift1To   = calEndDate_viw0.getGDateDBFormat();
             ProCs.WktShift1IsOptional = chkRotOnlyWorkDays_viw0.Checked;
 
-            EWProCs.EwrSat = chkEwrSat_viw0.Checked;
-            EWProCs.EwrSun = chkEwrSun_viw0.Checked;
-            EWProCs.EwrMon = chkEwrMon_viw0.Checked;
-            EWProCs.EwrTue = chkEwrTue_viw0.Checked;
-            EWProCs.EwrWed = chkEwrWed_viw0.Checked;
-            EWProCs.EwrThu = chkEwrThu_viw0.Checked;
-            EWProCs.EwrFri = chkEwrFri_viw0.Checked;
+            string EwrSun = dclDays_viw0.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Sunday);
+            EWProCs.EwrSun = (EwrSun == "0") ? false : true;
+
+            string EwrMon = dclDays_viw0.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Monday);
+            EWProCs.EwrMon = (EwrMon == "0") ? false : true;
+
+            string EwrTue = dclDays_viw0.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tuesday);
+            EWProCs.EwrTue = (EwrTue == "0") ? false : true;
+
+            string EwrWed = dclDays_viw0.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Wednesday);
+            EWProCs.EwrWed = (EwrWed == "0") ? false : true;
+
+            string EwrThu = dclDays_viw0.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tharsday);
+            EWProCs.EwrThu = (EwrThu == "0") ? false : true;
+
+            string EwrFri = dclDays_viw0.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Friday);
+            EWProCs.EwrFri = (EwrFri == "0") ? false : true;
+
+            string EwrSat = dclDays_viw0.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Saturday);
+            EWProCs.EwrSat = (EwrSat == "0") ? false : true;
 
             EWProCs.DateLen = SDatesDT.Length.ToString();
             EWProCs.SDates  = GenCs.CreateIDsNumber(SDatesDT);
@@ -233,13 +248,7 @@ public partial class RotationShift : BasePage
         lstWorkTime.Items.Clear();
         lstRotationGroup.Items.Clear();
         lstEmployeeGroup.Items.Clear();
-        chkEwrSat.Checked = false;
-        chkEwrSun.Checked = false;
-        chkEwrMon.Checked = false;
-        chkEwrTue.Checked = false;
-        chkEwrWed.Checked = false;
-        chkEwrThu.Checked = false;
-        chkEwrFri.Checked = false;
+        dclDays.Clear();
         chkRotOnlyWorkDays.Checked = false;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -251,13 +260,7 @@ public partial class RotationShift : BasePage
         txtDuration_viw0.Text = "";
         calStartDate_viw0.ClearDate();
         calEndDate_viw0.ClearDate();
-        chkEwrSat_viw0.Checked = false;
-        chkEwrSun_viw0.Checked = false;
-        chkEwrMon_viw0.Checked = false;
-        chkEwrTue_viw0.Checked = false;
-        chkEwrWed_viw0.Checked = false;
-        chkEwrThu_viw0.Checked = false;
-        chkEwrFri_viw0.Checked = false;
+        dclDays_viw0.Clear();
         chkRotOnlyWorkDays_viw0.Checked = false;
 
         ddlWktID.SelectedIndex = -1;
@@ -292,7 +295,10 @@ public partial class RotationShift : BasePage
         {
             UIClear();
             ClearWizardUI();
-            UIEnabled(true);
+            //UIEnabled(true);
+            calStartDate_viw0.SetEnabled(true);
+            calEndDate_viw0.SetEnabled(true);
+
             BtnStatus("01");
             ViewState["CommandName"] = "ADD";
             MultiView1.ActiveViewIndex = 1;
@@ -553,13 +559,14 @@ public partial class RotationShift : BasePage
             DataTable Daysdt = DBCs.FetchData(" SELECT EwrSat, EwrSun, EwrMon, EwrTue,EwrWed,EwrThu,EwrFri FROM EmpWrkRel WHERE RotID = @P1 ", new string[] { RotID });
             if (!DBCs.IsNullOrEmpty(Daysdt))
             {
-                if (Daysdt.Rows[0]["EwrSat"] != DBNull.Value) { chkEwrSat.Checked = Convert.ToBoolean(Daysdt.Rows[0]["EwrSat"]); } 
-                if (Daysdt.Rows[0]["EwrSun"] != DBNull.Value) { chkEwrSun.Checked = Convert.ToBoolean(Daysdt.Rows[0]["EwrSun"]); }
-                if (Daysdt.Rows[0]["EwrMon"] != DBNull.Value) { chkEwrMon.Checked = Convert.ToBoolean(Daysdt.Rows[0]["EwrMon"]); } 
-                if (Daysdt.Rows[0]["EwrTue"] != DBNull.Value) { chkEwrTue.Checked = Convert.ToBoolean(Daysdt.Rows[0]["EwrTue"]); }
-                if (Daysdt.Rows[0]["EwrWed"] != DBNull.Value) { chkEwrWed.Checked = Convert.ToBoolean(Daysdt.Rows[0]["EwrWed"]); }
-                if (Daysdt.Rows[0]["EwrThu"] != DBNull.Value) { chkEwrThu.Checked = Convert.ToBoolean(Daysdt.Rows[0]["EwrThu"]); }
-                if (Daysdt.Rows[0]["EwrFri"] != DBNull.Value) { chkEwrFri.Checked = Convert.ToBoolean(Daysdt.Rows[0]["EwrFri"]); }
+                if (Daysdt.Rows[0]["EwrSun"] != DBNull.Value) { dclDays.SetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Sunday   , Convert.ToInt32(Daysdt.Rows[0]["EwrSun"])); }
+                if (Daysdt.Rows[0]["EwrMon"] != DBNull.Value) { dclDays.SetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Monday   , Convert.ToInt32(Daysdt.Rows[0]["EwrMon"])); }
+                if (Daysdt.Rows[0]["EwrTue"] != DBNull.Value) { dclDays.SetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tuesday  , Convert.ToInt32(Daysdt.Rows[0]["EwrTue"])); } 
+                if (Daysdt.Rows[0]["EwrWed"] != DBNull.Value) { dclDays.SetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Wednesday, Convert.ToInt32(Daysdt.Rows[0]["EwrWed"])); }
+                if (Daysdt.Rows[0]["EwrThu"] != DBNull.Value) { dclDays.SetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tharsday , Convert.ToInt32(Daysdt.Rows[0]["EwrThu"])); } 
+                if (Daysdt.Rows[0]["EwrFri"] != DBNull.Value) { dclDays.SetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Friday   , Convert.ToInt32(Daysdt.Rows[0]["EwrFri"])); }
+                if (Daysdt.Rows[0]["EwrSat"] != DBNull.Value) { dclDays.SetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Saturday , Convert.ToInt32(Daysdt.Rows[0]["EwrSat"])); }
+
             }
 
             DataTable WktDT = DBCs.FetchData(" SELECT R.RotID, R.WktID, W.WktNameAr, W.WktNameEn FROM RotationWrkRel R,WorkingTime W  WHERE R.WktID = W.WktID AND R.RotID = @P1 ORDER BY OrderID ", new string[] { RotID });
@@ -878,7 +885,28 @@ public partial class RotationShift : BasePage
 
             if (chkRotOnlyWorkDays_viw0.Checked)
             {
-                wrkdays = new bool[] { chkEwrSun_viw0.Checked, chkEwrMon_viw0.Checked, chkEwrTue_viw0.Checked, chkEwrWed_viw0.Checked, chkEwrThu_viw0.Checked, chkEwrFri_viw0.Checked, chkEwrSat_viw0.Checked };
+                string EwrSun = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Sunday);
+                bool bEwrSun = (EwrSun == "0") ? false : true;
+
+                string EwrMon = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Monday);
+                bool bEwrMon = (EwrMon == "0") ? false : true;
+
+                string EwrTue = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tuesday);
+                bool bEwrTue = (EwrTue == "0") ? false : true;
+
+                string EwrWed = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Wednesday);
+                bool bEwrWed = (EwrWed == "0") ? false : true;
+
+                string EwrThu = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tharsday);
+                bool bEwrThu = (EwrThu == "0") ? false : true;
+
+                string EwrFri = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Friday);
+                bool bEwrFri = (EwrFri == "0") ? false : true;
+
+                string EwrSat = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Saturday);
+                bool bEwrSat = (EwrSat == "0") ? false : true;
+
+                wrkdays = new bool[] { bEwrSun, bEwrMon, bEwrTue, bEwrWed, bEwrThu, bEwrFri, bEwrSat };
             }
             else
             {
@@ -956,19 +984,22 @@ public partial class RotationShift : BasePage
     {
         try
         {
+            string NameEn = txtWktNameEn_viw0.Text.Trim();
+            string NameAr = txtWktNameAr_viw0.Text.Trim();
+
             if (source.Equals(cvtxtWktNameEn_viw0))
             {
                 if (pgCs.LangEn)
                 {
                     CtrlCs.ValidMsg(this, ref cvtxtWktNameEn_viw0, false, General.Msg("Name (En) Is Required", "الاسم بالإنجليزي مطلوب"));
-                    if (string.IsNullOrEmpty(txtWktNameEn_viw0.Text)) { e.IsValid = false; }
+                    if (string.IsNullOrEmpty(NameEn)) { e.IsValid = false; }
                 }
                 
-                if (!string.IsNullOrEmpty(txtWktNameEn_viw0.Text))
+                if (!string.IsNullOrEmpty(NameEn))
                 {
                     CtrlCs.ValidMsg(this, ref cvtxtWktNameEn_viw0, true, General.Msg("Entered English Name exist already,Please enter another name", "الاسم بالإنجليزي مدخل مسبقا ، الرجاء إدخال إسم آخر"));
 
-                    DataTable DT = DBCs.FetchData("SELECT * FROM WorkingTime WHERE WktNameEn = @P1 ", new string[] { txtWktNameEn_viw0.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM WorkingTime WHERE WktNameEn = @P1 ", new string[] { NameEn });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }
@@ -977,13 +1008,13 @@ public partial class RotationShift : BasePage
                 if (pgCs.LangAr)
                 {
                     CtrlCs.ValidMsg(this, ref cvtxtWktNameAr_viw0, false, General.Msg("Name (Ar) Is Required", "الاسم العربي مطلوب"));
-                    if (string.IsNullOrEmpty(txtWktNameAr_viw0.Text)) { e.IsValid = false; }
+                    if (string.IsNullOrEmpty(NameAr)) { e.IsValid = false; }
                 }
                 
-                if (!string.IsNullOrEmpty(txtWktNameAr_viw0.Text))
+                if (!string.IsNullOrEmpty(NameAr))
                 {
                     CtrlCs.ValidMsg(this, ref cvtxtWktNameAr_viw0, true, General.Msg("Entered Arabic Name exist already,Please enter another name", "الاسم العربي مدخل مسبقا ، الرجاء إدخال إسم آخر"));
-                    DataTable DT = DBCs.FetchData("SELECT * FROM WorkingTime WHERE WktNameAr = @P1 ", new string[] { txtWktNameAr_viw0.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM WorkingTime WHERE WktNameAr = @P1 ", new string[] { NameAr});
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }
@@ -992,20 +1023,6 @@ public partial class RotationShift : BasePage
         {
             e.IsValid = false;
         }
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void SelectWorkDays_ServerValidate(Object source, ServerValidateEventArgs e)
-    {
-        try
-        {
-            if (!chkEwrSat_viw0.Checked && !chkEwrSun_viw0.Checked && !chkEwrMon_viw0.Checked && !chkEwrTue_viw0.Checked && !chkEwrWed_viw0.Checked && !chkEwrThu_viw0.Checked && !chkEwrFri_viw0.Checked)
-            {
-                e.IsValid = false;
-            }
-            else { e.IsValid = true; }
-        }
-        catch { e.IsValid = false; }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,16 +1,6 @@
 ﻿<%@ Page Title="Employee Worktime" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true" CodeFile="EmployeeWorkTime.aspx.cs" Inherits="EmployeeWorkTime" Culture="auto" meta:resourcekey="PageResource1" UICulture="auto" %>
 
-<%@ Register Assembly="System.Web.DynamicData, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.DynamicData" TagPrefix="cc1" %>
-<%@ Register Assembly="AjaxSamples" Namespace="AjaxSamples" TagPrefix="as" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<%@ Register Src="~/Control/Calendar2.ascx" TagName="Calendar2" TagPrefix="Cal" %>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <%--script--%>
-    <script type="text/javascript" src="../Script/GridEvent.js"></script>
-    <script type="text/javascript" src="../Script/AutoComplete.js"></script>
-    <%--script--%>
-
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
 
@@ -178,19 +168,10 @@
                             CompletionListItemCssClass="AutoExtenderList"
                             CompletionListHighlightedItemCssClass="AutoExtenderHighlight"
                             CompletionSetCount="12" />
-                        <asp:RequiredFieldValidator ID="reqBranchManager1" runat="server"
-                            ControlToValidate="txtEmpID" EnableClientScript="False" CssClass="CustomValidator"
-                            Text="&lt;img src='../images/Exclamation.gif' title='Emloyee ID is required!' /&gt;"
-                            ValidationGroup="vgSave" meta:resourcekey="reqBranchManager1Resource1"></asp:RequiredFieldValidator>
-
-                        <asp:CustomValidator ID="cvFindEmp" runat="server"
-                            Text="&lt;img src='../images/message_exclamation.png' title='Employee Not found!' /&gt;"
-                            ErrorMessage="Employee Not found!"
-                            ValidationGroup="vgSave" CssClass="CustomValidator"
-                            OnServerValidate="FindEmp_ServerValidate"
-                            EnableClientScript="False"
-                            ControlToValidate="txtValid"
-                            meta:resourcekey="cvFindEmpResource1"></asp:CustomValidator>
+                        
+                        <asp:CustomValidator ID="cvEmpID" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='' /&gt;"
+                            ValidationGroup="vgSave" OnServerValidate="EmpID_ServerValidate" CssClass="CustomValidator"
+                            EnableClientScript="False" ControlToValidate="txtValid"></asp:CustomValidator>
                     </div>
                     <div class="col2">
                         <span class="RequiredField">*</span>
@@ -222,57 +203,25 @@
                         <Cal:Calendar2 ID="calEndDate" runat="server" CalendarType="System" ValidationRequired="true" ValidationGroup="vgSave" />
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col2">
                         <span class="RequiredField">*</span>
-                        <asp:Label ID="lblWorkingdays" runat="server" Text="Working days :"
-                            meta:resourcekey="lblWorkingdaysResource1"></asp:Label>
+                        <asp:Label ID="lblWorkingdays" runat="server" Text="Working days :" meta:resourcekey="lblWorkingdaysResource1"></asp:Label>
                     </div>
-                    <div class="col4">
-                        <span class="daysChk">
-                            <asp:CheckBox ID="chkEwrSun" runat="server" Enabled="False" Text="Sunday"
-                                meta:resourcekey="chkEwrSunResource1" />
-                        </span>
-                        <span class="daysChk">
-                            <asp:CheckBox ID="chkEwrMon" runat="server" Enabled="False" Text="Monday"
-                                meta:resourcekey="chkEwrMonResource1" />
-                        </span>
-                        <span class="daysChk">
-                            <asp:CheckBox ID="chkEwrTue" runat="server" Enabled="False" Text="Tuesday"
-                                meta:resourcekey="chkEwrTueResource1" />
-                        </span>
-                        <span class="daysChk">
-                            <asp:CheckBox ID="chkEwrWed" runat="server" Enabled="False" Text="Wednesday"
-                                meta:resourcekey="chkEwrWedResource1" />
-                        </span>
-                        <span class="daysChk">
-                            <asp:CheckBox ID="chkEwrThu" runat="server" Enabled="False" Text="Thursday"
-                                meta:resourcekey="chkEwrThuResource1" />
-                        </span>
-                        <span class="daysChk">
-                            <asp:CheckBox ID="chkEwrFri" runat="server" Enabled="False" Text="Friday"
-                                meta:resourcekey="chkEwrFriResource1" />
-                        </span>
-                        <span class="daysChk">
-                            <asp:CheckBox ID="chkEwrSat" runat="server" Enabled="False" Text="Saturday"
-                                meta:resourcekey="chkEwrSatResource1" />
-                        </span>
-                        <asp:CustomValidator ID="cvSelectWorkDays" runat="server"
-                            Text="&lt;img src='../images/message_exclamation.png' title='Select Work Days!' /&gt;"
-                            ValidationGroup="vgSave"
-                            ErrorMessage="Select Work Days" CssClass="CustomValidator"
-                            OnServerValidate="SelectWorkDays_ServerValidate"
-                            EnableClientScript="False"
-                            ControlToValidate="txtValid" meta:resourcekey="cvSelectWorkDaysResource1"></asp:CustomValidator>
+                    <div > <%--class="col5"--%>
+                        <AM:DaysChekboxlist id="dclDays" runat="server" ValidationGroup="vgSave"></AM:DaysChekboxlist>
                     </div>
+                </div>
+
+                <div class="row">
+                    <div class="col2"></div>
+                    <div class="col4"></div>
                     <div class="col2"></div>
                     <div class="col4">
                         <asp:TextBox ID="txtID" runat="server" AutoCompleteType="Disabled" Enabled="False" Visible="false" Width="15px"></asp:TextBox>
                     </div>
                 </div>
             </div>
-            </table>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

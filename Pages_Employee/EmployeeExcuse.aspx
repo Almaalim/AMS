@@ -2,19 +2,7 @@
     AutoEventWireup="true" CodeFile="EmployeeExcuse.aspx.cs" Inherits="EmployeeExcuse" 
     Culture="auto" meta:resourcekey="PageResource1" UICulture="auto" %>
 
-<%@ Register Assembly="Stimulsoft.Report.WebFx" Namespace="Stimulsoft.Report.WebFx" TagPrefix="cc2" %>
-<%@ Register Assembly="TimePickerServerControl" Namespace="TimePickerServerControl" TagPrefix="Almaalim" %>
-<%@ Register Assembly="System.Web.DynamicData, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.DynamicData" TagPrefix="cc1" %>
-<%@ Register Assembly="AjaxSamples" Namespace="AjaxSamples" TagPrefix="as" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<%@ Register Src="~/Control/Calendar2.ascx" TagName="Calendar2" TagPrefix="Cal" %>
-
-
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <%--script--%>
-    <script type="text/javascript" src="../Script/GridEvent.js"></script>
-    <script type="text/javascript" src="../Script/AutoComplete.js"></script>
-    <%--script--%>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="row">
@@ -155,18 +143,15 @@
                         <asp:TextBox ID="txtEmpID" runat="server" autocomplete="off" Enabled="False"
                             meta:resourcekey="txtEmpIDResource1" AutoPostBack="True" OnTextChanged="txtEmpID_TextChanged"></asp:TextBox>
 
-
                         <ajaxToolkit:AutoCompleteExtender runat="server" ID="auID" TargetControlID="txtEmpID"
                             ServicePath="~/Service/AutoComplete.asmx" ServiceMethod="GetEmployeeIDList" MinimumPrefixLength="1"
                             CompletionInterval="1000" EnableCaching="true" OnClientItemSelected="AutoCompleteIDItemSelected"
                             CompletionListElementID="pnlauID" CompletionListCssClass="AutoExtender" CompletionListItemCssClass="AutoExtenderList"
                             CompletionListHighlightedItemCssClass="AutoExtenderHighlight" CompletionSetCount="12" />
-                        <asp:RequiredFieldValidator ID="reqBranchManager1" runat="server" ControlToValidate="txtEmpID" CssClass="CustomValidator"
-                            EnableClientScript="False" Text="&lt;img src='../images/Exclamation.gif' title='Emloyee ID is required!' /&gt;"
-                            ValidationGroup="vgSave" meta:resourcekey="reqBranchManager1Resource1"></asp:RequiredFieldValidator>
-                        <asp:CustomValidator ID="cvFindEmp" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='Employee Not found!' /&gt;"
-                            ErrorMessage="Employee Not found!" ValidationGroup="vgSave" OnServerValidate="FindEmp_ServerValidate" CssClass="CustomValidator"
-                            EnableClientScript="False" ControlToValidate="txtValid" meta:resourcekey="cvFindEmpResource1"></asp:CustomValidator>
+                        
+                        <asp:CustomValidator ID="cvEmpID" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='' /&gt;"
+                            ValidationGroup="vgSave" OnServerValidate="EmpID_ServerValidate" CssClass="CustomValidator"
+                            EnableClientScript="False" ControlToValidate="txtValid"></asp:CustomValidator>
                     </div>
                     <div class="col2">
                         <span class="RequiredField">*</span>

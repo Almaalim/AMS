@@ -150,7 +150,7 @@ public partial class EmployeeGaps : BasePage
     {
         try
         {
-            if (pGDate != null)
+            if (!string.IsNullOrEmpty(Convert.ToString(pGDate)))
             {
                 GregorianCalendar Grn = new GregorianCalendar();
                 string dayNameEn = Grn.GetDayOfWeek(Convert.ToDateTime(pGDate)).ToString();

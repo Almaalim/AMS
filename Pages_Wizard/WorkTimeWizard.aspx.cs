@@ -97,14 +97,7 @@ public partial class WorkTimeWizard : BasePage
         ddlWktID.SelectedIndex = -1;
         calStartDate.ClearDate();
         calEndDate.ClearDate();
-        chkEwrSat.Checked = false;
-        chkEwrSun.Checked = false;
-        chkEwrMon.Checked = false;
-        chkEwrTue.Checked = false;
-        chkEwrWed.Checked = false;
-        chkEwrThu.Checked = false;
-        chkEwrFri.Checked = false;
-
+        dclDays.Clear();
         ucEmployeeSelected.Clear();
     }
 
@@ -239,13 +232,28 @@ public partial class WorkTimeWizard : BasePage
                 ProCs.WktID         = ddlWktID.SelectedValue.ToString();
                 ProCs.EwrStartDate  = calStartDate.getGDateDBFormat();
                 ProCs.EwrEndDate    = calEndDate.getGDateDBFormat();
-                ProCs.EwrSat        = chkEwrSat.Checked;
-                ProCs.EwrSun        = chkEwrSun.Checked;
-                ProCs.EwrMon        = chkEwrMon.Checked;
-                ProCs.EwrTue        = chkEwrTue.Checked;
-                ProCs.EwrWed        = chkEwrWed.Checked;
-                ProCs.EwrThu        = chkEwrThu.Checked;
-                ProCs.EwrFri        = chkEwrFri.Checked;
+
+                string EwrSun = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Sunday);
+                ProCs.EwrSun = (EwrSun == "0") ? false : true;
+
+                string EwrMon = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Monday);
+                ProCs.EwrMon = (EwrMon == "0") ? false : true;
+
+                string EwrTue = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tuesday);
+                ProCs.EwrTue = (EwrTue == "0") ? false : true;
+
+                string EwrWed = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Wednesday);
+                ProCs.EwrWed = (EwrWed == "0") ? false : true;
+
+                string EwrThu = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tharsday);
+                ProCs.EwrThu = (EwrThu == "0") ? false : true;
+
+                string EwrFri = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Friday);
+                ProCs.EwrFri = (EwrFri == "0") ? false : true;
+
+                string EwrSat = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Saturday);
+                ProCs.EwrSat = (EwrSat == "0") ? false : true;
+
                 ProCs.TransactionBy = pgCs.LoginID;
                 
                 string SaveIDs    = "";
@@ -306,22 +314,6 @@ public partial class WorkTimeWizard : BasePage
     /*#############################################################################################################################*/
     #region Custom Validate Events
     
-    protected void SelectWorkDays_ServerValidate(Object source, ServerValidateEventArgs e)
-    {
-        try
-        {
-            if (!chkEwrSat.Checked && !chkEwrSun.Checked && !chkEwrMon.Checked && !chkEwrTue.Checked && !chkEwrWed.Checked && !chkEwrThu.Checked && !chkEwrFri.Checked)
-            {
-                e.IsValid = false;
-            }
-            else { e.IsValid = true; }
-        }
-        catch
-        {
-            e.IsValid = false;
-        }
-    }
-
     #endregion
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/

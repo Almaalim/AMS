@@ -434,7 +434,7 @@ public partial class AddLeaveEarlyTrans : BasePage
         {
             if (source.Equals(cvFindEmp))
             {
-                if (!string.IsNullOrEmpty(txtEmpIDSearch.Text))
+                if (!string.IsNullOrEmpty(txtEmpIDSearch.Text.Trim()))
                 {
                     UIClear();
                     txtEmpID.Text = (txtEmpIDSearch.Text.Split('-'))[0].ToString();
@@ -456,7 +456,7 @@ public partial class AddLeaveEarlyTrans : BasePage
 
             else if (source.Equals(cvFindEmpName))
             {
-                if (!string.IsNullOrEmpty(txtEmpNameSearch.Text))
+                if (!string.IsNullOrEmpty(txtEmpNameSearch.Text.Trim()))
                 {
                     UIClear();
                     txtEmpID.Text = (txtEmpNameSearch.Text.Split('-'))[1].ToString();

@@ -2,9 +2,6 @@
     CodeFile="CurrentUsers.aspx.cs" Inherits="CurrentUsers" Culture="auto" meta:resourcekey="PageResource1" UICulture="auto" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <%--script--%>
-    <script type="text/javascript" src="../Script/GridEvent.js"></script>
-    <%--script--%>
     <div class="row">
         <div class="col12">
             <asp:GridView ID="grdData" runat="server" CssClass="datatable"

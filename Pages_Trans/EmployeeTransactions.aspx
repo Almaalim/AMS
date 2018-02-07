@@ -1,16 +1,6 @@
 ﻿<%@ Page Title="Employee Transaction" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true"
     CodeFile="EmployeeTransactions.aspx.cs" Inherits="EmployeeTransactions" Culture="auto" meta:resourcekey="PageResource1" UICulture="auto" %>
-
-<%@ Register Assembly="AjaxSamples" Namespace="AjaxSamples" TagPrefix="as" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
-
-    <script type="text/javascript" src="../Script/GridEvent.js"></script>
-    <script type="text/javascript" src="../Script/AutoComplete1.js"></script>
-
-    <%--script--%>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="row">
@@ -261,15 +251,12 @@
                                                 meta:resourcekey="lblGapEndTime1Resource1"></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-
                                     <asp:TemplateField HeaderText="Duration" SortExpression="GapDuration"
                                         meta:resourcekey="TemplateFieldResource16">
                                         <ItemTemplate>
                                             <%# DisplayFun.GrdDisplayDuration(Eval("GapDuration"))%>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-
-
                                     <asp:BoundField HeaderText="GapID" DataField="GapID" ReadOnly="True"
                                         meta:resourcekey="BoundFieldResource3"></asp:BoundField>
                                 </Columns>

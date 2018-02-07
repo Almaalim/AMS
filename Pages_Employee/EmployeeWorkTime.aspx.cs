@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Elmah;
 using System.Data;
 using System.Collections;
-using System.Text;
-using System.Globalization;
 using System.Data.SqlClient;
 
 public partial class EmployeeWorkTime : BasePage
@@ -150,13 +145,7 @@ public partial class EmployeeWorkTime : BasePage
         ddlWktID.Enabled = pStatus;        
         calStartDate.SetEnabled(pStatus);
         calEndDate.SetEnabled(pStatus);
-        chkEwrSat.Enabled = pStatus;
-        chkEwrSun.Enabled = pStatus;
-        chkEwrMon.Enabled = pStatus;
-        chkEwrTue.Enabled = pStatus;
-        chkEwrWed.Enabled = pStatus;
-        chkEwrThu.Enabled = pStatus;
-        chkEwrFri.Enabled = pStatus;
+        dclDays.Enabled(pStatus);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -174,14 +163,27 @@ public partial class EmployeeWorkTime : BasePage
             ProCs.EwrStartDate = calStartDate.getGDateDBFormat();
             if (!string.IsNullOrEmpty(calEndDate.getGDate())) { ProCs.EwrEndDate = calEndDate.getGDateDBFormat(); } else { ProCs.EwrEndDate = calStartDate.getGDateDBFormat(); }
 
-            ProCs.EwrSat = chkEwrSat.Checked;
-            ProCs.EwrSun = chkEwrSun.Checked;
-            ProCs.EwrMon = chkEwrMon.Checked;
-            ProCs.EwrTue = chkEwrTue.Checked;
-            ProCs.EwrWed = chkEwrWed.Checked;
-            ProCs.EwrThu = chkEwrThu.Checked;
-            ProCs.EwrFri = chkEwrFri.Checked;
-            
+            string EwrSun = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Sunday);
+            ProCs.EwrSun = (EwrSun == "0") ? false : true;
+
+            string EwrMon = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Monday);
+            ProCs.EwrMon = (EwrMon == "0") ? false : true;
+
+            string EwrTue = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tuesday);
+            ProCs.EwrTue = (EwrTue == "0") ? false : true;
+
+            string EwrWed = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Wednesday);
+            ProCs.EwrWed = (EwrWed == "0") ? false : true;
+
+            string EwrThu = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tharsday);
+            ProCs.EwrThu = (EwrThu == "0") ? false : true;
+
+            string EwrFri = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Friday);
+            ProCs.EwrFri = (EwrFri == "0") ? false : true;
+
+            string EwrSat = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Saturday);
+            ProCs.EwrSat = (EwrSat == "0") ? false : true;
+
             ProCs.TransactionBy = pgCs.LoginID;
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
@@ -197,13 +199,7 @@ public partial class EmployeeWorkTime : BasePage
         ddlWktID.SelectedIndex = -1;
         calStartDate.ClearDate();
         calEndDate.ClearDate();
-        chkEwrSat.Checked = false;
-        chkEwrSun.Checked = false;
-        chkEwrMon.Checked = false;
-        chkEwrTue.Checked = false;
-        chkEwrWed.Checked = false;
-        chkEwrThu.Checked = false;
-        chkEwrFri.Checked = false;
+        dclDays.Clear();
 
         ddlWktID.Show(DDLAttributes.DropDownListAttributes.ShowType.ALL);
     }
@@ -242,7 +238,10 @@ public partial class EmployeeWorkTime : BasePage
         }
 
         ViewState["CommandName"] = "EDIT";
+        string oldval = ddlWktID.SelectedValue;
         ddlWktID.Show(DDLAttributes.DropDownListAttributes.ShowType.ActiveOnly);
+        ddlWktID.SelectedIndex = ddlWktID.Items.IndexOf(ddlWktID.Items.FindByValue(oldval));
+
         UIEnabled(true);
         txtEmpID.Enabled   = false;
         BtnStatus("0011");
@@ -493,13 +492,13 @@ public partial class EmployeeWorkTime : BasePage
             calStartDate.SetGDate(DRs[0]["EwrStartDate"], pgCs.DateFormat);
             calEndDate.SetGDate(DRs[0]["EwrEndDate"], pgCs.DateFormat);
 
-            if (DRs[0]["EwrSat"] != DBNull.Value) { chkEwrSat.Checked = Convert.ToBoolean( DRs[0]["EwrSat"] ); }
-            if (DRs[0]["EwrSun"] != DBNull.Value) { chkEwrSun.Checked = Convert.ToBoolean( DRs[0]["EwrSun"] ); }
-            if (DRs[0]["EwrMon"] != DBNull.Value) { chkEwrMon.Checked = Convert.ToBoolean( DRs[0]["EwrMon"] ); }
-            if (DRs[0]["EwrTue"] != DBNull.Value) { chkEwrTue.Checked = Convert.ToBoolean( DRs[0]["EwrTue"] ); }
-            if (DRs[0]["EwrWed"] != DBNull.Value) { chkEwrWed.Checked = Convert.ToBoolean( DRs[0]["EwrWed"] ); }
-            if (DRs[0]["EwrThu"] != DBNull.Value) { chkEwrThu.Checked = Convert.ToBoolean( DRs[0]["EwrThu"] ); }
-            if (DRs[0]["EwrFri"] != DBNull.Value) { chkEwrFri.Checked = Convert.ToBoolean( DRs[0]["EwrFri"] ); }
+            dclDays.SetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Sunday   , Convert.ToInt32(DRs[0]["EwrSun"]));
+            dclDays.SetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Monday   , Convert.ToInt32(DRs[0]["EwrMon"]));
+            dclDays.SetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tuesday  , Convert.ToInt32(DRs[0]["EwrTue"]));
+            dclDays.SetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Wednesday, Convert.ToInt32(DRs[0]["EwrWed"]));
+            dclDays.SetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tharsday , Convert.ToInt32(DRs[0]["EwrThu"]));
+            dclDays.SetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Friday   , Convert.ToInt32(DRs[0]["EwrFri"]));
+            dclDays.SetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Saturday , Convert.ToInt32(DRs[0]["EwrSat"]));
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
@@ -538,26 +537,19 @@ public partial class EmployeeWorkTime : BasePage
     /*#############################################################################################################################*/
     #region Custom Validate Events
 
-    protected void SelectWorkDays_ServerValidate(Object source, ServerValidateEventArgs e)
+    protected void EmpID_ServerValidate(Object source, ServerValidateEventArgs e)
     {
         try
         {
-            if (!chkEwrSat.Checked && !chkEwrSun.Checked && !chkEwrMon.Checked && !chkEwrTue.Checked && !chkEwrWed.Checked && !chkEwrThu.Checked && !chkEwrFri.Checked)
+            if (string.IsNullOrEmpty(txtEmpID.Text.Trim()))
             {
+                CtrlCs.ValidMsg(this, ref cvEmpID, false, General.Msg("Emloyee ID is required", "رقم الموظف مطلوب"));
                 e.IsValid = false;
             }
-        }
-        catch { e.IsValid = false; }
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void FindEmp_ServerValidate(Object source, ServerValidateEventArgs e)
-    {
-        try
-        {
-            if (!string.IsNullOrEmpty(txtEmpID.Text))
+            else
             {
-                if (!GenCs.isEmpID(txtEmpID.Text)) { e.IsValid = false; }
+                CtrlCs.ValidMsg(this, ref cvEmpID, true, General.Msg("Employee ID does not exist", "رقم الموظف غير موجود"));
+                if (!GenCs.isEmpID(txtEmpID.Text.Trim(), pgCs.DepList)) { e.IsValid = false; }
             }
         }
         catch { e.IsValid = false; }

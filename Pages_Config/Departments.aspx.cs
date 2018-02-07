@@ -584,6 +584,9 @@ public partial class Departments : BasePage
     {
         try
         {
+            string NameEn = txtNameEn.Text.Trim();
+            string NameAr = txtNameAr.Text.Trim();
+
             string UQ = string.Empty;
             string parent = (ddlDepParentName.SelectedIndex > 0) ? ddlDepParentName.SelectedValue : "0";
             if (ViewState["CommandName"].ToString() == "EDIT") { UQ = " AND DepID != @P4 "; }
@@ -593,13 +596,13 @@ public partial class Departments : BasePage
                 if (pgCs.LangEn)
                 {
                     CtrlCs.ValidMsg(this, ref cvNameEn, false, General.Msg("Name (En) Is Required", "الاسم بالإنجليزي مطلوب"));
-                    if (string.IsNullOrEmpty(txtNameEn.Text)) { e.IsValid = false; }
+                    if (string.IsNullOrEmpty(NameEn)) { e.IsValid = false; }
                 }
 
-                if (!string.IsNullOrEmpty(txtNameEn.Text))
+                if (!string.IsNullOrEmpty(NameEn))
                 {
                     CtrlCs.ValidMsg(this, ref cvNameEn, true, General.Msg("Entered Department English Name exist already,Please enter another name", "إسم القسم بالإنجليزي مدخل مسبقا ، الرجاء إدخال إسم آخر"));
-                    DataTable DT = DBCs.FetchData("SELECT * FROM Department WHERE DepNameEn = @P1 AND BrcID = @P2 AND DepParentID = @P3 " + UQ, new string[] { txtNameEn.Text,ddlBrcParentName.SelectedValue, parent, txtID.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM Department WHERE DepNameEn = @P1 AND BrcID = @P2 AND DepParentID = @P3 " + UQ, new string[] { NameEn, ddlBrcParentName.SelectedValue, parent, txtID.Text });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }
@@ -608,14 +611,14 @@ public partial class Departments : BasePage
                 if (pgCs.LangAr)
                 {
                     CtrlCs.ValidMsg(this, ref cvNameAr, false, General.Msg("Name (Ar) Is Required", "الاسم بالعربي مطلوب"));
-                    if (string.IsNullOrEmpty(txtNameAr.Text)) { e.IsValid = false; }
+                    if (string.IsNullOrEmpty(NameAr)) { e.IsValid = false; }
                 }
 
-                if (!string.IsNullOrEmpty(txtNameAr.Text))
+                if (!string.IsNullOrEmpty(NameAr))
                 {
                     CtrlCs.ValidMsg(this, ref cvNameAr, true, General.Msg("Entered Department Arabic Name exist already,Please enter another name", "إسم القسم بالعربي مدخل مسبقا ، الرجاء إدخال إسم آخر"));
                     
-                    DataTable DT = DBCs.FetchData("SELECT * FROM Department WHERE DepNameAr = @P1 AND BrcID = @P2 AND DepParentID = @P3 " + UQ, new string[] { txtNameAr.Text,ddlBrcParentName.SelectedValue, parent, txtID.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM Department WHERE DepNameAr = @P1 AND BrcID = @P2 AND DepParentID = @P3 " + UQ, new string[] { NameAr,ddlBrcParentName.SelectedValue, parent, txtID.Text });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }

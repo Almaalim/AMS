@@ -1,7 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="SetActingUser.aspx.cs" Inherits="SetActingUser" meta:resourcekey="PageResource1" Culture="auto" UICulture="auto" %>
 
-<%@ Register Assembly="AjaxSamples" Namespace="AjaxSamples" TagPrefix="as" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <!DOCTYPE >
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">

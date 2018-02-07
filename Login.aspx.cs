@@ -50,8 +50,8 @@ public partial class Login : BasePage
         Session.Clear();
         Session.RemoveAll();
 
-        //txtname.Text = "admin";
-        //txtpass.Attributes["value"] = "admin";
+        txtname.Text = "admin";
+        txtpass.Attributes["value"] = "admin";
         //string DecPass = CryptorEngine.Encrypt("1,2,3,4", true);
 
         if (Application["LoginLang"] != null)

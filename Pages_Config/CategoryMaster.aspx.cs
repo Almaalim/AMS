@@ -488,6 +488,9 @@ public partial class CategoryMaster : BasePage
     {
         try
         {
+            string NameEn = txtNameEn.Text.Trim();
+            string NameAr = txtNameAr.Text.Trim();
+
             string UQ = string.Empty;
             if (ViewState["CommandName"].ToString() == "EDIT") { UQ = " AND CatID != @P2 "; }
             
@@ -496,13 +499,13 @@ public partial class CategoryMaster : BasePage
                 if (pgCs.LangEn)
                 {
                     CtrlCs.ValidMsg(this, ref cvNameEn, false, General.Msg("Name (En) Is Required", "الاسم بالإنجليزي مطلوب"));
-                    if (string.IsNullOrEmpty(txtNameEn.Text)) { e.IsValid = false; }
+                    if (string.IsNullOrEmpty(NameEn)) { e.IsValid = false; }
                 }
                 
-                if (!string.IsNullOrEmpty(txtNameEn.Text))
+                if (!string.IsNullOrEmpty(NameEn))
                 {
                     CtrlCs.ValidMsg(this, ref cvNameEn, true, General.Msg("Entered Category English Name exist already,Please enter another name", "إسم التصنيف بالإنجليزي مدخل مسبقا ، الرجاء إدخال إسم آخر"));
-                    DataTable DT = DBCs.FetchData("SELECT * FROM Category WHERE CatNameEn = @P1 AND ISNULL(CatDeleted,0) = 0 " + UQ, new string[] { txtNameEn.Text, txtID.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM Category WHERE CatNameEn = @P1 AND ISNULL(CatDeleted,0) = 0 " + UQ, new string[] { NameEn, txtID.Text });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }
@@ -511,12 +514,12 @@ public partial class CategoryMaster : BasePage
                 if (pgCs.LangAr)
                 {
                     CtrlCs.ValidMsg(this, ref cvNameAr, false, General.Msg("Name (Ar) Is Required", "الاسم بالعربي مطلوب"));
-                    if (string.IsNullOrEmpty(txtNameAr.Text)) { e.IsValid = false; }
+                    if (string.IsNullOrEmpty(NameAr)) { e.IsValid = false; }
                 }
-                if (!string.IsNullOrEmpty(txtNameAr.Text))
+                if (!string.IsNullOrEmpty(NameAr))
                 {
                     CtrlCs.ValidMsg(this, ref cvNameAr, true, General.Msg("Entered Category Arabic Name exist already,Please enter another name", "إسم التصنيف بالعربي مدخل مسبقا ، الرجاء إدخال إسم آخر"));
-                    DataTable DT = DBCs.FetchData("SELECT * FROM Category WHERE CatNameAr = @P1 AND ISNULL(CatDeleted,0) = 0 " + UQ, new string[] { txtNameAr.Text, txtID.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM Category WHERE CatNameAr = @P1 AND ISNULL(CatDeleted,0) = 0 " + UQ, new string[] { NameAr, txtID.Text });
                     if (!DBCs.IsNullOrEmpty(dt)) { e.IsValid = false; }
                 }
             }

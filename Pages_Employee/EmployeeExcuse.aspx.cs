@@ -554,13 +554,19 @@ public partial class EmployeeExcuse : BasePage
     /*#############################################################################################################################*/
     #region Custom Validate Events
 
-    protected void FindEmp_ServerValidate(Object source, ServerValidateEventArgs e)
+    protected void EmpID_ServerValidate(Object source, ServerValidateEventArgs e)
     {
         try
         {
-            if (!string.IsNullOrEmpty(txtEmpID.Text))
+            if (string.IsNullOrEmpty(txtEmpID.Text.Trim()))
             {
-                if(!GenCs.isEmpID(txtEmpID.Text)) { e.IsValid = false; }
+                CtrlCs.ValidMsg(this, ref cvEmpID, false, General.Msg("Emloyee ID is required", "رقم الموظف مطلوب"));
+                e.IsValid = false;
+            }
+            else
+            {
+                CtrlCs.ValidMsg(this, ref cvEmpID, true, General.Msg("Employee ID does not exist", "رقم الموظف غير موجود"));
+                if (!GenCs.isEmpID(txtEmpID.Text.Trim(), pgCs.DepList)) { e.IsValid = false; }
             }
         }
         catch { e.IsValid = false; }
