@@ -4,12 +4,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+
     <script language="javascript" type="text/javascript">
-        //function showWait() {
-        //    //if ($get('fudReqFile').value.length > 0) {
-        //    $get('upWaiting').style.display = 'block';
-        //    //}
-        //}
+        function showWait() {
+            //if ($get('fudReqFile').value.length > 0) {
+            $get('upWaiting').style.display = 'block';
+            //}
+        }
     </script>
     <script type="text/javascript">
         function PostbackFunction() {
@@ -338,6 +339,7 @@
     <title>Excuse Request </title>
 
     <script type="text/javascript" src="../Script/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="../Script/DivPopup.js" ></script>
     <link href="~/CSS/Metro/Metro.css" rel="stylesheet" runat="server" id="LanguageSwitch" />
     
      <script type="text/javascript">

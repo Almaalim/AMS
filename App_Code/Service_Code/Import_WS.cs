@@ -88,10 +88,10 @@ public class Import_WS : System.Web.Services.WebService
             if (!CheckUser(WS, out Err)) { return null; }
 
             StringBuilder SQ = new StringBuilder();
-            SQ.Append(" SELECT MacID, MtpName, MacLocationAr, MacLocationEn, MacIP, MacPort, MacNo, MacUseKey, MacInKeys, MacOutKeys");
+            SQ.Append(" SELECT MacID, MtpName, MacLocationAr, MacLocationEn, MacIP, MacPort, MacNo, ISNULL(MacUseKey,'False') MacUseKey, MacInKeys, MacOutKeys");
             SQ.Append(" FROM MachineInfoView ");
             SQ.Append(" WHERE MacStatus = 'True' AND MacVirtualType IS NULL AND ISNULL(MacDeleted,0) = 0 ");
-            SQ.Append(" AND MacID IN (16,17) ");
+            //SQ.Append(" AND MacID IN (16,17) ");
             SQ.Append(" ORDER BY MtpID ");
 
             DataSet DS = DBCs.GetData(SQ.ToString(), null);

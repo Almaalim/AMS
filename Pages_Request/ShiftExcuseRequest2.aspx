@@ -338,7 +338,8 @@
     <title> Shift Excuse Request </title>
 
     <link href="~/CSS/Metro/Metro.css" rel="stylesheet" runat="server" id="LanguageSwitch" />
-     <script type="text/javascript" src="../Script/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="../Script/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="../Script/DivPopup.js"></script>
      <script type="text/javascript">
         $(document).ready(function () {
             $("div[class*='col']").each(function () {

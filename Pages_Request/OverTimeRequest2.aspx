@@ -338,6 +338,7 @@
     <title>Overtime Request </title>
 
     <script type="text/javascript" src="../Script/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="../Script/DivPopup.js"></script>
     <link href="~/CSS/Metro/Metro.css" rel="stylesheet" runat="server" id="LanguageSwitch" />
 
     <script type="text/javascript">

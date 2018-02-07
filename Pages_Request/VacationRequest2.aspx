@@ -350,6 +350,7 @@
     <style> .col2 , .col4 { max-width:50% !important; } </style>
 
     <script src="../Script/jquery-1.7.1.min.js" type="text/javascript" ></script>
+    <script type="text/javascript" src="../Script/DivPopup.js"></script>
     <link href="~/CSS/Metro/Metro.css" rel="stylesheet" runat="server" id="LanguageSwitch" />
     
     <title>Vacation Request</title>    
