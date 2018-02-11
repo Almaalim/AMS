@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using Elmah;
 using System.Data;
 using System.Collections;
-using System.Text;
-using System.Globalization;
-using System.Threading;
 using System.Data.SqlClient;
 
 public partial class SetEmployeeVacation : BasePage
@@ -473,9 +466,6 @@ public partial class SetEmployeeVacation : BasePage
             e.IsValid = false;
         }
     }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void ShowMsg_ServerValidate(Object source, ServerValidateEventArgs e) { e.IsValid = false; }
 
     #endregion
     /*#############################################################################################################################*/

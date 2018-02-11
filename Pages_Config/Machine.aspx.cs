@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Elmah;
 using System.Data;
 using System.Collections;
-using System.Text;
-using System.Globalization;
 using System.Data.SqlClient;
-using System.Configuration;
 
 public partial class Machine : BasePage
 {
@@ -599,6 +593,9 @@ public partial class Machine : BasePage
     {
         try
         {
+            string NameEn = txtMacLocEn.Text.Trim();
+            string NameAr = txtMacLocAr.Text.Trim();
+
             string UQ = string.Empty;
             if (ViewState["CommandName"].ToString() == "EDIT") { UQ = " AND MacID != @P2 "; }
 
@@ -607,14 +604,14 @@ public partial class Machine : BasePage
                 if (pgCs.LangEn)
                 {
                     CtrlCs.ValidMsg(this, ref cvMacLocEn, false, General.Msg("Location (En) Is Required", "اسم الجهاز بالإنجليزي مطلوب"));
-                    if (string.IsNullOrEmpty(txtMacLocEn.Text)) { e.IsValid = false; }
+                    if (string.IsNullOrEmpty(NameEn)) { e.IsValid = false; }
                 }
 
-                if (!string.IsNullOrEmpty(txtMacLocEn.Text))
+                if (!string.IsNullOrEmpty(NameEn))
                 {
                     CtrlCs.ValidMsg(this, ref cvMacLocEn, true, General.Msg("Entered Machine English Name exist already,Please enter another name", "إسم الجهاز بالإنجليزي مدخل مسبقا ، الرجاء إدخال إسم آخر"));
 
-                    DataTable DT = DBCs.FetchData("SELECT * FROM Machine WHERE MacLocationEn = @P1 AND ISNULL(MacDeleted,0) = 0 " + UQ, new string[] { txtMacLocEn.Text, txtID.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM Machine WHERE MacLocationEn = @P1 AND ISNULL(MacDeleted,0) = 0 " + UQ, new string[] { NameEn, txtID.Text });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }
@@ -624,23 +621,23 @@ public partial class Machine : BasePage
                 if (pgCs.LangAr)
                 {
                     CtrlCs.ValidMsg(this, ref cvMacLocAr, false, General.Msg("Location (Ar) Is Required", "اسم الجهاز بالعربي مطلوب"));
-                    if (string.IsNullOrEmpty(txtMacLocAr.Text)) { e.IsValid = false; }
+                    if (string.IsNullOrEmpty(NameAr)) { e.IsValid = false; }
                 }
-                if (!string.IsNullOrEmpty(txtMacLocAr.Text))
+                if (!string.IsNullOrEmpty(NameAr))
                 {
                     CtrlCs.ValidMsg(this, ref cvMacLocAr, true, General.Msg("Entered Machine Arabic Name exist already,Please enter another name", "إسم الجهاز بالعربي مدخل مسبقا ، الرجاء إدخال إسم آخر"));
-                    DataTable DT = DBCs.FetchData("SELECT * FROM Machine WHERE MacLocationAr = @P1 AND ISNULL(MacDeleted,0) = 0 " + UQ, new string[] { txtMacLocAr.Text, txtID.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM Machine WHERE MacLocationAr = @P1 AND ISNULL(MacDeleted,0) = 0 " + UQ, new string[] { NameAr, txtID.Text });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }
 
             if (source.Equals(cvMachineNo))
             {
-                if (!String.IsNullOrEmpty(txtMachineNo.Text))
+                if (!string.IsNullOrEmpty(txtMachineNo.Text.Trim()))
                 {
                     CtrlCs.ValidMsg(this, ref cvMachineNo, true, General.Msg("Entered Machine Number exist already,Please enter another Number", "رقم الجهاز تم إدخاله مسبقا ، الرجاء إدخال رقم آخر")); 
                     
-                    DataTable DT = DBCs.FetchData("SELECT * FROM Machine WHERE MacNo = @P1 AND ISNULL(MacDeleted,0) = 0 " + UQ, new string[] { txtMachineNo.Text, txtID.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM Machine WHERE MacNo = @P1 AND ISNULL(MacDeleted,0) = 0 " + UQ, new string[] { txtMachineNo.Text.Trim(), txtID.Text });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }
@@ -650,12 +647,12 @@ public partial class Machine : BasePage
                 if (source.Equals(cvMacIP))
                 {
                     CtrlCs.ValidMsg(this, ref cvMacIP, false, General.Msg("IP Adress Is Required", "عنوان IP مطلوب"));
-                    if (string.IsNullOrEmpty(txtMachineIP.Text)) { e.IsValid = false; }
+                    if (string.IsNullOrEmpty(txtMachineIP.Text.Trim())) { e.IsValid = false; }
                 }
                 if (source.Equals(cvMacPort))
                 {
                     CtrlCs.ValidMsg(this, ref cvMacPort, false, General.Msg("Port Is Required", "رقم المنفذ مطلوب"));
-                    if (string.IsNullOrEmpty(txtMachinePort.Text)) { e.IsValid = false; }
+                    if (string.IsNullOrEmpty(txtMachinePort.Text.Trim())) { e.IsValid = false; }
                 } 
             }
         }

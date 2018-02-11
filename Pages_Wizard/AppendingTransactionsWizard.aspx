@@ -1,19 +1,9 @@
 ﻿<%@ Page Title="Add Transactions Wizard" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true"
     CodeFile="AppendingTransactionsWizard.aspx.cs" Inherits="AppendingTransactionsWizard" Culture="auto" meta:resourcekey="PageResource1" UICulture="auto" %>
 
-<%@ Register Assembly="TextTimeServerControl" Namespace="TextTimeServerControl" TagPrefix="Almaalim" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<%@ Register Assembly="AjaxSamples" Namespace="AjaxSamples" TagPrefix="as" %>
-<%@ Register Assembly="TimePickerServerControl" Namespace="TimePickerServerControl" TagPrefix="Almaalim" %>
-<%@ Register Src="~/Control/Calendar2.ascx" TagName="Calendar2" TagPrefix="Cal" %>
 <%@ Register Src="~/Control/EmployeeSelected.ascx" TagName="EmployeeSelected" TagPrefix="ucEmp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <%--script--%>
-    <script type="text/javascript" src="../Script/GridEvent.js"></script>
-    <script type="text/javascript" src="../Script/TabContainer.js"></script>
-    <%--script--%>
-
     <%--Style--%>
     <link href="../CSS/WizardStyle.css" rel="stylesheet" type="text/css" />
     <link href="../CSS/validationStyle.css" rel="stylesheet" type="text/css" />

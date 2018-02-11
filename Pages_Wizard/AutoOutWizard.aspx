@@ -1,17 +1,9 @@
 ﻿<%@ Page Title="Auto Out Wizard" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true"
     CodeFile="AutoOutWizard.aspx.cs" Inherits="AutoOutWizard" Culture="auto" meta:resourcekey="PageResource1" UICulture="auto" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<%@ Register Assembly="AjaxSamples" Namespace="AjaxSamples" TagPrefix="as" %>
 <%@ Register Src="~/Control/EmployeeSelected.ascx" TagName="EmployeeSelected" TagPrefix="ucEmp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-
-    <%--script--%>
-    <script type="text/javascript" src="../Script/GridEvent.js"></script>
-    <script type="text/javascript" src="../Script/TabContainer.js"></script>
-    <%--script--%>
-
     <%--Style--%>
     <link href="../CSS/WizardStyle.css" rel="stylesheet" type="text/css" />
     <link href="../CSS/validationStyle.css" rel="stylesheet" type="text/css" />

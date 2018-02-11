@@ -611,16 +611,20 @@ public partial class AttendanceRules : BasePage
     {
         try
         {
+            string NameEn = txtRuleSet.Text.Trim();
+            //string NameAr = txtGroupNameArb.Text.Trim();
+
+
             if (source.Equals(cvRuleSet))
             {
-                if (string.IsNullOrEmpty(txtRuleSet.Text)) { 
+                if (string.IsNullOrEmpty(NameEn)) { 
                     e.IsValid = false;
                     return;
                 }
-                if (!string.IsNullOrEmpty(txtRuleSet.Text))
+                if (!string.IsNullOrEmpty(NameEn))
                 {
                     CtrlCs.ValidMsg(this, ref cvRuleSet, true, General.Msg("Entered Ruleset already exists", "اسم مجموعة القواعد تم إدخاله مسبقا ، الرجاء إدخال رقم آخر")); 
-                    DataTable DT = DBCs.FetchData(" SELECT * FROM RuleSet where RlsNameEn= @P1 ", new string[] { txtRuleSet.Text.Trim() });
+                    DataTable DT = DBCs.FetchData(" SELECT * FROM RuleSet where RlsNameEn= @P1 ", new string[] { NameEn });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; } 
                 }
             }
@@ -630,9 +634,6 @@ public partial class AttendanceRules : BasePage
             e.IsValid = false;
         }
     }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void ShowMsg_ServerValidate(Object source, ServerValidateEventArgs e) { e.IsValid = false; }
 
     #endregion
     /*#############################################################################################################################*/

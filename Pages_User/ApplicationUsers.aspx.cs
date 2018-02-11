@@ -915,7 +915,7 @@ public partial class ApplicationUsers : BasePage
         {
             if (source.Equals(cvEmpID))
             {
-                if (!string.IsNullOrEmpty(txtEmpID.Text))
+                if (!string.IsNullOrEmpty(txtEmpID.Text.Trim()))
                 {
                     CtrlCs.ValidMsg(this, ref cvEmpID, true, General.Msg("Entered Employee ID does not exist already,Please enter another ID", "رقم الموظف غير موجود,أدخل رقما آخر"));
                     if (!GenCs.isEmpID(txtEmpID.Text)) { e.IsValid = false; }
@@ -935,10 +935,10 @@ public partial class ApplicationUsers : BasePage
 
             if (source.Equals(cvUsrName))
             {
-                if (!string.IsNullOrEmpty(txtUsername.Text))
+                if (!string.IsNullOrEmpty(txtUsername.Text.Trim()))
                 {
                     CtrlCs.ValidMsg(this, ref cvUsrName, true, General.Msg("User Name already exists", "اسم المستخدم موجود مسبقا"));
-                    DataTable DT = DBCs.FetchData("SELECT * FROM AppUser WHERE UsrName = @P1 AND ISNULL(UsrDeleted,0) = 0 " + UQ, new string[] { txtUsername.Text, txtUsername.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM AppUser WHERE UsrName = @P1 AND ISNULL(UsrDeleted,0) = 0 " + UQ, new string[] { txtUsername.Text.Trim(), txtUsername.Text.Trim() });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }
@@ -960,7 +960,7 @@ public partial class ApplicationUsers : BasePage
                 if (!string.IsNullOrEmpty(txtUsrADUser.Text))
                 {
                     CtrlCs.ValidMsg(this, ref cvADUser, true, General.Msg("Active Directory Name already exists", "اسم مستخدم Active Directory موجود مسبقا"));
-                    DataTable DT = DBCs.FetchData("SELECT * FROM AppUser WHERE UsrADUser = @P1 AND ISNULL(UsrDeleted,0) = 0 " + UQ, new string[] { txtUsrADUser.Text, txtUsername.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM AppUser WHERE UsrADUser = @P1 AND ISNULL(UsrDeleted,0) = 0 " + UQ, new string[] { txtUsrADUser.Text, txtUsername.Text.Trim() });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }
@@ -1011,9 +1011,9 @@ public partial class ApplicationUsers : BasePage
             txtActLoginName.Text = DT.Rows[0]["UsrActUserName"].ToString();
             if (DT.Rows[0]["UsrActPwd"] != DBNull.Value) { txtActPassword.Attributes["value"] = CryptorEngine.Decrypt(DT.Rows[0]["UsrActPwd"].ToString(), true); }
 
-            txtActEmpID.Text = DT.Rows[0]["UsrActEmpID"].ToString();
+            txtActEmpID.Text   = DT.Rows[0]["UsrActEmpID"].ToString();
             txtActEmailID.Text = DT.Rows[0]["UsrActEMailID"].ToString();
-            txtActADUser.Text = DT.Rows[0]["UsrADActUser"].ToString();
+            txtActADUser.Text  = DT.Rows[0]["UsrADActUser"].ToString();
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

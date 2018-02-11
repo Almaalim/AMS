@@ -1,11 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true"
     CodeFile="VacationRequest2.aspx.cs" Inherits="VacationRequest2" Culture="auto" UICulture="auto" meta:resourcekey="PageResource1" %>
 
-<%@ Register Assembly="System.Web.DynamicData, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.DynamicData" TagPrefix="cc1" %>
-<%@ Register Assembly="AjaxSamples" Namespace="AjaxSamples" TagPrefix="as" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<%@ Register Src="~/Control/Calendar2.ascx" TagName="Calendar2" TagPrefix="Cal" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -138,8 +133,6 @@
                     }
 
                 });
-                
-               
             }
 
             $("div[class*='col']").each(function () {
@@ -341,16 +334,7 @@
         });
         // $(window).resize(MobileListResize);
     </script>
-    <link href="~/CSS/Metro/Metro.css" rel="stylesheet" runat="server" id="LanguageSwitch" />
-    <title>Vacation Request </title>
-    <%--script--%>
-    <script type="text/javascript" src="../Script/GridEvent.js"></script>
-    <script type="text/javascript" src="../Script/CheckKey.js"></script>
-    <script type="text/javascript" src="../Script/ModalPopup.js"></script>
-    <script type="text/javascript" src="../Script/DivPopup.js"></script>
-    <%--script--%>
-    <script type="text/javascript" src="../Script/jquery-1.7.1.min.js"></script>
-     <script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function () {
             $("div[class*='col']").each(function () {
                 if ($(this).children(".RequiredField").length > 0) {
@@ -363,13 +347,13 @@
             });
         });
     </script>
-    <style>
-      .col2 , .col4
-        {
-            max-width:50% !important;
-        }
+    <style> .col2 , .col4 { max-width:50% !important; } </style>
 
- </style>
+    <script src="../Script/jquery-1.7.1.min.js" type="text/javascript" ></script>
+    <script type="text/javascript" src="../Script/DivPopup.js"></script>
+    <link href="~/CSS/Metro/Metro.css" rel="stylesheet" runat="server" id="LanguageSwitch" />
+    
+    <title>Vacation Request</title>    
 </head>
 <body>
     <form id="form1" runat="server">

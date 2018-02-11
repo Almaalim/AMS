@@ -1,7 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true" CodeFile="ImportTransactionLog.aspx.cs" Inherits="Pages_Admin_ImportTransactionLog" meta:resourcekey="PageResource1" %>
 
-<%@ Register Assembly="AjaxSamples" Namespace="AjaxSamples" TagPrefix="as" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>

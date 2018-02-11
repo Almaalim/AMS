@@ -1,20 +1,7 @@
 ﻿<%@ Page Title="Email Schedule" Language="C#" MasterPageFile="~/AMSMasterPage.master"
     AutoEventWireup="true" ValidateRequest="false" CodeFile="EmailSchedules.aspx.cs"
     Inherits="EmailSchedules" Culture="auto" meta:resourcekey="PageResource1" UICulture="auto" %>
-
-<%@ Register Assembly="TextTimeServerControl" Namespace="TextTimeServerControl" TagPrefix="Almaalim" %>
-<%@ Register Assembly="AjaxSamples" Namespace="AjaxSamples" TagPrefix="as" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<%@ Register Assembly="TimePickerServerControl" Namespace="TimePickerServerControl" TagPrefix="Almaalim" %>
-<%@ Register Src="~/Control/Calendar2.ascx" TagName="Calendar2" TagPrefix="Cal" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    
-    <%--script--%>
-    <script type="text/javascript" src="../Script/GridEvent.js"></script>
-    <script type="text/javascript" src="../Script/CheckKey.js"></script>
-    <%--script--%>
-    
     <asp:UpdatePanel ID="UpdatePanel2" runat="server">
         <ContentTemplate>
             <div class="row">

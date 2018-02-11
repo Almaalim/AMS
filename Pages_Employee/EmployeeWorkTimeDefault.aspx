@@ -2,16 +2,7 @@
     CodeFile="EmployeeWorkTimeDefault.aspx.cs" Inherits="EmployeeWorkTimeDefault"
     meta:resourcekey="PageResource1" %>
 
-<%@ Register Assembly="System.Web.DynamicData, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
-    Namespace="System.Web.DynamicData" TagPrefix="cc1" %>
-<%@ Register Assembly="AjaxSamples" Namespace="AjaxSamples" TagPrefix="as" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <%--script--%>
-    <script type="text/javascript" src="../Script/GridEvent.js"></script>
-    <script type="text/javascript" src="../Script/AutoComplete.js"></script>
-    <%--script--%>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div runat="server" id="MainTable">
@@ -130,25 +121,10 @@
                         <span class="RequiredField">*</span>
                         <asp:Label ID="lblWorkingdays" runat="server" Text="Working days :" meta:resourcekey="lblWorkingdaysResource1"></asp:Label>
                     </div>
-                    <div class="col4">
+                    <div> <%--class="col5"--%>
                         <span class="form-inline">
-                            <asp:CheckBox ID="chkEwrSat" runat="server" Enabled="False" Text="Saturday" meta:resourcekey="chkEwrSatResource1" />
-                        </span><span class="form-inline">
-                            <asp:CheckBox ID="chkEwrSun" runat="server" Enabled="False" Text="Sunday" meta:resourcekey="chkEwrSunResource1" />
-                        </span><span class="form-inline">
-                            <asp:CheckBox ID="chkEwrMon" runat="server" Enabled="False" Text="Monday" meta:resourcekey="chkEwrMonResource1" />
-                        </span><span class="form-inline">
-                            <asp:CheckBox ID="chkEwrTue" runat="server" Enabled="False" Text="Tuesday" meta:resourcekey="chkEwrTueResource1" />
-                        </span><span class="form-inline">
-                            <asp:CheckBox ID="chkEwrWed" runat="server" Enabled="False" Text="Wednesday" meta:resourcekey="chkEwrWedResource1" />
-                        </span><span class="form-inline">
-                            <asp:CheckBox ID="chkEwrThu" runat="server" Enabled="False" Text="Thursday" meta:resourcekey="chkEwrThuResource1" />
-                        </span><span class="form-inline">
-                            <asp:CheckBox ID="chkEwrFri" runat="server" Enabled="False" Text="Friday" meta:resourcekey="chkEwrFriResource1" />
+                            <AM:DaysChekboxlist id="dclDays" runat="server" ValidationGroup="vgSave"></AM:DaysChekboxlist>
                         </span>
-                        <asp:CustomValidator ID="cvSelectWorkDays" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='Select Work Days!' /&gt;"
-                            ValidationGroup="vgSave" ErrorMessage="Select Work Days" OnServerValidate="SelectWorkDays_ServerValidate" CssClass="CustomValidator"
-                            EnableClientScript="False" ControlToValidate="txtValid" meta:resourcekey="cvSelectWorkDaysResource1"></asp:CustomValidator>
                     </div>
                 </div>
 

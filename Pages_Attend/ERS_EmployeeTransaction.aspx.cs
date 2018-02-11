@@ -43,7 +43,7 @@ public partial class ERS_EmployeeTransaction : BasePage
                 string CurrentYear  = DTCs.FindCurrentYear();
 
                 FillData(CurrentMonth, CurrentYear);
-                ddlMonth.SelectedIndex = ddlMonth.Items.IndexOf(ddlMonth.Items.FindByValue(CurrentMonth));
+                ddlMonth.SelectedIndex = ddlMonth.Items.IndexOf(ddlMonth.Items.FindByValue(Convert.ToInt32(CurrentMonth).ToString()));
                 ddlYear.SelectedIndex  = ddlYear.Items.IndexOf(ddlYear.Items.FindByValue(CurrentYear));
 
                 FillName();
@@ -122,11 +122,16 @@ public partial class ERS_EmployeeTransaction : BasePage
     {
         try
         {
-            GregorianCalendar Grn = new GregorianCalendar();
-            string dayNameEn = Grn.GetDayOfWeek(Convert.ToDateTime(pGDate)).ToString();
-            string dayNameAr = convertDayToArabic(Convert.ToDateTime(pGDate).ToString("ddd"));
+            if (!string.IsNullOrEmpty(Convert.ToString(pGDate)))
+            {
+                GregorianCalendar Grn = new GregorianCalendar();
+                string dayNameEn = Grn.GetDayOfWeek(Convert.ToDateTime(pGDate)).ToString();
+                string dayNameAr = convertDayToArabic(Convert.ToDateTime(pGDate).ToString("ddd"));
 
-            return General.Msg(dayNameEn, dayNameAr);
+                return General.Msg(dayNameEn, dayNameAr);
+            }
+
+            return string.Empty;
         }
         catch (Exception ex) 
         { 

@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Collections;
 using Elmah;
 using System.Data;
-using System.Data.SqlClient;
-using System.Text;
-using System.Threading;
-
 public partial class Pages_Employee_EmployeeStatusToday : BasePage
 {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -62,23 +57,22 @@ public partial class Pages_Employee_EmployeeStatusToday : BasePage
             {
                 string[] Deps = txtSearchByDep.Text.Split('-');
                 DataTable DT = DBCs.FetchData("SELECT DepID FROM Department WHERE ISNULL(DepDeleted, 0) = 0 AND " + General.Msg("DepNameEn", "DepNameAr") + " = @P1 ", new string[] { Deps[0] });
-                if (!DBCs.IsNullOrEmpty(DT)) { FillGrid("DEP", DT.Rows[0][0].ToString()); } else { FillGrid("DEP", "0"); }
+                if (!DBCs.IsNullOrEmpty(DT)) { FillGrid("DEP", DT.Rows[0][0].ToString()); } else { CtrlCs.FillGridEmpty(ref grdData, 50); }
             }
             else if (ddlFilter.SelectedIndex == 1)
             {
                 string[] Deps = txtSearchByDep.Text.Split('-');
-                if (!string.IsNullOrEmpty(Deps[0])) { FillGrid("EMP", Deps[0]); } else { FillGrid("EMP", "0"); }
+                if (!string.IsNullOrEmpty(Deps[0])) { FillGrid("EMP", Deps[0]); } else { CtrlCs.FillGridEmpty(ref grdData, 50); }
             }
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////   
-    public string FindStatus(object EmpID)
+    public string FindStatus(object Status)
     {
         try
         {
-            DataTable DT = DBCs.FetchData(" SELECT * FROM TransDump WHERE EmpID = @P1 AND CONVERT(VARCHAR(10),TrnDate,101) = CONVERT(VARCHAR(10),GETDATE(),101) ", new string[] { EmpID.ToString() });
-            if (!DBCs.IsNullOrEmpty(DT)) { return General.Msg("Present","حاضر"); } else { return General.Msg("Absent","غائب"); }
+            return DisplayFun.GrdDisplayDayStatus(Status, pgCs.Version);
         }
         catch (Exception ex)
         {
@@ -208,14 +202,8 @@ public partial class Pages_Employee_EmployeeStatusToday : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void FillGrid(string Type, string ListID) //Type In EMP OR DEP
     {
-        StringBuilder FQ = new StringBuilder();
-        FQ.Append(" SELECT EmpID, EmpNameEn, EmpNameAr, DepNameEn, DepNameAr ");
-        FQ.Append(" FROM EmployeeMasterActiveInfoView ");
-        if (Type == "DEP") { FQ.Append(" WHERE DepID IN ( " + ListID + " )"); }
-        if (Type == "EMP") { FQ.Append(" WHERE EmpID IN ( '" + ListID + "' )"); }
-
-        //DataTable GDT = DBCs.FetchData(FQ.ToString(), new string[] {}, DepList.Split(','));
-        DataTable GDT = DBCs.FetchData(new SqlCommand(FQ.ToString()));
+        DataTable GDT = new DataTable();
+        GDT = DBCs.FetchProcedureData("spTodayEmployeeStatus", new string[] { "@iFilter", "@iIDList" }, new string[] { Type, ListID });
         if (!DBCs.IsNullOrEmpty(GDT))
         {
             grdData.DataSource = (DataTable)GDT;
@@ -226,6 +214,26 @@ public partial class Pages_Employee_EmployeeStatusToday : BasePage
         {
             CtrlCs.FillGridEmpty(ref grdData, 50);
         }
+
+
+        //StringBuilder FQ = new StringBuilder();
+        //FQ.Append(" SELECT EmpID, EmpNameEn, EmpNameAr, DepNameEn, DepNameAr ");
+        //FQ.Append(" FROM EmployeeMasterActiveInfoView ");
+        //if (Type == "DEP") { FQ.Append(" WHERE DepID IN ( " + ListID + " )"); }
+        //if (Type == "EMP") { FQ.Append(" WHERE EmpID IN ( '" + ListID + "' )"); }
+
+        ////DataTable GDT = DBCs.FetchData(FQ.ToString(), new string[] {}, DepList.Split(','));
+        //DataTable GDT = DBCs.FetchData(new SqlCommand(FQ.ToString()));
+        //if (!DBCs.IsNullOrEmpty(GDT))
+        //{
+        //    grdData.DataSource = (DataTable)GDT;
+        //    ViewState["grdDataDT"] = (DataTable)GDT;
+        //    grdData.DataBind();
+        //}
+        //else
+        //{
+        //    CtrlCs.FillGridEmpty(ref grdData, 50);
+        //}
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

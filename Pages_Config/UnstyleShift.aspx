@@ -1,10 +1,6 @@
 ﻿<%@ Page Title="Unstyle Shift" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true" CodeFile="UnstyleShift.aspx.cs" Inherits="UnstyleShift" meta:resourcekey="PageResource1" %>
 
-<%@ Register Assembly="AjaxSamples" Namespace="AjaxSamples" TagPrefix="as" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <%--script--%>
-    <script type="text/javascript" src="../Script/GridEvent.js"></script>
-    <%--script--%>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
             <div runat="server" id="MainTable">

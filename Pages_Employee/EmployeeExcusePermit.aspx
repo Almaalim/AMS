@@ -1,19 +1,7 @@
 ﻿<%@ Page Title="Licenses Department" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true"
     CodeFile="EmployeeExcusePermit.aspx.cs" Inherits="EmployeeExcusePermit" meta:resourcekey="PageResource1" %>
 
-<%@ Register Assembly="System.Web.DynamicData, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
-    Namespace="System.Web.DynamicData" TagPrefix="cc1" %>
-<%@ Register Assembly="AjaxSamples" Namespace="AjaxSamples" TagPrefix="as" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <%--script--%>
-    <script type="text/javascript" src="../Script/GridEvent.js"></script>
-    <script type="text/javascript" src="../Script/ModalPopup.js"></script>
-    <script type="text/javascript" src="../Script/DivPopup.js"></script>
-    <script type="text/javascript" src="../Script/CheckKey.js"></script>
-    <%--script--%>
-    <%--<link href="../CSS/PopupStyle.css" rel="stylesheet" type="text/css" />--%>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="row">

@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Elmah;
 using System.Data.SqlClient;
 using System.Data;
-using System.Globalization;
 using System.Text;
 using System.Collections;
 
@@ -534,7 +530,7 @@ public partial class AppendingTransactions : BasePage
     {
         try
         {
-            if (!string.IsNullOrEmpty(txtEmpID.Text))
+            if (!string.IsNullOrEmpty(txtEmpID.Text.Trim()))
             {
                 DataTable DT = DBCs.FetchData("SELECT EmpID FROM Employee WHERE EmpStatus ='True' AND ISNULL(EmpDeleted, 0) = 0 AND EmpID = @P1 AND DepID IN (" + pgCs.DepList + ") ", new string[] { txtEmpID.Text });
                 if (DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }

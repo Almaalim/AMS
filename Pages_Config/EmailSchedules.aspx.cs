@@ -823,6 +823,9 @@ public partial class EmailSchedules : BasePage
     {
         try
         {
+            string NameEn = txtNameEn.Text.Trim();
+            string NameAr = txtNameAr.Text.Trim();
+
             string UQ = string.Empty;
             if (ViewState["CommandName"].ToString() == "EDIT") { UQ = " AND SchID != @P2 "; }
 
@@ -831,14 +834,14 @@ public partial class EmailSchedules : BasePage
                 if (pgCs.LangEn)
                 {
                     CtrlCs.ValidMsg(this, ref cvNameEn, false, General.Msg("Name (En) Is Required", "الإسم بالإنجليزي مطلوب"));
-                    if (string.IsNullOrEmpty(txtNameEn.Text)) { e.IsValid = false; }
+                    if (string.IsNullOrEmpty(NameEn)) { e.IsValid = false; }
                 }
                 
-                if (!string.IsNullOrEmpty(txtNameEn.Text))
+                if (!string.IsNullOrEmpty(NameEn))
                 {
                     CtrlCs.ValidMsg(this, ref cvNameEn, true, General.Msg("Entered Schedule English Name exist already,Please enter another name", "الإسم بالإنجليزي مدخل مسبقا ، الرجاء إدخال إسم آخر"));
 
-                    DataTable DT = DBCs.FetchData("SELECT * FROM Schedule WHERE SchNameEn = @P1 AND ISNULL(SchDeleted,0) = 0 " + UQ, new string[] { txtNameEn.Text, txtID.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM Schedule WHERE SchNameEn = @P1 AND ISNULL(SchDeleted,0) = 0 " + UQ, new string[] { NameEn, txtID.Text });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }
@@ -847,13 +850,13 @@ public partial class EmailSchedules : BasePage
                 if (pgCs.LangAr)
                 {
                     CtrlCs.ValidMsg(this, ref cvNameAr, false, General.Msg("Name (Ar) Is Required", "الإسم بالعربي مطلوب"));
-                    if (string.IsNullOrEmpty(txtNameAr.Text)) { e.IsValid = false; }
+                    if (string.IsNullOrEmpty(NameAr)) { e.IsValid = false; }
                 }
-                if (!string.IsNullOrEmpty(txtNameAr.Text))
+                if (!string.IsNullOrEmpty(NameAr))
                 {
                     CtrlCs.ValidMsg(this, ref cvNameAr, true, General.Msg("Entered Schedule Arabic Name exist already,Please enter another name", "الإسم بالعربي مدخل مسبقا ، الرجاء إدخال إسم آخر"));
 
-                    DataTable DT = DBCs.FetchData("SELECT * FROM Schedule WHERE SchNameAr = @P1 AND ISNULL(SchDeleted,0) = 0 " + UQ, new string[] { txtNameAr.Text, txtID.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM Schedule WHERE SchNameAr = @P1 AND ISNULL(SchDeleted,0) = 0 " + UQ, new string[] { NameAr, txtID.Text });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }

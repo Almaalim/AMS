@@ -448,6 +448,9 @@ public partial class EmployeeType : BasePage
     {
         try
         {
+            string NameEn = txtEtpNameEn.Text.Trim();
+            string NameAr = txtEtpNameAr.Text.Trim();
+
             string UQ = string.Empty;
             if (ViewState["CommandName"].ToString() == "EDIT") { UQ = " AND EtpID != @P2 "; }
 
@@ -456,13 +459,13 @@ public partial class EmployeeType : BasePage
                 if (pgCs.LangEn)
                 {
                     CtrlCs.ValidMsg(this, ref cvNameEn, false, General.Msg("Name (En) Is Required", "الاسم بالإنجليزي مطلوب"));
-                    if (string.IsNullOrEmpty(txtEtpNameEn.Text)) { e.IsValid = false; }
+                    if (string.IsNullOrEmpty(NameEn)) { e.IsValid = false; }
                 }
 
-                if (!string.IsNullOrEmpty(txtEtpNameEn.Text))
+                if (!string.IsNullOrEmpty(NameEn))
                 {
                     CtrlCs.ValidMsg(this, ref cvNameEn, true, General.Msg("Entered Emloyee type English Name exist already,Please enter another name", "إسم نوع الموظف بالإنجليزي مدخل مسبقا ، الرجاء إدخال إسم آخر"));
-                    DataTable DT = DBCs.FetchData("SELECT * FROM EmploymentType WHERE EtpNameEn = @P1 AND ISNULL(EtpDeleted,0) = 0 " + UQ, new string[] { txtEtpNameEn.Text, txtID.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM EmploymentType WHERE EtpNameEn = @P1 AND ISNULL(EtpDeleted,0) = 0 " + UQ, new string[] { NameEn, txtID.Text });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }
@@ -471,14 +474,14 @@ public partial class EmployeeType : BasePage
                 if (pgCs.LangAr)
                 {
                     CtrlCs.ValidMsg(this, ref cvNameAr, false, General.Msg("Name (Ar) Is Required", "الاسم بالعربي مطلوب"));
-                    if (string.IsNullOrEmpty(txtEtpNameAr.Text)) { e.IsValid = false; }
+                    if (string.IsNullOrEmpty(NameAr)) { e.IsValid = false; }
                 }
 
-                if (!string.IsNullOrEmpty(txtEtpNameAr.Text))
+                if (!string.IsNullOrEmpty(NameAr))
                 {
                     CtrlCs.ValidMsg(this, ref cvNameAr, true, General.Msg("Entered Emloyee type Arabic Name exist already,Please enter another name", "إسم نوع الموظف بالعربي مدخل مسبقا ، الرجاء إدخال إسم آخر"));
 
-                    DataTable DT = DBCs.FetchData("SELECT * FROM EmploymentType WHERE EtpNameAr = @P1 AND ISNULL(EtpDeleted,0) = 0 " + UQ, new string[] { txtEtpNameAr.Text, txtID.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM EmploymentType WHERE EtpNameAr = @P1 AND ISNULL(EtpDeleted,0) = 0 " + UQ, new string[] { NameAr, txtID.Text });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }

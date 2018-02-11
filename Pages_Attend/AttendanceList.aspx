@@ -1,63 +1,11 @@
 ﻿<%@ Page Title="Attendance List" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true" CodeFile="AttendanceList.aspx.cs" Inherits="AttendanceList" meta:resourcekey="PageResource1" %>
 
-<%@ Register Assembly="System.Web.DynamicData, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
-    Namespace="System.Web.DynamicData" TagPrefix="cc1" %>
-<%@ Register Assembly="AjaxSamples" Namespace="AjaxSamples" TagPrefix="as" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <%--<style type="text/css"> 
-        .dataTable { text-align:left; font-size:10pt; font-family:Verdana, Sans-Serif; border:solid 1px rgb(210,210,210); color:gray;   } 
-        .dataTable CAPTION { color:Black; text-align:left; font-size:12pt; font-weight:bold; padding-bottom:5px; padding-top:15px; } 
-        .dataTable TH { text-decoration:none; background-color:rgb(210,210,210); font-family:Tahoma, Sans-Serif, Arial; font-size:11pt; font-weight:normal; color:Black; border:solid 0px; padding:2px 4px 2px 2px; } 
-        .dataTable TD { padding-left:6px; border:solid 0px; min-width:100px; } 
-        .dataTable TR { border:solid 0px;   } 
-        .dataTableAlt TD { font-size: 10pt; color:rgb(75,75,75); font-family:Verdana; border: solid 0px; padding:2px 0px 2px 8px; background-color:rgb(245,245,245); min-width:100px; } 
-        .dataTableRow { color:rgb(75,75,75); font-family:Verdana; padding:2px 0px 2px 8px; border:solid 0px; background-color:White; } 
-        .dataTable A:Link, .dataTable A:Visited { text-decoration:none; color:black; } 
-        .dataTable A:Hover { color:Red; text-decoration:none; } 
     
-    
-    </style>--%>
     <link href="../CSS/PopupStyle.css" rel="stylesheet" type="text/css" />
-    <%--script--%>
-    <script type="text/javascript" src="../Script/GridEvent.js"></script>
     <script type="text/javascript" src="../Script/ModalPopup.js"></script>
     <script type="text/javascript" src="../Script/DivPopup.js"></script>
 
-    <script type="text/javascript">
-        function switchViews(obj, row, Image) {
-            var div = document.getElementById(obj);
-            var img = document.getElementById('img' + obj);
-            if (div.style.display == "none") {
-                div.style.display = "inline";
-                img.src = "../images/ERS_Images/expand_button_down.png";
-            }
-            else {
-                div.style.display = "none";
-                img.src = Image;
-            }
-        }
-
-        function switchViews2(obj1, obj2, row, RowImage1, NoRowImage1, RowImage2) {
-            var div1 = document.getElementById(obj1);
-            var div2 = document.getElementById(obj2);
-            var img1 = document.getElementById('img' + obj1);
-            var img2 = document.getElementById('img' + obj2);
-            if (div1.style.display == "none") {
-                div1.style.display = "inline";
-                img1.src = NoRowImage1;
-                div2.style.display = "none";
-                if (img2 != null) { img2.src = RowImage2; }
-            }
-            else {
-                div1.style.display = "none";
-                if (img1 != null) { img1.src = RowImage1; }
-            }
-        }
-    </script>
-
-    <%--script--%>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="row" runat="server" id="MainTable">

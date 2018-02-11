@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Elmah;
 using System.Data;
 using System.Collections;
 using System.Text;
-using System.Globalization;
 using System.Data.SqlClient;
 
 public partial class InspectionTours : BasePage
@@ -787,18 +783,21 @@ public partial class InspectionTours : BasePage
     {
         try
         {
+            string NameEn = txtItmNameEn_WZ.Text.Trim();
+            string NameAr = txtItmNameAr_WZ.Text.Trim();
+
             if (source.Equals(cvItmNameEn_WZ))
             {
                 if (pgCs.LangEn)
                 {
                     CtrlCs.ValidMsg(this, ref cvItmNameEn_WZ, false, General.Msg("Name (En) Is Required", "الاسم بالإنجليزي مطلوب"));
-                    if (string.IsNullOrEmpty(txtItmNameEn_WZ.Text)) { e.IsValid = false; }
+                    if (string.IsNullOrEmpty(NameEn)) { e.IsValid = false; }
                 }
 
-                if (!string.IsNullOrEmpty(txtItmNameEn_WZ.Text))
+                if (!string.IsNullOrEmpty(NameEn))
                 {
                     CtrlCs.ValidMsg(this, ref cvItmNameEn_WZ, true, General.Msg("Entered English Name exist already,Please enter another name", "الاسم بالإنجليزي مدخل مسبقا ، الرجاء إدخال إسم آخر"));
-                    DataTable DT = DBCs.FetchData("SELECT * FROM InspectionToursMaster WHERE ItmNameEn = @P1 ", new string[] { txtItmNameEn_WZ.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM InspectionToursMaster WHERE ItmNameEn = @P1 ", new string[] { NameEn });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }
@@ -807,13 +806,13 @@ public partial class InspectionTours : BasePage
                 if (pgCs.LangAr)
                 {
                     CtrlCs.ValidMsg(this, ref cvItmNameAr_WZ, false, General.Msg("Name (Ar) Is Required", "الاسم العربي مطلوب"));
-                    if (string.IsNullOrEmpty(txtItmNameAr_WZ.Text)) { e.IsValid = false; }
+                    if (string.IsNullOrEmpty(NameAr)) { e.IsValid = false; }
                 }
 
-                if (!string.IsNullOrEmpty(txtItmNameAr_WZ.Text))
+                if (!string.IsNullOrEmpty(NameAr))
                 {
                     CtrlCs.ValidMsg(this, ref cvItmNameAr_WZ, true, General.Msg("Entered Arabic Name exist already,Please enter another name", "الاسم العربي مدخل مسبقا ، الرجاء إدخال إسم آخر"));
-                    DataTable DT = DBCs.FetchData("SELECT * FROM InspectionToursMaster WHERE ItmNameAr = @P1 ", new string[] { txtItmNameAr_WZ.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM InspectionToursMaster WHERE ItmNameAr = @P1 ", new string[] { NameAr });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }

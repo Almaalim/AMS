@@ -65,7 +65,7 @@ public partial class EmployeeGaps : BasePage
                 }
                 else
                 {
-                    ddlMonth.SelectedIndex = ddlMonth.Items.IndexOf(ddlMonth.Items.FindByValue(CurrentMonth));
+                    ddlMonth.SelectedIndex = ddlMonth.Items.IndexOf(ddlMonth.Items.FindByValue(Convert.ToInt32(CurrentMonth).ToString()));
                     ddlYear.SelectedIndex  = ddlYear.Items.IndexOf(ddlYear.Items.FindByValue(CurrentYear));
                     FillGapTable(Convert.ToInt32(CurrentMonth), Convert.ToInt32(CurrentYear));
                 }
@@ -150,7 +150,7 @@ public partial class EmployeeGaps : BasePage
     {
         try
         {
-            if (pGDate != null)
+            if (!string.IsNullOrEmpty(Convert.ToString(pGDate)))
             {
                 GregorianCalendar Grn = new GregorianCalendar();
                 string dayNameEn = Grn.GetDayOfWeek(Convert.ToDateTime(pGDate)).ToString();

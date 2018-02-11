@@ -783,8 +783,8 @@ public partial class EmployeeMaster : BasePage
     {
         try
         {
-            if      (source.Equals(cvEmpNameEn)) { if (pgCs.LangEn) { if (string.IsNullOrEmpty(txtEmpNameEn.Text)) { e.IsValid = false; } } }
-            else if (source.Equals(cvEmpNameAr)) { if (pgCs.LangAr) { if (string.IsNullOrEmpty(txtEmpNameAr.Text)) { e.IsValid = false; } } }
+            if      (source.Equals(cvEmpNameEn)) { if (pgCs.LangEn) { if (string.IsNullOrEmpty(txtEmpNameEn.Text.Trim())) { e.IsValid = false; } } }
+            else if (source.Equals(cvEmpNameAr)) { if (pgCs.LangAr) { if (string.IsNullOrEmpty(txtEmpNameAr.Text.Trim())) { e.IsValid = false; } } }
         }
         catch { e.IsValid = false; }
     }
@@ -819,7 +819,7 @@ public partial class EmployeeMaster : BasePage
         {
             if (source.Equals(cvEmployeeIDLen))
             {
-                if (!string.IsNullOrEmpty(txtEmployeeID.Text))
+                if (!string.IsNullOrEmpty(txtEmployeeID.Text.Trim()))
                 {
                     if (txtEmployeeID.Text.Length != 10) 
                     { 
@@ -853,13 +853,13 @@ public partial class EmployeeMaster : BasePage
         {
             if (source.Equals(cvEmpID))
             {
-                if (!string.IsNullOrEmpty(txtEmployeeID.Text))
+                if (!string.IsNullOrEmpty(txtEmployeeID.Text.Trim()))
                 {
                     if (ViewState["CommandName"].ToString() == "ADD")
                     {
                         CtrlCs.ValidMsg(this, ref cvEmpID, true, General.Msg("Employee ID already exists", "رقم الموظف موجود مسبقاً"));
 
-                        DataTable DT = DBCs.FetchData(" SELECT EmpID FROM Employee WHERE EmpID = @P1 ", new string[] { txtEmployeeID.Text });
+                        DataTable DT = DBCs.FetchData(" SELECT EmpID FROM Employee WHERE EmpID = @P1 ", new string[] { txtEmployeeID.Text.Trim() });
                         if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                         
                         return;
@@ -883,10 +883,10 @@ public partial class EmployeeMaster : BasePage
 
             if (source.Equals(cvADUser))
             {
-                if (!string.IsNullOrEmpty(txtEmpADUser.Text))
+                if (!string.IsNullOrEmpty(txtEmpADUser.Text.Trim()))
                 {
                     CtrlCs.ValidMsg(this, ref cvADUser, true, General.Msg("Active Directory Name already exists", "اسم مستخدم Active Directory موجود مسبقا"));
-                    DataTable DT = DBCs.FetchData("SELECT * FROM Employee WHERE ISNULL(EmpDeleted,0) = 0 AND @P1 " + UQ, new string[] { txtEmpADUser.Text, txtEmpADUser.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM Employee WHERE ISNULL(EmpDeleted,0) = 0 AND @P1 " + UQ, new string[] { txtEmpADUser.Text.Trim(), txtEmpADUser.Text.Trim() });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }

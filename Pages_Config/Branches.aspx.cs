@@ -514,6 +514,9 @@ public partial class Branches : BasePage
     {
         try
         {
+            string NameEn = txtNameEn.Text.Trim();
+            string NameAr = txtNameAr.Text.Trim();
+
             string UQ = string.Empty;
             if (ViewState["CommandName"].ToString() == "EDIT") { UQ = " AND BrcID != @P2 "; }
 
@@ -522,13 +525,13 @@ public partial class Branches : BasePage
                 if (pgCs.LangEn)
                 {
                     CtrlCs.ValidMsg(this, ref cvNameEn, false, General.Msg("Name (En) Is Required", "الاسم بالإنجليزي مطلوب"));
-                    if (string.IsNullOrEmpty(txtNameEn.Text)) { e.IsValid = false; }
+                    if (string.IsNullOrEmpty(NameEn)) { e.IsValid = false; }
                 }
 
-                if (!string.IsNullOrEmpty(txtNameEn.Text))
+                if (!string.IsNullOrEmpty(NameEn))
                 {
                     CtrlCs.ValidMsg(this, ref cvNameEn, true, General.Msg("Entered Branch English Name exist already,Please enter another name", "إسم الفرع بالإنجليزي مدخل مسبقا ، الرجاء إدخال إسم آخر"));
-                    DataTable DT = DBCs.FetchData("SELECT * FROM Branch WHERE BrcNameEn = @P1 AND ISNULL(BrcDeleted,0) = 0 " + UQ, new string[] { txtNameEn.Text, txtID.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM Branch WHERE BrcNameEn = @P1 AND ISNULL(BrcDeleted,0) = 0 " + UQ, new string[] { NameEn, txtID.Text });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }
@@ -537,14 +540,14 @@ public partial class Branches : BasePage
                 if (pgCs.LangAr)
                 {
                     CtrlCs.ValidMsg(this, ref cvNameAr, false, General.Msg("Name (Ar) Is Required", "الاسم بالعربي مطلوب"));
-                    if (string.IsNullOrEmpty(txtNameAr.Text)) { e.IsValid = false; }
+                    if (string.IsNullOrEmpty(NameAr)) { e.IsValid = false; }
                 }
 
-                if (!string.IsNullOrEmpty(txtNameAr.Text))
+                if (!string.IsNullOrEmpty(NameAr))
                 {
                     CtrlCs.ValidMsg(this, ref cvNameAr, true, General.Msg("Entered Branch Arabic Name exist already,Please enter another name", "إسم الفرع بالعربي مدخل مسبقا ، الرجاء إدخال إسم آخر"));
 
-                    DataTable DT = DBCs.FetchData("SELECT * FROM Branch WHERE BrcNameAr = @P1 AND ISNULL(BrcDeleted,0) = 0 " + UQ, new string[] { txtNameAr.Text, txtID.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM Branch WHERE BrcNameAr = @P1 AND ISNULL(BrcDeleted,0) = 0 " + UQ, new string[] { NameAr, txtID.Text });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }

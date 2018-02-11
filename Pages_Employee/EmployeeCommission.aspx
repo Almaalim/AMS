@@ -1,15 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true" CodeFile="EmployeeCommission.aspx.cs" Inherits="EmployeeCommission" meta:resourcekey="PageResource1" %>
 
-<%@ Register Assembly="System.Web.DynamicData, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.DynamicData" TagPrefix="cc1" %>
-<%@ Register Assembly="AjaxSamples" Namespace="AjaxSamples" TagPrefix="as" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-<%@ Register Src="~/Control/Calendar2.ascx" TagName="Calendar2" TagPrefix="Cal" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-    <%--script--%>
-    <script type="text/javascript" src="../Script/GridEvent.js"></script>
-    <script type="text/javascript" src="../Script/AutoComplete.js"></script>
-    <%--script--%>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="row">
@@ -94,7 +85,7 @@
             <div class="row">
                 <div class="col12">
                     <asp:ValidationSummary ID="vsShowMsg" runat="server" CssClass="MsgSuccess"
-                        EnableClientScript="False" ValidationGroup="ShowMsg" />
+                        EnableClientScript="False" ValidationGroup="vgShowMsg" />
                 </div>
             </div>
             <div class="row">
@@ -124,7 +115,7 @@
                         Width="10px" meta:resourcekey="txtCustomValidatorResource1"></asp:TextBox>
 
                     <asp:CustomValidator ID="cvShowMsg" runat="server" Display="None"
-                        ValidationGroup="ShowMsg" OnServerValidate="ShowMsg_ServerValidate" CssClass="CustomValidator"
+                        ValidationGroup="vgShowMsg" OnServerValidate="ShowMsg_ServerValidate" CssClass="CustomValidator"
                         EnableClientScript="False" ControlToValidate="txtValid"> 
                     </asp:CustomValidator>
                 </div>
@@ -138,8 +129,7 @@
                     </div>
                     <div class="col4">
                         <asp:TextBox ID="txtEmpID" runat="server" autocomplete="off" Enabled="False" meta:resourcekey="txtEmpIDResource1"></asp:TextBox>
-                        <asp:Panel runat="server" ID="pnlauID"
-                            meta:resourcekey="pnlauIDResource1" />
+                        <asp:Panel runat="server" ID="pnlauID" meta:resourcekey="pnlauIDResource1" />
                         <ajaxToolkit:AutoCompleteExtender
                             runat="server"
                             ID="auID"
@@ -153,17 +143,12 @@
                             CompletionListItemCssClass="AutoExtenderList"
                             CompletionListHighlightedItemCssClass="AutoExtenderHighlight"
                             CompletionSetCount="12" DelimiterCharacters="" Enabled="True" />
-                        <asp:RequiredFieldValidator ID="rvEmpID" runat="server" ControlToValidate="txtEmpID" CssClass="CustomValidator"
-                            EnableClientScript="False" Text="&lt;img src='../images/Exclamation.gif' title='Emloyee ID is required!' /&gt;"
-                            ValidationGroup="vgSave" meta:resourcekey="rvEmpIDResource1"></asp:RequiredFieldValidator>
-                        <asp:CustomValidator ID="cvFindEmp" runat="server" CssClass="CustomValidator"
-                            Text="&lt;img src='../images/message_exclamation.png' title='Employee Not found!' /&gt;"
-                            ErrorMessage="Employee Not found!"
-                            ValidationGroup="vgSave"
-                            OnServerValidate="FindEmp_ServerValidate"
-                            EnableClientScript="False"
-                            ControlToValidate="txtValid" meta:resourcekey="cvFindEmpResource1"></asp:CustomValidator>
-                        <asp:CustomValidator ID="cvNestingDays" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='' /&gt;"
+                        
+                        <asp:CustomValidator ID="cvEmpID" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='' /&gt;"
+                            ValidationGroup="vgSave" OnServerValidate="EmpID_ServerValidate" CssClass="CustomValidator"
+                            EnableClientScript="False" ControlToValidate="txtValid"></asp:CustomValidator>
+                        
+                         <asp:CustomValidator ID="cvNestingDays" runat="server" Text="&lt;img src='../images/message_exclamation.png' title='' /&gt;"
                             ValidationGroup="vgSave" OnServerValidate="NestingDays_ServerValidate" CssClass="CustomValidator"
                             EnableClientScript="False" ControlToValidate="txtValid"
                             meta:resourcekey="cvNestingDaysResource1"></asp:CustomValidator>

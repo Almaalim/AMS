@@ -443,16 +443,19 @@ public partial class EmployeeSwapShift : BasePage
     {
         try
         {
+            string EmpID1 = txtEmpID1.Text;
+            string EmpID2 = txtEmpID2.Text;
+
             if (source.Equals(cvEmployee1))
             {
-                if (string.IsNullOrEmpty(txtEmpID1.Text))
+                if (string.IsNullOrEmpty(EmpID1))
                 {
                     CtrlCs.ValidMsg(this, ref cvEmployee1, false, General.Msg("Employee ID is required", "رقم الموظف إجباري"));
                     e.IsValid = false;
                 }
-                else if (!string.IsNullOrEmpty(txtEmpID2.Text))
+                else if (!string.IsNullOrEmpty(EmpID2))
                 { 
-                    if (txtEmpID2.Text == txtEmpID1.Text)
+                    if (EmpID2 == EmpID1)
                     {
                         CtrlCs.ValidMsg(this, ref cvEmployee1, true, General.Msg("Can not make a swap between self-employee", "لا يمكن إجراء مبادلة بين الموظف نفسه"));
                         e.IsValid = false;
@@ -460,14 +463,14 @@ public partial class EmployeeSwapShift : BasePage
                 }
                 else
                 {
-                    CtrlCs.ValidMsg(this, ref cvEmployee1, true, General.Msg("No Employee with ID", "لا يوجد موظف بهذا الرقم"));
-                    DataTable DT = DBCs.FetchData(" SELECT EmpID, CatID FROM spActiveEmployeeView WHERE EmpID = @P1 ", new string[] { txtEmpID1.Text });
+                    CtrlCs.ValidMsg(this, ref cvEmployee1, true, General.Msg("Employee ID does not exist", "رقم الموظف غير موجود"));
+                    DataTable DT = DBCs.FetchData(" SELECT EmpID, CatID FROM spActiveEmployeeView WHERE EmpID = @P1 AND DepID IN (" + pgCs.DepList + ") ", new string[] { EmpID1 });
                     if (DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                     else
                     {
                         if (pgCs.Version == "SANS")
                         {
-                            DataTable DT2 = DBCs.FetchData(" SELECT EmpID, CatID FROM spActiveEmployeeView WHERE EmpID = @P1 ", new string[] { txtEmpID2.Text });
+                            DataTable DT2 = DBCs.FetchData(" SELECT EmpID, CatID FROM spActiveEmployeeView WHERE EmpID = @P1 AND DepID IN (" + pgCs.DepList + ") ", new string[] { EmpID2 });
                             if (!DBCs.IsNullOrEmpty(DT2))
                             {
                                 CtrlCs.ValidMsg(this, ref cvEmployee1, true, General.Msg("Category does not match the specified employee", "التصنيف غير متطابق مع الموظف المحدد"));
@@ -481,15 +484,15 @@ public partial class EmployeeSwapShift : BasePage
 
             if (source.Equals(cvEmployee2))
             {
-                if (string.IsNullOrEmpty(txtEmpID2.Text))
+                if (string.IsNullOrEmpty(EmpID2))
                 {
                     CtrlCs.ValidMsg(this, ref cvEmployee2, false, General.Msg("Employee ID is required", "رقم الموظف إجباري"));
                     e.IsValid = false;
                 }
                 else
                 {
-                    CtrlCs.ValidMsg(this, ref cvEmployee2, true, General.Msg("No Employee with ID", "لا يوجد موظف بهذا الرقم"));
-                    DataTable DT = DBCs.FetchData(" SELECT EmpID, CatID FROM spActiveEmployeeView WHERE EmpID = @P1 ", new string[] { txtEmpID2.Text });
+                    CtrlCs.ValidMsg(this, ref cvEmployee2, true, General.Msg("Employee ID does not exist", "رقم الموظف غير موجود"));
+                    DataTable DT = DBCs.FetchData(" SELECT EmpID, CatID FROM spActiveEmployeeView WHERE EmpID = @P1 AND DepID IN (" + pgCs.DepList + ") ", new string[] { EmpID2 });
                     if (DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; } 
                 }
             }

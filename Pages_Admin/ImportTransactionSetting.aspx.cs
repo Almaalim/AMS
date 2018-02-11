@@ -131,8 +131,11 @@ public partial class Pages_Admin_ImportSetting : BasePage
             FillPropeties();
             SqlCs.ImportSetting_InsertUpdate(ProCs);
 
-            TaskSchedulerFun SF = new TaskSchedulerFun();
-            SF.CreateScheduled(ProCs.IpsImportScheduleTimes, ProCs.IpsProcessScheduleTimes, ProCs.IpsRunProcess);
+            if (pgCs.Version != "AlMaalim")
+            {
+                TaskSchedulerFun SF = new TaskSchedulerFun();
+                SF.CreateScheduled(ProCs.IpsImportScheduleTimes, ProCs.IpsProcessScheduleTimes, ProCs.IpsRunProcess);
+            }
 
             UIEnabled(false);
             BtnStatus("100");

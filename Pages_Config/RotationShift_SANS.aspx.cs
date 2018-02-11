@@ -1001,19 +1001,22 @@ public partial class RotationShift_SANS : BasePage
     {
         try
         {
+            string NameEn = viw2_txtRwtNameEn.Text.Trim();
+            string NameAr = viw2_txtRwtNameAr.Text.Trim();
+
             if (source.Equals(viw2_cvRwtNameEn))
             {
                 if (pgCs.LangEn)
                 {
                     CtrlCs.ValidMsg(this, ref viw2_cvRwtNameEn, false, General.Msg("Name (En) Is Required", "الاسم بالإنجليزي مطلوب"));
-                    if (string.IsNullOrEmpty(viw2_txtRwtNameEn.Text)) { e.IsValid = false; }
+                    if (string.IsNullOrEmpty(NameEn)) { e.IsValid = false; }
                 }
                 
-                if (!string.IsNullOrEmpty(viw2_txtRwtNameEn.Text))
+                if (!string.IsNullOrEmpty(NameEn))
                 {
                     CtrlCs.ValidMsg(this, ref viw2_cvRwtNameEn, true, General.Msg("Entered English Name exist already,Please enter another name", "الاسم بالإنجليزي مدخل مسبقا ، الرجاء إدخال إسم آخر"));
 
-                    DataTable DT = DBCs.FetchData("SELECT * FROM RotationWorkTime WHERE RwtNameEn = @P1 ", new string[] { viw2_txtRwtNameEn.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM RotationWorkTime WHERE RwtNameEn = @P1 ", new string[] { NameEn });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }
@@ -1022,13 +1025,13 @@ public partial class RotationShift_SANS : BasePage
                 if (pgCs.LangAr)
                 {
                     CtrlCs.ValidMsg(this, ref viw2_cvRwtNameAr, false, General.Msg("Name (Ar) Is Required", "الاسم العربي مطلوب"));
-                    if (string.IsNullOrEmpty(viw2_txtRwtNameAr.Text)) { e.IsValid = false; }
+                    if (string.IsNullOrEmpty(NameAr)) { e.IsValid = false; }
                 }
                 
-                if (!string.IsNullOrEmpty(viw2_txtRwtNameAr.Text))
+                if (!string.IsNullOrEmpty(NameAr))
                 {
                     CtrlCs.ValidMsg(this, ref viw2_cvRwtNameAr, true, General.Msg("Entered Arabic Name exist already,Please enter another name", "الاسم العربي مدخل مسبقا ، الرجاء إدخال إسم آخر"));
-                    DataTable DT = DBCs.FetchData("SELECT * FROM RotationWorkTime WHERE RwtNameAr = @P1 ", new string[] { viw2_txtRwtNameAr.Text });
+                    DataTable DT = DBCs.FetchData("SELECT * FROM RotationWorkTime WHERE RwtNameAr = @P1 ", new string[] { NameAr });
                     if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; }
                 }
             }

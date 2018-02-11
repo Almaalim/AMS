@@ -503,7 +503,7 @@ public partial class PendingTransaction : BasePage
     {
         try
         {
-            if (source.Equals(cvtpickerTime))  { if (tpickerTime.getIntTime()  < 0)  { e.IsValid = false; } }
+            if (source.Equals(cvtpickerTime)) { if (tpickerTime.getIntTime() < 0) { e.IsValid = false; } }
         }
         catch { e.IsValid = false; }
     }
@@ -513,9 +513,9 @@ public partial class PendingTransaction : BasePage
     {
         try
         {
-            if (!string.IsNullOrEmpty(txtEmpID.Text))
+            if (!string.IsNullOrEmpty(txtEmpID.Text.Trim()))
             {
-                if (!GenCs.isEmpID(txtEmpID.Text)) { e.IsValid = false; }
+                if (!GenCs.isEmpID(txtEmpID.Text.Trim())) { e.IsValid = false; }
             }
         }
         catch { e.IsValid = false; }

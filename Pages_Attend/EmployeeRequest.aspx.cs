@@ -52,8 +52,11 @@ public partial class EmployeeRequest : BasePage
 
                 divVisible(false);
 
-                ddlMonth.SelectedIndex = ddlMonth.Items.IndexOf(ddlMonth.Items.FindByValue(DTCs.FindCurrentMonth()));
-                ddlYear.SelectedIndex  = ddlYear.Items.IndexOf(ddlYear.Items.FindByValue(DTCs.FindCurrentYear()));
+                string CurrentMonth = DTCs.FindCurrentMonth();
+                string CurrentYear  = DTCs.FindCurrentYear();
+
+                ddlMonth.SelectedIndex = ddlMonth.Items.IndexOf(ddlMonth.Items.FindByValue(Convert.ToInt32(CurrentMonth).ToString()));
+                ddlYear.SelectedIndex  = ddlYear.Items.IndexOf(ddlYear.Items.FindByValue(CurrentYear));
                 Session["AttendanceListMonth"] = ddlMonth.SelectedValue;
                 Session["AttendanceListYear"]  = ddlYear.SelectedValue;
 

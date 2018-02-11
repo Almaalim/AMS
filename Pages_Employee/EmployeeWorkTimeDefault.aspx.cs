@@ -134,13 +134,7 @@ public partial class EmployeeWorkTimeDefault : BasePage
     {
         txtID.Enabled = txtID.Visible = false;
         ddlWktID.Enabled = pStatus;
-        chkEwrSat.Enabled = pStatus;
-        chkEwrSun.Enabled = pStatus;
-        chkEwrMon.Enabled = pStatus;
-        chkEwrTue.Enabled = pStatus;
-        chkEwrWed.Enabled = pStatus;
-        chkEwrThu.Enabled = pStatus;
-        chkEwrFri.Enabled = pStatus;
+        dclDays.Enabled(pStatus);
         chkIsForAll.Enabled = pStatus;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -154,13 +148,27 @@ public partial class EmployeeWorkTimeDefault : BasePage
             if (!string.IsNullOrEmpty(txtID.Text)) { ProCs.EwrID = txtID.Text; }
             if (ddlWktID.SelectedIndex > 0) { ProCs.WktID = ddlWktID.SelectedValue; }
 
-            ProCs.EwrSat = chkEwrSat.Checked;
-            ProCs.EwrSun = chkEwrSun.Checked;
-            ProCs.EwrMon = chkEwrMon.Checked;
-            ProCs.EwrTue = chkEwrTue.Checked;
-            ProCs.EwrWed = chkEwrWed.Checked;
-            ProCs.EwrThu = chkEwrThu.Checked;
-            ProCs.EwrFri = chkEwrFri.Checked;
+            string EwrSun = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Sunday);
+            ProCs.EwrSun = (EwrSun == "0") ? false : true;
+
+            string EwrMon = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Monday);
+            ProCs.EwrMon = (EwrMon == "0") ? false : true;
+
+            string EwrTue = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tuesday);
+            ProCs.EwrTue = (EwrTue == "0") ? false : true;
+
+            string EwrWed = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Wednesday);
+            ProCs.EwrWed = (EwrWed == "0") ? false : true;
+
+            string EwrThu = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tharsday);
+            ProCs.EwrThu = (EwrThu == "0") ? false : true;
+
+            string EwrFri = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Friday);
+            ProCs.EwrFri = (EwrFri == "0") ? false : true;
+
+            string EwrSat = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Saturday);
+            ProCs.EwrSat = (EwrSat == "0") ? false : true;
+
             ProCs.EwrWrkDefaultForAll = chkIsForAll.Checked;
 
             ProCs.TransactionBy = pgCs.LoginID;
@@ -175,13 +183,7 @@ public partial class EmployeeWorkTimeDefault : BasePage
         
         txtID.Text = "";
         ddlWktID.SelectedIndex = -1;
-        chkEwrSat.Checked = false;
-        chkEwrSun.Checked = false;
-        chkEwrMon.Checked = false;
-        chkEwrTue.Checked = false;
-        chkEwrWed.Checked = false;
-        chkEwrThu.Checked = false;
-        chkEwrFri.Checked = false;
+        dclDays.Clear();
         chkIsForAll.Checked = false;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -458,13 +460,13 @@ public partial class EmployeeWorkTimeDefault : BasePage
             txtID.Text      = DRs[0]["EwrID"].ToString();
             ddlWktID.SelectedIndex = ddlWktID.Items.IndexOf(ddlWktID.Items.FindByValue(DRs[0]["WktID"].ToString()));
 
-            if (DRs[0]["EwrSat"] != DBNull.Value) { chkEwrSat.Checked = Convert.ToBoolean( DRs[0]["EwrSat"] ); }
-            if (DRs[0]["EwrSun"] != DBNull.Value) { chkEwrSun.Checked = Convert.ToBoolean( DRs[0]["EwrSun"] ); }
-            if (DRs[0]["EwrMon"] != DBNull.Value) { chkEwrMon.Checked = Convert.ToBoolean( DRs[0]["EwrMon"] ); }
-            if (DRs[0]["EwrTue"] != DBNull.Value) { chkEwrTue.Checked = Convert.ToBoolean( DRs[0]["EwrTue"] ); }
-            if (DRs[0]["EwrWed"] != DBNull.Value) { chkEwrWed.Checked = Convert.ToBoolean( DRs[0]["EwrWed"] ); }
-            if (DRs[0]["EwrThu"] != DBNull.Value) { chkEwrThu.Checked = Convert.ToBoolean( DRs[0]["EwrThu"] ); }
-            if (DRs[0]["EwrFri"] != DBNull.Value) { chkEwrFri.Checked = Convert.ToBoolean( DRs[0]["EwrFri"] ); }
+            if (DRs[0]["EwrSun"] != DBNull.Value) { dclDays.SetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Sunday   , Convert.ToInt32(DRs[0]["EwrSun"])); }
+            if (DRs[0]["EwrMon"] != DBNull.Value) { dclDays.SetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Monday   , Convert.ToInt32(DRs[0]["EwrMon"])); }
+            if (DRs[0]["EwrTue"] != DBNull.Value) { dclDays.SetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tuesday  , Convert.ToInt32(DRs[0]["EwrTue"])); } 
+            if (DRs[0]["EwrWed"] != DBNull.Value) { dclDays.SetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Wednesday, Convert.ToInt32(DRs[0]["EwrWed"])); }
+            if (DRs[0]["EwrThu"] != DBNull.Value) { dclDays.SetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tharsday , Convert.ToInt32(DRs[0]["EwrThu"])); } 
+            if (DRs[0]["EwrFri"] != DBNull.Value) { dclDays.SetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Friday   , Convert.ToInt32(DRs[0]["EwrFri"])); }
+            if (DRs[0]["EwrSat"] != DBNull.Value) { dclDays.SetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Saturday , Convert.ToInt32(DRs[0]["EwrSat"])); }
 
             if (DRs[0]["EwrWrkDefaultForAll"] != DBNull.Value) { chkIsForAll.Checked = Convert.ToBoolean(DRs[0]["EwrWrkDefaultForAll"]); }
         }
@@ -504,21 +506,6 @@ public partial class EmployeeWorkTimeDefault : BasePage
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
     #region Custom Validate Events
-
-    protected void SelectWorkDays_ServerValidate(Object source, ServerValidateEventArgs e)
-    {
-        try
-        {
-            if (!chkEwrSat.Checked && !chkEwrSun.Checked && !chkEwrMon.Checked && !chkEwrTue.Checked && !chkEwrWed.Checked && !chkEwrThu.Checked && !chkEwrFri.Checked)
-            {
-                e.IsValid = false;
-            }
-        }
-        catch { e.IsValid = false; }
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void ShowMsg_ServerValidate(Object source, ServerValidateEventArgs e) { e.IsValid = false; }
 
     #endregion
     /*#############################################################################################################################*/

@@ -40,7 +40,7 @@ public partial class ERS_MonthSummary : BasePage
                 string CurrentYear  = DTCs.FindCurrentYear();
 
                 FillData(CurrentMonth, CurrentYear);
-                ddlMonth.SelectedIndex = ddlMonth.Items.IndexOf(ddlMonth.Items.FindByValue(CurrentMonth));
+                ddlMonth.SelectedIndex = ddlMonth.Items.IndexOf(ddlMonth.Items.FindByValue(Convert.ToInt32(CurrentMonth).ToString()));
                 ddlYear.SelectedIndex  = ddlYear.Items.IndexOf(ddlYear.Items.FindByValue(CurrentYear));
 
                 FillName();
