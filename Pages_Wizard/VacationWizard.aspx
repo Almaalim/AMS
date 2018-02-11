@@ -176,7 +176,7 @@
                         </asp:WizardStep>
                     </WizardSteps>
                     <HeaderTemplate>
-                        <ul id="wizHeaderEN" style="background-color: #C2C2C2;">
+                        <ul id="wizHeader<%=Session["Language"]%>" style="background-color: #C2C2C2;">
                             <asp:Repeater ID="SideBarList" runat="server">
                                 <ItemTemplate>
                                     <li><a class="<%# GetClassForWizardStep(Container.DataItem) %>"

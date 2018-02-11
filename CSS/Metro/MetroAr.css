@@ -1436,6 +1436,25 @@ background-color: #00529B;
     content: "\f05a";
     font-family: FontAwesome;
 }
+input[type=image].png , input[type=image].jpg
+{
+    -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        filter: FlipH;
+        -ms-filter: "FlipH";
+}
+
+input.LeftOverlay.png
+{
+    -moz-transform: scaleX(1);
+        -o-transform: scaleX(1);
+        -webkit-transform: scaleX(1);
+        transform: scaleX(1);
+        filter: inherit;
+        -ms-filter: "inherit";
+}
 
 .monthSummaryDiv {
     width: calc(50% - 30px);
@@ -4530,7 +4549,7 @@ a.colord13f2a:before {
     font-family: 'icomoon' !important;
 }
 
-.Employee:before, .EmployeeMaster:before , .icon400:before {
+a.Employee:before, .EmployeeMaster:before , .icon400:before {
     content: "\f2c0";
     font-family: FontAwesome !important;
 }
@@ -4665,7 +4684,7 @@ a.colord13f2a:before {
     font-family: FontAwesome !important;
 }
 
-.RequestApproval:before , .icon357:before {
+.RequestApproval:before , .icon357:before , .Approval:before {
     content: "\f26c";
     font-family: FontAwesome !important;
 }

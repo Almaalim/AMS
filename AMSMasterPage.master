@@ -47,6 +47,7 @@
                 };
                 document.getElementsByTagName("head")[0].appendChild(script);
             })();
+           
             $(document).click(function (event) {
                 if ($('.flyOutDiv').css('opacity') == '1') {
                     $('.flyOutDiv').css('display', 'none');
@@ -85,6 +86,7 @@
             //    }
 
             //});
+            
             $(window).scroll(function () {
                 var scroll = $(window).scrollTop();
 
@@ -177,6 +179,12 @@
 
                 $this.html($this.html().replace(/&nbsp;/g, ''));
 
+            });
+            $('input[type="image"]').each(function () {
+                var imgsrc = $(this).attr("src");
+                var addedClass = imgsrc.substr(-3);
+                $(this).addClass(addedClass);
+                
             });
             var colors = ["009ad7", "ffaa31", "68af27", "c22439", "005683", "622695", "d13f2a"];
 
