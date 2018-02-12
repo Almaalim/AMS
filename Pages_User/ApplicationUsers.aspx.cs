@@ -918,7 +918,17 @@ public partial class ApplicationUsers : BasePage
                 if (!string.IsNullOrEmpty(txtEmpID.Text.Trim()))
                 {
                     CtrlCs.ValidMsg(this, ref cvEmpID, true, General.Msg("Entered Employee ID does not exist already,Please enter another ID", "رقم الموظف غير موجود,أدخل رقما آخر"));
-                    if (!GenCs.isEmpID(txtEmpID.Text)) { e.IsValid = false; }
+                    if (!GenCs.isEmpID(txtEmpID.Text)) { e.IsValid = false; return; }
+
+                    if (!string.IsNullOrEmpty(txtUsername.Text.Trim()))
+                    {
+                        string UQ = string.Empty;
+                        if (ViewState["CommandName"].ToString() == "EDIT") { UQ = " AND UsrName != @P2"; }
+
+                        CtrlCs.ValidMsg(this, ref cvEmpID, true, General.Msg("Employee ID is linked to another user,Please enter another ID", "رقم الموظف مربوط بمستخدم آخر,أدخل رقما آخر"));
+                        DataTable DT = DBCs.FetchData("SELECT * FROM AppUser WHERE EmpID = @P1 AND ISNULL(UsrDeleted,0) = 0 " + UQ, new string[] { txtEmpID.Text.Trim(), txtUsername.Text.Trim() });
+                        if (!DBCs.IsNullOrEmpty(DT)) { e.IsValid = false; return; }
+                    }
                 }
             }
         }

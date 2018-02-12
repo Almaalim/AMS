@@ -74,7 +74,7 @@
                             <asp:ControlParameter ControlID="HfRefresh" Name="Refresh" Direction="Input"  />
                             <asp:Parameter Name="CacheKey" Direction="Input" DefaultValue="DBLOG" />
                             <asp:Parameter Name="DataID" Direction="Input" DefaultValue="ProcedureErrors" />
-                            <asp:Parameter Name="sortID" Direction="Input" DefaultValue="ErrTime DESC" />
+                            <asp:Parameter Name="sortID" Direction="Input" DefaultValue="ErrorDate DESC" />
                             <asp:Parameter Name="DT" Direction="Output" DefaultValue="" Type="Object" />
                         </SelectParameters>                                            
                     </asp:ObjectDataSource>

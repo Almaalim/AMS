@@ -51,8 +51,8 @@ public partial class Login : BasePage
         Session.Clear();
         Session.RemoveAll();
 
-        txtname.Text = "admin";
-        txtpass.Attributes["value"] = "admin";
+        //txtname.Text = "admin";
+        //txtpass.Attributes["value"] = "admin";
         //string DecPass = CryptorEngine.Encrypt("1,2,3,4", true);
 
         if (Application["LoginLang"] != null)
@@ -154,7 +154,8 @@ public partial class Login : BasePage
             Session["Language"] = DT.Rows[0]["UsrLang"].ToString();
             Session["UserName"] = DT.Rows[0]["UsrName"].ToString();
             Session["MainUser"] = DT.Rows[0]["MainUser"].ToString();
-            if (DT.Rows[0]["EmpID"] != DBNull.Value) { Session["LoginEmpID"] = DT.Rows[0]["EmpID"].ToString(); } else { Session["LoginEmpID"] = ""; }
+
+            if (DT.Rows[0]["EmpID"] != DBNull.Value && Convert.ToString(DT.Rows[0]["EmpIsActive"]) == "1") { Session["LoginEmpID"] = DT.Rows[0]["EmpID"].ToString(); } else { Session["LoginEmpID"] = ""; }
 
             string LoginType = DT.Rows[0]["LoginType"].ToString();
 

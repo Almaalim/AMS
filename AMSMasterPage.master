@@ -695,9 +695,12 @@
 
                 <span>|</span>
 
-                <asp:LinkButton ID="lnkPolicy" runat="server" CssClass="ft_cnt"
-                    meta:resourcekey="lnkPolicyResource1" OnClick="lnkPolicy_Click">Policies and Procedures</asp:LinkButton>
+                <%--<asp:LinkButton ID="lnkPolicy" runat="server" CssClass="ft_cnt"
+                    meta:resourcekey="lnkPolicyResource1" OnClick="lnkPolicy_Click">Policies and Procedures</asp:LinkButton>--%>
 
+                <asp:LinkButton ID="lnkContactUs" runat="server" CssClass="ft_cnt"
+                    meta:resourcekey="lnkContactUsResource1" OnClick="lnkContactUs_Click">Contact us</asp:LinkButton>
+                
                 <div class="clearfix"></div>
                 <asp:Label ID="lblcopyrights" runat="server" Text="copyrights Almaalim 2005-" meta:resourcekey="lblcopyrightsResource1" />
 

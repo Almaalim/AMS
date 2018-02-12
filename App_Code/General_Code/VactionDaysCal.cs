@@ -193,4 +193,51 @@ public class VactionDaysCal
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public bool FindNestingDates2(string DateType, string StartDate, string EndDate, string EmpID, out string VacType)
+    {
+        VacType = "";
+
+        try
+        {
+            System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+            DateTime SDate = DTCs.ConvertToDatetime(StartDate, DateType); 
+            DateTime EDate = DTCs.ConvertToDatetime(EndDate, DateType); 
+
+            StringBuilder Q = new StringBuilder();
+            Q.Append(" SELECT EmpID, RetID, ErqStartDate, ErqEndDate FROM EmpRequest WHERE ErqReqStatus IN (0) AND EmpID = @P1 AND RetID IN ('VAC','COM','JOB') AND @P3 >= ErqStartDate AND ErqEndDate >= @P2 ");
+            Q.Append(" UNION ALL ");
+            Q.Append(" SELECT EmpID, 'VAC' AS RetID, EvrStartDate, EvrEndDate FROM EmpVacRel WHERE EmpID = @P1 AND ISNULL(EvrDeleted,0) = 0 AND @P3 >= EvrStartDate AND EvrEndDate >= @P2 AND VtpID IN (SELECT VtpID FROM VacationType WHERE VtpCategory IN ('VAC')) ");
+            Q.Append(" UNION ALL ");
+            Q.Append(" SELECT EmpID, 'LIC' AS RetID, EvrStartDate, EvrEndDate FROM EmpVacRel WHERE EmpID = @P1 AND ISNULL(EvrDeleted,0) = 0 AND @P3 >= EvrStartDate AND EvrEndDate >= @P2 AND VtpID IN (SELECT VtpID FROM VacationType WHERE VtpCategory IN ('LIC')) ");
+            Q.Append(" UNION ALL ");
+            Q.Append(" SELECT EmpID, 'COM' AS RetID, EvrStartDate, EvrEndDate FROM EmpVacRel WHERE EmpID = @P1 AND ISNULL(EvrDeleted,0) = 0 AND @P3 >= EvrStartDate AND EvrEndDate >= @P2 AND VtpID IN (SELECT VtpID FROM VacationType WHERE VtpCategory IN ('COM', 'TRA')) ");
+            Q.Append(" UNION ALL ");
+            Q.Append(" SELECT EmpID, 'JOB' AS RetID, EvrStartDate, EvrEndDate FROM EmpVacRel WHERE EmpID = @P1 AND ISNULL(EvrDeleted,0) = 0 AND @P3 >= EvrStartDate AND EvrEndDate >= @P2 AND VtpID IN (SELECT VtpID FROM VacationType WHERE VtpCategory IN ('JOB')) ");
+
+            DataTable DT = DBCs.FetchData(Q.ToString(), new string[] { EmpID, SDate.ToString(), EDate.ToString() });
+            if (!DBCs.IsNullOrEmpty(DT))
+            {
+                VacType = Convert.ToString(DT.Rows[0]["RetID"]);
+                return true;
+            }
+
+            return false;
+        }
+        catch (Exception ex) { return true; }
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public string getMsgVac(string VacType)
+    {
+        string Type = "";
+
+        if      (VacType == "VAC") { Type = General.Msg("Vacation", "إجازة"); }
+        else if (VacType == "LIC") { Type = General.Msg("license" ,"رخصة"); }
+        else if (VacType == "COM") { Type = General.Msg("Commission" ,"انتداب"); }
+        else if (VacType == "JOB") { Type = General.Msg("Job Assignment" ,"مهمة عمل"); }
+
+        return General.Msg("There are other " + Type + " on the date specified Please choose another date", "يوجد " + Type + " أخرى في التاريخ المحدد الرجاء اختيار تاريخ آخر");
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

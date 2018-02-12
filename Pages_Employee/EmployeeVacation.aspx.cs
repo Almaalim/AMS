@@ -535,7 +535,8 @@ public partial class EmployeeVacation : BasePage
 
                 if (iStartDate <= iEndDate)
                 {
-                    bool NestingDates = VacCs.FindNestingDates("Gregorian", calStartDate.getGDate(), calEndDate.getGDate(), txtEmpID.Text);
+                    string VacType = "";
+                    bool NestingDates = VacCs.FindNestingDates2("Gregorian", calStartDate.getGDate(), calEndDate.getGDate(), txtEmpID.Text, out VacType);
                     if (!NestingDates)
                     {
                         int VacDays = VacCs.FindVacDays(pgCs.DateType, txtEmpID.Text, ddlVacType.SelectedValue, true);
@@ -561,7 +562,7 @@ public partial class EmployeeVacation : BasePage
                     }
                     else
                     {
-                        CtrlCs.ValidMsg(this, ref cvMaxDays, true, General.Msg("There are other vacations on the date specified Please choose another date", "يوجد إجازة أخرى في التاريخ المحدد الرجاء اختيار تاريخ آخر"));
+                        CtrlCs.ValidMsg(this, ref cvMaxDays, true, VacCs.getMsgVac(VacType));
                         e.IsValid = false;
                     }
                 }

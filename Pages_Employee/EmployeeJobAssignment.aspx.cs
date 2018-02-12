@@ -540,14 +540,15 @@ public partial class EmployeeJobAssignment : BasePage
                 int iEndDate   = DTCs.ConvertDateTimeToInt(calEndDate.getGDate(), "Gregorian");
                 if (iStartDate <= iEndDate)
                 {
-                    bool NestingDates = VacCs.FindNestingDates("Gregorian", calStartDate.getGDate(), calEndDate.getGDate(), txtEmpID.Text);
+                    string VacType = "";
+                    bool NestingDates = VacCs.FindNestingDates2("Gregorian", calStartDate.getGDate(), calEndDate.getGDate(), txtEmpID.Text, out VacType);
                     if (!NestingDates)
                     {
                         
                     }
                     else
                     {
-                        CtrlCs.ValidMsg(this, ref cvNestingDays, true, General.Msg("There are other vacations on the date specified Please choose another date", "يوجد إجازة أخرى في التاريخ المحدد الرجاء اختيار تاريخ آخر"));
+                        CtrlCs.ValidMsg(this, ref cvNestingDays, true, VacCs.getMsgVac(VacType));
                         e.IsValid = false;
                     }
                 }
