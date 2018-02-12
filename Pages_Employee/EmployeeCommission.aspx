@@ -34,14 +34,20 @@
             <div class="row">
                 <div class="col12">
                     <as:GridViewKeyBoardPagerExtender ID="gridviewextender" runat="server" TargetControlID="grdData"/>
-                    <asp:GridView ID="grdData" runat="server" AllowPaging="True" AutoGenerateColumns="False"
-                        BorderWidth="0px" CellPadding="0" CssClass="datatable"
-                        DataKeyNames="EvrID" GridLines="None" OnPreRender="grdData_PreRender"
-                        OnPageIndexChanging="grdData_PageIndexChanging" OnRowCommand="grdData_RowCommand"
-                        OnRowCreated="grdData_RowCreated"
-                        OnRowDataBound="grdData_RowDataBound" OnSelectedIndexChanged="grdData_SelectedIndexChanged"
-                        OnSorting="grdData_Sorting" ShowFooter="True"
-                        meta:resourcekey="grdDataResource1">
+                    <AM:GridView  ID="grdData" runat="server" BorderWidth="0px" CellPadding="0" CssClass="datatable" GridLines="None" 
+                        AutoGenerateColumns="False" AllowSorting="True"  AllowPaging="True"  DataKeyNames="EvrID" ShowFooter="True"
+                        EnableModelValidation="True"
+
+                        DataSourceID="odsGrdData"
+                        OnDataBound="grdData_DataBound"  
+                        OnRowCreated="grdData_RowCreated" 
+                        OnRowCommand="grdData_RowCommand"
+                        OnRowDataBound="grdData_RowDataBound" 
+                        OnSelectedIndexChanged="grdData_SelectedIndexChanged"
+                        OnSorting="grdData_Sorting" 
+                        OnPreRender="grdData_PreRender"  
+                        
+                        meta:resourcekey="grdDataResource1"> 
 
                         <PagerSettings Mode="NextPreviousFirstLast" FirstPageText="First"
                             FirstPageImageUrl="~/images/first.png" LastPageText="Last" LastPageImageUrl="~/images/last.png"
@@ -77,8 +83,25 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
+                    </AM:GridView>
 
-                    </asp:GridView>
+                    <asp:ObjectDataSource ID="odsGrdData" runat="server" 
+                        TypeName="LargDataGridView.DAL.LargDataGrid" 
+                        SelectMethod="GetDataSortedPage" 
+                        SelectCountMethod="GetDataCount"  
+                        EnablePaging="True" 
+                        SortParameterName="sortExpression" OnSelected="odsGrdData_Selected">
+                        <SelectParameters>
+                            <asp:ControlParameter ControlID="hfSearchCriteria"  Name="searchCriteria" Direction="Input"  />
+                            <asp:ControlParameter ControlID="HfRefresh" Name="Refresh" Direction="Input"  />
+                            <asp:Parameter Name="CacheKey" Direction="Input" DefaultValue="EmployeeCommission" />
+                            <asp:Parameter Name="DataID" Direction="Input" DefaultValue="EmployeeVactionInfoView" />
+                            <asp:Parameter Name="sortID" Direction="Input" DefaultValue="EvrStartDate DESC" />
+                            <asp:Parameter Name="DT" Direction="Output" DefaultValue="" Type="Object" />
+                        </SelectParameters>                                            
+                    </asp:ObjectDataSource>
+                    <asp:HiddenField ID="hfSearchCriteria" runat="server" />
+                    <asp:HiddenField ID="HfRefresh" runat="server" />
                 </div>
             </div>
 
@@ -137,7 +160,7 @@
                             ServicePath="~/Service/AutoComplete.asmx"
                             ServiceMethod="GetEmployeeIDList"
                             MinimumPrefixLength="1"
-                            OnClientItemSelected="AutoCompleteIDItemSelected"
+                            OnClientItemSelected="AutoCompleteID_txtEmpID_ItemSelected"
                             CompletionListElementID="pnlauID"
                             CompletionListCssClass="AutoExtender"
                             CompletionListItemCssClass="AutoExtenderList"

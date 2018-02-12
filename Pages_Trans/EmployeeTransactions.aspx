@@ -22,7 +22,7 @@
                         MinimumPrefixLength="1"
                         CompletionInterval="1000"
                         EnableCaching="true"
-                        OnClientItemSelected="AutoCompleteIDItemSelected"
+                        OnClientItemSelected="AutoCompleteID_txtEmpSearch_ItemSelected"
                         CompletionListElementID="pnlauID"
                         CompletionListCssClass="AutoExtender"
                         CompletionListItemCssClass="AutoExtenderList"

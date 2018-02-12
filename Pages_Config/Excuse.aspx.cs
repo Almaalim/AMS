@@ -603,6 +603,29 @@ public partial class Excuse : BasePage
             e.IsValid = false;
         }
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void PercentAllowable_ServerValidate(Object source, ServerValidateEventArgs e)
+    {
+        try
+        {
+            if (source.Equals(cvPercentAllowable))
+            {
+                if (!string.IsNullOrEmpty(txtPercentAllowable.Text))
+                {
+                    if (Convert.ToInt32(txtPercentAllowable.Text) > 100)
+                    {
+                        CtrlCs.ValidMsg(this, ref cvPercentAllowable, true, General.Msg("The maximum rate is 100", "الحد الأقصى للنسبة هو 100"));
+                        e.IsValid = false;
+                    }
+                }
+            }
+        }
+        catch
+        {
+            e.IsValid = false;
+        }
+    }
 
     #endregion
     /*#############################################################################################################################*/

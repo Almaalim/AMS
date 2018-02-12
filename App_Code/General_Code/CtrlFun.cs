@@ -701,6 +701,67 @@ public class CtrlFun : DataLayerBase
 
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
+    #region GridViewControl
+
+    public void FillGridEmpty(ref AlmaalimControl.GridViewControl.GridView grd, int HRow, string MsgEn, string MsgAr)
+    {
+        try
+        {
+            DataTable dt = new DataTable();
+            DataColumn column;
+            //to get column in gridview
+            String columnName = string.Empty;
+            for (int i = 0; i < grd.Columns.Count; i++)
+            {
+                DataControlField field = grd.Columns[i];
+                BoundField bfield = field as BoundField;
+                if (bfield != null) { columnName = bfield.DataField; /*Get DataFiled column*/ } else { columnName = field.SortExpression;/*Get TemplateFiled column*/ }
+                column = new DataColumn(columnName);
+                column.AllowDBNull = true;
+                dt.Columns.Add(column);
+            }
+            dt.Rows.Add(dt.NewRow());
+            grd.DataSource = dt;
+            grd.DataBind();
+            int totalcolums = grd.Rows[0].Cells.Count;
+            grd.Rows[0].Cells.Clear();
+            grd.Rows[0].Cells.Add(new TableCell());
+            grd.Rows[0].Cells[0].ColumnSpan = totalcolums;
+
+            GridViewRow pagerRow = grd.BottomPagerRow;
+            //TableCell tcc = pagerRow.Cells[0];
+            if (pagerRow != null) { pagerRow.Cells.Clear(); }
+            //pagerRow.Cells.Add(tcc);
+            //pagerRow.Cells[0].ColumnSpan = totalcolums;
+
+            grd.Rows[0].Cells[0].Text = General.Msg(MsgEn, MsgAr);
+            grd.Rows[0].Cells[0].HorizontalAlign = HorizontalAlign.Center;
+            grd.Rows[0].Cells[0].VerticalAlign = VerticalAlign.Middle;
+            grd.Rows[0].Cells[0].Height = HRow;
+            grd.Rows[0].Cells[0].ForeColor = System.Drawing.Color.Red;
+            //grd.Rows[0].Cells[0].Font.Size = 12;
+        }
+        catch (Exception ex) { }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void FillGridEmpty(ref AlmaalimControl.GridViewControl.GridView grd, int HRow) { FillGridEmpty(ref grd, HRow, "No Data Found", "لا توجد بيانات"); }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void RefreshGridEmpty(ref AlmaalimControl.GridViewControl.GridView gv)
+    {
+        if (gv.Rows.Count > 0) { if (gv.Rows[0].Cells[0].Text == General.Msg("No Data Found", "لا توجد بيانات")) { FillGridEmpty(ref gv, 50); } }
+    }
+
+    #endregion
+    /*#############################################################################################################################*/
+    /*#############################################################################################################################*/
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /*#############################################################################################################################*/
+    /*#############################################################################################################################*/
     #region ExportGridToExcel
 
     public string Export(string pFileName, GridView gv)

@@ -25,6 +25,7 @@ public partial class EmployeeCommission : BasePage
     string sortExpression = "";
     
     string MainQuery = " SELECT * FROM EmployeeVactionInfoView WHERE VtpCategory = 'COM' ";
+    string WhereQuery = "";
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void Page_Load(object sender, EventArgs e)
@@ -37,6 +38,7 @@ public partial class EmployeeCommission : BasePage
             /*** Fill Session ************************************/
             
             MainQuery += " AND DepID IN (" + pgCs.DepList + ") ";
+            WhereQuery = " VtpCategory = 'COM' AND DepID IN (" + pgCs.DepList + ") ";
 
             if (!IsPostBack)
             {
@@ -46,7 +48,8 @@ public partial class EmployeeCommission : BasePage
                 BtnStatus("1000");
                 UIEnabled(false);
                 UILang();
-                FillGrid(new SqlCommand(MainQuery));
+                hfSearchCriteria.Value = WhereQuery;
+                FillGrid();
                 FillList();
                 ViewState["CommandName"] = "";
                 /*** Common Code ************************************/
@@ -73,31 +76,29 @@ public partial class EmployeeCommission : BasePage
 
     protected void btnFilter_Click(object sender, ImageClickEventArgs e)
     {
-        SqlCommand cmd = new SqlCommand();
         string sql = MainQuery;
 
-        if (ddlFilter.SelectedIndex > 0)
+        if (ddlFilter.SelectedIndex > 0 && !string.IsNullOrEmpty(txtFilter.Text.Trim()))
         {
-            UIClear();
-
             if (ddlFilter.Text == "EmpID") 
-            { 
-                sql = MainQuery + " AND " + ddlFilter.SelectedItem.Value + " = @P1";
-                cmd.Parameters.AddWithValue("@P1", txtFilter.Text.Trim());
+            {
+                hfSearchCriteria.Value = WhereQuery + " AND " + ddlFilter.SelectedItem.Value + " = '" + txtFilter.Text.Trim() + "'";
             }
             else 
             { 
-                sql = MainQuery + " AND " + ddlFilter.SelectedItem.Value + " LIKE @P1";
-                cmd.Parameters.AddWithValue("@P1", "%" + txtFilter.Text.Trim() + "%");
-            }
+                hfSearchCriteria.Value = WhereQuery + " AND " + ddlFilter.SelectedItem.Value + " LIKE '%" + txtFilter.Text.Trim() + "%'";
+            }         
+        }
+        else
+        {
+            hfSearchCriteria.Value = WhereQuery;
         }
 
         UIClear();
         BtnStatus("1000");
         UIEnabled(false);
         grdData.SelectedIndex = -1;
-        cmd.CommandText = sql;
-        FillGrid(cmd);
+        FillGrid();
     }
 
     #endregion
@@ -265,6 +266,19 @@ public partial class EmployeeCommission : BasePage
     /*#############################################################################################################################*/
     #region GridView Events
 
+    protected void grdData_DataBound(object sender, EventArgs e)
+    {
+        if (grdData.Rows.Count > 0)
+        {
+            if (ViewState["PageSize"] != null)
+            {
+                DropDownList _ddlPager = CtrlCs.PagerList(grdData);
+                _ddlPager.Items.FindByText((ViewState["PageSize"].ToString())).Selected = true;
+            }
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void grdData_RowCreated(object sender, GridViewRowEventArgs e)
     {
         try
@@ -294,8 +308,7 @@ public partial class EmployeeCommission : BasePage
     void ddlPager_SelectedIndexChanged(object sender, EventArgs e)
     {
         grdData.PageSize = int.Parse(((DropDownList)sender).SelectedValue);
-        grdData.PageIndex = 0;
-        btnFilter_Click(null,null);
+        ViewState["PageSize"] = ((DropDownList)sender).SelectedValue;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -354,32 +367,32 @@ public partial class EmployeeCommission : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void grdData_Sorting(object sender, GridViewSortEventArgs e)
     {
-        DataTable DT = DBCs.FetchData(new SqlCommand(MainQuery));
-        if (!DBCs.IsNullOrEmpty(DT))
-        {
-            DataView dataView = new DataView(DT);
+        //DataTable DT = DBCs.FetchData(new SqlCommand(MainQuery));
+        //if (!DBCs.IsNullOrEmpty(DT))
+        //{
+        //    DataView dataView = new DataView(DT);
 
-            if (ViewState["SortDirection"] == null)
-            {
-                ViewState["SortDirection"] = "ASC";
-                sortDirection = Convert.ToString(ViewState["SortDirection"]);
-                sortDirection = ConvertSortDirectionToSql(sortDirection);
-                ViewState["SortDirection"] = sortDirection;
-                ViewState["SortExpression"] = Convert.ToString(e.SortExpression);
-            }
-            else
-            {
-                sortDirection = Convert.ToString(ViewState["SortDirection"]);
-                sortDirection = ConvertSortDirectionToSql(sortDirection);
-                ViewState["SortDirection"] = sortDirection;
-                ViewState["SortExpression"] = Convert.ToString(e.SortExpression);
-            }
+        //    if (ViewState["SortDirection"] == null)
+        //    {
+        //        ViewState["SortDirection"] = "ASC";
+        //        sortDirection = Convert.ToString(ViewState["SortDirection"]);
+        //        sortDirection = ConvertSortDirectionToSql(sortDirection);
+        //        ViewState["SortDirection"] = sortDirection;
+        //        ViewState["SortExpression"] = Convert.ToString(e.SortExpression);
+        //    }
+        //    else
+        //    {
+        //        sortDirection = Convert.ToString(ViewState["SortDirection"]);
+        //        sortDirection = ConvertSortDirectionToSql(sortDirection);
+        //        ViewState["SortDirection"] = sortDirection;
+        //        ViewState["SortExpression"] = Convert.ToString(e.SortExpression);
+        //    }
 
-            dataView.Sort = e.SortExpression + " " + sortDirection;
+        //    dataView.Sort = e.SortExpression + " " + sortDirection;
 
-            grdData.DataSource = dataView;
-            grdData.DataBind();
-        }
+        //    grdData.DataSource = dataView;
+        //    grdData.DataBind();
+        //}
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -404,9 +417,9 @@ public partial class EmployeeCommission : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void grdData_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
-        grdData.PageIndex = e.NewPageIndex;
-        grdData.SelectedIndex = -1;
-        btnFilter_Click(null,null);
+        //grdData.PageIndex = e.NewPageIndex;
+        //grdData.SelectedIndex = -1;
+        //btnFilter_Click(null,null);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -452,27 +465,38 @@ public partial class EmployeeCommission : BasePage
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void FillGrid(SqlCommand cmd)
+    private void FillGrid()
     {
         System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
 
-        cmd.CommandText += " ORDER BY EvrStartDate DESC ";
-
-        DataTable GDT = DBCs.FetchData(cmd);
-        if (!DBCs.IsNullOrEmpty(GDT))
+        try
         {
-            grdData.DataSource = (DataTable)GDT;
-            ViewState["grdDataDT"] = (DataTable)GDT;
+            grdData.PageIndex = 0;
+            grdData.DataSource = null;
+            grdData.DataSourceID = "odsGrdData";
+            HfRefresh.Value = "T";
             grdData.DataBind();
+            HfRefresh.Value = "F";
         }
-        else
+        catch (Exception ex) { }
+
+        if (grdData.Rows.Count == 0)
         {
+            grdData.PageIndex = 0;
+            grdData.DataSourceID = "";
             CtrlCs.FillGridEmpty(ref grdData, 50);
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void grdData_PreRender(object sender, EventArgs e) { CtrlCs.GridRender((GridView)sender); }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void odsGrdData_Selected(object sender, ObjectDataSourceStatusEventArgs e)
+    {
+        DataTable DT = (DataTable)e.OutputParameters["DT"]; 
+        if (DT != null) { ViewState["grdDataDT"] = DT; }
+    }
 
     #endregion
     /*#############################################################################################################################*/

@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using System.Data;
-using System.Collections;
-using System.Text;
-using Elmah;
 
 public partial class CurrentUsers : BasePage
 {
@@ -16,6 +8,7 @@ public partial class CurrentUsers : BasePage
     PageFun pgCs   = new PageFun();
     General GenCs  = new General();
     DBFun   DBCs   = new DBFun();
+    DTFun   DTCs   = new DTFun();
     CtrlFun CtrlCs = new CtrlFun();
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -28,7 +21,7 @@ public partial class CurrentUsers : BasePage
         
         if (!IsPostBack)
         {
-             /*** Common Code ************************************/
+            /*** Common Code ************************************/
             /*** Check AMS License ***/ pgCs.CheckAMSLicense();  
             /*** get Permission    ***/ ViewState["ht"] = pgCs.getPerm(Request.Url.AbsolutePath);            
             FillGrid();
@@ -39,14 +32,19 @@ public partial class CurrentUsers : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void FillGrid()
     {
-        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-        DateTime now = DateTime.Now;
-        DateTime start = new DateTime(now.Year, now.Month, now.Day, 0, 0, 0, 0);
-        DateTime End   = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second, now.Millisecond);
+        string Start = DTCs.GDateNow("MM/dd/yyyy 00:00:00");
+        string End   = DTCs.GDateNow("MM/dd/yyyy HH:mm:ss");
 
-        DataTable DT = DBCs.FetchData(" SELECT UsrName,HostName,HostIP,max(LogInEvent) maxLogInEvent FROM InOutLog WHERE (LogInEvent BETWEEN @P1 AND @P2) AND LogOutEvent IS NULL GROUP BY UsrName,HostName,HostIP ", new string[] { start.ToString(), End.ToString() });
-        grdData.DataSource = (DataTable)DT;
-        grdData.DataBind();
+        DataTable DT = DBCs.FetchData(" SELECT UsrName,HostName,HostIP,max(LogInEvent) maxLogInEvent FROM InOutLog WHERE (LogInEvent BETWEEN @P1 AND @P2) AND LogOutEvent IS NULL GROUP BY UsrName,HostName,HostIP ", new string[] { Start.ToString(), End.ToString() });
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            grdData.DataSource = (DataTable)DT;
+            grdData.DataBind();
+        }
+        else
+        {
+            CtrlCs.FillGridEmpty(ref grdData, 50);
+        }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

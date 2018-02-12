@@ -187,7 +187,9 @@
                         <asp:TextBox ID="txtPercentAllowable" runat="server" AutoCompleteType="Disabled"
                             Enabled="False" MaxLength="3" onkeypress="return OnlyNumber(event);"
                             meta:resourcekey="txtPercentAllowableResource1"></asp:TextBox>
-
+                        <asp:CustomValidator ID="cvPercentAllowable" runat="server" ControlToValidate="txtValid" CssClass="CustomValidator"
+                            EnableClientScript="False" OnServerValidate="PercentAllowable_ServerValidate" Text="&lt;img src='../images/Exclamation.gif' title='' /&gt;"
+                            ValidationGroup="vgSave"></asp:CustomValidator>
                         &nbsp;
                         <asp:Label ID="Label2" runat="server" Text=" % " meta:resourcekey="Label2Resource1" CssClass="LeftOverlay3"></asp:Label>
                         <ajaxToolkit:AnimationExtender ID="AnimationExtenderShow2" runat="server" TargetControlID="lnkShow2"></ajaxToolkit:AnimationExtender>
@@ -201,6 +203,8 @@
                                 <asp:Label ID="lblHintPercent" runat="server" Text="This option determines, how much the percentage allowed for the employee to Request for Excuse" meta:resourcekey="lblHintPercentResource"></asp:Label>
                             </p>
                         </div>
+
+
                     </div>
                 </div>
 

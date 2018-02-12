@@ -459,7 +459,7 @@
                                 ServicePath="~/Service/AutoComplete.asmx"
                                 ServiceMethod="GetEmployeeIDListWithCon2"
                                 MinimumPrefixLength="1"
-                                OnClientItemSelected="AutoCompleteIDItemSelectedWithoutMaster"
+                                OnClientItemSelected="AutoCompleteID_txtEmpID2_WithoutMaster_ItemSelected"
                                 CompletionListElementID="pnlauID2"
                                 CompletionListCssClass="AutoExtender"
                                 CompletionListItemCssClass="AutoExtenderList"

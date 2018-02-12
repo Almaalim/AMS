@@ -25,12 +25,17 @@
             <div class="row">
                 <div class="col12">
                     <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData"/>
-                    <asp:GridView ID="grdData" runat="server" CssClass="datatable"
-                        AutoGenerateColumns="False" AllowPaging="True" CellPadding="0" BorderWidth="0px"
-                        GridLines="None" DataKeyNames="ImlID" ShowFooter="True" OnPageIndexChanging="grdData_PageIndexChanging"
-                        OnRowCreated="grdData_RowCreated" OnRowDataBound="grdData_RowDataBound"
-                        OnPreRender="grdData_PreRender" meta:resourcekey="grdDataResource1">
+                    <AM:GridView  ID="grdData" runat="server" CellPadding="0" BorderWidth="0px" CssClass="datatable" GridLines="None" 
+                        AutoGenerateColumns="False" AllowPaging="True"  DataKeyNames="ImlID" ShowFooter="True"
+                        EnableModelValidation="True"
 
+                        DataSourceID="odsGrdData"
+                        OnDataBound="grdData_DataBound"  
+                        OnRowCreated="grdData_RowCreated" 
+                        OnRowDataBound="grdData_RowDataBound" 
+                        OnPreRender="grdData_PreRender"  
+                        
+                        meta:resourcekey="grdDataResource1"> 
                         <PagerSettings Mode="NextPreviousFirstLast" FirstPageText="First" FirstPageImageUrl="~/images/first.png"
                             LastPageText="Last" LastPageImageUrl="~/images/last.png" NextPageText="Next"
                             NextPageImageUrl="~/images/next.png" PreviousPageText="Prev" PreviousPageImageUrl="~/images/prev.png" />
@@ -66,7 +71,25 @@
                             <asp:BoundField HeaderText="Transaction Count" DataField="ImlTransCount" SortExpression="ImlTransCount"/>
                             <asp:BoundField HeaderText="Error Message" DataField="ImlErrMsg" SortExpression="ImlErrMsg"/>
                         </Columns>
-                    </asp:GridView>
+                    </AM:GridView>
+
+                    <asp:ObjectDataSource ID="odsGrdData" runat="server" 
+                        TypeName="LargDataGridView.DAL.LargDataGrid" 
+                        SelectMethod="GetDataSortedPage" 
+                        SelectCountMethod="GetDataCount"  
+                        EnablePaging="True" 
+                        SortParameterName="sortExpression" OnSelected="odsGrdData_Selected">
+                        <SelectParameters>
+                            <asp:ControlParameter  ControlID="hfSearchCriteria"  Name="searchCriteria" Direction="Input"  />
+                            <asp:ControlParameter ControlID="HfRefresh" Name="Refresh" Direction="Input"  />
+                            <asp:Parameter Name="CacheKey" Direction="Input" DefaultValue="ImpMacLOG" />
+                            <asp:Parameter Name="DataID" Direction="Input" DefaultValue="ImportMachineLogInfo" />
+                            <asp:Parameter Name="sortID" Direction="Input" DefaultValue="ImlStartDT DESC" />
+                            <asp:Parameter Name="DT" Direction="Output" DefaultValue="" Type="Object" />
+                        </SelectParameters>                                            
+                    </asp:ObjectDataSource>
+                    <asp:HiddenField ID="hfSearchCriteria" runat="server" />
+                    <asp:HiddenField ID="HfRefresh" runat="server" />
                 </div>
             </div>
 

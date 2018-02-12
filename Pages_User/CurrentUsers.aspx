@@ -29,7 +29,7 @@
                         </ItemTemplate>
                     </asp:TemplateField>
 
-                    <asp:TemplateField HeaderText="Log In Time" SortExpression="maxLogInEvent"
+                    <asp:TemplateField HeaderText="Log In Time" SortExpression="maxLogInEventTime"
                         meta:resourcekey="TemplateFieldResource2">
                         <ItemTemplate>
                             <%# DisplayFun.GrdDisplayTime(Eval("maxLogInEvent"))%>

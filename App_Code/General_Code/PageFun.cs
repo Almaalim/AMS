@@ -116,7 +116,7 @@ public class PageFun
             { 
                 ht = getPermission(HttpContext.Current.Session["MenuPermissions"].ToString(), UrlPage); 
 
-                //if (ht.Count == 0) { GoLogin(); }
+                if (ht.Count == 0) { GoLogin(); }
             } 
             else { GoLogin(); }
 
@@ -143,7 +143,7 @@ public class PageFun
         
         QPerm.Remove(0, QPerm.Length);
         QPerm.Append("SELECT MnuTextEn FROM Menu ");
-        QPerm.Append(" WHERE MnuVisible = 'True' AND MnuType ='Command' AND MnuParentID > 0 ");
+        QPerm.Append(" WHERE MnuVisible = 'True' AND MnuParentID > 0 "); //AND MnuType ='Command'
         QPerm.Append(" AND MnuPermissionID IN (SELECT MnuPermissionID FROM Menu WHERE MnuURL = '" +  PageFileInfo.Name + QSPath + "') ");
         QPerm.Append(" AND MnuNumber IN (" + pUserPermissions + ")" );
         

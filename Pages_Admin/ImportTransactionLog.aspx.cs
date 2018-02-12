@@ -42,7 +42,7 @@ public partial class Pages_Admin_ImportTransactionLog : BasePage
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-     public void FillList()
+    public void FillList()
     {
         try
         {
@@ -81,16 +81,19 @@ public partial class Pages_Admin_ImportTransactionLog : BasePage
             DTCs.FindMonthDates(ddlYear.SelectedValue, ddlMonth.SelectedValue, out SDate, out EDate);
 
             StringBuilder FQ = new StringBuilder();
-            FQ.Append(MainQuery);
-            FQ.Append(" WHERE IplDate BETWEEN @SDate AND @EDate ");
-            FQ.Append(" ORDER BY IplDate DESC ");
-            cmd.Parameters.AddWithValue("@SDate", SDate);
-            cmd.Parameters.AddWithValue("@EDate", EDate);
-            sql = FQ.ToString();
+            //FQ.Append(MainQuery);
+            //FQ.Append(" WHERE IplDate BETWEEN @SDate AND @EDate ");
+            //FQ.Append(" ORDER BY IplDate DESC ");
+            //cmd.Parameters.AddWithValue("@SDate", SDate);
+            //cmd.Parameters.AddWithValue("@EDate", EDate);
+            //sql = FQ.ToString();
+
+            FQ.Append(" IplDate >= '" + SDate + "' AND IplDate <= '" + EDate + "' ");
+            hfSearchCriteria.Value = FQ.ToString();
 
             grdData.SelectedIndex = -1;
             cmd.CommandText = sql;
-            FillGrid(cmd);
+            FillGrid();
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
@@ -105,7 +108,20 @@ public partial class Pages_Admin_ImportTransactionLog : BasePage
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
     #region GridView Events
-
+    
+    protected void grdData_DataBound(object sender, EventArgs e)
+    {
+        if (grdData.Rows.Count > 0)
+        {
+            if (ViewState["PageSize"] != null)
+            {
+                DropDownList _ddlPager = CtrlCs.PagerList(grdData);
+                _ddlPager.Items.FindByText((ViewState["PageSize"].ToString())).Selected = true;
+            }
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void grdData_RowCreated(object sender, GridViewRowEventArgs e)
     {
         try
@@ -135,8 +151,7 @@ public partial class Pages_Admin_ImportTransactionLog : BasePage
     void ddlPager_SelectedIndexChanged(object sender, EventArgs e)
     {
         grdData.PageSize = int.Parse(((DropDownList)sender).SelectedValue);
-        grdData.PageIndex = 0;
-        btnFilter_Click(null,null);
+        ViewState["PageSize"] = ((DropDownList)sender).SelectedValue;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -198,9 +213,9 @@ public partial class Pages_Admin_ImportTransactionLog : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void grdData_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
-        grdData.PageIndex = e.NewPageIndex;
-        grdData.SelectedIndex = -1;
-        btnFilter_Click(null,null);
+        //grdData.PageIndex = e.NewPageIndex;
+        //grdData.SelectedIndex = -1;
+        //btnFilter_Click(null,null);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -210,23 +225,38 @@ public partial class Pages_Admin_ImportTransactionLog : BasePage
     protected void PopulateUI(string pID) { }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void FillGrid(SqlCommand cmd)
+    private void FillGrid()
     {
-        DataTable GDT = DBCs.FetchData(cmd);
-        if (!DBCs.IsNullOrEmpty(GDT))
+        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+
+        try
         {
-            grdData.DataSource = (DataTable)GDT;
-            ViewState["grdDataDT"] = (DataTable)GDT;
+            grdData.PageIndex = 0;
+            grdData.DataSource = null;
+            grdData.DataSourceID = "odsGrdData";
+            HfRefresh.Value = "T";
             grdData.DataBind();
+            HfRefresh.Value = "F";
         }
-        else
+        catch (Exception ex) { }
+
+        if (grdData.Rows.Count == 0)
         {
+            grdData.PageIndex = 0;
+            grdData.DataSourceID = "";
             CtrlCs.FillGridEmpty(ref grdData, 50);
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void grdData_PreRender(object sender, EventArgs e) { CtrlCs.GridRender((GridView)sender); }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void odsGrdData_Selected(object sender, ObjectDataSourceStatusEventArgs e)
+    {
+        DataTable DT = (DataTable)e.OutputParameters["DT"]; 
+        if (DT != null) { ViewState["grdDataDT"] = DT; }
+    }
 
     #endregion
     /*#############################################################################################################################*/

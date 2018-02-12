@@ -27,7 +27,7 @@
                         ServicePath="~/Service/AutoComplete.asmx"
                         ServiceMethod="GetEmployeeIDList"
                         MinimumPrefixLength="1"
-                        OnClientItemSelected="AutoCompleteIDSearchItemSelected"
+                        OnClientItemSelected="AutoCompleteID_txtEmpIDSearch_ItemSelected"
                         CompletionListElementID="pnlauID"
                         CompletionListCssClass="AutoExtender"
                         CompletionListItemCssClass="AutoExtenderList"
@@ -58,12 +58,13 @@
                         ServicePath="~/Service/AutoComplete.asmx"
                         ServiceMethod="GetEmployeeNameList"
                         MinimumPrefixLength="1"
-                        OnClientItemSelected="AutoCompleteNameSearchItemSelected"
+                        OnClientItemSelected="AutoCompleteID_txtEmpNameSearch_ItemSelected"
                         CompletionListElementID="pnlauName"
                         CompletionListCssClass="AutoExtender"
                         CompletionListItemCssClass="AutoExtenderList"
                         CompletionListHighlightedItemCssClass="AutoExtenderHighlight"
-                        CompletionSetCount="12" DelimiterCharacters="" Enabled="True" />
+                        CompletionSetCount="12" DelimiterCharacters="" Enabled="True" 
+                        />
                 </div>
                 <div class="col1">
                     <asp:Label ID="lblTodayDate" runat="server" Text="Today Date:"  

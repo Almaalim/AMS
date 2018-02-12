@@ -25,11 +25,17 @@
             <div class="row">
                 <div class="col12">
                     <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData"/>
-                    <asp:GridView ID="grdData" runat="server" CssClass="datatable"
-                        AutoGenerateColumns="False" AllowPaging="True" CellPadding="0" BorderWidth="0px"
-                        GridLines="None" DataKeyNames="MacID" ShowFooter="True" OnPageIndexChanging="grdData_PageIndexChanging"
-                        OnRowCreated="grdData_RowCreated" OnRowDataBound="grdData_RowDataBound"
-                        OnPreRender="grdData_PreRender" meta:resourcekey="grdDataResource1">
+                    <AM:GridView  ID="grdData" runat="server" CellPadding="0" BorderWidth="0px" CssClass="datatable" GridLines="None" 
+                        AutoGenerateColumns="False" AllowPaging="True"  DataKeyNames="MacID" ShowFooter="True"
+                        EnableModelValidation="True"
+
+                        DataSourceID="odsGrdData"
+                        OnDataBound="grdData_DataBound"  
+                        OnRowCreated="grdData_RowCreated" 
+                        OnRowDataBound="grdData_RowDataBound" 
+                        OnPreRender="grdData_PreRender"  
+                        
+                        meta:resourcekey="grdDataResource1"> 
 
                         <PagerSettings Mode="NextPreviousFirstLast" FirstPageText="First" FirstPageImageUrl="~/images/first.png"
                             LastPageText="Last" LastPageImageUrl="~/images/last.png" NextPageText="Next"
@@ -49,8 +55,25 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
+                    </AM:GridView>
 
-                    </asp:GridView>
+                    <asp:ObjectDataSource ID="odsGrdData" runat="server" 
+                        TypeName="LargDataGridView.DAL.LargDataGrid" 
+                        SelectMethod="GetDataSortedPage" 
+                        SelectCountMethod="GetDataCount"  
+                        EnablePaging="True" 
+                        SortParameterName="sortExpression" OnSelected="odsGrdData_Selected">
+                        <SelectParameters>
+                            <asp:ControlParameter  ControlID="hfSearchCriteria"  Name="searchCriteria" Direction="Input"  />
+                            <asp:ControlParameter ControlID="HfRefresh" Name="Refresh" Direction="Input"  />
+                            <asp:Parameter Name="CacheKey" Direction="Input" DefaultValue="MACLOG" />
+                            <asp:Parameter Name="DataID" Direction="Input" DefaultValue="MachineErrorInfoView" />
+                            <asp:Parameter Name="sortID" Direction="Input" DefaultValue="MacID DESC" />
+                            <asp:Parameter Name="DT" Direction="Output" DefaultValue="" Type="Object" />
+                        </SelectParameters>                                            
+                    </asp:ObjectDataSource>
+                    <asp:HiddenField ID="hfSearchCriteria" runat="server" />
+                    <asp:HiddenField ID="HfRefresh" runat="server" />
                 </div>
             </div>
 

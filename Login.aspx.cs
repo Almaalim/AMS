@@ -205,8 +205,10 @@ public partial class Login : BasePage
         try
         {
             string clientPCName;
-            string[] computer_name = System.Net.Dns.GetHostEntry(Request.ServerVariables["remote_host"]).HostName.Split(new Char[] { '.' });
-            clientPCName = computer_name[0].ToString();
+            //string[] computer_name = System.Net.Dns.GetHostEntry(Request.ServerVariables["remote_host"]).HostName.Split(new Char[] { '.' });
+            //clientPCName = computer_name[0].ToString();
+            clientPCName = System.Environment.MachineName;
+
 
             string IPAddress = GetIPAddress();
 

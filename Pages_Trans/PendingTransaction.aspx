@@ -26,7 +26,7 @@
                         ServicePath="~/Service/AutoComplete.asmx"
                         ServiceMethod="GetEmployeeIDList"
                         MinimumPrefixLength="1"
-                        OnClientItemSelected="AutoCompleteIDItemSelected"
+                        OnClientItemSelected="AutoCompleteID_txtEmpSearch_ItemSelected"
                         CompletionListElementID="pnlauID"
                         CompletionListCssClass="AutoExtender"
                         CompletionListItemCssClass="AutoExtenderList"

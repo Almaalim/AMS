@@ -83,24 +83,30 @@ public partial class Pages_Admin_TransactionLog : BasePage
             bool find = false;
             string sql = MainQuery + " WHERE LogID = LogID ";
 
+            StringBuilder FQ = new StringBuilder();
+            FQ.Append(" LogID = LogID ");
+
             if (ddlLogTableName.SelectedIndex > 0)
             {
-                sql += " AND LogTableName = @TableName";
-                cmd.Parameters.AddWithValue("@TableName", ddlLogTableName.SelectedValue);
+                FQ.Append(" AND LogTableName = '" + ddlLogTableName.SelectedValue +"' ");
+                //sql += " AND LogTableName = @TableName";
+                //cmd.Parameters.AddWithValue("@TableName", ddlLogTableName.SelectedValue);
                 find = true;
             }
 
             if (ddlLogTransactionType.SelectedIndex > 0)
             {
-                sql += " AND LogTransactionType = @TransactionType";
-                cmd.Parameters.AddWithValue("@TransactionType", ddlLogTransactionType.SelectedValue);
+                FQ.Append(" AND LogTransactionType = '" + ddlLogTransactionType.SelectedValue +"' ");
+                //sql += " AND LogTransactionType = @TransactionType";
+                //cmd.Parameters.AddWithValue("@TransactionType", ddlLogTransactionType.SelectedValue);
                 find = true;
             }
 
             if (ddlLogTransactionBy.SelectedIndex > 0)
             {
-                sql += " AND LogTransactionBy = @TransactionBy";
-                cmd.Parameters.AddWithValue("@TransactionBy", ddlLogTransactionBy.SelectedValue);
+                FQ.Append(" AND LogTransactionBy = '" + ddlLogTransactionBy.SelectedValue +"' ");
+                //sql += " AND LogTransactionBy = @TransactionBy";
+                //cmd.Parameters.AddWithValue("@TransactionBy", ddlLogTransactionBy.SelectedValue);
                 find = true;
             }
 
@@ -115,15 +121,17 @@ public partial class Pages_Admin_TransactionLog : BasePage
                     ToDate = DTCs.ConvertToDatetime(calEndDate.getGDate(), "Gregorian");
                 }
                 
-                sql += " AND LogTransactionDate BETWEEN @FromDate AND @ToDate";
-                cmd.Parameters.AddWithValue("@FromDate", String.Format("{0:MM/dd/yyyy}", fromDate) + " 00:00:00");
-                cmd.Parameters.AddWithValue("@ToDate", String.Format("{0:MM/dd/yyyy}", ToDate) + " 23:59:59");
+                //sql += " AND LogTransactionDate BETWEEN @FromDate AND @ToDate";
+                //cmd.Parameters.AddWithValue("@FromDate", String.Format("{0:MM/dd/yyyy}", fromDate) + " 00:00:00");
+                //cmd.Parameters.AddWithValue("@ToDate", String.Format("{0:MM/dd/yyyy}", ToDate) + " 23:59:59");
+
+                FQ.Append(" AND LogTransactionDate >= '" + String.Format("{0:MM/dd/yyyy}", fromDate) + " 00:00:00" + "' AND LogTransactionDate <= '" + String.Format("{0:MM/dd/yyyy}", ToDate) + " 23:59:59" + "' ");
             }
             
             BtnStatus("1");
             grdData.SelectedIndex = -1;
-            if (find) { cmd.CommandText = sql; } else { cmd.CommandText = MainQuery + " WHERE LogID = -1 "; }
-            FillGrid(cmd);
+            if (find) { hfSearchCriteria.Value = FQ.ToString(); } else { hfSearchCriteria.Value = " LogID = -1 "; }
+            FillGrid();
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
@@ -197,6 +205,19 @@ public partial class Pages_Admin_TransactionLog : BasePage
     /*#############################################################################################################################*/
     #region GridView Events
 
+    protected void grdData_DataBound(object sender, EventArgs e)
+    {
+        if (grdData.Rows.Count > 0)
+        {
+            if (ViewState["PageSize"] != null)
+            {
+                DropDownList _ddlPager = CtrlCs.PagerList(grdData);
+                _ddlPager.Items.FindByText((ViewState["PageSize"].ToString())).Selected = true;
+            }
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void grdData_RowCreated(object sender, GridViewRowEventArgs e)
     {
         try
@@ -226,8 +247,7 @@ public partial class Pages_Admin_TransactionLog : BasePage
     void ddlPager_SelectedIndexChanged(object sender, EventArgs e)
     {
         grdData.PageSize = int.Parse(((DropDownList)sender).SelectedValue);
-        grdData.PageIndex = 0;
-        btnFilter_Click(null, null);
+        ViewState["PageSize"] = ((DropDownList)sender).SelectedValue;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -250,32 +270,32 @@ public partial class Pages_Admin_TransactionLog : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void grdData_Sorting(object sender, GridViewSortEventArgs e)
     {
-        DataTable DT = DBCs.FetchData(new SqlCommand(MainQuery));
-        if (!DBCs.IsNullOrEmpty(DT))
-        {
-            DataView dataView = new DataView(DT);
+        //DataTable DT = DBCs.FetchData(new SqlCommand(MainQuery));
+        //if (!DBCs.IsNullOrEmpty(DT))
+        //{
+        //    DataView dataView = new DataView(DT);
 
-            if (ViewState["SortDirection"] == null)
-            {
-                ViewState["SortDirection"] = "ASC";
-                sortDirection = Convert.ToString(ViewState["SortDirection"]);
-                sortDirection = ConvertSortDirectionToSql(sortDirection);
-                ViewState["SortDirection"] = sortDirection;
-                ViewState["SortExpression"] = Convert.ToString(e.SortExpression);
-            }
-            else
-            {
-                sortDirection = Convert.ToString(ViewState["SortDirection"]);
-                sortDirection = ConvertSortDirectionToSql(sortDirection);
-                ViewState["SortDirection"] = sortDirection;
-                ViewState["SortExpression"] = Convert.ToString(e.SortExpression);
-            }
+        //    if (ViewState["SortDirection"] == null)
+        //    {
+        //        ViewState["SortDirection"] = "ASC";
+        //        sortDirection = Convert.ToString(ViewState["SortDirection"]);
+        //        sortDirection = ConvertSortDirectionToSql(sortDirection);
+        //        ViewState["SortDirection"] = sortDirection;
+        //        ViewState["SortExpression"] = Convert.ToString(e.SortExpression);
+        //    }
+        //    else
+        //    {
+        //        sortDirection = Convert.ToString(ViewState["SortDirection"]);
+        //        sortDirection = ConvertSortDirectionToSql(sortDirection);
+        //        ViewState["SortDirection"] = sortDirection;
+        //        ViewState["SortExpression"] = Convert.ToString(e.SortExpression);
+        //    }
 
-            dataView.Sort = e.SortExpression + " " + sortDirection;
+        //    dataView.Sort = e.SortExpression + " " + sortDirection;
 
-            grdData.DataSource = dataView;
-            grdData.DataBind();
-        }
+        //    grdData.DataSource = dataView;
+        //    grdData.DataBind();
+        //}
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -300,32 +320,47 @@ public partial class Pages_Admin_TransactionLog : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void grdData_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
-        grdData.PageIndex = e.NewPageIndex;
-        grdData.SelectedIndex = -1;
-        btnFilter_Click(null, null);
+        //grdData.PageIndex = e.NewPageIndex;
+        //grdData.SelectedIndex = -1;
+        //btnFilter_Click(null, null);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void grdData_SelectedIndexChanged(object sender, EventArgs e) { }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void FillGrid(SqlCommand cmd)
+    private void FillGrid()
     {
-        DataTable GDT = DBCs.FetchData(cmd);
-        if (!DBCs.IsNullOrEmpty(GDT))
+        System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
+
+        try
         {
-            grdData.DataSource = (DataTable)GDT;
-            ViewState["grdDataDT"] = (DataTable)GDT;
+            grdData.PageIndex = 0;
+            grdData.DataSource = null;
+            grdData.DataSourceID = "odsGrdData";
+            HfRefresh.Value = "T";
             grdData.DataBind();
+            HfRefresh.Value = "F";
         }
-        else
+        catch (Exception ex) { }
+
+        if (grdData.Rows.Count == 0)
         {
+            grdData.PageIndex = 0;
+            grdData.DataSourceID = "";
             CtrlCs.FillGridEmpty(ref grdData, 50);
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void grdData_PreRender(object sender, EventArgs e) { CtrlCs.GridRender((GridView)sender); }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void odsGrdData_Selected(object sender, ObjectDataSourceStatusEventArgs e)
+    {
+        DataTable DT = (DataTable)e.OutputParameters["DT"]; 
+        if (DT != null) { ViewState["grdDataDT"] = DT; }
+    }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public static string GrdDisplayType(object ID)

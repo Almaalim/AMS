@@ -19,7 +19,7 @@
                     }
                 }
                 //check or uncheck parents at all levels
-                //            CheckUncheckParents(src, src.checked);
+               CheckUncheckParents(src, src.checked);
             }
         }
 
@@ -40,15 +40,19 @@
 
                 if (check) //checkbox checked
                 {
-                    var isAllSiblingsChecked = AreAllSiblingsChecked(srcChild);
-                    if (isAllSiblingsChecked)
+                    //var isAllSiblingsChecked = AreAllSiblingsChecked(srcChild);
+                    //if (isAllSiblingsChecked)
                         checkUncheckSwitch = true;
-                    else
-                        return; //do not need to check parent if any child is not checked
+                    //else
+                    //    return; //do not need to check parent if any child is not checked
                 }
                 else //checkbox unchecked
                 {
-                    checkUncheckSwitch = false;
+                    var isAllSiblingsUnChecked = AreAllSiblingsUnChecked(srcChild);
+                    if (!isAllSiblingsUnChecked) 
+                        checkUncheckSwitch = true;
+                    else
+                        checkUncheckSwitch = false;
                 }
 
                 var inpElemsInParentTable = parentNodeTable.getElementsByTagName("input");
@@ -79,6 +83,24 @@
             return true;
         }
 
+        function AreAllSiblingsUnChecked(chkBox) {
+            var parentDiv = GetParentByTagName("div", chkBox);
+            var childCount = parentDiv.childNodes.length;
+            for (var i = 0; i < childCount; i++) {
+                if (parentDiv.childNodes[i].nodeType == 1) //check if the child node is an element node
+                {
+                    if (parentDiv.childNodes[i].tagName.toLowerCase() == "table") {
+                        var prevChkBox = parentDiv.childNodes[i].getElementsByTagName("input")[0];
+                        //if any of sibling nodes are not checked, return false
+                        if (prevChkBox.checked) {
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+
         //utility function to get the container of an element by tagname
         function GetParentByTagName(parentTagName, childElementObj) {
             var parent = childElementObj.parentNode;
@@ -87,8 +109,8 @@
             }
             return parent;
         }
-
     </script>
+ 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <div class="row">
