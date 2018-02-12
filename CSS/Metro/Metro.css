@@ -4527,7 +4527,7 @@ a.colord13f2a:before {
     font-family: 'icomoon' !important;
 }
 
-.Employee:before, .EmployeeMaster:before , .icon400:before {
+a.Employee:before, .EmployeeMaster:before , .icon400:before {
     content: "\f2c0";
     font-family: FontAwesome !important;
 }
@@ -4662,7 +4662,7 @@ a.colord13f2a:before {
     font-family: FontAwesome !important;
 }
 
-.RequestApproval:before , .icon357:before {
+.RequestApproval:before , .icon357:before , .Approval:before  {
     content: "\f26c";
     font-family: FontAwesome !important;
 }
