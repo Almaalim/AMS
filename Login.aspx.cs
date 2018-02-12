@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Net;
 using Elmah;
+using System.Collections.Generic;
 
 public partial class Login : BasePage
 {
@@ -207,10 +208,9 @@ public partial class Login : BasePage
             string clientPCName;
             //string[] computer_name = System.Net.Dns.GetHostEntry(Request.ServerVariables["remote_host"]).HostName.Split(new Char[] { '.' });
             //clientPCName = computer_name[0].ToString();
-            clientPCName = System.Environment.MachineName;
-
 
             string IPAddress = GetIPAddress();
+            clientPCName = GetHostName(IPAddress);
 
             logSqlCs.InOutLog_Insert(Session["UserName"].ToString(), clientPCName, IPAddress);
         }
@@ -236,6 +236,15 @@ public partial class Login : BasePage
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
 
         return IPAddress;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public string GetHostName(string IP)
+    {
+        IPAddress myIP = IPAddress.Parse(IP);
+        IPHostEntry GetIPHost = Dns.GetHostEntry(myIP);
+        List<string> compName = GetIPHost.HostName.ToString().Split('.').ToList();
+        return compName.First();
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
