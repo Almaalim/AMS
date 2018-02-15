@@ -10,13 +10,16 @@
 box-shadow: 2px 2px 9px 2px rgba(206,220,223,0.68);
 }
 
-    .GridHeaderStyle, .dataTable > thead > tr , .GridTable>tbody>tr.GridHeaderStyle>td {
-        border: 0;
+    .GridHeaderStyle, .dataTable > thead > tr , .GridTable>tbody>tr.GridHeaderStyle>td , .GridTable>tbody>th {
+        
         background-color: #005683;
         color: #fff;
         font-size: 14px;
         font-weight: normal;
         border-bottom:4px solid #b9b9b9;
+        border-width: 0 !important;
+    border-style: hidden !important;
+    border: 0 !important;
     }
 
         .GridHeaderStyle th, .dataTable th {
@@ -24,6 +27,9 @@ box-shadow: 2px 2px 9px 2px rgba(206,220,223,0.68);
             text-align: center;
                 border-left: 1px solid #3a6e8a;
                 font-weight: normal;
+                 border-width: 0 !important;
+    border-style: hidden !important;
+    border: 0 !important;
             /*border-left:1px solid #b9b9b9;
             border-right:1px solid #b9b9b9;*/
         }
@@ -115,6 +121,10 @@ box-shadow: 2px 2px 9px 2px rgba(206,220,223,0.68);
     color: #666666;
     font-size: 14px;
     padding: 0 7px;
+    border-width: 0 !important;
+    border-style: hidden !important;
+    border: 0 !important;
+
 }
 
     .GridTable tr td input[type=image] {

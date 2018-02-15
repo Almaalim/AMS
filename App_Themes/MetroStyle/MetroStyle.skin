@@ -28,3 +28,15 @@ Default skin template. The following skins are provided as examples only.
 </asp:RadioButtonList>
 <asp:TreeView runat="server" CssClass="TreeViewStyle">
 </asp:TreeView>
+
+
+
+<AM:GridView runat="server"  CssClass="GridTable"  >
+   <AlternatingRowStyle CssClass="GridAlterNative" />
+   <RowStyle CssClass="GridRowStyle" />
+   <FooterStyle CssClass="GridFooterStyle" />
+   <PagerStyle CssClass="GridPagerStyle" />
+   <SelectedRowStyle CssClass="GridSelectRowStyle" />
+   <HeaderStyle CssClass="GridHeaderStyle" />
+
+</AM:GridView>
