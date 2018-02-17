@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Employee Master" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true" CodeFile="EmployeeMaster.aspx.cs" Inherits="EmployeeMaster" Culture="auto" meta:resourcekey="PageResource1" UICulture="auto" %>
+﻿<%@ Page Title="Employee Master" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true" CodeFile="EmployeeMaster.aspx.cs" Inherits="EmployeeMaster" Culture="auto" meta:resourcekey="PageResource1" UICulture="auto" Theme="MetroStyle" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 
@@ -41,7 +41,7 @@
             <div class="row">
                 <div class="col12">
                     <as:GridViewKeyBoardPagerExtender runat="server" ID="gridviewextender" TargetControlID="grdData"/>
-                    <AM:GridView  ID="grdData" runat="server" BorderWidth="0px" CellPadding="0" CssClass="datatable" GridLines="None" 
+                    <AM:GridView  ID="grdData" runat="server" BorderWidth="0px" CellPadding="0"  GridLines="None" 
                         AutoGenerateColumns="False" AllowSorting="True"  AllowPaging="True"  DataKeyNames="EmpID" ShowFooter="True"
                         EnableModelValidation="True"
 
@@ -57,7 +57,7 @@
                         meta:resourcekey="grdDataResource1"> 
                         
                         
-                        <SelectedRowStyle BackColor="#87A3B1" Font-Bold="True" ForeColor="#333333" />
+                    
                         <PagerSettings Mode="NextPreviousFirstLast" FirstPageText="First"
                             FirstPageImageUrl="~/images/first.png" LastPageText="Last" LastPageImageUrl="~/images/last.png"
                             NextPageText="Next" NextPageImageUrl="~/images/next.png" PreviousPageText="Prev"

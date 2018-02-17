@@ -86,7 +86,7 @@
 
                 <div class="row">
                     <div class="col12">
-                        <asp:Label ID="lblTitel" runat="server" meta:resourcekey="lblTitelResource1"></asp:Label>
+                        <asp:Label ID="lblTitel" runat="server" meta:resourcekey="lblTitelResource1" CssClass="h4"></asp:Label>
                         <asp:HiddenField ID="hdnRowID"  runat="server" />
                         <asp:HiddenField ID="hdnColID"  runat="server" />
                         <asp:HiddenField ID="hdnEmpid"  runat="server" />
@@ -98,7 +98,7 @@
                 <div class="row">
                     <div class="col12">
                         <asp:GridView ID="grdData" runat="server" AutoGenerateColumns="False" 
-                            OnRowDataBound="grdData_RowDataBound" Width="1500px"
+                            OnRowDataBound="grdData_RowDataBound" BorderWidth="0"
                             OnRowCommand="grdData_RowCommand" OnRowCreated="grdData_RowCreated" meta:resourcekey="grdDataResource1"> 
                         </asp:GridView>
                     </div>
@@ -106,16 +106,28 @@
             </div>
 
             <div id='divBackground'></div>
-            <div id='divPopup' class="divPopup" style="height: 100px; width: 100px;">
+            <div id='divPopup' class="divPopup" >
                 <div id='divPopupHead' class="divPopupHead">
                     <asp:Label ID="lblNamePopup" runat="server" CssClass="lblNamePopup" meta:resourcekey="lblNamePopupResource1"></asp:Label>
                 </div>
                 <div id='divClosePopup' class="divClosePopup" onclick="hidePopup('divPopup')"><a href='#'>X</a></div>
                 <div id='divPopupContent' class="divPopupContent">
-                    <center>
+                    <div class="row">
+                       <div class="col6">
+                           </div> 
+                        </div>
+                    <div class="row">
+                        <div class="col3"></div>
+                    <div class="col6">
                         <asp:DropDownList ID="ddlWktID" runat="server" meta:resourcekey="ddlWktIDResource1"></asp:DropDownList>
-                        <input id="Button1" type="button" value="button" onclick="changeValue()" />
-                   </center>
+                        </div>
+                        </div>
+                        <div class="row"> <div class="col3"></div>
+                        <div class="col6 center-block">
+                        <a id="Button1" onclick="changeValue()" Class="GenButton glyphicon glyphicon-edit" >Button</a>
+                            
+                  </div>
+                        </div>
                 </div>
             </div>
         </ContentTemplate>
