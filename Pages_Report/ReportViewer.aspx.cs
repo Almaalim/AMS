@@ -1,18 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Data.SqlClient;
-using System.Data;
-using System.Reflection;
 using Stimulsoft.Report;
-using Stimulsoft.Report.Components;
-using Stimulsoft.Report.WebFx;
-using Stimulsoft.Report.Print;
-using System.Text;
-using System.Globalization;
 using Elmah;
 
 public partial class ReportViewer : BasePage
@@ -50,7 +37,8 @@ public partial class ReportViewer : BasePage
                 }
             }
 
-            if (Session["RepProCs"] == null) { Response.Redirect(@"~/Pages_Report/Reports.aspx"); }
+            if (Session["RepProCs"] == null)
+            { Response.Redirect(@"~/Pages_Report/Reports.aspx"); }
             ShowReport();
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
@@ -61,6 +49,8 @@ public partial class ReportViewer : BasePage
     {
         if (Session["RepProCs"] != null)
         {
+            StiLoadLic();
+
             StiReport Rep = new StiReport();
             RepParametersPro RepProCs = new RepParametersPro();
             RepProCs = (RepParametersPro)Session["RepProCs"];
@@ -69,10 +59,14 @@ public partial class ReportViewer : BasePage
             ViewState["RgpID"] = RepProCs.RgpID;
 
             Rep = RepCs.CreateReport(RepProCs);
-
             ////// View report
             //Rep.Render();
-            StiWebViewerFx1.Report = Rep;
+            //string Lang = "En"; 
+            string Lang = Convert.ToString(Session["Language"]) == "AR" ? "Ar" : "En"; 
+            StiWebViewer1.Localization = String.Format("Localization/{0}.xml", Lang);
+
+            StiWebViewer1.RightToLeft = false;
+            StiWebViewer1.Report = Rep;
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -89,15 +83,35 @@ public partial class ReportViewer : BasePage
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //protected void StiWebViewerFx1_PreInit(object sender, StiWebViewerFx.StiPreInitEventArgs e)
-    //{
-    //    e.WebDesigner.Localization = "en";        
-    //}
+    public void StiLoadLic()
+    {
+        Stimulsoft.Base.StiLicense.Key = "6vJhGtLLLz2GNviWmUTrhSqnOItdDwjBylQzQcAOiHm+XCVQB8hoG7iOXPruVpVJgjD1niOe/z/B02rxea2pCghjtE" + 
+                                         "thRKe83MO1s8+wUNJdZCpotZRpcukV/TdUJdp5V9LeTx0vSpfuZAABGJVWbRgsnN2YMB5CSgTSuf3HzvQPWTNjSkMY" + 
+                                         "cQN7CWZMWIwmfDmSSpIIhpc5BeObqD43b1tCPCbcUq170lg41mhY7871drNs+o0sRn2/4s9Sx+1BLQnJmDK1gRaO7B" + 
+                                         "fRXRraf8croLQkHGQ4VsxNMEQCalwmMSScvzDnd7k05m6mSAtGPR5qvgzHpTQgujWC9PRmSieTumvltoRvI7aPQjLq" + 
+                                         "EF1t5CD3zr2A/wKV4pJuq5gFx2HD1Lr8rhDr5YHvI4MHzZuD5LmH1y7W2ljb/zsQscSDy3/AEfuVe2mZoCupNagb4O" + 
+                                         "JFcKCYP+Tv11BKJmfQ3C8bwUgfYcpra6r25fTsDwKyARaxNARg1dIwjAPbyW5yxL91SfXz5b7Ng/ALSrSPOczT7sK/" + 
+                                         "iyZzc/adT3XYfflVvaX0HnUUFiJ43QoNXfn+";
+    }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //protected void StiWebViewerFx1_PreInit(object sender, Stimulsoft.Report.WebFx.StiWebViewerFx.StiPreInitEventArgs e)
+    //protected void StiWebViewer1_GetReport(object sender, Stimulsoft.Report.Web.StiReportDataEventArgs e)
     //{
-    //    StiWebViewerFx1.Localization = Session["Language"].ToString();
+    //    if (Request.QueryString["ID"] != null)
+    //    {
+    //        string ID = Request.QueryString["ID"].ToString();
+    //        if (!string.IsNullOrEmpty(ID))
+    //        {
+    //            string[] IDs = ID.Split('_');
+    //            string FavID = IDs[0];
+    //            string RepID = IDs[1];
+    //            RepParametersPro RepProCs = RepCs.FillFavReportParam(FavID, RepID, pgCs.LoginID, pgCs.Lang, pgCs.DateType);
+    //            Session["RepProCs"] = RepProCs;
+    //        }
+    //    }
+
+    //    if (Session["RepProCs"] == null) { Response.Redirect(@"~/Pages_Report/Reports.aspx"); }
+    //    ShowReport();
     //}
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

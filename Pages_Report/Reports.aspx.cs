@@ -11,7 +11,7 @@ using Stimulsoft.Report.Web;
 using System.IO;
 using System.Xml;
 using Ionic.Zip;
-using System.Globalization;
+using System.Web;
 
 public partial class Reports : BasePage
 {
@@ -29,23 +29,12 @@ public partial class Reports : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    ///////////////////////////////////////
-    //        Permession Panles          //
-    ///////////////////////////////////////
-    // int date = 1;                     //
-    // int dateFromTo = 2;               //
-    // int workTime = 4;                 //  
-    // int machine = 8;                  //  
-    // int employee = 16;                //  
-    // int department = 32;              //  
-    // int category = 64;                //
-    // int user = 128;                   //
-    // int Month = 256;                  //
-    // int Today Date = 512;             //
-    // int Vacation Type = 1024;         //
-    // int Excuse Type = 2048;           //
-    // int DaysCount = 4096              //
-    ///////////////////////////////////////
+    //Param_DepIDs
+    //Param_Lang
+    //Param_CatIDs
+    //Param_EmpIDs
+    //Param_FromDate
+    //Param_ToDate
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -87,7 +76,7 @@ public partial class Reports : BasePage
                 /*** Check AMS License ***/ pgCs.CheckAMSLicense();
                 string QS = "";
                 if (Request.QueryString.Count != 0) { QS = "?" + Request.QueryString.ToString(); }
-                /*** get Permission    ***/ ViewState["ht"] = pgCs.getPerm(Request.Url.AbsolutePath + QS);
+                /*** get Permission    ***/ ViewState["ht"] = pgCs.getReportPerm(Request.Url.AbsolutePath + QS);
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "key55", "hidePopup('" + DivPopup.ClientID + "','" + pnlDate.ClientID + "','" + pnlDateFromTo.ClientID + "');", true);
                 FillList();
                 /*** Common Code ************************************/
@@ -120,13 +109,12 @@ public partial class Reports : BasePage
             DTCs.MonthPopulateList(ref ddlMonth);
 
             CtrlCs.FillMachineList(ref ddlLocation, null, false, true, "A", "A");
-            CtrlCs.FillBranchList(ref ddlBranchID, null, false);
             CtrlCs.FillWorkTypeList(ref ddlWtpID, null, false);
             CtrlCs.FillCategoryList(ref ddlCatName, null, true);
             CtrlCs.FillExcuseTypeList(ref ddlExcType, null, false, true);
             CtrlCs.FillVacationTypeList(ref ddlVacType, null, false, true, "ALL");
 
-            FillTree("0");
+            FillDepTree();
 
             ddlUserName.Items.Clear();
             DataTable PDT = DBCs.FetchData(new SqlCommand("SELECT * FROM ViewAppUser_PermissionGroup WHERE ISNULL(GrpDeleted,0) = 0 AND UsrStatus = 'True'"));
@@ -169,8 +157,8 @@ public partial class Reports : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void Clear()
     {
-        lblTitleReport.Text = "";
-        txtDescReport.Text = "";
+        lblRepTitel.Text = "";
+        lblRepDesc.Text  = "";
         calDate.ClearDate();
         calStartDate.ClearDate();
         calEndDate.ClearDate();
@@ -182,8 +170,7 @@ public partial class Reports : BasePage
         ddlUserName.SelectedIndex = -1;
         ddlVacType.SelectedIndex = -1;
         ddlExcType.SelectedIndex = -1;
-        ddlBranchID.SelectedIndex = -1;
-        FillTree("0");
+        FillDepTree();
         ucEmployeeSelected.ClearAll();
         ddlMonth.SelectedIndex = -1;
         ddlYear.SelectedIndex = -1;
@@ -233,38 +220,20 @@ public partial class Reports : BasePage
         RepProCs.RepLang = pgCs.Lang;
         RepProCs = RepCs.GetReportInfo(RepProCs);
 
-        lblTitleReport.Text = RepProCs.RepName;
-        txtDescReport.Text = RepProCs.RepDesc;
+        lblRepTitel.Text = RepProCs.RepName;
+        lblRepDesc.Text  = RepProCs.RepDesc;
 
         int RepPanels = Convert.ToInt32(RepProCs.RepPanels);
-
-        if (CheckBitWise(RepPanels, 1))
-        {
-            pnlshow = pnlDate.ClientID;
-            calDate.SetValidationEnabled(true);
-        }
-
-        if (CheckBitWise(RepPanels, 2))
-        {
-            pnlshow = pnlDateFromTo.ClientID;
-            calStartDate.SetValidationEnabled(true);
-            calEndDate.SetValidationEnabled(true);
-        }
-
-        pnlWorkTime.Visible = CheckBitWise(RepPanels, 4);
-        pnlMachine.Visible = CheckBitWise(RepPanels, 8);
-        pnlEmployee.Visible = CheckBitWise(RepPanels, 16);
-        pnlDepartmnets.Visible = CheckBitWise(RepPanels, 32); /**/ if (pnlDepartmnets.Visible) { FillTree("0"); }
-        pnlCategory.Visible = CheckBitWise(RepPanels, 64);
-        pnlUsers.Visible = CheckBitWise(RepPanels, 128);
-        pnlMonth.Visible = CheckBitWise(RepPanels, 256);
-        if (CheckBitWise(RepPanels, 512))
-        {
-            pnlshow = pnlDate.ClientID;
-            calDate.SetEnabled(false);
-            calDate.SetValidationEnabled(true);
-            calDate.SetTodayDate();
-        }
+        if (CheckBitWise(RepPanels, 1)) { pnlshow = pnlDate.ClientID; /**/ calDate.SetValidationEnabled(true); }
+        if (CheckBitWise(RepPanels, 2)) { pnlshow = pnlDateFromTo.ClientID; /**/ calStartDate.SetValidationEnabled(true); /**/ calEndDate.SetValidationEnabled(true); }
+        pnlWorkTime.Visible = CheckBitWise(RepPanels, 8192);
+        pnlMachine.Visible = CheckBitWise(RepPanels, 128);
+        pnlEmployee.Visible = CheckBitWise(RepPanels, 32);
+        pnlDepartmnets.Visible = CheckBitWise(RepPanels, 64); /**/ if (pnlDepartmnets.Visible) { FillDepTree(); }
+        pnlCategory.Visible = CheckBitWise(RepPanels, 256);
+        pnlUsers.Visible = CheckBitWise(RepPanels, 512);
+        pnlMonth.Visible = CheckBitWise(RepPanels, 8);
+        if (CheckBitWise(RepPanels, 4)) { pnlshow = pnlDate.ClientID; /**/ calDate.SetEnabled(false); /**/ calDate.SetValidationEnabled(true); /**/ calDate.SetTodayDate(); }
         pnlVacType.Visible = CheckBitWise(RepPanels, 1024);
         pnlExcType.Visible = CheckBitWise(RepPanels, 2048);
         pnlDaysCount.Visible = CheckBitWise(RepPanels, 4096);
@@ -537,22 +506,31 @@ public partial class Reports : BasePage
         {
             if (GenCs.IsNullOrEmpty(ViewState["RepID"])) { CtrlCs.ShowMsg(this, CtrlFun.TypeMsg.Validation, General.Msg("Please Select Report to edit it", "رجاء حدد تقرير للتعديل")); return; }
 
-            string RepID = ViewState["RepID"].ToString();
-            string RepTemp = "";
+            Session["RDRepID"] = ViewState["RepID"].ToString();
+            Session["RDRgpID"] = ViewState["grpRep"].ToString();
+            Response.Redirect(@"~/Pages_Report/ReportDesigner.aspx");
 
-            DataTable DT = DBCs.FetchData("SELECT * FROM Report WHERE RepID = @P1 ", new string[] { RepID });
-            if (!DBCs.IsNullOrEmpty(DT)) { RepTemp = General.Msg(DT.Rows[0]["RepTempEn"].ToString(), DT.Rows[0]["RepTempAr"].ToString()); }
+            //string RepID = ViewState["RepID"].ToString();
+            //string RepTemp = "";
 
-            if (string.IsNullOrEmpty(RepTemp)) { return; }
+            //DataTable DT = DBCs.FetchData("SELECT * FROM Report WHERE RepID = @P1 ", new string[] { RepID });
+            //if (!DBCs.IsNullOrEmpty(DT)) { RepTemp = General.Msg(DT.Rows[0]["RepTempEn"].ToString(), DT.Rows[0]["RepTempAr"].ToString()); }
 
-            StiReport Rep = new StiReport();
-            Rep.LoadFromString(RepTemp);
-            Rep.Dictionary.Databases.Clear();
-            Rep.Dictionary.Databases.Add(new StiSqlDatabase("Connection", General.ConnString));
-            Rep.Dictionary.Synchronize();
-            Rep.Compile();
+            //if (string.IsNullOrEmpty(RepTemp)) { return; }
 
-            StiWebDesigner1.Design(Rep);
+            //StiReport Rep = new StiReport();
+            //Rep.LoadFromString(RepTemp);
+            //Rep.Dictionary.Databases.Clear();
+            //Rep.Dictionary.Databases.Add(new StiSqlDatabase("Connection", General.ConnString));
+            //Rep.Dictionary.Synchronize();
+            //Rep.Compile();
+
+            //string Lang = Convert.ToString(Session["Language"]) == "AR" ? "Ar" : "En"; 
+            //StiWebDesigner1.Localization = string.Format("Localization/{0}.xml", Lang);
+            //StiWebDesigner1.Report = Rep;
+
+
+            //StiWebDesigner1.Design(Rep);
         }
         catch (Exception ex)
         {
@@ -600,15 +578,15 @@ public partial class Reports : BasePage
     /*#############################################################################################################################*/
     #region Viewer Events
 
-    protected void StiWebDesigner1_PreInit(object sender, StiWebDesigner.StiPreInitEventArgs e)
-    {
-        pgCs.FillLangSession();
-        e.WebDesigner.LocalizationDirectory = "Localization";
-        e.WebDesigner.Localization = pgCs.Lang.ToLower();
-    }
+    //protected void StiWebDesigner1_PreInit(object sender, StiWebDesigner.StiPreInitEventArgs e)
+    //{
+    //    pgCs.FillLangSession();
+    //    e.WebDesigner.LocalizationDirectory = "Localization";
+    //    e.WebDesigner.Localization = pgCs.Lang.ToLower();
+    //}
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void StiWebDesigner1_SaveReport(object sender, StiWebDesigner.StiSaveReportEventArgs e)
+    protected void StiWebDesigner1_SaveReport(object sender, StiSaveReportEventArgs e)
     {
         StiReport Rep = e.Report;
         string RepTemp = e.Report.SaveToString().ToString();
@@ -926,20 +904,6 @@ public partial class Reports : BasePage
     /*#############################################################################################################################*/
     #region TreeView Events
 
-    protected void ddlBranchID_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        if (ddlBranchID.SelectedIndex > 0)
-        {
-            trvDept.CheckedNodes.Clear();
-            FillTree(ddlBranchID.SelectedValue);
-        }
-        else
-        {
-            FillTree("0");
-        }
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void trvDept_SelectedNodeChanged(object sender, EventArgs e) { }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -954,7 +918,7 @@ public partial class Reports : BasePage
         try
         {
             string dd = e.Node.ImageToolTip;
-            if (dd == "T") { e.Node.ShowCheckBox = true; } else { e.Node.ShowCheckBox = false; }
+            //if (dd == "T") { e.Node.ShowCheckBox = true; } else { e.Node.ShowCheckBox = false; }
         }
         catch (Exception e1)
         {
@@ -963,11 +927,25 @@ public partial class Reports : BasePage
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void FillTree(string pBrcID)
+    protected void FillDepTree()
     {
-        DataSet ds = new DataSet();
-        ds = CtrlCs.FillDepTreeDS(pBrcID, pgCs.Version, pgCs.LoginID, (Session["DepartmentList"] != null ? pgCs.DepList : "0"));
-        xmlDataSource2.Data = ds.GetXml();
+        string  Lang  = HttpContext.Current.Cache["RepLangCache"] as string;
+        DataSet DepDS = HttpContext.Current.Cache["RepDepDSCache"] as DataSet;
+        if (DepDS == null || Lang != General.Msg("EN", "AR"))
+        {
+            Lang = General.Msg("EN", "AR");
+
+            DataSet DS = new DataSet();
+            DS = CtrlCs.FillBrcDepTreeDS(pgCs.Version, (Session["DepartmentList"] != null ? pgCs.DepList : "0"));
+            xdsDept.Data = DS.GetXml();
+
+            HttpContext.Current.Cache.Insert("RepLangCache", Lang);
+            HttpContext.Current.Cache.Insert("RepDepDSCache", DS);
+        }
+        else
+        {
+             xdsDept.Data = DepDS.GetXml();
+        }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

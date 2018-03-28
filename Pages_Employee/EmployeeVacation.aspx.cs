@@ -354,7 +354,7 @@ public partial class EmployeeVacation : BasePage
             {
                 case ("Delete1"):
                     string ID = e.CommandArgument.ToString();
-                    
+
                     DataTable DT = DBCs.FetchData("SELECT * FROM EmpVacRel WHERE EvrAddBy IN ('REQ', 'INT') AND EvrID = @P1 ", new string[] { ID });
                     if (!DBCs.IsNullOrEmpty(DT))
                     {
@@ -618,17 +618,9 @@ public partial class EmployeeVacation : BasePage
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             DateTime StartDate = DTCs.ConvertToDatetime(pStartDate, pgCs.DateType);
             DateTime EndDate   = DTCs.ConvertToDatetime(pEndDate, pgCs.DateType);
-            DateTime Date = StartDate;
-            int Days = Convert.ToInt32((EndDate - StartDate).TotalDays + 1);
 
-            for (int i = 0; i < Days; i++)
-            {
-                Date = StartDate.AddDays(i);
-
-                DataTable DT = ReqSqlCs.FetchWorkTime(Date, pEmpID, true);
-                if (DBCs.IsNullOrEmpty(DT)) { return false; } 
-            }
-            return true;
+            bool isWork = ReqSqlCs.isWorkDuration(StartDate, EndDate, pEmpID, "VAC");
+            return isWork;
         }
         catch (Exception ex) { return false; }
     }

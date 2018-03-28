@@ -4689,38 +4689,43 @@ a.Employee:before, .EmployeeMaster:before , .icon400:before {
     font-family: FontAwesome !important;
 }
 
-.EmployeeReport:before , .icon448:before {
+.RepEmployees:before , .icon911:before {
     content: "\f2be";
     font-family: FontAwesome !important;
 }
 
-.DepartmentReport:before , .icon453:before {
-    content: "\f1ad";
+.RepAbsenceandVacations:before , .icon912:before {
+    content: "\f045";
+    font-family: 'icomoon' !important;
+}
+
+.RepGapsandExcuses:before , .icon913:before {
+    content: "\e058";
+    font-family: 'Glyphicons Halflings' !important;
+}
+
+.RepAbsenceandGaps:before , .icon918:before {
+    content: "\f272";
     font-family: FontAwesome !important;
 }
 
-.MachineReport:before , .icon457:before {
-    content: "\f013";
+.RepAttendees:before , .icon914:before {
+    content: "\f0ec";
     font-family: FontAwesome !important;
 }
 
-.HeaderReport:before , .icon559:before {
-    content: "\f003";
-    font-family: FontAwesome !important;
-}
-
-.TodayReport:before , .icon566:before {
+.RepToday:before , .icon915:before {
     content: "\f073";
     font-family: FontAwesome !important;
 }
 
-.AdministrativeReport:before , .icon461:before {
-    content: "\f29a";
+.RepCharts:before , .icon916:before {
+    content: "\f1fe";
     font-family: FontAwesome !important;
 }
 
-.ChartReport:before , .icon497:before {
-    content: "\f1fe";
+.RepHeader:before , .icon917:before {
+    content: "\f003";
     font-family: FontAwesome !important;
 }
 

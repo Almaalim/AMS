@@ -592,7 +592,7 @@
     <value>Branch Name :</value>
   </data>
   <data name="lblDepNameResource1.Text" xml:space="preserve">
-    <value>Departments :</value>
+    <value>Select Departments</value>
   </data>
   <data name="cvMonthListResource1.Text" xml:space="preserve">
     <value>&lt;img src='../images/Exclamation.gif' title='Must Select Month!' /&gt;</value>

@@ -1,7 +1,9 @@
 ﻿<%@ Page Title="Report" Language="C#" MasterPageFile="~/AMSMasterPage.master" AutoEventWireup="true"
     CodeFile="Reports.aspx.cs" Inherits="Reports" Culture="auto" UICulture="auto" meta:resourcekey="PageResource2" %>
 
-<%@ Register Assembly="Stimulsoft.Report.WebDesign" Namespace="Stimulsoft.Report.Web" TagPrefix="cc2" %>
+<%@ Register Assembly="Stimulsoft.Report.WebDesign" Namespace="Stimulsoft.Report.Web" TagPrefix="cc1" %>
+
+
 <%@ Register Src="~/Control/EmployeeSelectedVertical.ascx" TagName="EmployeeSelectedVertical" TagPrefix="ucEmp" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
@@ -286,7 +288,7 @@
 
     </script>
 
-    <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+    <asp:UpdatePanel ID="UpdatePanel3" runat="server" RenderMode="Block">
         <Triggers>
             <asp:PostBackTrigger ControlID="btnEditReport" />
             <asp:PostBackTrigger ControlID="btnExportRecord" />
@@ -295,7 +297,6 @@
             <div class="row">
                 <div class="col12">
                     <asp:HiddenField ID="hdnShow" runat="server" />
-                    <asp:Label ID="lblTitleReport" runat="server"  meta:resourcekey="lblTitleReportResource1" CssClass="h4"></asp:Label>
                 </div>
             </div>
             <div class="row">
@@ -313,14 +314,14 @@
                                 <SelectedItemStyle BackColor="Red" Font-Bold="True" />
 
                                 <ItemTemplate>
-
+                                   
                                     <asp:LinkButton ID="lnkBtnEn" CommandArgument='<%# DataBinder.Eval(Container,"dataitem.RepID") %>' CssClass="ReportBtns glyphicon glyphicon-align-left reportsicon"
                                         runat="server" Text='<%# DataBinder.Eval(Container,getRepName()) %>'
                                         meta:resourcekey="lnkBtnEnResource1">
                                         <asp:ImageButton ID="Image1" runat="server" Height="30px" ImageUrl="~/images/reports-icon.png"
-                                            Width="30px" meta:resourcekey="Image1Resource1" CommandArgument='<%# DataBinder.Eval(Container,"dataitem.RepID") %>' />
+                                                        Width="30px" meta:resourcekey="Image1Resource1" CommandArgument='<%# DataBinder.Eval(Container,"dataitem.RepID") %>' />
                                     </asp:LinkButton>
-
+                                          
                                 </ItemTemplate>
                             </asp:DataList>
                         </div>
@@ -333,26 +334,31 @@
                 <div class="popup-inner">
                     <a class="popup-close" data-popup-close="popup-1" href="#" onclick="hidePopup('ctl00_ContentPlaceHolder1_DivPopup','ctl00_ContentPlaceHolder1_pnlDate','ctl00_ContentPlaceHolder1_pnlDateFromTo')">x</a>
                     <div class="popup-wrap">
-                    <div class="row">
-                        <div class="col12">
-                            <asp:Label ID="txtDescReport" runat="server" CssClass="h3"
-                                Width="100%" meta:resourcekey="txtDescReportResource1"  
-                                Enabled="False"></asp:Label>
+                        <div class="row">
+                            <div class="col12">
+                                <asp:Label ID="lblRepTitel" runat="server" CssClass="h4" Width="100%"></asp:Label>
+                            </div>
+                            <div class="col12">
+                                <asp:Label ID="lblRepDesc" runat="server" CssClass="h3" Width="100%"></asp:Label>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col12">
-                            <asp:ValidationSummary ID="vsShowMsg" runat="server" CssClass="MsgSuccess"
-                                EnableClientScript="False" ValidationGroup="ShowMsg" />
+                        
+                        <div class="row">
+                            
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col12">
-                            <asp:ValidationSummary ID="vsShow" runat="server" ValidationGroup="vgShow"
-                                EnableClientScript="False" CssClass="MsgValidation"
-                                meta:resourcekey="vsumAllResource1" />
+                        <div class="row">
+                            <div class="col12">
+                                <asp:ValidationSummary ID="vsShowMsg" runat="server" CssClass="MsgSuccess"
+                                    EnableClientScript="False" ValidationGroup="ShowMsg" />
+                            </div>
                         </div>
-                    </div>
+                        <div class="row">
+                            <div class="col12">
+                                <asp:ValidationSummary ID="vsShow" runat="server" ValidationGroup="vgShow"
+                                    EnableClientScript="False" CssClass="MsgValidation"
+                                    meta:resourcekey="vsumAllResource1" />
+                            </div>
+                        </div>
                     <div class="GreySetion">
                         <asp:Panel ID="pnlDate" runat="server" meta:resourcekey="panelDateResource1">
                             <div class="row">
@@ -554,18 +560,17 @@
                                 </div>
                             </div>
                         </asp:Panel>
-                        <asp:Panel ID="pnlDepartmnets" runat="server" meta:resourcekey="pnlDepartmnetsResource1"
-                            Width="100%">
+                        <asp:Panel ID="pnlDepartmnets" runat="server" meta:resourcekey="pnlDepartmnetsResource1" Width="100%">
                             <div class="row">
-                                <div class="col2">
-                                    <asp:Label ID="lblBranchID" runat="server" Text="Branch Name :" meta:resourcekey="lblBranchIDResource1"></asp:Label>
-                                </div>
-                                <div class="col4">
-                                    <asp:DropDownList ID="ddlBranchID" runat="server" AutoPostBack="True"
-                                        OnSelectedIndexChanged="ddlBranchID_SelectedIndexChanged" meta:resourcekey="ddlBranchIDResource1">
-                                    </asp:DropDownList>
+                                <div class="col12 center-block">
+                                    <asp:Label ID="lblDepName" runat="server" Text="Select Departments" meta:resourcekey="lblDepNameResource1" CssClass="h3"></asp:Label>
+                                    <asp:CustomValidator ID="cvDepartment" runat="server" ControlToValidate="txtValid" CssClass="CustomValidator"
+                                        EnableClientScript="False" meta:resourcekey="cvDepartmentResource1" OnServerValidate="Validate_ServerValidate"
+                                        Text="&lt;img src='../images/Exclamation.gif' title='check at least one list of Departments' /&gt;"
+                                        ValidationGroup="vgShow"></asp:CustomValidator>
                                 </div>
                             </div>
+                            
                             <div class="row">
                                 <div class="col2">
                                     <asp:Label ID="lblSearchByDep" runat="server" Text="Department Name :" meta:resourcekey="lblSearchByDepResource1"></asp:Label>
@@ -576,28 +581,20 @@
                                         ImageUrl="../images/Button_Icons/button_magnify.png" meta:resourcekey="btnSearchByDepResource1" />
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col12 center-block">
-                                    <asp:Label ID="lblDepName" runat="server" Text="Departments :" meta:resourcekey="lblDepNameResource1" CssClass="h3"></asp:Label>
-                                    <asp:CustomValidator ID="cvDepartment" runat="server" ControlToValidate="txtValid" CssClass="CustomValidator"
-                                        EnableClientScript="False" meta:resourcekey="cvDepartmentResource1" OnServerValidate="Validate_ServerValidate"
-                                        Text="&lt;img src='../images/Exclamation.gif' title='check at least one list of Departments !' /&gt;"
-                                        ValidationGroup="vgShow"></asp:CustomValidator>
-                                </div>
-                            </div>
+                            
                             <div class="row">
                                 <div class="col12">
-                                    <asp:XmlDataSource ID="xmlDataSource2" runat="server" TransformFile="~/XSL/DepTransformXSLT.xsl"
-                                        CacheExpirationPolicy="Sliding" XPath="MenuItems/MenuItem" EnableCaching="False" />
-                                    <asp:TreeView ID="trvDept" runat="server" ExpandDepth="0" LineImagesFolder="~/images/TreeLineImages" DataSourceID="xmlDataSource2"
-                                        ShowLines="True" ShowCheckBoxes="All" OnDataBound="trvDept_DataBound" OnTreeNodeDataBound="trvDept_TreeNodeDataBound"
+                                    <asp:XmlDataSource ID="xdsDept" runat="server" TransformFile="~/XSL/DepTransformXSLT.xsl" CacheExpirationPolicy="Sliding" XPath="MenuItems/MenuItem" EnableCaching="False" />
+                                    <asp:TreeView ID="trvDept" runat="server" LineImagesFolder="~/images/TreeLineImages" DataSourceID="xdsDept"
+                                        ShowLines="True" ShowCheckBoxes="All" OnDataBound="trvDept_DataBound" ExpandDepth="0"
+                                        OnTreeNodeDataBound="trvDept_TreeNodeDataBound"
                                         meta:resourcekey="trvDeptResource1">
                                         <DataBindings>
-                                            <asp:TreeNodeBinding DataMember="MenuItem" TextField="Text" ValueField="Value" meta:resourcekey="TreeNodeBindingResource1"
-                                                ImageToolTipField="Check" />
+                                            <asp:TreeNodeBinding DataMember="MenuItem" TextField="Text" ValueField="Value" meta:resourcekey="TreeNodeBindingResource1" ImageUrlField="Check" />
                                         </DataBindings>
                                         <SelectedNodeStyle ForeColor="Red" />
                                     </asp:TreeView>
+
                                 </div>
                             </div>
                         </asp:Panel>
@@ -693,8 +690,10 @@
     </div>
     <div class="row" runat="server" visible="false">
         <div class="col12">
-            <cc2:StiWebDesigner ID="StiWebDesigner1" runat="server" OnSaveReport="StiWebDesigner1_SaveReport"
-                OnPreInit="StiWebDesigner1_PreInit" />
+            <%--<cc2:StiWebDesigner ID="StiWebDesigner1" runat="server" OnSaveReport="StiWebDesigner1_SaveReport"
+                OnPreInit="StiWebDesigner1_PreInit" />--%>
+
+            <cc1:StiWebDesigner ID="StiWebDesigner1" runat="server" OnSaveReport="StiWebDesigner1_SaveReport"/>
         </div>
     </div>
     <div id="Div1" runat="server" class="row" visible="false">

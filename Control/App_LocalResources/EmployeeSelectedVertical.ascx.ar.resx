@@ -292,9 +292,12 @@
     <value>نوع الموظف :</value>
   </data>
   <data name="rdoSelectByIDResource1.Text" xml:space="preserve">
-    <value>إختيار موظف بواسطة الرقم :</value>
+    <value>إختيار موظف :</value>
   </data>
   <data name="rdoSelectByNameResource1.Text" xml:space="preserve">
     <value>إختيار موظف بواسطة الاسم :</value>
+  </data>
+  <data name="chkAllEmpSelectedResource1.Text" xml:space="preserve">
+    <value>مسح الكل</value>
   </data>
 </root>

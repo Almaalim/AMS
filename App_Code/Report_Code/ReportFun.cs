@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data;
-
 using Stimulsoft.Report;
 using Stimulsoft.Report.Components;
 using System.Text;
@@ -50,34 +46,34 @@ public class ReportFun
             Rep.Compile();
 
             /////// Fill Parameters to Report
-            if (!string.IsNullOrEmpty(RepProCs.Date))        { Rep["ParamDate"]      = DTCs.ConvertToDatetime(RepProCs.Date,"Gregorian"); }
+            if (!string.IsNullOrEmpty(RepProCs.Date)) { Rep["Param_Date"] = DTCs.ConvertToDatetime(RepProCs.Date,"Gregorian"); }
 
             if (!string.IsNullOrEmpty(RepProCs.MonthDate))
             {
-                Rep["ParamMonthDate"] = RepProCs.MonthDate;
-                if (!string.IsNullOrEmpty(RepProCs.DateFrom)) { Rep["ParamDateFrom"] = DTCs.ConvertToDatetime2(RepProCs.DateFrom, "Gregorian"); }
-                if (!string.IsNullOrEmpty(RepProCs.DateTo)) { Rep["ParamDateTo"] = DTCs.ConvertToDatetime2(RepProCs.DateTo, "Gregorian"); }
+                Rep["Param_MonthDate"] = RepProCs.MonthDate;
+                if (!string.IsNullOrEmpty(RepProCs.DateFrom)) { Rep["Param_FromDate"] = DTCs.ConvertToDatetime2(RepProCs.DateFrom, "Gregorian"); }
+                if (!string.IsNullOrEmpty(RepProCs.DateTo)) { Rep["Param_ToDate"] = DTCs.ConvertToDatetime2(RepProCs.DateTo, "Gregorian"); }
             }
             else
             {
-                if (!string.IsNullOrEmpty(RepProCs.DateFrom)) { Rep["ParamDateFrom"] = DTCs.ConvertToDatetime(RepProCs.DateFrom, "Gregorian"); }
-                if (!string.IsNullOrEmpty(RepProCs.DateTo)) { Rep["ParamDateTo"] = DTCs.ConvertToDatetime(RepProCs.DateTo, "Gregorian"); }
-
+                if (!string.IsNullOrEmpty(RepProCs.DateFrom)) { Rep["Param_FromDate"] = DTCs.ConvertToDatetime(RepProCs.DateFrom, "Gregorian"); }
+                if (!string.IsNullOrEmpty(RepProCs.DateTo)) { Rep["Param_ToDate"] = DTCs.ConvertToDatetime(RepProCs.DateTo, "Gregorian"); }
+                
             }
 
-            if (!string.IsNullOrEmpty(RepProCs.YearDate))    { Rep["ParamYearDate"]  = RepProCs.YearDate; } 
-            if (!string.IsNullOrEmpty(RepProCs.WktID))       { Rep["WktID"]          = RepProCs.WktID; }
-            if (!string.IsNullOrEmpty(RepProCs.MacID))       { Rep["MacID"]          = RepProCs.MacID; }
-            if (!string.IsNullOrEmpty(RepProCs.EmpID))       { Rep["EmpID"]          = RepProCs.EmpID; }
-            if (!string.IsNullOrEmpty(RepProCs.DepID))       { Rep["DepID"]          = RepProCs.DepID; }
-            if (!string.IsNullOrEmpty(RepProCs.CatID))       { Rep["CatID"]          = RepProCs.CatID; }
-            if (!string.IsNullOrEmpty(RepProCs.UsrName))     { Rep["UsrName"]        = RepProCs.UsrName; } ////else { Rep["UsrName"] = RepProCs.RepUser; }
-            if (!string.IsNullOrEmpty(RepProCs.VtpID))       { Rep["VtpID"]          = RepProCs.VtpID; }
-            if (!string.IsNullOrEmpty(RepProCs.ExcID))       { Rep["ExcID"]          = RepProCs.ExcID; }
-            if (!string.IsNullOrEmpty(RepProCs.DaysCount))   { Rep["DaysCount"]      = RepProCs.DaysCount; }
+            if (!string.IsNullOrEmpty(RepProCs.YearDate))    { Rep["Param_YearDate"]  = RepProCs.YearDate; } 
+            if (!string.IsNullOrEmpty(RepProCs.WktID))       { Rep["Param_WktIDs"]    = RepProCs.WktID; }
+            if (!string.IsNullOrEmpty(RepProCs.MacID))       { Rep["Param_MacIDs"]    = RepProCs.MacID; }
+            if (!string.IsNullOrEmpty(RepProCs.EmpID))       { Rep["Param_EmpIDs"]    = RepProCs.EmpID; }
+            if (!string.IsNullOrEmpty(RepProCs.DepID))       { Rep["Param_DepIDs"]    = RepProCs.DepID; }
+            if (!string.IsNullOrEmpty(RepProCs.CatID))       { Rep["Param_CatIDs"]    = RepProCs.CatID; }
+            if (!string.IsNullOrEmpty(RepProCs.UsrName))     { Rep["Param_UsrName"]   = RepProCs.UsrName; } ////else { Rep["UsrName"] = RepProCs.RepUser; }
+            if (!string.IsNullOrEmpty(RepProCs.VtpID))       { Rep["Param_VtpIDs"]    = RepProCs.VtpID; }
+            if (!string.IsNullOrEmpty(RepProCs.ExcID))       { Rep["Param_ExcIDs"]    = RepProCs.ExcID; }
+            if (!string.IsNullOrEmpty(RepProCs.DaysCount))   { Rep["Param_DaysCount"] = Convert.ToInt32(RepProCs.DaysCount); }
             if (!string.IsNullOrEmpty(RepProCs.Permissions))
             {
-                Rep["Permission"] = RepProCs.Permissions;
+                Rep["Param_Permission"] = RepProCs.Permissions;
                 ////(Rep.GetComponentByName("Text2") as StiText).Text = RepProCs.RepID;
             }
 
@@ -117,9 +113,12 @@ public class ReportFun
         string RepFooter = getTemplate_HeaderFooter("Footer");
 
         if (e.SubReportName == "SubReport1") { rep.LoadFromString(RepHeader); }
-        if (e.SubReportName == "SubReport2") { rep.LoadFromString(RepFooter); }
-
-        (rep.GetComponentByName("txtUserPrint") as StiText).Text = RepUser;
+        if (e.SubReportName == "SubReport2")
+        {
+            rep.LoadFromString(RepFooter);
+            (rep.GetComponentByName("txtUserPrint") as StiText).Text = General.Msg("Printed by : " + RepUser, RepUser + " : طباعة بواسطة");
+            //(rep.GetComponentByName("txtUserPrint") as StiText).Text = General.Msg(RepUser + " : طباعة بواسطة", RepUser + " : طباعة بواسطة");
+        }
 
         rep.Dictionary.Databases.Clear();
         rep.Dictionary.Databases.Add(new Stimulsoft.Report.Dictionary.StiSqlDatabase("Connection", General.ConnString));
@@ -138,7 +137,7 @@ public class ReportFun
             
                 RepProCs.RepName = General.Msg(RepProCs.RepLang, DT.Rows[0]["RepNameEn"].ToString(), DT.Rows[0]["RepNameAr"].ToString());
                 RepProCs.RepTemp = General.Msg(RepProCs.RepLang, DT.Rows[0]["RepTempEn"].ToString(), DT.Rows[0]["RepTempAr"].ToString());
-                RepProCs.RepDesc = General.Msg(RepProCs.RepLang, DT.Rows[0]["RepDescEn"].ToString(),DT.Rows[0]["RepDescAr"].ToString());
+                RepProCs.RepDesc = General.Msg(RepProCs.RepLang, DT.Rows[0]["RepDescEn"].ToString(), DT.Rows[0]["RepDescAr"].ToString());
 
                 if (DT.Rows[0]["RepOrientation"] != DBNull.Value) { RepProCs.RepOrientation = DT.Rows[0]["RepOrientation"].ToString(); } else { RepProCs.RepOrientation = "V"; }
                 RepProCs.RepPanels = DT.Rows[0]["RepPanels"].ToString();
@@ -170,23 +169,24 @@ public class ReportFun
 
             if (ParmID == "1")    { RepProCs.Date = DTCs.GDateNow("dd/MM/yyyy"); }
             if (ParmID == "2")    { RepProCs.DateFrom  = GetFirstDay(CalendarType); /**/ RepProCs.DateTo = GetLastDay(CalendarType); }
-            if (ParmID == "4")    { RepProCs.WktID = ParmVal; }
-            if (ParmID == "8")    { RepProCs.MacID = ParmVal; }
-            if (ParmID == "16")   { RepProCs.EmpID = ParmVal; }
-            if (ParmID == "32")   { RepProCs.DepID = ParmVal; }
-            if (ParmID == "64")   { RepProCs.CatID = ParmVal; }
-            if (ParmID == "128")  { RepProCs.UsrName = ParmVal; }
-            if (ParmID == "256")  
+            if (ParmID == "4")    { RepProCs.Date = DTCs.GDateNow("dd/MM/yyyy"); }
+            if (ParmID == "8" || ParmID == "16")  
             { 
                 RepProCs.DateFrom  = GetFirstDay(CalendarType);
                 RepProCs.DateTo    = GetLastDay(CalendarType); 
                 RepProCs.MonthDate = DTCs.FindCurrentMonth(CalendarType);
                 RepProCs.YearDate  = DTCs.FindCurrentYear(CalendarType);
             } 
-            if (ParmID == "512")  { RepProCs.Date = DTCs.GDateNow("dd/MM/yyyy"); }
+            if (ParmID == "32")   { RepProCs.EmpID = ParmVal; }
+            if (ParmID == "64")   { RepProCs.DepID = ParmVal; }
+            if (ParmID == "128")  { RepProCs.MacID = ParmVal; }
+            if (ParmID == "256")  { RepProCs.CatID = ParmVal; }
+            if (ParmID == "512")  { RepProCs.UsrName = ParmVal; }
+              
             if (ParmID == "1024") { RepProCs.VtpID = ParmVal; }
             if (ParmID == "2048") { RepProCs.ExcID = ParmVal; }
             if (ParmID == "4096") { RepProCs.DaysCount = ParmVal; }
+            if (ParmID == "8192") { RepProCs.WktID = ParmVal; }
         }
         
         return RepProCs;
@@ -205,17 +205,17 @@ public class ReportFun
 
         if (CheckBitWise(RepPanels, 1))    { RepProCs.Date     = DTCs.GDateYesterday("dd/MM/yyyy"); }
         if (CheckBitWise(RepPanels, 2))    { RepProCs.DateFrom = GetFirstDay(CalendarType); /**/ RepProCs.DateTo = GetLastDay(CalendarType); }
-        if (CheckBitWise(RepPanels, 16))   { RepProCs.EmpID    = getEmployees(UserName); }
-        if (CheckBitWise(RepPanels, 32))   { RepProCs.DepID    = getDepartments(UserName); }
-        if (CheckBitWise(RepPanels, 128))  { RepProCs.UsrName  = UserName; }
-        if (CheckBitWise(RepPanels, 256))  
+        if (CheckBitWise(RepPanels, 4))    { RepProCs.Date     = DTCs.GDateNow("dd/MM/yyyy"); }
+        if (CheckBitWise(RepPanels, 8) || CheckBitWise(RepPanels, 16))  
         { 
             RepProCs.DateFrom  = GetFirstDay(CalendarType);
             RepProCs.DateTo    = GetLastDay(CalendarType); 
             RepProCs.MonthDate = DTCs.FindCurrentMonth(CalendarType);
             RepProCs.YearDate  = DTCs.FindCurrentYear(CalendarType);
         } 
-        if (CheckBitWise(RepPanels, 512))  { RepProCs.Date     = DTCs.GDateNow("dd/MM/yyyy"); }
+        if (CheckBitWise(RepPanels, 32))   { RepProCs.EmpID    = getEmployees(UserName); }
+        if (CheckBitWise(RepPanels, 64))   { RepProCs.DepID    = getDepartments(UserName); }
+        if (CheckBitWise(RepPanels, 512))  { RepProCs.UsrName  = UserName; }
         if (CheckBitWise(RepPanels, 1024)) { RepProCs.VtpID    = VacationType(); }
         if (CheckBitWise(RepPanels, 2048)) { RepProCs.ExcID    = ExcuseType(); }
 
@@ -426,17 +426,18 @@ public class ReportFun
         int RepPanels = Convert.ToInt32(RepProCs.RepPanels);
         if (CheckBitWise(RepPanels, 1))    { FavProCs.FParPanel = GenCs.AddString(FavProCs.FParPanel, "1",    ","); /**/ FavProCs.FParValue = GenCs.AddString(FavProCs.FParValue, "D", "-"); }//Date
         if (CheckBitWise(RepPanels, 2))    { FavProCs.FParPanel = GenCs.AddString(FavProCs.FParPanel, "2",    ","); /**/ FavProCs.FParValue = GenCs.AddString(FavProCs.FParValue, "D", "-"); }//DateFrom,DateTo
-        if (CheckBitWise(RepPanels, 4))    { FavProCs.FParPanel = GenCs.AddString(FavProCs.FParPanel, "4",    ","); /**/ FavProCs.FParValue = GenCs.AddString(FavProCs.FParValue, RepProCs.WktID, "-"); }
-        if (CheckBitWise(RepPanels, 8))    { FavProCs.FParPanel = GenCs.AddString(FavProCs.FParPanel, "8",    ","); /**/ FavProCs.FParValue = GenCs.AddString(FavProCs.FParValue, RepProCs.MacID, "-"); }
-        if (CheckBitWise(RepPanels, 16))   { FavProCs.FParPanel = GenCs.AddString(FavProCs.FParPanel, "16",   ","); /**/ FavProCs.FParValue = GenCs.AddString(FavProCs.FParValue, RepProCs.EmpID, "-"); }
-        if (CheckBitWise(RepPanels, 32))   { FavProCs.FParPanel = GenCs.AddString(FavProCs.FParPanel, "32",   ","); /**/ FavProCs.FParValue = GenCs.AddString(FavProCs.FParValue, RepProCs.DepID, "-"); }
-        if (CheckBitWise(RepPanels, 64))   { FavProCs.FParPanel = GenCs.AddString(FavProCs.FParPanel, "64",   ","); /**/ FavProCs.FParValue = GenCs.AddString(FavProCs.FParValue, RepProCs.CatID, "-"); }
-        if (CheckBitWise(RepPanels, 128))  { FavProCs.FParPanel = GenCs.AddString(FavProCs.FParPanel, "128",  ","); /**/ FavProCs.FParValue = GenCs.AddString(FavProCs.FParValue, RepProCs.UsrName, "-"); }
-        if (CheckBitWise(RepPanels, 256))  { FavProCs.FParPanel = GenCs.AddString(FavProCs.FParPanel, "256",  ","); /**/ FavProCs.FParValue = GenCs.AddString(FavProCs.FParValue, "D", "-"); } //MonthDate,YearDate
-        if (CheckBitWise(RepPanels, 512))  { FavProCs.FParPanel = GenCs.AddString(FavProCs.FParPanel, "512",  ","); /**/ FavProCs.FParValue = GenCs.AddString(FavProCs.FParValue, "D", "-"); } //TodayDate
+        if (CheckBitWise(RepPanels, 4))    { FavProCs.FParPanel = GenCs.AddString(FavProCs.FParPanel, "4",    ","); /**/ FavProCs.FParValue = GenCs.AddString(FavProCs.FParValue, "D", "-"); } //TodayDate
+        if (CheckBitWise(RepPanels, 8))    { FavProCs.FParPanel = GenCs.AddString(FavProCs.FParPanel, "8",    ","); /**/ FavProCs.FParValue = GenCs.AddString(FavProCs.FParValue, "D", "-"); } //MonthDate
+        if (CheckBitWise(RepPanels, 16))   { FavProCs.FParPanel = GenCs.AddString(FavProCs.FParPanel, "16",   ","); /**/ FavProCs.FParValue = GenCs.AddString(FavProCs.FParValue, "D", "-"); } //YearDate
+        if (CheckBitWise(RepPanels, 32))   { FavProCs.FParPanel = GenCs.AddString(FavProCs.FParPanel, "32",   ","); /**/ FavProCs.FParValue = GenCs.AddString(FavProCs.FParValue, RepProCs.EmpID, "-"); }
+        if (CheckBitWise(RepPanels, 64))   { FavProCs.FParPanel = GenCs.AddString(FavProCs.FParPanel, "64",   ","); /**/ FavProCs.FParValue = GenCs.AddString(FavProCs.FParValue, RepProCs.DepID, "-"); }
+        if (CheckBitWise(RepPanels, 128))  { FavProCs.FParPanel = GenCs.AddString(FavProCs.FParPanel, "128",  ","); /**/ FavProCs.FParValue = GenCs.AddString(FavProCs.FParValue, RepProCs.MacID, "-"); }
+        if (CheckBitWise(RepPanels, 256))  { FavProCs.FParPanel = GenCs.AddString(FavProCs.FParPanel, "256",  ","); /**/ FavProCs.FParValue = GenCs.AddString(FavProCs.FParValue, RepProCs.CatID, "-"); }
+        if (CheckBitWise(RepPanels, 512))  { FavProCs.FParPanel = GenCs.AddString(FavProCs.FParPanel, "512",  ","); /**/ FavProCs.FParValue = GenCs.AddString(FavProCs.FParValue, RepProCs.UsrName, "-"); }
         if (CheckBitWise(RepPanels, 1024)) { FavProCs.FParPanel = GenCs.AddString(FavProCs.FParPanel, "1024", ","); /**/ FavProCs.FParValue = GenCs.AddString(FavProCs.FParValue, RepProCs.VtpID, "-"); }
         if (CheckBitWise(RepPanels, 2048)) { FavProCs.FParPanel = GenCs.AddString(FavProCs.FParPanel, "2048", ","); /**/ FavProCs.FParValue = GenCs.AddString(FavProCs.FParValue, RepProCs.ExcID, "-"); }
         if (CheckBitWise(RepPanels, 4096)) { FavProCs.FParPanel = GenCs.AddString(FavProCs.FParPanel, "4096", ","); /**/ FavProCs.FParValue = GenCs.AddString(FavProCs.FParValue, RepProCs.DaysCount, "-"); }
+        if (CheckBitWise(RepPanels, 8192)) { FavProCs.FParPanel = GenCs.AddString(FavProCs.FParPanel, "8192", ","); /**/ FavProCs.FParValue = GenCs.AddString(FavProCs.FParValue, RepProCs.WktID, "-"); }
         //if (!string.IsNullOrEmpty(RepProCs.Permissions))
 
         FavSqlCs.Insert(FavProCs);

@@ -5,23 +5,6 @@ using System.Web;
 
 public class EmpWrkPro
 {
-    //EwrID	int	Unchecked
-    //EmpID	varchar(15)	Unchecked
-    //WktID	int	Unchecked
-    //EwrStartDate	datetime	Unchecked
-    //EwrEndDate	datetime	Checked
-    //EwrSat	bit	Unchecked
-    //EwrSun	bit	Unchecked
-    //EwrMon	bit	Unchecked
-    //EwrTue	bit	Unchecked
-    //EwrWed	bit	Unchecked
-    //EwrThu	bit	Unchecked
-    //EwrFri	bit	Unchecked
-    //GrpName	varchar(50)	Checked
-    //RotID	int	Checked
-    //SwpID	int	Checked
-    //EwrWrkDefault	bit	Checked
-    //EwrWrkDefaultForAll	bit	Checked
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     string _EwrID;
@@ -39,26 +22,26 @@ public class EmpWrkPro
     string _EwrEndDate;
     public string EwrEndDate { get { return _EwrEndDate; } set { if (_EwrEndDate != value) { _EwrEndDate = value; } } }
     
-    bool _EwrSat;
-	public bool EwrSat { get { return _EwrSat; } set { if (_EwrSat != value) { _EwrSat = value; } } }
+    string _EwrSat;
+	public string EwrSat { get { return _EwrSat; } set { if (_EwrSat != value) { _EwrSat = value; } } }
 
-    bool _EwrSun;
-    public bool EwrSun { get { return _EwrSun; } set { if (_EwrSun != value) { _EwrSun = value; } } }
+    string _EwrSun;
+    public string EwrSun { get { return _EwrSun; } set { if (_EwrSun != value) { _EwrSun = value; } } }
 
-    bool _EwrMon;
-    public bool EwrMon { get { return _EwrMon; } set { if (_EwrMon != value) { _EwrMon = value; } } }
+    string _EwrMon;
+    public string EwrMon { get { return _EwrMon; } set { if (_EwrMon != value) { _EwrMon = value; } } }
 
-    bool _EwrTue;
-    public bool EwrTue { get { return _EwrTue; } set { if (_EwrTue != value) { _EwrTue = value; } } }
+    string _EwrTue;
+    public string EwrTue { get { return _EwrTue; } set { if (_EwrTue != value) { _EwrTue = value; } } }
 
-    bool _EwrWed;
-    public bool EwrWed { get { return _EwrWed; } set { if (_EwrWed != value) { _EwrWed = value; } } }
+    string _EwrWed;
+    public string EwrWed { get { return _EwrWed; } set { if (_EwrWed != value) { _EwrWed = value; } } }
 
-    bool _EwrThu;
-    public bool EwrThu { get { return _EwrThu; } set { if (_EwrThu != value) { _EwrThu = value; } } }
+    string _EwrThu;
+    public string EwrThu { get { return _EwrThu; } set { if (_EwrThu != value) { _EwrThu = value; } } }
 
-    bool _EwrFri;
-    public bool EwrFri { get { return _EwrFri; } set { if (_EwrFri != value) { _EwrFri = value; } } }
+    string _EwrFri;
+    public string EwrFri { get { return _EwrFri; } set { if (_EwrFri != value) { _EwrFri = value; } } }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     string _GrpName;

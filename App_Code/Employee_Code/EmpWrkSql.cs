@@ -40,13 +40,13 @@ public class EmpWrkSql : DataLayerBase
 
             if (!String.IsNullOrEmpty(Pro.EwrEndDate)) { Sqlcmd.Parameters.Add(new SqlParameter("@EwrEndDate", DtDB, 14, IN, false, 0, 0, "", DRV, Pro.EwrEndDate)); }
             
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrSat", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrSat));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrSun", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrSun));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrMon", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrMon));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrTue", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrTue));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrWed", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrWed));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrThu", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrThu));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrFri", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrFri));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrSat", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrSat));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrSun", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrSun));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrMon", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrMon));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrTue", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrTue));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrWed", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrWed));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrThu", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrThu));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrFri", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrFri));
            
             Sqlcmd.Parameters.Add(new SqlParameter("@IsExecute"    , IntDB, 10, OU, false, 0, 0, "", DRV, 0));
             Sqlcmd.Parameters.Add(new SqlParameter("@TransactionBy", VchDB, 15, IN, false, 0, 0, "", DRV, Pro.TransactionBy));
@@ -82,13 +82,13 @@ public class EmpWrkSql : DataLayerBase
 
             if (!String.IsNullOrEmpty(Pro.EwrEndDate)) { Sqlcmd.Parameters.Add(new SqlParameter("@EwrEndDate", DtDB, 14, IN, false, 0, 0, "", DRV, Pro.EwrEndDate)); }
             
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrSat", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrSat));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrSun", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrSun));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrMon", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrMon));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrTue", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrTue));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrWed", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrWed));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrThu", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrThu));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrFri", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrFri));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrSat", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrSat));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrSun", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrSun));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrMon", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrMon));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrTue", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrTue));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrWed", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrWed));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrThu", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrThu));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrFri", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrFri));
            
             Sqlcmd.Parameters.Add(new SqlParameter("@IsExecute"    , IntDB, 10, OU, false, 0, 0, "", DRV, 0));
             Sqlcmd.Parameters.Add(new SqlParameter("@TransactionBy", VchDB, 15, IN, false, 0, 0, "", DRV, Pro.TransactionBy));
@@ -123,13 +123,13 @@ public class EmpWrkSql : DataLayerBase
 
             if (!String.IsNullOrEmpty(Pro.EwrEndDate)) { Sqlcmd.Parameters.Add(new SqlParameter("@EwrEndDate", DtDB, 14, IN, false, 0, 0, "", DRV, Pro.EwrEndDate)); }
             
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrSat", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrSat));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrSun", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrSun));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrMon", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrMon));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrTue", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrTue));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrWed", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrWed));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrThu", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrThu));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrFri", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrFri));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrSat", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrSat));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrSun", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrSun));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrMon", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrMon));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrTue", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrTue));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrWed", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrWed));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrThu", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrThu));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrFri", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrFri));
            
             Sqlcmd.Parameters.Add(new SqlParameter("@SaveIDs"   , VchDB, 8000, OU, false, 0, 0, "", DRV, "1"));
             Sqlcmd.Parameters.Add(new SqlParameter("@NotSaveIDs", VchDB, 8000, OU, false, 0, 0, "", DRV, "1"));
@@ -171,13 +171,13 @@ public class EmpWrkSql : DataLayerBase
 
             if (!String.IsNullOrEmpty(Pro.EwrEndDate)) { Sqlcmd.Parameters.Add(new SqlParameter("@EwrEndDate", DtDB, 14, IN, false, 0, 0, "", DRV, Pro.EwrEndDate)); }
             
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrSat", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrSat));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrSun", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrSun));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrMon", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrMon));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrTue", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrTue));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrWed", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrWed));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrThu", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrThu));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrFri", BitDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrFri));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrSat", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrSat));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrSun", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrSun));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrMon", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrMon));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrTue", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrTue));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrWed", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrWed));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrThu", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrThu));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrFri", IntDB, 1, IN, false, 0, 0, "", DRV, Pro.EwrFri));
            
             Sqlcmd.Parameters.Add(new SqlParameter("@SaveIDs"   , VchDB, 8000, OU, false, 0, 0, "", DRV, "1"));
             Sqlcmd.Parameters.Add(new SqlParameter("@NotSaveIDs", VchDB, 8000, OU, false, 0, 0, "", DRV, "1"));
@@ -248,13 +248,13 @@ public class EmpWrkSql : DataLayerBase
         {
             Sqlcmd.Parameters.Add(new SqlParameter("@EwrID"              , IntDB, 10, OU, false, 0, 0, "", DRV, Pro.EwrID));
             Sqlcmd.Parameters.Add(new SqlParameter("@WktID"              , IntDB, 10, IN, false, 0, 0, "", DRV, Pro.WktID));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrSat"             , BitDB, 1,  IN, false, 0, 0, "", DRV, Pro.EwrSat));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrSun"             , BitDB, 1,  IN, false, 0, 0, "", DRV, Pro.EwrSun));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrMon"             , BitDB, 1,  IN, false, 0, 0, "", DRV, Pro.EwrMon));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrTue"             , BitDB, 1,  IN, false, 0, 0, "", DRV, Pro.EwrTue));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrWed"             , BitDB, 1,  IN, false, 0, 0, "", DRV, Pro.EwrWed));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrThu"             , BitDB, 1,  IN, false, 0, 0, "", DRV, Pro.EwrThu));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrFri"             , BitDB, 1,  IN, false, 0, 0, "", DRV, Pro.EwrFri));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrSat"             , IntDB, 1,  IN, false, 0, 0, "", DRV, Pro.EwrSat));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrSun"             , IntDB, 1,  IN, false, 0, 0, "", DRV, Pro.EwrSun));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrMon"             , IntDB, 1,  IN, false, 0, 0, "", DRV, Pro.EwrMon));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrTue"             , IntDB, 1,  IN, false, 0, 0, "", DRV, Pro.EwrTue));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrWed"             , IntDB, 1,  IN, false, 0, 0, "", DRV, Pro.EwrWed));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrThu"             , IntDB, 1,  IN, false, 0, 0, "", DRV, Pro.EwrThu));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrFri"             , IntDB, 1,  IN, false, 0, 0, "", DRV, Pro.EwrFri));
             Sqlcmd.Parameters.Add(new SqlParameter("@EwrWrkDefault"      , BitDB, 1,  IN, false, 0, 0, "", DRV, true));
             Sqlcmd.Parameters.Add(new SqlParameter("@EwrWrkDefaultForAll", BitDB, 1,  IN, false, 0, 0, "", DRV, Pro.EwrWrkDefaultForAll));
 
@@ -337,13 +337,13 @@ public class EmpWrkSql : DataLayerBase
             Sqlcmd.Parameters.Add(new SqlParameter("@WktShift1Duration"  , IntDB, 10,  IN, false, 0, 0, "", DRV, WPro.WktShift1Duration));
             Sqlcmd.Parameters.Add(new SqlParameter("@WktShift1IsOptional", BitDB, 1 ,  IN, false, 0, 0, "", DRV, WPro.WktShift1IsOptional));
 
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrSat" , BitDB, 1,   IN, false, 0, 0, "", DRV, EWPro.EwrSat));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrSun" , BitDB, 1,   IN, false, 0, 0, "", DRV, EWPro.EwrSun));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrMon" , BitDB, 1,   IN, false, 0, 0, "", DRV, EWPro.EwrMon));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrTue" , BitDB, 1,   IN, false, 0, 0, "", DRV, EWPro.EwrTue));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrWed" , BitDB, 1,   IN, false, 0, 0, "", DRV, EWPro.EwrWed));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrThu" , BitDB, 1,   IN, false, 0, 0, "", DRV, EWPro.EwrThu));
-            Sqlcmd.Parameters.Add(new SqlParameter("@EwrFri" , BitDB, 1,   IN, false, 0, 0, "", DRV, EWPro.EwrFri));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrSat" , IntDB, 1,   IN, false, 0, 0, "", DRV, EWPro.EwrSat));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrSun" , IntDB, 1,   IN, false, 0, 0, "", DRV, EWPro.EwrSun));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrMon" , IntDB, 1,   IN, false, 0, 0, "", DRV, EWPro.EwrMon));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrTue" , IntDB, 1,   IN, false, 0, 0, "", DRV, EWPro.EwrTue));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrWed" , IntDB, 1,   IN, false, 0, 0, "", DRV, EWPro.EwrWed));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrThu" , IntDB, 1,   IN, false, 0, 0, "", DRV, EWPro.EwrThu));
+            Sqlcmd.Parameters.Add(new SqlParameter("@EwrFri" , IntDB, 1,   IN, false, 0, 0, "", DRV, EWPro.EwrFri));
 
             Sqlcmd.Parameters.Add(new SqlParameter("@DateLen", IntDB, 10,   IN, false, 0, 0, "", DRV, EWPro.DateLen));
             Sqlcmd.Parameters.Add(new SqlParameter("@SDates" , VchDB, 8000, IN, false, 0, 0, "", DRV, EWPro.SDates));

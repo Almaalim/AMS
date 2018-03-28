@@ -74,8 +74,10 @@
                     if (parentDiv.childNodes[i].tagName.toLowerCase() == "table") {
                         var prevChkBox = parentDiv.childNodes[i].getElementsByTagName("input")[0];
                         //if any of sibling nodes are not checked, return false
-                        if (!prevChkBox.checked) {
-                            return false;
+                        if (prevChkBox != null && prevChkBox != 'undefined') {
+                            if (!prevChkBox.checked) {
+                                return false;
+                            }
                         }
                     }
                 }
@@ -92,8 +94,10 @@
                     if (parentDiv.childNodes[i].tagName.toLowerCase() == "table") {
                         var prevChkBox = parentDiv.childNodes[i].getElementsByTagName("input")[0];
                         //if any of sibling nodes are not checked, return false
-                        if (prevChkBox.checked) {
-                            return false;
+                        if (prevChkBox != null && prevChkBox != 'undefined') {
+                            if (prevChkBox.checked) {
+                                return false;
+                            }
                         }
                     }
                 }

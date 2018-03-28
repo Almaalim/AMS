@@ -1,8 +1,8 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="EmployeeSelectedVertical.ascx.cs" Inherits="EmployeeSelectedVertical" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="EmployeeSelectedVertical.ascx.cs" Inherits="EmployeeSelectedVertical"  %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
-<asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" >
+<asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always"> <%--UpdateMode="Conditional"--%>
     <ContentTemplate>
         <div runat="server" id="MainTable">
 
@@ -39,7 +39,7 @@
                     </div>
                     <div class="row">
                         <div class="col3">
-                            <asp:RadioButton ID="rdoSelectByID" runat="server" Text="Select Employee By ID :"
+                            <asp:RadioButton ID="rdoSelectByID" runat="server" Text="Select Employee :"
                                 GroupName="SelectOption" AutoPostBack="True"
                                 OnCheckedChanged="rdoSelectByID_CheckedChanged" meta:resourcekey="rdoSelectByIDResource1" />
                         </div>
@@ -66,41 +66,6 @@
                                 EnableCaching="true"
                                 OnClientItemSelected="AutoCompleteDepNameItemSelected"
                                 CompletionListElementID="pnlauID"
-                                CompletionListCssClass="AutoExtender"
-                                CompletionListItemCssClass="AutoExtenderList"
-                                CompletionListHighlightedItemCssClass="AutoExtenderHighlight"
-                                CompletionSetCount="12" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col3">
-                            <asp:RadioButton ID="rdoSelectByName" runat="server" Text="Select Employee By Name :"
-                                GroupName="SelectOption" AutoPostBack="True"
-                                OnCheckedChanged="rdoSelectByName_CheckedChanged" meta:resourcekey="rdoSelectByNameResource1" />
-                        </div>
-                        <div class="col4">
-                            <asp:TextBox ID="txtSearchByName" runat="server" Enabled="False"></asp:TextBox>
-
-                            <asp:CustomValidator ID="cvSelectByName" runat="server"
-                                ErrorMessage="" CssClass="CustomValidator"
-                                Text="&lt;img src='../images/message_exclamation.png' title='' /&gt;"
-                                OnServerValidate="SelectEmployees_ServerValidate"
-                                EnableClientScript="False"
-                                ControlToValidate="txtCustomValidator">
-                            </asp:CustomValidator>
-
-                            <asp:Panel runat="server" ID="pnlauName" Height="200px" ScrollBars="Vertical" />
-                            <ajaxToolkit:AutoCompleteExtender
-                                runat="server"
-                                ID="auName"
-                                TargetControlID="txtSearchByName"
-                                ServicePath="~/Service/AutoComplete.asmx"
-                                ServiceMethod="GetEmployeeNameListWithCon"
-                                MinimumPrefixLength="1"
-                                CompletionInterval="1000"
-                                EnableCaching="true"
-                                OnClientItemSelected="AutoCompleteDepNameItemSelected"
-                                CompletionListElementID="pnlauName"
                                 CompletionListCssClass="AutoExtender"
                                 CompletionListItemCssClass="AutoExtenderList"
                                 CompletionListHighlightedItemCssClass="AutoExtenderHighlight"
@@ -163,14 +128,14 @@
                                 meta:resourcekey="pnlLeftGridResource1" Enabled="False">
                                 <div class="row">
                                     <div class="col12 center" style="border-bottom: #CCCCCC; border-bottom-style: Solid; border-bottom-width: 2px">
-                                        <asp:CheckBox ID="chkAllEmpSelect" runat="server" AutoPostBack="True"
+                                        <asp:CheckBox ID="chkAllEmpSelect" runat="server" AutoPostBack="True" Text="Select All"
                                             OnCheckedChanged="chkAllEmpSelect_CheckedChanged"
-                                            meta:resourcekey="chkAllEmpSelectResource1" Text="Check All" />
+                                            meta:resourcekey="chkAllEmpSelectResource1"  />
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col12">
-                                        <asp:CheckBoxList ID="cblEmpSelect" runat="server" Width="95%" Font-Size="11"></asp:CheckBoxList>
+                                        <asp:CheckBoxList ID="cblEmpSelect" runat="server" Width="95%" Font-Size="11" AutoPostBack="True" OnSelectedIndexChanged="cblEmpSelect_SelectedIndexChanged"></asp:CheckBoxList>
                                     </div>
                                 </div>
                             </asp:Panel>
@@ -179,26 +144,8 @@
 
                         <div class="col2">
                             <div class="row">
-                                <div class="col12 center-block" style="padding-top:25%">
-                                  
-                                    </div>
-                                </div>
-                            <div class="row">
-                                <div class="col12 center-block">
-                                    <asp:ImageButton ID="btnSelectEmp" runat="server" OnClick="btnSelectEmp_Click"
-                                        ImageUrl="~/images/Control_Images/next.png"
-                                        meta:resourcekey="btnSelectEmpResource1" Enabled="False" />
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col12 center-block">
-                                    <asp:ImageButton ID="btnDeSelectEmp" runat="server"
-                                        OnClick="btnDeSelectEmp_Click" ImageUrl="~/images/Control_Images/back.png"
-                                        meta:resourcekey="btnDeSelectEmpResource1" Enabled="False" />
-
-                                </div>
-                            </div>
-
+                                <div class="col12 center-block" style="padding-top:25%"></div>
+                            </div>  
                         </div>
 
                         <div class="col5"  >
@@ -223,13 +170,13 @@
 
                                 <div class="row">
                                     <div class="col12 center" style="border-bottom: #CCCCCC; border-bottom-style: Solid; border-bottom-width: 2px">
-                                        <asp:CheckBox ID="chkAllEmpSelected" runat="server" AutoPostBack="True" Text="Check All"
-                                            OnCheckedChanged="chkAllEmpSelected_CheckedChanged" meta:resourcekey="chkAllEmpSelectResource1" />
+                                        <asp:CheckBox ID="chkAllEmpSelected" runat="server" AutoPostBack="True" Text="Clear All"
+                                            OnCheckedChanged="chkAllEmpSelected_CheckedChanged" meta:resourcekey="chkAllEmpSelectedResource1" />
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col12">
-                                        <asp:CheckBoxList ID="cblEmpSelected" runat="server" Width="95%" Font-Size="11"></asp:CheckBoxList>
+                                        <asp:CheckBoxList ID="cblEmpSelected" runat="server" Width="95%" Font-Size="11" AutoPostBack="True" OnSelectedIndexChanged="cblEmpSelected_SelectedIndexChanged"></asp:CheckBoxList>
                                     </div>
                                 </div>
 

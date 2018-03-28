@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Elmah;
 using System.Data;
-using System.Collections;
-using System.Text;
-using System.Globalization;
-using System.Data.SqlClient;
 
 public partial class WorkTimeWizard : BasePage
 {
@@ -233,26 +226,13 @@ public partial class WorkTimeWizard : BasePage
                 ProCs.EwrStartDate  = calStartDate.getGDateDBFormat();
                 ProCs.EwrEndDate    = calEndDate.getGDateDBFormat();
 
-                string EwrSun = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Sunday);
-                ProCs.EwrSun = (EwrSun == "0") ? false : true;
-
-                string EwrMon = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Monday);
-                ProCs.EwrMon = (EwrMon == "0") ? false : true;
-
-                string EwrTue = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tuesday);
-                ProCs.EwrTue = (EwrTue == "0") ? false : true;
-
-                string EwrWed = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Wednesday);
-                ProCs.EwrWed = (EwrWed == "0") ? false : true;
-
-                string EwrThu = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tharsday);
-                ProCs.EwrThu = (EwrThu == "0") ? false : true;
-
-                string EwrFri = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Friday);
-                ProCs.EwrFri = (EwrFri == "0") ? false : true;
-
-                string EwrSat = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Saturday);
-                ProCs.EwrSat = (EwrSat == "0") ? false : true;
+                ProCs.EwrSun = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Sunday);
+                ProCs.EwrMon = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Monday);
+                ProCs.EwrTue = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tuesday);
+                ProCs.EwrWed = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Wednesday);
+                ProCs.EwrThu = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tharsday);
+                ProCs.EwrFri = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Friday);
+                ProCs.EwrSat = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Saturday);
 
                 ProCs.TransactionBy = pgCs.LoginID;
                 

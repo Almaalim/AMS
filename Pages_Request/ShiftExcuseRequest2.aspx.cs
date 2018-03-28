@@ -106,54 +106,37 @@ public partial class ShiftExcuseRequest2 : BasePage
         try
         {
             DateTime Date = DTCs.ConvertToDatetime(pDate, "Gregorian");
-            string MQ = " SELECT WktID "
-                      + " FROM EmpWrkRel "
-                      + " WHERE EmpID = @P1 "
-                      + " AND @P2 BETWEEN EwrStartDate AND EwrEndDate "
-                      + " AND (((DATEPART(DW, @P2) = 1) AND (EwrSun = 1)) OR "
-                      + " ((DATEPART(DW, @P2) = 2) AND (EwrMon = 1)) OR "
-                      + " ((DATEPART(DW, @P2) = 3) AND (EwrTue = 1)) OR "
-                      + " ((DATEPART(DW, @P2) = 4) AND (EwrWed = 1)) OR "
-                      + " ((DATEPART(DW, @P2) = 5) AND (EwrThu = 1)) OR "
-                      + " ((DATEPART(DW, @P2) = 6) AND (EwrFri = 1)) OR "
-                      + " ((DATEPART(DW, @P2) = 7) AND (EwrSat = 1)))"
-                      + " ORDER BY EwrID DESC";
+            string MQ = " SELECT * FROM [dbo].[GetEmpWrkRel_Fun] @P2, @P1) ";
+           
             DataTable DT = DBCs.FetchData(MQ, new string[] { pgCs.LoginEmpID, Date.ToString() });
             if (!DBCs.IsNullOrEmpty(DT))
             {
                 txtWorkTimeID.Text = DT.Rows[0]["WktID"].ToString();
-                string WQ = " SELECT WktNameAr,WktNameEn,WktShift1NameAr,WktShift1NameEn,WktShift2NameAr,WktShift2NameEn,WktShift3NameAr,WktShift3NameEn "
-                         + " ,WktShift1From,WktShift1To,WktShift2From,WktShift2To,WktShift3From,WktShift3To"
-                         + " FROM WorkingTime "
-                         + " WHERE WktID = @P1 ";
-                
-                DataTable WDT = DBCs.FetchData(WQ, new string[] { DT.Rows[0]["WktID"].ToString() });
-                if (!DBCs.IsNullOrEmpty(WDT))
-                {
-                    txtWorkTimeName.Text = WDT.Rows[0][General.Msg("WktNameEn","WktNameAr")].ToString();
+               
+                txtWorkTimeName.Text = DT.Rows[0][General.Msg("WktNameEn","WktNameAr")].ToString();
 
-                    ddlShiftName.Items.Add(new ListItem(General.Msg("-Select Shift-","-اختر الوردية-"), "0"));
-                    for (int i = 1; i <= 3; i++)
+                ddlShiftName.Items.Add(new ListItem(General.Msg("-Select Shift-","-اختر الوردية-"), "0"));
+                for (int i = 1; i <= 3; i++)
+                {
+                    string ID = i.ToString();
+                    if (DT.Rows[0]["WktShift" + ID + "NameAr"] != DBNull.Value || DT.Rows[0]["WktShift" + ID + "NameEn"] != DBNull.Value)
                     {
-                        string ID = i.ToString();
-                        if (WDT.Rows[0]["WktShift" + ID + "NameAr"] != DBNull.Value || WDT.Rows[0]["WktShift" + ID + "NameEn"] != DBNull.Value)
+                        if (!string.IsNullOrEmpty(DT.Rows[0]["WktShift" + ID + "NameAr"].ToString()) || !string.IsNullOrEmpty(DT.Rows[0]["WktShift" + ID + "NameEn"].ToString()) )
                         {
-                            if (!string.IsNullOrEmpty(WDT.Rows[0]["WktShift" + ID + "NameAr"].ToString()) || !string.IsNullOrEmpty(WDT.Rows[0]["WktShift" + ID + "NameEn"].ToString()) )
-                            {
-                                ddlShiftName.Items.Add(new ListItem("WktShift" + ID + General.Msg("NameEn","NameAr"), "0"));
-                            }
+                            ddlShiftName.Items.Add(new ListItem("WktShift" + ID + General.Msg("NameEn","NameAr"), "0"));
                         }
                     }
-                    rfvShiftName.InitialValue = ddlShiftName.Items[0].Text;
-
-                    if (!string.IsNullOrEmpty(pShiftID))
-                    {
-                        ddlShiftName.SelectedIndex = ddlShiftName.Items.IndexOf(ddlShiftName.Items.FindByValue(pShiftID));
-                        txtShiftID.Text = pShiftID;
-                        tpFrom.SetTime(Convert.ToDateTime(WDT.Rows[0]["WktShift" + pShiftID + "From"]));
-                        tpTo.SetTime(Convert.ToDateTime(WDT.Rows[0]["WktShift" + pShiftID + "To"]));
-                    }
                 }
+                rfvShiftName.InitialValue = ddlShiftName.Items[0].Text;
+
+                if (!string.IsNullOrEmpty(pShiftID))
+                {
+                    ddlShiftName.SelectedIndex = ddlShiftName.Items.IndexOf(ddlShiftName.Items.FindByValue(pShiftID));
+                    txtShiftID.Text = pShiftID;
+                    tpFrom.SetTime(Convert.ToDateTime(DT.Rows[0]["WktShift" + pShiftID + "From"]));
+                    tpTo.SetTime(Convert.ToDateTime(DT.Rows[0]["WktShift" + pShiftID + "To"]));
+                }
+
                 return true;
             }
             else

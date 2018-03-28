@@ -21,12 +21,16 @@
         }
     </script>
 
-    <script type="text/javascript" src="../FusionCharts/FusionCharts.js"></script>
+    <%--<script type="text/javascript" src="../FusionCharts/FusionCharts.js"></script>--%>
+    <script type="text/javascript" src="../Script/fusionchartsJs/fusioncharts.js" ></script>
+    <%--<script type="text/javascript" src="../Script/fusionchartsJs/jquery.min.js"></script>--%>
+
+
     <%--script--%>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <Triggers>
+        <%--<Triggers>
             <asp:PostBackTrigger ControlID="btnChartsFilter" />
-        </Triggers>
+        </Triggers>--%>
 
         <ContentTemplate>
             <div id="DivList" class="row" runat="server">
@@ -44,8 +48,6 @@
                     <asp:DropDownList ID="ddlEmpChartsFilter" runat="server" meta:resourcekey="ddlEmpChartsFilterResource1"></asp:DropDownList>
                 </div>
             </div>
-
-
 
             <div id="DivMonth" runat="server" class="row">
                 <div class="col1">
@@ -103,30 +105,26 @@
                     </div>
                 </div>
 
-                <div class="row" runat="server">
-                    <div class="col6 chartBlue">
-                        <asp:Literal ID="litChartWorkDurtion" runat="server" meta:resourcekey="litChartWorkDurtionResource1"></asp:Literal>
+                <div id="d1" class="row" runat="server">
+                    <div id="d11" class="col6 chartBlue">
+                        <asp:Panel ID="pnlChartWorkDurtion" runat="server"></asp:Panel>
                     </div>
                     <div class="col6 ChartYellow">
-                        <asp:Literal ID="litChartBeginLateDurtion" runat="server" meta:resourcekey="litChartBeginLateDurtionResource1"></asp:Literal>
+                        <asp:Panel ID="pnlChartBeginLateDurtion" runat="server"></asp:Panel>
                     </div>
                 </div>
             </div>
             <div class="row">
-
                 <div class="col4">
                 </div>
             </div>
             <div class="row" runat="server">
-                <div class="col6 ChartRed">
-                    <asp:Literal ID="LitChartAbsentDays" runat="server" meta:resourcekey="LitChartAbsentDaysResource1"></asp:Literal>
+                <div class="col6 ChartRed" >
+                    <asp:Panel ID="pnlChartAbsentDays" runat="server"></asp:Panel>
                 </div>
-                <div class="col6 chartPurple">
-                    <asp:Literal ID="LitChartDurations" runat="server" meta:resourcekey="LitChartDurationsResource1"></asp:Literal>
+                <div id="d4" class="col6 chartPurple">
+                    <asp:Panel ID="pnlChartDurations" runat="server"></asp:Panel>
                 </div>
-            </div>
-
-
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>

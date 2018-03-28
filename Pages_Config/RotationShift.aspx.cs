@@ -192,26 +192,13 @@ public partial class RotationShift : BasePage
             ProCs.WktShift1To   = calEndDate_viw0.getGDateDBFormat();
             ProCs.WktShift1IsOptional = chkRotOnlyWorkDays_viw0.Checked;
 
-            string EwrSun = dclDays_viw0.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Sunday);
-            EWProCs.EwrSun = (EwrSun == "0") ? false : true;
-
-            string EwrMon = dclDays_viw0.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Monday);
-            EWProCs.EwrMon = (EwrMon == "0") ? false : true;
-
-            string EwrTue = dclDays_viw0.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tuesday);
-            EWProCs.EwrTue = (EwrTue == "0") ? false : true;
-
-            string EwrWed = dclDays_viw0.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Wednesday);
-            EWProCs.EwrWed = (EwrWed == "0") ? false : true;
-
-            string EwrThu = dclDays_viw0.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tharsday);
-            EWProCs.EwrThu = (EwrThu == "0") ? false : true;
-
-            string EwrFri = dclDays_viw0.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Friday);
-            EWProCs.EwrFri = (EwrFri == "0") ? false : true;
-
-            string EwrSat = dclDays_viw0.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Saturday);
-            EWProCs.EwrSat = (EwrSat == "0") ? false : true;
+            EWProCs.EwrSun = dclDays_viw0.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Sunday);
+            EWProCs.EwrMon = dclDays_viw0.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Monday);
+            EWProCs.EwrTue = dclDays_viw0.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tuesday);
+            EWProCs.EwrWed = dclDays_viw0.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Wednesday);
+            EWProCs.EwrThu = dclDays_viw0.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tharsday);
+            EWProCs.EwrFri = dclDays_viw0.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Friday);
+            EWProCs.EwrSat = dclDays_viw0.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Saturday);
 
             EWProCs.DateLen = SDatesDT.Length.ToString();
             EWProCs.SDates  = GenCs.CreateIDsNumber(SDatesDT);
@@ -734,7 +721,7 @@ public partial class RotationShift : BasePage
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void btnSaveFinish_Click(object sender, EventArgs e)  { Save(); }
+    protected void btnSaveFinish_Click(object sender, EventArgs e) { Save(); }
 
     #endregion
     /*#############################################################################################################################*/
@@ -881,36 +868,23 @@ public partial class RotationShift : BasePage
             DateTime EndDate   = DTCs.ConvertToDatetime(calEndDate_viw0.getGDate(), "Gregorian");
             int iDuration = Convert.ToInt32(txtDuration_viw0.Text);
             int iLoop = (EndDate - StartDate).Days + 1;
-            bool[] wrkdays;
+            int[] wrkdays;
 
             if (chkRotOnlyWorkDays_viw0.Checked)
             {
-                string EwrSun = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Sunday);
-                bool bEwrSun = (EwrSun == "0") ? false : true;
+                int EwrSun = Convert.ToInt32(dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Sunday));
+                int EwrMon = Convert.ToInt32(dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Monday));
+                int EwrTue = Convert.ToInt32(dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tuesday));
+                int EwrWed = Convert.ToInt32(dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Wednesday));
+                int EwrThu = Convert.ToInt32(dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tharsday));
+                int EwrFri = Convert.ToInt32(dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Friday));
+                int EwrSat = Convert.ToInt32(dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Saturday));
 
-                string EwrMon = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Monday);
-                bool bEwrMon = (EwrMon == "0") ? false : true;
-
-                string EwrTue = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tuesday);
-                bool bEwrTue = (EwrTue == "0") ? false : true;
-
-                string EwrWed = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Wednesday);
-                bool bEwrWed = (EwrWed == "0") ? false : true;
-
-                string EwrThu = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Tharsday);
-                bool bEwrThu = (EwrThu == "0") ? false : true;
-
-                string EwrFri = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Friday);
-                bool bEwrFri = (EwrFri == "0") ? false : true;
-
-                string EwrSat = dclDays.GetDayValue(AlmaalimControl.DaysChekboxlist.DaysEnum.Saturday);
-                bool bEwrSat = (EwrSat == "0") ? false : true;
-
-                wrkdays = new bool[] { bEwrSun, bEwrMon, bEwrTue, bEwrWed, bEwrThu, bEwrFri, bEwrSat };
+                wrkdays = new int[] { EwrSun, EwrMon, EwrTue, EwrWed, EwrThu, EwrFri, EwrSat };
             }
             else
             {
-                wrkdays = new bool[] { true, true, true, true, true, true, true };
+                wrkdays = new int[] { 1, 1, 1, 1, 1, 1, 1 };
             }
 
             bool foundDay = false;
@@ -923,7 +897,7 @@ public partial class RotationShift : BasePage
             for (int d = 0; d < iLoop; d++)
             {
                 int dayID = Convert.ToInt32(StartDate.AddDays(d).DayOfWeek);
-                if (wrkdays[dayID])
+                if (wrkdays[dayID] == 1)
                 {
                     foundDay = true;
                     FindDay += 1;

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data;
-using System.Globalization;
 using System.Data.SqlClient;
 using System.Text;
 
@@ -203,6 +199,7 @@ public class VactionDaysCal
             DateTime SDate = DTCs.ConvertToDatetime(StartDate, DateType); 
             DateTime EDate = DTCs.ConvertToDatetime(EndDate, DateType); 
 
+            //'R' + 
             StringBuilder Q = new StringBuilder();
             Q.Append(" SELECT EmpID, RetID, ErqStartDate, ErqEndDate FROM EmpRequest WHERE ErqReqStatus IN (0) AND EmpID = @P1 AND RetID IN ('VAC','COM','JOB') AND @P3 >= ErqStartDate AND ErqEndDate >= @P2 ");
             Q.Append(" UNION ALL ");

@@ -592,7 +592,7 @@
     <value>اسم الفرع :</value>
   </data>
   <data name="lblDepNameResource1.Text" xml:space="preserve">
-    <value>الأقسام :</value>
+    <value>اختر الأقسام</value>
   </data>
   <data name="cvMonthListResource1.Text" xml:space="preserve">
     <value>&lt;img src='../images/Exclamation.gif' title='يجب اختيار شهر' /&gt;</value>

@@ -1,17 +1,8 @@
 ﻿using System;
 using System.Data;
-using System.Collections;
 using System.Configuration;
 using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Globalization;
-using System.Threading;
-using System.Diagnostics;
-using System.Security.Cryptography;
 using Elmah;
 using System.Net;
 using System.Data.SqlClient;
@@ -349,15 +340,20 @@ public class General
     public DataSet FillRepTree(string Currentlang, string Version)
     {
         DBFun DBCs = new DBFun();
-        string lang1 = (Currentlang == "AR") ? "RgpArName" : "RgpEnName";
+        string lang1 = (Currentlang == "AR") ? "RgpNameAr" : "RgpNameEn";
         string lang2 = (Currentlang == "AR") ? "RepNameAr" : "RepNameEn";
 
         DataSet RepDS = new DataSet();
         StringBuilder RQ = new StringBuilder();
-        RQ.Append(" SELECT CONVERT(CHAR(10),RgpID) AS RepID," + lang1 + " AS RepNameEn,CONVERT(CHAR(10),RgpParID) AS RgpID FROM ReportGroup");
-        RQ.Append(" WHERE ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + Version + "',VerID) > 0) ");
+        RQ.Append(" SELECT CONVERT(VARCHAR(50),RgpID) AS RepID, " + lang1 + " AS RepNameEn, CONVERT(VARCHAR(50),0) AS RgpID ");
+        RQ.Append(" FROM ReportGroup ");
+        RQ.Append(" WHERE RgpVisible = 'True' ");
+        if (Version != "ALL") { RQ.Append(" AND (CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + Version + "',VerID) > 0) "); }
         RQ.Append(" UNION ");
-        RQ.Append(" SELECT RepID," + lang2 + " AS RepNameEn,CONVERT(CHAR(10),RgpID) AS RgpID FROM Report WHERE ISNULL(RepDeleted,0) = 0  ");
+        RQ.Append(" SELECT RepID, " + lang2 + " AS RepNameEn, CONVERT(VARCHAR(50),RgpID) AS RgpID ");
+        RQ.Append(" FROM Report ");
+        RQ.Append(" WHERE ISNULL(RepDeleted,0) = 0 ");
+        RQ.Append(" AND  RgpID IN (SELECT RgpID FROM ReportGroup WHERE RgpVisible = 'True') ");
         if (Version != "ALL") { RQ.Append(" AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + Version + "',VerID) > 0) "); }
 
         return DBCs.FetchReportData(RQ.ToString());
@@ -370,14 +366,19 @@ public class General
 
         DataSet RepDS = new DataSet();
         StringBuilder RQ = new StringBuilder();
-        RQ.Append(" SELECT CONVERT(CHAR(10),RgpID) AS RepID,RgpArName AS RepNameAr,RgpEnName AS RepNameEn,CONVERT(CHAR(10),RgpParID) AS RgpID FROM ReportGroup");
-        RQ.Append(" WHERE ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + Version + "',VerID) > 0) ");
+        RQ.Append(" SELECT CONVERT(VARCHAR(50),RgpID) AS RepID,RgpNameAr AS RepNameAr,RgpNameEn AS RepNameEn,CONVERT(VARCHAR(50),RgpID) AS RgpID ");
+        RQ.Append(" FROM ReportGroup ");
+        RQ.Append(" WHERE RgpVisible = 'True' ");
         RQ.Append(" AND RgpID IN (" + PermSet + ") ");
+        if (Version != "ALL") { RQ.Append(" AND (CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + Version + "',VerID) > 0) "); }
         RQ.Append(" UNION ");
-        RQ.Append(" SELECT RepID,RepNameAr,RepNameEn,CONVERT(CHAR(10),RgpID) AS RgpID FROM Report WHERE ISNULL(RepDeleted,0) = 0  ");
-        if (Version != "ALL") { RQ.Append(" AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + Version + "',VerID) > 0) "); }
+        RQ.Append(" SELECT RepID,RepNameAr,RepNameEn,CONVERT(VARCHAR(50),RgpID) AS RgpID ");
+        RQ.Append(" FROM Report ");
+        RQ.Append(" WHERE ISNULL(RepDeleted,0) = 0 ");
+        RQ.Append(" AND RgpID IN (SELECT RgpID FROM ReportGroup WHERE RgpVisible = 'True') ");
         RQ.Append(" AND RgpID IN (" + PermSet + ") ");
-
+        if (Version != "ALL") { RQ.Append(" AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + Version + "',VerID) > 0) "); }
+        
         return DBCs.FetchReportData(RQ.ToString());
     }
 

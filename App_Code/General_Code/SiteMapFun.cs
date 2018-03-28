@@ -34,8 +34,9 @@ public class SiteMapFun : StaticSiteMapProvider
             {
                 base.Clear();
                 Lang = General.Msg("EN", "AR");
+                string sql = "SELECT MnuTextEn,MnuTextAr,MnuURL,MnuParentID,MnuServer FROM MENU UNION ALL SELECT RgpNameEn,RgpNameAr,MnuURL,MnuParentID,MnuServer FROM ReportGroup WHERE RgpVisible = 'True'";
 
-                DataTable DT = DBCs.FetchData(new SqlCommand("SELECT * FROM MENU"));
+                DataTable DT = DBCs.FetchData(new SqlCommand(sql));
                 DataRow[] DRs = DT.Select("MnuURL ='Home.aspx'");
                 string DisName = (DRs.Length == 0) ? "Home" : DRs[0][General.Msg("MnuTextEn", "MnuTextAr")].ToString();
 

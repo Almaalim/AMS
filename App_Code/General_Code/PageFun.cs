@@ -126,6 +126,26 @@ public class PageFun
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     public Hashtable getReportPerm(string UrlPage)
+    {
+        try
+        {
+            Hashtable ht = new Hashtable();
+
+            if (HttpContext.Current.Session["ReportPermissions"] != null) 
+            { 
+                ht = getReportPermission(HttpContext.Current.Session["ReportPermissions"].ToString(), UrlPage); 
+
+                //if (ht.Count == 0) { GoLogin(); }
+            } 
+            else { GoLogin(); }
+
+            return ht;
+        }
+        catch (Exception ex) { return new Hashtable(); }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void GoLogin() { HttpContext.Current.Server.Transfer(@"~/login.aspx"); }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -147,6 +167,39 @@ public class PageFun
         QPerm.Append(" AND MnuPermissionID IN (SELECT MnuPermissionID FROM Menu WHERE MnuURL = '" +  PageFileInfo.Name + QSPath + "') ");
         QPerm.Append(" AND MnuNumber IN (" + pUserPermissions + ")" );
         
+        DataTable DT = DBCs.FetchData(new SqlCommand(QPerm.ToString()));
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            for (int i = 0; i < DT.Rows.Count; i++)
+            {
+                DataRow dr = (DataRow)DT.Rows[i];
+                ht.Add(DT.Rows[i]["MnuTextEn"].ToString(), DT.Rows[i]["MnuTextEn"].ToString());
+            }
+        }
+
+        return ht;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public Hashtable getReportPermission(string RepPermissions,string pUrlPath)
+    {
+        Hashtable ht = new Hashtable();
+        StringBuilder QPerm = new StringBuilder();
+        
+        string[] arrUrlPath = pUrlPath.Split('?');
+        string UrlPath = arrUrlPath[0];
+        string QSPath = "";
+        if (arrUrlPath.Length > 1) { QSPath = "?" + arrUrlPath[1]; }
+
+        System.IO.FileInfo PageFileInfo = new System.IO.FileInfo(UrlPath);
+        
+        QPerm.Remove(0, QPerm.Length);
+        QPerm.Append("SELECT MnuTextEn FROM Menu ");
+        QPerm.Append(" WHERE  MnuVisible ='True' AND MnuType IN ('Reports') ");
+        QPerm.Append(" AND MnuPermissionID IN (SELECT MnuPermissionID FROM Menu WHERE MnuURL = '" +  PageFileInfo.Name + QSPath + "') ");
+        QPerm.Append(" AND RgpID IN (" + RepPermissions + ") "); 
+
+
         DataTable DT = DBCs.FetchData(new SqlCommand(QPerm.ToString()));
         if (!DBCs.IsNullOrEmpty(DT))
         {

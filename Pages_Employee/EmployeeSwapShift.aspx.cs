@@ -58,12 +58,12 @@ public partial class EmployeeSwapShift : BasePage
         try
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
-            DateTime Date = DTCs.ConvertToDatetime(iStartDate, "Gregorian");
+            DateTime GDate = DTCs.ConvertToDatetime(iStartDate, "Gregorian");
             
-            DataTable DT = ReqSqlCs.FetchWorkTime(Date, ipEmpID, true);
-            if (iType == "Work") { if (DBCs.IsNullOrEmpty(DT))  { return false; } }
-            if (iType == "Off")  { if (!DBCs.IsNullOrEmpty(DT)) { return false; } }
-           
+            bool isWork = ReqSqlCs.isWorkDays(GDate, ipEmpID);
+            if (iType == "Work") { return isWork; }
+            if (iType == "Off")  { return !isWork; }
+
             return true;
         }
         catch (Exception e1)

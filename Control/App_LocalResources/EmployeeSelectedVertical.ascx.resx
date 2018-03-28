@@ -277,10 +277,10 @@
     <value />
   </data>
   <data name="chkAllEmpSelectResource1.Text" xml:space="preserve">
-    <value>Check All</value>
+    <value>Select All</value>
   </data>
   <data name="rdoSelectAllResource1.Text" xml:space="preserve">
-    <value>Select All Employess</value>
+    <value>Select All Employees</value>
   </data>
   <data name="rdoSelectDepResource1.Text" xml:space="preserve">
     <value>Select Department :</value>
@@ -292,9 +292,12 @@
     <value>Employee Type:</value>
   </data>
   <data name="rdoSelectByIDResource1.Text" xml:space="preserve">
-    <value>Select Employee By ID :</value>
+    <value>Select Employee  :</value>
   </data>
   <data name="rdoSelectByNameResource1.Text" xml:space="preserve">
     <value>Select Employee By Name :</value>
+  </data>
+  <data name="chkAllEmpSelectedResource1.Text" xml:space="preserve">
+    <value>Clear All</value>
   </data>
 </root>

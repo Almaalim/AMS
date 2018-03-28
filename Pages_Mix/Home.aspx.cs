@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Text;
 using InfoSoftGlobal;
+using FusionCharts.Charts;
 
 public partial class Home : BasePage
 {
@@ -201,11 +202,7 @@ public partial class Home : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void FillChartWorkDurtion(DataTable DT)
     {
-        litChartWorkDurtion.Text = General.Msg("No data as required", "لا يوجد بيانات حسب الخيارات المطلوبة");
-        string xmlChart = "";
-        string xmlData = "";
         string titel = "";
-        string xmlStyle = "";
 
         object SumShiftDuration = "0";
         object SumWorkDuration = "0";
@@ -227,42 +224,31 @@ public partial class Home : BasePage
             }
         }
 
-        xmlData += "<set label='" + General.Msg("Total actual working hours", "مجموع ساعات العمل الفعلية") + " " + DisplayFun.GrdDisplayDuration(ShowSumWorkDuration) + "' value='" + SumWorkDuration.ToString() + "' />";
-        xmlData += "<set label='" + General.Msg("Total hours of non - working", "مجموع ساعات عدم العمل") + " " + DisplayFun.GrdDisplayDuration(ShowSumNotWorkDuration) + "' value='" + SumNotWorkDuration + "' isSliced ='1'/>";
+        titel = General.Msg("Total work hours required", "مجموع ساعات العمل المطلوبة");
 
-        xmlStyle = " <styles> "
-                + " <definition> "
-                + "  <style name='CaptionAnim'  type='animation' param='_y' easing='Bounce' start='0' duration='2' /> "
-                + "  <style name='CaptionFont'  type='font' isHTML='1' font='Segoe UI' size='18' color='666666' bold='1' underline='0' /> "
-                + "  <style name='AxisNameFont' type='font' isHTML='1' font='Segoe UI' size='14' color='666666' bold='1' /> "
-                + "  <style name='DataFont'     type='font' isHTML='1' font='Segoe UI' size='12' color='666666' /> "
-                + " </definition> "
-                + " <application> "
-                + " <apply toObject='TOOLTIP'     styles='AxisNameFont' /> "
-                + " <apply toObject='xAxisName'   styles='AxisNameFont' /> "
-                + " <apply toObject='yAxisName'   styles='AxisNameFont' /> "
-                + " <apply toObject='DataLabels'  styles='DataFont' /> "
-                + " <apply toObject='DataValues'  styles='DataFont' /> "
+        StringBuilder strXML = new StringBuilder();
+        strXML.AppendFormat("<?xml version='1.0' encoding='UTF-8'?>");
+        
+        strXML.AppendFormat("<chart caption='{0}' subcaption='{1}'  palette='4'  exportEnabled='1' rotateYAxisName='0' showValues='1' showLabels='0' decimals='0' formatNumberScale='0' showborder='0' showZeroPies='1' labelDisplay='wrap' showLegend='1' pieRadius='80' hasRTLText='1' logoURL='../images/LogoEn.png' logoAlpha='40' logoScale='50' logoPosition='TL'>", titel, DisplayFun.GrdDisplayDuration(ShowSumShiftDuration));
 
-                + " <apply toObject='Caption'     styles='CaptionFont' /> " //,CaptionAnim
-                + " </application> "
-                + " </styles> ";
+        strXML.AppendFormat("<set label='{0}' value='{1}' displayValue='{2}'/>", General.Msg("Total actual working hours", "مجموع ساعات العمل الفعلية"), SumWorkDuration.ToString(), DisplayFun.GrdDisplayDuration(ShowSumWorkDuration));
+        strXML.AppendFormat("<set label='{0}' value='{1}' displayValue='{2}' isSliced ='1'/>", General.Msg("Total hours of non - working", "مجموع ساعات عدم العمل"), SumNotWorkDuration, DisplayFun.GrdDisplayDuration(ShowSumNotWorkDuration));
+        strXML.Append("</chart>");
 
-        titel = General.Msg("Total work hours required", "مجموع ساعات العمل المطلوبة") + " " + DisplayFun.GrdDisplayDuration(ShowSumShiftDuration);
-        xmlChart = " <chart palette='4' caption='" + titel + "' rotateYAxisName='0' showValues='0' decimals='0' formatNumberScale='0' showborder='0' showZeroPies='1'> ";
-        xmlChart += xmlData + xmlStyle + "</chart>";
+        string StrChart = "";
+        Chart ChartWorkDurtion = new Chart("pie2d", " ", "100%", "350", "xml", strXML.ToString());
+        StrChart = ChartWorkDurtion.Render();
+        pnlChartWorkDurtion.Controls.Clear();
+        pnlChartWorkDurtion.Controls.Add(new LiteralControl(StrChart));
 
-        litChartWorkDurtion.Text = FusionCharts.RenderChart("../FusionCharts/Pie2D.swf", "", xmlChart, "ChartWorkDurtion", "100%", "350", false, false);
+
+        
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void FillChartBeginLateDurtion(DataTable DT)
     {
-        litChartBeginLateDurtion.Text = General.Msg("No data as required", "لا يوجد بيانات حسب الخيارات المطلوبة");
-        string xmlChart = "";
-        string xmlData = "";
         string titel = "";
-        string xmlStyle = "";
 
         object SumWorkDuration = "0";
         object SumBeginLateDuration = "0";
@@ -284,42 +270,29 @@ public partial class Home : BasePage
             }
         }
 
-        xmlData += "<set label='" + General.Msg("Total hours of delay", "مجموع ساعات التأخير") + " " + DisplayFun.GrdDisplayDuration(ShowSumBeginLateDuration) + "' value='" + SumBeginLateDuration + "' isSliced ='1' color ='FF0000'/>";
-        xmlData += "<set label='" + General.Msg("Total working hours", "مجموع ساعات العمل") + " " + DisplayFun.GrdDisplayDuration(ShowSumNotDuration) + "' value='" + SumNotDuration + "' color ='009900'/>";
+        titel = General.Msg("Total actual hours required", "مجموع ساعات العمل الفعلية");
 
-        xmlStyle = " <styles> "
-                + " <definition> "
-                + "  <style name='CaptionAnim'  type='animation' param='_y' easing='Bounce' start='0' duration='2' /> "
-                + "  <style name='CaptionFont'  type='font' isHTML='1' font='Segoe UI' size='18' color='666666' bold='1' underline='0' /> "
-                + "  <style name='AxisNameFont' type='font' isHTML='1' font='Segoe UI' size='14' color='666666' bold='1' /> "
-                + "  <style name='DataFont'     type='font' isHTML='1' font='Segoe UI' size='12' color='666666' /> "
-                + " </definition> "
-                + " <application> "
-                + " <apply toObject='TOOLTIP'     styles='AxisNameFont' /> "
-                + " <apply toObject='xAxisName'   styles='AxisNameFont' /> "
-                + " <apply toObject='yAxisName'   styles='AxisNameFont' /> "
-                + " <apply toObject='DataLabels'  styles='DataFont' /> "
-                + " <apply toObject='DataValues'  styles='DataFont' /> "
+        StringBuilder strXML = new StringBuilder();
+        strXML.AppendFormat("<?xml version='1.0' encoding='UTF-8'?>");
+        
+        strXML.AppendFormat("<chart caption='{0}' subcaption='{1}'  palette='4'  exportEnabled='1' rotateYAxisName='0' showValues='1' showLabels='0' decimals='0' formatNumberScale='0' showborder='0' showZeroPies='1' labelDisplay='wrap' showLegend='1' pieRadius='80' hasRTLText='1'>", titel, DisplayFun.GrdDisplayDuration(ShowSumWorkDuration));
 
-                + " <apply toObject='Caption'     styles='CaptionFont' /> " //,CaptionAnim
-                + " </application> "
-                + " </styles> ";
+        strXML.AppendFormat("<set label='{0}' value='{1}' displayValue='{2}' isSliced ='1' color ='FF0000'/>", General.Msg("Total hours of delay", "مجموع ساعات التأخير"), SumBeginLateDuration,  DisplayFun.GrdDisplayDuration(ShowSumBeginLateDuration));
+        strXML.AppendFormat("<set label='{0}' value='{1}' displayValue='{2}' color ='009900'/>",General.Msg("Total working hours", "مجموع ساعات العمل"), SumNotDuration, DisplayFun.GrdDisplayDuration(ShowSumNotDuration));
+        strXML.Append("</chart>");
 
-        titel = General.Msg("Total actual hours required", "مجموع ساعات العمل الفعلية") + " " + DisplayFun.GrdDisplayDuration(ShowSumWorkDuration);
-        xmlChart = " <chart palette='4' caption='" + titel + "' rotateYAxisName='0' showValues='0' decimals='0' formatNumberScale='0' showborder='0' showZeroPies='1'> ";
-        xmlChart += xmlData + xmlStyle + "</chart>";
-
-        litChartBeginLateDurtion.Text = FusionCharts.RenderChart("../FusionCharts/Pie2D.swf", "", xmlChart, "ChartBeginLateDurtion", "100%", "350", false, false);
+        string StrChart = "";
+        Chart ChartBeginLateDurtion = new Chart("pie2d", "  ", "100%", "350", "xml", strXML.ToString());
+        StrChart = ChartBeginLateDurtion.Render();
+        pnlChartBeginLateDurtion.Controls.Clear();
+        pnlChartBeginLateDurtion.Controls.Add(new LiteralControl(StrChart));
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void FillChartAbsentDays(bool EmpDay, DataTable DT, string EmpID, string Date)
     {
-        LitChartAbsentDays.Text = General.Msg("No data as required", "لا يوجد بيانات حسب الخيارات المطلوبة");
-        string xmlChart = "";
-        string xmlData = "";
         string titel = "";
-        string xmlStyle = "";
+        string Subtitel = "";
 
         object SumWorkDays = "0";
         object SumAbsentDays = "1";
@@ -331,7 +304,8 @@ public partial class Home : BasePage
         string ShowSumNotDuration = "0";
 
         DataTable CDT = new DataTable();
-        if (!EmpDay) { CDT = DT; }
+        if (!EmpDay)
+        { CDT = DT; }
         else
         {
             StringBuilder DQ = new StringBuilder();
@@ -362,51 +336,37 @@ public partial class Home : BasePage
             }
         }
 
+        if (!EmpDay) { titel = General.Msg("Total working days required", "مجموع أيام العمل المطلوبة"); } else { titel = General.Msg("Status of the day", "حالة اليوم"); }
+        if (!EmpDay) { Subtitel = SumWorkDays.ToString(); } else { Subtitel = DisplayFun.GrdDisplayDayStatus(DsmStatus, pgCs.Version); }
+
+        StringBuilder strXML = new StringBuilder();
+        strXML.AppendFormat("<?xml version='1.0' encoding='UTF-8'?>");
+        
+        strXML.AppendFormat("<chart caption='{0}' subcaption='{1}'  palette='4' exportEnabled='1' rotateYAxisName='0' showValues='1' showLabels='0' decimals='0' formatNumberScale='0' showborder='0' showZeroPies='{2}' labelDisplay='wrap' showLegend='1' pieRadius='80' hasRTLText='1'>", titel, Subtitel,(!EmpDay) ? "1" : "0");
+
         if (!EmpDay)
         {
-            xmlData += "<set label='" + General.Msg("Total days of absence", "مجموع أيام الغياب") + " " + ShowSumAbsentDays + "' value='" + SumAbsentDays + "' isSliced ='1' color='e6ff1e'/>";
-            xmlData += "<set label='" + General.Msg("Total working days", "مجموع أيام العمل") + " " + ShowSumNotDuration + "' value='" + SumNotDuration + "' color='b0e0e6' />";
+            strXML.AppendFormat("<set label='{0}' value='{1}' displayValue='{2}' isSliced ='1' color='e6ff1e'/>", General.Msg("Total days of absence", "مجموع أيام الغياب"), SumAbsentDays,  ShowSumAbsentDays);
+            strXML.AppendFormat("<set label='{0}' value='{1}' displayValue='{2}' color ='b0e0e6'/>", General.Msg("Total working days", "مجموع أيام العمل"), SumNotDuration, ShowSumNotDuration);
         }
         else
         {
-            xmlData += "<set label='" + DisplayFun.GrdDisplayDayStatus(DsmStatus, pgCs.Version) + "' value='" + SumAbsentDays + "' isSliced ='1' color='e6ff1e'/>";
-            xmlData += "<set label='" + DisplayFun.GrdDisplayDayStatus(DsmStatus, pgCs.Version) + "' value='" + SumWorkDays + "' color='b0e0e6' />";
+            strXML.AppendFormat("<set label='{0}' value='{1}' displayValue='{2}' isSliced ='1' color='e6ff1e'/>", DisplayFun.GrdDisplayDayStatus(DsmStatus, pgCs.Version), SumAbsentDays, "");
+            strXML.AppendFormat("<set label='{0}' value='{1}' displayValue='{2}' color ='b0e0e6'/>",DisplayFun.GrdDisplayDayStatus(DsmStatus, pgCs.Version), SumNotDuration, "");
         }
+        strXML.Append("</chart>");
 
-        xmlStyle = " <styles> "
-                + " <definition> "
-                + "  <style name='CaptionAnim'  type='animation' param='_y' easing='Bounce' start='0' duration='2' /> "
-                + "  <style name='CaptionFont'  type='font' isHTML='1' font='Segoe UI' size='18' color='666666' bold='1' underline='0' /> "
-                + "  <style name='AxisNameFont' type='font' isHTML='1' font='Segoe UI' size='14' color='666666' bold='1' /> "
-                + "  <style name='DataFont'     type='font' isHTML='1' font='Segoe UI' size='12' color='666666' /> "
-                + " </definition> "
-                + " <application> "
-                + " <apply toObject='TOOLTIP'     styles='AxisNameFont' /> "
-                + " <apply toObject='xAxisName'   styles='AxisNameFont' /> "
-                + " <apply toObject='yAxisName'   styles='AxisNameFont' /> "
-                + " <apply toObject='DataLabels'  styles='DataFont' /> "
-                + " <apply toObject='DataValues'  styles='DataFont' /> "
-
-                + " <apply toObject='Caption'     styles='CaptionFont' /> " //,CaptionAnim
-                + " </application> "
-                + " </styles> ";
-
-        if (!EmpDay) { titel = General.Msg("Total working days required", "مجموع أيام العمل المطلوبة") + " " + SumWorkDays; }
-        else { titel = General.Msg("Status of the day", "حالة اليوم"); }
-        xmlChart = " <chart palette='4' caption='" + titel + "' rotateYAxisName='0' showValues='0' decimals='0' formatNumberScale='0' showborder='0' showZeroPies='" + (!EmpDay ? "1" : "0") + "'> ";
-        xmlChart += xmlData + xmlStyle + "</chart>";
-
-        LitChartAbsentDays.Text = FusionCharts.RenderChart("../FusionCharts/Pie2D.swf", "", xmlChart, "ChartAbsentDays", "100%", "350", false, false);
+        string StrChart = "";
+        Chart ChartBeginLateDurtion = new Chart("pie2d", "   ", "100%", "350", "xml", strXML.ToString());
+        StrChart = ChartBeginLateDurtion.Render();
+        pnlChartAbsentDays.Controls.Clear();
+        pnlChartAbsentDays.Controls.Add(new LiteralControl(StrChart));
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void FillChartDurations(DataTable DT)
     {
-        LitChartDurations.Text = General.Msg("No data as required", "لا يوجد بيانات حسب الخيارات المطلوبة");
-        string xmlChart = "";
-        string xmlData = "";
         string titel = "";
-        string xmlStyle = "";
 
         object SumShiftDuration = "0";
         object SumWorkDuration = "0";
@@ -427,34 +387,22 @@ public partial class Home : BasePage
             }
         }
 
-        xmlData += "<set label='" + General.Msg("work hours required", "ساعات العمل المطلوبة") + " " + DisplayFun.GrdDisplayDuration(ShowSumShiftDuration) + "' value='" + DisplayDuration(SumShiftDuration) + "' />";
-        xmlData += "<set label='" + General.Msg("actual hours required", "ساعات العمل الفعلية") + " " + DisplayFun.GrdDisplayDuration(ShowSumWorkDuration) + "' value='" + DisplayDuration(SumWorkDuration) + "' />";
-        xmlData += "<set label='" + General.Msg("hours of gaps without Excuse", "ساعات الثغرات بدون إستئذان") + " " + DisplayFun.GrdDisplayDuration(ShowSumGapsDuration) + "' value='" + DisplayDuration(SumGapsDuration) + "' />";
-
-        xmlStyle = " <styles> "
-                + " <definition> "
-                + "  <style name='CaptionAnim'  type='animation' param='_y' easing='Bounce' start='0' duration='2' /> "
-                + "  <style name='CaptionFont'  type='font' isHTML='1' font='Segoe UI' size='18' color='666666' bold='1' underline='0' /> "
-                + "  <style name='AxisNameFont' type='font' isHTML='1' font='Segoe UI' size='14' color='666666' bold='1' /> "
-                + "  <style name='DataFont'     type='font' isHTML='1' font='Segoe UI' size='12' color='666666' /> "
-                + " </definition> "
-                + " <application> "
-                + " <apply toObject='TOOLTIP'     styles='AxisNameFont' /> "
-                + " <apply toObject='xAxisName'   styles='AxisNameFont' /> "
-                + " <apply toObject='yAxisName'   styles='AxisNameFont' /> "
-                + " <apply toObject='DATALABELS'  styles='DataFont' /> "
-                + " <apply toObject='DataValues'  styles='DataFont' /> "
-                + " <apply toObject='Caption'     styles='CaptionFont' /> "
-                + " </application> "
-                + " </styles> ";
-
         titel = General.Msg("Total working periods", "مجموع فترات العمل");
 
-        xmlChart = " <chart palette='1' caption='" + titel + "' xAxisName='" + General.Msg("Total", "المجموع") + "' "
-                + " yAxisName='" + General.Msg("Hour", "ساعة") + "' rotateYAxisName='0' showValues='0' decimals='0' showborder='0' formatNumberScale='0' labelDisplay='Stagger' > ";
-        xmlChart += xmlData + xmlStyle + "</chart>";
+        StringBuilder strXML = new StringBuilder();
+        strXML.AppendFormat("<chart caption='{0}' palette='1'  exportEnabled='1' xAxisName='{1}' yAxisName='{2}' rotateYAxisName='0' showValues='1' decimals='0' showborder='0' formatNumberScale='0' labelDisplay='Stagger' showLegend='1'>", titel,  General.Msg("Total", "المجموع"), General.Msg("Hour", "ساعة"));
 
-        LitChartDurations.Text = FusionCharts.RenderChart("../FusionCharts/Column2D.swf", "", xmlChart, "ChartDurations", "100%", "350", false, false);
+        strXML.AppendFormat("<set label='{0}' value='{1}' displayValue='{2}'/>", General.Msg("work hours required", "ساعات العمل المطلوبة"), DisplayDuration(SumShiftDuration), DisplayFun.GrdDisplayDuration(ShowSumShiftDuration));
+        strXML.AppendFormat("<set label='{0}' value='{1}' displayValue='{2}'/>", General.Msg("actual hours required", "ساعات العمل الفعلية"), DisplayDuration(SumWorkDuration), DisplayFun.GrdDisplayDuration(ShowSumWorkDuration));
+        strXML.AppendFormat("<set label='{0}' value='{1}' displayValue='{2}'/>", General.Msg("hours of gaps without Excuse", "ساعات الثغرات بدون إستئذان"), DisplayDuration(SumGapsDuration), DisplayFun.GrdDisplayDuration(ShowSumGapsDuration));
+
+        strXML.Append("</chart>");
+
+        string outPut = "";
+        Chart sales = new Chart("column2d", "    ", "100%", "350", "xml", strXML.ToString());
+        outPut = sales.Render();
+        pnlChartDurations.Controls.Clear();
+        pnlChartDurations.Controls.Add(new LiteralControl(outPut));
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

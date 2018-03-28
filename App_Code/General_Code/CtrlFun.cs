@@ -1228,6 +1228,27 @@ public class CtrlFun : DataLayerBase
 
         return ds;
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public DataSet FillBrcDepTreeDS(string ActiveVersion, string DepList)
+    {
+        string sql;
+
+        string DQ = "";
+        if (ActiveVersion == "BorderGuard")
+        {
+            DQ = " SELECT DISTINCT DepID,DepParentID,DepName" + General.Msg("En", "Ar") + " AS DepNameEn FROM Department WHERE DepID IN (" + DepList + ") ";
+        }
+        else // (ActiveVersion == "General")
+        {
+            DQ = " SELECT DISTINCT DepID,DepParentID,FullName" + General.Msg("En", "Ar") + " AS DepNameEn FROM DepartmentWithBranchLevelView ";
+        }
+
+        DataSet ds = new DataSet();
+        ds = (DataSet)FetchDepartmentDataSet(sql = DQ);
+
+        return ds;
+    }
 
     #endregion
     /*#############################################################################################################################*/

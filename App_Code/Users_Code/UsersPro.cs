@@ -4,35 +4,6 @@ using System.Text;
 
 public class UsersPro
 {
-
-    //UsrName	char(10)	Unchecked
-    //UsrPassword	varchar(15)	Checked
-    //EmpID	varchar(15)	Checked
-    //UsrFullName	varchar(100)	Unchecked
-    //UsrDesc	varchar(255)	Checked
-    //UsrStartDate	datetime	Checked
-    //UsrExpireDate	datetime	Checked
-    //UsrStatus	bit	Unchecked
-    //UsrLanguage	char(2)	Unchecked
-    //GrpID	int	Checked
-    //ReportGrpID	int	Checked
-    //UsrDepartments	varchar(8000)	Checked
-    //UsrDeleted	bit	Checked
-    //UsrDomainName	varchar(50)	Checked
-    //UsrEMailID	varchar(100)	Checked
-    //UsrMobileNo	varchar(100)	Checked
-    //UsrSendEmailAlert	bit	Checked
-    //UsrSendSMSAlert	bit	Checked
-    //UsrActingUser	bit	Checked
-    //UsrActUserName	char(10)	Checked
-    //UsrActPwd	char(10)	Checked
-    //UsrActEmpID	varchar(15)	Checked
-    //UsrActDomainName	varchar(100)	Checked
-    //UsrSalarySystem	bit	Checked
-    //UsrAdminMiniLogger	bit	Checked
-    //UsrADUser	varchar(100)	Checked
-    //UsrADActUser	varchar(100)	Checked
-    //UsrActEMailID	varchar(100)	Checked
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -86,10 +86,10 @@ public partial class ShiftSwapRequest2 : BasePage
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             DateTime Date = DTCs.ConvertToDatetime(iStartDate, "Gregorian");
-            
-            DataTable DT = SqlCs.FetchWorkTime(Date, ipEmpID, true);
-            if (iType == "Work") { if (DBCs.IsNullOrEmpty(DT))  { return false; } }
-            if (iType == "Off")  { if (!DBCs.IsNullOrEmpty(DT)) { return false; } }
+
+            bool isWork = SqlCs.isWorkDays(Date, ipEmpID);
+            if (iType == "Work") { return isWork;  } 
+            if (iType == "Off")  { return !isWork; }
            
             return true;
         }

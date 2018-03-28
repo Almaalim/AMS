@@ -393,8 +393,8 @@ public partial class AttendanceList : BasePage
     {
         try
         {
-            DataTable DT = ReqSqlCs.FetchWorkTime(GDate, pgCs.LoginEmpID, true);
-            if (DBCs.IsNullOrEmpty(DT)) { return false; } else { return true; }
+            bool isWork = ReqSqlCs.isWorkDays(GDate, pgCs.LoginEmpID);
+            return isWork;
         }
         catch (Exception e1) { return false; }
     }
@@ -599,13 +599,13 @@ public partial class AttendanceList : BasePage
 
         DataTable ReqDT = new DataTable();
 
-        bool ReqPermVac = pgCs.GetRequestPerm(ViewState["ReqHT"], "VAC");
-        bool ReqPermCom = pgCs.GetRequestPerm(ViewState["ReqHT"], "COM");
-        bool ReqPermJob = pgCs.GetRequestPerm(ViewState["ReqHT"], "JOB");
+        //bool ReqPermVac = pgCs.GetRequestPerm(ViewState["ReqHT"], "VAC");
+        //bool ReqPermCom = pgCs.GetRequestPerm(ViewState["ReqHT"], "COM");
+        //bool ReqPermJob = pgCs.GetRequestPerm(ViewState["ReqHT"], "JOB");
         try
         {
-            if (ReqPermVac || ReqPermCom || ReqPermJob)
-            {
+            //if (ReqPermVac || ReqPermCom || ReqPermJob)
+            //{
                 ReqDT = DBCs.FetchData(" SELECT RetID, ErqReqStatus FROM EmpRequest WHERE @P1 BETWEEN ErqStartDate AND ErqEndDate AND EmpID = @P2 AND RetID IN ('VAC','COM','JOB') ORDER By ErqID DESC ", new string[] { GDate.ToString(),pgCs.LoginEmpID });
                 if (!DBCs.IsNullOrEmpty(ReqDT))
                 {
@@ -614,18 +614,16 @@ public partial class AttendanceList : BasePage
                     ReqType = ReqDT.Rows[0]["RetID"].ToString();
                     ReqStatus = Convert.ToInt32(ReqDT.Rows[0]["ErqReqStatus"].ToString()); // 0 Wait // 1 Approve // 2 Reject
                 }
-            }
+            //}
             
             if(!found || ReqStatus == 2 || ReqStatus == 0)
             {
-                DataTable VDT = DBCs.FetchData(" SELECT VtpID FROM EmpVacRel WHERE ISNULL(EvrDeleted,0) = 0 AND EmpID = @P1 AND @P2 BETWEEN EvrStartDate AND EvrEndDate ", new string[] { pgCs.LoginEmpID, GDate.ToString() });
+                DataTable VDT = DBCs.FetchData(" SELECT VtpID, VtpCategory FROM EmpVacRelInfoView WHERE EmpID = @P1 AND @P2 BETWEEN EvrStartDate AND EvrEndDate ", new string[] { pgCs.LoginEmpID, GDate.ToString() });
                 if (!DBCs.IsNullOrEmpty(VDT))
                 {
                     found = true;
                     ReqBy = "USR";
-                    
-                    DataTable VTDT = DBCs.FetchData(" SELECT ISNULL(VtpCategory,'VAC') VtpCategory FROM VacationType WHERE VtpID = @P1 ", new string[] { VDT.Rows[0]["VtpID"].ToString() });
-                    if (!DBCs.IsNullOrEmpty(VTDT))  { ReqType = VTDT.Rows[0]["VtpCategory"].ToString(); }
+                    ReqType = VDT.Rows[0]["VtpCategory"].ToString();
                 }
             }
         }

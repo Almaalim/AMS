@@ -530,6 +530,9 @@
             <Services>
                 <asp:ServiceReference Path="~/Service/AutoComplete.asmx" />
             </Services>
+            <Scripts>
+                <asp:ScriptReference Path="~/Script/fusionchartsJs/updatepanelhook.fusioncharts.js" />
+            </Scripts>
         </asp:ScriptManager>
         <div class="wrapper">
             <div id="cp_padd<%=Session["Language"]%>">
@@ -755,7 +758,7 @@
                     }
                 }
             </script>
-            <script>
+            <%--<script>
                 function pageLoad() {
                     $(".chosen-select").chosen({
                         allow_single_deselect: true,
@@ -766,7 +769,7 @@
                         width: "100%"
                     });
                 }
-            </script>
+            </script>--%>
     </form>
     <div class="LoadingWrapper">
         <div class="Loader">

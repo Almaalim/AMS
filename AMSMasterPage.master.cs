@@ -230,23 +230,23 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
 
     protected void Menu1_MenuItemDataBound(object sender, MenuEventArgs e)
     {
-        //string ss = e.Item.ToolTip;
+        //    string ss = e.Item.ToolTip;
 
-        //string lang = (pgCs.Lang == "AR") ? "Ar" : "En";
-        //string q = " SELECT MnuTextEn AS ID FROM Menu WHERE MnuText" + lang + " = '" + e.Item.Text + "'";
-        //DataTable DT1 = DBCs.FetchData(new SqlCommand(q));
-        //if (!DBCs.IsNullOrEmpty(DT1))
-        //{
-        //    if (DT1.Rows[0]["ID"] != DBNull.Value)
+        //    string lang = (pgCs.Lang == "AR") ? "Ar" : "En";
+        //    string q = " SELECT MnuTextEn AS ID FROM Menu WHERE MnuText" + lang + " = '" + e.Item.Text + "'";
+        //    DataTable DT1 = DBCs.FetchData(new SqlCommand(q));
+        //    if (!DBCs.IsNullOrEmpty(DT1))
         //    {
-        //        string menuCss = DT1.Rows[0]["ID"].ToString();
-        //        menuCss = menuCss.Replace(" ", "");
-        //        menuCss = Regex.Replace(menuCss, @"[^0-9a-zA-Z]+", "");
-        //        e.Item.ToolTip = menuCss;
-        //      //  e.Item.ToolTip = "SideMenuItem " + "icon" + menuCss;
-        //       // e.Item.ToolTip = "SideMenuItem " + "icon448";
+        //        if (DT1.Rows[0]["ID"] != DBNull.Value)
+        //        {
+        //            string menuCss = DT1.Rows[0]["ID"].ToString();
+        //            menuCss = menuCss.Replace(" ", "");
+        //            menuCss = Regex.Replace(menuCss, @"[^0-9a-zA-Z]+", "");
+        //            e.Item.ToolTip = menuCss;
+        //            //  e.Item.ToolTip = "SideMenuItem " + "icon" + menuCss;
+        //            // e.Item.ToolTip = "SideMenuItem " + "icon448";
+        //        }
         //    }
-        //}
 
         System.Xml.XmlElement node = (System.Xml.XmlElement)e.Item.DataItem;
         if (node.ChildNodes.Count != 0)
@@ -309,21 +309,26 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
         string MPerm = (GenCs.IsNullOrEmpty(Session["MenuPermissions"])) ? "0" : Session["MenuPermissions"].ToString();
         string RPerm = (GenCs.IsNullOrEmpty(Session["ReportPermissions"])) ? "0" : Session["ReportPermissions"].ToString();
 
-        QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText,MnuTextEn as MnuTextEn,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder,MnuPermissionID AS MnuDepth ");
+        QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuText" + lang + " as MnuText,MnuTextEn as MnuTextEn,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder,MnuPermissionID AS MnuDepth ");
         QMuen.Append(" FROM Menu WHERE MnuVisible = 'True' AND MnuType IN ('Menu') ");
         if (pgCs.LoginID != "admin") { QMuen.Append(" AND MnuID IN (" + MPerm + ") "); }
        
         QMuen.Append(" UNION ALL ");
-        QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText,MnuTextEn as MnuTextEn,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder,MnuPermissionID AS MnuDepth ");
+        QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuText" + lang + " as MnuText,MnuTextEn as MnuTextEn,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder,MnuPermissionID AS MnuDepth ");
         QMuen.Append(" FROM Menu WHERE MnuVisible = 'True' AND MnuType IN (" + listPage + ") ");
         if (pgCs.LoginID != "admin") { QMuen.Append(" AND MnuID IN (" + MPerm + ") "); }
         if (pgCs.Version != "ALL") { QMuen.Append(" AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + pgCs.Version + "',VerID) > 0) "); }
 
         QMuen.Append(" UNION ALL ");
-        QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText,MnuTextEn as MnuTextEn,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder,MnuPermissionID AS MnuDepth ");
-        QMuen.Append(" FROM Menu WHERE  MnuVisible ='True' AND MnuType IN ('Reports') ");
+        QMuen.Append(" SELECT MnuID,MnuID,MnuPermissionID,RgpName" + lang + " AS MnuText,'Rep' + RgpNameEn AS MnuTextEn,(MnuServer + '' + MnuURL) AS MnuURL,MnuParentID,RgpVisible,RgpOrder,MnuPermissionID AS MnuDepth ");
+        QMuen.Append(" FROM ReportGroup WHERE RgpVisible ='True' ");
         if (pgCs.LoginID != "admin") { QMuen.Append(" AND RgpID IN (" + RPerm + ") "); }
         if (pgCs.Version != "ALL") { QMuen.Append(" AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + pgCs.Version + "',VerID) > 0) "); }
+
+        //QMuen.Append(" SELECT MnuID,MnuID,MnuPermissionID,MnuText" + lang + " as MnuText,MnuTextEn as MnuTextEn,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder,MnuPermissionID AS MnuDepth ");
+        //QMuen.Append(" FROM Menu WHERE  MnuVisible ='True' AND MnuType IN ('Reports') ");
+        //if (pgCs.LoginID != "admin") { QMuen.Append(" AND RgpID IN (" + RPerm + ") "); }
+        //if (pgCs.Version != "ALL") { QMuen.Append(" AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + pgCs.Version + "',VerID) > 0) "); }
 
         return QMuen.ToString();
     }
@@ -348,7 +353,7 @@ public partial class AMSMasterPage : System.Web.UI.MasterPage
         if (ERSLic == "1" && Reqht.ContainsKey("ESH")) { listPage += ",'ERS_ESHMenu'"; }
         if (ERSLic == "1" && LicDf.FetchLic("SS") == "1" && Reqht.ContainsKey("SWP")) { listPage += ",'ERS_SWPMenu'"; }
 
-        QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuImageURL,MnuText" + lang + " as MnuText,MnuTextEn as MnuTextEn,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder,MnuPermissionID AS MnuDepth ");
+        QMuen.Append(" SELECT MnuNumber,MnuID,MnuPermissionID,MnuText" + lang + " as MnuText,MnuTextEn as MnuTextEn,(MnuServer + '' + MnuURL) as MnuURL,MnuParentID,MnuVisible,MnuOrder,MnuPermissionID AS MnuDepth ");
         QMuen.Append(" FROM Menu WHERE MnuVisible = 'True' AND MnuType IN (" + listPage + ") ");
         if (pgCs.Version != "ALL") { QMuen.Append(" AND ( CHARINDEX('General',VerID) > 0 OR CHARINDEX('" + pgCs.Version + "',VerID) > 0) "); }
 

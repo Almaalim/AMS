@@ -111,25 +111,59 @@ public class EmpRequestSql : DataLayerBase
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    public DataTable FetchWorkTime(DateTime WorkDate, string EmpID, bool Status)
+    public bool isWorkDays(DateTime WorkDate, string EmpID) // return true = work, return false = no work, holiday, weekend
     {
-        SqlCommand Sqlcmd = new SqlCommand("dbo.[EmpReq_GetEmpWrkRel]", MainConnection);
+        SqlCommand Sqlcmd = new SqlCommand("dbo.[CheckIsWorkDay]", MainConnection);
         Sqlcmd.CommandType = CommandType.StoredProcedure;
 
         try
         {
-            Sqlcmd.Parameters.Add(new SqlParameter("@EmpID"  , VchDB, 15,  IN, false, 0, 0, "", DRV, EmpID));
-            Sqlcmd.Parameters.Add(new SqlParameter("@TrnDate", DtDB , 100, IN, false, 0, 0, "", DRV, WorkDate));
-            Sqlcmd.Parameters.Add(new SqlParameter("@Status" , IntDB, 1,   IN, false, 0, 0, "", DRV, Status));
+            Sqlcmd.Parameters.Add(new SqlParameter("@iDateDay", DtDB , 100, IN, false, 0, 0, "", DRV, WorkDate));
+            Sqlcmd.Parameters.Add(new SqlParameter("@iEmpID"  , VchDB, 15,  IN, false, 0, 0, "", DRV, EmpID));
+            
+            Sqlcmd.Parameters.Add(new SqlParameter("@oWorkStatus", BitDB, 1,  OU, false, 0, 0, "", DRV, null));
+            Sqlcmd.Parameters.Add(new SqlParameter("@oDayStatus" , VchDB, 2,  OU, false, 0, 0, "", DRV, null));
+
+            Sqlcmd.Parameters.Add(new SqlParameter("@IsExecute"    , IntDB, 10, OU, false, 0, 0, "", DRV, 0));
 
             MainConnection.Open();
+            Sqlcmd.ExecuteNonQuery();
+            if (Convert.ToInt32(Sqlcmd.Parameters["@IsExecute"].Value) == -1) { throw new Exception(General.ProcedureMsg(), null); }
 
-            SqlDataReader dr = Sqlcmd.ExecuteReader(CommandBehavior.CloseConnection);
+            return Convert.ToBoolean(Sqlcmd.Parameters["@oWorkStatus"].Value);
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message, ex);
+        }
+        finally
+        {
+            MainConnection.Close();
+            Sqlcmd.Dispose();
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public bool isWorkDuration(DateTime StartDate, DateTime EndDate, string EmpID, string Type) 
+    {
+        SqlCommand Sqlcmd = new SqlCommand("dbo.[CheckIsWorkDuration]", MainConnection);
+        Sqlcmd.CommandType = CommandType.StoredProcedure;
 
-            DataTable DT = new DataTable();
-            DT.Load(dr);
-            dr.Close();
-            return DT;
+        try
+        {
+            Sqlcmd.Parameters.Add(new SqlParameter("@iStartDate"   , DtDB , 100, IN, false, 0, 0, "", DRV, StartDate));
+            Sqlcmd.Parameters.Add(new SqlParameter("@iEndDate"     , DtDB , 100, IN, false, 0, 0, "", DRV, EndDate));
+            Sqlcmd.Parameters.Add(new SqlParameter("@iEmpID"       , VchDB, 15,  IN, false, 0, 0, "", DRV, EmpID));
+            Sqlcmd.Parameters.Add(new SqlParameter("@iDurationType", VchDB, 15,  IN, false, 0, 0, "", DRV, Type));
+
+            Sqlcmd.Parameters.Add(new SqlParameter("@oWorkStatus", BitDB, 1,  OU, false, 0, 0, "", DRV, null));
+            Sqlcmd.Parameters.Add(new SqlParameter("@IsExecute"  , IntDB, 10, OU, false, 0, 0, "", DRV, 0));
+
+            MainConnection.Open();
+            Sqlcmd.ExecuteNonQuery();
+            if (Convert.ToInt32(Sqlcmd.Parameters["@IsExecute"].Value) == -1) { throw new Exception(General.ProcedureMsg(), null); }
+
+            return Convert.ToBoolean(Sqlcmd.Parameters["@oWorkStatus"].Value);
         }
         catch (Exception ex)
         {

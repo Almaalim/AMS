@@ -424,7 +424,6 @@ public partial class VacationRequest2 : BasePage
     {
         try
         { 
-
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             if (source.Equals(cvDays))
             {
@@ -436,12 +435,11 @@ public partial class VacationRequest2 : BasePage
                         CtrlCs.ValidMsg(this, ref cvDays, true, General.Msg("You do not have a Worktime in the given period", "لا يوجد لديك عمل في الفترة المحددة"));
                         e.IsValid = false;
                     }
-                    e.IsValid = true;
                 }
             }
             else if (source.Equals(cvReqDate))
             {
-                if (!string.IsNullOrEmpty(calStartDate.getGDate()) && !string.IsNullOrEmpty(calEndDate.getGDate()))
+                if (pgCs.Version == "Al_JoufUN" && ddlReqType.SelectedValue == "VAC" && !string.IsNullOrEmpty(calStartDate.getGDate()) && !string.IsNullOrEmpty(calEndDate.getGDate()))
                 {
                     int DaysLimit = GetDayslimit();
                     if (DaysLimit > 0)
@@ -456,9 +454,7 @@ public partial class VacationRequest2 : BasePage
                             CtrlCs.ValidMsg(this, ref cvReqDate, true, General.Msg("You can not leave request, have exceeded " + DaysLimit.ToString() + " days from the date of the end of the vacation", "لا يمكنك طلب إجازة, لقد تجاوزت " + DaysLimit.ToString() + " ايام من تاريخ نهاية الاجازة"));
                             e.IsValid = false;
                         }
-                        else { e.IsValid = true; }
                     }
-                    else { e.IsValid = true; }
                 }
             }
         }
@@ -476,16 +472,9 @@ public partial class VacationRequest2 : BasePage
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-US");
             DateTime StartDate = DTCs.ConvertToDatetime(pStartDate, "Gregorian");
             DateTime EndDate   = DTCs.ConvertToDatetime(pEndDate, "Gregorian");
-            DateTime Date      = StartDate;
-            int Days           = Convert.ToInt32((EndDate - StartDate).TotalDays + 1);
 
-            for (int i = 0; i < Days; i++)
-            {
-                Date = StartDate.AddDays(i);
-                DataTable DT = SqlCs.FetchWorkTime(Date, pEmpID, true);
-                if (DBCs.IsNullOrEmpty(DT)) { return false; } 
-            }
-            return true;
+            bool isWork = SqlCs.isWorkDuration(StartDate, EndDate, pEmpID, "VAC");
+            return isWork;
         }
         catch (Exception e1)
         {

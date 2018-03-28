@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -106,6 +104,9 @@ public partial class Control_Calendar2 : System.Web.UI.UserControl
 
         if (!Page.IsPostBack)
         {
+            ddlLocaleChoice.Items[0].Text = General.Msg("Hijri", "هجري");
+            ddlLocaleChoice.Items[1].Text = General.Msg("Gregorian", "ميلادي");
+
             try
             {
                 if (!string.IsNullOrEmpty(ViewState["vg"].ToString()) && ValidationRequired)

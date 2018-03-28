@@ -240,15 +240,15 @@ public partial class OverTimeRequest2 : BasePage
                     bool foundEmp = false;
                     DataTable WTMaxdt = new DataTable();
                     DateTime Date = DTCs.ConvertToDatetime(txtDate.Text, pgCs.DateType);
-                    DataTable EmpWrkdt = SqlCs.FetchWorkTime(Date, pgCs.LoginEmpID, true);
-                    if (!DBCs.IsNullOrEmpty(EmpWrkdt)) { foundWT = true; }
+
+                    foundWT = SqlCs.isWorkDays(Date, pgCs.LoginEmpID);
 
                     DataTable EMDT = DBCs.FetchData(" SELECT EmpMaxOvertimePercent FROM Employee WHERE EmpID = @P1 ", new string[] {  pgCs.LoginEmpID });
                     if (!DBCs.IsNullOrEmpty(EMDT)) { foundEmp = true; }
 
                     if (foundWT) 
                     { 
-                        WTMaxdt = DBCs.FetchData(" SELECT WktAddPercent FROM WorkingTime WHERE WktID = @P1 ", new string[] {  EmpWrkdt.Rows[0]["WktID"].ToString() });  
+                        WTMaxdt = DBCs.FetchData(" SELECT WktAddPercent FROM WorkingTime WHERE WktID = (SELECT WktID FROM dbo.GetEmpWrkRel_Fun(@P1,@P2) ", new string[] { Date.ToString(), pgCs.LoginEmpID });  
                     }
 
                     //if  ( EmpMaxdt.Rows[0]["EmpMaxOvertimePercent"] != DBNull.Value ) { max = EmpMaxdt.Rows[0]["EmpMaxOvertimePercent"].ToString(); }

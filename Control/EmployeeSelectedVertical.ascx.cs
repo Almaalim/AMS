@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
-using System.Globalization;
 using System.Text;
 using Elmah;
 using System.Data.SqlClient;
@@ -20,8 +17,8 @@ public partial class EmployeeSelectedVertical : System.Web.UI.UserControl
     CtrlFun CtrlCs = new CtrlFun();
     DTFun   DTCs   = new DTFun();
 
-    DataTable dtLeft;
-    DataTable dtRight;
+    DataTable LDT;
+    DataTable RDT;
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private string _ValidationGroupName;
@@ -42,13 +39,12 @@ public partial class EmployeeSelectedVertical : System.Web.UI.UserControl
             pgCs.FillSession(); 
             /*** Fill Session ************************************/
             
-            btnSelectEmp.ImageUrl   = General.Msg("images/Control_Images/next.png","images/Control_Images/back.png");
-            btnDeSelectEmp.ImageUrl = General.Msg("images/Control_Images/back.png","images/Control_Images/next.png");
-
             if (!IsPostBack)
             {
                 /*** Common Code ************************************/
                 FillList();
+                LDT = EmptyDataTable();
+                RDT = EmptyDataTable();
                 ViewState["CommandName"] = "";
                 /*** Common Code ************************************/
 
@@ -56,12 +52,11 @@ public partial class EmployeeSelectedVertical : System.Web.UI.UserControl
                 
                 cblEmpSelect.Items.Clear();
                 cblEmpSelected.Items.Clear();
-                cvSelectEmployees.ValidationGroup = cvSearchByID.ValidationGroup = cvSelectByName.ValidationGroup = ValidationGroupName;
+                cvSelectEmployees.ValidationGroup = cvSearchByID.ValidationGroup = ValidationGroupName;
 
                 divAllEmp.Visible = false;
                 rdoSelectAll.Checked = true;
             }
-  
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
@@ -82,12 +77,10 @@ public partial class EmployeeSelectedVertical : System.Web.UI.UserControl
     {
         rdoSelectAll.Checked    = false;
         rdoSelectByID.Checked   = false;
-        rdoSelectByName.Checked = false;
         rdoSelectDep.Checked    = false;
 
         Clear(false);
         txtSearchByID.Enabled   = false;  txtSearchByID.Text   = "";
-        txtSearchByName.Enabled = false;  txtSearchByName.Text = "";
 
         string EmpCon = FindCon();
         Session["EmpConSelect"] = EmpCon;
@@ -100,9 +93,9 @@ public partial class EmployeeSelectedVertical : System.Web.UI.UserControl
         {
             if (ddlDepartment.SelectedIndex > 0)
             {
-                dtLeft = new DataTable();
+                LDT = new DataTable();
 
-                if (ViewState["dtLeft"] == null) { ViewState["dtLeft"] = EmptyDataTable(); }
+                if (ViewState["LDT"] == null) { ViewState["LDT"] = EmptyDataTable(); }
 
                 string GeneralCon = "";
                 if (ViewState["Condition"] != null) { if (string.IsNullOrEmpty(ViewState["Condition"].ToString())) { GeneralCon = ""; } else { GeneralCon = ViewState["Condition"].ToString(); } }
@@ -121,13 +114,13 @@ public partial class EmployeeSelectedVertical : System.Web.UI.UserControl
                 Q.Append(" " + GeneralCon + " ");
                 Q.Append(" " + EmpCon + " ");
 
-                dtLeft = DBCs.FetchData(new SqlCommand(Q.ToString()));
+                LDT = DBCs.FetchData(new SqlCommand(Q.ToString()));
                 FillEmpSelect();
             }
             else
             {
                 cblEmpSelect.Items.Clear();
-                ViewState["dtLeft"] = (DataTable)dtLeft;
+                ViewState["LDT"] = (DataTable)LDT;
             }
         }
         catch (Exception e1) { }
@@ -136,35 +129,35 @@ public partial class EmployeeSelectedVertical : System.Web.UI.UserControl
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void FillEmpSelect()
     {
-        if (!DBCs.IsNullOrEmpty(dtLeft))
+        if (!DBCs.IsNullOrEmpty(LDT))
         {
-            cblEmpSelect.DataSource = dtLeft;
+            cblEmpSelect.DataSource = LDT;
             cblEmpSelect.DataTextField = "EmpName";
             cblEmpSelect.DataValueField = "EmpID";
             cblEmpSelect.DataBind();
-            ViewState["dtLeft"] = (DataTable)dtLeft;
+            ViewState["LDT"] = (DataTable)LDT;
         }
         else
         {
             cblEmpSelect.Items.Clear();
-            ViewState["dtLeft"] = (DataTable)dtLeft;
+            ViewState["LDT"] = (DataTable)LDT;
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void FillEmpSelected()
     {
-        if (!DBCs.IsNullOrEmpty(dtRight))
+        if (!DBCs.IsNullOrEmpty(RDT))
         {
-            cblEmpSelected.DataSource = dtRight;
-            cblEmpSelected.DataTextField = "EmpName";
+            cblEmpSelected.DataSource     = RDT;
+            cblEmpSelected.DataTextField  = "EmpName";
             cblEmpSelected.DataValueField = "EmpID";
             cblEmpSelected.DataBind();
 
             string EmployeeSelecteID = "";
-            for (int i = 0; i < dtRight.Rows.Count; i++)
+            for (int i = 0; i < RDT.Rows.Count; i++)
             {
-                if (i == 0) { EmployeeSelecteID += dtRight.Rows[i]["EmpID"].ToString(); } else { EmployeeSelecteID += "," + dtRight.Rows[i]["EmpID"].ToString(); }
+                if (i == 0) { EmployeeSelecteID += RDT.Rows[i]["EmpID"].ToString(); } else { EmployeeSelecteID += "," + RDT.Rows[i]["EmpID"].ToString(); }
             }
             ViewState["dtEmpIds"] = EmployeeSelecteID;
         }
@@ -185,112 +178,21 @@ public partial class EmployeeSelectedVertical : System.Web.UI.UserControl
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void chkAllEmpSelect_CheckedChanged(object sender, EventArgs e)
-    {
-        for (int i = 0; i < cblEmpSelect.Items.Count; i++) { cblEmpSelect.Items[i].Selected = chkAllEmpSelect.Checked; }
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void chkAllEmpSelected_CheckedChanged(object sender, EventArgs e)
-    {
-        for (int i = 0; i < cblEmpSelected.Items.Count; i++) { cblEmpSelected.Items[i].Selected = chkAllEmpSelected.Checked; }
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void btnSelectEmp_Click(object sender, EventArgs e)
-    {
-        try
-        {
-            dtRight = EmptyDataTable();
-            dtLeft  = EmptyDataTable();
-            if (ViewState["dtRight"] == null) { ViewState["dtRight"] = EmptyDataTable(); } else { dtRight = (DataTable)ViewState["dtRight"]; }
-            if (ViewState["dtLeft"] == null)  { ViewState["dtLeft"]  = EmptyDataTable(); } else { dtLeft  = (DataTable)ViewState["dtLeft"]; }
-
-            for (int i = 0; i < cblEmpSelect.Items.Count; i++)
-            {
-                if (cblEmpSelect.Items[i].Selected)
-                {
-                    DataRow dRow = dtRight.NewRow();
-                    dRow["EmpID"]   = cblEmpSelect.Items[i].Value;
-                    dRow["EmpName"] = cblEmpSelect.Items[i].Text;
-                    dtRight.Rows.Add(dRow);
-                    dtRight.AcceptChanges();
-                    ViewState["dtRight"] = (DataTable)dtRight;
-
-                    DataRow[] rows = dtLeft.Select("EmpID ='" + cblEmpSelect.Items[i].Value + "'");
-                    rows.Count();
-                    dtLeft.Rows.Remove(rows[0]);
-                    dtLeft.AcceptChanges();
-                    ViewState["dtLeft"] = (DataTable)dtLeft;
-                }
-            }
-
-            FillEmpSelected();
-            FillEmpSelect();
-
-        }
-        catch (Exception e1) { }
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void btnDeSelectEmp_Click(object sender, EventArgs e)
-    {
-        try
-        {
-            dtRight = EmptyDataTable();
-            dtLeft = EmptyDataTable();
-            if (ViewState["dtRight"] == null) { ViewState["dtRight"] = EmptyDataTable(); } else { dtRight = (DataTable)ViewState["dtRight"]; }
-            if (ViewState["dtLeft"] == null) { ViewState["dtLeft"] = EmptyDataTable(); } else { dtLeft = (DataTable)ViewState["dtLeft"]; }
-
-            for (int i = 0; i < cblEmpSelected.Items.Count; i++)
-            {
-                if (cblEmpSelected.Items[i].Selected)
-                {
-                    DataRow dRow = dtLeft.NewRow();
-                    dRow["EmpID"] = cblEmpSelected.Items[i].Value;
-                    dRow["EmpName"] = cblEmpSelected.Items[i].Text;
-
-                    DataTable DT = DBCs.FetchData("SELECT DepID FROM Employee WHERE EmpID = @P1 ", new string[] { cblEmpSelected.Items[i].Value });
-                    if (!DBCs.IsNullOrEmpty(DT))
-                    {
-                        if (ddlDepartment.SelectedValue == DT.Rows[0]["DepID"].ToString())
-                        {
-                            dtLeft.Rows.Add(dRow);
-                            dtLeft.AcceptChanges();
-                            ViewState["dtLeft"] = (DataTable)dtLeft;
-                        }
-                        DataRow[] rows = dtRight.Select("EmpID ='" + cblEmpSelected.Items[i].Value + "'");
-                        dtRight.Rows.Remove(rows[0]);
-                        dtRight.AcceptChanges();
-                        ViewState["dtRight"] = (DataTable)dtRight;
-                    }
-                }
-            }
-
-            FillEmpSelected();
-            FillEmpSelect();
-        }
-        catch (Exception e1) { }
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void ClearAll()
     {
         rdoSelectAll.Checked      = false;
         rdoSelectByID.Checked     = false;
-        rdoSelectByName.Checked   = false;
         rdoSelectDep.Checked      = false;
         chkAllEmpSelect.Checked   = false;
         chkAllEmpSelected.Checked = false;
         ddlDepartment.SelectedIndex = -1;
         
         txtSearchByID.Text = "";
-        txtSearchByName.Text = "";
         txtSearchByDep.Text = "";
         cblEmpSelect.Items.Clear();
         cblEmpSelected.Items.Clear();
-        ViewState["dtLeft"] = EmptyDataTable();
-        ViewState["dtRight"] = EmptyDataTable();
+        ViewState["LDT"] = EmptyDataTable();
+        ViewState["RDT"] = EmptyDataTable();
         ViewState["dtEmpIds"] = "";
 
         ddlDepartment.Enabled  = false;
@@ -298,8 +200,6 @@ public partial class EmployeeSelectedVertical : System.Web.UI.UserControl
         btnFilter.Enabled      = false;
         pnlLeftGrid.Enabled    = false;
         pnlRightGrid.Enabled   = false;
-        btnSelectEmp.Enabled   = false;
-        btnDeSelectEmp.Enabled = false;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -311,8 +211,8 @@ public partial class EmployeeSelectedVertical : System.Web.UI.UserControl
         txtSearchByDep.Text = "";
         cblEmpSelect.Items.Clear();
         cblEmpSelected.Items.Clear();
-        ViewState["dtLeft"] = EmptyDataTable();
-        ViewState["dtRight"] = EmptyDataTable();
+        ViewState["LDT"] = EmptyDataTable();
+        ViewState["RDT"] = EmptyDataTable();
         ViewState["dtEmpIds"] = "";
 
         ddlDepartment.Enabled  = pStatus;
@@ -320,8 +220,6 @@ public partial class EmployeeSelectedVertical : System.Web.UI.UserControl
         btnFilter.Enabled      = pStatus;
         pnlLeftGrid.Enabled    = pStatus;
         pnlRightGrid.Enabled   = pStatus;
-        btnSelectEmp.Enabled   = pStatus;
-        btnDeSelectEmp.Enabled = pStatus;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -335,7 +233,6 @@ public partial class EmployeeSelectedVertical : System.Web.UI.UserControl
     {
         Clear(false);
         txtSearchByID.Enabled   = false;  txtSearchByID.Text   = "";
-        txtSearchByName.Enabled = false;  txtSearchByName.Text = "";
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -343,7 +240,6 @@ public partial class EmployeeSelectedVertical : System.Web.UI.UserControl
     {
         Clear(true);
         txtSearchByID.Enabled   = false;  txtSearchByID.Text   = "";
-        txtSearchByName.Enabled = false;  txtSearchByName.Text = "";
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -351,15 +247,6 @@ public partial class EmployeeSelectedVertical : System.Web.UI.UserControl
     {
         Clear(false);
         txtSearchByID.Enabled = true; txtSearchByID.Text = "";
-        txtSearchByName.Enabled = false; txtSearchByName.Text = "";
-    }
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected void rdoSelectByName_CheckedChanged(object sender, EventArgs e)
-    {
-        Clear(false);
-        txtSearchByID.Enabled   = false; txtSearchByID.Text   = "";
-        txtSearchByName.Enabled = true;  txtSearchByName.Text = "";
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -412,19 +299,6 @@ public partial class EmployeeSelectedVertical : System.Web.UI.UserControl
                 EmpDT.Rows.Add(EmpDR);
                 EmpDT.AcceptChanges();
             }
-            else if (rdoSelectByName.Checked) 
-            { 
-                DataRow EmpDR    = EmpDT.NewRow();
-                string[] IDs     = txtSearchByName.Text.Split('-');
-                try { EmpDR["EmpID"] = IDs[1]; } catch { }
-                EmpDR["EmpName"] = IDs[0];
-
-                //if (!string.IsNullOrEmpty(EmpDR["EmpID"].ToString()))
-                //{
-                    EmpDT.Rows.Add(EmpDR);
-                    EmpDT.AcceptChanges();
-                //}
-            }
             else if (rdoSelectDep.Checked)
             {
                 for (int i = 0; i < cblEmpSelected.Items.Count; i++)
@@ -472,7 +346,7 @@ public partial class EmployeeSelectedVertical : System.Web.UI.UserControl
         {
             string SelectMsg = General.Msg("Please Select Employee", "من فضلك اختر موظف");
             string FindMsg   = General.Msg("Employee Not found", "الموظف غير موجود");
-            if (!rdoSelectAll.Checked && !rdoSelectByID.Checked && !rdoSelectByName.Checked && !rdoSelectDep.Checked)
+            if (!rdoSelectAll.Checked && !rdoSelectByID.Checked && !rdoSelectDep.Checked)
             {
                 e.IsValid = false;
                 cvSearchByID.ErrorMessage = SelectMsg;
@@ -494,25 +368,10 @@ public partial class EmployeeSelectedVertical : System.Web.UI.UserControl
                     if (!FindEmp(IDs[0])) { e.IsValid = false; }
                 }
             }
-            
-            if (source.Equals(cvSelectByName) && rdoSelectByName.Checked)
-            {
-                cvSelectByName.ErrorMessage = SelectMsg;
-                cvSelectByName.Text = Server.HtmlDecode("&lt;img src='images/message_exclamation.png' title='" + SelectMsg + "' /&gt;");
 
-                string[] IDs = txtSearchByName.Text.Split('-');
-                if (string.IsNullOrEmpty(IDs[1])) { e.IsValid = false; }
-                else
-                {
-                    cvSelectByName.ErrorMessage = FindMsg;
-                    cvSelectByName.Text = Server.HtmlDecode("&lt;img src='images/message_exclamation.png' title='" + FindMsg + "' /&gt;");
-                    if (!FindEmp(IDs[1])) { e.IsValid = false; }
-                }
-            }
-            
             if (source.Equals(cvSelectEmployees) && rdoSelectDep.Checked)
             {
-                DataTable EmployeeInsertdt = (DataTable)ViewState["dtRight"];
+                DataTable EmployeeInsertdt = (DataTable)ViewState["RDT"];
                 if (!DBCs.IsNullOrEmpty(EmployeeInsertdt)) { e.IsValid = true; } else { e.IsValid = false; }
             }
         }
@@ -526,6 +385,138 @@ public partial class EmployeeSelectedVertical : System.Web.UI.UserControl
     /*******************************************************************************************************************************/
     /*******************************************************************************************************************************/
 
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void cblEmpSelect_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            if (ViewState["RDT"] == null) { ViewState["RDT"] = EmptyDataTable(); } else { RDT = (DataTable)ViewState["RDT"]; }
+            if (ViewState["LDT"] == null) { ViewState["LDT"] = EmptyDataTable(); } else { LDT = (DataTable)ViewState["LDT"]; }
+
+            List<ListItem> sItems = cblEmpSelect.Items.Cast<ListItem>().Where(li => li.Selected).ToList(); //Select(li => li.Text)
+            for (int i = 0; i < sItems.Count; i++)
+            {
+                DataRow RDR = RDT.NewRow();
+                RDR["EmpID"]   = sItems[i].Value;
+                RDR["EmpName"] = sItems[i].Text;
+                RDT.Rows.Add(RDR);
+                RDT.AcceptChanges();
+                ViewState["RDT"] = (DataTable)RDT;
+
+                DataRow[] LDRs = LDT.Select("EmpID = '" + sItems[i].Value + "'");
+                LDT.Rows.Remove(LDRs[0]);
+                LDT.AcceptChanges();
+                ViewState["LDT"] = (DataTable)LDT;
+            }
+
+            FillEmpSelected();
+            FillEmpSelect();
+        }
+        catch (Exception ex) { }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void chkAllEmpSelect_CheckedChanged(object sender, EventArgs e)
+    {
+        if (chkAllEmpSelect.Checked)
+        {
+            if (ViewState["RDT"] == null) { ViewState["RDT"] = EmptyDataTable(); } else { RDT = (DataTable)ViewState["RDT"]; }
+            if (ViewState["LDT"]  == null) { ViewState["LDT"]  = EmptyDataTable(); } else { LDT  = (DataTable)ViewState["LDT"]; }
+
+            for (int i = 0; i < cblEmpSelect.Items.Count; i++)
+            {
+                DataRow RDR = RDT.NewRow();
+                RDR["EmpID"]   = cblEmpSelect.Items[i].Value;
+                RDR["EmpName"] = cblEmpSelect.Items[i].Text;
+                RDT.Rows.Add(RDR);
+                RDT.AcceptChanges();
+                ViewState["RDT"] = (DataTable)RDT;
+
+                LDT.Rows.Clear();
+                LDT.AcceptChanges();
+                ViewState["LDT"] = (DataTable)LDT;
+            }
+
+            FillEmpSelected();
+            FillEmpSelect();
+
+            chkAllEmpSelect.Checked = false;
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void cblEmpSelected_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            if (ViewState["RDT"] == null) { ViewState["RDT"] = EmptyDataTable(); } else { RDT = (DataTable)ViewState["RDT"]; }
+            if (ViewState["LDT"] == null) { ViewState["LDT"] = EmptyDataTable(); } else { LDT = (DataTable)ViewState["LDT"]; }
+
+            List<ListItem> sItems = cblEmpSelected.Items.Cast<ListItem>().Where(li => li.Selected).ToList(); //Select(li => li.Text)
+            for (int i = 0; i < sItems.Count; i++)
+            {
+                DataTable DT = DBCs.FetchData("SELECT DepID FROM Employee WHERE EmpID = @P1 ", new string[] { sItems[i].Value });
+                if (!DBCs.IsNullOrEmpty(DT))
+                {
+                    if (ddlDepartment.SelectedValue == DT.Rows[0]["DepID"].ToString())
+                    {
+                        DataRow RDR = LDT.NewRow();
+                        RDR["EmpID"]   = sItems[i].Value;
+                        RDR["EmpName"] = sItems[i].Text;
+                        LDT.Rows.Add(RDR);
+                        LDT.AcceptChanges();
+                        ViewState["LDT"] = (DataTable)LDT;
+                    }
+                }
+
+                DataRow[] RDRs = RDT.Select("EmpID = '" + sItems[i].Value + "'");
+                RDT.Rows.Remove(RDRs[0]);
+                RDT.AcceptChanges();
+                ViewState["RDT"] = (DataTable)RDT;
+            }
+
+            FillEmpSelected();
+            FillEmpSelect();
+        }
+        catch (Exception ex) { }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void chkAllEmpSelected_CheckedChanged(object sender, EventArgs e)
+    {
+        if (chkAllEmpSelected.Checked)
+        {
+            if (ViewState["RDT"] == null) { ViewState["RDT"] = EmptyDataTable(); } else { RDT = (DataTable)ViewState["RDT"]; }
+            if (ViewState["LDT"] == null) { ViewState["LDT"] = EmptyDataTable(); } else { LDT = (DataTable)ViewState["LDT"]; }
+
+            for (int i = 0; i < cblEmpSelected.Items.Count; i++)
+            {
+                DataTable DT = DBCs.FetchData("SELECT DepID FROM Employee WHERE EmpID = @P1 ", new string[] { cblEmpSelected.Items[i].Value });
+                if (!DBCs.IsNullOrEmpty(DT))
+                {
+                    if (ddlDepartment.SelectedValue == DT.Rows[0]["DepID"].ToString())
+                    {
+                        DataRow LDR = LDT.NewRow();
+                        LDR["EmpID"]   = cblEmpSelected.Items[i].Value;
+                        LDR["EmpName"] = cblEmpSelected.Items[i].Text;
+                        LDT.Rows.Add(LDR);
+                        LDT.AcceptChanges();
+                        ViewState["LDT"] = (DataTable)LDT;
+                    }
+                }
+
+                RDT.Rows.Clear();
+                RDT.AcceptChanges();
+                ViewState["RDT"] = (DataTable)RDT;
+            }
+
+            FillEmpSelected();
+            FillEmpSelect();
+
+            chkAllEmpSelected.Checked = false;
+        }
+    }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 }

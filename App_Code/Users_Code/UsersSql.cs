@@ -18,6 +18,7 @@ public class UsersSql : DataLayerBase
     SqlDbType DtDB  = SqlDbType.DateTime;
     SqlDbType BitDB = SqlDbType.Bit;
     SqlDbType ChrDB = SqlDbType.Char;
+    SqlDbType TxtDB = SqlDbType.Text;
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
@@ -330,7 +331,7 @@ public class UsersSql : DataLayerBase
         try
         {
             Sqlcmd.Parameters.Add(new SqlParameter("@UsrName"       , VchDB, 15,   IN, false, 0, 0, "", DRV, UsrName));
-            Sqlcmd.Parameters.Add(new SqlParameter("@UsrDepartments", VchDB, 8000, IN, false, 0, 0, "", DRV, DepList));
+            Sqlcmd.Parameters.Add(new SqlParameter("@UsrDepartments", TxtDB, DepList.Length, IN, false, 0, 0, "", DRV, DepList));
 
             Sqlcmd.Parameters.Add(new SqlParameter("@IsExecute"    , IntDB, 10, OU, false, 0, 0, "", DRV, 0));
             Sqlcmd.Parameters.Add(new SqlParameter("@TransactionBy", VchDB, 15, IN, false, 0, 0, "", DRV, TransactionBy));
