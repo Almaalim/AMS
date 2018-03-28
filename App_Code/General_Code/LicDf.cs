@@ -45,8 +45,8 @@ public class LicDf : DataLayerBase
     public static string FetchLic(string Lic)
     {
         //string ClientPCName = getClientPCName();
-        string ClientPCName = "";
-        //string ClientPCName = "Ameen.Almaalim.local";
+        //string ClientPCName = "";
+        string ClientPCName = "Ameen.Almaalim.local";
         return AMSLic.FetchAMSLic(Lic, General.ConnString, ClientPCName);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -54,8 +54,8 @@ public class LicDf : DataLayerBase
     public static string FindLicPage()
     {
         //string ClientPCName = getClientPCName();
-        string ClientPCName = "";
-        //string ClientPCName = "Ameen.Almaalim.local";
+        //string ClientPCName = "";
+        string ClientPCName = "Ameen.Almaalim.local";
         return AMSLic.FindAMSLicPage(General.ConnString, ClientPCName);
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
