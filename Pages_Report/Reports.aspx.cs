@@ -205,6 +205,10 @@ public partial class Reports : BasePage
         /////////////////
         string pnlshow = "";
         Clear();
+
+        //calStartDate.SetGDate("01/01/2017");
+        //calEndDate.SetGDate("30/01/2017");
+
         calDate.SetValidationEnabled(false);
         calStartDate.SetValidationEnabled(false);
         calEndDate.SetValidationEnabled(false);
@@ -474,7 +478,7 @@ public partial class Reports : BasePage
             CtrlCs.ShowAdminMsg(this, ex.Message.ToString());
         }
 
-        Response.Redirect(@"~/Pages_Report/ReportViewer.aspx");
+        if (ViewState["grpRep"].ToString() == "16") { Response.Redirect(@"~/Pages_Report/ChartViewer.aspx"); } else { Response.Redirect(@"~/Pages_Report/ReportViewer.aspx"); } 
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

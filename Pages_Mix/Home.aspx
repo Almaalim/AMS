@@ -21,17 +21,12 @@
         }
     </script>
 
-    <%--<script type="text/javascript" src="../FusionCharts/FusionCharts.js"></script>--%>
     <script type="text/javascript" src="../Script/fusionchartsJs/fusioncharts.js" ></script>
     <%--<script type="text/javascript" src="../Script/fusionchartsJs/jquery.min.js"></script>--%>
 
 
     <%--script--%>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <%--<Triggers>
-            <asp:PostBackTrigger ControlID="btnChartsFilter" />
-        </Triggers>--%>
-
         <ContentTemplate>
             <div id="DivList" class="row" runat="server">
                 <div class="col1">
