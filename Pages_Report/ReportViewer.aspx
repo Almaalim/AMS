@@ -10,7 +10,7 @@
                 OnClick="btnBackToReportsPage_Click"></asp:LinkButton>
         </div>
     </div>
-    <div class="row" style="direction:ltr">
+    <div class="row" >
         <cc1:StiWebViewer ID="StiWebViewer1" runat="server" Width="100%" ShowAboutButton="false" ShowFullScreenButton="false" /> <%--OnGetReport="StiWebViewer1_GetReport"--%>
     </div>
 </asp:Content>
