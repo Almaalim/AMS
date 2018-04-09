@@ -114,6 +114,8 @@ public partial class Login : BasePage
             LoginReg();
             ///////////////////////////////////////////////////////////////////////////////////////
             Response.Redirect(ViewState["HomePage"].ToString(), false);
+
+            //Response.Redirect(@"~/Pages_Report/Reports.aspx?ID=16", false);
             ///////////////////////////////////////////////////////////////////////////////////////
         }
         else

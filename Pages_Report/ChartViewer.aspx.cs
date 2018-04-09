@@ -5,6 +5,7 @@ using System.Text;
 using System.Web.UI;
 using FusionCharts.Charts;
 using System.Data.SqlClient;
+using System.Web.UI.WebControls;
 
 public partial class Pages_Report_ChartViewer : BasePage
 {
@@ -24,6 +25,8 @@ public partial class Pages_Report_ChartViewer : BasePage
     string Param_YearDate  = "";
     string Param_DepIDs    = "";
     string Lang            = "En"; 
+
+    DataTable grdChartDT = new DataTable();
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void Page_Load(object sender, EventArgs e)
@@ -46,8 +49,12 @@ public partial class Pages_Report_ChartViewer : BasePage
             //    }
             //}
 
-            if (Session["RepProCs"] == null) { Response.Redirect(@"~/Pages_Report/Reports.aspx"); }
-            ShowChart();
+            if (!IsPostBack)
+            {
+                if (Session["RepProCs"] == null) { Response.Redirect(@"~/Pages_Report/Reports.aspx"); }
+                ShowChart();
+            }
+
         }
         catch (Exception ex) { ErrorSignal.FromCurrentContext().Raise(ex); }
     }
@@ -73,10 +80,11 @@ public partial class Pages_Report_ChartViewer : BasePage
             string RepLang = RepProCs.RepLang;
             //RepOrientation = RepProCs.RepOrientation;
 
-            /////// Fill Parameters to Report
-            Param_Date      = !string.IsNullOrEmpty(RepProCs.Date)      ? DTCs.ConvertToDatetime(RepProCs.Date,     "Gregorian") : new DateTime();         
+            lblChartTitel.Text = General.Msg(RepProCs.RepNameEn, RepProCs.RepNameAr);
             
-
+            /////// Fill Parameters to Report
+            Param_Date = !string.IsNullOrEmpty(RepProCs.Date) ? DTCs.ConvertToDatetime(RepProCs.Date, "Gregorian") : new DateTime();         
+           
             if (!string.IsNullOrEmpty(RepProCs.MonthDate))
             {
                 Param_MonthDate = !string.IsNullOrEmpty(RepProCs.MonthDate) ? RepProCs.MonthDate : "";
@@ -120,6 +128,7 @@ public partial class Pages_Report_ChartViewer : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void FillChart01()
     {
+        //string titel = General.Msg("Attendance, absence, vacations, Commissions and Jobs Assignment Rate By Department", "نسبة الحضور و الغياب و الإجازات و الانتدابات و مهام العمل بالقسم");
         SqlCommand cmd = new SqlCommand();
         StringBuilder Q = new StringBuilder();
 
@@ -153,10 +162,8 @@ public partial class Pages_Report_ChartViewer : BasePage
         ChartDT = DBCs.FetchData(cmd);
         if (!DBCs.IsNullOrEmpty(ChartDT))
         {
-            string titel = General.Msg("Attendance, absence, vacations, Commissions and Jobs Assignment Rate By Department", "نسبة الحضور و الغياب و الإجازات و الانتدابات و مهام العمل بالقسم");
-
             StringBuilder strXML = new StringBuilder();
-            strXML.AppendFormat("<chart caption='{0}' palette='1' exportEnabled='1' xAxisName='{1}' yAxisName='{2}' rotateYAxisName='0' showValues='1' decimals='2' numberPrefix='%' showborder='0' formatNumberScale='0' showLegend='1' labelDisplay='rotate' slantLabel='1'>", titel,  General.Msg("Departments", "الأقسام"), General.Msg("Rate", "النسبة"));
+            strXML.AppendFormat("<chart caption='{0}' palette='1' exportEnabled='1' xAxisName='{1}' yAxisName='{2}' rotateYAxisName='0' showValues='1' decimals='2' numberPrefix='%' showborder='0' formatNumberScale='0' showLegend='1' labelDisplay='rotate' slantLabel='1'>", "", General.Msg("Departments", "الأقسام"), General.Msg("Rate", "النسبة"));
 
             StringBuilder strCat = new StringBuilder();
             StringBuilder strDS1 = new StringBuilder();
@@ -188,8 +195,6 @@ public partial class Pages_Report_ChartViewer : BasePage
             string StrChart = "";
             Chart ChartObj = new Chart("stackedcolumn3d", " ", "100%", "600", "xml", strXML.ToString());
             StrChart = ChartObj.Render();
-            //pnlChartViewer.Controls.Clear();
-            //pnlChartViewer.Controls.Add(new LiteralControl(StrChart));
             litChartViewer.Text = StrChart;
         }
     }
@@ -197,7 +202,12 @@ public partial class Pages_Report_ChartViewer : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void FillChart02(string Type)
     {
-        string titel = "";
+        string titel = General.Msg("Percentage of late attendance and early out of departments", "نسبة الحضور المتأخر و الخروج المبكر للأقسام");
+        //switch(Type)
+        //{
+        //    case "BL": titel = General.Msg("Percentage of Late attendance of departments", "نسبة الحضور المتأخر للأقسام"); break;
+        //    case "OE": titel = General.Msg("Percentage of early Out of departments", "نسبة الخروج المبكر للأقسام"); break;
+        //}
 
         SqlCommand cmd = new SqlCommand();
         StringBuilder Q = new StringBuilder();
@@ -230,16 +240,8 @@ public partial class Pages_Report_ChartViewer : BasePage
         ChartDT = DBCs.FetchData(cmd);
         if (!DBCs.IsNullOrEmpty(ChartDT))
         {
-            //switch(Type)
-            //{
-            //    case "BL": titel = General.Msg("Percentage of Late attendance of departments", "نسبة الحضور المتأخر للأقسام"); break;
-            //    case "OE": titel = General.Msg("Percentage of early Out of departments", "نسبة الخروج المبكر للأقسام"); break;
-            //}
-
-            titel = General.Msg("Percentage of late attendance and early out of departments", "نسبة الحضور المتأخر و الخروج المبكر للأقسام");
-            
             StringBuilder strXML = new StringBuilder();
-            strXML.AppendFormat("<chart caption='{0}' palette='1' exportEnabled='1' xAxisName='{1}' yAxisName='{2}' syaxisname='{3}' syaxisvaluesdecimals='2' rotateYAxisName='0' showValues='1' decimals='2' numberPrefix='%' sNumberSuffix='%' showborder='0' formatNumberScale='0' showLegend='1' labelDisplay='rotate' slantLabel='1' plotspacepercent='0' >", titel,  General.Msg("Departments", "الأقسام"), General.Msg("Percentage of total hours", "نسبة مجموع ساعات"), General.Msg("Percentage of times", "نسبة عدد المرات"));
+            strXML.AppendFormat("<chart caption='{0}' palette='1' exportEnabled='1' xAxisName='{1}' yAxisName='{2}' syaxisname='{3}' syaxisvaluesdecimals='2' rotateYAxisName='0' showValues='1' decimals='2' numberPrefix='%' sNumberSuffix='%' showborder='0' formatNumberScale='0' showLegend='1' labelDisplay='rotate' slantLabel='1' plotspacepercent='0' >", "", General.Msg("Departments", "الأقسام"), General.Msg("Percentage of total hours", "نسبة مجموع ساعات"), General.Msg("Percentage of times", "نسبة عدد المرات"));
 
             StringBuilder strCat = new StringBuilder();
             StringBuilder strDS1 = new StringBuilder();
@@ -269,8 +271,6 @@ public partial class Pages_Report_ChartViewer : BasePage
             string StrChart = "";
             Chart ChartObj = new Chart("mscolumn3dlinedy", " ", "100%", "600", "xml", strXML.ToString());
             StrChart = ChartObj.Render();
-            //pnlChartViewer.Controls.Clear();
-            //pnlChartViewer.Controls.Add(new LiteralControl(StrChart));
             litChartViewer.Text = StrChart;
         }
     }
@@ -278,6 +278,7 @@ public partial class Pages_Report_ChartViewer : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void FillChart03()
     {
+        //string titel = General.Msg("Percentage of Employees work", "نسبة عمل الموظفين");
         SqlCommand cmd = new SqlCommand();
         StringBuilder Q = new StringBuilder();
 
@@ -303,12 +304,10 @@ public partial class Pages_Report_ChartViewer : BasePage
         ChartDT = DBCs.FetchData(cmd);
         if (!DBCs.IsNullOrEmpty(ChartDT))
         {
-            string titel = General.Msg("Percentage of Employees work", "نسبة عمل الموظفين");
-
             StringBuilder strXML = new StringBuilder();
             //strXML.AppendFormat("<chart caption='{0}' palette='4' exportEnabled='1' rotateYAxisName='0' showValues='1' showLabels='0' decimals='0' formatNumberScale='0' showborder='0' showZeroPies='1' showLegend='1' pieRadius='350' theme='fint'>", titel);
             //plottooltext=Age group : $label<br>Total visit : $datavalue' showpercentvalues='1'
-            strXML.AppendFormat("<chart caption='{0}' startingangle='120' showValues='1' showlabels='1' showlegend='1' enablemultislicing='0' slicingdistance='15'  showpercentintooltip='0' pieRadius='350' theme='fint'>", titel);
+            strXML.AppendFormat("<chart caption='{0}' startingangle='120' showValues='1' showlabels='1' showlegend='1' enablemultislicing='0' slicingdistance='15'  showpercentintooltip='0' pieRadius='350' theme='fint'>","");
             strXML.AppendFormat("<set label='{0}' value='{1}'/>", "Percentage of Employees work Smaller than 25%", ChartDT.Rows[0]["Work25"].ToString());
             strXML.AppendFormat("<set label='{0}' value='{1}'/>", "Percentage of Employees work between 25% and 50%", ChartDT.Rows[0]["Work50"].ToString());
             strXML.AppendFormat("<set label='{0}' value='{1}'/>", "Percentage of Employees work between 50% and 75%", ChartDT.Rows[0]["Work75"].ToString());
@@ -319,8 +318,6 @@ public partial class Pages_Report_ChartViewer : BasePage
             string StrChart = "";
             Chart ChartObj = new Chart("pie3d", " ", "100%", "600", "xml", strXML.ToString());
             StrChart = ChartObj.Render();
-            //pnlChartViewer.Controls.Clear();
-            //pnlChartViewer.Controls.Add(new LiteralControl(StrChart));
             litChartViewer.Text = StrChart;
         }
     }
@@ -328,6 +325,7 @@ public partial class Pages_Report_ChartViewer : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void FillChart04()
     {
+        //string titel = General.Msg("Percentage of Departments work", "نسبة عمل الأقسام");
         SqlCommand cmd = new SqlCommand();
         StringBuilder Q = new StringBuilder();
 
@@ -351,10 +349,8 @@ public partial class Pages_Report_ChartViewer : BasePage
         ChartDT = DBCs.FetchData(cmd);
         if (!DBCs.IsNullOrEmpty(ChartDT))
         {
-            string titel = General.Msg("Percentage of Departments work", "نسبة عمل الأقسام");
-
             StringBuilder strXML = new StringBuilder();
-            strXML.AppendFormat("<chart caption='{0}' palette='1' exportEnabled='1' xAxisName='{1}' yAxisName='{2}' rotateYAxisName='0' showValues='1' decimals='2' numberPrefix='%' showborder='0' formatNumberScale='0' showLegend='1' labelDisplay='rotate' slantLabel='1'>", titel,  General.Msg("Departments", "الأقسام"), General.Msg("Percentage of work", "نسبة العمل"));
+            strXML.AppendFormat("<chart caption='{0}' palette='1' exportEnabled='1' xAxisName='{1}' yAxisName='{2}' rotateYAxisName='0' showValues='1' decimals='2' numberPrefix='%' showborder='0' formatNumberScale='0' showLegend='1' labelDisplay='rotate' slantLabel='1'>", "", General.Msg("Departments", "الأقسام"), General.Msg("Percentage of work", "نسبة العمل"));
 
             foreach (DataRow DR in ChartDT.Rows)
             {
@@ -368,8 +364,6 @@ public partial class Pages_Report_ChartViewer : BasePage
             string StrChart = "";
             Chart ChartObj = new Chart("column2d", " ", "100%", "600", "xml", strXML.ToString());
             StrChart = ChartObj.Render();
-            //pnlChartViewer.Controls.Clear();
-            //pnlChartViewer.Controls.Add(new LiteralControl(StrChart));
             litChartViewer.Text = StrChart;
         }
     }
@@ -377,6 +371,7 @@ public partial class Pages_Report_ChartViewer : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void FillChart05()
     {
+        //string titel = General.Msg("Percentage of Departments work", "نسبة عمل الأقسام");
         SqlCommand cmd = new SqlCommand();
         StringBuilder Q = new StringBuilder();
 
@@ -400,11 +395,9 @@ public partial class Pages_Report_ChartViewer : BasePage
         ChartDT = DBCs.FetchData(cmd);
         if (!DBCs.IsNullOrEmpty(ChartDT))
         {
-            string titel = General.Msg("Percentage of Departments work", "نسبة عمل الأقسام");
-
             StringBuilder strXML = new StringBuilder();
             //strXML.AppendFormat("<chart caption='{0}' palette='1' exportEnabled='1' xAxisName='{1}' yAxisName='{2}' rotateYAxisName='0' showValues='1' decimals='2' numberPrefix='%' showborder='0' formatNumberScale='0' llabelDisplay='rotate' slantLabel='1' showLegend='1'>", titel,  General.Msg("Departments", "الأقسام"), General.Msg("Percentage of work", "نسبة العمل"));
-            strXML.AppendFormat("<chart caption='{0}' palette='1' exportEnabled='1' xAxisName='{1}' yAxisName='{2}' syaxisname='{3}' syaxisvaluesdecimals='2' rotateYAxisName='0' showValues='1' decimals='2' numberPrefix='%' showborder='0' formatNumberScale='0' showLegend='1' labelDisplay='rotate' slantLabel='1'>", titel,  General.Msg("Departments", "الأقسام"), General.Msg("Percentage of work", "نسبة العمل"), General.Msg("Total hours", "مجموع ساعات"));
+            strXML.AppendFormat("<chart caption='{0}' palette='1' exportEnabled='1' xAxisName='{1}' yAxisName='{2}' syaxisname='{3}' syaxisvaluesdecimals='2' rotateYAxisName='0' showValues='1' decimals='2' numberPrefix='%' showborder='0' formatNumberScale='0' showLegend='1' labelDisplay='rotate' slantLabel='1'>", "", General.Msg("Departments", "الأقسام"), General.Msg("Percentage of work", "نسبة العمل"), General.Msg("Total hours", "مجموع ساعات"));
 
             StringBuilder strCat = new StringBuilder();
             StringBuilder strDS1 = new StringBuilder();
@@ -431,8 +424,6 @@ public partial class Pages_Report_ChartViewer : BasePage
             string StrChart = "";
             Chart ChartObj = new Chart("mscolumn3dlinedy", " ", "100%", "600", "xml", strXML.ToString());
             StrChart = ChartObj.Render();
-            //pnlChartViewer.Controls.Clear();
-            //pnlChartViewer.Controls.Add(new LiteralControl(StrChart));
             litChartViewer.Text = StrChart;
         }
     }
@@ -440,8 +431,7 @@ public partial class Pages_Report_ChartViewer : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void FillChart06()
     {
-        string titel = "";
-
+        //string titel = General.Msg("Total hours of employee gaps", "مجموع ساعات الثغرات للموظف");
         SqlCommand cmd = new SqlCommand();
         StringBuilder Q = new StringBuilder();
 
@@ -471,10 +461,8 @@ public partial class Pages_Report_ChartViewer : BasePage
         ChartDT = DBCs.FetchData(cmd);
         if (!DBCs.IsNullOrEmpty(ChartDT))
         {
-            titel = General.Msg("Total hours of employee gaps", "مجموع ساعات الثغرات للموظف");
-            
             StringBuilder strXML = new StringBuilder();
-            strXML.AppendFormat("<chart caption='{0}' palette='1' exportEnabled='1' xAxisName='{1}' yAxisName='{2}' rotateYAxisName='0' showValues='1' showborder='0' formatNumberScale='0' showLegend='1' labelDisplay='rotate' slantLabel='1'>", titel,  General.Msg("Employees", "الموظفون"), General.Msg("Total of hours", "مجموع الساعات"));
+            strXML.AppendFormat("<chart caption='{0}' palette='1' exportEnabled='1' xAxisName='{1}' yAxisName='{2}' rotateYAxisName='0' showValues='1' showborder='0' formatNumberScale='0' showLegend='1' labelDisplay='rotate' slantLabel='1'>", "", General.Msg("Employees", "الموظفون"), General.Msg("Total of hours", "مجموع الساعات"));
 
             StringBuilder strCat = new StringBuilder();
             StringBuilder strDS1 = new StringBuilder();
@@ -501,8 +489,6 @@ public partial class Pages_Report_ChartViewer : BasePage
             string StrChart = "";
             Chart ChartObj = new Chart("mscolumn2d", " ", "100%", "600", "xml", strXML.ToString());
             StrChart = ChartObj.Render();
-            //pnlChartViewer.Controls.Clear();
-            //pnlChartViewer.Controls.Add(new LiteralControl(StrChart));
             litChartViewer.Text = StrChart;
         }
     }
@@ -510,8 +496,7 @@ public partial class Pages_Report_ChartViewer : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void FillChart07()
     {
-        string titel = "";
-
+        //string titel = General.Msg("Number of employee Excuses and Vacations", "عدد الإستئذانات و الإجازات للموظف");
         SqlCommand cmd = new SqlCommand();
         StringBuilder Q = new StringBuilder();
 
@@ -544,10 +529,8 @@ public partial class Pages_Report_ChartViewer : BasePage
         ChartDT = DBCs.FetchData(cmd);
         if (!DBCs.IsNullOrEmpty(ChartDT))
         {
-            titel = General.Msg("Number of employee Excuses and Vacations", "عدد الإستئذانات و الإجازات للموظف");
-            
             StringBuilder strXML = new StringBuilder();
-            strXML.AppendFormat("<chart caption='{0}' palette='1' exportEnabled='1' xAxisName='{1}' yAxisName='{2}' syaxisname='{3}' syaxisvaluesdecimals='0' sformatNumberScale='0' rotateYAxisName='1' showValues='1' showborder='0' formatNumberScale='0' showLegend='1' labelDisplay='rotate' slantLabel='1'>", titel,  General.Msg("Employees", "الموظفون"), General.Msg("Number of Excuses", "عدد الإستئذانات"), General.Msg("Number of Vacations", "عدد الإجازات"));
+            strXML.AppendFormat("<chart caption='{0}' palette='1' exportEnabled='1' xAxisName='{1}' yAxisName='{2}' syaxisname='{3}' syaxisvaluesdecimals='0' sformatNumberScale='0' rotateYAxisName='1' showValues='1' showborder='0' formatNumberScale='0' showLegend='1' labelDisplay='rotate' slantLabel='1'>", "", General.Msg("Employees", "الموظفون"), General.Msg("Number of Excuses", "عدد الإستئذانات"), General.Msg("Number of Vacations", "عدد الإجازات"));
 
             StringBuilder strCat = new StringBuilder();
             StringBuilder strDS1 = new StringBuilder();
@@ -570,8 +553,6 @@ public partial class Pages_Report_ChartViewer : BasePage
             string StrChart = "";
             Chart ChartObj = new Chart("mscombidy2d", " ", "100%", "600", "xml", strXML.ToString());
             StrChart = ChartObj.Render();
-            //pnlChartViewer.Controls.Clear();
-            //pnlChartViewer.Controls.Add(new LiteralControl(StrChart));
             litChartViewer.Text = StrChart;
         }
     }
@@ -579,12 +560,11 @@ public partial class Pages_Report_ChartViewer : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void FillChart08()
     {
-        //string titel = "";
-
+        //string titel = General.Msg("Percentage of actual work from required work of employees", "نسبة الدوام الفعلي من المطلوب للموظفين");
         SqlCommand cmd = new SqlCommand();
         StringBuilder Q = new StringBuilder();
 
-        Q.Append(" SELECT E.EmpID AS EmpID, E.EmpNameAr AS EmpNameAr, E.EmpNameEn AS EmpNameEn, ISNULL(M.EmpPercentWork,0) EmpPercentWork ");
+        Q.Append(" SELECT E.EmpID AS ID, E.EmpNameAr AS EmpNameAr, E.EmpNameEn AS EmpNameEn, ISNULL(M.EmpPercentWork,0) EmpPercentWork ");
         Q.Append(" FROM spActiveEmployeeView E LEFT JOIN ");
 		Q.Append("         (SELECT EmpID, (CASE WHEN MsmWorkDuration = 0 THEN NULL ELSE (CAST(MsmWorkDuration AS DECIMAL) / MsmShiftDuration * 100) END) AS EmpPercentWork ");				 
 		Q.Append("         FROM            dbo.MonthSummaryInfoView ");
@@ -598,46 +578,74 @@ public partial class Pages_Report_ChartViewer : BasePage
        
         cmd.CommandText = Q.ToString();
 
-        DataTable ChartDT = new DataTable();
-        ChartDT = DBCs.FetchData(cmd);
-        if (!DBCs.IsNullOrEmpty(ChartDT))
+        
+        grdChartDT = DBCs.FetchData(cmd);
+        if (!DBCs.IsNullOrEmpty(grdChartDT))
         {
-            //titel = General.Msg("Percentage of actual work from required work of employees", "نسبة الدوام الفعلي من المطلوب للموظفين"); titel,  
-            
-            StringBuilder strXML = new StringBuilder();
-            strXML.AppendFormat("<chart caption='{0}' subcaption='{1}' palette='1' exportEnabled='1' lowerlimit='0' upperlimit='100' subcaptionfontsize='11' numbersuffix='%' chartbottommargin='25' theme='fint'>", ChartDT.Rows[0][General.Msg("EmpNameEn", "EmpNameAr")].ToString(), General.Msg("actual work vs required work", "الدوام الفعلي مقابل الدوام المطلوب"));
-            strXML.Append("<colorrange>");
-            strXML.Append("<color minvalue='0'  maxvalue='25'  code='#e44a00' alpha='25'/>");
-            strXML.Append("<color minvalue='25' maxvalue='50'  code='#e44a00' alpha='25'/>");
-            strXML.Append("<color minvalue='50' maxvalue='75'  code='#f8bd19' alpha='25'/>");
-            strXML.Append("<color minvalue='75' maxvalue='100' code='#6baa01' alpha='25'/>");
-            strXML.Append("</colorrange>");
-            strXML.AppendFormat("<value>{0}</value>", ChartDT.Rows[0]["EmpPercentWork"].ToString());
-            strXML.Append("<target>100</target>");
-            strXML.Append("</chart>");
+            grdData.DataSource = (DataTable)grdChartDT;
+            grdData.DataBind();
+
            
-            //foreach (DataRow DR in ChartDT.Rows)
-            //{
-            //    strCat.AppendFormat("<category label='{0}'/>", DR[General.Msg("EmpNameEn", "EmpNameAr")].ToString());
-            //    strDS1.AppendFormat("<set value='{0}'/>", DR["EmpExcCount"].ToString());
-            //    strDS2.AppendFormat("<set value='{0}'/>", DR["EmpVacCount"].ToString());
-            //}
+            //StringBuilder strXML = new StringBuilder();
+            //strXML.AppendFormat("<chart caption='{0}' subcaption='{1}' palette='1' exportEnabled='1' lowerlimit='0' upperlimit='100' subcaptionfontsize='11' numbersuffix='%' chartbottommargin='25' theme='fint'>", ChartDT.Rows[0][General.Msg("EmpNameEn", "EmpNameAr")].ToString(), General.Msg("actual work vs required work", "الدوام الفعلي مقابل الدوام المطلوب"));
+            //strXML.Append("<colorrange>");
+            //strXML.Append("<color minvalue='0'  maxvalue='25'  code='#e44a00' alpha='25'/>");
+            //strXML.Append("<color minvalue='25' maxvalue='50'  code='#e44a00' alpha='25'/>");
+            //strXML.Append("<color minvalue='50' maxvalue='75'  code='#f8bd19' alpha='25'/>");
+            //strXML.Append("<color minvalue='75' maxvalue='100' code='#6baa01' alpha='25'/>");
+            //strXML.Append("</colorrange>");
+            //strXML.AppendFormat("<value>{0}</value>", grdChartDT.Rows[0]["EmpPercentWork"].ToString());
+            //strXML.Append("<target>100</target>");
+            //strXML.Append("</chart>");
+           
+            ////foreach (DataRow DR in ChartDT.Rows)
+            ////{
+            ////    strCat.AppendFormat("<category label='{0}'/>", DR[General.Msg("EmpNameEn", "EmpNameAr")].ToString());
+            ////    strDS1.AppendFormat("<set value='{0}'/>", DR["EmpExcCount"].ToString());
+            ////    strDS2.AppendFormat("<set value='{0}'/>", DR["EmpVacCount"].ToString());
+            ////}
             
            
-            string StrChart = "";
-            Chart ChartObj = new Chart("hbullet", " ", "100%", "100", "xml", strXML.ToString());
-            StrChart = ChartObj.Render();
-            //pnlChartViewer.Controls.Clear();
-            //pnlChartViewer.Controls.Add(new LiteralControl(StrChart));
-            litChartViewer.Text = StrChart;
+            //string StrChart = "";
+            //Chart ChartObj = new Chart("hbullet", " ", "100%", "100", "xml", strXML.ToString());
+            //StrChart = ChartObj.Render();
+            //litChartViewer.Text = StrChart;
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public string FillGridChart08(string ID, string Name, string EmpPercentWork)
+    {
+        string StrChart = "";
+        //if (!DBCs.IsNullOrEmpty(grdChartDT))
+        //{
+        //    DataRow[] DRs = grdChartDT.Select("ID = '" + ID + "'");
+
+            StringBuilder strXML = new StringBuilder();
+            strXML.AppendFormat("<chart caption='{0}' subcaption='{1}' palette='1' exportEnabled='1' lowerlimit='0' upperlimit='100' subcaptionfontsize='11' numbersuffix='%' chartbottommargin='25' theme='fint'>", Name, General.Msg("actual work vs required work", "الدوام الفعلي مقابل الدوام المطلوب"));
+            strXML.Append("<colorrange>");
+            strXML.Append("<color minvalue='0'  maxvalue='25'  code='#e44a00' alpha='25'/>");
+            strXML.Append("<color minvalue='25' maxvalue='50'  code='#e44a00' alpha='25'/>");
+            strXML.Append("<color minvalue='50' maxvalue='75'  code='#f8bd19' alpha='25'/>");
+            strXML.Append("<color minvalue='75' maxvalue='100' code='#6baa01' alpha='25'/>");
+            strXML.Append("</colorrange>");
+            strXML.AppendFormat("<value>{0}</value>", EmpPercentWork);
+            strXML.Append("<target>100</target>");
+            strXML.Append("</chart>");
+               
+            Chart ChartObj = new Chart("hbullet", ID, "100%", "100", "xml", strXML.ToString());
+            StrChart = ChartObj.Render();
+        //}
+
+        return StrChart;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
     public void FillChart09()//////////////
     {
-        //string titel = "";
-
+        //titel = General.Msg("Percentage of actual work from required work of employees", "نسبة الدوام الفعلي من المطلوب للموظفين"); titel,
         SqlCommand cmd = new SqlCommand();
         StringBuilder Q = new StringBuilder();
 
@@ -659,8 +667,6 @@ public partial class Pages_Report_ChartViewer : BasePage
         ChartDT = DBCs.FetchData(cmd);
         if (!DBCs.IsNullOrEmpty(ChartDT))
         {
-            //titel = General.Msg("Percentage of actual work from required work of employees", "نسبة الدوام الفعلي من المطلوب للموظفين"); titel,  
-            
             StringBuilder strXML = new StringBuilder();
             strXML.AppendFormat("<chart caption='{0}' subcaption='{1}' palette='1' exportEnabled='1' lowerlimit='0' upperlimit='100' subcaptionfontsize='11' numbersuffix='%' chartbottommargin='25' theme='fint'>", ChartDT.Rows[0][General.Msg("EmpNameEn", "EmpNameAr")].ToString(), General.Msg("actual work vs required work", "الدوام الفعلي مقابل الدوام المطلوب"));
             strXML.Append("<colorrange>");
@@ -680,12 +686,9 @@ public partial class Pages_Report_ChartViewer : BasePage
             //    strDS2.AppendFormat("<set value='{0}'/>", DR["EmpVacCount"].ToString());
             //}
             
-           
             string StrChart = "";
             Chart ChartObj = new Chart("hbullet", " ", "100%", "100", "xml", strXML.ToString());
             StrChart = ChartObj.Render();
-            //pnlChartViewer.Controls.Clear();
-            //pnlChartViewer.Controls.Add(new LiteralControl(StrChart));
             litChartViewer.Text = StrChart;
         }
     }
@@ -693,7 +696,7 @@ public partial class Pages_Report_ChartViewer : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void FillChart10()
     {
-        //string titel = "";
+        ////titel = General.Msg("Percentage of actual work from required work of employees", "نسبة الدوام الفعلي من المطلوب للموظفين"); titel,  
 
         SqlCommand cmd = new SqlCommand();
         StringBuilder Q = new StringBuilder();
@@ -717,8 +720,6 @@ public partial class Pages_Report_ChartViewer : BasePage
         ChartDT = DBCs.FetchData(cmd);
         if (!DBCs.IsNullOrEmpty(ChartDT))
         {
-            //titel = General.Msg("Percentage of actual work from required work of employees", "نسبة الدوام الفعلي من المطلوب للموظفين"); titel,  
-            
             StringBuilder strXML = new StringBuilder();
             strXML.AppendFormat("<chart caption='{0}' subcaption='{1}' palette='1' exportEnabled='1' decimals='2' showborder='0' showOpenValue='1' showCloseValue='1' numberPrefix='' bgcolor='#ffffff' theme='fint'>", ChartDT.Rows[0][General.Msg("EmpNameEn", "EmpNameAr")].ToString(), General.Msg("actual work", "الدوام الفعلي"));
             strXML.Append("<dataset>");
@@ -735,8 +736,6 @@ public partial class Pages_Report_ChartViewer : BasePage
             string StrChart = "";
             Chart ChartObj = new Chart("sparkline", " ", "100%", "100", "xml", strXML.ToString());
             StrChart = ChartObj.Render();
-            //pnlChartViewer.Controls.Clear();
-            //pnlChartViewer.Controls.Add(new LiteralControl(StrChart));
             litChartViewer.Text = StrChart;
         }
     }
@@ -744,8 +743,7 @@ public partial class Pages_Report_ChartViewer : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void FillChart11()
     {
-        string titel = "";
-
+        //string titel = General.Msg("Employee Overtime", "الدوام الإضافي للموظف");
         SqlCommand cmd = new SqlCommand();
         StringBuilder Q = new StringBuilder();
 
@@ -776,10 +774,8 @@ public partial class Pages_Report_ChartViewer : BasePage
         ChartDT = DBCs.FetchData(cmd);
         if (!DBCs.IsNullOrEmpty(ChartDT))
         {
-            titel = General.Msg("Employee Overtime", "الدوام الإضافي للموظف");
-            
             StringBuilder strXML = new StringBuilder();
-            strXML.AppendFormat("<chart caption='{0}' palette='1' exportEnabled='1' xAxisName='{1}' yAxisName='{2}' syaxisvaluesdecimals='0' sformatNumberScale='0' rotateYAxisName='1' showValues='1' showborder='0' formatNumberScale='0' showLegend='1' labelDisplay='rotate' slantLabel='1'>", titel,  General.Msg("Employees", "الموظفون"), General.Msg("Number of hours", "عدد الساعات"));
+            strXML.AppendFormat("<chart caption='{0}' palette='1' exportEnabled='1' xAxisName='{1}' yAxisName='{2}' syaxisvaluesdecimals='0' sformatNumberScale='0' rotateYAxisName='1' showValues='1' showborder='0' formatNumberScale='0' showLegend='1' labelDisplay='rotate' slantLabel='1'>", General.Msg("Employees", "الموظفون"), General.Msg("Number of hours", "عدد الساعات"));
 
             StringBuilder strCat = new StringBuilder();
             StringBuilder strDS1 = new StringBuilder();
@@ -802,8 +798,6 @@ public partial class Pages_Report_ChartViewer : BasePage
             string StrChart = "";
             Chart ChartObj = new Chart("mscolumn2d", " ", "100%", "600", "xml", strXML.ToString());
             StrChart = ChartObj.Render();
-            //pnlChartViewer.Controls.Clear();
-            //pnlChartViewer.Controls.Add(new LiteralControl(StrChart));
             litChartViewer.Text = StrChart;
         }
     }
@@ -811,8 +805,7 @@ public partial class Pages_Report_ChartViewer : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void FillChart12()
     {
-        string titel = "";
-
+        //string titel = General.Msg("General measure of the work of the establishment", "المقياس العام لدوام المنشأة");
         SqlCommand cmd = new SqlCommand();
         StringBuilder Q = new StringBuilder();
 
@@ -830,11 +823,9 @@ public partial class Pages_Report_ChartViewer : BasePage
         ChartDT = DBCs.FetchData(cmd);
         if (!DBCs.IsNullOrEmpty(ChartDT))
         {
-            titel = General.Msg("General measure of the work of the establishment", "المقياس العام لدوام المنشأة");
-
             //gaugeFillMix='{dark-30},{light-60},{dark-10}' gaugeFillRatio='15' 
             StringBuilder strXML = new StringBuilder();
-            strXML.AppendFormat("<chart caption='{0}' palette='1' exportEnabled='1' lowerlimit='0' upperlimit='100' showValue='1' valueBelowPivot='1' theme='fint'>", titel);
+            strXML.AppendFormat("<chart caption='{0}' palette='1' exportEnabled='1' lowerlimit='0' upperlimit='100' showValue='1' valueBelowPivot='1' theme='fint'>","");
             strXML.Append("<colorrange>");
             strXML.Append("<color minvalue='0'  maxvalue='25'  code='#e44a00'/>");
             strXML.Append("<color minvalue='25' maxvalue='50'  code='#e44a00'/>");
@@ -847,8 +838,6 @@ public partial class Pages_Report_ChartViewer : BasePage
             string StrChart = "";
             Chart ChartObj = new Chart("angulargauge", " ", "100%", "600", "xml", strXML.ToString());
             StrChart = ChartObj.Render();
-            //pnlChartViewer.Controls.Clear();
-            //pnlChartViewer.Controls.Add(new LiteralControl(StrChart));
             litChartViewer.Text = StrChart;
         }
     }
@@ -874,4 +863,41 @@ public partial class Pages_Report_ChartViewer : BasePage
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /*******************************************************************************************************************************/
+    /*******************************************************************************************************************************/
+    #region grdData GridView Events
+
+    protected void grdData_RowCreated(object sender, GridViewRowEventArgs e)
+    {
+        e.Row.Cells[0].Visible = false;
+        e.Row.Cells[1].Visible = false;
+        e.Row.Cells[2].Visible = false;
+        e.Row.Cells[3].Visible = false;
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected void grdData_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            string ID = ((DataRowView)e.Row.DataItem)["ID"].ToString();
+            string Name = ((DataRowView)e.Row.DataItem)[General.Msg("EmpNameEn", "EmpNameAr")].ToString();
+            string EmpPercentWork = ((DataRowView)e.Row.DataItem)["EmpPercentWork"].ToString();
+
+            Literal _Lit = (Literal)e.Row.Cells[4].Controls[1];
+
+            switch (ViewState["RepID"].ToString())
+            {
+                case "Rep160108": _Lit.Text = FillGridChart08(ID,Name,EmpPercentWork); break;
+            }
+        }
+    }
+
+    #endregion
+    /*******************************************************************************************************************************/
+    /*******************************************************************************************************************************/
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  
 }

@@ -63,6 +63,7 @@ public partial class Home : BasePage
                 UIChartsTypeShow("M");
                 DTCs.YearPopulateList(ref ddlYear);
                 DTCs.MonthPopulateList(ref ddlMonth);
+                FillTodayStatus();
                 btnChartsFilter_Click(null, null);
                 /*** Charts *****************************************/
             }
@@ -419,6 +420,83 @@ public partial class Home : BasePage
         {
             ErrorSignal.FromCurrentContext().Raise(ex);
             return "00:00:00";
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void FillTodayStatus()
+    {
+        string titel = General.Msg("Employees Status Today", "حالة الموظفين اليوم"); 
+        DataTable TDT = new DataTable();
+        TDT = DBCs.FetchProcedureData("FindTodayEmployeeStatus_Home", new string[] { "@DepIDs" }, new string[] { pgCs.DepList });
+
+        if (!DBCs.IsNullOrEmpty(TDT))
+        {
+            StringBuilder strXML = new StringBuilder();
+            strXML.AppendFormat("<chart caption='{0}' subcaption='{1}' showborder='0' bgAlpha='0' canvasbgAlpha='0' use3dlighting='0' enablesmartlabels='0' startingangle='310' showlabels='0' showpercentvalues='0' showlegend='1' legendPosition='right' legendIconScale='1.5' legendBorderThickness='0' legendBorderAlpha='0' legendBgAlpha='0' defaultcenterlabel='{2}' centerlabel='$label  $value' centerlabelbold='1' showtooltip='0' decimals='0' usedataplotcolorforlabels='1' theme='fint' pieRadius='100'>", titel, "", General.Msg("Employees","الموظفون") + " " + TDT.Rows[0]["EmpAllCount"].ToString());
+            strXML.AppendFormat("<set label='{0}' value='{1}'/>",General.Msg("Employees","الموظفون"), TDT.Rows[0]["EmpAllCount"].ToString());
+            strXML.AppendFormat("<set label='{0}' value='{1}'/>",General.Msg("Attendees","الحضور"), TDT.Rows[0]["EmpPCount"].ToString());
+            strXML.AppendFormat("<set label='{0}' value='{1}'/>",General.Msg("Absence","الغياب"), TDT.Rows[0]["EmpACount"].ToString());
+            strXML.AppendFormat("<set label='{0}' value='{1}'/>",General.Msg("Vacations","الإجازات"), TDT.Rows[0]["EmpVCount"].ToString());
+            strXML.Append("</chart>");
+
+            string StrChart = "";
+            Chart ChartObj = new Chart("doughnut2d", "      ", "100%", "270", "xml", strXML.ToString());
+            StrChart = ChartObj.Render();
+            litTodayStatus.Text = StrChart;
+
+            StringBuilder strXML2 = new StringBuilder();
+            strXML2.AppendFormat("<chart caption='{0}' subcaption='{1}' palette='1' bgAlpha='0' numbersuffix='%' lowerlimit='0' upperlimit='100' subcaptionfontsize='11' chartbottommargin='25' theme='fint'>", General.Msg("Attendees","الحضور"), TDT.Rows[0]["EmpPCount"].ToString());
+            strXML2.Append("<colorrange>");
+            strXML2.Append("<color minvalue='0'  maxvalue='25'  code='#e44a00' alpha='25'/>");
+            strXML2.Append("<color minvalue='25' maxvalue='50'  code='#e44a00' alpha='25'/>");
+            strXML2.Append("<color minvalue='50' maxvalue='75'  code='#f8bd19' alpha='25'/>");
+            strXML2.Append("<color minvalue='75' maxvalue='100' code='#6baa01' alpha='25'/>");
+            strXML2.Append("</colorrange>");
+            strXML2.AppendFormat("<value>{0}</value>",(Convert.ToInt64(TDT.Rows[0]["EmpPCount"]) / Convert.ToInt64(TDT.Rows[0]["EmpAllCount"]) * 100).ToString());
+            strXML2.Append("<target>100</target>");
+            strXML2.Append("</chart>");
+
+            string StrChart2 = "";
+            Chart ChartObj2 = new Chart("hbullet", "           ", "100%", "90", "xml", strXML2.ToString());
+            StrChart2 = ChartObj2.Render();
+            litPresentEmp.Text = StrChart2;
+
+
+            StringBuilder strXML3 = new StringBuilder();
+            strXML3.AppendFormat("<chart caption='{0}' subcaption='{1}' palette='1' bgAlpha='0' numbersuffix='%' lowerlimit='0' upperlimit='100' subcaptionfontsize='11' chartbottommargin='25' theme='fint'>", General.Msg("Absence","الغياب"), TDT.Rows[0]["EmpACount"].ToString());
+            strXML3.Append("<colorrange>");
+            strXML3.Append("<color minvalue='0'  maxvalue='25'  code='#6baa01' alpha='25'/>");
+            strXML3.Append("<color minvalue='25' maxvalue='50'  code='#f8bd19' alpha='25'/>");
+            strXML3.Append("<color minvalue='50' maxvalue='75'  code='#e44a00' alpha='25'/>");
+            strXML3.Append("<color minvalue='75' maxvalue='100' code='#e44a00' alpha='25'/>");
+            strXML3.Append("</colorrange>");
+            strXML3.AppendFormat("<value>{0}</value>",(Convert.ToInt64(TDT.Rows[0]["EmpACount"]) / Convert.ToInt64(TDT.Rows[0]["EmpAllCount"]) * 100).ToString());
+            strXML3.Append("<target>100</target>");
+            strXML3.Append("</chart>");
+
+            string StrChart3 = "";
+            Chart ChartObj3 = new Chart("hbullet", "            ", "100%", "90", "xml", strXML3.ToString());
+            StrChart3 = ChartObj3.Render();
+            litAbsenceEmp.Text = StrChart3;
+
+
+            StringBuilder strXML4 = new StringBuilder();
+            strXML4.AppendFormat("<chart caption='{0}' subcaption='{1}' palette='1' bgAlpha='0' numbersuffix='%' lowerlimit='0' upperlimit='100' subcaptionfontsize='11' chartbottommargin='25' theme='fint'>", General.Msg("Vacations","الإجازات"), TDT.Rows[0]["EmpVCount"].ToString());
+            strXML4.Append("<colorrange>");
+            strXML4.Append("<color minvalue='0'  maxvalue='25'  code='#6baa01' alpha='25'/>");
+            strXML4.Append("<color minvalue='25' maxvalue='50'  code='#f8bd19' alpha='25'/>");
+            strXML4.Append("<color minvalue='50' maxvalue='75'  code='#e44a00' alpha='25'/>");
+            strXML4.Append("<color minvalue='75' maxvalue='100' code='#e44a00' alpha='25'/>");
+            strXML4.Append("</colorrange>");
+            strXML4.AppendFormat("<value>{0}</value>",(Convert.ToInt64(TDT.Rows[0]["EmpVCount"]) / Convert.ToInt64(TDT.Rows[0]["EmpAllCount"]) * 100).ToString());
+            strXML4.Append("<target>100</target>");
+            strXML4.Append("</chart>");
+
+            string StrChart4 = "";
+            Chart ChartObj4 = new Chart("hbullet", "             ", "100%", "90", "xml", strXML4.ToString());
+            StrChart4 = ChartObj4.Render();
+            litVacationsEmp.Text = StrChart4;
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

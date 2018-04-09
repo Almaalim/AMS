@@ -22,12 +22,36 @@
     </script>
 
     <script type="text/javascript" src="../Script/fusionchartsJs/fusioncharts.js" ></script>
-    <%--<script type="text/javascript" src="../Script/fusionchartsJs/jquery.min.js"></script>--%>
-
+    <script type="text/javascript" src="../Script/fusionchartsJs/themes/fusioncharts.theme.carbon.js"></script>
+    <script type="text/javascript" src="../Script/fusionchartsJs/themes/fusioncharts.theme.fint.js"></script>
+    <script type="text/javascript" src="../Script/fusionchartsJs/themes/fusioncharts.theme.ocean.js"></script>
+    <script type="text/javascript" src="../Script/fusionchartsJs/themes/fusioncharts.theme.zune.js"></script>
 
     <%--script--%>
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
+            <div class="row">
+                <div class="col12 Heading">
+                    <asp:Label ID="lblTodayStatus" runat="server" Text="Today Status" CssClass="h4" meta:resourcekey="lblTodayStatusResource1"></asp:Label>
+                </div>
+            </div>
+            <div id="divTodayStatus" class="row" runat="server">
+                <div class="col4">
+                    <asp:Literal ID="litTodayStatus" runat="server"></asp:Literal>
+                </div>
+                <div class="col8">
+                     <asp:Literal ID="litPresentEmp"   runat ="server"></asp:Literal>
+                     <asp:Literal ID="litAbsenceEmp"   runat ="server"></asp:Literal>
+                     <asp:Literal ID="litVacationsEmp" runat="server"></asp:Literal>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col12 Heading">
+                    <asp:Label ID="Label1" runat="server" Text="CHARTS" CssClass="h4" meta:resourcekey="Label1Resource1"></asp:Label>
+                </div>
+            </div>
+
             <div id="DivList" class="row" runat="server">
                 <div class="col1">
                     <asp:Label ID="lblDepChartsFilter" runat="server" Text=" Department:" meta:resourcekey="lblDepChartsFilterResource1"></asp:Label>
@@ -73,17 +97,6 @@
                     <Cal:Calendar2 ID="calDate" runat="server" CalendarType="System" ValidationGroup="" InitialValue="true" />
                 </div>
             </div>
-            <%--<div id="DivDay" runat="server" class="row">
-
-                <div class="col1">
-                    <asp:Label ID="lblDate" runat="server" Text="Date:" meta:resourcekey="lblDateResource1"></asp:Label>
-                </div>
-                <div class="col4">
-                    <Cal:Calendar2 ID="calDate" runat="server" CalendarType="System" ValidationGroup="" InitialValue="true" />
-                </div>
-
-            </div>--%>
-
             <div class="row" runat="server">
                 <div class="col8">
                     <asp:LinkButton ID="btnChartsFilter" runat="server" CssClass="GenButton glyphicon glyphicon-search"
@@ -93,13 +106,6 @@
             </div>
 
             <div id="divChart" runat="server">
-                <div class="row">
-                    <div class="col12 Heading">
-                        <asp:Label ID="Label1" runat="server" Text="CHARTS" CssClass="h4" meta:resourcekey="Label1Resource1"></asp:Label>
-
-                    </div>
-                </div>
-
                 <div id="d1" class="row" runat="server">
                     <div id="d11" class="col6 chartBlue">
                         <asp:Panel ID="pnlChartWorkDurtion" runat="server"></asp:Panel>

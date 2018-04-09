@@ -88,6 +88,24 @@ public class RepParametersPro
 
     string _ProcedureParameters;
     public string ProcedureParameters { get { return _ProcedureParameters; } set { if (_ProcedureParameters != value) { _ProcedureParameters = value; } } }
+
+    string _RepNameEn;
+	public string RepNameEn { get { return _RepNameEn; } set { if (_RepNameEn != value) { _RepNameEn = value; } } }
+
+    string _RepNameAr;
+	public string RepNameAr { get { return _RepNameAr; } set { if (_RepNameAr != value) { _RepNameAr = value; } } }
+
+    string _RepTempEn;
+	public string RepTempEn { get { return _RepTempEn; } set { if (_RepTempEn != value) { _RepTempEn = value; } } }
+
+    string _RepTempAr;
+	public string RepTempAr { get { return _RepTempAr; } set { if (_RepTempAr != value) { _RepTempAr = value; } } }
+
+    string _RepDescEn;
+    public string RepDescEn { get { return _RepDescEn; } set { if (_RepDescEn != value) { _RepDescEn = value; } } }
+
+    string _RepDescAr;
+    public string RepDescAr { get { return _RepDescAr; } set { if (_RepDescAr != value) { _RepDescAr = value; } } }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private string _TransactionBy;

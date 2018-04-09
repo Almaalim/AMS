@@ -136,8 +136,16 @@ public class ReportFun
                 RepProCs.RgpID = DT.Rows[0]["RgpID"].ToString();
             
                 RepProCs.RepName = General.Msg(RepProCs.RepLang, DT.Rows[0]["RepNameEn"].ToString(), DT.Rows[0]["RepNameAr"].ToString());
+                RepProCs.RepNameEn = DT.Rows[0]["RepNameEn"].ToString();
+                RepProCs.RepNameAr = DT.Rows[0]["RepNameAr"].ToString();
+
                 RepProCs.RepTemp = General.Msg(RepProCs.RepLang, DT.Rows[0]["RepTempEn"].ToString(), DT.Rows[0]["RepTempAr"].ToString());
+                RepProCs.RepTemp = DT.Rows[0]["RepTempEn"].ToString();
+                RepProCs.RepTemp = DT.Rows[0]["RepTempAr"].ToString();
+
                 RepProCs.RepDesc = General.Msg(RepProCs.RepLang, DT.Rows[0]["RepDescEn"].ToString(), DT.Rows[0]["RepDescAr"].ToString());
+                RepProCs.RepDesc = DT.Rows[0]["RepDescEn"].ToString();
+                RepProCs.RepDesc = DT.Rows[0]["RepDescAr"].ToString();
 
                 if (DT.Rows[0]["RepOrientation"] != DBNull.Value) { RepProCs.RepOrientation = DT.Rows[0]["RepOrientation"].ToString(); } else { RepProCs.RepOrientation = "V"; }
                 RepProCs.RepPanels = DT.Rows[0]["RepPanels"].ToString();
