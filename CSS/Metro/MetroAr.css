@@ -448,11 +448,20 @@ a.level2.dynamic {
     padding: 10px;
     transition: all 1000ms cubic-bezier(0.19, 1, 0.22, 1);
 }
-
+ul.level2.dynamic {z-index: 9 !important;}
     a.level2.dynamic:hover {
         box-shadow: inset 0 0 0 4px #fff, 0 0 1px transparent;
     }
+.stiJsViewerReportPanel table td {
 
+    text-align:right;
+    padding-right:3px !important;
+    
+}
+.stiJsViewerReportPanel
+{
+    direction:rtl;
+}
 #ctl00_Menu1 ul.dynamic {
     z-index: 1;
     left: inherit !important;
