@@ -24,6 +24,9 @@ public partial class Pages_Report_ChartViewer : BasePage
     string Param_MonthDate = "";
     string Param_YearDate  = "";
     string Param_DepIDs    = "";
+    string Param_EmpIDs    = "";
+    string Param_OneDepID  = "";
+    string Param_OneEmpID  = "";
     string Lang            = "En"; 
 
     DataTable grdChartDT = new DataTable();
@@ -98,7 +101,12 @@ public partial class Pages_Report_ChartViewer : BasePage
                 Param_ToDate    = !string.IsNullOrEmpty(RepProCs.DateTo)    ? DTCs.ConvertToDatetime(RepProCs.DateTo,   "Gregorian") : new DateTime();
             }
 
-            Param_DepIDs    = !string.IsNullOrEmpty(RepProCs.DepID)     ? RepProCs.DepID     : "";
+            Param_DepIDs = !string.IsNullOrEmpty(RepProCs.DepID) ? RepProCs.DepID : "";
+            Param_EmpIDs = !string.IsNullOrEmpty(RepProCs.EmpID) ? RepProCs.EmpID : "";
+
+            Param_OneEmpID = !string.IsNullOrEmpty(RepProCs.OneEmployee) ? RepProCs.OneEmployee : "";
+            Param_OneDepID = !string.IsNullOrEmpty(RepProCs.OneDepartment) ? RepProCs.OneDepartment : "";
+
             Lang = Convert.ToString(Session["Language"]) == "AR" ? "Ar" : "En";
 
             SelectChart(RepProCs.RepID);
@@ -110,18 +118,20 @@ public partial class Pages_Report_ChartViewer : BasePage
     {
 		switch (ChartID)
 		{
-			case "Rep160101": FillChart01();     break;
-			case "Rep160102": FillChart02("BL"); break;
-            case "Rep160103": FillChart03();     break;
-            case "Rep160104": FillChart04();     break;
-            case "Rep160105": FillChart05();     break;           
-            case "Rep160106": FillChart06();     break;
-            case "Rep160107": FillChart07();     break;
-            case "Rep160108": FillChart08();     break;
-            case "Rep160109": FillChart09();     break;
-            case "Rep160110": FillChart10();     break;
-            case "Rep160111": FillChart11();     break;
-            case "Rep160112": FillChart12();     break;
+			case "Rep160101": FillChart01();      break;
+			case "Rep160102": FillChart02("BL");  break;
+            case "Rep160103": FillChart03();      break;
+            case "Rep160104": FillChart04();      break;
+            case "Rep160105": FillChart05();      break;           
+            case "Rep160106": FillChart06();      break;
+            case "Rep160107": FillChart07();      break;
+            case "Rep160108": FillChart08();      break;
+            case "Rep160109": FillChart09();      break;
+            case "Rep160110": FillChart10();      break;
+            case "Rep160111": FillChart11();      break;
+            case "Rep160112": FillChart12();      break;
+            case "Rep160113": FillChart13();      break;
+            case "Rep160114": FillChart14();      break;
 		}
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -641,8 +651,6 @@ public partial class Pages_Report_ChartViewer : BasePage
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
     public void FillChart09()//////////////
     {
         //titel = General.Msg("Percentage of actual work from required work of employees", "نسبة الدوام الفعلي من المطلوب للموظفين"); titel,
@@ -809,7 +817,7 @@ public partial class Pages_Report_ChartViewer : BasePage
         SqlCommand cmd = new SqlCommand();
         StringBuilder Q = new StringBuilder();
 
-        Q.Append(" SELECT SUM(ISNULL(CAST(MsmWorkDuration AS DECIMAL),0)) / SUM(ISNULL(MsmShiftDuration,0)) * 100 AS PercentWork ");		 
+        Q.Append(" SELECT SUM(ISNULL(CAST(MsmWorkDuration AS DECIMAL),0)) / SUM(ISNULL(MsmShiftDuration,0)) * 100 AS PercentWork ");
         Q.Append(" FROM dbo.MonthSummaryInfoView ");
         Q.Append(" WHERE CONVERT(VARCHAR(12),MsmStartDate,103) = CONVERT(VARCHAR(12),@Param_FromDate,103) ");
  	    Q.Append(" AND CONVERT(VARCHAR(12),MsmEndDate,103) = CONVERT(VARCHAR(12),@Param_ToDate,103) "); 
@@ -825,7 +833,7 @@ public partial class Pages_Report_ChartViewer : BasePage
         {
             //gaugeFillMix='{dark-30},{light-60},{dark-10}' gaugeFillRatio='15' 
             StringBuilder strXML = new StringBuilder();
-            strXML.AppendFormat("<chart caption='{0}' palette='1' exportEnabled='1' lowerlimit='0' upperlimit='100' showValue='1' valueBelowPivot='1' theme='fint'>","");
+            strXML.AppendFormat("<chart caption='{0}' palette='1' numbersuffix='%' exportEnabled='1' lowerlimit='0' upperlimit='100' showValue='1' valueBelowPivot='1' theme='fint'>","");
             strXML.Append("<colorrange>");
             strXML.Append("<color minvalue='0'  maxvalue='25'  code='#e44a00'/>");
             strXML.Append("<color minvalue='25' maxvalue='50'  code='#e44a00'/>");
@@ -841,6 +849,376 @@ public partial class Pages_Report_ChartViewer : BasePage
             litChartViewer.Text = StrChart;
         }
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /*******************************************************************************************************************************/
+    /*******************************************************************************************************************************/
+    #region Chart13
+
+    public void FillChart13()
+    {
+        ////titel = General.Msg("Percentage of actual work from required work of employees", "نسبة الدوام الفعلي من المطلوب للموظفين"); titel,  
+        divNameTitel.Visible = true;
+
+        FillChart_1301();
+
+        SqlCommand cmd = new SqlCommand();
+        StringBuilder Q = new StringBuilder();
+
+        Q.Append(" SELECT EmpNameEn, EmpNameAr, MsmShiftDuration,MsmWorkDuration,MsmBeginLate,MsmOutEarly,MsmGapDur_WithoutExc ");
+	    Q.Append("       ,MsmDays_Work,MsmDays_Present,MsmDays_Absent_WithoutVac,MsmDays_Absent_PaidVac,MsmDays_Absent_WithCom,MsmDays_Absent_WithJob ");
+        Q.Append("       ,ISNULL(CAST(MsmBeginLate AS DECIMAL),0) / ISNULL(MsmShiftDuration,0) * 100 AS PercentBeginLate ");
+        Q.Append("       ,ISNULL(CAST(MsmOutEarly AS DECIMAL),0)  / ISNULL(MsmShiftDuration,0) * 100 AS PercentOutEarly ");
+	    Q.Append("       ,ISNULL(CAST(MsmWorkDuration AS DECIMAL),0) / ISNULL(MsmShiftDuration,0) * 100 AS PercentWork ");
+        Q.Append(" FROM dbo.MonthSummaryInfoView ");
+        Q.Append(" WHERE CONVERT(VARCHAR(12),MsmStartDate,103) = CONVERT(VARCHAR(12),@Param_FromDate,103) ");
+        Q.Append(" AND CONVERT(VARCHAR(12),MsmEndDate,103) = CONVERT(VARCHAR(12),@Param_ToDate,103) ");
+        Q.Append(" AND EmpID = " + Param_OneEmpID + "");
+
+        cmd.Parameters.AddWithValue("@Param_FromDate", Param_FromDate);
+        cmd.Parameters.AddWithValue("@Param_ToDate"  , Param_ToDate);
+
+        cmd.CommandText = Q.ToString();
+
+        DataTable ChartDT = new DataTable();
+        ChartDT = DBCs.FetchData(cmd);
+
+        if (!DBCs.IsNullOrEmpty(ChartDT))
+        { 
+            lblNameTitel.Text = ChartDT.Rows[0][General.Msg("EmpNameEn", "EmpNameAr")].ToString();
+            FillChart_1302(ChartDT);
+            FillChart_1303(ChartDT);
+            FillChart_1304(ChartDT);
+            FillChart_1305(ChartDT);
+        } 
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void FillChart_1301()
+    {
+        SqlCommand cmd = new SqlCommand();
+        StringBuilder Q = new StringBuilder();
+
+        Q.Append(" SELECT E.EmpID AS EmpID, E.EmpNameAr AS EmpNameAr, E.EmpNameEn AS EmpNameEn, D.DsmDate AS DsmDate, ISNULL(D.EmpActualWork,0) EmpActualWork, ISNULL(D.EmpActualWorkSecond,0) EmpActualWorkSecond ");
+        Q.Append(" FROM spActiveEmployeeView E LEFT JOIN ");
+		Q.Append("         (SELECT EmpID, DsmDate, DsmWorkDuration AS EmpActualWorkSecond, CAST(DsmWorkDuration AS DECIMAL)/ 60 / 60 AS EmpActualWork ");
+		Q.Append("          FROM dbo.DaySummaryInfoView ");
+		Q.Append("          WHERE DsmDate BETWEEN @Param_FromDate AND @Param_ToDate AND DsmStatus NOT IN ('WE','N') ");
+        Q.Append("          AND EmpID IN (" + Param_OneEmpID + ")) D "); 
+	    Q.Append("     ON E.EmpID = D.EmpID ");
+        Q.Append(" WHERE E.EmpID IN (" + Param_OneEmpID + ") "); 
+        Q.Append(" ORDER BY E.EmpID,D.DsmDate ");
+
+        cmd.Parameters.AddWithValue("@Param_FromDate", Param_FromDate);
+        cmd.Parameters.AddWithValue("@Param_ToDate"  , Param_ToDate);
+       
+        cmd.CommandText = Q.ToString();
+
+        DataTable ChartDT = new DataTable();
+        ChartDT = DBCs.FetchData(cmd);
+        if (!DBCs.IsNullOrEmpty(ChartDT))
+        {
+            StringBuilder strXML = new StringBuilder();
+            strXML.AppendFormat("<chart caption='{0}' palette='1' exportEnabled='1' decimals='2' showborder='0' showOpenValue='1' showCloseValue='1' numberPrefix='' bgcolor='#ffffff' theme='fint'>", General.Msg("IN details", "تفاصيل الدخول"));
+            strXML.Append("<dataset>");
+
+            DataRow[] EDRs = ChartDT.Select("EmpID = '" + ChartDT.Rows[0]["EmpID"].ToString() + "'");
+            foreach (DataRow DR in EDRs)
+            {
+                strXML.AppendFormat("<set value='{0}' displayValue='{1}'/>", DR["EmpActualWork"].ToString(), DisplayFun.GrdDisplayDuration(DR["EmpActualWorkSecond"].ToString()));
+            }
+
+            strXML.Append("</dataset>");
+            strXML.Append("</chart>");
+           
+            Chart ChartObj = new Chart("sparkline", " ", "100%", "100", "xml", strXML.ToString());
+            litChartViewer_01.Text = ChartObj.Render();
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void FillChart_1302(DataTable DT)
+    {
+        string titel = ""; //General.Msg("Details of working days", "تفاصيل أيام العمل");
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            StringBuilder strXML = new StringBuilder();
+            strXML.AppendFormat("<chart caption='{0}' palette='1' bgAlpha='0' numbersuffix='%' lowerlimit='0' upperlimit='100' subcaptionfontsize='11' chartbottommargin='25' theme='fint'>", General.Msg("Late attendance","الحضور المتأخر"));
+            strXML.Append("<colorrange>");
+            strXML.Append("<color minvalue='0'  maxvalue='25'  code='#6baa01' alpha='25'/>");
+            strXML.Append("<color minvalue='25' maxvalue='50'  code='#f8bd19' alpha='25'/>");
+            strXML.Append("<color minvalue='50' maxvalue='75'  code='#e44a00' alpha='25'/>");
+            strXML.Append("<color minvalue='75' maxvalue='100' code='#e44a00' alpha='25'/>");
+            strXML.Append("</colorrange>");
+            strXML.AppendFormat("<value>{0}</value>",DT.Rows[0]["PercentBeginLate"].ToString());
+            strXML.Append("<target>100</target>");
+            strXML.Append("</chart>");
+
+            Chart ChartObj = new Chart("hbullet", "  ", "100%", "90", "xml", strXML.ToString());
+            litChartViewer_02.Text = ChartObj.Render();;
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void FillChart_1303(DataTable DT)
+    {
+        string titel = ""; //General.Msg("Details of working days", "تفاصيل أيام العمل");
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            StringBuilder strXML = new StringBuilder();
+            strXML.AppendFormat("<chart caption='{0}' palette='1' bgAlpha='0' numbersuffix='%' lowerlimit='0' upperlimit='100' subcaptionfontsize='11' chartbottommargin='25' theme='fint'>", General.Msg("Out Early","الخروج المبكر"));
+            strXML.Append("<colorrange>");
+            strXML.Append("<color minvalue='0'  maxvalue='25'  code='#6baa01' alpha='25'/>");
+            strXML.Append("<color minvalue='25' maxvalue='50'  code='#f8bd19' alpha='25'/>");
+            strXML.Append("<color minvalue='50' maxvalue='75'  code='#e44a00' alpha='25'/>");
+            strXML.Append("<color minvalue='75' maxvalue='100' code='#e44a00' alpha='25'/>");
+            strXML.Append("</colorrange>");
+            strXML.AppendFormat("<value>{0}</value>",DT.Rows[0]["PercentOutEarly"].ToString());
+            strXML.Append("<target>100</target>");
+            strXML.Append("</chart>");
+
+            Chart ChartObj = new Chart("hbullet", "   ", "100%", "90", "xml", strXML.ToString());
+            litChartViewer_03.Text = ChartObj.Render();
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void FillChart_1304(DataTable DT)
+    {
+        string titel = General.Msg("General measure of the work of the employee", "المقياس العام لدوام الموظف");
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            StringBuilder strXML = new StringBuilder();
+            strXML.AppendFormat("<chart caption='{0}' subcaption='{1}' palette='1' numbersuffix='%' exportEnabled='1' lowerlimit='0' upperlimit='100' showValue='1' valueBelowPivot='1' theme='fint'>",titel, General.Msg("actual work", "الدوام الفعلي"));
+            strXML.Append("<colorrange>");
+            strXML.Append("<color minvalue='0'  maxvalue='25'  code='#e44a00'/>");
+            strXML.Append("<color minvalue='25' maxvalue='50'  code='#e44a00'/>");
+            strXML.Append("<color minvalue='50' maxvalue='75'  code='#f8bd19'/>");
+            strXML.Append("<color minvalue='75' maxvalue='100' code='#6baa01'/>");
+            strXML.Append("</colorrange>");
+            strXML.AppendFormat("<dials><dial value='{0}'/></dials>", DT.Rows[0]["PercentWork"].ToString());
+            strXML.Append("</chart>");
+
+            string StrChart = "";
+            Chart ChartObj = new Chart("angulargauge", "    ", "100%", "400", "xml", strXML.ToString());
+            StrChart = ChartObj.Render();
+            litChartViewer_04.Text = StrChart;
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void FillChart_1305(DataTable DT)
+    {
+        string titel = General.Msg("Details of working days", "تفاصيل أيام العمل");
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            string Subtitel = General.Msg("Required Dyas", "الأيام المطلوبة") + ": " + DT.Rows[0]["MsmDays_Work"].ToString();
+            string Deftitel = General.Msg("Attendees", "الحضور") + " " + DT.Rows[0]["MsmDays_Present"].ToString();
+            StringBuilder strXML = new StringBuilder();
+            strXML.AppendFormat("<chart caption='{0}' subcaption='{1}' showborder='0' bgAlpha='0' canvasbgAlpha='0' use3dlighting='0' enablesmartlabels='0' startingangle='310' showlabels='0' showpercentvalues='0' showlegend='1' legendPosition='right' legendIconScale='1.5' legendBorderThickness='0' legendBorderAlpha='0' legendBgAlpha='0' defaultcenterlabel='{2}' centerlabel='$label  $value' centerlabelbold='1' showtooltip='0' decimals='0' usedataplotcolorforlabels='1' theme='fint' pieRadius='100'>", titel, Subtitel,Deftitel);
+            strXML.AppendFormat("<set label='{0}' value='{1}'/>",General.Msg("Attendees","الحضور"), DT.Rows[0]["MsmDays_Present"].ToString());
+            strXML.AppendFormat("<set label='{0}' value='{1}'/>",General.Msg("Absence","الغياب"), DT.Rows[0]["MsmDays_Absent_WithoutVac"].ToString());
+            strXML.AppendFormat("<set label='{0}' value='{1}'/>",General.Msg("Vacations","الإجازات"), DT.Rows[0]["MsmDays_Absent_PaidVac"].ToString());
+            strXML.AppendFormat("<set label='{0}' value='{1}'/>",General.Msg("Commissions","الإنتدابات"), DT.Rows[0]["MsmDays_Absent_WithCom"].ToString());
+            strXML.AppendFormat("<set label='{0}' value='{1}'/>",General.Msg("Jobs Assignments","مهام العمل"), DT.Rows[0]["MsmDays_Absent_WithJob"].ToString());
+            strXML.Append("</chart>");
+
+            Chart ChartObj = new Chart("doughnut2d", "     ", "100%", "400", "xml", strXML.ToString());
+            litChartViewer_05.Text = ChartObj.Render();
+        }
+    }
+    
+     #endregion
+    /*******************************************************************************************************************************/
+    /*******************************************************************************************************************************/
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    /*******************************************************************************************************************************/
+    /*******************************************************************************************************************************/
+    #region Chart14
+
+    public void FillChart14()
+    {
+        ////titel = General.Msg("Percentage of actual work from required work of employees", "نسبة الدوام الفعلي من المطلوب للموظفين"); titel,  
+        divNameTitel.Visible = true;
+
+        SqlCommand cmd = new SqlCommand();
+        StringBuilder Q = new StringBuilder();
+
+        Q.Append(" SELECT DepID,DepNameEn,DepNameAr ");
+        Q.Append(" ,ISNULL(CAST(SUM(ISNULL(MsmDays_Present,0)) AS DECIMAL),0) / ISNULL(SUM(ISNULL(MsmDays_Work,0)),0) * 100 AS PercentPresentDays ");
+        Q.Append(" ,ISNULL(CAST(SUM(ISNULL(MsmDays_Absent_WithoutVac,0)) AS DECIMAL),0) / ISNULL(SUM(ISNULL(MsmDays_Work,0)),0) * 100 AS PercentAbcentDays ");
+        Q.Append(" ,ISNULL(CAST(SUM(ISNULL(MsmDays_Absent_PaidVac,0)) AS DECIMAL),0) / ISNULL(SUM(ISNULL(MsmDays_Work,0)),0) * 100 AS PercentVacDays ");
+        Q.Append(" ,ISNULL(CAST(SUM(ISNULL(MsmDays_Absent_WithCom,0)) AS DECIMAL),0) / ISNULL(SUM(ISNULL(MsmDays_Work,0)),0) * 100 AS PercentComDays ");
+        Q.Append(" ,ISNULL(CAST(SUM(ISNULL(MsmDays_Absent_WithJob,0)) AS DECIMAL),0) / ISNULL(SUM(ISNULL(MsmDays_Work,0)),0) * 100 AS PercentJobDays ");
+        Q.Append(" ,ISNULL(CAST(SUM(ISNULL(MsmBeginLate,0)) AS DECIMAL),0) / ISNULL(SUM(ISNULL(MsmShiftDuration,0)),0) * 100 AS PercentBeginLate ");
+        Q.Append(" ,ISNULL(CAST(SUM(ISNULL(MsmOutEarly,0)) AS DECIMAL),0) / ISNULL(SUM(ISNULL(MsmShiftDuration,0)),0) * 100 AS PercentOutEarly ");
+        Q.Append(" ,ISNULL(CAST(SUM(ISNULL(MsmWorkDuration,0)) AS DECIMAL),0) / ISNULL(SUM(ISNULL(MsmShiftDuration,0)),0) * 100 AS PercentWork ");
+        Q.Append(" FROM dbo.MonthSummaryInfoView ");
+        Q.Append(" WHERE CONVERT(VARCHAR(12),MsmStartDate,103) = CONVERT(VARCHAR(12),@Param_FromDate,103) ");
+        Q.Append(" AND CONVERT(VARCHAR(12),MsmEndDate,103) = CONVERT(VARCHAR(12),@Param_ToDate,103) ");
+        Q.Append(" AND DepID = " + Param_OneDepID + "");
+        Q.Append(" GROUP BY DepID,DepNameEn, DepNameAr ");
+
+        cmd.Parameters.AddWithValue("@Param_FromDate", Param_FromDate);
+        cmd.Parameters.AddWithValue("@Param_ToDate"  , Param_ToDate);
+
+        cmd.CommandText = Q.ToString();
+
+        DataTable ChartDT = new DataTable();
+        ChartDT = DBCs.FetchData(cmd);
+
+        if (!DBCs.IsNullOrEmpty(ChartDT))
+        { 
+            lblNameTitel.Text = ChartDT.Rows[0][General.Msg("DepNameEn", "DepNameAr")].ToString();
+            FillChart_1402(ChartDT);
+            FillChart_1403(ChartDT);
+            FillChart_1404(ChartDT);
+            FillChart_1405(ChartDT);
+        } 
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void FillChart_1401()
+    {
+  //      SqlCommand cmd = new SqlCommand();
+  //      StringBuilder Q = new StringBuilder();
+
+  //      Q.Append(" SELECT E.EmpID AS EmpID, E.EmpNameAr AS EmpNameAr, E.EmpNameEn AS EmpNameEn, D.DsmDate AS DsmDate, ISNULL(D.EmpActualWork,0) EmpActualWork, ISNULL(D.EmpActualWorkSecond,0) EmpActualWorkSecond ");
+  //      Q.Append(" FROM spActiveEmployeeView E LEFT JOIN ");
+		//Q.Append("         (SELECT EmpID, DsmDate, DsmWorkDuration AS EmpActualWorkSecond, CAST(DsmWorkDuration AS DECIMAL)/ 60 / 60 AS EmpActualWork ");
+		//Q.Append("          FROM dbo.DaySummaryInfoView ");
+		//Q.Append("          WHERE DsmDate BETWEEN @Param_FromDate AND @Param_ToDate AND DsmStatus NOT IN ('WE','N') ");
+  //      Q.Append("          AND EmpID IN (" + Param_EmpIDs + ")) D "); 
+	 //   Q.Append("     ON E.EmpID = D.EmpID ");
+  //      Q.Append(" WHERE E.EmpID IN (" + Param_EmpIDs + ") "); 
+  //      Q.Append(" ORDER BY E.EmpID,D.DsmDate ");
+
+  //      cmd.Parameters.AddWithValue("@Param_FromDate", Param_FromDate);
+  //      cmd.Parameters.AddWithValue("@Param_ToDate"  , Param_ToDate);
+       
+  //      cmd.CommandText = Q.ToString();
+
+  //      DataTable ChartDT = new DataTable();
+  //      ChartDT = DBCs.FetchData(cmd);
+  //      if (!DBCs.IsNullOrEmpty(ChartDT))
+  //      {
+  //          StringBuilder strXML = new StringBuilder();
+  //          strXML.AppendFormat("<chart caption='{0}' palette='1' exportEnabled='1' decimals='2' showborder='0' showOpenValue='1' showCloseValue='1' numberPrefix='' bgcolor='#ffffff' theme='fint'>", General.Msg("IN details", "تفاصيل الدخول"));
+  //          strXML.Append("<dataset>");
+
+  //          DataRow[] EDRs = ChartDT.Select("EmpID = '" + ChartDT.Rows[0]["EmpID"].ToString() + "'");
+  //          foreach (DataRow DR in EDRs)
+  //          {
+  //              strXML.AppendFormat("<set value='{0}' displayValue='{1}'/>", DR["EmpActualWork"].ToString(), DisplayFun.GrdDisplayDuration(DR["EmpActualWorkSecond"].ToString()));
+  //          }
+
+  //          strXML.Append("</dataset>");
+  //          strXML.Append("</chart>");
+           
+  //          Chart ChartObj = new Chart("sparkline", " ", "100%", "100", "xml", strXML.ToString());
+  //          litChartViewer_01.Text = ChartObj.Render();
+  //      }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void FillChart_1402(DataTable DT)
+    {
+        string titel = ""; //General.Msg("Details of working days", "تفاصيل أيام العمل");
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            StringBuilder strXML = new StringBuilder();
+            strXML.AppendFormat("<chart caption='{0}' palette='1' bgAlpha='0' numbersuffix='%' lowerlimit='0' upperlimit='100' subcaptionfontsize='11' chartbottommargin='25' theme='fint'>", General.Msg("Late attendance","الحضور المتأخر"));
+            strXML.Append("<colorrange>");
+            strXML.Append("<color minvalue='0'  maxvalue='25'  code='#6baa01' alpha='25'/>");
+            strXML.Append("<color minvalue='25' maxvalue='50'  code='#f8bd19' alpha='25'/>");
+            strXML.Append("<color minvalue='50' maxvalue='75'  code='#e44a00' alpha='25'/>");
+            strXML.Append("<color minvalue='75' maxvalue='100' code='#e44a00' alpha='25'/>");
+            strXML.Append("</colorrange>");
+            strXML.AppendFormat("<value>{0}</value>",DT.Rows[0]["PercentBeginLate"].ToString());
+            strXML.Append("<target>100</target>");
+            strXML.Append("</chart>");
+
+            Chart ChartObj = new Chart("hbullet", "  ", "100%", "90", "xml", strXML.ToString());
+            litChartViewer_02.Text = ChartObj.Render();;
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void FillChart_1403(DataTable DT)
+    {
+        string titel = ""; //General.Msg("Details of working days", "تفاصيل أيام العمل");
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            StringBuilder strXML = new StringBuilder();
+            strXML.AppendFormat("<chart caption='{0}' palette='1' bgAlpha='0' numbersuffix='%' lowerlimit='0' upperlimit='100' subcaptionfontsize='11' chartbottommargin='25' theme='fint'>", General.Msg("Out Early","الخروج المبكر"));
+            strXML.Append("<colorrange>");
+            strXML.Append("<color minvalue='0'  maxvalue='25'  code='#6baa01' alpha='25'/>");
+            strXML.Append("<color minvalue='25' maxvalue='50'  code='#f8bd19' alpha='25'/>");
+            strXML.Append("<color minvalue='50' maxvalue='75'  code='#e44a00' alpha='25'/>");
+            strXML.Append("<color minvalue='75' maxvalue='100' code='#e44a00' alpha='25'/>");
+            strXML.Append("</colorrange>");
+            strXML.AppendFormat("<value>{0}</value>",DT.Rows[0]["PercentOutEarly"].ToString());
+            strXML.Append("<target>100</target>");
+            strXML.Append("</chart>");
+
+            Chart ChartObj = new Chart("hbullet", "   ", "100%", "90", "xml", strXML.ToString());
+            litChartViewer_03.Text = ChartObj.Render();
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void FillChart_1404(DataTable DT)
+    {
+        string titel = General.Msg("General measure of the work of the employee", "المقياس العام لدوام الموظف");
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            StringBuilder strXML = new StringBuilder();
+            strXML.AppendFormat("<chart caption='{0}' subcaption='{1}' palette='1' numbersuffix='%' exportEnabled='1' lowerlimit='0' upperlimit='100' showValue='1' valueBelowPivot='1' theme='fint'>",titel, General.Msg("actual work", "الدوام الفعلي"));
+            strXML.Append("<colorrange>");
+            strXML.Append("<color minvalue='0'  maxvalue='25'  code='#e44a00'/>");
+            strXML.Append("<color minvalue='25' maxvalue='50'  code='#e44a00'/>");
+            strXML.Append("<color minvalue='50' maxvalue='75'  code='#f8bd19'/>");
+            strXML.Append("<color minvalue='75' maxvalue='100' code='#6baa01'/>");
+            strXML.Append("</colorrange>");
+            strXML.AppendFormat("<dials><dial value='{0}'/></dials>", DT.Rows[0]["PercentWork"].ToString());
+            strXML.Append("</chart>");
+
+            string StrChart = "";
+            Chart ChartObj = new Chart("angulargauge", "    ", "100%", "400", "xml", strXML.ToString());
+            StrChart = ChartObj.Render();
+            litChartViewer_04.Text = StrChart;
+        }
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void FillChart_1405(DataTable DT)
+    {
+        string titel = General.Msg("Details of working days", "تفاصيل أيام العمل");
+
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            StringBuilder strXML = new StringBuilder();
+            strXML.AppendFormat("<chart caption='{0}' subcaption='{1}' numbersuffix='%' decimals='2' showborder='0' bgAlpha='0' canvasbgAlpha='0' use3dlighting='0' enablesmartlabels='0' startingangle='310' showlabels='0' showpercentvalues='0' showlegend='1' legendPosition='right' legendIconScale='1.5' legendBorderThickness='0' legendBorderAlpha='0' legendBgAlpha='0' defaultcenterlabel='{2}' centerlabel='$label  $value' centerlabelbold='1' showtooltip='0' usedataplotcolorforlabels='1' theme='fint' pieRadius='100'>", titel, "", General.Msg("Attendees","الحضور") + " " + string.Format("{0:0.00}", DT.Rows[0]["PercentPresentDays"]).ToString() + "%");
+            strXML.AppendFormat("<set label='{0}' value='{1}'/>",General.Msg("Attendees","الحضور"), DT.Rows[0]["PercentPresentDays"].ToString());
+            strXML.AppendFormat("<set label='{0}' value='{1}'/>",General.Msg("Absence","الغياب"), DT.Rows[0]["PercentAbcentDays"].ToString());
+            strXML.AppendFormat("<set label='{0}' value='{1}'/>",General.Msg("Vacations","الإجازات"), DT.Rows[0]["PercentVacDays"].ToString());
+            strXML.AppendFormat("<set label='{0}' value='{1}'/>",General.Msg("Commissions","الإنتدابات"), DT.Rows[0]["PercentComDays"].ToString());
+            strXML.AppendFormat("<set label='{0}' value='{1}'/>",General.Msg("Jobs Assignments","مهام العمل"), DT.Rows[0]["PercentJobDays"].ToString());
+            strXML.Append("</chart>");
+
+            Chart ChartObj = new Chart("doughnut2d", "     ", "100%", "400", "xml", strXML.ToString());
+            litChartViewer_05.Text = ChartObj.Render();
+        }
+    }
+    
+     #endregion
+    /*******************************************************************************************************************************/
+    /*******************************************************************************************************************************/
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public string DisplayDuration(object pDuration)

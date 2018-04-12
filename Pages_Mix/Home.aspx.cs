@@ -432,9 +432,10 @@ public partial class Home : BasePage
 
         if (!DBCs.IsNullOrEmpty(TDT))
         {
+            string Subtitel =  General.Msg("Number of Employees","عدد الموظفين") + ": " + TDT.Rows[0]["EmpAllCount"].ToString();
+            string Deftitel =  General.Msg("Attendees","الحضور") + " " + TDT.Rows[0]["EmpPCount"].ToString();
             StringBuilder strXML = new StringBuilder();
-            strXML.AppendFormat("<chart caption='{0}' subcaption='{1}' showborder='0' bgAlpha='0' canvasbgAlpha='0' use3dlighting='0' enablesmartlabels='0' startingangle='310' showlabels='0' showpercentvalues='0' showlegend='1' legendPosition='right' legendIconScale='1.5' legendBorderThickness='0' legendBorderAlpha='0' legendBgAlpha='0' defaultcenterlabel='{2}' centerlabel='$label  $value' centerlabelbold='1' showtooltip='0' decimals='0' usedataplotcolorforlabels='1' theme='fint' pieRadius='100'>", titel, "", General.Msg("Employees","الموظفون") + " " + TDT.Rows[0]["EmpAllCount"].ToString());
-            strXML.AppendFormat("<set label='{0}' value='{1}'/>",General.Msg("Employees","الموظفون"), TDT.Rows[0]["EmpAllCount"].ToString());
+            strXML.AppendFormat("<chart caption='{0}' subcaption='{1}' showborder='0' bgAlpha='0' canvasbgAlpha='0' use3dlighting='0' enablesmartlabels='0' startingangle='310' showlabels='0' showpercentvalues='0' showlegend='1' legendPosition='right' legendIconScale='1.5' legendBorderThickness='0' legendBorderAlpha='0' legendBgAlpha='0' defaultcenterlabel='{2}' centerlabel='$label  $value' centerlabelbold='1' showtooltip='0' decimals='0' usedataplotcolorforlabels='1' theme='fint' pieRadius='100'>", titel, Subtitel, Deftitel);
             strXML.AppendFormat("<set label='{0}' value='{1}'/>",General.Msg("Attendees","الحضور"), TDT.Rows[0]["EmpPCount"].ToString());
             strXML.AppendFormat("<set label='{0}' value='{1}'/>",General.Msg("Absence","الغياب"), TDT.Rows[0]["EmpACount"].ToString());
             strXML.AppendFormat("<set label='{0}' value='{1}'/>",General.Msg("Vacations","الإجازات"), TDT.Rows[0]["EmpVCount"].ToString());
@@ -480,7 +481,6 @@ public partial class Home : BasePage
             StrChart3 = ChartObj3.Render();
             litAbsenceEmp.Text = StrChart3;
 
-
             StringBuilder strXML4 = new StringBuilder();
             strXML4.AppendFormat("<chart caption='{0}' subcaption='{1}' palette='1' bgAlpha='0' numbersuffix='%' lowerlimit='0' upperlimit='100' subcaptionfontsize='11' chartbottommargin='25' theme='fint'>", General.Msg("Vacations","الإجازات"), TDT.Rows[0]["EmpVCount"].ToString());
             strXML4.Append("<colorrange>");
@@ -497,6 +497,21 @@ public partial class Home : BasePage
             Chart ChartObj4 = new Chart("hbullet", "             ", "100%", "90", "xml", strXML4.ToString());
             StrChart4 = ChartObj4.Render();
             litVacationsEmp.Text = StrChart4;
+
+
+      //      SqlCommand cmd = new SqlCommand();
+      //      StringBuilder Q = new StringBuilder();
+
+      //      Q.Append(" SELECT E.EmpID AS EmpID, E.EmpNameAr AS EmpNameAr, E.EmpNameEn AS EmpNameEn, D.DsmDate AS DsmDate, ISNULL(D.EmpActualWork,0) EmpActualWork, ISNULL(D.EmpActualWorkSecond,0) EmpActualWorkSecond ");
+      //      Q.Append(" FROM spActiveEmployeeView E LEFT JOIN ");
+		    //Q.Append("         (SELECT EmpID, DsmDate, DsmWorkDuration AS EmpActualWorkSecond, CAST(DsmWorkDuration AS DECIMAL)/ 60 / 60 AS EmpActualWork ");
+		    //Q.Append("          FROM dbo.DaySummaryInfoView ");
+		    //Q.Append("          WHERE DsmDate BETWEEN @Param_FromDate AND @Param_ToDate AND DsmStatus NOT IN ('WE','N') ");
+      //      Q.Append("          AND EmpID IN (" + Param_OneEmpID + ")) D "); 
+	     //   Q.Append("     ON E.EmpID = D.EmpID ");
+      //      Q.Append(" WHERE E.EmpID IN (" + Param_OneEmpID + ") "); 
+      //      Q.Append(" ORDER BY E.EmpID,D.DsmDate ");
+
         }
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

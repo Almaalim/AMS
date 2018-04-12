@@ -19,13 +19,40 @@
                 <div class="col1">
                     <asp:LinkButton ID="btnBackToReportsPage" runat="server" CssClass="GenButtonsmall backbtn"
                         OnClick="btnBackToReportsPage_Click" meta:resourcekey="btnBackToReportsPageResource1"></asp:LinkButton>
+                </div>
+            </div>
+            <div id="divNameTitel" runat="server" visible="false" class="row">
+                <div class="col12 Heading">
+                    <asp:Label ID="lblNameTitel" runat="server" CssClass="h4" meta:resourcekey="lblChartTitelResource1"></asp:Label>
+                </div>
+            </div>
 
-                    <asp:LinkButton ID="LinkButton1" runat="server" CssClass="GenButtonsmall backbtn"></asp:LinkButton>
+            <div class="row">
+                <div class="col12">
+                    <asp:Literal ID="litChartViewer" runat="server"></asp:Literal>
                 </div>
             </div>
             <div class="row">
                 <div class="col12">
-                    <asp:Literal ID="litChartViewer" runat="server"></asp:Literal>
+                    <asp:Literal ID="litChartViewer_01" runat="server"></asp:Literal>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col12">
+                    <asp:Literal ID="litChartViewer_02" runat="server"></asp:Literal>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col12">
+                    <asp:Literal ID="litChartViewer_03" runat="server"></asp:Literal>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col6">
+                    <asp:Literal ID="litChartViewer_04" runat="server"></asp:Literal>
+                </div>
+                <div class="col6">
+                    <asp:Literal ID="litChartViewer_05" runat="server"></asp:Literal>
                 </div>
             </div>
 

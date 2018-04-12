@@ -61,16 +61,20 @@ public class ReportFun
                 
             }
 
-            if (!string.IsNullOrEmpty(RepProCs.YearDate))    { Rep["Param_YearDate"]  = RepProCs.YearDate; } 
-            if (!string.IsNullOrEmpty(RepProCs.WktID))       { Rep["Param_WktIDs"]    = RepProCs.WktID; }
-            if (!string.IsNullOrEmpty(RepProCs.MacID))       { Rep["Param_MacIDs"]    = RepProCs.MacID; }
-            if (!string.IsNullOrEmpty(RepProCs.EmpID))       { Rep["Param_EmpIDs"]    = RepProCs.EmpID; }
-            if (!string.IsNullOrEmpty(RepProCs.DepID))       { Rep["Param_DepIDs"]    = RepProCs.DepID; }
-            if (!string.IsNullOrEmpty(RepProCs.CatID))       { Rep["Param_CatIDs"]    = RepProCs.CatID; }
-            if (!string.IsNullOrEmpty(RepProCs.UsrName))     { Rep["Param_UsrName"]   = RepProCs.UsrName; } ////else { Rep["UsrName"] = RepProCs.RepUser; }
-            if (!string.IsNullOrEmpty(RepProCs.VtpID))       { Rep["Param_VtpIDs"]    = RepProCs.VtpID; }
-            if (!string.IsNullOrEmpty(RepProCs.ExcID))       { Rep["Param_ExcIDs"]    = RepProCs.ExcID; }
-            if (!string.IsNullOrEmpty(RepProCs.DaysCount))   { Rep["Param_DaysCount"] = Convert.ToInt32(RepProCs.DaysCount); }
+            if (!string.IsNullOrEmpty(RepProCs.YearDate))      { Rep["Param_YearDate"]  = RepProCs.YearDate; } 
+            if (!string.IsNullOrEmpty(RepProCs.WktID))         { Rep["Param_WktIDs"]    = RepProCs.WktID; }
+            if (!string.IsNullOrEmpty(RepProCs.MacID))         { Rep["Param_MacIDs"]    = RepProCs.MacID; }
+            if (!string.IsNullOrEmpty(RepProCs.EmpID))         { Rep["Param_EmpIDs"]    = RepProCs.EmpID; }
+            if (!string.IsNullOrEmpty(RepProCs.DepID))         { Rep["Param_DepIDs"]    = RepProCs.DepID; }
+            if (!string.IsNullOrEmpty(RepProCs.CatID))         { Rep["Param_CatIDs"]    = RepProCs.CatID; }
+            if (!string.IsNullOrEmpty(RepProCs.UsrName))       { Rep["Param_UsrName"]   = RepProCs.UsrName; } ////else { Rep["UsrName"] = RepProCs.RepUser; }
+            if (!string.IsNullOrEmpty(RepProCs.VtpID))         { Rep["Param_VtpIDs"]    = RepProCs.VtpID; }
+            if (!string.IsNullOrEmpty(RepProCs.ExcID))         { Rep["Param_ExcIDs"]    = RepProCs.ExcID; }
+            if (!string.IsNullOrEmpty(RepProCs.DaysCount))     { Rep["Param_DaysCount"] = Convert.ToInt32(RepProCs.DaysCount); }
+
+            //if (!string.IsNullOrEmpty(RepProCs.OneEmployee))   { Rep["Param_OneEmployee"]   = RepProCs.OneEmployee; } 
+            //if (!string.IsNullOrEmpty(RepProCs.OneDepartment)) { Rep["Param_OneDepartment"] = RepProCs.OneDepartment; }
+
             if (!string.IsNullOrEmpty(RepProCs.Permissions))
             {
                 Rep["Param_Permission"] = RepProCs.Permissions;
@@ -140,12 +144,12 @@ public class ReportFun
                 RepProCs.RepNameAr = DT.Rows[0]["RepNameAr"].ToString();
 
                 RepProCs.RepTemp = General.Msg(RepProCs.RepLang, DT.Rows[0]["RepTempEn"].ToString(), DT.Rows[0]["RepTempAr"].ToString());
-                RepProCs.RepTemp = DT.Rows[0]["RepTempEn"].ToString();
-                RepProCs.RepTemp = DT.Rows[0]["RepTempAr"].ToString();
+                RepProCs.RepTempEn = DT.Rows[0]["RepTempEn"].ToString();
+                RepProCs.RepTempAr = DT.Rows[0]["RepTempAr"].ToString();
 
                 RepProCs.RepDesc = General.Msg(RepProCs.RepLang, DT.Rows[0]["RepDescEn"].ToString(), DT.Rows[0]["RepDescAr"].ToString());
-                RepProCs.RepDesc = DT.Rows[0]["RepDescEn"].ToString();
-                RepProCs.RepDesc = DT.Rows[0]["RepDescAr"].ToString();
+                RepProCs.RepDescEn = DT.Rows[0]["RepDescEn"].ToString();
+                RepProCs.RepDescAr = DT.Rows[0]["RepDescAr"].ToString();
 
                 if (DT.Rows[0]["RepOrientation"] != DBNull.Value) { RepProCs.RepOrientation = DT.Rows[0]["RepOrientation"].ToString(); } else { RepProCs.RepOrientation = "V"; }
                 RepProCs.RepPanels = DT.Rows[0]["RepPanels"].ToString();
@@ -185,16 +189,18 @@ public class ReportFun
                 RepProCs.MonthDate = DTCs.FindCurrentMonth(CalendarType);
                 RepProCs.YearDate  = DTCs.FindCurrentYear(CalendarType);
             } 
-            if (ParmID == "32")   { RepProCs.EmpID = ParmVal; }
-            if (ParmID == "64")   { RepProCs.DepID = ParmVal; }
-            if (ParmID == "128")  { RepProCs.MacID = ParmVal; }
-            if (ParmID == "256")  { RepProCs.CatID = ParmVal; }
-            if (ParmID == "512")  { RepProCs.UsrName = ParmVal; }
+            if (ParmID == "32")    { RepProCs.EmpID = ParmVal; }
+            if (ParmID == "64")    { RepProCs.DepID = ParmVal; }
+            if (ParmID == "128")   { RepProCs.MacID = ParmVal; }
+            if (ParmID == "256")   { RepProCs.CatID = ParmVal; }
+            if (ParmID == "512")   { RepProCs.UsrName = ParmVal; }
               
-            if (ParmID == "1024") { RepProCs.VtpID = ParmVal; }
-            if (ParmID == "2048") { RepProCs.ExcID = ParmVal; }
-            if (ParmID == "4096") { RepProCs.DaysCount = ParmVal; }
-            if (ParmID == "8192") { RepProCs.WktID = ParmVal; }
+            if (ParmID == "1024")  { RepProCs.VtpID = ParmVal; }
+            if (ParmID == "2048")  { RepProCs.ExcID = ParmVal; }
+            if (ParmID == "4096")  { RepProCs.DaysCount = ParmVal; }
+            if (ParmID == "8192")  { RepProCs.WktID = ParmVal; }
+            if (ParmID == "16384") { RepProCs.OneEmployee = ParmVal; }
+            if (ParmID == "32768") { RepProCs.OneDepartment = ParmVal; }
         }
         
         return RepProCs;

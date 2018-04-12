@@ -552,6 +552,19 @@ public class CtrlFun : DataLayerBase
             if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
         }
     }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    public void FillDepartmentList(ref DropDownList _ddl, RequiredFieldValidator _rv, bool isClear, string DepList)
+    {
+        if (isClear) { _ddl.Items.Clear(); }
+
+        DataTable DT = DBCs.FetchData(new SqlCommand(" SELECT * FROM Department WHERE ISNULL(DepDeleted,0) = 0 AND DepID IN (" + DepList + ")"));
+        if (!DBCs.IsNullOrEmpty(DT))
+        {
+            PopulateDDL(_ddl, DT, General.Msg("DepNameEn", "DepNameAr"), "DepID", General.Msg("-Select Department-", "-اختر القسم-"));
+            if (_rv != null) { _rv.InitialValue = _ddl.Items[0].Text; }
+        }
+    }
 
     #endregion
     /*#############################################################################################################################*/

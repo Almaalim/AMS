@@ -54,6 +54,12 @@ public class RepParametersPro
 
     string _DaysCount;
     public string DaysCount { get { return _DaysCount; } set { if (_DaysCount != value) { _DaysCount = value; } } }
+
+    string _OneEmployee;
+    public string OneEmployee { get { return _OneEmployee; } set { if (_OneEmployee != value) { _OneEmployee = value; } } }
+
+    string _OneDepartment;
+    public string OneDepartment { get { return _OneDepartment; } set { if (_OneDepartment != value) { _OneDepartment = value; } } }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     string _RepID;

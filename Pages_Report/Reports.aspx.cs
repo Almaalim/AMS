@@ -113,6 +113,7 @@ public partial class Reports : BasePage
             CtrlCs.FillCategoryList(ref ddlCatName, null, true);
             CtrlCs.FillExcuseTypeList(ref ddlExcType, null, false, true);
             CtrlCs.FillVacationTypeList(ref ddlVacType, null, false, true, "ALL");
+            CtrlCs.FillDepartmentList(ref ddlOneDepartment, null, false,pgCs.DepList);
 
             FillDepTree();
 
@@ -142,16 +143,18 @@ public partial class Reports : BasePage
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected void ShowPanels()
     {
-        pnlMonth.Visible = false;
-        pnlWorkTime.Visible = false;
-        pnlMachine.Visible = false;
-        pnlCategory.Visible = false;
-        pnlUsers.Visible = false;
-        pnlVacType.Visible = false;
-        pnlExcType.Visible = false;
-        pnlDepartmnets.Visible = false;
-        pnlEmployee.Visible = false;
-        pnlDaysCount.Visible = false;
+        pnlMonth.Visible         = false;
+        pnlWorkTime.Visible      = false;
+        pnlMachine.Visible       = false;
+        pnlCategory.Visible      = false;
+        pnlUsers.Visible         = false;
+        pnlVacType.Visible       = false;
+        pnlExcType.Visible       = false;
+        pnlDepartmnets.Visible   = false;
+        pnlEmployee.Visible      = false;
+        pnlDaysCount.Visible     = false;
+        pnlOneEmployee.Visible   = false;
+        pnlOneDepartment.Visible = false;
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -176,6 +179,9 @@ public partial class Reports : BasePage
         ddlYear.SelectedIndex = -1;
         txtDaysCount.Text = "20";
 
+        txtOneEmployee.Text = "";
+        ddlOneDepartment.SelectedIndex = -1;
+
         FavClear();
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -188,21 +194,6 @@ public partial class Reports : BasePage
         string RepID = e.CommandArgument.ToString();
         ViewState["RepID"] = Session["RepID"] = RepID;
 
-        /////////////////Change Style
-        //foreach (DataListItem item in dltReport.Items)
-        //{
-        //    System.Web.UI.WebControls.LinkButton lnkRef = (System.Web.UI.WebControls.LinkButton)item.FindControl("lnkBtnEn");
-        //    System.Web.UI.WebControls.Image imgRef = (System.Web.UI.WebControls.Image)item.FindControl("Image1");
-        //    if (lnkRef != null && imgRef != null)
-        //    {
-        //        lnkRef.Font.Bold = false;
-        //    }
-        //}
-
-        //System.Web.UI.WebControls.LinkButton lnkCurrRef = (System.Web.UI.WebControls.LinkButton)e.Item.FindControl("lnkBtnEn");
-        //System.Web.UI.WebControls.Image imgCurrRef = (System.Web.UI.WebControls.Image)e.Item.FindControl("Image1");
-        //lnkCurrRef.Font.Bold = true;
-        /////////////////
         string pnlshow = "";
         Clear();
 
@@ -230,17 +221,19 @@ public partial class Reports : BasePage
         int RepPanels = Convert.ToInt32(RepProCs.RepPanels);
         if (CheckBitWise(RepPanels, 1)) { pnlshow = pnlDate.ClientID; /**/ calDate.SetValidationEnabled(true); }
         if (CheckBitWise(RepPanels, 2)) { pnlshow = pnlDateFromTo.ClientID; /**/ calStartDate.SetValidationEnabled(true); /**/ calEndDate.SetValidationEnabled(true); }
-        pnlWorkTime.Visible = CheckBitWise(RepPanels, 8192);
-        pnlMachine.Visible = CheckBitWise(RepPanels, 128);
-        pnlEmployee.Visible = CheckBitWise(RepPanels, 32);
-        pnlDepartmnets.Visible = CheckBitWise(RepPanels, 64); /**/ if (pnlDepartmnets.Visible) { FillDepTree(); }
-        pnlCategory.Visible = CheckBitWise(RepPanels, 256);
-        pnlUsers.Visible = CheckBitWise(RepPanels, 512);
-        pnlMonth.Visible = CheckBitWise(RepPanels, 8);
         if (CheckBitWise(RepPanels, 4)) { pnlshow = pnlDate.ClientID; /**/ calDate.SetEnabled(false); /**/ calDate.SetValidationEnabled(true); /**/ calDate.SetTodayDate(); }
-        pnlVacType.Visible = CheckBitWise(RepPanels, 1024);
-        pnlExcType.Visible = CheckBitWise(RepPanels, 2048);
-        pnlDaysCount.Visible = CheckBitWise(RepPanels, 4096);
+        pnlMonth.Visible         = CheckBitWise(RepPanels, 8);
+        pnlEmployee.Visible      = CheckBitWise(RepPanels, 32);
+        if (CheckBitWise(RepPanels, 64)) { pnlDepartmnets.Visible = true; /**/ FillDepTree(); }
+        pnlMachine.Visible       = CheckBitWise(RepPanels, 128);
+        pnlCategory.Visible      = CheckBitWise(RepPanels, 256);
+        pnlUsers.Visible         = CheckBitWise(RepPanels, 512);
+        pnlVacType.Visible       = CheckBitWise(RepPanels, 1024);
+        pnlExcType.Visible       = CheckBitWise(RepPanels, 2048);
+        pnlDaysCount.Visible     = CheckBitWise(RepPanels, 4096);
+        pnlWorkTime.Visible      = CheckBitWise(RepPanels, 8192);
+        pnlOneEmployee.Visible   = CheckBitWise(RepPanels, 16384);
+        pnlOneDepartment.Visible = CheckBitWise(RepPanels, 32768);
 
         btnEventsEnable(true);
 
@@ -316,7 +309,7 @@ public partial class Reports : BasePage
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected string Employee()
+    protected string Employees()
     {
         DataTable EmployeeInsertdt = ucEmployeeSelected.getEmpSelected();
         //return GenCs.CreateIDsNumber("EmpID", EmployeeInsertdt);
@@ -324,7 +317,7 @@ public partial class Reports : BasePage
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    protected string Department()
+    protected string Departments()
     {
         ViewState["DepartmentParam"] = "";
 
@@ -414,6 +407,31 @@ public partial class Reports : BasePage
     }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected string OneEmployee()
+    {
+        ViewState["OneEmployeeParam"] = "";
+
+        try
+        {
+            string[] IDs = txtOneEmployee.Text.Split('-');
+            if (!string.IsNullOrEmpty(IDs[0])) { ViewState["OneEmployeeParam"] = "'" + IDs[0] + "'"; }
+        }
+        catch(Exception ex) { ViewState["OneEmployeeParam"] = ""; }
+
+        return ViewState["OneEmployeeParam"].ToString();      
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    protected string OneDepartment()
+    {
+        ViewState["OneDepartmentParam"] = "";
+
+        if (ddlOneDepartment.SelectedIndex > 0) { ViewState["OneDepartmentParam"] = ddlOneDepartment.SelectedValue; }
+
+        return ViewState["OneDepartmentParam"].ToString();      
+    }
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /*#############################################################################################################################*/
     /*#############################################################################################################################*/
@@ -450,13 +468,16 @@ public partial class Reports : BasePage
 
         if (pnlWorkTime.Visible) { RepProCs.WktID = ViewState["WorkTimeParam"].ToString(); }
         if (pnlMachine.Visible) { RepProCs.MacID = ViewState["MachineParam"].ToString(); }
-        if (pnlEmployee.Visible) { RepProCs.EmpID = Employee(); }
+        if (pnlEmployee.Visible) { RepProCs.EmpID = Employees(); }
         if (pnlDepartmnets.Visible) { RepProCs.DepID = ViewState["DepartmentParam"].ToString(); }
         if (pnlCategory.Visible) { RepProCs.CatID = ViewState["CategoryParam"].ToString(); }
         if (pnlUsers.Visible) { RepProCs.UsrName = ddlUserName.SelectedValue.ToString(); RepProCs.Permissions = Permission(); }
         if (pnlVacType.Visible) { RepProCs.VtpID = ViewState["VacationParam"].ToString(); }
         if (pnlExcType.Visible) { RepProCs.ExcID = ViewState["ExcuseParam"].ToString(); }
         if (pnlDaysCount.Visible) { RepProCs.DaysCount = txtDaysCount.Text; }
+
+        if (pnlOneEmployee.Visible)   { RepProCs.OneEmployee   = ViewState["OneEmployeeParam"].ToString(); }
+        if (pnlOneDepartment.Visible) { RepProCs.OneDepartment = ViewState["OneDepartmentParam"].ToString(); }
 
         ViewState["RepProCs"] = RepProCs;
     }
@@ -1095,7 +1116,7 @@ public partial class Reports : BasePage
 
         if (source.Equals(cvDepartment))
         {
-            if (pnlDepartmnets.Visible && Department() == "")
+            if (pnlDepartmnets.Visible && Departments() == "")
             {
                 CtrlCs.ValidMsg(this, ref cvDepartment, true, General.Msg("must be select at least one department of Department List!", "يجب اخيتار قسم واحد على الأقل من قائمة الأقسام"));
                 e.IsValid = false;
@@ -1144,6 +1165,29 @@ public partial class Reports : BasePage
             {
                 if (string.IsNullOrEmpty(txtDaysCount.Text)) { e.IsValid = false; } else { if (Convert.ToInt32(txtDaysCount.Text) < 1) { e.IsValid = false; } }
             }
+        }
+
+        if (source.Equals(cvOneEmployee))
+        {
+            if (pnlOneEmployee.Visible)
+            {
+                if (OneEmployee() != "")
+                {
+                    CtrlCs.ValidMsg(this, ref cvOneEmployee, true, General.Msg("Employee Not found", "الموظف غير موجود"));
+                    if (!GenCs.isEmpID(ViewState["OneEmployeeParam"].ToString().Replace("'",""), pgCs.DepList)) { e.IsValid = false; }
+                }
+                else
+                {
+                    CtrlCs.ValidMsg(this, ref cvOneEmployee, true, General.Msg("Please Select Employee", "من فضلك اختر موظف"));
+                    e.IsValid = false;
+                }
+            }
+        }
+
+        if (source.Equals(cvOneDepartment) && pnlOneDepartment.Visible && OneDepartment() == "")
+        {
+            CtrlCs.ValidMsg(this, ref cvOneDepartment, true, General.Msg("Department Not found", "القسم غير موجود"));
+            e.IsValid = false;
         }
     }
 

@@ -396,7 +396,6 @@
                             </div>
                         </asp:Panel>
                         <asp:Panel ID="pnlDateFromTo" runat="server" meta:resourcekey="pnlDateFromToResource1" Width="100%">
-                        <%--<div ID="pnlDateFromTo" runat="server"> --%>
                             <div class="row">
                                 <div class="col2">
                                     <asp:Label ID="lblDateFrom" runat="server" Font-Size="Small" meta:resourcekey="lblDateFromResource1"
@@ -413,7 +412,6 @@
                                     <Cal:Calendar2 ID="calEndDate" runat="server" CalendarType="System" ValidationRequired="true" ValidationGroup="vgShow" />
                                 </div>
                             </div>
-                        <%--</div>--%>
                         </asp:Panel>
                         <asp:Panel ID="pnlDaysCount" runat="server" meta:resourcekey="pnlDaysCountResource1">
                             <div class="row">
@@ -542,8 +540,7 @@
                                 </div>
                             </div>
                         </asp:Panel>
-                        <asp:Panel ID="pnlExcType" runat="server" meta:resourcekey="pnlExcTypeResource1"
-                            Width="100%">
+                        <asp:Panel ID="pnlExcType" runat="server" meta:resourcekey="pnlExcTypeResource1" Width="100%">
                             <div class="row">
                                 <div class="col2">
                                     <asp:Label ID="lblExcType" runat="server" Font-Size="Small" meta:resourcekey="lblExcTypeResource1"
@@ -560,6 +557,60 @@
                                 </div>
                             </div>
                         </asp:Panel>
+                        
+                        <asp:Panel ID="pnlOneEmployee" runat="server" Width="100%">
+                            <div class="row">
+                                <div class="col2">
+                                    <asp:Label ID="lblOneEmployee" runat="server" meta:resourcekey="lblOneEmployeeResource1"
+                                        Text="Select Employee :"></asp:Label>
+                                </div>
+                                <div class="col4">
+                                    <asp:TextBox ID="txtOneEmployee" runat="server"></asp:TextBox>
+                                    <asp:CustomValidator ID="cvOneEmployee" runat="server"
+                                        ErrorMessage="" CssClass="CustomValidator"
+                                        Text="&lt;img src='../images/message_exclamation.png' title='' /&gt;"
+                                        OnServerValidate="Validate_ServerValidate"
+                                        EnableClientScript="False"
+                                        ControlToValidate="txtValid" ValidationGroup="vgShow">
+                                    </asp:CustomValidator>
+
+                                    <asp:Panel runat="server" ID="pnlauOneEmpID" Height="200px" ScrollBars="Vertical" />
+                                    <ajaxToolkit:AutoCompleteExtender
+                                        runat="server"
+                                        ID="auOnEmpID"
+                                        TargetControlID="txtOneEmployee"
+                                        ServicePath="~/Service/AutoComplete.asmx"
+                                        ServiceMethod="GetEmployeeIDListWithCon"
+                                        MinimumPrefixLength="1"
+                                        CompletionInterval="1000"
+                                        EnableCaching="true"
+                                        OnClientItemSelected="AutoCompleteDepNameItemSelected"
+                                        CompletionListElementID="pnlauOneEmpID"
+                                        CompletionListCssClass="AutoExtender"
+                                        CompletionListItemCssClass="AutoExtenderList"
+                                        CompletionListHighlightedItemCssClass="AutoExtenderHighlight"
+                                        CompletionSetCount="12" />
+                                </div>
+                            </div>
+                        </asp:Panel>
+                        <asp:Panel ID="pnlOneDepartment" runat="server" Width="100%">
+                            <div class="row">
+                                <div class="col2">
+                                    <asp:Label ID="lblOneDepartment" runat="server" meta:resourcekey="lblOneDepartmentResource1"
+                                        Text="Select Department :"></asp:Label>
+                                </div>
+                                <div class="col4">
+                                    <asp:DropDownList ID="ddlOneDepartment" runat="server"></asp:DropDownList>
+                                    <asp:CustomValidator ID="cvOneDepartment" runat="server"
+                                        ErrorMessage="" CssClass="CustomValidator"
+                                        Text="&lt;img src='../images/message_exclamation.png' title='' /&gt;"
+                                        OnServerValidate="Validate_ServerValidate"
+                                        EnableClientScript="False"
+                                        ControlToValidate="txtValid" ValidationGroup="vgShow">
+                                    </asp:CustomValidator>
+                                </div>
+                            </div>
+                        </asp:Panel>                       
                         <asp:Panel ID="pnlDepartmnets" runat="server" meta:resourcekey="pnlDepartmnetsResource1" Width="100%">
                             <div class="row">
                                 <div class="col12 center-block">
@@ -606,7 +657,6 @@
                             </div>
                         </asp:Panel>
 
-                        <%--</asp:Panel>--%>
                         <div class="row">
                             <div class="col8">
                                 <asp:LinkButton ID="btnShow" runat="server" CssClass="GenButton glyphicon glyphicon-eye-open" OnClick="btnShow_Click"
