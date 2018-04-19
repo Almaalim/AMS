@@ -12,13 +12,15 @@
         <ContentTemplate>
             <div class="row">
                 <div class="col12 Heading">
-                    <asp:Label ID="lblChartTitel" runat="server" CssClass="h4" meta:resourcekey="lblChartTitelResource1"></asp:Label>
+                    <div Class="h4">
+                    <asp:Label ID="lblChartTitel" runat="server" meta:resourcekey="lblChartTitelResource1"></asp:Label>
+                     <asp:LinkButton ID="btnBackToReportsPage" runat="server" CssClass="GenButtonsmall1 backbtn"
+                        OnClick="btnBackToReportsPage_Click" meta:resourcekey="btnBackToReportsPageResource1"></asp:LinkButton></div>
                 </div>
             </div>
             <div class="row">
                 <div class="col1">
-                    <asp:LinkButton ID="btnBackToReportsPage" runat="server" CssClass="GenButtonsmall backbtn"
-                        OnClick="btnBackToReportsPage_Click" meta:resourcekey="btnBackToReportsPageResource1"></asp:LinkButton>
+                   
                 </div>
             </div>
             <div id="divNameTitel" runat="server" visible="false" class="row">

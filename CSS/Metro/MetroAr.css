@@ -4468,6 +4468,16 @@ a.colord13f2a:before {
     content: "\e092";
     font-family: 'Glyphicons Halflings';
 }
+.GenButtonsmall1
+{
+    color:#fff;
+    float:left;
+}
+.GenButtonsmall1.backbtn:before
+{
+    content: "\e092";
+    font-family: 'Glyphicons Halflings';
+}
 .rp_servlnk2:active, .rp_servlnk1:active {
     color: #fff;
     text-decoration: none;

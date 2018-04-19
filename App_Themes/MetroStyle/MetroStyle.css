@@ -269,3 +269,13 @@ select>option {
 {
     overflow:hidden;
 }*/
+.h4dropdown
+{
+    color:#333;
+    box-shadow: none;
+    -webkit-box-shadow: 1px 1px 1px 1px rgba(206,220,223,0);
+    -moz-box-shadow: 1px 1px 1px 1px rgba(206,220,223,0);
+    box-shadow: 1px 1px 1px 1px rgba(206,220,223,0);
+}
+
+

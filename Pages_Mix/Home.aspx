@@ -34,10 +34,17 @@
             
             <div class="row">
                 <div class="col12 Heading">
-                    <asp:Label ID="lblMonthlyStatus" runat="server" Text="Monthly Status" CssClass="h4" meta:resourcekey="lblMonthlyStatusResource1"></asp:Label>
-                    <asp:DropDownList ID="ddlMonth" runat="server" meta:resourcekey="ddlMonthResource1" AutoPostBack="True" OnSelectedIndexChanged="ddlMonth_SelectedIndexChanged"></asp:DropDownList>
-                    <asp:Label ID="lblDivYear" runat="server" Text="/ " CssClass="h4"></asp:Label>
-                    <asp:Label ID="lblYear" runat="server" Text="" CssClass="h4"></asp:Label>
+                    <div Class="h4">
+                   
+                    <asp:Label ID="lblMonthlyStatus" runat="server" Text="Monthly Status"  meta:resourcekey="lblMonthlyStatusResource1" Width="127px"></asp:Label>
+                      
+                    <asp:DropDownList ID="ddlMonth" runat="server" meta:resourcekey="ddlMonthResource1" AutoPostBack="True" OnSelectedIndexChanged="ddlMonth_SelectedIndexChanged" Width="25%" CssClass="h4dropdown"></asp:DropDownList>
+                       
+                    <asp:Label ID="lblDivYear" runat="server" Text="/ "  Width="10px"></asp:Label>
+                          
+                    <asp:Label ID="lblYear" runat="server" Text=""  Width="50px" ></asp:Label>
+                         
+                        </div>
                 </div>
             </div>
             <div>
